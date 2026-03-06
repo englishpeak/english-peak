@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Peak — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root {
+  --navy: #0D3B6F;
+  --navy2: #0a2f5a;
+  --purple: #470074;
+  --ink: #0f1923;
+  --bg: #f0f3f8;
+  --white: #ffffff;
+  --border: rgba(13,59,111,0.1);
+  --green: #0d7a4a;
+  --green-bg: rgba(13,122,74,0.08);
+  --red: #c0392b;
+  --red-bg: rgba(192,57,43,0.08);
+  --gold: #b07d1a;
+  --gold-bg: rgba(176,125,26,0.1);
+  --sky: #4A90D9;
+  --muted: #6b7fa3;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(13,59,111,0.1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); }
+
+/* ── LOGIN ── */
+#loginScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--navy2) 0%, var(--navy) 50%, var(--purple) 100%);
+}
+.login-card {
+  background: white;
+  border-radius: 24px;
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+}
+.login-logo { text-align: center; margin-bottom: 32px; }
+.login-logo h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--navy); }
+.login-logo p { font-size: 0.82rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.form-group input { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.92rem; font-family: 'Outfit', sans-serif; color: var(--ink); background: var(--bg); transition: border-color .2s; outline: none; }
+.form-group input:focus { border-color: var(--navy); background: white; }
+.login-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--navy), var(--purple)); color: white; border: none; border-radius: 10px; font-size: 0.92rem; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; margin-top: 8px; transition: opacity .2s; }
+.login-btn:hover { opacity: .88; }
+.login-btn:disabled { opacity: .5; cursor: not-allowed; }
+.login-error { background: var(--red-bg); color: var(--red); border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; margin-top: 14px; display: none; }
+
+/* ── ADMIN APP ── */
+#adminApp { display: none; min-height: 100vh; }
+
+/* Topbar */
+.admin-topbar {
+  background: var(--navy);
+  padding: 0 32px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.admin-topbar-left { display: flex; align-items: center; gap: 16px; }
+.admin-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: white; }
+.admin-badge { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 3px 10px; border-radius: 20px; }
+.admin-user { display: flex; align-items: center; gap: 10px; }
+.admin-user-name { font-size: 0.82rem; color: rgba(255,255,255,0.7); }
+.logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 14px; border-radius: 8px; font-size: 0.78rem; cursor: pointer; font-family: 'Outfit', sans-serif; transition: background .2s; }
+.logout-btn:hover { background: rgba(255,255,255,0.18); }
+
+/* Tabs */
+.admin-tabs {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex;
+  gap: 4px;
+}
+.tab-btn {
+  padding: 14px 20px;
+  border: none;
+  background: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tab-btn:hover { color: var(--navy); }
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--navy); font-weight: 600; }
+.tab-badge { background: var(--bg); color: var(--muted); font-size: 0.7rem; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
+.tab-btn.active .tab-badge { background: var(--navy); color: white; }
+
+/* Main content */
+.admin-content { padding: 28px 32px; max-width: 1200px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.stat-card { background: white; border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); }
+.stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 10px; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--navy); line-height: 1; }
+.stat-sub { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+.stat-card.green .stat-num { color: var(--green); }
+.stat-card.gold .stat-num { color: var(--gold); }
+.stat-card.purple .stat-num { color: var(--purple); }
+
+/* Section header */
+.section-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.section-hdr h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+.section-hdr p { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+/* Search bar */
+.search-bar { display: flex; gap: 10px; margin-bottom: 16px; }
+.search-bar input { flex: 1; padding: 10px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.88rem; font-family: 'Outfit', sans-serif; color: var(--ink); outline: none; background: white; }
+.search-bar input:focus { border-color: var(--navy); }
+.btn { padding: 10px 18px; border-radius: 10px; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: none; font-family: 'Outfit', sans-serif; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-primary { background: linear-gradient(135deg, var(--navy), var(--purple)); color: white; }
+.btn-primary:hover { opacity: .88; }
+.btn-success { background: var(--green-bg); color: var(--green); border: 1px solid rgba(13,122,74,0.2); }
+.btn-success:hover { background: var(--green); color: white; }
+.btn-danger { background: var(--red-bg); color: var(--red); border: 1px solid rgba(192,57,43,0.2); }
+.btn-danger:hover { background: var(--red); color: white; }
+.btn-ghost { background: var(--bg); color: var(--navy); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--navy); }
+.btn-sm { padding: 6px 12px; font-size: 0.75rem; border-radius: 7px; }
+
+/* Table */
+.table-wrap { background: white; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead { background: var(--bg); }
+th { padding: 11px 16px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-align: left; white-space: nowrap; }
+td { padding: 13px 16px; font-size: 0.85rem; border-top: 1px solid var(--border); vertical-align: middle; }
+tr:hover td { background: rgba(13,59,111,0.02); }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+
+/* Tier badges */
+.tier-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
+.tier-free { background: var(--bg); color: var(--muted); }
+.tier-premium { background: var(--gold-bg); color: var(--gold); }
+.tier-admin { background: rgba(71,0,116,0.1); color: var(--purple); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.empty-state p { font-size: 0.88rem; }
+
+/* Loading */
+.loading { text-align: center; padding: 40px; color: var(--muted); font-size: 0.88rem; }
+.spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--navy); border-radius: 50%; animation: spin .7s linear infinite; margin-right: 8px; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(13,59,111,0.2); backdrop-filter: blur(6px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.modal-overlay.show { display: flex; }
+.modal { background: white; border-radius: 20px; padding: 36px; max-width: 480px; width: 100%; box-shadow: 0 24px 80px rgba(13,59,111,0.2); animation: modalIn .22s ease; }
+@keyframes modalIn { from { opacity:0; transform:scale(.95) translateY(8px); } to { opacity:1; transform:scale(1) translateY(0); } }
+.modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.modal p { font-size: 0.83rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+.modal-form .form-group { margin-bottom: 16px; }
+.modal-form .form-group label { font-size: 0.75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 7px; }
+.modal-form .form-group input,
+.modal-form .form-group select,
+.modal-form .form-group textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 9px; font-size: 0.88rem; font-family: 'Outfit', sans-serif; color: var(--ink); outline: none; background: var(--bg); }
+.modal-form .form-group input:focus,
+.modal-form .form-group select:focus,
+.modal-form .form-group textarea:focus { border-color: var(--navy); background: white; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--muted); }
+
+/* Toast */
+.toast { position: fixed; bottom: 24px; right: 24px; background: var(--navy); color: white; padding: 13px 20px; border-radius: 12px; font-size: 0.85rem; font-weight: 500; z-index: 300; display: none; align-items: center; gap: 10px; box-shadow: var(--shadow); animation: toastIn .25s ease; }
+.toast.show { display: flex; }
+.toast.success { background: var(--green); }
+.toast.error { background: var(--red); }
+@keyframes toastIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+/* Codes table extras */
+.code-pill { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; background: var(--bg); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; color: var(--navy); cursor: pointer; transition: background .15s; }
+.code-pill:hover { background: var(--navy); color: white; }
+.uses-bar { display: flex; align-items: center; gap: 8px; }
+.uses-track { flex: 1; max-width: 80px; height: 4px; background: var(--border); border-radius: 2px; }
+.uses-fill { height: 4px; background: var(--navy); border-radius: 2px; }
+.expired { opacity: .4; }
+
+/* Responsive */
+@media(max-width: 768px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .admin-content { padding: 16px; }
+  .admin-tabs { padding: 0 16px; overflow-x: auto; }
+  .admin-topbar { padding: 0 16px; }
+  table { font-size: 0.8rem; }
+  th, td { padding: 10px 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>English Peak</h1>
+      <p>Admin Panel</p>
+    </div>
+    <div class="modal-form">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="admin@englishpeak.mx" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">Sign in to Admin Panel</button>
+      <div class="login-error" id="loginError"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="adminApp">
+
+  <!-- Topbar -->
+  <div class="admin-topbar">
+    <div class="admin-topbar-left">
+      <span class="admin-brand">English Peak</span>
+      <span class="admin-badge">Admin Panel</span>
+    </div>
+    <div class="admin-user">
+      <span class="admin-user-name" id="adminUserEmail"></span>
+      <button class="logout-btn" onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs">
+    <button class="tab-btn active" onclick="switchTab('users', this)">👥 Users <span class="tab-badge" id="badge-users">—</span></button>
+    <button class="tab-btn" onclick="switchTab('codes', this)">🎟 Access Codes <span class="tab-badge" id="badge-codes">—</span></button>
+    <button class="tab-btn" onclick="switchTab('log', this)">📋 Audit Log</button>
+  </div>
+
+  <div class="admin-content">
+
+    <!-- ═══ USERS TAB ═══ -->
+    <div class="tab-panel active" id="tab-users">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-label">Total Users</div><div class="stat-num" id="stat-total">—</div><div class="stat-sub">registered accounts</div></div>
+        <div class="stat-card green"><div class="stat-label">Free Tier</div><div class="stat-num" id="stat-free">—</div><div class="stat-sub">active free users</div></div>
+        <div class="stat-card gold"><div class="stat-label">Practice+</div><div class="stat-num" id="stat-premium">—</div><div class="stat-sub">premium members</div></div>
+        <div class="stat-card purple"><div class="stat-label">Admins</div><div class="stat-num" id="stat-admins">—</div><div class="stat-sub">staff members</div></div>
+      </div>
+      <div class="section-hdr">
+        <div><h2>All Users</h2><p>Click a user to manage their account</p></div>
+        <button class="btn btn-ghost btn-sm" onclick="loadUsers()">↻ Refresh</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="userSearch" placeholder="Search by name or email..." oninput="filterUsers()">
+      </div>
+      <div class="table-wrap">
+        <div id="usersLoading" class="loading"><span class="spinner"></span> Loading users...</div>
+        <table id="usersTable" style="display:none">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Tier</th>
+              <th>Granted by</th>
+              <th>Member since</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody"></tbody>
+        </table>
+        <div id="usersEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">👥</div>
+          <p>No users yet. They'll appear here after signing up.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CODES TAB ═══ -->
+    <div class="tab-panel" id="tab-codes">
+      <div class="section-hdr">
+        <div><h2>Access Codes</h2><p>Generate courtesy or discount codes for Practice+</p></div>
+        <button class="btn btn-primary" onclick="showCreateCodeModal()">+ New Code</button>
+      </div>
+      <div class="table-wrap">
+        <div id="codesLoading" class="loading"><span class="spinner"></span> Loading codes...</div>
+        <table id="codesTable" style="display:none">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Tier</th>
+              <th>Uses</th>
+              <th>Note</th>
+              <th>Expires</th>
+              <th>Created</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="codesBody"></tbody>
+        </table>
+        <div id="codesEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">🎟</div>
+          <p>No access codes yet. Create one to share with students.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ LOG TAB ═══ -->
+    <div class="tab-panel" id="tab-log">
+      <div class="section-hdr">
+        <div><h2>Audit Log</h2><p>History of all manual admin changes</p></div>
+        <button class="btn btn-ghost btn-sm" onclick="loadLog()">↻ Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <div id="logLoading" class="loading"><span class="spinner"></span> Loading log...</div>
+        <table id="logTable" style="display:none">
+          <thead>
+            <tr><th>Date</th><th>Admin</th><th>Action</th><th>Target User</th><th>Details</th></tr>
+          </thead>
+          <tbody id="logBody"></tbody>
+        </table>
+        <div id="logEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">📋</div>
+          <p>No admin actions recorded yet.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHANGE TIER MODAL -->
+<div class="modal-overlay" id="tierModal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('tierModal')">✕</button>
+    <h3 id="tierModalTitle">Change Tier</h3>
+    <p id="tierModalSub">Update the access level for this user.</p>
+    <div class="modal-form">
+      <div class="form-group">
+        <label>New Tier</label>
+        <select id="tierSelect">
+          <option value="free">Free</option>
+          <option value="premium">⭐ Practice+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Reason / Note (internal)</label>
+        <input type="text" id="tierNote" placeholder="e.g. TikTok giveaway winner, referral, etc.">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('tierModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmTierChange()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- CREATE CODE MODAL -->
+<div class="modal-overlay" id="codeModal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('codeModal')">✕</button>
+    <h3>New Access Code</h3>
+    <p>Create a code to give students free or premium access.</p>
+    <div class="modal-form">
+      <div class="form-group">
+        <label>Code (leave blank to auto-generate)</label>
+        <input type="text" id="codeInput" placeholder="e.g. TIKTOK2025" style="text-transform:uppercase">
+      </div>
+      <div class="form-group">
+        <label>Grants Access To</label>
+        <select id="codeTier">
+          <option value="premium">⭐ Practice+</option>
+          <option value="free">Free Account</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Max Uses (0 = unlimited)</label>
+        <input type="number" id="codeMaxUses" value="1" min="0">
+      </div>
+      <div class="form-group">
+        <label>Expires (leave blank = never)</label>
+        <input type="date" id="codeExpiry">
+      </div>
+      <div class="form-group">
+        <label>Note (internal)</label>
+        <input type="text" id="codeNote" placeholder="e.g. TikTok Live giveaway - March 2025">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('codeModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createCode()">Create Code</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════
+// SUPABASE INIT
+// ═══════════════════════════════════
+const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let allUsers = [];
+let selectedUserId = null;
+
+// ═══════════════════════════════════
+// AUTH
+// ═══════════════════════════════════
+async function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pwd   = document.getElementById('loginPassword').value;
+  const btn   = document.getElementById('loginBtn');
+  const err   = document.getElementById('loginError');
+  err.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Signing in...';
+
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pwd });
+  if (error) {
+    err.textContent = error.message;
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Sign in to Admin Panel';
+    return;
+  }
+
+  // Small delay to ensure session is set, then check admin
+  await new Promise(r => setTimeout(r, 500));
+
+  const { data: profile, error: profileError } = await sb
+    .from('profiles')
+    .select('is_admin, full_name')
+    .eq('id', data.user.id)
+    .single();
+
+  // If profile fetch failed or not admin
+  if (profileError || !profile || !profile.is_admin) {
+    // Last resort: check via email match in case profile lookup fails
+    const { data: profileByEmail } = await sb
+      .from('profiles')
+      .select('is_admin')
+      .eq('email', email)
+      .single();
+
+    if (!profileByEmail || !profileByEmail.is_admin) {
+      await sb.auth.signOut();
+      err.textContent = `Access denied. (Debug: profile=${JSON.stringify(profile)}, error=${JSON.stringify(profileError)})`;
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Sign in to Admin Panel';
+      return;
+    }
+  }
+
+  currentUser = data.user;
+  showApp();
+}
+
+async function doLogout() {
+  await sb.auth.signOut();
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginPassword').value = '';
+}
+
+function showApp() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminApp').style.display = 'block';
+  document.getElementById('adminUserEmail').textContent = currentUser.email;
+  loadUsers();
+  loadCodes();
+  loadLog();
+}
+
+// Check existing session on load
+window.addEventListener('load', async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) {
+    const { data: profile } = await sb.from('profiles').select('is_admin').eq('id', session.user.id).single();
+    if (profile && profile.is_admin) {
+      currentUser = session.user;
+      showApp();
+      return;
+    }
+  }
+  document.getElementById('loginScreen').style.display = 'flex';
+});
+
+// Enter key login
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') doLogin();
+});
+
+// ═══════════════════════════════════
+// TABS
+// ═══════════════════════════════════
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ═══════════════════════════════════
+// USERS
+// ═══════════════════════════════════
+async function loadUsers() {
+  document.getElementById('usersLoading').style.display = 'block';
+  document.getElementById('usersTable').style.display = 'none';
+  document.getElementById('usersEmpty').style.display = 'none';
+
+  const { data, error } = await sb.from('profiles').select('*').order('created_at', { ascending: false });
+
+  document.getElementById('usersLoading').style.display = 'none';
+
+  if (error || !data || data.length === 0) {
+    document.getElementById('usersEmpty').style.display = 'block';
+    updateStats([]);
+    return;
+  }
+
+  allUsers = data;
+  renderUsers(data);
+  updateStats(data);
+}
+
+function updateStats(data) {
+  document.getElementById('stat-total').textContent = data.length;
+  document.getElementById('stat-free').textContent = data.filter(u => u.tier === 'free' && !u.is_admin).length;
+  document.getElementById('stat-premium').textContent = data.filter(u => u.tier === 'premium').length;
+  document.getElementById('stat-admins').textContent = data.filter(u => u.is_admin).length;
+  document.getElementById('badge-users').textContent = data.length;
+}
+
+function renderUsers(data) {
+  const tbody = document.getElementById('usersBody');
+  tbody.innerHTML = '';
+
+  if (data.length === 0) {
+    document.getElementById('usersTable').style.display = 'none';
+    document.getElementById('usersEmpty').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('usersTable').style.display = 'table';
+  document.getElementById('usersEmpty').style.display = 'none';
+
+  data.forEach(user => {
+    const date = new Date(user.created_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+    const tierBadge = user.is_admin
+      ? '<span class="tier-badge tier-admin">🛡 Admin</span>'
+      : user.tier === 'premium'
+        ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
+        : '<span class="tier-badge tier-free">Free</span>';
+
+    const grantedBy = user.tier_granted_by
+      ? `<span style="font-size:0.75rem;color:var(--muted)">${user.tier_granted_by}</span>`
+      : '<span style="font-size:0.75rem;color:var(--muted)">—</span>';
+
+    const actions = user.is_admin ? '<span style="font-size:0.75rem;color:var(--muted)">Admin account</span>' :
+      `<button class="btn btn-ghost btn-sm" onclick="openTierModal('${user.id}','${user.email}','${user.tier}')">Change tier</button>`;
+
+    tbody.innerHTML += `
+      <tr>
+        <td>
+          <div style="font-weight:500">${user.full_name || '—'}</div>
+          <div style="font-size:0.75rem;color:var(--muted)">${user.email}</div>
+        </td>
+        <td>${tierBadge}</td>
+        <td>${grantedBy}</td>
+        <td style="font-size:0.8rem;color:var(--muted)">${date}</td>
+        <td>${actions}</td>
+      </tr>`;
+  });
+}
+
+function filterUsers() {
+  const q = document.getElementById('userSearch').value.toLowerCase();
+  const filtered = allUsers.filter(u =>
+    u.email.toLowerCase().includes(q) || (u.full_name || '').toLowerCase().includes(q)
+  );
+  renderUsers(filtered);
+}
+
+// ═══════════════════════════════════
+// TIER CHANGE
+// ═══════════════════════════════════
+function openTierModal(userId, email, currentTier) {
+  selectedUserId = userId;
+  document.getElementById('tierModalTitle').textContent = 'Change Tier';
+  document.getElementById('tierModalSub').textContent = `Updating: ${email}`;
+  document.getElementById('tierSelect').value = currentTier;
+  document.getElementById('tierNote').value = '';
+  document.getElementById('tierModal').classList.add('show');
+}
+
+async function confirmTierChange() {
+  const newTier = document.getElementById('tierSelect').value;
+  const note    = document.getElementById('tierNote').value;
+
+  const { error } = await sb.from('profiles').update({
+    tier: newTier,
+    tier_granted_by: 'manual',
+    tier_granted_at: new Date().toISOString()
+  }).eq('id', selectedUserId);
+
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+
+  // Log the action
+  await sb.from('admin_log').insert({
+    admin_id: currentUser.id,
+    action: 'tier_change',
+    target_user_id: selectedUserId,
+    details: { new_tier: newTier, note: note }
+  });
+
+  closeModal('tierModal');
+  showToast(`✅ Tier updated to ${newTier === 'premium' ? 'Practice+' : 'Free'}`, 'success');
+  loadUsers();
+  loadLog();
+}
+
+// ═══════════════════════════════════
+// CODES
+// ═══════════════════════════════════
+async function loadCodes() {
+  document.getElementById('codesLoading').style.display = 'block';
+  document.getElementById('codesTable').style.display = 'none';
+  document.getElementById('codesEmpty').style.display = 'none';
+
+  const { data, error } = await sb.from('access_codes').select('*').order('created_at', { ascending: false });
+
+  document.getElementById('codesLoading').style.display = 'none';
+
+  if (error || !data || data.length === 0) {
+    document.getElementById('codesEmpty').style.display = 'block';
+    document.getElementById('badge-codes').textContent = '0';
+    return;
+  }
+
+  document.getElementById('badge-codes').textContent = data.length;
+  document.getElementById('codesTable').style.display = 'table';
+  const tbody = document.getElementById('codesBody');
+  tbody.innerHTML = '';
+
+  data.forEach(c => {
+    const isExpired = c.expires_at && new Date(c.expires_at) < new Date();
+    const maxUses = c.max_uses || '∞';
+    const pct = c.max_uses ? Math.min(100, Math.round((c.uses_count / c.max_uses) * 100)) : 0;
+    const expiry = c.expires_at
+      ? new Date(c.expires_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' })
+      : 'Never';
+    const created = new Date(c.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    const tierBadge = c.tier === 'premium'
+      ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
+      : '<span class="tier-badge tier-free">Free</span>';
+
+    tbody.innerHTML += `
+      <tr class="${isExpired ? 'expired' : ''}">
+        <td><span class="code-pill" onclick="copyCode('${c.code}')" title="Click to copy">${c.code}</span></td>
+        <td>${tierBadge}</td>
+        <td>
+          <div class="uses-bar">
+            <span style="font-size:0.8rem;font-weight:600">${c.uses_count}/${maxUses}</span>
+            ${c.max_uses ? `<div class="uses-track"><div class="uses-fill" style="width:${pct}%"></div></div>` : ''}
+          </div>
+        </td>
+        <td style="font-size:0.8rem;color:var(--muted);max-width:200px">${c.note || '—'}</td>
+        <td style="font-size:0.8rem;color:${isExpired ? 'var(--red)' : 'var(--muted)'}">${expiry}${isExpired ? ' (expired)' : ''}</td>
+        <td style="font-size:0.78rem;color:var(--muted)">${created}</td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteCode('${c.id}','${c.code}')">Delete</button></td>
+      </tr>`;
+  });
+}
+
+function showCreateCodeModal() {
+  document.getElementById('codeInput').value = '';
+  document.getElementById('codeTier').value = 'premium';
+  document.getElementById('codeMaxUses').value = '1';
+  document.getElementById('codeExpiry').value = '';
+  document.getElementById('codeNote').value = '';
+  document.getElementById('codeModal').classList.add('show');
+}
+
+function generateCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 8; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+async function createCode() {
+  let code = document.getElementById('codeInput').value.trim().toUpperCase() || generateCode();
+  const tier     = document.getElementById('codeTier').value;
+  const maxUses  = parseInt(document.getElementById('codeMaxUses').value) || 1;
+  const expiry   = document.getElementById('codeExpiry').value || null;
+  const note     = document.getElementById('codeNote').value.trim();
+
+  const { error } = await sb.from('access_codes').insert({
+    code, tier,
+    max_uses: maxUses === 0 ? null : maxUses,
+    expires_at: expiry ? new Date(expiry).toISOString() : null,
+    note: note || null,
+    created_by: currentUser.id
+  });
+
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+
+  await sb.from('admin_log').insert({
+    admin_id: currentUser.id,
+    action: 'code_created',
+    details: { code, tier, note }
+  });
+
+  closeModal('codeModal');
+  showToast(`✅ Code "${code}" created`, 'success');
+  loadCodes();
+}
+
+async function deleteCode(id, code) {
+  if (!confirm(`Delete code "${code}"? This cannot be undone.`)) return;
+  const { error } = await sb.from('access_codes').delete().eq('id', id);
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+  showToast(`🗑 Code "${code}" deleted`, 'success');
+  loadCodes();
+}
+
+function copyCode(code) {
+  navigator.clipboard.writeText(code);
+  showToast(`📋 Copied: ${code}`);
+}
+
+// ═══════════════════════════════════
+// AUDIT LOG
+// ═══════════════════════════════════
+async function loadLog() {
+  document.getElementById('logLoading').style.display = 'block';
+  document.getElementById('logTable').style.display = 'none';
+  document.getElementById('logEmpty').style.display = 'none';
+
+  const { data, error } = await sb
+    .from('admin_log')
+    .select('*, admin:admin_id(email), target:target_user_id(email)')
+    .order('created_at', { ascending: false })
+    .limit(100);
+
+  document.getElementById('logLoading').style.display = 'none';
+
+  if (error || !data || data.length === 0) {
+    document.getElementById('logEmpty').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('logTable').style.display = 'table';
+  const tbody = document.getElementById('logBody');
+  tbody.innerHTML = '';
+
+  const actionLabels = {
+    tier_change: '🔄 Tier changed',
+    code_created: '🎟 Code created',
+    code_deleted: '🗑 Code deleted',
+  };
+
+  data.forEach(log => {
+    const date = new Date(log.created_at).toLocaleString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+    const action = actionLabels[log.action] || log.action;
+    const details = log.details ? Object.entries(log.details).map(([k,v]) => `${k}: ${v}`).join(', ') : '—';
+
+    tbody.innerHTML += `
+      <tr>
+        <td style="font-size:0.78rem;color:var(--muted);white-space:nowrap">${date}</td>
+        <td style="font-size:0.8rem">${log.admin?.email || '—'}</td>
+        <td>${action}</td>
+        <td style="font-size:0.8rem;color:var(--muted)">${log.target?.email || '—'}</td>
+        <td style="font-size:0.75rem;color:var(--muted)">${details}</td>
+      </tr>`;
+  });
+}
+
+// ═══════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>
