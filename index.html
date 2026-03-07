@@ -578,6 +578,7 @@ const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
 const { createClient } = supabase;
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+window.sb = sb;
 
 let _currentUser = null;
 let _currentProfile = null;
