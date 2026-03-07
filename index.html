@@ -398,7 +398,7 @@ button.action {
         <div class="topbar-sub" id="topbarSub">Choose an exercise to get started</div>
       </div>
     </div>
-    <div id="userTopbarArea"><button class="upgrade-btn" id="upgradeTopBtn" onclick="showModal()">⭐ Get Practice+</button></div>
+    <div id="userTopbarArea" style="display:flex;align-items:center;gap:10px;"><button class="upgrade-btn" id="signinTopBtn" onclick="showAuthModal('login')" style="background:transparent;border:2px solid var(--navy);color:var(--navy);">🔐 Sign in</button><button class="upgrade-btn" id="upgradeTopBtn" onclick="showModal()">⭐ Get Practice+</button></div>
   </div>
 
   <!-- ═══ DASHBOARD ═══ -->
@@ -442,11 +442,11 @@ button.action {
     <div class="cards-grid">
       <div class="ex-card" onclick="openITPTests()">
         <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 8</div></div>
-        <div class="card-body"><div class="card-title">TOEFL ITP Mock Tests</div><div class="card-desc">Full timed ITP sessions with multiple choice and error detection. <strong>Immediate feedback</strong> included after every test!</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">📅 Weekly updates</span><span class="meta-item" id="meta-itp-tests">8 tests · 3 free</span></div><button class="card-btn btn-partial" id="btn-itp-tests">Start Practice →</button></div>
+        <div class="card-body"><div class="card-title">TOEFL ITP Mock Tests</div><div class="card-desc">Full timed ITP sessions with multiple choice and error detection. <strong>Immediate feedback</strong> included after every test!</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">📅 Weekly updates</span><span class="meta-item" id="meta-itp-tests">8 tests · 3 unlocked</span></div><button class="card-btn btn-partial" id="btn-itp-tests">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get Practice+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openIBT()">
-        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 5</div></div>
+        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 6</div></div>
         <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">6 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks test 3. Practice+ unlocks all 5.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
       </div>
@@ -493,7 +493,7 @@ button.action {
 
   <!-- ═══ iBT (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-ibt">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL iBT Practice</div><div class="exercise-badge" id="ibt-badge">🔓 2 of 5</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL iBT Practice</div><div class="exercise-badge" id="ibt-badge">🔓 2 of 6</div></div>
     <iframe class="exercise-frame" id="frame-ibt" sandbox="allow-scripts allow-same-origin"></iframe>
   </div>
 
@@ -665,8 +665,10 @@ function updateUIForUser() {
   var switcher = document.querySelector('.tier-switcher');
   if (switcher) switcher.style.display = 'none';
 
-  // Show/hide upgrade button
+  // Show/hide upgrade button and sign in button
   var upgradeBtn = document.getElementById('upgradeTopBtn');
+  var signinBtn = document.getElementById('signinTopBtn');
+  if (signinBtn) signinBtn.style.display = 'none';
   if (tier === 'premium') {
     upgradeBtn.style.display = 'none';
   } else {
@@ -695,8 +697,10 @@ function updateUIForVisitor() {
   document.getElementById('sidebarAvatar').textContent = '👤';
   document.getElementById('sidebarTier').textContent = 'Visitor';
   document.getElementById('upgradeTopBtn').style.display = 'block';
-  document.getElementById('upgradeTopBtn').textContent = '🔐 Sign in';
-  document.getElementById('upgradeTopBtn').onclick = function(){ showAuthModal('login'); };
+  document.getElementById('upgradeTopBtn').textContent = '⭐ Get Practice+';
+  document.getElementById('upgradeTopBtn').onclick = showModal;
+  var signinBtnV = document.getElementById('signinTopBtn');
+  if (signinBtnV) { signinBtnV.style.display = 'block'; signinBtnV.onclick = function(){ showAuthModal('login'); }; }
   var userTopbar = document.getElementById('userTopbarArea');
   if (userTopbar) {
     userTopbar.innerHTML = '<button class="upgrade-btn" id="topbarSignInBtn">🔐 Sign in</button>';
