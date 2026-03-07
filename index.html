@@ -604,6 +604,17 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
 });
 window.sb = sb;
 
+// Listen for messages from iframes (tier restriction)
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'showModal') {
+    if (!_currentUser) {
+      showAuthModal('register');
+    } else {
+      showModal();
+    }
+  }
+});
+
 let _currentUser = null;
 let _currentProfile = null;
 
