@@ -645,7 +645,8 @@ function updateUIForVisitor() {
   document.getElementById('upgradeTopBtn').onclick = function(){ showAuthModal('login'); };
   var userTopbar = document.getElementById('userTopbarArea');
   if (userTopbar) {
-    userTopbar.innerHTML = '<button class="upgrade-btn" onclick="showAuthModal('login')">🔐 Sign in</button>';
+    userTopbar.innerHTML = '<button class="upgrade-btn" id="topbarSignInBtn">🔐 Sign in</button>';
+    setTimeout(function(){ var b=document.getElementById('topbarSignInBtn'); if(b) b.onclick=function(){ showAuthModal('login'); }; }, 50);
   }
   var switcher = document.querySelector('.tier-switcher');
   if (switcher) switcher.style.display = 'none';
