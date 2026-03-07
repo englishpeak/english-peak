@@ -646,6 +646,8 @@ async function loadProfile() {
   const { data } = await sb.from('profiles').select('*').eq('id', _currentUser.id).single();
   _currentProfile = data;
   updateUIForUser();
+  // Force sidebar update after short delay (handles timing issues)
+  setTimeout(updateUIForUser, 300);
 }
 
 function updateUIForUser() {
