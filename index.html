@@ -594,6 +594,17 @@ sb.auth.onAuthStateChange(async function(event, session) {
   }
 });
 
+// Check for existing session on page load (handles OAuth redirect)
+(async function() {
+  var { data } = await sb.auth.getSession();
+  if (data && data.session && data.session.user) {
+    _currentUser = data.session.user;
+    await loadProfile();
+  } else {
+    updateUIForVisitor();
+  }
+})();
+
 async function loadProfile() {
   if (!_currentUser) return;
   const { data } = await sb.from('profiles').select('*').eq('id', _currentUser.id).single();
@@ -780,7 +791,7 @@ async function doRegister() {
 async function signInGoogle() {
   await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: window.location.href }
+    options: { redirectTo: 'https://english-peak.vercel.app' }
   });
 }
 
