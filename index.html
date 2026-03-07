@@ -605,34 +605,39 @@ function updateUIForUser() {
   if (!_currentProfile) return;
   var tier = _currentProfile.tier || 'free';
   var name = _currentProfile.full_name || _currentUser.email.split('@')[0];
+  var initial = name ? name[0].toUpperCase() : '?';
 
   // Update sidebar
   document.getElementById('sidebarName').textContent = name;
-  document.getElementById('sidebarAvatar').textContent = name[0].toUpperCase();
+  document.getElementById('sidebarAvatar').textContent = initial;
   document.getElementById('sidebarTier').textContent = tier === 'premium' ? '⭐ Practice+' : 'Free Account';
 
-  // Hide tier switcher (real auth now)
+  // Hide tier switcher
   var switcher = document.querySelector('.tier-switcher');
   if (switcher) switcher.style.display = 'none';
 
-  // Hide upgrade btn if premium
-  document.getElementById('upgradeTopBtn').style.display = tier === 'premium' ? 'none' : 'block';
-  document.getElementById('upgradeTopBtn').textContent = '⭐ Get Practice+';
-  document.getElementById('upgradeTopBtn').onclick = showModal;
+  // Show/hide upgrade button
+  var upgradeBtn = document.getElementById('upgradeTopBtn');
+  if (tier === 'premium') {
+    upgradeBtn.style.display = 'none';
+  } else {
+    upgradeBtn.style.display = 'block';
+    upgradeBtn.textContent = '⭐ Get Practice+';
+    upgradeBtn.onclick = showModal;
+  }
 
-  // Show signout in topbar
+  // Show user info in topbar
   var userTopbar = document.getElementById('userTopbarArea');
   if (userTopbar) {
     userTopbar.innerHTML = '<div class="user-topbar-info"><span class="user-topbar-name">' + name + '</span><button class="signout-link" onclick="doSignOut()">Sign out</button></div>';
   }
 
   // Update progress card
+  var c = TIERS[tier] || TIERS['free'];
   document.getElementById('progTitle').textContent = tier === 'premium' ? 'You have full access!' : 'Keep it up, ' + name + '!';
-  document.getElementById('progSub').textContent = tier === 'premium'
-    ? 'All exercises unlocked. New content every week.'
-    : 'Upgrade to Practice+ to unlock all tests and PDFs.';
+  document.getElementById('progSub').textContent = c.psub;
 
-  // Apply tier to platform
+  // Apply tier
   applyTier(tier);
 }
 
@@ -811,9 +816,9 @@ function loadFrame(frameId, b64, replacements) {
 var currentTier = 'visitor';
 var TIERS = {
   visitor: {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,completed:0,available:4,ptitle:'Welcome to English Peak Practice',psub:'Create a free account to track your progress and unlock more exercises.'},
-  free:    {name:'Alfred',label:'Free Account',avatar:'A',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3'],conv:true,convBiz:false,completed:12,available:5,ptitle:'Keep it up!',psub:'Upgrade to Practice+ to unlock all tests, weekly content and PDFs.'},
-  premium: {name:'Alfred',label:'⭐ Practice+',avatar:'A',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:true,completed:47,available:5,ptitle:'You have full access!',psub:'All exercises unlocked. New content added every week.'}
-};
+  free:    {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3'],conv:true,convBiz:false,completed:0,available:5,ptitle:'Keep it up!',psub:'Upgrade to Practice+ to unlock all tests, weekly content and PDFs.'},
+  premium: {name:'',label:'⭐ Practice+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6'],conv:true,convBiz:true,completed:0,available:6,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+}
 
 function setTier(tier,btn) {
   currentTier=tier;
