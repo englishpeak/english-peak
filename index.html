@@ -581,7 +581,25 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
-    detectSessionInUrl: true
+    detectSessionInUrl: true,
+    storageKey: 'ep-auth-token',
+    storage: {
+      getItem: function(key) {
+        try { return localStorage.getItem(key); } catch(e) {
+          try { return sessionStorage.getItem(key); } catch(e2) { return null; }
+        }
+      },
+      setItem: function(key, value) {
+        try { localStorage.setItem(key, value); } catch(e) {
+          try { sessionStorage.setItem(key, value); } catch(e2) {}
+        }
+      },
+      removeItem: function(key) {
+        try { localStorage.removeItem(key); } catch(e) {
+          try { sessionStorage.removeItem(key); } catch(e2) {}
+        }
+      }
+    }
   }
 });
 window.sb = sb;
@@ -834,7 +852,7 @@ function loadFrame(frameId, b64, replacements) {
 var currentTier = 'visitor';
 var TIERS = {
   visitor: {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,completed:0,available:4,ptitle:'Welcome to English Peak Practice',psub:'Create a free account to track your progress and unlock more exercises.'},
-  free:    {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3'],conv:true,convBiz:false,completed:0,available:5,ptitle:'Keep it up!',psub:'Upgrade to Practice+ to unlock all tests, weekly content and PDFs.'},
+  free:    {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,completed:0,available:5,ptitle:'Keep it up!',psub:'Upgrade to Practice+ to unlock all tests, weekly content and PDFs.'},
   premium: {name:'',label:'⭐ Practice+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6'],conv:true,convBiz:true,completed:0,available:6,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
