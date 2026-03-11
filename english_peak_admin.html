@@ -157,6 +157,8 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 .tier-free { background: var(--bg); color: var(--muted); }
 .tier-premium { background: var(--gold-bg); color: var(--gold); }
 .tier-admin { background: rgba(71,0,116,0.1); color: var(--purple); }
+.tier-teacher { background: rgba(13,59,111,0.1); color: var(--navy); }
+.tier-courtesy { background: rgba(255,152,0,0.1); color: #e65100; }
 
 /* Empty state */
 .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
@@ -267,6 +269,8 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <div class="stat-card green"><div class="stat-label">Free Tier</div><div class="stat-num" id="stat-free">—</div><div class="stat-sub">active free users</div></div>
         <div class="stat-card gold"><div class="stat-label">Practice+</div><div class="stat-num" id="stat-premium">—</div><div class="stat-sub">premium members</div></div>
         <div class="stat-card purple"><div class="stat-label">Admins</div><div class="stat-num" id="stat-admins">—</div><div class="stat-sub">staff members</div></div>
+        <div class="stat-card" style="border-top:3px solid var(--navy)"><div class="stat-label">Teachers</div><div class="stat-num" id="stat-teachers">—</div><div class="stat-sub">school staff</div></div>
+        <div class="stat-card" style="border-top:3px solid #e65100"><div class="stat-label">Courtesy</div><div class="stat-num" id="stat-courtesy">—</div><div class="stat-sub">complimentary access</div></div>
       </div>
       <div class="section-hdr">
         <div><h2>All Users</h2><p>Click a user to manage their account</p></div>
@@ -361,6 +365,8 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <select id="tierSelect">
           <option value="free">Free</option>
           <option value="premium">⭐ Practice+</option>
+          <option value="teacher">🎓 Teacher</option>
+          <option value="courtesy">🎁 Courtesy</option>
         </select>
       </div>
       <div class="form-group">
@@ -391,6 +397,8 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <select id="codeTier">
           <option value="premium">⭐ Practice+</option>
           <option value="free">Free Account</option>
+          <option value="teacher">🎓 Teacher</option>
+          <option value="courtesy">🎁 Courtesy</option>
         </select>
       </div>
       <div class="form-group">
@@ -555,6 +563,8 @@ function updateStats(data) {
   document.getElementById('stat-free').textContent = data.filter(u => u.tier === 'free' && !u.is_admin).length;
   document.getElementById('stat-premium').textContent = data.filter(u => u.tier === 'premium').length;
   document.getElementById('stat-admins').textContent = data.filter(u => u.is_admin).length;
+  document.getElementById('stat-teachers').textContent = data.filter(u => u.tier === 'teacher').length;
+  document.getElementById('stat-courtesy').textContent = data.filter(u => u.tier === 'courtesy').length;
   document.getElementById('badge-users').textContent = data.length;
 }
 
@@ -577,7 +587,11 @@ function renderUsers(data) {
       ? '<span class="tier-badge tier-admin">🛡 Admin</span>'
       : user.tier === 'premium'
         ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
-        : '<span class="tier-badge tier-free">Free</span>';
+        : user.tier === 'teacher'
+          ? '<span class="tier-badge tier-teacher">🎓 Teacher</span>'
+          : user.tier === 'courtesy'
+            ? '<span class="tier-badge tier-courtesy">🎁 Courtesy</span>'
+            : '<span class="tier-badge tier-free">Free</span>';
 
     const grantedBy = user.tier_granted_by
       ? `<span style="font-size:0.75rem;color:var(--muted)">${user.tier_granted_by}</span>`
@@ -679,7 +693,11 @@ async function loadCodes() {
     const created = new Date(c.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
     const tierBadge = c.tier === 'premium'
       ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
-      : '<span class="tier-badge tier-free">Free</span>';
+      : newTier === 'teacher'
+        ? '<span class="tier-badge tier-teacher">🎓 Teacher</span>'
+        : newTier === 'courtesy'
+          ? '<span class="tier-badge tier-courtesy">🎁 Courtesy</span>'
+          : '<span class="tier-badge tier-free">Free</span>';
 
     tbody.innerHTML += `
       <tr class="${isExpired ? 'expired' : ''}">
