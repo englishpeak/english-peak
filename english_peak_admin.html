@@ -212,6 +212,14 @@ tr:hover td { background: rgba(13,59,111,0.02); }
   table { font-size: 0.8rem; }
   th, td { padding: 10px 12px; }
 }
+
+/* Progress tab */
+.ps-score-bar { display:inline-flex; align-items:center; gap:7px; }
+.ps-track { width:70px; height:5px; background:rgba(13,59,111,0.08); border-radius:3px; overflow:hidden; }
+.ps-fill { height:5px; border-radius:3px; }
+.ps-pass { display:inline-block; padding:3px 9px; border-radius:20px; font-size:0.7rem; font-weight:600; background:var(--green-bg); color:var(--green); }
+.ps-fair { display:inline-block; padding:3px 9px; border-radius:20px; font-size:0.7rem; font-weight:600; background:var(--gold-bg); color:var(--gold); }
+.ps-fail { display:inline-block; padding:3px 9px; border-radius:20px; font-size:0.7rem; font-weight:600; background:var(--red-bg); color:var(--red); }
 </style>
 </head>
 <body>
@@ -257,6 +265,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
   <div class="admin-tabs">
     <button class="tab-btn active" onclick="switchTab('users', this)">👥 Users <span class="tab-badge" id="badge-users">—</span></button>
     <button class="tab-btn" onclick="switchTab('codes', this)">🎟 Access Codes <span class="tab-badge" id="badge-codes">—</span></button>
+    <button class="tab-btn" onclick="switchTab('progress', this)">📊 Student Progress <span class="tab-badge" id="badge-progress">—</span></button>
     <button class="tab-btn" onclick="switchTab('log', this)">📋 Audit Log</button>
   </div>
 
@@ -325,6 +334,56 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <div id="codesEmpty" class="empty-state" style="display:none">
           <div class="empty-icon">🎟</div>
           <p>No access codes yet. Create one to share with students.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROGRESS TAB ═══ -->
+    <div class="tab-panel" id="tab-progress">
+      <div class="stats-row" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-card"><div class="stat-label">Total Sessions</div><div class="stat-num" id="ps-total">—</div><div class="stat-sub">exercise completions</div></div>
+        <div class="stat-card green"><div class="stat-label">Avg Score</div><div class="stat-num" id="ps-avg">—</div><div class="stat-sub">across all tests</div></div>
+        <div class="stat-card gold"><div class="stat-label">Active Today</div><div class="stat-num" id="ps-today">—</div><div class="stat-sub">sessions today</div></div>
+        <div class="stat-card purple"><div class="stat-label">Active Students</div><div class="stat-num" id="ps-students">—</div><div class="stat-sub">unique users w/ activity</div></div>
+      </div>
+
+      <div class="section-hdr" style="margin-bottom:12px">
+        <div><h2>Activity Log</h2><p>All student exercise sessions — newest first</p></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <select id="ps-filter-type" onchange="filterAdminProgress()" style="padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:0.82rem;font-family:'Outfit',sans-serif;color:var(--ink);background:white;outline:none">
+            <option value="">All exercise types</option>
+            <option value="TOEFL ITP">TOEFL ITP</option>
+            <option value="TOEFL iBT">TOEFL iBT</option>
+            <option value="ITP Multiple Choice">ITP Multiple Choice</option>
+            <option value="Unscramble">Unscramble</option>
+            <option value="Emoji Flashcards">Emoji Flashcards</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" onclick="loadAdminProgress()">↻ Refresh</button>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="ps-search" placeholder="Search by user email or exercise name..." oninput="filterAdminProgress()">
+      </div>
+
+      <div class="table-wrap">
+        <div id="psLoading" class="loading"><span class="spinner"></span> Loading progress data...</div>
+        <table id="psTable" style="display:none">
+          <thead>
+            <tr>
+              <th>Date / Time</th>
+              <th>Student</th>
+              <th>Exercise Type</th>
+              <th>Session</th>
+              <th>Score</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="psBody"></tbody>
+        </table>
+        <div id="psEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">📊</div>
+          <p>No exercise activity recorded yet. Students need to complete exercises first.</p>
         </div>
       </div>
     </div>
@@ -533,6 +592,7 @@ function switchTab(name, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
+  if (name === 'progress' && _allProgress.length === 0) loadAdminProgress();
 }
 
 // ═══════════════════════════════════
@@ -655,7 +715,8 @@ async function confirmTierChange() {
   });
 
   closeModal('tierModal');
-  showToast(`✅ Tier updated to ${newTier === 'premium' ? 'Practice+' : 'Free'}`, 'success');
+  const tierNames = {premium:'⭐ Practice+', free:'Free', teacher:'🎓 Teacher', courtesy:'🎁 Courtesy'};
+  showToast(`✅ Tier updated to ${tierNames[newTier] || newTier}`, 'success');
   loadUsers();
   loadLog();
 }
@@ -817,6 +878,122 @@ async function loadLog() {
         <td>${action}</td>
         <td style="font-size:0.8rem;color:var(--muted)">${log.target?.email || '—'}</td>
         <td style="font-size:0.75rem;color:var(--muted)">${details}</td>
+      </tr>`;
+  });
+}
+
+// ═══════════════════════════════════
+// STUDENT PROGRESS
+// ═══════════════════════════════════
+let _allProgress = [];
+
+async function loadAdminProgress() {
+  document.getElementById('psLoading').style.display = 'block';
+  document.getElementById('psTable').style.display = 'none';
+  document.getElementById('psEmpty').style.display = 'none';
+
+  // Fetch exercise_log joined with profiles
+  const { data, error } = await sb
+    .from('exercise_log')
+    .select('*, user:user_id(email, full_name)')
+    .order('completed_at', { ascending: false })
+    .limit(500);
+
+  document.getElementById('psLoading').style.display = 'none';
+
+  if (error || !data || data.length === 0) {
+    _allProgress = [];
+    document.getElementById('psEmpty').style.display = 'block';
+    document.getElementById('badge-progress').textContent = '0';
+    document.getElementById('ps-total').textContent = '0';
+    document.getElementById('ps-avg').textContent = '—';
+    document.getElementById('ps-today').textContent = '0';
+    document.getElementById('ps-students').textContent = '0';
+    return;
+  }
+
+  _allProgress = data;
+  document.getElementById('badge-progress').textContent = data.length;
+
+  // Compute stats
+  const scored = data.filter(r => r.score != null && r.max_score);
+  const avgPct = scored.length
+    ? Math.round(scored.reduce((acc, r) => acc + (r.score / r.max_score) * 100, 0) / scored.length)
+    : null;
+
+  const todayStr = new Date().toDateString();
+  const todayCount = data.filter(r => new Date(r.completed_at).toDateString() === todayStr).length;
+
+  const uniqueStudents = new Set(data.map(r => r.user_id)).size;
+
+  document.getElementById('ps-total').textContent = data.length;
+  document.getElementById('ps-avg').textContent = avgPct != null ? avgPct + '%' : '—';
+  document.getElementById('ps-today').textContent = todayCount;
+  document.getElementById('ps-students').textContent = uniqueStudents;
+
+  renderAdminProgress(data);
+}
+
+function filterAdminProgress() {
+  const search = document.getElementById('ps-search').value.toLowerCase();
+  const type   = document.getElementById('ps-filter-type').value;
+  let filtered = _allProgress;
+  if (type) filtered = filtered.filter(r => r.exercise_type === type);
+  if (search) filtered = filtered.filter(r => {
+    const email = (r.user && r.user.email) ? r.user.email.toLowerCase() : '';
+    const name  = (r.user && r.user.full_name) ? r.user.full_name.toLowerCase() : '';
+    return email.includes(search) || name.includes(search) || r.exercise_name.toLowerCase().includes(search);
+  });
+  renderAdminProgress(filtered);
+}
+
+function renderAdminProgress(data) {
+  const tbody = document.getElementById('psBody');
+  const table = document.getElementById('psTable');
+  const empty = document.getElementById('psEmpty');
+
+  if (!data.length) {
+    table.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  table.style.display = 'table';
+  tbody.innerHTML = '';
+
+  const typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'};
+
+  data.forEach(row => {
+    const date = new Date(row.completed_at);
+    const dateStr = date.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
+    const timeStr = date.toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
+    const userEmail = row.user ? row.user.email : '—';
+    const userName  = row.user && row.user.full_name ? row.user.full_name : '';
+
+    const pct = (row.score != null && row.max_score) ? Math.round((row.score / row.max_score) * 100) : null;
+    let scoreHtml = '—';
+    let resultHtml = '—';
+    if (pct !== null) {
+      const color = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--gold)' : 'var(--red)';
+      scoreHtml = `<div class="ps-score-bar"><span style="font-weight:700;color:${color}">${row.score}/${row.max_score}</span><div class="ps-track"><div class="ps-fill" style="width:${pct}%;background:${color}"></div></div><span style="font-size:0.75rem;color:var(--muted)">${pct}%</span></div>`;
+      if (pct >= 70) resultHtml = '<span class="ps-pass">✓ Good</span>';
+      else if (pct >= 50) resultHtml = '<span class="ps-fair">~ Fair</span>';
+      else resultHtml = '<span class="ps-fail">✗ Needs work</span>';
+    }
+
+    const icon = typeIcon[row.exercise_type] || '📌';
+    tbody.innerHTML += `
+      <tr>
+        <td style="font-size:0.8rem;color:var(--muted);white-space:nowrap">${dateStr}<br><span style="font-size:0.72rem;color:#ccc">${timeStr}</span></td>
+        <td>
+          <div style="font-size:0.85rem;font-weight:600">${userName || userEmail}</div>
+          ${userName ? '<div style="font-size:0.72rem;color:var(--muted)">' + userEmail + '</div>' : ''}
+        </td>
+        <td><span style="font-size:1rem">${icon}</span> <span style="font-size:0.82rem">${row.exercise_type}</span></td>
+        <td style="font-weight:600;font-size:0.85rem;color:var(--navy)">${row.exercise_name}</td>
+        <td>${scoreHtml}</td>
+        <td>${resultHtml}</td>
       </tr>`;
   });
 }

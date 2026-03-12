@@ -116,6 +116,20 @@ body.sidebar-collapsed .main{margin-left:64px}
 .lock-cta{background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;padding:10px 22px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif}
 .lock-dismiss{font-size:0.72rem;color:#aaa;cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Outfit',sans-serif}
 
+/* ── PROGRESS SCREEN ── */
+.ph-filter-btn{padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--bg);color:var(--ink);transition:all .2s;font-family:'Outfit',sans-serif}
+.ph-filter-btn.active{background:var(--navy);color:white;border-color:var(--navy)}
+.ph-result-pass{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;background:rgba(26,122,74,0.1);color:var(--green)}
+.ph-result-fail{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;background:rgba(201,60,60,0.1);color:#b33}
+.ph-result-neutral{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;background:rgba(13,59,111,0.08);color:var(--navy)}
+.ph-score-bar{display:inline-flex;align-items:center;gap:8px}
+.ph-score-track{width:80px;height:6px;background:rgba(13,59,111,0.08);border-radius:3px;overflow:hidden}
+.ph-score-fill{height:100%;border-radius:3px;transition:width .4s}
+.ph-bar-item{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px}
+.ph-bar-item .bar-col{background:linear-gradient(180deg,var(--sky),var(--navy));border-radius:4px 4px 0 0;min-width:28px;transition:height .4s}
+.ph-bar-item .bar-lbl{font-size:0.65rem;color:#999;text-align:center;max-width:36px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph-chart-labels .bar-lbl{font-size:0.65rem;color:#bbb;min-width:36px;text-align:center}
+
 /* ── ITP MC STYLES ── */
 
 :root {
@@ -364,7 +378,7 @@ button.action {
   </div>
   <nav class="sidebar-nav">
     <button class="nav-item active" onclick="showDashboard()"><span class="icon">🏠</span><span class="nav-label">Dashboard</span></button>
-    <button class="nav-item" onclick="alert('Progress tracking coming soon!')"><span class="icon">📊</span><span class="nav-label">My Progress</span></button>
+    <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon">📊</span><span class="nav-label">My Progress</span></button>
     <button class="nav-item" onclick="showModal()"><span class="icon">⭐</span><span class="nav-label">Practice+</span></button>
     <button class="nav-item" onclick="alert('PDFs coming soon for Practice+ members.')"><span class="icon">📥</span><span class="nav-label">Downloads</span></button>
   </nav>
@@ -468,6 +482,75 @@ button.action {
 
   </div>
   </div><!-- end dashboard -->
+
+  <!-- ═══ MY PROGRESS ═══ -->
+  <div class="screen" id="screen-progress">
+  <div class="content" style="padding:32px;flex:1">
+
+    <div class="progress-card" id="prog-header-card">
+      <div class="progress-text">
+        <h3 id="progHistTitle">My Progress</h3>
+        <p id="progHistSub">All your exercise activity in one place.</p>
+      </div>
+      <div class="progress-stats">
+        <div class="prog-stat"><div class="prog-num" id="phTotal">0</div><div class="prog-label">Sessions</div></div>
+        <div class="prog-stat"><div class="prog-num" id="phAvgScore">—</div><div class="prog-label">Avg Score</div></div>
+        <div class="prog-stat"><div class="prog-num" id="phStreak">0</div><div class="prog-label">Day Streak</div></div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center">
+      <span style="font-size:0.8rem;color:#888;font-weight:500">Filter:</span>
+      <button class="ph-filter-btn active" data-filter="all" onclick="filterProgress(this,'all')">All</button>
+      <button class="ph-filter-btn" data-filter="TOEFL ITP" onclick="filterProgress(this,'TOEFL ITP')">TOEFL ITP</button>
+      <button class="ph-filter-btn" data-filter="TOEFL iBT" onclick="filterProgress(this,'TOEFL iBT')">TOEFL iBT</button>
+      <button class="ph-filter-btn" data-filter="ITP Multiple Choice" onclick="filterProgress(this,'ITP Multiple Choice')">ITP MC</button>
+      <button class="ph-filter-btn" data-filter="Unscramble" onclick="filterProgress(this,'Unscramble')">Unscramble</button>
+      <button class="ph-filter-btn" data-filter="Emoji Flashcards" onclick="filterProgress(this,'Emoji Flashcards')">Emoji</button>
+    </div>
+
+    <!-- Chart mini area -->
+    <div id="ph-chart-wrap" style="background:white;border-radius:18px;border:1.5px solid var(--border);padding:24px;margin-bottom:20px;display:none">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:16px">Score History — TOEFL Tests</div>
+      <div id="ph-chart-inner" style="display:flex;align-items:flex-end;gap:8px;height:80px;"></div>
+      <div id="ph-chart-labels" style="display:flex;gap:8px;margin-top:6px;"></div>
+    </div>
+
+    <!-- Log table -->
+    <div style="background:white;border-radius:18px;border:1.5px solid var(--border);overflow:hidden">
+      <div style="padding:20px 24px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy)">Activity History</div>
+        <button onclick="loadProgressHistory()" style="background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:6px 14px;font-size:0.78rem;font-weight:600;cursor:pointer;color:var(--navy);font-family:'Outfit',sans-serif">↻ Refresh</button>
+      </div>
+      <div id="ph-loading" style="padding:40px;text-align:center;color:#999;font-size:0.88rem;display:none">Loading your history...</div>
+      <div id="ph-empty" style="padding:60px 20px;text-align:center;color:#aaa;display:none">
+        <div style="font-size:2.5rem;margin-bottom:12px">📊</div>
+        <div style="font-size:0.95rem;font-weight:600;color:#888">No activity yet</div>
+        <div style="font-size:0.82rem;margin-top:6px">Complete an exercise to start building your history.</div>
+      </div>
+      <div id="ph-not-logged-in" style="padding:60px 20px;text-align:center;color:#aaa;display:none">
+        <div style="font-size:2.5rem;margin-bottom:12px">🔐</div>
+        <div style="font-size:0.95rem;font-weight:600;color:#888">Sign in to view your progress</div>
+        <div style="font-size:0.82rem;margin-top:6px">Create a free account to save and track all your activity.</div>
+        <button onclick="showAuthModal('register')" style="margin-top:18px;background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;padding:10px 24px;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">Create free account →</button>
+      </div>
+      <table id="ph-table" style="width:100%;border-collapse:collapse;display:none">
+        <thead style="background:var(--bg)">
+          <tr>
+            <th style="padding:10px 16px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;text-align:left">Date</th>
+            <th style="padding:10px 16px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;text-align:left">Exercise</th>
+            <th style="padding:10px 16px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;text-align:left">Session</th>
+            <th style="padding:10px 16px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;text-align:left">Score</th>
+            <th style="padding:10px 16px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;text-align:left">Result</th>
+          </tr>
+        </thead>
+        <tbody id="ph-tbody"></tbody>
+      </table>
+    </div>
+
+  </div>
+  </div><!-- end progress -->
 
   <!-- ═══ ITP MC (inline) ═══ -->
   <div class="exercise-screen" id="exercise-itp-mc">
@@ -615,13 +698,21 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
 });
 window.sb = sb;
 
-// Listen for messages from iframes (tier restriction)
+// Listen for messages from iframes (tier restriction + score logging)
 window.addEventListener('message', function(e) {
   if (e.data && e.data.type === 'showModal') {
     if (!_currentUser) {
       showAuthModal('register');
     } else {
       showModal();
+    }
+  }
+  // Score reporting from iframe exercises
+  if (e.data && e.data.type === 'exerciseComplete') {
+    var d = e.data;
+    // d.exerciseType, d.exerciseName, d.score, d.maxScore
+    if (typeof logActivity === 'function') {
+      logActivity(d.exerciseType || 'Exercise', d.exerciseName || 'Session', d.score != null ? d.score : null, d.maxScore || null, d.details || null);
     }
   }
 });
@@ -998,6 +1089,200 @@ function openConv() {
 }
 function hideLock(id){document.getElementById('lock-'+id).classList.remove('show');}
 
+
+// ═══════════════════════════════════════
+// PROGRESS TRACKING
+// ═══════════════════════════════════════
+
+var _progressData = []; // full unfiltered list
+var _progressFilter = 'all';
+
+async function showProgress() {
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('screen-progress').classList.add('active');
+  // update sidebar active state
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+  document.getElementById('navProgress').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'My Progress';
+  document.getElementById('topbarSub').textContent = 'Your complete exercise history';
+  closeMobileSidebar();
+  await loadProgressHistory();
+}
+
+async function loadProgressHistory() {
+  var loading = document.getElementById('ph-loading');
+  var empty   = document.getElementById('ph-empty');
+  var notIn   = document.getElementById('ph-not-logged-in');
+  var table   = document.getElementById('ph-table');
+  loading.style.display='block'; empty.style.display='none'; notIn.style.display='none'; table.style.display='none';
+
+  if (!_currentUser) {
+    loading.style.display='none';
+    notIn.style.display='block';
+    document.getElementById('phTotal').textContent='—';
+    document.getElementById('phAvgScore').textContent='—';
+    document.getElementById('phStreak').textContent='—';
+    return;
+  }
+
+  var { data, error } = await sb
+    .from('exercise_log')
+    .select('*')
+    .eq('user_id', _currentUser.id)
+    .order('completed_at', { ascending: false })
+    .limit(200);
+
+  loading.style.display='none';
+
+  if (error || !data || data.length === 0) {
+    _progressData = [];
+    empty.style.display='block';
+    document.getElementById('phTotal').textContent='0';
+    document.getElementById('phAvgScore').textContent='—';
+    document.getElementById('phStreak').textContent='0';
+    return;
+  }
+
+  _progressData = data;
+  renderProgress();
+}
+
+function renderProgress() {
+  var data = _progressFilter === 'all'
+    ? _progressData
+    : _progressData.filter(function(r){ return r.exercise_type === _progressFilter || r.exercise_name === _progressFilter; });
+
+  var table  = document.getElementById('ph-table');
+  var empty  = document.getElementById('ph-empty');
+  var tbody  = document.getElementById('ph-tbody');
+
+  // Summary stats
+  document.getElementById('phTotal').textContent = _progressData.length;
+  var scored = _progressData.filter(function(r){ return r.score != null && r.max_score != null && r.max_score > 0; });
+  if (scored.length) {
+    var avg = scored.reduce(function(acc,r){ return acc + (r.score/r.max_score)*100; },0) / scored.length;
+    document.getElementById('phAvgScore').textContent = Math.round(avg) + '%';
+  } else {
+    document.getElementById('phAvgScore').textContent = '—';
+  }
+  document.getElementById('phStreak').textContent = calcStreak(_progressData);
+
+  // Chart (only for TOEFL tests with scores)
+  var toeflScored = _progressData.filter(function(r){
+    return (r.exercise_type === 'TOEFL ITP' || r.exercise_type === 'TOEFL iBT') && r.score != null && r.max_score;
+  }).slice().reverse().slice(-10);
+  var chartWrap = document.getElementById('ph-chart-wrap');
+  if (toeflScored.length >= 2) {
+    chartWrap.style.display='block';
+    renderMiniChart(toeflScored);
+  } else {
+    chartWrap.style.display='none';
+  }
+
+  if (!data.length) {
+    empty.style.display = 'block';
+    table.style.display = 'none';
+    return;
+  }
+
+  empty.style.display='none';
+  table.style.display='table';
+  tbody.innerHTML = '';
+
+  data.forEach(function(row) {
+    var date   = new Date(row.completed_at);
+    var dateStr = date.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
+    var timeStr = date.toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
+    var pct    = (row.score != null && row.max_score) ? Math.round((row.score / row.max_score) * 100) : null;
+    var scoreHtml = '—';
+    if (pct !== null) {
+      var color = pct >= 70 ? '#1a7a4a' : pct >= 50 ? '#b07d1a' : '#c0392b';
+      scoreHtml = '<div class="ph-score-bar"><span style="font-weight:700;color:'+color+'">'+row.score+'/'+row.max_score+'</span><div class="ph-score-track"><div class="ph-score-fill" style="width:'+pct+'%;background:'+color+'"></div></div><span style="font-size:0.78rem;color:#aaa">'+pct+'%</span></div>';
+    }
+    var resultHtml = '—';
+    if (pct !== null) {
+      if (pct >= 70) resultHtml = '<span class="ph-result-pass">✓ Good</span>';
+      else if (pct >= 50) resultHtml = '<span class="ph-result-neutral">~ Fair</span>';
+      else resultHtml = '<span class="ph-result-fail">✗ Keep going</span>';
+    }
+
+    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
+    tbody.innerHTML += '<tr style="border-top:1px solid var(--border)">'
+      +'<td style="padding:13px 16px;font-size:0.8rem;color:#888;white-space:nowrap">'+dateStr+'<br><span style="font-size:0.72rem;color:#ccc">'+timeStr+'</span></td>'
+      +'<td style="padding:13px 16px"><span style="font-size:1rem">'+typeIcon+'</span> <span style="font-size:0.85rem;font-weight:500;color:var(--ink)">'+row.exercise_type+'</span></td>'
+      +'<td style="padding:13px 16px;font-size:0.85rem;color:var(--navy);font-weight:600">'+row.exercise_name+'</td>'
+      +'<td style="padding:13px 16px">'+scoreHtml+'</td>'
+      +'<td style="padding:13px 16px">'+resultHtml+'</td>'
+      +'</tr>';
+  });
+}
+
+function renderMiniChart(rows) {
+  var inner  = document.getElementById('ph-chart-inner');
+  var labels = document.getElementById('ph-chart-labels');
+  var maxH   = 70;
+  inner.innerHTML  = '';
+  labels.innerHTML = '';
+
+  var maxPct = 100;
+  rows.forEach(function(row) {
+    var pct = Math.round((row.score / row.max_score) * 100);
+    var h   = Math.max(4, Math.round((pct / maxPct) * maxH));
+    var color = pct >= 70 ? '#1a7a4a' : pct >= 50 ? '#b07d1a' : '#c0392b';
+    inner.innerHTML  += '<div class="ph-bar-item"><div class="bar-col" style="height:'+h+'px;background:'+color+'" title="'+pct+'%"></div><span class="bar-lbl">'+pct+'%</span></div>';
+    var lbl = row.exercise_name.replace('Test ','T').replace('test ','T');
+    labels.innerHTML += '<div class="ph-bar-item"><span class="bar-lbl" style="min-width:36px;text-align:center">'+lbl+'</span></div>';
+  });
+}
+
+function calcStreak(data) {
+  if (!data || !data.length) return 0;
+  var days = {};
+  data.forEach(function(r){
+    var d = new Date(r.completed_at).toDateString();
+    days[d] = true;
+  });
+  var streak = 0;
+  var today = new Date();
+  for (var i=0; i<60; i++) {
+    var d = new Date(today);
+    d.setDate(d.getDate() - i);
+    if (days[d.toDateString()]) streak++;
+    else if (i > 0) break;
+  }
+  return streak;
+}
+
+function filterProgress(btn, val) {
+  document.querySelectorAll('.ph-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  _progressFilter = val;
+  renderProgress();
+}
+
+// ─── logActivity: called automatically when an exercise completes ───
+// exerciseType: 'TOEFL ITP' | 'TOEFL iBT' | 'ITP Multiple Choice' | 'Unscramble' | 'Emoji Flashcards'
+// exerciseName: 'Test 1', 'Test 2', 'Session', etc.
+// score: number (correct answers) or null
+// maxScore: total possible or null
+async function logActivity(exerciseType, exerciseName, score, maxScore, details) {
+  if (!_currentUser) return; // only log for signed-in users
+  try {
+    await sb.from('exercise_log').insert({
+      user_id: _currentUser.id,
+      exercise_type: exerciseType,
+      exercise_name: exerciseName,
+      score: score != null ? score : null,
+      max_score: maxScore != null ? maxScore : null,
+      details: details || null,
+      completed_at: new Date().toISOString()
+    });
+  } catch(e) {
+    // fail silently — don't interrupt user experience
+    console.warn('logActivity error:', e);
+  }
+}
+
 // ═══ MODAL ═══
 function showModal(){document.getElementById('modalOverlay').classList.add('show');}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('show');}
@@ -1105,6 +1390,9 @@ const ITP_MC = (function() {
   function shuffleArr(a) { return a.sort(function(){return Math.random()-.5;}); }
   var pool = shuffleArr(questions.slice());
   var idx = 0;
+  var _sessionCorrect = 0;
+  var _sessionTotal = 0;
+  var _SESSION_SIZE = 10;
 
   function loadQ() {
     var fb = document.getElementById('itpmc-feedback');
@@ -1131,6 +1419,15 @@ const ITP_MC = (function() {
     fb.style.color = correct ? '#1a7a4a' : '#c62828';
     document.getElementById('itpmc-checkBtn').disabled = true;
     document.getElementById('itpmc-nextBtn').style.display = 'inline-block';
+    if (correct) _sessionCorrect++;
+    _sessionTotal++;
+    // Log every SESSION_SIZE questions
+    if (_sessionTotal % _SESSION_SIZE === 0) {
+      var sessNum = Math.floor(_sessionTotal / _SESSION_SIZE);
+      if (typeof logActivity === 'function') {
+        logActivity('ITP Multiple Choice', 'Session ' + sessNum, _sessionCorrect % _SESSION_SIZE || _SESSION_SIZE, _SESSION_SIZE);
+      }
+    }
   }
 
   function nextQ() {
@@ -1140,6 +1437,7 @@ const ITP_MC = (function() {
   }
 
   function init() {
+    _sessionCorrect = 0; _sessionTotal = 0;
     document.getElementById('itpmc-checkBtn').onclick = checkAns;
     document.getElementById('itpmc-nextBtn').onclick = nextQ;
     loadQ();
