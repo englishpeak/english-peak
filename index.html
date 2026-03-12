@@ -757,18 +757,14 @@ async function loadProfile() {
   _currentProfile = data;
   updateUIForUser();
   setTimeout(updateUIForUser, 300);
-  // Load real completed sessions count for dashboard
   try {
     var { data: logData } = await sb
-      .from('exercise_log')
-      .select('id, completed_at')
+      .from('exercise_log').select('id, completed_at')
       .eq('user_id', _currentUser.id)
-      .order('completed_at', { ascending: false })
-      .limit(500);
+      .order('completed_at', { ascending: false }).limit(500);
     if (logData) {
       var el = document.getElementById('progCompleted');
       if (el) el.textContent = logData.length;
-      // Show streak in progress subtitle
       var streak = calcStreak(logData);
       if (streak > 1) {
         var tier = (_currentProfile && _currentProfile.tier) || 'free';
@@ -777,7 +773,7 @@ async function loadProfile() {
         if (sub) sub.textContent = (c.psub || '') + '  🔥 ' + streak + '-day streak!';
       }
     }
-  } catch(e) { /* fail silently */ }
+  } catch(e) { console.warn('loadProfile stats error:', e); }
 }
 
 function updateUIForUser() {
@@ -1280,13 +1276,29 @@ function filterProgress(btn, val) {
   renderProgress();
 }
 
-// ─── logActivity: called automatically when an exercise completes ───
-// exerciseType: 'TOEFL ITP' | 'TOEFL iBT' | 'ITP Multiple Choice' | 'Unscramble' | 'Emoji Flashcards'
-// exerciseName: 'Test 1', 'Test 2', 'Session', etc.
-// score: number (correct answers) or null
-// maxScore: total possible or null
+// ─── TOAST HELPER ───
+function showToast(msg, isError) {
+  var t = document.getElementById('_debugToast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = '_debugToast';
+    t.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;padding:12px 20px;border-radius:10px;font-family:Outfit,sans-serif;font-size:0.85rem;font-weight:600;max-width:340px;box-shadow:0 4px 20px rgba(0,0,0,0.15);transition:opacity .4s';
+    document.body.appendChild(t);
+  }
+  t.style.background = isError ? '#c0392b' : '#1a7a4a';
+  t.style.color = 'white';
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._hide);
+  t._hide = setTimeout(function(){ t.style.opacity='0'; }, 4000);
+}
+
+// ─── logActivity: saves exercise session to Supabase ───
 async function logActivity(exerciseType, exerciseName, score, maxScore, details) {
-  if (!_currentUser) return; // only log for signed-in users
+  if (!_currentUser) {
+    showToast('⚠️ Not logged in — activity not saved', true);
+    return;
+  }
   try {
     var { error } = await sb.from('exercise_log').insert({
       user_id: _currentUser.id,
@@ -1298,14 +1310,16 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
       completed_at: new Date().toISOString()
     });
     if (!error) {
-      // Bump the dashboard counter in real time
+      showToast('✅ Progress saved: ' + exerciseType + ' — ' + exerciseName + (score != null ? ' (' + score + '/' + maxScore + ')' : ''), false);
       var el = document.getElementById('progCompleted');
       if (el) el.textContent = (parseInt(el.textContent, 10) || 0) + 1;
     } else {
-      console.warn('logActivity DB error:', error);
+      showToast('❌ Save failed: ' + error.message, true);
+      console.error('logActivity error:', error);
     }
   } catch(e) {
-    console.warn('logActivity error:', e);
+    showToast('❌ Save error: ' + e.message, true);
+    console.error('logActivity exception:', e);
   }
 }
 
@@ -1419,8 +1433,8 @@ const ITP_MC = (function() {
   var _sessionCorrect = 0;
   var _sessionTotal = 0;
   var _blockCorrect = 0;
-  var _SESSION_SIZE = 10;
   var _loggedSessions = 0;
+  var _SESSION_SIZE = 10;
 
   function loadQ() {
     var fb = document.getElementById('itpmc-feedback');
@@ -1449,12 +1463,9 @@ const ITP_MC = (function() {
     document.getElementById('itpmc-nextBtn').style.display = 'inline-block';
     if (correct) { _sessionCorrect++; _blockCorrect++; }
     _sessionTotal++;
-    // Log every SESSION_SIZE questions as a session block
     if (_sessionTotal % _SESSION_SIZE === 0) {
       _loggedSessions++;
-      if (typeof logActivity === 'function') {
-        logActivity('ITP Multiple Choice', 'Session ' + _loggedSessions, _blockCorrect, _SESSION_SIZE);
-      }
+      logActivity('ITP Multiple Choice', 'Session ' + _loggedSessions, _blockCorrect, _SESSION_SIZE);
       _blockCorrect = 0;
     }
   }
@@ -1582,7 +1593,6 @@ function checkAnswer() {
   const attempt = [...document.querySelectorAll(".blank")]
     .map(b => b.textContent.toLowerCase())
     .join(" ");
-    
   const feedback = document.getElementById("feedback");
   const isCorrect = attempt === currentSentenceParts.join(" ");
   if (isCorrect) {
@@ -1596,9 +1606,7 @@ function checkAnswer() {
   _unscTotal++;
   if (_unscTotal % _UNSC_SESSION_SIZE === 0) {
     _unscLoggedSessions++;
-    if (typeof logActivity === 'function') {
-      logActivity('Unscramble', 'Session ' + _unscLoggedSessions, _unscBlockCorrect, _UNSC_SESSION_SIZE);
-    }
+    logActivity('Unscramble', 'Session ' + _unscLoggedSessions, _unscBlockCorrect, _UNSC_SESSION_SIZE);
     _unscBlockCorrect = 0;
   }
 }
