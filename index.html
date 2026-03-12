@@ -758,6 +758,8 @@ async function loadProfile() {
   updateUIForUser();
   // Force sidebar update after short delay (handles timing issues)
   setTimeout(updateUIForUser, 300);
+  // Load real session count for dashboard
+  loadDashboardStats();
 }
 
 function updateUIForUser() {
@@ -821,6 +823,37 @@ function updateUIForVisitor() {
   var switcher = document.querySelector('.tier-switcher');
   if (switcher) switcher.style.display = 'none';
   applyTier('visitor');
+}
+
+async function loadDashboardStats() {
+  if (!_currentUser) return;
+  try {
+    var { data, error } = await sb
+      .from('exercise_log')
+      .select('id', { count: 'exact' })
+      .eq('user_id', _currentUser.id);
+    if (!error && data != null) {
+      var count = data.length || 0;
+      document.getElementById('progCompleted').textContent = count;
+      // Also update the streak on dashboard
+      var { data: allData } = await sb
+        .from('exercise_log')
+        .select('completed_at')
+        .eq('user_id', _currentUser.id)
+        .order('completed_at', { ascending: false })
+        .limit(200);
+      if (allData && allData.length) {
+        var streak = calcStreak(allData);
+        // We can show streak in progSub if desired - update sub text
+        var tier = (_currentProfile && _currentProfile.tier) || 'free';
+        var c = TIERS[tier] || TIERS['free'];
+        var streakText = streak > 1 ? ' 🔥 ' + streak + '-day streak!' : '';
+        document.getElementById('progSub').textContent = (c.psub || '') + streakText;
+      }
+    }
+  } catch(e) {
+    // fail silently
+  }
 }
 
 function applyTier(tier) {
@@ -1277,6 +1310,12 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
       details: details || null,
       completed_at: new Date().toISOString()
     });
+    // Bump the dashboard counter immediately
+    var el = document.getElementById('progCompleted');
+    if (el) {
+      var current = parseInt(el.textContent, 10) || 0;
+      el.textContent = current + 1;
+    }
   } catch(e) {
     // fail silently — don't interrupt user experience
     console.warn('logActivity error:', e);
@@ -1392,6 +1431,7 @@ const ITP_MC = (function() {
   var idx = 0;
   var _sessionCorrect = 0;
   var _sessionTotal = 0;
+  var _blockCorrect = 0;
   var _SESSION_SIZE = 10;
 
   function loadQ() {
@@ -1419,14 +1459,19 @@ const ITP_MC = (function() {
     fb.style.color = correct ? '#1a7a4a' : '#c62828';
     document.getElementById('itpmc-checkBtn').disabled = true;
     document.getElementById('itpmc-nextBtn').style.display = 'inline-block';
-    if (correct) _sessionCorrect++;
+    if (correct) { _sessionCorrect++; _blockCorrect++; }
     _sessionTotal++;
     // Log every SESSION_SIZE questions
     if (_sessionTotal % _SESSION_SIZE === 0) {
       var sessNum = Math.floor(_sessionTotal / _SESSION_SIZE);
+      var blockCorrect = _sessionCorrect - Math.floor((_sessionTotal - _SESSION_SIZE) / _SESSION_SIZE) * _SESSION_SIZE;
+      // recalculate block correct cleanly
+      var blockStart = (_sessionTotal - _SESSION_SIZE);
+      // use running window: track per-block correct
       if (typeof logActivity === 'function') {
-        logActivity('ITP Multiple Choice', 'Session ' + sessNum, _sessionCorrect % _SESSION_SIZE || _SESSION_SIZE, _SESSION_SIZE);
+        logActivity('ITP Multiple Choice', 'Session ' + sessNum, _blockCorrect, _SESSION_SIZE);
       }
+      _blockCorrect = 0; // reset block counter
     }
   }
 
@@ -1437,7 +1482,7 @@ const ITP_MC = (function() {
   }
 
   function init() {
-    _sessionCorrect = 0; _sessionTotal = 0;
+    _sessionCorrect = 0; _sessionTotal = 0; _blockCorrect = 0;
     document.getElementById('itpmc-checkBtn').onclick = checkAns;
     document.getElementById('itpmc-nextBtn').onclick = nextQ;
     loadQ();
@@ -1479,6 +1524,10 @@ const sentences = [
 
 let currentSentenceParts = [];
 let punctuationMark = "";
+let _unscrambleCorrect = 0;
+let _unscrambleTotal = 0;
+let _unscrambleBlockCorrect = 0;
+const _UNSCRAMBLE_SESSION_SIZE = 5;
 
 function toggleFilter() {
   const menu = document.getElementById("filterMenu");
@@ -1551,12 +1600,24 @@ function checkAnswer() {
     .join(" ");
     
   const feedback = document.getElementById("feedback");
-  if (attempt === currentSentenceParts.join(" ")) {
+  const isCorrect = attempt === currentSentenceParts.join(" ");
+  if (isCorrect) {
     feedback.textContent = "✅ Correct!";
     feedback.className = "feedback correct";
+    _unscrambleCorrect++;
+    _unscrambleBlockCorrect++;
   } else {
     feedback.textContent = "❌ Not quite. Try again!";
     feedback.className = "feedback incorrect";
+  }
+  _unscrambleTotal++;
+  // Log every _UNSCRAMBLE_SESSION_SIZE answers
+  if (_unscrambleTotal % _UNSCRAMBLE_SESSION_SIZE === 0) {
+    var sessNum = Math.floor(_unscrambleTotal / _UNSCRAMBLE_SESSION_SIZE);
+    if (typeof logActivity === 'function') {
+      logActivity('Unscramble', 'Session ' + sessNum, _unscrambleBlockCorrect, _UNSCRAMBLE_SESSION_SIZE);
+    }
+    _unscrambleBlockCorrect = 0;
   }
 }
 
@@ -1564,6 +1625,7 @@ function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
   function init() {
+    _unscrambleCorrect = 0; _unscrambleTotal = 0; _unscrambleBlockCorrect = 0;
     document.getElementById('unscramble-inner').innerHTML =
       '<div class="container">' +
       '<h1 style="text-align:center;font-family:Cormorant Garamond,serif;font-size:2rem;color:#0D3B6F;margin-bottom:8px;">Unscramble the Sentence</h1>' +
