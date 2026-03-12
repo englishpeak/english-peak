@@ -756,10 +756,28 @@ async function loadProfile() {
   const { data } = await sb.from('profiles').select('*').eq('id', _currentUser.id).single();
   _currentProfile = data;
   updateUIForUser();
-  // Force sidebar update after short delay (handles timing issues)
   setTimeout(updateUIForUser, 300);
-  // Load real session count for dashboard
-  loadDashboardStats();
+  // Load real completed sessions count for dashboard
+  try {
+    var { data: logData } = await sb
+      .from('exercise_log')
+      .select('id, completed_at')
+      .eq('user_id', _currentUser.id)
+      .order('completed_at', { ascending: false })
+      .limit(500);
+    if (logData) {
+      var el = document.getElementById('progCompleted');
+      if (el) el.textContent = logData.length;
+      // Show streak in progress subtitle
+      var streak = calcStreak(logData);
+      if (streak > 1) {
+        var tier = (_currentProfile && _currentProfile.tier) || 'free';
+        var c = TIERS[tier] || TIERS['free'];
+        var sub = document.getElementById('progSub');
+        if (sub) sub.textContent = (c.psub || '') + '  🔥 ' + streak + '-day streak!';
+      }
+    }
+  } catch(e) { /* fail silently */ }
 }
 
 function updateUIForUser() {
@@ -825,37 +843,6 @@ function updateUIForVisitor() {
   applyTier('visitor');
 }
 
-async function loadDashboardStats() {
-  if (!_currentUser) return;
-  try {
-    var { data, error } = await sb
-      .from('exercise_log')
-      .select('id', { count: 'exact' })
-      .eq('user_id', _currentUser.id);
-    if (!error && data != null) {
-      var count = data.length || 0;
-      document.getElementById('progCompleted').textContent = count;
-      // Also update the streak on dashboard
-      var { data: allData } = await sb
-        .from('exercise_log')
-        .select('completed_at')
-        .eq('user_id', _currentUser.id)
-        .order('completed_at', { ascending: false })
-        .limit(200);
-      if (allData && allData.length) {
-        var streak = calcStreak(allData);
-        // We can show streak in progSub if desired - update sub text
-        var tier = (_currentProfile && _currentProfile.tier) || 'free';
-        var c = TIERS[tier] || TIERS['free'];
-        var streakText = streak > 1 ? ' 🔥 ' + streak + '-day streak!' : '';
-        document.getElementById('progSub').textContent = (c.psub || '') + streakText;
-      }
-    }
-  } catch(e) {
-    // fail silently
-  }
-}
-
 function applyTier(tier) {
   // Map tier to TIERS config
   var tierKey = (tier === 'premium' || tier === 'teacher' || tier === 'courtesy') ? tier : tier === 'free' ? 'free' : 'visitor';
@@ -864,7 +851,7 @@ function applyTier(tier) {
   if (!c) return;
   currentTier = tierKey;
 
-  document.getElementById('progCompleted').textContent = c.completed;
+  document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
   document.getElementById('progAvailable').textContent = c.available;
 
   var ic = c.itpTests.length;
@@ -1033,7 +1020,7 @@ function setTier(tier,btn) {
   document.getElementById('upgradeTopBtn').style.display=tier==='premium'?'none':'block';
   document.getElementById('progTitle').textContent=c.ptitle;
   document.getElementById('progSub').textContent=c.psub;
-  document.getElementById('progCompleted').textContent=c.completed;
+  document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
   document.getElementById('progAvailable').textContent=c.available;
   var ic=c.itpTests.length;
   document.getElementById('access-itp-tests').textContent=tier==='premium'?'✓ All 8+':'🔓 '+ic+' of 8';
@@ -1301,7 +1288,7 @@ function filterProgress(btn, val) {
 async function logActivity(exerciseType, exerciseName, score, maxScore, details) {
   if (!_currentUser) return; // only log for signed-in users
   try {
-    await sb.from('exercise_log').insert({
+    var { error } = await sb.from('exercise_log').insert({
       user_id: _currentUser.id,
       exercise_type: exerciseType,
       exercise_name: exerciseName,
@@ -1310,14 +1297,14 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
       details: details || null,
       completed_at: new Date().toISOString()
     });
-    // Bump the dashboard counter immediately
-    var el = document.getElementById('progCompleted');
-    if (el) {
-      var current = parseInt(el.textContent, 10) || 0;
-      el.textContent = current + 1;
+    if (!error) {
+      // Bump the dashboard counter in real time
+      var el = document.getElementById('progCompleted');
+      if (el) el.textContent = (parseInt(el.textContent, 10) || 0) + 1;
+    } else {
+      console.warn('logActivity DB error:', error);
     }
   } catch(e) {
-    // fail silently — don't interrupt user experience
     console.warn('logActivity error:', e);
   }
 }
@@ -1433,6 +1420,7 @@ const ITP_MC = (function() {
   var _sessionTotal = 0;
   var _blockCorrect = 0;
   var _SESSION_SIZE = 10;
+  var _loggedSessions = 0;
 
   function loadQ() {
     var fb = document.getElementById('itpmc-feedback');
@@ -1461,17 +1449,13 @@ const ITP_MC = (function() {
     document.getElementById('itpmc-nextBtn').style.display = 'inline-block';
     if (correct) { _sessionCorrect++; _blockCorrect++; }
     _sessionTotal++;
-    // Log every SESSION_SIZE questions
+    // Log every SESSION_SIZE questions as a session block
     if (_sessionTotal % _SESSION_SIZE === 0) {
-      var sessNum = Math.floor(_sessionTotal / _SESSION_SIZE);
-      var blockCorrect = _sessionCorrect - Math.floor((_sessionTotal - _SESSION_SIZE) / _SESSION_SIZE) * _SESSION_SIZE;
-      // recalculate block correct cleanly
-      var blockStart = (_sessionTotal - _SESSION_SIZE);
-      // use running window: track per-block correct
+      _loggedSessions++;
       if (typeof logActivity === 'function') {
-        logActivity('ITP Multiple Choice', 'Session ' + sessNum, _blockCorrect, _SESSION_SIZE);
+        logActivity('ITP Multiple Choice', 'Session ' + _loggedSessions, _blockCorrect, _SESSION_SIZE);
       }
-      _blockCorrect = 0; // reset block counter
+      _blockCorrect = 0;
     }
   }
 
@@ -1482,7 +1466,7 @@ const ITP_MC = (function() {
   }
 
   function init() {
-    _sessionCorrect = 0; _sessionTotal = 0; _blockCorrect = 0;
+    _sessionCorrect = 0; _sessionTotal = 0; _blockCorrect = 0; _loggedSessions = 0;
     document.getElementById('itpmc-checkBtn').onclick = checkAns;
     document.getElementById('itpmc-nextBtn').onclick = nextQ;
     loadQ();
@@ -1524,10 +1508,10 @@ const sentences = [
 
 let currentSentenceParts = [];
 let punctuationMark = "";
-let _unscrambleCorrect = 0;
-let _unscrambleTotal = 0;
-let _unscrambleBlockCorrect = 0;
-const _UNSCRAMBLE_SESSION_SIZE = 5;
+let _unscTotal = 0;
+let _unscBlockCorrect = 0;
+let _unscLoggedSessions = 0;
+const _UNSC_SESSION_SIZE = 5;
 
 function toggleFilter() {
   const menu = document.getElementById("filterMenu");
@@ -1604,20 +1588,18 @@ function checkAnswer() {
   if (isCorrect) {
     feedback.textContent = "✅ Correct!";
     feedback.className = "feedback correct";
-    _unscrambleCorrect++;
-    _unscrambleBlockCorrect++;
+    _unscBlockCorrect++;
   } else {
     feedback.textContent = "❌ Not quite. Try again!";
     feedback.className = "feedback incorrect";
   }
-  _unscrambleTotal++;
-  // Log every _UNSCRAMBLE_SESSION_SIZE answers
-  if (_unscrambleTotal % _UNSCRAMBLE_SESSION_SIZE === 0) {
-    var sessNum = Math.floor(_unscrambleTotal / _UNSCRAMBLE_SESSION_SIZE);
+  _unscTotal++;
+  if (_unscTotal % _UNSC_SESSION_SIZE === 0) {
+    _unscLoggedSessions++;
     if (typeof logActivity === 'function') {
-      logActivity('Unscramble', 'Session ' + sessNum, _unscrambleBlockCorrect, _UNSCRAMBLE_SESSION_SIZE);
+      logActivity('Unscramble', 'Session ' + _unscLoggedSessions, _unscBlockCorrect, _UNSC_SESSION_SIZE);
     }
-    _unscrambleBlockCorrect = 0;
+    _unscBlockCorrect = 0;
   }
 }
 
@@ -1625,7 +1607,7 @@ function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
   function init() {
-    _unscrambleCorrect = 0; _unscrambleTotal = 0; _unscrambleBlockCorrect = 0;
+    _unscTotal = 0; _unscBlockCorrect = 0; _unscLoggedSessions = 0;
     document.getElementById('unscramble-inner').innerHTML =
       '<div class="container">' +
       '<h1 style="text-align:center;font-family:Cormorant Garamond,serif;font-size:2rem;color:#0D3B6F;margin-bottom:8px;">Unscramble the Sentence</h1>' +
