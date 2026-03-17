@@ -1,7 +1,7 @@
 {
   "redirects": [
     { "source": "/unscramble", "destination": "/?exercise=unscramble", "permanent": false },
-    { "source": "/emoji", "destination": "/?exercise=emoji", "permanent": false }
+    { "source": "/emoji", "destination": "/?exercise=emoji", "permanent": false },
     { "source": "/itp-mc", "destination": "/?exercise=itp-mc", "permanent": false }
   ]
 }
