@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unscramble the Sentence – English Peak Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── VARS ── */
+:root {
+  --navy: #0D3B6F;
+  --purple: #470074;
+  --bg: #ffffff;
+  --card: #f4f6fb;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+}
+
+/* ── UNSCRAMBLE STYLES ── */
+#unscramble-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.container { max-width: 900px; margin: auto; }
+
+h1 { text-align: center; margin-bottom: 6px; }
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.filter { position: relative; }
+
+.filter button {
+  background: none;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.filter-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  padding: 12px;
+  display: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.filter-menu label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.blanks-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 25px;
+}
+
+.blanks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.blank {
+  min-width: 90px;
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 3px solid var(--purple);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.blank:first-child { text-transform: capitalize; }
+
+.punctuation {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: -10px;
+}
+
+.words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.word {
+  padding: 10px 16px;
+  background: linear-gradient(135deg, var(--navy), var(--purple));
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+.controls {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+button.action {
+  background: var(--navy);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.feedback {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 18px;
+  min-height: 24px;
+}
+
+.correct { color: #1a7f37; }
+.incorrect { color: #b42318; }
+</style>
+</head>
+<body>
+
+<div id="unscramble-wrap">
+  <div id="unscramble-inner"></div>
+</div>
+
+<script>
+// ── SUPABASE INTEGRATION ──
+// This page posts score events to the parent window (index.html)
+// when embedded via the exercise-screen iframe pattern.
+// It also works standalone — scores just won't be saved unless the
+// parent platform intercepts the postMessage.
+
+function logActivity(exerciseType, exerciseName, score, maxScore) {
+  // If embedded in the platform, forward to parent for Supabase logging
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({
+      type: 'exerciseComplete',
+      exerciseType: exerciseType,
+      exerciseName: exerciseName,
+      score: score,
+      maxScore: maxScore
+    }, '*');
+  }
+}
+
+// ── SENTENCES DATA ──
+const sentences = [
+  // A1 Questions (30)
+  { level: "A1", text: "Are you hungry?" }, { level: "A1", text: "Is he your brother?" }, { level: "A1", text: "Do you like coffee?" }, { level: "A1", text: "Does she speak Spanish?" }, { level: "A1", text: "Where do you live?" }, { level: "A1", text: "What is your name?" }, { level: "A1", text: "How old are you?" }, { level: "A1", text: "When is the party?" }, { level: "A1", text: "Why are you late?" }, { level: "A1", text: "Who is that man?" }, { level: "A1", text: "Can you swim?" }, { level: "A1", text: "Is it raining?" }, { level: "A1", text: "Do they have a car?" }, { level: "A1", text: "Does he play guitar?" }, { level: "A1", text: "Are we ready?" }, { level: "A1", text: "Where is my phone?" }, { level: "A1", text: "What time is it?" }, { level: "A1", text: "How are you?" }, { level: "A1", text: "Is she at home?" }, { level: "A1", text: "Do you want water?" }, { level: "A1", text: "Does it work?" }, { level: "A1", text: "Are they coming?" }, { level: "A1", text: "Where are we?" }, { level: "A1", text: "What do you do?" }, { level: "A1", text: "How much is it?" }, { level: "A1", text: "Is this your pen?" }, { level: "A1", text: "Do you know him?" }, { level: "A1", text: "Does she have a dog?" }, { level: "A1", text: "Are you tired?" }, { level: "A1", text: "Is he from London?" },
+  // A1 Sentences (20)
+  { level: "A1", text: "I am a student." }, { level: "A1", text: "You are very kind." }, { level: "A1", text: "He likes apples." }, { level: "A1", text: "She plays tennis." }, { level: "A1", text: "It is a big dog." }, { level: "A1", text: "We live in a house." }, { level: "A1", text: "They work at a bank." }, { level: "A1", text: "My car is red." }, { level: "A1", text: "The weather is sunny." }, { level: "A1", text: "I have two brothers." }, { level: "A1", text: "You speak English well." }, { level: "A1", text: "He goes to school." }, { level: "A1", text: "She drinks tea." }, { level: "A1", text: "It is ten o'clock." }, { level: "A1", text: "We are friends." }, { level: "A1", text: "They have a cat." }, { level: "A1", text: "I eat breakfast at eight." }, { level: "A1", text: "You are a good teacher." }, { level: "A1", text: "He works in an office." }, { level: "A1", text: "She visits her grandmother." },
+
+  // A2 Questions (30)
+  { level: "A2", text: "Did you see the news?" }, { level: "A2", text: "Have you ever been to Paris?" }, { level: "A2", text: "What were you doing?" }, { level: "A2", text: "Can you help me?" }, { level: "A2", text: "Should I stay or go?" }, { level: "A2", text: "Will it be cold?" }, { level: "A2", text: "Where did you go?" }, { level: "A2", text: "How was your weekend?" }, { level: "A2", text: "Why did she leave?" }, { level: "A2", text: "Who told you that?" }, { level: "A2", text: "Are you going to help?" }, { level: "A2", text: "Have they finished yet?" }, { level: "A2", text: "Was he at the meeting?" }, { level: "A2", text: "Could you open the window?" }, { level: "A2", text: "What happened yesterday?" }, { level: "A2", text: "Did she enjoy the food?" }, { level: "A2", text: "How long have you lived here?" }, { level: "A2", text: "Are we leaving soon?" }, { level: "A2", text: "Will you come to the party?" }, { level: "A2", text: "Why was he angry?" }, { level: "A2", text: "Where can I buy a ticket?" }, { level: "A2", text: "Have you seen my keys?" }, { level: "A2", text: "Did it rain last night?" }, { level: "A2", text: "Who are you calling?" }, { level: "A2", text: "What are they watching?" }, { level: "A2", text: "Can we sit here?" }, { level: "A2", text: "Should they wait?" }, { level: "A2", text: "Will she be okay?" }, { level: "A2", text: "How many books did you buy?" }, { level: "A2", text: "Did you sleep well?" },
+  // A2 Sentences (20)
+  { level: "A2", text: "I went to the park yesterday." }, { level: "A2", text: "She was reading a book." }, { level: "A2", text: "We have visited London." }, { level: "A2", text: "He can play the piano." }, { level: "A2", text: "They are going to travel." }, { level: "A2", text: "It might rain tomorrow." }, { level: "A2", text: "I was born in 1995." }, { level: "A2", text: "You should sleep more." }, { level: "A2", text: "She is taller than me." }, { level: "A2", text: "We enjoyed the concert." }, { level: "A2", text: "They have lived here for years." }, { level: "A2", text: "He finished his homework." }, { level: "A2", text: "I saw a movie last night." }, { level: "A2", text: "You look happy today." }, { level: "A2", text: "She will call you later." }, { level: "A2", text: "We are learning English." }, { level: "A2", text: "They bought a new house." }, { level: "A2", text: "He works harder than before." }, { level: "A2", text: "I hope to see you." }, { level: "A2", text: "It was a beautiful day." },
+
+  // B1 Questions (30)
+  { level: "B1", text: "Have you been waiting long?" }, { level: "B1", text: "What would you do if you won?" }, { level: "B1", text: "Should we have invited them?" }, { level: "B1", text: "How long had she been waiting?" }, { level: "B1", text: "Do you know where the station is?" }, { level: "B1", text: "Could you tell me the time?" }, { level: "B1", text: "Why haven't they arrived?" }, { level: "B1", text: "What are you thinking about?" }, { level: "B1", text: "Have you finished the report?" }, { level: "B1", text: "Who does this belong to?" }, { level: "B1", text: "Are you being served?" }, { level: "B1", text: "Had they already eaten?" }, { level: "B1", text: "Would you mind helping me?" }, { level: "B1", text: "Do you happen to know him?" }, { level: "B1", text: "What makes you say that?" }, { level: "B1", text: "How much does it cost?" }, { level: "B1", text: "Have you seen the new film?" }, { level: "B1", text: "Should I have told her?" }, { level: "B1", text: "Why did you decide to leave?" }, { level: "B1", text: "What are you going to do?" }, { level: "B1", text: "Have you ever tried sushi?" }, { level: "B1", text: "Could you speak more slowly?" }, { level: "B1", text: "Do you think it will rain?" }, { level: "B1", text: "What were they talking about?" }, { level: "B1", text: "Have you met the manager?" }, { level: "B1", text: "How do you spell it?" }, { level: "B1", text: "Should we take a taxi?" }, { level: "B1", text: "Why is he so happy?" }, { level: "B1", text: "What time does it start?" }, { level: "B1", text: "Have you ever lost your keys?" },
+  // B1 Sentences (20)
+  { level: "B1", text: "I have been working all day." }, { level: "B1", text: "She had already left when I arrived." }, { level: "B1", text: "We might go to the beach if it is sunny." }, { level: "B1", text: "He is used to getting up early." }, { level: "B1", text: "They said they would help us." }, { level: "B1", text: "It is said that he is very rich." }, { level: "B1", text: "I wish I had more time." }, { level: "B1", text: "You ought to see a doctor." }, { level: "B1", text: "She apologized for being late." }, { level: "B1", text: "We are looking forward to the holiday." }, { level: "B1", text: "They managed to finish the project." }, { level: "B1", text: "He denied stealing the money." }, { level: "B1", text: "I would rather stay at home." }, { level: "B1", text: "You had better hurry up." }, { level: "B1", text: "She is the woman who lives next door." }, { level: "B1", text: "We were having dinner when the phone rang." }, { level: "B1", text: "They have been married for ten years." }, { level: "B1", text: "He seems to be enjoying himself." }, { level: "B1", text: "I am not sure what to do." }, { level: "B1", text: "It takes two hours to get there." },
+
+  // B2 Questions (30)
+  { level: "B2", text: "Would you have acted differently?" }, { level: "B2", text: "Should we not have informed them?" }, { level: "B2", text: "What is the likelihood of success?" }, { level: "B2", text: "How could he have known?" }, { level: "B2", text: "Do you regret making that choice?" }, { level: "B2", text: "Could you have done it better?" }, { level: "B2", text: "Why on earth did you do that?" }, { level: "B2", text: "What do you suppose happened?" }, { level: "B2", text: "Have you any idea where he is?" }, { level: "B2", text: "Should we be worried?" }, { level: "B2", text: "Would it be possible to reschedule?" }, { level: "B2", text: "What are the chances of rain?" }, { level: "B2", text: "How do you account for the delay?" }, { level: "B2", text: "Have you ever considered moving?" }, { level: "B2", text: "Could you explain how it works?" }, { level: "B2", text: "What prompted you to apply?" }, { level: "B2", text: "Should they have been told?" }, { level: "B2", text: "Would you mind if I stayed?" }, { level: "B2", text: "What are you implying?" }, { level: "B2", text: "Have you been informed of the changes?" }, { level: "B2", text: "Could you tell me who is in charge?" }, { level: "B2", text: "Why should I believe you?" }, { level: "B2", text: "What would it take to change your mind?" }, { level: "B2", text: "Have you any suggestions?" }, { level: "B2", text: "Should we proceed as planned?" }, { level: "B2", text: "Would you like me to help?" }, { level: "B2", text: "What is the purpose of this?" }, { level: "B2", text: "How long has this been going on?" }, { level: "B2", text: "Could you be more specific?" }, { level: "B2", text: "Why was the decision made?" },
+  // B2 Sentences (20)
+  { level: "B2", text: "Not only did he arrive late, but he also forgot his notes." }, { level: "B2", text: "She is likely to win the competition." }, { level: "B2", text: "We had our house painted last week." }, { level: "B2", text: "He should have known better." }, { level: "B2", text: "They are bound to succeed eventually." }, { level: "B2", text: "I regret not taking that job." }, { level: "B2", text: "You must have been exhausted." }, { level: "B2", text: "She suggested going for a walk." }, { level: "B2", text: "We are on the verge of a breakthrough." }, { level: "B2", text: "They would have come if they had known." }, { level: "B2", text: "He is believed to be living abroad." }, { level: "B2", text: "I can't help wondering why." }, { level: "B2", text: "You are supposed to be here." }, { level: "B2", text: "She made me do it." }, { level: "B2", text: "We had better get going." }, { level: "B2", text: "They were seen entering the building." }, { level: "B2", text: "He is far more experienced than I thought." }, { level: "B2", text: "I have no intention of leaving." }, { level: "B2", text: "It is well worth seeing." }, { level: "B2", text: "You might as well try." },
+
+  // C1 Questions (30)
+  { level: "C1", text: "To what extent do you agree?" }, { level: "C1", text: "What are the underlying causes?" }, { level: "C1", text: "How do you reconcile these views?" }, { level: "C1", text: "Should we not consider the alternatives?" }, { level: "C1", text: "What implications does this have?" }, { level: "C1", text: "Have you any reservations?" }, { level: "C1", text: "Could you elaborate on that?" }, { level: "C1", text: "Why is it so significant?" }, { level: "C1", text: "What role does technology play?" }, { level: "C1", text: "How can we ensure success?" }, { level: "C1", text: "Should there be more regulation?" }, { level: "C1", text: "What evidence is there?" }, { level: "C1", text: "Have you considered the impact?" }, { level: "C1", text: "Could it be that we are wrong?" }, { level: "C1", text: "Why has this happened?" }, { level: "C1", text: "What are the potential risks?" }, { level: "C1", text: "How does this compare?" }, { level: "C1", text: "Should we change our approach?" }, { level: "C1", text: "What is the overall consensus?" }, { level: "C1", text: "Have you reached a conclusion?" }, { level: "C1", text: "Could you clarify your position?" }, { level: "C1", text: "Why is this a priority?" }, { level: "C1", text: "What factors influenced the decision?" }, { level: "C1", text: "How can we improve the situation?" }, { level: "C1", text: "Should we be concerned about this?" }, { level: "C1", text: "What is the main objective?" }, { level: "C1", text: "Have you seen the latest data?" }, { level: "C1", text: "Could you provide more detail?" }, { level: "C1", text: "Why is this so controversial?" }, { level: "C1", text: "What are the long-term effects?" },
+  // C1 Sentences (20)
+  { level: "C1", text: "Under no circumstances should you open the door." }, { level: "C1", text: "Scarcely had I entered the room when the light went out." }, { level: "C1", text: "She is purported to be the best in her field." }, { level: "C1", text: "We are faced with an unprecedented challenge." }, { level: "C1", text: "He is quite capable of handling the situation." }, { level: "C1", text: "They were at a loss for words." }, { level: "C1", text: "I am inclined to agree with you." }, { level: "C1", text: "You would be well advised to listen." }, { level: "C1", text: "She has a reputation for being strict." }, { level: "C1", text: "We were struck by his honesty." }, { level: "C1", text: "They are in the process of reconsidering." }, { level: "C1", text: "He is by no means an expert." }, { level: "C1", text: "I have every confidence in her." }, { level: "C1", text: "It is of paramount importance." }, { level: "C1", text: "You are under no obligation to stay." }, { level: "C1", text: "She expressed her profound gratitude." }, { level: "C1", text: "We were taken aback by the news." }, { level: "C1", text: "They are on the brink of disaster." }, { level: "C1", text: "He is far and away the best candidate." }, { level: "C1", text: "I have yet to see a better example." }
+];
+
+// ── LOGIC ──
+let currentSentenceParts = [];
+let punctuationMark = "";
+let _unscTotal = 0;
+let _unscBlockCorrect = 0;
+let _unscLoggedSessions = 0;
+const _UNSC_SESSION_SIZE = 5;
+
+function toggleFilter() {
+  const menu = document.getElementById("filterMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function getActiveLevels() {
+  return [...document.querySelectorAll(".filter-menu input:checked")]
+    .map(cb => cb.value);
+}
+
+function loadSentence() {
+  const pool = sentences.filter(s => getActiveLevels().includes(s.level));
+  if (!pool.length) return;
+
+  const chosen = pool[Math.floor(Math.random() * pool.length)];
+  punctuationMark = chosen.text.slice(-1);
+  const cleanText = chosen.text.slice(0, -1).toLowerCase();
+  currentSentenceParts = cleanText.split(" ");
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("punctuation").textContent = punctuationMark;
+
+  const blanks = document.getElementById("blanks");
+  const words = document.getElementById("words");
+  blanks.innerHTML = "";
+  words.innerHTML = "";
+
+  currentSentenceParts.forEach(() => {
+    const b = document.createElement("div");
+    b.className = "blank";
+    b.onclick = () => {
+      if (b.textContent) {
+        addWord(b.textContent.toLowerCase());
+        b.textContent = "";
+      }
+    };
+    blanks.appendChild(b);
+  });
+
+  shuffle([...currentSentenceParts]).forEach(w => addWord(w));
+}
+
+function addWord(word) {
+  const el = document.createElement("div");
+  el.className = "word";
+  el.textContent = word;
+  el.onclick = () => placeWord(el);
+  document.getElementById("words").appendChild(el);
+}
+
+function placeWord(el) {
+  const blanks = document.querySelectorAll(".blank");
+  for (let b of blanks) {
+    if (!b.textContent) {
+      b.textContent = el.textContent;
+      el.remove();
+      break;
+    }
+  }
+}
+
+function checkAnswer() {
+  const attempt = [...document.querySelectorAll(".blank")]
+    .map(b => b.textContent.toLowerCase())
+    .join(" ");
+  const feedback = document.getElementById("feedback");
+  const isCorrect = attempt === currentSentenceParts.join(" ");
+  if (isCorrect) {
+    feedback.textContent = "✅ Correct!";
+    feedback.className = "feedback correct";
+    _unscBlockCorrect++;
+  } else {
+    feedback.textContent = "❌ Not quite. Try again!";
+    feedback.className = "feedback incorrect";
+  }
+  _unscTotal++;
+  if (_unscTotal % _UNSC_SESSION_SIZE === 0) {
+    _unscLoggedSessions++;
+    logActivity('Unscramble', 'Session ' + _unscLoggedSessions, _unscBlockCorrect, _UNSC_SESSION_SIZE);
+    _unscBlockCorrect = 0;
+  }
+}
+
+function shuffle(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+// ── INIT: render the UI ──
+document.getElementById('unscramble-inner').innerHTML =
+  '<div class="container">' +
+  '<h1 style="text-align:center;font-family:Cormorant Garamond,serif;font-size:2rem;color:#0D3B6F;margin-bottom:8px;">Unscramble the Sentence</h1>' +
+  '<div class="top-bar"><div class="filter">' +
+  '<button onclick="toggleFilter()">🎯 Filter by level ▾</button>' +
+  '<div class="filter-menu" id="filterMenu">' +
+  '<label><input type="checkbox" value="A1" checked> A1</label>' +
+  '<label><input type="checkbox" value="A2" checked> A2</label>' +
+  '<label><input type="checkbox" value="B1" checked> B1</label>' +
+  '<label><input type="checkbox" value="B2" checked> B2</label>' +
+  '<label><input type="checkbox" value="C1" checked> C1</label>' +
+  '</div></div></div>' +
+  '<div class="card">' +
+  '<div class="blanks-wrapper"><div class="blanks" id="blanks"></div><div class="punctuation" id="punctuation"></div></div>' +
+  '<div class="words" id="words"></div>' +
+  '<div class="controls">' +
+  '<button class="action" onclick="checkAnswer()">Check answer</button>' +
+  '<button class="action" onclick="loadSentence()">Next sentence</button>' +
+  '</div>' +
+  '<div class="feedback" id="feedback"></div>' +
+  '</div></div>';
+
+loadSentence();
+</script>
+</body>
+</html>
