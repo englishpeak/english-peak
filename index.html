@@ -140,17 +140,7 @@ body.sidebar-collapsed .main{margin-left:64px}
 }
 
 
-#itpmc-wrap{max-width:720px;margin:40px auto;padding:0 24px}
-.mc-counter{font-size:0.8rem;color:#888;margin-bottom:10px;text-align:right}
-.mc-bar-wrap{height:6px;background:rgba(13,59,111,0.1);border-radius:3px;margin-bottom:20px}
-.mc-bar-fill{height:6px;background:linear-gradient(90deg,var(--navy),var(--purple));border-radius:3px;transition:width .4s}
-.mc-qbox{border:2px solid var(--purple);border-radius:14px;padding:24px;background:white}
-.mc-options label{display:block;padding:10px;margin:8px 0;border:1px solid var(--navy);border-radius:10px;cursor:pointer;transition:background .15s}
-.mc-options label:hover{background:rgba(13,59,111,0.04)}
-.mc-options input{margin-right:10px}
-.mc-btn{background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;padding:12px 22px;border-radius:12px;font-size:15px;cursor:pointer;margin-top:15px;font-family:'Outfit',sans-serif}
-.mc-btn:disabled{opacity:.5;cursor:not-allowed}
-.mc-feedback{font-weight:bold;margin-top:15px;font-size:1rem}
+
 #unscramble-wrap{max-width:900px;margin:0 auto;padding:20px}
 
 /* ── MODAL ── */
@@ -409,19 +399,10 @@ body.sidebar-collapsed .main{margin-left:64px}
   </div>
   </div><!-- end progress -->
 
-  <!-- ═══ ITP MC (inline) ═══ -->
+  <!-- ═══ ITP MC (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-itp-mc">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">ITP Multiple Choice</div><div class="exercise-badge">✓ Free</div></div>
-    <div class="exercise-content">
-      <div id="itpmc-wrap">
-        <div class="mc-counter" id="itpmc-counter">Question 1 of 100</div>
-        <div class="mc-bar-wrap"><div class="mc-bar-fill" id="itpmc-bar" style="width:1%"></div></div>
-        <div id="itpmc-quiz" class="mc-qbox"></div>
-        <button class="mc-btn" id="itpmc-checkBtn">Check Answer</button>
-        <button class="mc-btn" id="itpmc-nextBtn" style="display:none">Next Question</button>
-        <div id="itpmc-feedback" class="mc-feedback"></div>
-      </div>
-    </div>
+    <iframe class="exercise-frame" id="frame-itp-mc" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ UNSCRAMBLE (iframe) ═══ -->
@@ -914,7 +895,7 @@ function openExercise(id) {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-'+id).classList.add('active');
   closeMobileSidebar();
-  if(id==='itp-mc'&&!window._itpMCReady){ITP_MC.init();window._itpMCReady=true;}
+  if(id==='itp-mc'){document.getElementById('frame-itp-mc').src='/itp-mc/';}
 }
 function openITPTests() {
   var allowed=TIERS[currentTier].itpTests;
@@ -1219,137 +1200,10 @@ checkHamburger();
   var exercise = params.get('exercise');
   if (exercise === 'unscramble') openExercise('unscramble');
   if (exercise === 'emoji') openEmoji();
+  if (exercise === 'itp-mc') openExercise('itp-mc');
 })();
 
 // ═══ EXERCISE MODULES ═══
-
-const ITP_MC = (function() {
-  const questions = [
-  {q:"You should have told me earlier; now it’s too ___.",a:{a:"late",b:"later",c:"lately",d:"latest"},c:"a"},
-  {q:"What surprised me the most was how ___ he was.",a:{a:"eloquence",b:"eloquent",c:"eloquently",d:"eloquents"},c:"b"},
-  {q:"Needless to say, we expect everybody ___ on time.",a:{a:"arrives",b:"arriving",c:"to arrive",d:"arrived"},c:"c"},
-  {q:"She speaks English ___ than her brother.",a:{a:"more fluently",b:"most fluently",c:"fluent",d:"fluency"},c:"a"},
-  {q:"Hardly ___ the meeting started when the lights went out.",a:{a:"had",b:"has",c:"did",d:"was"},c:"a"},
-  {q:"The report must be finished ___ Friday.",a:{a:"at",b:"in",c:"by",d:"on"},c:"c"},
-  {q:"He denied ___ the confidential information.",a:{a:"to leak",b:"leaking",c:"leak",d:"leaked"},c:"b"},
-  {q:"If she ___ more careful, the mistake wouldn’t have happened.",a:{a:"was",b:"were",c:"had been",d:"has been"},c:"c"},
-  {q:"The book, along with the notes, ___ missing.",a:{a:"are",b:"were",c:"is",d:"have been"},c:"c"},
-  {q:"This is the first time I ___ such a proposal.",a:{a:"hear",b:"heard",c:"have heard",d:"had heard"},c:"c"},
-
-  {q:"He works ___ than anyone else in the department.",a:{a:"harder",b:"hardest",c:"hardly",d:"hard"},c:"a"},
-  {q:"Neither the manager nor the employees ___ satisfied.",a:{a:"is",b:"was",c:"are",d:"be"},c:"c"},
-  {q:"She acts as if she ___ the answer already.",a:{a:"knows",b:"knew",c:"has known",d:"will know"},c:"b"},
-  {q:"The more you practice, the ___ you become.",a:{a:"good",b:"better",c:"best",d:"well"},c:"b"},
-  {q:"He apologized ___ being late to the meeting.",a:{a:"to",b:"about",c:"for",d:"with"},c:"c"},
-  {q:"Not only ___ late, but he also forgot the keys.",a:{a:"he was",b:"was he",c:"he is",d:"is he"},c:"b"},
-  {q:"She has worked here ___ 2018.",a:{a:"since",b:"for",c:"during",d:"from"},c:"a"},
-  {q:"The proposal was rejected ___ its high cost.",a:{a:"because",b:"because of",c:"although",d:"despite"},c:"b"},
-  {q:"We were tired, ___ we continued working.",a:{a:"but",b:"so",c:"because",d:"if"},c:"a"},
-  {q:"The lecture was ___ boring that several students left.",a:{a:"very",b:"too",c:"so",d:"such"},c:"c"},
-
-  {q:"She prefers coffee ___ tea.",a:{a:"from",b:"than",c:"over",d:"to"},c:"d"},
-  {q:"He insisted on ___ the task himself.",a:{a:"to complete",b:"completing",c:"complete",d:"completed"},c:"b"},
-  {q:"By the time we arrived, the movie ___ started.",a:{a:"has",b:"had",c:"was",d:"is"},c:"b"},
-  {q:"She was accused ___ cheating on the exam.",a:{a:"for",b:"to",c:"of",d:"with"},c:"c"},
-  {q:"The weather was ___ cold to go outside.",a:{a:"very",b:"so",c:"too",d:"enough"},c:"c"},
-  {q:"He asked me where I ___ from.",a:{a:"am",b:"was",c:"were",d:"be"},c:"b"},
-  {q:"She studies ___ she wants to improve her score.",a:{a:"because",b:"although",c:"unless",d:"whereas"},c:"a"},
-  {q:"The decision depends ___ the final report.",a:{a:"in",b:"on",c:"at",d:"for"},c:"b"},
-  {q:"He spoke quietly so that no one ___ hear him.",a:{a:"will",b:"would",c:"can",d:"could"},c:"d"},
-  {q:"The manager suggested that the meeting ___ postponed.",a:{a:"is",b:"was",c:"be",d:"being"},c:"c"},
-
- {q:"He was promoted ___ his excellent performance.",a:{a:"because",b:"because of",c:"despite",d:"although"},c:"b"},
-  {q:"She is not accustomed ___ up so early.",a:{a:"to get",b:"to getting",c:"getting",d:"get"},c:"b"},
-  {q:"The test was ___ difficult for most students.",a:{a:"too",b:"so",c:"very",d:"such"},c:"a"},
-  {q:"I’ll call you as soon as I ___ the information.",a:{a:"will get",b:"get",c:"got",d:"have got"},c:"b"},
-  {q:"No sooner ___ home than it started raining.",a:{a:"he arrived",b:"did he arrive",c:"had he arrived",d:"he had arrived"},c:"c"},
-  {q:"She complained ___ the noise coming from upstairs.",a:{a:"about",b:"for",c:"to",d:"with"},c:"a"},
-  {q:"The instructions were clear enough ___ anyone could follow them.",a:{a:"that",b:"so",c:"too",d:"such"},c:"a"},
-  {q:"He behaves ___ he owned the company.",a:{a:"as if",b:"even if",c:"unless",d:"because"},c:"a"},
-  {q:"The conference has been postponed ___ next month.",a:{a:"until",b:"by",c:"during",d:"since"},c:"a"},
-  {q:"She succeeded ___ convincing them to stay.",a:{a:"in",b:"on",c:"at",d:"to"},c:"a"},
-
-  {q:"The report needs to be revised ___ it is submitted.",a:{a:"before",b:"while",c:"during",d:"since"},c:"a"},
-  {q:"He is responsible ___ organizing the event.",a:{a:"of",b:"for",c:"to",d:"with"},c:"b"},
-  {q:"She speaks quietly ___ not to disturb others.",a:{a:"so that",b:"in order",c:"in order to",d:"such that"},c:"c"},
-  {q:"The results were surprising, ___ they?",a:{a:"weren’t",b:"were",c:"didn’t",d:"aren’t"},c:"a"},
-  {q:"He has difficulty ___ his ideas clearly.",a:{a:"to express",b:"expressing",c:"express",d:"expressed"},c:"b"},
-  {q:"The equipment must be checked ___ use.",a:{a:"before",b:"until",c:"during",d:"by"},c:"a"},
-  {q:"She is capable ___ handling the situation.",a:{a:"to",b:"of",c:"for",d:"with"},c:"b"},
-  {q:"The project was completed ___ schedule.",a:{a:"on",b:"in",c:"at",d:"by"},c:"a"},
-  {q:"He warned us ___ the possible risks.",a:{a:"about",b:"for",c:"to",d:"with"},c:"a"},
-  {q:"The movie was ___ interesting than I expected.",a:{a:"more",b:"most",c:"very",d:"much"},c:"a"},
-
-  {q:"She decided to leave early ___ she felt unwell.",a:{a:"because",b:"although",c:"unless",d:"while"},c:"a"},
-  {q:"The task was assigned ___ the most experienced team.",a:{a:"to",b:"for",c:"with",d:"by"},c:"a"},
-  {q:"He speaks ___ fast for beginners to understand.",a:{a:"too",b:"so",c:"very",d:"enough"},c:"a"},
-  {q:"She reminded me ___ the deadline.",a:{a:"about",b:"to",c:"for",d:"with"},c:"a"},
-  {q:"The documents were filed ___ alphabetical order.",a:{a:"in",b:"on",c:"at",d:"by"},c:"a"},
-  {q:"He is looking forward ___ the results.",a:{a:"to see",b:"to seeing",c:"seeing",d:"see"},c:"b"},
-  {q:"The company aims ___ expanding its operations.",a:{a:"to",b:"for",c:"at",d:"with"},c:"a"},
-  {q:"She apologized ___ the inconvenience.",a:{a:"about",b:"to",c:"for",d:"with"},c:"c"},
-  {q:"The lecture was canceled ___ unforeseen circumstances.",a:{a:"because",b:"because of",c:"although",d:"despite"},c:"b"},
-  {q:"He acted ___ nothing had happened.",a:{a:"as though",b:"even though",c:"unless",d:"because"},c:"a"}
-];
-  function shuffleArr(a) { return a.sort(function(){return Math.random()-.5;}); }
-  var pool = shuffleArr(questions.slice());
-  var idx = 0;
-  var _sessionCorrect = 0;
-  var _sessionTotal = 0;
-  var _blockCorrect = 0;
-  var _loggedSessions = 0;
-  var _SESSION_SIZE = 10;
-
-  function loadQ() {
-    var fb = document.getElementById('itpmc-feedback');
-    var nb = document.getElementById('itpmc-nextBtn');
-    var cb = document.getElementById('itpmc-checkBtn');
-    var qbox = document.getElementById('itpmc-quiz');
-    if(!qbox) return;
-    fb.textContent=''; nb.style.display='none'; cb.disabled=false;
-    var q = pool[idx];
-    var opts = Object.keys(q.a).map(function(k) {
-      return '<label><input type="radio" name="itpmcans" value="'+k+'"> ('+k+') '+q.a[k]+'</label>';
-    }).join('');
-    qbox.innerHTML = '<p><strong>'+q.q+'</strong></p><div class="mc-options">'+opts+'</div>';
-    document.getElementById('itpmc-counter').textContent = 'Question '+(idx+1)+' of '+pool.length;
-    document.getElementById('itpmc-bar').style.width = Math.round((idx+1)/pool.length*100)+'%';
-  }
-
-  function checkAns() {
-    var sel = document.querySelector('input[name="itpmcans"]:checked');
-    var fb = document.getElementById('itpmc-feedback');
-    if(!sel) { fb.textContent='Please select an answer.'; return; }
-    var correct = sel.value === pool[idx].c;
-    fb.textContent = correct ? '✅ Correct!' : '❌ Incorrect. Correct answer: ('+pool[idx].c+')';
-    fb.style.color = correct ? '#1a7a4a' : '#c62828';
-    document.getElementById('itpmc-checkBtn').disabled = true;
-    document.getElementById('itpmc-nextBtn').style.display = 'inline-block';
-    if (correct) { _sessionCorrect++; _blockCorrect++; }
-    _sessionTotal++;
-    if (_sessionTotal % _SESSION_SIZE === 0) {
-      _loggedSessions++;
-      logActivity('ITP Multiple Choice', 'Session ' + _loggedSessions, _blockCorrect, _SESSION_SIZE);
-      _blockCorrect = 0;
-    }
-  }
-
-  function nextQ() {
-    idx++;
-    if(idx >= pool.length) { pool = shuffleArr(questions.slice()); idx = 0; }
-    loadQ();
-  }
-
-  function init() {
-    _sessionCorrect = 0; _sessionTotal = 0; _blockCorrect = 0; _loggedSessions = 0;
-    document.getElementById('itpmc-checkBtn').onclick = checkAns;
-    document.getElementById('itpmc-nextBtn').onclick = nextQ;
-    loadQ();
-  }
-  return { init: init };
-})();
-
-
 
 
 </script>
