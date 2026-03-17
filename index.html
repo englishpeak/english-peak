@@ -1213,6 +1213,14 @@ function checkHamburger() {
 window.addEventListener('resize',checkHamburger);
 checkHamburger();
 
+// ── AUTO-OPEN EXERCISE FROM URL PARAMETER ──
+// Allows direct links like /?exercise=unscramble to open the exercise automatically
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var exercise = params.get('exercise');
+  if (exercise === 'unscramble') openExercise('unscramble');
+})();
+
 // ═══ EXERCISE MODULES ═══
 
 const ITP_MC = (function() {
