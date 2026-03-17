@@ -1,3 +1,5 @@
 {
-  "cleanUrls": true
+  "redirects": [
+    { "source": "/unscramble", "destination": "/?exercise=unscramble", "permanent": false }
+  ]
 }
