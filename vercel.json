@@ -1,5 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/unscramble", "destination": "/unscramble/index.html" }
-  ]
+  "cleanUrls": true
 }
