@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New TOEFL iBT Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00467f;
+            --accent-blue: #0073e6;
+            --bg-page: #f4f7f9;
+            --text-main: #2c3e50;
+            --white: #ffffff;
+            --error-red: #d93025;
+            --success-green: #28a745;
+            --timer-dark: #1a1a1a;
+            --text-neutral: #555555;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #app-wrapper {
+            width: 95%;
+            max-width: 1000px;
+            background: var(--white);
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            min-height: 850px; 
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .screen { display: none; flex-grow: 1; }
+        .active { display: flex; flex-direction: column; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1, h2 { color: var(--primary-blue); text-align: center; margin-bottom: 40px; }
+
+        #menu-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .fill-blank {
+            display: inline-block;
+            border: none !important;
+            outline: none !important;
+            background-color: transparent;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            padding: 0;
+            margin: 0 4px;
+            text-align: left;
+            vertical-align: baseline;
+            background-image: linear-gradient(to right, #aaa 70%, rgba(255, 255, 255, 0) 0%);
+            background-position: bottom;
+            background-size: 1ch 2px; 
+            background-repeat: repeat-x;
+        }
+
+        .exercise-paragraph { font-size: 1.5rem; line-height: 3.5; text-align: justify; margin-bottom: 20px; }
+
+        .context-box { background: #e7f3ff; padding: 25px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #b6d4fe; font-size: 1.2rem; font-style: italic; }
+        .word-bank { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0; justify-content: center; }
+        .draggable-word { padding: 12px 20px; background: white; border: 2px solid #ced4da; border-radius: 8px; cursor: pointer; font-weight: 700; }
+        .drop-area { min-height: 90px; border: 2.5px dashed var(--primary-blue); padding: 20px; display: flex; flex-wrap: wrap; gap: 10px; border-radius: 12px; background: #fafafa; }
+        
+        .academic-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; margin-bottom: 20px; }
+        .reading-text-box { font-size: 1.1rem; line-height: 1.8; padding-right: 20px; border-right: 1px solid #eee; height: 520px; overflow-y: auto; text-align: justify; }
+
+        .audio-container { margin: 20px 0; background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #dee2e6; text-align: center; }
+        audio { width: 100%; height: 35px; }
+        #timer-box { font-size: 5.5rem; font-weight: bold; color: var(--timer-dark); text-align: center; margin: 60px 0; font-family: monospace; }
+        .small-timer { float: right; font-size: 1.5rem; font-weight: bold; color: var(--timer-dark); background: #f4f4f4; padding: 8px 15px; border-radius: 5px; margin: 10px 0; border: 1px solid #ddd; }
+
+        #nav-controls { padding-top: 50px; border-top: 1px solid #eee; margin-top: 20px; text-align: center; }
+        .btn { background: var(--primary-blue); color: white; border: none; padding: 18px 45px; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 700; margin: 10px auto; min-width: 280px; display: block; }
+        .btn-skip { background: #6c757d; font-size: 14px; margin-top: 25px; }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); margin-bottom: 15px; }
+        .btn-audio-minimal { background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; margin: 0; display: flex; align-items: center; justify-content: center; }
+        
+        .option { display: block; padding: 18px; margin: 10px 0; border: 1.5px solid #dee2e6; border-radius: 8px; cursor: pointer; }
+        .selected { background: var(--accent-blue) !important; color: white; border-color: var(--accent-blue); }
+
+        .feedback-card { padding: 40px; border-radius: 12px; background: #fff; border: 1px solid #eef2f5; margin-bottom: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .feedback-card h3 { margin-top: 0; color: var(--primary-blue); border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .attempt-box { background: #fdfdfd; border: 1px solid #eee; padding: 25px; border-radius: 10px; margin-top: 20px; }
+        .right-ans-label { color: var(--text-neutral); font-weight: bold; margin-bottom: 8px; display: block; }
+        .correct-text { color: var(--success-green); font-weight: bold; }
+        .wrong-text { color: var(--error-red); font-weight: bold; }
+    </style>
+
+<script>
+var _allowedTests = ['Test 1','Test 2'];
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var allowedParam = params.get('allowed');
+  if (allowedParam) {
+    _allowedTests = allowedParam.split(',');
+  }
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var menuGrid = document.getElementById('menu-grid');
+  if (!menuGrid) return;
+  var buttons = menuGrid.querySelectorAll('button');
+  buttons.forEach(function(btn) {
+    var testName = btn.textContent.trim();
+    if (_allowedTests.indexOf(testName) === -1) {
+      btn.style.opacity = '0.5';
+      btn.style.cursor = 'pointer';
+      btn.style.background = '#888';
+      btn.title = 'Upgrade to access this test';
+      btn.textContent = '🔒 ' + testName;
+      btn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.parent.postMessage({type:'showModal'}, '*');
+        return false;
+      };
+    }
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="app-wrapper">
+    <div id="screen-home" class="screen active">
+        <h1>New TOEFL iBT Practice</h1>
+        <div id="menu-grid">
+            <button class="btn" onclick="start('Test 1')">Test 1</button>
+            <button class="btn" onclick="start('Test 2')">Test 2</button>
+            <button class="btn" onclick="start('Test 3')">Test 3</button>
+            <button class="btn" onclick="start('Test 4')">Test 4</button>
+            <button class="btn" onclick="start('Test 5')">Test 5</button>
+            <button class="btn" onclick="start('Test 6')">Test 6</button>
+            <button class="btn" onclick="start('Test 7')">Test 7</button>
+            </div>
+    </div>
+
+    <div id="screen-exercise" class="screen">
+        <div id="exercise-content"></div>
+        <div id="nav-controls">
+            <button class="btn" onclick="submitAnswer()">Submit & Next</button>
+            <button class="btn btn-skip" id="skip-btn" onclick="skip()">Skip for Live Stream</button>
+        </div>
+    </div>
+
+    <div id="screen-results" class="screen">
+        <h2>Session Summary</h2>
+        <div id="score-display" style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 15px; margin-bottom: 40px;"></div>
+        <div id="feedback-display"></div>
+        <button class="btn" style="margin-top: 40px;" onclick="location.reload()">Back to Home</button>
+    </div>
+</div>
+
+<script>
+    const testData = {
+        // 1️⃣ TEST 1 DATA (EXACT MECHANICAL REPLICA OF BACKUP)
+        "Test 1": [
+            { type: 'complete-words', title: 'Task 1: Campus Dining', text: 'The uni[7] cafeteria is clo[3] for renova[4]. Stud[4] can vi[3] the cof[3] shop in the lib[4] instead. Most it[3] on the me[2] remain the sa[2], including the fam[3] muffins.', answers: ['versity', 'sed', 'tion', 'ents', 'sit', 'fee', 'rary', 'ems', 'nu', 'me', 'ous'] },
+            { type: 'complete-words', title: 'Task 2: Student Services', text: 'The stud[3] union is plan[4] a welcome party for new arrival[1]. You can regis[3] onli[2] or at the main desk. Refr[3]ments and live mus[2] will be provi[3] throughout the even[3].', answers: ['ent', 'ning', 's', 'ter', 'ne', 'esh', 'ic', 'ded', 'ing'] },
+            { type: 'complete-words', title: 'Task 3: Academic Success', text: 'To suc[4] in coll[3], time manag[5] is essen[4]. Many fresh[3] find it diffi[4] to bal[4] their soc[3] lives with heavy home[4] loads. Seek[3] help from tut[3] can impro[2] your gra[3] significantly.', answers: ['ceed', 'ege', 'ement', 'tial', 'men', 'cult', 'ance', 'ial', 'work', 'ing', 'ors', 've', 'des'] },
+            { type: 'complete-words', title: 'Task 4: IT Updates', text: 'The lat[3] version of the stud[3] portal is now avail[4]. You must upda[2] your pass[4] before you can downl[3] your class sched[3]. If you encou[4] any tech[5] issues, please con[4] the help desk.', answers: ['est', 'ent', 'able', 'te', 'word', 'oad', 'ule', 'nter', 'nical', 'tact'] },
+            { type: 'read-daily', title: 'Task 5: Library Policy', text: 'NOTICE: Group study rooms are available by reservation only. Please book at least 24 hours in advance using the library website.', question: 'What is required to use a group study room?', options: ['A library card', 'An online reservation', 'A group of 5 people', 'Payment per hour'], correct: 1 },
+            { type: 'read-daily', title: 'Task 6: Cafeteria Policy', text: 'CAFETERIA NOTICE: Starting next week, we will no longer provide plastic straws. Customers are encouraged to bring their own reusable sets.', question: 'What change is the cafeteria making?', options: ['Increasing prices', 'Eliminating plastic straws', 'Closing for repairs', 'Free bamboo kits'], correct: 1 },
+            { type: 'listen-announcement', title: 'Task 7: Campus Weather', script: 'Attention students, due to heavy snowfall, all evening classes starting after 5:00 PM are cancelled.', question: 'What happens after 5:00 PM?', options: ['Classes will move online', 'Classes are cancelled', 'The library will close early', 'Shuttles are suspended'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/1pfdf9dsj8tcruu2kzgi9/Task-7.mp3?rlkey=jh2c9migx8lk7die9l7llnazj&raw=1' },
+            { type: 'listen-announcement', title: 'Task 8: Maintenance Alert', script: 'The South Parking Garage will be closed this Friday for maintenance. Zone B permits may park in the North Lot.', question: 'Where can Zone B students park on Friday?', options: ['South Garage', 'North Lot', 'Street spots', 'Off-campus'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/n6o05sv7v8zvw7au5niln/Task-8.mp3?rlkey=efto1h4pnyjtit05ourkujaz6&raw=1' },
+             { type: 'listen-repeat', title: 'Task 9: Listen and repeat', sentences: [
+                { text: "The professor will review the exam format.", audio: "https://dl.dropboxusercontent.com/scl/fi/htrmmfot6aydfbe77mj7u/Sentence-1.mp3?rlkey=2sc0vu9q2uzw6b7istdew2hhl" },
+                { text: "Students must submit research proposals.", audio: "https://dl.dropboxusercontent.com/scl/fi/ux2ihf57eucgcgloc7uvk/Sentence-2.mp3?rlkey=xq61sn6syzpi3zcfec0ok74w1" },
+                { text: "The campus library remains open twenty-four hours.", audio: "https://dl.dropboxusercontent.com/scl/fi/7f4h7mkmifzqsuxtxrr6v/Sentence-3.mp3?rlkey=1mtddzqpcs534wax69yt65ldy" },
+                { text: "A valid student ID is required for lab access.", audio: "https://dl.dropboxusercontent.com/scl/fi/58slfkfh3r5bvvdhbwexn/Sentence-4.mp3?rlkey=vvqu3iyw44ukd53nyze80xslx" },
+                { text: "The sociology department offers several internships.", audio: "https://dl.dropboxusercontent.com/scl/fi/s2nphxzv7u6ayp5irx7b4/Sentence-5.mp3?rlkey=yjrytjrps0qkqnral6elu96gi" },
+                { text: "Group discussions are an essential part of learning.", audio: "https://dl.dropboxusercontent.com/scl/fi/173ynrpylcl0w586lhf1x/Sentence-6.mp3?rlkey=p2sx5gj9al7c8366gtigeiwui" },
+                { text: "Please remember to cite all your sources.", audio: "https://dl.dropboxusercontent.com/scl/fi/cusn69m93zm38oeofhu4n/Sentence-7.mp3?rlkey=pjus0vlvblsfkirz2mg30dgx4" },
+                { text: "The new student center features multiple study areas.", audio: "https://dl.dropboxusercontent.com/scl/fi/1s3ssg77ymwvbg3ygmi0o/Sentence-8.mp3?rlkey=wq8cu4yen5vyzjgaqqbx9gxze" }
+            ]},
+            { type: 'build-sentence', title: 'Task 10: Sentence Construction 1', context: "Speaker A: 'When were the results announced?'", words: ['the', 'professor', 'announced', 'test', 'results', 'yesterday'], correctOrder: ['the', 'professor', 'announced', 'test', 'results', 'yesterday'] },
+            { type: 'build-sentence', title: 'Task 11: Sentence Construction 2', context: "Speaker A: 'Where can I find more info?'", words: ['you', 'should', 'probably', 'check', 'the', 'library', 'website'], correctOrder: ['you', 'should', 'probably', 'check', 'the', 'library', 'website'] },
+            { type: 'build-sentence', title: 'Task 12: Sentence Construction 3', context: "Speaker A: 'Is the assistant coming back?'", words: ['the', 'assistant', 'is', 'coming', 'back', 'in', 'five', 'minutes'], correctOrder: ['the', 'assistant', 'is', 'coming', 'back', 'in', 'five', 'minutes'] },
+            { type: 'build-sentence', title: 'Task 13: Sentence Construction 4', context: "Speaker A: 'I need to see the registrar.'", words: ['you', 'must', 'contact', 'the', 'registrar', 'office', 'immediately'], correctOrder: ['you', 'must', 'contact', 'the', 'registrar', 'office', 'immediately'] },
+            { type: 'build-sentence', title: 'Task 14: Sentence Construction 5', context: "Speaker A: 'Can I copy your notes?'", words: ['i', 'do', 'not', 'mind', 'if', 'you', 'copy', 'them'], correctOrder: ['i', 'do', 'not', 'mind', 'if', 'you', 'copy', 'them'] },
+            { type: 'academic-reading', title: 'Task 15: The Silk Road Influence', canSkip: true, text: 'The Silk Road was not a single thoroughfare but a sprawling network of trade routes that linked the civilizations of Eurasia for over a millennium. Beyond the movement of luxury goods like silk and spices, it served as a vital artery for the transmission of ideas, technologies, and religious philosophies. Buddhism spread from India to China via these channels, while papermaking and gunpowder moved westward. However, the network also facilitated the spread of infectious diseases; the Bubonic Plague, for example, decimated populations along its length. Despite its dangers, the Silk Road fostered a level of cross-cultural dialogue that shaped the modern world.', questions: [{ q: "What was a major non-material influence?", options: ["A single currency", "Religious philosophies", "World language", "End of conflicts"], correct: 1 }, { q: "How did papermaking reach the West?", options: ["Developed in Europe", "Carried by travelers", "Traded for silk", "Discovered by soldiers"], correct: 1 }, { q: "What negative impact occurred?", options: ["Depletion of spices", "Infectious diseases", "Closed Pacific routes", "Decline of movements"], correct: 1 }] },
+            { type: 'speaking-timer', title: 'Task 16: Interview Prompt 1', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 17: Interview Prompt 2', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 18: Interview Prompt 3', canSkip: true, time: 45 },
+            { type: 'writing-email', title: 'Task 19: Write an Email', canSkip: true, text: "Write an email to Professor Harrison explaining a time zone misunderstanding that led to a late submission. Request for document acceptance.", time: 420 }
+        ],
+
+        // 2️⃣ TEST 2 DATA (BUILT FROM SCRATCH WITH USER RTF LINKS & TRANSCRIPTS)
+        "Test 2": [
+            { type: 'complete-words', title: 'Task 1: Photosynthesis', text: 'Pla[3] use sunli[3] to conv[3] water and carb[2] dioxi[2] into oxyg[2] and sug[2]. This proce[2] is criti[3] for life on Ear[2]. Most pla[3] have green lea[3] containing chlor[6].', answers: ['nts', 'ght', 'ert', 'on', 'de', 'en', 'ar', 'ss', 'cal', 'th', 'nts', 'ves', 'ophyll'] },
+            { type: 'complete-words', title: 'Task 2: Urban Planning', text: 'Mod[3] cit[3] face chall[5] such as overcr[6] and traf[3] conge[5]. Planne[2] must bala[3] resid[6] needs with environ[6] goals to crea[2] sustai[5] urban spaces.', answers: ['ern', 'ies', 'enges', 'owding', 'fic', 'stion', 'rs', 'nce', 'ential', 'mental', 'te', 'nable'] },
+            { type: 'complete-words', title: 'Task 3: Ancient Civilizations', text: 'The Gre[2] Empi[2] contrib[4] greatly to philos[4] and democ[4]. Archaeol[6] stud[1] the remai[2] of anci[3] templ[2] to bett[2] underst[3] their cultu[2].', answers: ['ek', 're', 'uted', 'ophy', 'racy', 'ogists', 'y', 'ns', 'ent', 'es', 'er', 'and', 're'] },
+            { type: 'read-daily', title: 'Task 4: Housing Policy', text: 'NOTICE: Following the annual safety review, the Office of Residential Life is implementing a revised dormitory check-out procedure. All residents must schedule a final room inspection at least 48 hours before their departure. Failure to comply with the new cleaning standards will result in a deduction from the housing deposit. Students residing in South Hall are exempt from this specific directive until the end of the spring semester.', question: 'What must residents do before moving out?', options: ['Submit a written cleaning report', 'Schedule a room inspection 48 hours prior', 'Pay a non-refundable cleaning fee', 'Move to South Hall for the summer'], correct: 1 },
+            { type: 'read-daily', title: 'Task 5: Graduation Audit', text: 'IMPORTANT: To ensure all academic requirements are met, the Registrar\'s Office requires all seniors to complete a mandatory graduation audit by the end of March. This process involves verifying major-specific credits and general education electives with an academic advisor. Students who neglect this audit risk the delay of their degree conferral.', question: 'What is the primary purpose of the mandatory audit?', options: ['To apply for graduate school early', 'To verify all degree requirements are met', 'To register for final semester electives', 'To update personal contact information'], correct: 1 },
+            { type: 'listen-announcement', title: 'Task 6: Registration Change', script: 'Attention students, the Introduction to Psychology course registration has been moved entirely online. You no longer need to visit the department office. Simply log in to the student portal tomorrow at 8 AM.', question: 'How should students now register for the course?', options: ['Visit the department office', 'Register through the online portal', 'Email the professor directly', 'Call the registrar’s office'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/f8th0qzg22bk8dwvvr3nr/Task-6.mp3?rlkey=1c0zrowvm2h4ofds4ybjr6960&raw=1' },
+            { type: 'listen-announcement', title: 'Task 7: Event Update', script: 'The guest lecture by Dr. Aris originally scheduled for the Grand Hall has been moved to the Science Center. Additionally, the topic has shifted from lunar geology to deep-sea exploration.', question: 'What two changes were made to the lecture?', options: ['Time and lecturer', 'Date and hall', 'Location and topic', 'Language and entrance fee'], correct: 2, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/nlkbs3iz08ckunhtdkzhr/Task-7.mp3?rlkey=u0opz3cil87lyfi9hqgvyicrh&raw=1' },
+            { type: 'listen-repeat', title: 'Task 8: Listen and repeat', sentences: [
+                { text: "The laboratory reports are due by the end of the week.", audio: "https://dl.dropboxusercontent.com/scl/fi/dui896xit592apbdu545k/Sentence-1.mp3?rlkey=i6ccakdbmdzai5t68ogoxbkji&raw=1" },
+                { text: "Please turn off all electronic devices during the lecture.", audio: "https://dl.dropboxusercontent.com/scl/fi/mapuqlf7m1fjnaqq0w6wd/Sentence-2.mp3?rlkey=swqz1oxlb1ay7mplo1kmm9nf4&raw=1" },
+                { text: "The university provides free shuttle services for students.", audio: "https://dl.dropboxusercontent.com/scl/fi/9zqfqe1pzx8h1dhndfkx2/Sentence-3.mp3?rlkey=s74159lqo2cm3yj0vntr78p37&raw=1" },
+                { text: "Researching the topic thoroughly is essential for your paper.", audio: "https://dl.dropboxusercontent.com/scl/fi/awya8wkgl4vr95fvj148q/Sentence-4.mp3?rlkey=44lugqalx7osfo96tnujmblle&raw=1" },
+                { text: "You can find the required textbooks in the campus bookstore.", audio: "https://dl.dropboxusercontent.com/scl/fi/pe3c3bnxrdol0ml7bbmem/Sentence-5.mp3?rlkey=j7h0njs8rmpft8ml2whw0r4fj&raw=1" },
+                { text: "Participation in group discussions is worth ten percent of your grade.", audio: "https://dl.dropboxusercontent.com/scl/fi/9s6qusr7xqshm4fvbdtma/Sentence-6.mp3?rlkey=mgaaz3sa5b44n37vce7kcug1s&raw=1" },
+                { text: "The student association is hosting a volunteer fair tomorrow.", audio: "https://dl.dropboxusercontent.com/scl/fi/ppeapda7ugzbcs3zk754y/Sentence-7.mp3?rlkey=x9jcekeyayiem9ftgipunk3of&raw=1" },
+                { text: "Make sure to include a bibliography at the end of your essay.", audio: "https://dl.dropboxusercontent.com/scl/fi/3xeevoy2tfqeze104ky8f/Sentence-8.mp3?rlkey=xgial2o543hs9nkmp0pwlv8el&raw=1" }
+            ]},
+            { type: 'build-sentence', title: 'Task 9: Build a Sentence 1', context: "Speaker A: 'Did you hear about the new lab?'", words: ['the', 'university', 'is', 'building', 'a', 'new', 'chemistry', 'lab'], correctOrder: ['the', 'university', 'is', 'building', 'a', 'new', 'chemistry', 'lab'] },
+            { type: 'build-sentence', title: 'Task 10: Build a Sentence 2', context: "Speaker A: 'I forgot where the office is.'", words: ['the', 'office', 'is', 'next', 'to', 'the', 'student', 'center'], correctOrder: ['the', 'office', 'is', 'next', 'to', 'the', 'student', 'center'] },
+            { type: 'build-sentence', title: 'Task 11: Build a Sentence 3', context: "Speaker A: 'Where should I go for help?'", words: ['you', 'should', 'talk', 'to', 'your', 'academic', 'advisor', 'today'], correctOrder: ['you', 'should', 'talk', 'to', 'your', 'academic', 'advisor', 'today'] },
+            { type: 'build-sentence', title: 'Task 12: Build a Sentence 4', context: "Speaker A: 'Why is the hall so busy?'", words: ['the', 'students', 'are', 'waiting', 'for', 'the', 'guest', 'speaker'], correctOrder: ['the', 'students', 'are', 'waiting', 'for', 'the', 'guest', 'speaker'] },
+            { type: 'build-sentence', title: 'Task 13: Build a Sentence 5', context: "Speaker A: 'Is the parking lot full?'", words: ['the', 'parking', 'lot', 'is', 'usually', 'full', 'by', 'eight'], correctOrder: ['the', 'parking', 'lot', 'is', 'usually', 'full', 'by', 'eight'] },
+            { type: 'academic-reading', title: 'Task 14: Cognitive Psychology', canSkip: true, text: 'Cognitive psychology is the scientific study of mental processes such as attention, language use, memory, and perception. The origin of cognitive psychology occurred in the 1960s in a break from behaviorism, which had held that unobservable mental processes were outside of the realm of empirical science. This shift allowed researchers to use models of mental processing to explain complex human behavior. One key focus is how humans process information, similar to how a computer operates, by encoding, storing, and retrieving data. This field has significantly influenced education, therapy, and artificial intelligence.', questions: [{ q: "What caused the shift toward cognitive psychology?", options: ["The invention of the computer", "A rejection of behaviorist views", "Advances in surgical techniques", "A return to classical philosophy"], correct: 1 }, { q: "When did the field originate?", options: ["1920s", "1950s", "1960s", "1990s"], correct: 2 }, { q: "What do cognitive psychologists study?", options: ["Physical reflexes", "Social hierarchies", "Mental processes", "Animal instincts"], correct: 2 }] },
+            { type: 'academic-reading', title: 'Task 15: Plate Tectonics', canSkip: true, text: 'The theory of plate tectonics revolutionized geology by explaining the movement of the Earth’s lithosphere. The Earth\'s outer shell is divided into several large and small plates that glide over the mantle. This movement is driven by mantle convection, where heat from the core causes molten rock to rise and sink. At plate boundaries, geological activity such as earthquakes, volcanic eruptions, and mountain building occurs. For example, the Himalayas were formed by the collision of the Indian and Eurasian plates. While the concept of continental drift was proposed earlier, it was not until the mid-20th century that the mechanism of seafloor spreading provided the necessary evidence for plate tectonics.', questions: [{ q: "What drives the movement of tectonic plates?", options: ["Lunar gravity", "Ocean currents", "Mantle convection", "Atmospheric pressure"], correct: 2 }, { q: "How were the Himalayas formed?", options: ["Volcanic activity", "Erosion by wind", "Collision of plates", "Seafloor spreading"], correct: 2 }, { q: "When was seafloor spreading discovered?", options: ["Early 1800s", "Mid-20th century", "Late 19th century", "The 1980s"], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 16: Supply and Demand', canSkip: true, text: 'In microeconomics, the model of supply and demand explains how prices are determined in a competitive market. The law of demand states that as the price of a product increases, the quantity demanded by consumers decreases. Conversely, the law of supply suggests that a higher price encourages producers to supply more of a good. The point where these two curves intersect is known as the market equilibrium, representing the stable price at which supply equals demand. Factors such as consumer preference, income levels, and production costs can shift these curves, leading to a new equilibrium. Understanding these dynamics is essential for businesses to set prices and for governments to implement effective economic policies.', questions: [{ q: "What is market equilibrium?", options: ["When prices are at their lowest", "When supply equals demand", "When demand is higher than supply", "When production stops"], correct: 1 }, { q: "According to the law of demand, what happens when prices rise?", options: ["Consumers buy more", "Producers decrease supply", "Demand decreases", "Preferences shift"], correct: 2 }, { q: "What can shift the supply and demand curves?", options: ["Only production costs", "Government intervention only", "Various factors like income", "Price changes alone"], correct: 2 }] },
+            { type: 'speaking-timer', title: 'Task 17: Academic Choices', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 18: Career Strategy', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 19: Social Habits', canSkip: true, time: 45 },
+            { type: 'writing-email', title: 'Task 20: Write an Email', canSkip: true, text: "Write an email to Professor Collins explaining that you missed the midterm exam due to a family emergency. Request a make-up exam.", time: 420 }
+        ],
+
+// 📁 PASTE TEST 3 HERE ⬇️
+
+"Test 3": [
+            { type: 'complete-words', title: 'Task 1: Renewable Energy', text: 'Sol[2] ene[3] is beco[4] a popu[3] way to gene[4] power for mod[3] homes. It uti[5] advanced pan[3] to capture sunli[3] and seam[6] trans[5] it into elect[6]. This dras[7] decr[5] our depen[5] on foss[2] fu[3], though the ini[4] cost of insta[7] remains high for some house[5].', answers: ['ar', 'rgy', 'ming', 'lar', 'rate', 'ern', 'lizes', 'els', 'ght', 'lessly', 'forms', 'ricity', 'tically', 'eases', 'dence', 'il', 'els', 'tial', 'llation', 'holds'] },
+            { type: 'complete-words', title: 'Task 2: Wildlife Conservation', text: 'Many anim[3] face immi[4] extinc[4] due to habi[3] loss and rapi[1] cli[4] cha[3]. Conser[6] effo[3] focus on meti[8] prote[5] endan[5] spe[4] in the wild. Fores[2] must be preser[3] to maint[3] biodiv[6], as the deli[4] bala[3] of ecosy[5] is increas[5] frag[3].', answers: ['als', 'nent', 'tion', 'tat', 'd', 'mate', 'nge', 'vation', 'rts', 'culously', 'cting', 'gered', 'cies', 'ts', 'ved', 'ain', 'ersity', 'cate', 'nce', 'stems', 'ingly', 'ile'] },
+            { type: 'complete-words', title: 'Task 3: Remote Work Trends', text: 'Work[3] from ho[2] has beco[2] a rigo[4] stan[4] for many techn[4] compa[4] world[4]. Emplo[4] enjoy unpar[7] flex[7] sched[4], while compa[4] save on offi[2] spa[2] and overh[3]. Commu[8] via high-def[7] vid[2] cal[2] is now an esse[5] prereq[6] for modern busi[4].', answers: ['ing', 'me', 'me', 'rous', 'dard', 'ical', 'nies', 'wide', 'yees', 'alleled', 'ibility', 'ules', 'nies', 'ce', 'ce', 'ead', 'nicating', 'inition', 'eo', 'ls', 'ntial', 'uisite', 'ness'] },
+            { type: 'complete-words', title: 'Task 4: Historical Archaeology', text: 'Anci[3] ruins provi[2] inva[6] clues about how peop[2] thri[3] thous[4] of ye[3] ago. Archaeol[6] use sophis[7] too[2] to caref[4] exca[4] for arti[5]. Every discov[3] unea[5] hel[2] us recon[6] the comp[3] hist[3] of civi[9].', answers: ['ent', 'de', 'luable', 'le', 'ved', 'ands', 'ars', 'ogists', 'ticated', 'ls', 'ully', 'vate', 'facts', 'ery', 'rthed', 'ps', 'struct', 'lex', 'ory', 'lizations'] },
+            
+            // READING TASKS
+            { type: 'read-daily', title: 'Task 5: Metro Service Update', text: 'NOTICE: Due to scheduled track maintenance, the Blue Line will be suspended between Central Station and Northgate this weekend. A shuttle bus service will operate every ten minutes to connect these stations. Regular rail service is expected to resume at 5:00 AM on Monday morning.', question: 'How can passengers travel between Central Station and Northgate this weekend?', options: ['By taking the Blue Line train', 'By using a shuttle bus service', 'By walking a short distance', 'By waiting until Monday morning'], correct: 1 },
+            { type: 'read-daily', title: 'Task 6: Park Maintenance Alert', text: 'PUBLIC NOTICE: City workers will be applying organic fertilizer to the West Lawn of Miller Park on Thursday. For safety reasons, the area will be cordoned off for 24 hours. Pet owners are specifically advised to keep dogs away from the treated grass until Friday morning.', question: 'Who is given a specific warning in this notice?', options: ['Children playing sports', 'City maintenance workers', 'Pet owners', 'Local gardeners'], correct: 2 },
+            { type: 'read-daily', title: 'Task 7: Art Gallery Workshop', text: 'EVENT: The Modern Art Gallery is hosting a Landscape Photography workshop next Saturday. Participants must bring their own cameras and a tripod. The session is free, but space is limited to fifteen people. Registration must be completed via the gallery website by Wednesday.', question: 'What is a requirement for attending the workshop?', options: ['Providing your own equipment', 'Paying a small entry fee', 'Bringing a landscape painting', 'Being a professional photographer'], correct: 0 },
+            { type: 'read-daily', title: 'Task 8: Train Station Notice', text: 'PASSENGER ALERT: The 10:15 express service to Silverton originally departing from Platform 4 has been moved to Platform 12. Please use the pedestrian overpass to reach the new platform. We apologize for the inconvenience.', question: 'Where should passengers go to catch the 10:15 express?', options: ['Platform 4', 'The pedestrian overpass', 'Platform 12', 'The ticket office'], correct: 2 },
+            
+            // LISTENING TASKS
+            { type: 'listen-announcement', title: 'Task 9: Museum Tour Information', script: 'Welcome to the National History Museum. Our guided tour of the Egyptian Wing begins in five minutes at the main entrance. This tour is included with your admission ticket. Please remember that flash photography is strictly prohibited inside the exhibit.', question: 'What is a rule for visitors on the tour?', options: ['They must pay extra for the tour.', 'They cannot use flash photography.', 'They must enter through the back door.', 'They cannot take any pictures.'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/mtgr4pyb8lzt0zalvf4k4/Task-9.mp3?rlkey=b6cii0467527z498smlj2fmbz&raw=1' },
+            { type: 'listen-announcement', title: 'Task 10: Hotel Weather Alert', script: 'Good morning, guests. Due to high winds expected this afternoon, the rooftop swimming pool and terrace bar will be closed for the remainder of the day. Indoor facilities, including the gym and sauna, remain open for your enjoyment.', question: 'What will be closed this afternoon?', options: ['The indoor gym', 'The sauna', 'The hotel restaurant', 'The rooftop pool'], correct: 3, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/vbxhcsn95hhzaw3lc5lho/Task-10.mp3?rlkey=c0pw8tchksyx2cwkezxx4ykgy&raw=1' },
+
+            // LISTEN & REPEAT
+            { type: 'listen-repeat', title: 'Task 11: Listen and repeat', sentences: [
+                { text: "Renewable energy is essential for a sustainable future.", audio: "https://dl.dropboxusercontent.com/scl/fi/gnv8sfft1aax2yy1py7kk/Sentence-1.mp3?rlkey=j4r0loav1qk0tmwohg3fn1ijt&raw=1" },
+                { text: "Remote work allows employees to have a better work-life balance.", audio: "https://dl.dropboxusercontent.com/scl/fi/apc8piertjy2yessezye5/Sentence-2.mp3?rlkey=cro027ko10lgnungfpcgitmkb&raw=1" },
+                { text: "The museum will be closed for maintenance next Tuesday.", audio: "https://dl.dropboxusercontent.com/scl/fi/qo0bzqnryi7vnj5i1ap1a/Sentence-3.mp3?rlkey=cc9ug9vtisyrmojb2381ok2mv&raw=1" },
+                { text: "Please ensure all electronic devices are switched off during the flight.", audio: "https://dl.dropboxusercontent.com/scl/fi/0nr8t9hql64d5pxsj89zb/Sentence-4.mp3?rlkey=1l57dltfywo91jmimezd1voix&raw=1" },
+                { text: "Effective communication is the key to a successful partnership.", audio: "https://dl.dropboxusercontent.com/scl/fi/5rzue7oa0geoubvnzro6e/Sentence-5.mp3?rlkey=wldmpvujr404aacoas4ecdees&raw=1" },
+                { text: "Most cities are investing in better public transportation systems.", audio: "https://dl.dropboxusercontent.com/scl/fi/pnckbzyia493fl5mmmday/Sentence-6.mp3?rlkey=yufgpbl38di9kytfnz6m3hhq0&raw=1" },
+                { text: "Artificial intelligence is changing the way we process information.", audio: "https://dl.dropboxusercontent.com/scl/fi/or8gto9zij5k2do3maafi/Sentence-7.mp3?rlkey=pl2sbvdj43ve387y2rwuqrb3v&raw=1" },
+                { text: "Taking regular breaks can significantly improve your productivity.", audio: "https://dl.dropboxusercontent.com/scl/fi/4thfyivsuay2ymlwnonlk/Sentence-8.mp3?rlkey=al4u15p3cosxwvhfrs4gmwhlo&raw=1" }
+            ]},
+            
+            // SENTENCE CONSTRUCTION
+            { type: 'build-sentence', title: 'Task 12: Sentence Construction 1', context: "Speaker A: 'What did the board decide about the branch?'", words: ['the', 'company', 'decided', 'to', 'expand', 'its', 'international', 'operations'], correctOrder: ['the', 'company', 'decided', 'to', 'expand', 'its', 'international', 'operations'] },
+            { type: 'build-sentence', title: 'Task 13: Sentence Construction 2', context: "Speaker A: 'Is the climate crisis getting worse?'", words: ['global', 'temperatures', 'are', 'rising', 'at', 'an', 'alarming', 'rate'], correctOrder: ['global', 'temperatures', 'are', 'rising', 'at', 'an', 'alarming', 'rate'] },
+            { type: 'build-sentence', title: 'Task 14: Sentence Construction 3', context: "Speaker A: 'How can I stay healthy during the semester?'", words: ['it', 'is', 'important', 'to', 'eat', 'a', 'balanced', 'diet', 'daily'], correctOrder: ['it', 'is', 'important', 'to', 'eat', 'a', 'balanced', 'diet', 'daily'] },
+            { type: 'build-sentence', title: 'Task 15: Sentence Construction 4', context: "Speaker A: 'Why did you arrive so late?'", words: ['the', 'flight', 'was', 'delayed', 'due', 'to', 'heavy', 'thunderstorms'], correctOrder: ['the', 'flight', 'was', 'delayed', 'due', 'to', 'heavy', 'thunderstorms'] },
+            { type: 'build-sentence', title: 'Task 16: Sentence Construction 5', context: "Speaker A: 'Does tech help with long-distance friends?'", words: ['modern', 'technology', 'makes', 'it', 'easier', 'to', 'stay', 'connected'], correctOrder: ['modern', 'technology', 'makes', 'it', 'easier', 'to', 'stay', 'connected'] },
+            
+            // ACADEMIC READING
+            { type: 'academic-reading', title: 'Task 17: Space Exploration', canSkip: true, text: 'The exploration of Mars has become a primary focus for space agencies worldwide. Unlike the Moon, Mars possesses a thin atmosphere and evidence of frozen water beneath its surface, making it a candidate for potential human colonization. Robotic rovers have already spent years analyzing the planet\'s soil and climate. However, the journey takes roughly seven months, and the radiation levels in deep space pose significant health risks to astronauts. Scientists are currently developing shielding technologies and faster propulsion systems to make a manned mission feasible by the late 2030s.', questions: [{ q: "Why is Mars considered a better candidate for colonization than the Moon?", options: ["It is closer to Earth.", "It has an atmosphere and water evidence.", "It has no radiation.", "It is much larger than Earth."], correct: 1 }, { q: "What is a major obstacle for human travel to Mars?", options: ["The lack of robotic rovers", "The planet's soil composition", "High radiation levels", "The absence of oxygen on Earth"], correct: 2 }, { q: "When do scientists hope to send humans to Mars?", options: ["Within the next two years", "By the late 2030s", "In the 22nd century", "After the Moon is colonized"], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 18: Marine Ecosystems', canSkip: true, text: 'Coral reefs are often called the "rainforests of the sea" because they support a vast diversity of marine life. Although they cover less than one percent of the ocean floor, they are home to twenty-five percent of all marine species. Reefs also protect coastlines from erosion by absorbing the energy of waves. Unfortunately, rising ocean temperatures lead to coral bleaching, a process where corals expel the colorful algae living in their tissues and turn white. Without these algae, the corals eventually starve and die. Protecting these ecosystems is vital for global food security and tourism.', questions: [{ q: "Why are coral reefs compared to rainforests?", options: ["They are both located in the water.", "They both have a high diversity of species.", "They both prevent wave erosion.", "They both turn white in the summer."], correct: 1 }, { q: "What is the main cause of coral bleaching?", options: ["Overfishing in the ocean", "The movement of ocean waves", "Tourism activities", "Increased water temperatures"], correct: 3 }, { q: "What happens to corals when they turn white?", options: ["They become stronger and grow faster.", "They attract more algae.", "They risk starving and dying.", "They move to deeper water."], correct: 2 }] },
+            
+            // SPEAKING & WRITING
+            { type: 'speaking-timer', title: 'Task 19: Urban vs. Rural Living', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 20: The Impact of Social Media', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 21: Environmental Responsibility', canSkip: true, time: 45 },
+            { type: 'writing-email', title: 'Task 22: Rescheduling a Meeting', canSkip: true, text: "You have a professional meeting scheduled for next Tuesday with a client, Mr. Thompson. However, you have just realized that you have a scheduling conflict. Write an email to Mr. Thompson to apologize for the inconvenience, explain why you need to reschedule, and suggest a new time later in the week.", time: 420 }
+        ],
+
+//PASTE TEST 4 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+"Test 4": [
+            { type: 'complete-words', title: 'Task 1: Digital Marketing', text: 'Digi[3] marke[4] has revolu[8] the way busin[5] conn[3] with custo[4]. Unlike tradi[6] adve[7], it allo[2] compa[4] to tar[3] speci[3] audie[4] with preci[4]. Soci[2] med[2] platf[4] are now essen[4] too[2] for brand awar[5] and enga[6].', answers: ['tal', 'ting', 'tionized', 'esses', 'ect', 'mers', 'tional', 'rtising', 'ws', 'nies', 'get', 'fic', 'nces', 'sion', 'al', 'ia', 'orms', 'tial', 'ls', 'eness', 'gement'] },
+            { type: 'complete-words', title: 'Task 2: Nutrition Science', text: 'Mainta[5] a bala[4] di[2] is cru[4] for phys[4] heal[2]. Nutri[4] exp[4] recomm[3] eating a vari[3] of fru[3] and vege[6] to ens[3] adequ[3] vitam[2] inta[2]. Proc[5] foo[2] should be limi[3] as they oft[2] cont[3] high lev[3] of sug[2] and sa[2].', answers: ['ining', 'nced', 'et', 'cial', 'ical', 'th', 'tion', 'erts', 'end', 'ety', 'its', 'tables', 'ure', 'ate', 'in', 'ke', 'essed', 'ds', 'ted', 'en', 'ain', 'els', 'ar', 'lt'] },
+            { type: 'complete-words', title: 'Task 3: Cybersecurity', text: 'In the mod[3] era, da[2] secu[4] is a top prio[4] for indiv[6] and corp[8]. Hack[3] const[5] deve[3] new meth[3] to ste[2] pers[4] infor[6]. Str[3] passw[4] and two-fac[3] authen[8] are simp[2] yet effec[4] ways to prev[3] unauth[6] acc[3].', answers: ['ern', 'ta', 'rity', 'rity', 'iduals', 'orations', 'ers', 'antly', 'lop', 'ods', 'al', 'onal', 'mation', 'ong', 'ords', 'tor', 'tication', 'le', 'tive', 'ent', 'orized', 'ess'] },
+            { type: 'complete-words', title: 'Task 4: Architecture', text: 'Susta[6] archi[7] focu[3] on desi[5] build[4] that mini[4] enviro[7] impa[2]. Archi[5] use mat[6] like recy[4] ste[2] and bamb[2] to red[3] car[3] footp[5]. Ener[2]-effic[4] ligh[4] and natu[3] venti[6] are also key feat[4] of gre[2] des[3].', answers: ['inable', 'tecture', 'ses', 'gning', 'ings', 'mize', 'nmental', 'ct', 'tects', 'erials', 'cled', 'el', 'oo', 'uce', 'bon', 'rints', 'gy', 'ient', 'ting', 'ral', 'lation', 'ures', 'en', 'ign'] },
+            
+            // READING TASKS
+            { type: 'read-daily', title: 'Task 5: Library Hours Adjustment', text: 'NOTICE: The Central Library will be closing early at 4:00 PM this Friday for staff training. Regular hours (9:00 AM – 8:00 PM) will resume on Saturday. The online database remains accessible 24/7 for research needs.', question: 'What will happen on Friday?', options: ['The library will be closed all day.', 'The library will close earlier than usual.', 'The online database will be offline.', 'The staff will be on vacation.'], correct: 1 },
+            { type: 'read-daily', title: 'Task 6: Road Work Alert', text: 'TRAFFIC ALERT: Repaving of Main Street begins next Monday. One lane will be closed between 5th Avenue and 8th Avenue from 8:00 AM to 5:00 PM. Drivers should expect delays and are encouraged to use alternate routes during work hours.', question: 'What are drivers advised to do?', options: ['Park on Main Street.', 'Use a different route.', 'Drive faster to avoid delays.', 'Wait until 5:00 PM to drive.'], correct: 1 },
+            { type: 'read-daily', title: 'Task 7: Concert Ticket Policy', text: 'EVENT POLICY: All concert tickets are non-refundable. However, if the event is cancelled by the organizer due to weather, a full refund will be automatically processed within seven business days. Ticket exchanges are allowed up to 48 hours before the show.', question: 'Under what condition can a customer get a refund?', options: ['If they decide not to go.', 'If they exchange the ticket 24 hours prior.', 'If the organizer cancels the event.', 'If they apply within seven days.'], correct: 2 },
+            
+            // LISTENING TASKS 
+            { type: 'listen-announcement', title: 'Task 8: Airport Announcement', script: 'Attention passengers on Flight 402 to Chicago. We have a gate change. The flight will now be boarding at Gate B15 instead of Gate A4. Please make your way to Terminal B immediately. Thank you.', question: 'What is the new boarding gate for Flight 402?', options: ['Gate A4', 'Gate B15', 'Terminal A', 'Gate B4'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/l9llfurbz9dj1ih3tu48k/Task-8.mp3?rlkey=e723w0wtgicfcq1gqthoo6tdu&raw=1' },
+            { type: 'listen-announcement', title: 'Task 9: Department Store Sale', script: 'Good afternoon, shoppers. For the next hour only, we are offering a thirty percent discount on all footwear in the men’s and women’s departments. Visit the second floor to take advantage of these savings before the store closes.', question: 'Where is the footwear sale located?', options: ['On the first floor', 'On the second floor', 'In the food court', 'Near the main entrance'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/t7s5ruqo514jk2i699snz/Task-9.mp3?rlkey=6zyhckhm4wkwumc8lnmale3ro&raw=1' },
+            { type: 'listen-announcement', title: 'Task 10: Theater Guidelines', script: 'Ladies and gentlemen, the performance is about to begin. We kindly ask that you silence your mobile phones and refrain from taking photos during the show. Intermission will take place in approximately forty-five minutes.', question: 'When will the intermission take place?', options: ['In 15 minutes', 'In 30 minutes', 'In 45 minutes', 'At the end of the show'], correct: 2, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/xljsbg8f3k5x4v5pbohpa/Task-10.mp3?rlkey=49284h2tep44e76kh17wfxz40&raw=1' },
+
+            // LISTEN & REPEAT
+            { type: 'listen-repeat', title: 'Task 11: Listen and repeat', sentences: [
+                { text: "Consistent practice is the most effective way to learn a new language.", audio: "https://dl.dropboxusercontent.com/scl/fi/ieyjrzepiwqe1l8hj1bzl/Sentence-1.mp3?rlkey=ga78giknoaytx6z13kjko4net&raw=1" },
+                { text: "The quarterly financial report shows a significant increase in revenue.", audio: "https://dl.dropboxusercontent.com/scl/fi/i7aetctjytar0ef6igqql/Sentence-2.mp3?rlkey=vkwelslaahi1kuvgyhdn3txtx&raw=1" },
+                { text: "Please submit your vacation requests to the manager by Friday.", audio: "https://dl.dropboxusercontent.com/scl/fi/i3smwjf0pieddbcp42s8n/Sentence-3.mp3?rlkey=lc7adlgbj1byd0huvwzt3q094&raw=1" },
+                { text: "Scientists are studying the long-term effects of climate change on ocean life.", audio: "https://dl.dropboxusercontent.com/scl/fi/zismy4ayaiopjwp1mn6yq/Sentence-4.mp3?rlkey=n4h5nsfrsho4j4x75n25dlgua&raw=1" },
+                { text: "Regular exercise helps to reduce stress and improve overall health.", audio: "https://dl.dropboxusercontent.com/scl/fi/twn9ylnj2aedl1uqizvyz/Sentence-5.mp3?rlkey=9k8jnb9nyl8opjdo0bjw53cj2&raw=1" },
+                { text: "The new software update includes several important security features.", audio: "https://dl.dropboxusercontent.com/scl/fi/7mfpcvpcnqhmu37q2log6/Sentence-6.mp3?rlkey=gg5hpgnujrnb2mr4z2xs2c4kt&raw=1" },
+                { text: "History teaches us valuable lessons about the consequences of our actions.", audio: "https://dl.dropboxusercontent.com/scl/fi/rn4cg0iqq61xm02gfyggz/Sentence-7.mp3?rlkey=6epf2bc6a01199qnkr6y9700w&raw=1" },
+                { text: "Collaborating with a diverse team often leads to more creative solutions.", audio: "https://dl.dropboxusercontent.com/scl/fi/mdkr0wk5axzaoy17ch4uq/Sentence-8.mp3?rlkey=ljas31wxejd65zsddep01z4vv&raw=1" }
+            ]},
+            
+            // SENTENCE CONSTRUCTION 
+            { type: 'build-sentence', title: 'Task 12: Sentence Construction 1', context: "Speaker A: 'I'm so excited for our trip!'", words: ['i', "can't", 'wait', 'to', 'see', 'you', 'tomorrow'], correctOrder: ['i', "can't", 'wait', 'to', 'see', 'you', 'tomorrow'] },
+            { type: 'build-sentence', title: 'Task 13: Sentence Construction 2', context: "Speaker A: 'I'm getting kind of hungry.'", words: ['do', 'you', 'want', 'to', 'grab', 'lunch', 'later'], correctOrder: ['do', 'you', 'want', 'to', 'grab', 'lunch', 'later'] },
+            { type: 'build-sentence', title: 'Task 14: Sentence Construction 3', context: "Speaker A: 'I'm leaving the office right now.'", words: ['let', 'me', 'know', 'when', 'you', 'get', 'home'], correctOrder: ['let', 'me', 'know', 'when', 'you', 'get', 'home'] },
+            { type: 'build-sentence', title: 'Task 15: Sentence Construction 4', context: "Speaker A: 'It feels like it's been forever since we caught up!'", words: ['we', 'should', 'definitely', 'hang', 'out', 'this', 'weekend'], correctOrder: ['we', 'should', 'definitely', 'hang', 'out', 'this', 'weekend'] },
+            { type: 'build-sentence', title: 'Task 16: Sentence Construction 5', context: "Speaker A: 'I heard Sarah is hosting a get-together.'", words: ['are', 'you', 'going', 'to', 'the', 'party', 'tonight'], correctOrder: ['are', 'you', 'going', 'to', 'the', 'party', 'tonight'] },
+            
+            // ACADEMIC READING
+            { type: 'academic-reading', title: 'Task 17: Consumer Behavior', canSkip: true, text: 'Emotional branding is a marketing strategy that aims to connect with consumers on a personal, emotional level rather than just highlighting product features. When a brand successfully evokes feelings of happiness, nostalgia, or belonging, it often creates deep customer loyalty. For example, a beverage company might run a campaign focusing on family gatherings and friendship instead of the drink\'s ingredients. This approach makes the brand memorable and encourages consumers to choose their product over competitors, even if the price is slightly higher.', questions: [{ q: "What is the primary goal of emotional branding?", options: ["To highlight product features", "To connect with consumers emotionally", "To lower product prices", "To change beverage ingredients"], correct: 1 }, { q: "What is a common result of successful emotional branding?", options: ["Deep customer loyalty", "Reduced production costs", "Less memorable campaigns", "Focus on product specifications"], correct: 0 }, { q: "What example of emotional branding is given in the passage?", options: ["A tech company selling software", "A beverage company focusing on friendship", "A shoe brand promoting durability", "A bank advertising low interest rates"], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 18: Volcanology', canSkip: true, text: 'Volcanoes generally fall into two main categories: shield volcanoes and stratovolcanoes, which differ significantly in shape and eruption style. Shield volcanoes, like those in Hawaii, have broad, gentle slopes formed by highly fluid lava that flows easily over great distances. Their eruptions are typically non-explosive. In contrast, stratovolcanoes, such as Mount St. Helens, are tall, steep-sided mountains built from layers of thicker lava, ash, and rocks. Because their magma traps more gas, stratovolcanoes are prone to violent, explosive eruptions.', questions: [{ q: "How do shield volcanoes generally erupt?", options: ["With violent explosions", "In a non-explosive manner", "By spewing mostly ash", "With thick, slow-moving lava"], correct: 1 }, { q: "What characterizes the shape of a stratovolcano?", options: ["Broad and flat", "Short and wide", "Tall and steep-sided", "Underground and invisible"], correct: 2 }, { q: "Which of the following is an example of a shield volcano location mentioned in the text?", options: ["Mount St. Helens", "Mount Vesuvius", "Hawaii", "Mount Fuji"], correct: 2 }] },
+            
+            // SPEAKING & WRITING
+            { type: 'speaking-timer', title: 'Task 19: Remote vs. Office Work', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 20: The Value of History', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 21: Leadership Styles', canSkip: true, time: 45 },
+            { type: 'writing-email', title: 'Task 22: Requesting a Recommendation', canSkip: true, text: "You are applying for a new job and need a letter of recommendation from your former university professor, Professor Davis. Write an email to him explaining your new career opportunity and politely asking if he would be willing to write the letter for you.", time: 420 }
+        ],
+
+//PASTE TEST 5 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+"Test 5": [
+            { type: 'complete-words', title: 'Task 1: E-commerce', text: 'Onli[2] shopp[3] has beco[2] increas[5] popu[3] globa[3]. Consu[4] appre[5] the conve[6] of brows[3] catal[3] from ho[2]. Retai[4] use adva[4] algori[4] to recom[4] produ[3] based on previ[3] purc[5]. Digi[3] storefr[4] requ[3] secu[4].', answers: ['ne', 'ing', 'me', 'ingly', 'lar', 'lly', 'mers', 'ciate', 'nience', 'ing', 'ogs', 'me', 'lers', 'nced', 'thms', 'mend', 'cts', 'ous', 'hases', 'tal', 'onts', 'ire', 'rity'] },
+            { type: 'complete-words', title: 'Task 2: Artificial Intelligence', text: 'Artifi[4] intelli[5] is transfo[5] many indus[5] today. Machi[2] lear[4] can anal[3] mass[3] amou[3] of da[2] quic[3]. This techn[5] assi[3] doct[3] in diagno[4] disea[3] and hel[2] compa[4] autom[3] tas[2]. Howe[3], ethi[3] concer[2] about priva[2] rem[3].', answers: ['cial', 'gence', 'rming', 'tries', 'ne', 'ning', 'yze', 'ive', 'nts', 'ta', 'kly', 'ology', 'sts', 'ors', 'sing', 'ses', 'ps', 'nies', 'ate', 'ks', 'ver', 'cal', 'ns', 'cy', 'ain'] },
+            { type: 'complete-words', title: 'Task 3: Oceanography', text: 'Ocea[2] cover most of our plan[2] and regu[4] the glo[3] clim[3]. Coral ree[2] provi[2] habi[4] for count[4] mari[2] spec[3]. Unfortu[6], poll[5] and ris[3] tempera[5] thre[4] these ecosys[4]. Scien[5] are work[3] to rest[3] dama[3] ree[2] and prote[2] endang[4] wildl[3] from furth[2] ha[2].', answers: ['ns', 'et', 'late', 'bal', 'ate', 'fs', 'de', 'tats', 'less', 'ne', 'ies', 'nately', 'ution', 'ing', 'tures', 'aten', 'tems', 'tists', 'ing', 'ore', 'ged', 'fs', 'ct', 'ered', 'ife', 'er', 'rm'] },
+            { type: 'complete-words', title: 'Task 4: Public Transportation', text: 'Effic[4] publ[2] trans[2] is vital for ur[3] devel[6]. Subw[3] and bus[2] redu[2] traf[3] conges[4] and low[2] emissi[3]. Many citi[2] are upgra[4] their infrast[7] to accomm[5] grow[3] popula[5]. Commu[4] bene[3] from affor[5] tick[3] and reli[4] sched[4], makin[1] dai[2] trav[2] much easi[2].', answers: ['ient', 'ic', 'it', 'ban', 'opment', 'ays', 'es', 'ce', 'fic', 'tion', 'er', 'ons', 'es', 'ding', 'ructure', 'odate', 'ing', 'tions', 'ters', 'fit', 'dable', 'ets', 'able', 'ules', 'g', 'ly', 'el', 'er'] },
+            
+            // READING TASKS
+            { type: 'read-daily', title: 'Task 5: Fitness Center Policy', text: 'NOTICE: All gym members must wipe down equipment after use. During peak hours (5:00 PM - 8:00 PM), please limit cardiovascular machine use to 30 minutes to ensure all members have access. Towels are available at the front desk.', question: 'What is a requirement for using the cardiovascular machines during peak hours?', options: ['Bringing your own towel', 'Limiting use to 30 minutes', 'Wiping them down before use', 'Paying an extra fee'], correct: 1 },
+            { type: 'read-daily', title: 'Task 6: Office Memo', text: 'MEMO: The company cafeteria will be closed for remodeling from Monday, October 12th to Friday, October 16th. A temporary coffee cart will be available in the lobby during morning hours. Employees are encouraged to bring their own lunches next week.', question: 'Why is the cafeteria closing temporarily?', options: ['To clean the equipment', 'To undergo remodeling', 'To train new staff', 'To host a private event'], correct: 1 },
+            { type: 'read-daily', title: 'Task 7: Event Invitation', text: 'Join us for the Annual Charity Gala on December 5th! Doors open at 6:30 PM for a silent auction, followed by dinner at 7:30 PM. Formal attire is required. Please RSVP by November 20th to reserve your seat.', question: 'What is expected of attendees regarding their clothing?', options: ['They must wear formal attire.', 'They should dress casually.', 'They need to wear winter coats.', 'They must purchase clothes at the auction.'], correct: 0 },
+            
+            // LISTENING TASKS (Exactly aligned with the new Test 5 audios)
+            { type: 'listen-announcement', title: 'Task 8: Mall Closing', script: 'Good evening, shoppers. The time is now 8:45 pm and the mall will be closing in exactly 15 minutes. Please make your final purchases and make your way to the nearest exit. We thank you for shopping with us and look forward to seeing you tomorrow.', question: 'According to the announcement, in how many minutes will the mall close?', options: ['15 minutes', '45 minutes', '8 minutes', '50 minutes'], correct: 0, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/vj6gufbvkq50utss885x5/Task-8.mp3?rlkey=ioorrc4me7s6awim26kdst0w1&raw=1' },
+            { type: 'listen-announcement', title: 'Task 9: Bus Route Detour', script: 'Attention passengers on the route 42 Northbound bus, due to the annual city marathon taking place downtown, this bus will detour via Washington Street. We will not be stopping at Central Square or the public library today. Regular service will resume tomorrow morning.', question: 'Why is the bus taking a detour?', options: ['A city marathon', 'Emergency roadwork', 'A parade on Washington Street', 'Library construction'], correct: 0, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/ksh6d47osxt6cuapvjhu2/Task-9.mp3?rlkey=0zso6kpsva0jomb2c5ctq6q47&raw=1' },
+            { type: 'listen-announcement', title: 'Task 10: Summit Scheduling Update', script: 'Welcome to the Global Innovation Summit, we have a brief scheduling update. The opening keynote speech by Dr. Arris Thorne has been moved from room 402 due to unexpectedly high attendance. It will now take place in the Grand Ballroom on the ground floor in ten minutes.', question: 'Why was the keynote speech moved to the Grand Ballroom?', options: ['Because room 402 was too cold', 'Because of unexpectedly high attendance', 'Because Dr. Thorne arrived late', 'Because the ground floor is quieter'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/l5ts032f4va8i1zph8wqs/Task-10.mp3?rlkey=094j0tjoxgkegqgaiam6dhvim&raw=1' },
+
+            // LISTEN & REPEAT
+            { type: 'listen-repeat', title: 'Task 11: Listen and repeat', sentences: [
+                { text: "The integration of artificial intelligence will revolutionize the medical field.", audio: "https://dl.dropboxusercontent.com/scl/fi/ony9o2qg2fjcyvsjrhmnc/Sentence-1.mp3?rlkey=b6bl5cmpvptaz8xrf8hlr531k&raw=1" },
+                { text: "Vertical farming offers a sustainable solution to urban food shortages.", audio: "https://dl.dropboxusercontent.com/scl/fi/5v08ylmbawl771oqtvty8/Sentence-2.mp3?rlkey=lcwq8w7dexqfj92mt5e82sx2i&raw=1" },
+                { text: "Passengers must present their boarding passes at the security checkpoint.", audio: "https://dl.dropboxusercontent.com/scl/fi/mxkopw2u1dp9p5i53a2ns/Sentence-3.mp3?rlkey=12xucx2n0aal33xjfjt1x74ik&raw=1" },
+                { text: "Water conservation is critical during the ongoing summer drought.", audio: "https://dl.dropboxusercontent.com/scl/fi/5v9hoe02bis0urkojzj7t/Sentence-4.mp3?rlkey=4ua5lgmfm8xpean857kdgig96&raw=1" },
+                { text: "Please ensure your software is updated to prevent security breaches.", audio: "https://dl.dropboxusercontent.com/scl/fi/0emfw8q4q2ursb1czmj60/Sentence-5.mp3?rlkey=ke07zs6mol5fo3mtdma0kj1et&raw=1" },
+                { text: "The marathon will cause significant traffic delays throughout the downtown area.", audio: "https://dl.dropboxusercontent.com/scl/fi/uvnpbjb1w2bjqv9wu1r1m/Sentence-6.mp3?rlkey=jqim3mlo82ldycttekh93au2b&raw=1" },
+                { text: "Developing healthy habits requires consistency and daily dedication.", audio: "https://dl.dropboxusercontent.com/scl/fi/7swp3us4961wq7ltj8e3t/Sentence-7.mp3?rlkey=vjpvk5k58f87x4m6cxms8atmj&raw=1" },
+                { text: "The keynote address has been moved to the main auditorium.", audio: "https://dl.dropboxusercontent.com/scl/fi/qabtqe0ao7fp2ma0gfjcg/Sentence-8.mp3?rlkey=m4xcqyxmz5df6px6zd6hnqp2i&raw=1" }
+            ]},
+            
+            // SENTENCE CONSTRUCTION
+            { type: 'build-sentence', title: 'Task 12: Sentence Construction 1', context: "Speaker A: 'When is the final decision being made?'", words: ['the', 'committee', 'will', 'review', 'the', 'proposal', 'tomorrow'], correctOrder: ['the', 'committee', 'will', 'review', 'the', 'proposal', 'tomorrow'] },
+            { type: 'build-sentence', title: 'Task 13: Sentence Construction 2', context: "Speaker A: 'I just lost all my progress on the document!'", words: ['make', 'sure', 'to', 'save', 'your', 'work', 'frequently'], correctOrder: ['make', 'sure', 'to', 'save', 'your', 'work', 'frequently'] },
+            { type: 'build-sentence', title: 'Task 14: Sentence Construction 3', context: "Speaker A: 'Did you hear the news about Sarah?'", words: ['she', 'was', 'promoted', 'to', 'senior', 'project', 'manager'], correctOrder: ['she', 'was', 'promoted', 'to', 'senior', 'project', 'manager'] },
+            { type: 'build-sentence', title: 'Task 15: Sentence Construction 4', context: "Speaker A: 'Why didn't my flight leave on time?'", words: ['we', 'apologize', 'for', 'the', 'unexpected', 'flight', 'cancellation'], correctOrder: ['we', 'apologize', 'for', 'the', 'unexpected', 'flight', 'cancellation'] },
+            { type: 'build-sentence', title: 'Task 16: Sentence Construction 5', context: "Speaker A: 'What kind of artifacts do they have here?'", words: ['the', 'museum', 'features', 'exhibits', 'on', 'ancient', 'history'], correctOrder: ['the', 'museum', 'features', 'exhibits', 'on', 'ancient', 'history'] },
+            
+            // ACADEMIC READING
+            { type: 'academic-reading', title: 'Task 17: Cognitive Psychology', canSkip: true, text: 'Working memory is a cognitive system with a limited capacity that is responsible for temporarily holding information available for processing. Unlike long-term memory, which stores vast amounts of knowledge for a lifetime, working memory is crucial for reasoning and the guidance of decision-making and behavior in the present moment. For example, remembering a phone number just long enough to dial it relies heavily on working memory. Researchers suggest that its capacity is typically limited to about four to seven items at a time, which is why complex tasks require our full attention.', questions: [{ q: "What is the main function of working memory?", options: ["Storing lifelong knowledge", "Temporarily holding information", "Dialing phone numbers permanently", "Increasing brain size"], correct: 1 }, { q: "How does working memory differ from long-term memory?", options: ["It holds limited information temporarily.", "It is used only for math problems.", "It stores vast amounts of knowledge.", "It never forgets information."], correct: 0 }, { q: "Approximately how many items can working memory hold?", options: ["One or two", "Four to seven", "Ten to twelve", "Unlimited items"], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 18: Astronomy', canSkip: true, text: 'Exoplanets are planets that orbit a star outside our solar system. The discovery of the first exoplanet around a sun-like star in 1995 revolutionized astronomy. Since then, thousands have been identified using various methods, most notably the transit method. This technique involves observing the slight dimming of a star\'s light when a planet passes in front of it. Scientists study these distant worlds to understand planetary formation and to search for Earth-like planets situated in the "habitable zone"—the region around a star where conditions might allow liquid water to exist on the planet\'s surface.', questions: [{ q: "What is an exoplanet?", options: ["A planet within our solar system", "A star that orbits a planet", "A planet orbiting a star outside our solar system", "A meteor passing Earth"], correct: 2 }, { q: "What does the transit method observe to find exoplanets?", options: ["The heat of the planet", "The dimming of a star's light", "The color of the solar system", "The radio waves from space"], correct: 1 }, { q: "What is the habitable zone?", options: ["The area where astronomers work", "A region where liquid water might exist", "The center of a star", "A planet made entirely of water"], correct: 1 }] },
+            
+            // SPEAKING & WRITING
+            { type: 'speaking-timer', title: 'Task 19: Technology in Education', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 20: Teamwork vs. Individual Work', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 21: Travel Planning', canSkip: true, time: 45 },
+            { type: 'writing-email', title: 'Task 22: Requesting Time Off', canSkip: true, text: "You need to request three days off from work next month to attend a family wedding out of state. Write an email to your manager, Ms. Roberts, requesting the time off and explaining how your current projects will be handled while you are away.", time: 420 }
+        ],
+
+//PASTE TEST 6 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+"Test 6": [
+            { type: 'complete-words', title: 'Task 1: Business Logistics', text: 'Mod[3] busin[5] re[2] heav[3] on supp[2] cha[2] logis[4]. Compa[4] must opti[4] their netw[4] to ensu[2] time[2] deliv[3] of goo[2]. Disrup[5] in the glob[2] mar[3] can lea[1] to seve[2] shorta[3].', answers: ['ern', 'esses', 'ly', 'ily', 'ly', 'in', 'tics', 'nies', 'mize', 'orks', 're', 'ly', 'ery', 'ds', 'tions', 'al', 'ket', 'd', 're', 'ges'] },
+            { type: 'complete-words', title: 'Task 2: Biology', text: 'Photo[9] is the proc[3] by whi[2] pla[3] conv[3] sunl[4] into ener[2]. They abso[2] carb[2] dioxi[2] from the air and relea[2] oxyg[2] as a bypro[4]. This func[4] is cruci[2] for mainta[5] life on Ear[2]. Fores[2] act as mass[3] lun[2].', answers: ['synthesis', 'ess', 'ch', 'nts', 'ert', 'ight', 'gy', 'rb', 'on', 'de', 'se', 'en', 'duct', 'tion', 'al', 'ining', 'th', 'ts', 'ive', 'gs'] },
+            { type: 'complete-words', title: 'Task 3: Psychology', text: 'Cogni[4] psych[5] expl[4] how the hum[2] bra[2] proc[5] infor[6]. Memo[2], atte[5], and probl[2]-solv[3] are all foca[1] poi[3] of stu[2]. Resear[5] util[3] vari[3] meth[3] to underst[3] the ment[2] mechani[3] behi[2] beha[4].', answers: ['tive', 'ology', 'ores', 'an', 'in', 'esses', 'mation', 'ry', 'ntion', 'em', 'ing', 'l', 'nts', 'dy', 'chers', 'ize', 'ous', 'ods', 'and', 'al', 'sms', 'nd', 'vior'] },
+            
+            // READING TASKS (Notices)
+            { type: 'read-daily', title: 'Task 4: Lab Safety Protocol', text: 'NOTICE: Effective immediately, all students must wear closed-toe shoes and safety goggles at all times inside the chemistry laboratories. Food and beverages are strictly prohibited. Failure to comply will result in removal from the lab session.', question: 'What is strictly prohibited inside the chemistry laboratories?', options: ['Using cell phones', 'Working without a partner', 'Food and beverages', 'Wearing long sleeves'], correct: 2 },
+            { type: 'read-daily', title: 'Task 5: Tuition Payment Deadline', text: 'REMINDER: The deadline for the upcoming semester’s tuition payment is Friday, August 15th at 5:00 PM. A late fee of $50 will be applied to any accounts not settled by this time. Please contact the financial aid office if you require an extension.', question: 'What will happen if tuition is not paid by the deadline?', options: ['A late fee will be applied.', 'The student will be dropped from classes.', 'The financial aid office will call the student.', 'The deadline will be automatically extended.'], correct: 0 },
+            { type: 'read-daily', title: 'Task 6: Campus Gym Renovation', text: 'UPDATE: The campus gymnasium locker rooms will undergo renovations starting next Monday. During this two-week period, temporary lockers will be available in the hallway outside the basketball courts. The swimming pool will remain open as usual.', question: 'Where will temporary lockers be located during the renovation?', options: ['Inside the swimming pool area', 'At the front reception desk', 'In the student union', 'In the hallway outside the basketball courts'], correct: 3 },
+            
+            // LISTENING TASKS (Announcements)
+            { type: 'listen-announcement', title: 'Task 7: Parking Announcement', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test", script: 'Attention all students and faculty. The East Campus parking lot will be closed for repaving starting this Wednesday. Please use the North or West lots until the project is completed next Monday. Thank you for your cooperation.', question: 'Which parking lot will be closed for repaving?', options: ['The North lot', 'The East lot', 'The West lot', 'The South lot'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/m1z8x43kqq415q7mwu51r/Task-7.mp3?rlkey=qa9kz35dei37tsy7zucm2j1rj&raw=1' },
+            { type: 'listen-announcement', title: 'Task 8: Career Fair', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless is it strictly necessary since you won't have this option on the real test", script: 'Good morning, students. The annual career fair will begin in the student union at 10:00 AM today. Please have your student ID ready for entry. Representatives from over fifty companies are eager to meet you.', question: 'What must students have ready for entry?', options: ['Their student ID', 'A printed resume', 'An entry ticket', 'A cover letter'], correct: 0, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/m5lcp4ev96g7ea64nx4gf/Task-8.mp3?rlkey=au3j41slydcib2sj7gyj0hmoo&raw=1' },
+
+            // LISTEN & REPEAT
+            { type: 'listen-repeat', title: 'Task 9: Listen and repeat', sentences: [
+                { text: "The psychology lecture has been moved to room four hundred", audio: "https://dl.dropboxusercontent.com/scl/fi/bz1em4e3k02y5iaag1yxu/Sentence-1.mp3?rlkey=au5b3kpwknjhyp10qgc1bjwqb&raw=1" },
+                { text: "Renewable energy is a rapidly growing field of study.", audio: "https://dl.dropboxusercontent.com/scl/fi/t6p15wct9lbz5ugdn2wif/Sentence-2.mp3?rlkey=nnwsu0x3vncqls7wxfndt920n&raw=1" },
+                { text: "Students must complete the laboratory safety training before Friday.", audio: "https://dl.dropboxusercontent.com/scl/fi/85qg9r7xfccsf1m2bzr13/Sentence-3.mp3?rlkey=5u41gawsshswadry2abg9k3nc&raw=1" },
+                { text: "The cafeteria now offers a wider variety of vegetarian options.", audio: "https://dl.dropboxusercontent.com/scl/fi/yp7yq1kyfhouhig13n4tv/Sentence-4.mp3?rlkey=pl8fdiplrxfqpn6gu3i0q4tmp&raw=1" },
+                { text: "Group study rooms can be reserved online up to two weeks in advance.", audio: "https://dl.dropboxusercontent.com/scl/fi/ldh82nb9dmtqag6scy1ho/Sentence-5.mp3?rlkey=unu3wvyz109r9hlgohjhjs9gm&raw=1" },
+                { text: "Understanding historical context is essential for analyzing classic literature.", audio: "https://dl.dropboxusercontent.com/scl/fi/fysbc6cjvi078ji437sca/Sentence-6.mp3?rlkey=qnwbvk9kovpsggh8vw5r8itjf&raw=1" },
+                { text: "The campus shuttle departs every fifteen minutes during peak hours.", audio: "https://dl.dropboxusercontent.com/scl/fi/41i4cytp0y2ftcqfz4r4h/Sentence-7.mp3?rlkey=cjh5t4mh7xsrkuwxxi6gnl1bh&raw=1" },
+                { text: "Artificial intelligence is reshaping the future of global economics.", audio: "https://dl.dropboxusercontent.com/scl/fi/u06ez5zins8wsbwpkflfq/Sentence-8.mp3?rlkey=81cdpifg3vtn18v0k3u183ahp&raw=1" }
+            ]},
+            
+            // SENTENCE CONSTRUCTION
+            { type: 'build-sentence', title: 'Task 10: Sentence Construction 1', context: "Speaker A: 'Are you ready for the test tomorrow?'", words: ['i', 'need', 'to', 'review', 'my', 'notes', 'tonight'], correctOrder: ['i', 'need', 'to', 'review', 'my', 'notes', 'tonight'] },
+            { type: 'build-sentence', title: 'Task 11: Sentence Construction 2', context: "Speaker A: 'Did he give us a lot of homework?'", words: ['the', 'professor', 'assigned', 'three', 'chapters', 'of', 'reading'], correctOrder: ['the', 'professor', 'assigned', 'three', 'chapters', 'of', 'reading'] },
+            { type: 'build-sentence', title: 'Task 12: Sentence Construction 3', context: "Speaker A: 'I am so confused by this group project.'", words: ['we', 'should', 'organize', 'a', 'study', 'group', 'soon'], correctOrder: ['we', 'should', 'organize', 'a', 'study', 'group', 'soon'] },
+            { type: 'build-sentence', title: 'Task 13: Sentence Construction 4', context: "Speaker A: 'Where are you going to study?'", words: ['the', 'library', 'is', 'usually', 'very', 'crowded', 'today'], correctOrder: ['the', 'library', 'is', 'usually', 'very', 'crowded', 'today'] },
+            { type: 'build-sentence', title: 'Task 14: Sentence Construction 5', context: "Speaker A: 'When is the final essay due?'", words: ['make', 'sure', 'you', 'submit', 'your', 'assignment', 'early'], correctOrder: ['make', 'sure', 'you', 'submit', 'your', 'assignment', 'early'] },
+            
+            // LISTEN & CHOOSE RESPONSE
+            { type: 'listen-announcement', title: 'Task 15: Choose a Response', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test", script: 'Excuse me, do you know what time the campus bookstore closes today?', question: 'Choose the most appropriate response:', options: ['Yes, I need to buy a textbook.', 'The library is open until midnight.', 'The bookstore is on the first floor.', 'It closes at 6:00 PM today.'], correct: 3, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/w2l4mh3k7inpzz3kktu3p/Task-15.mp3?rlkey=cy8pmbgo6k2czza82hqk6w4zz&raw=1' },
+            { type: 'listen-announcement', title: 'Task 16: Choose a Response', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test", script: "I'm really struggling to understand the reading assignment for our sociology class.", question: 'Choose the most appropriate response:', options: ['I bought the textbook yesterday.', 'The professor is very strict about attendance.', 'We could review it together if you want.', 'The assignment is due next Friday.'], correct: 2, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/san116ax6yu1br655gov5/Task-16.mp3?rlkey=8bzegzkbhbxwbexrqnn4g0t98&raw=1' },
+
+            // LISTEN TO A CONVERSATION (Embedded HTML Audio approach to utilize existing multiple-question layout)
+            { type: 'academic-reading', title: 'Task 17: Conversation - Evening Plans', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/n1av74q3empkrslenxuhp/Conversation-2.mp3?rlkey=228v6pedqgnip00ac9tj5gw8l&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;">-Hey, you\'re home! How was your day?<br>-It was… a day. Long, but productive. You know how it is. How was yours?<br>-Pretty much the same. Felt like I was running in circles all afternoon. Did you manage to get that report finished?<br>-Almost. Just a few more tweaks this evening. What about that presentation you were working on?<br>-It went well, thankfully. The clients seemed impressed. I’m glad that’s over.<br>-That’s great news! I’m happy for you. So, what’s for dinner? I’m starving.<br>-I was thinking we could order pizza. My brain is too fried to cook anything elaborate.<br>-Pizza sounds perfect. I’ll grab my phone. Anything else you want to do tonight?<br>-Maybe just relax on the couch, watch a movie. Or I could give you a massage? You always look so tense after work.<br>-That sounds amazing. I’d love that. Let’s just unwind. No more work talk for tonight, okay?<br>-Deal. Pizza, movie, and a massage. Sounds like the perfect end to a long day.</div>', questions: [
+                { q: "What can be inferred about the woman's presentation?", options: ["The clients were dissatisfied with the results.", "It was a source of stress but ultimately successful.", "She did not finish it before leaving the office.", "It involved ordering food for the team."], correct: 1 },
+                { q: "Why does the woman suggest ordering pizza instead of cooking?", options: ["She wants to celebrate the success of her presentation.", "They do not have any groceries left in the house.", "The man specifically requested it earlier in the day.", "She feels too mentally exhausted from her long day at work."], correct: 3 }
+            ]},
+            
+            { type: 'academic-reading', title: 'Task 18: Conversation - Climate Conference', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/1ad11k4qlqy8ei1rveuxt/Conversation-1.mp3?rlkey=0gffoondt1tizoq971y553ngo&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;">Woman- Wow, that was intense. I\'m still processing everything I heard at that climate change conference.<br>Man- Me too. It\'s a lot to take in. So many alarming statistics and dire predictions.<br>Woman- I know. That presentation on sea-level rise was particularly chilling. The thought of coastal cities being submerged...<br>Man- And the impact on agriculture, the food shortages, the mass migrations. It\'s a domino effect of disaster.<br>Woman- What struck me the most was the urgency. It felt like they were saying we\'re running out of time, that the window for action is closing rapidly.<br>Man- I know... that was the scary part. But well, there\'s only so much we can do about it.</div>', questions: [
+                { q: "What does the man mean when he says \"It's a domino effect of disaster\"?", options: ["The presentation focused heavily on a board game analogy.", "The impacts of climate change are strictly isolated to coastal regions.", "One catastrophic environmental event will inevitably trigger others.", "Only agricultural sectors will fail while others survive."], correct: 2 },
+                { q: "What specific aspect of the conference struck the woman the most?", options: ["The astronomical financial cost of implementing the proposed solutions.", "The specific location chosen for the next climate conference.", "The extensive backgrounds of the guest speakers.", "The rapidly closing window of time left to take meaningful action."], correct: 3 },
+                { q: "How does the man's final comment contrast with the woman's primary concern?", options: ["He believes they have plenty of time, while she is already preparing to relocate.", "He wants to attend another conference, but she feels too overwhelmed to return.", "He expresses a sense of resignation, whereas she feels a pressing need for immediate action.", "He focuses primarily on the economic cost, while she focuses on sea-level rise."], correct: 2 }
+            ]},
+
+            // LISTEN TO AN ACADEMIC TALK (Embedded HTML Audio approach)
+            { type: 'academic-reading', title: 'Task 19: Academic Talk - Marine Biology', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/bhokajeohe9ujfs9kikzm/Task-19.mp3?rlkey=4gj6eqq4wtaef09q8aeae6i71&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;">Today, let\'s talk about bioluminescence in deep-sea organisms. In the darkest parts of the ocean, many creatures have evolved the ability to produce their own light through a chemical reaction. This light serves multiple purposes: it can be used to attract prey in the pitch-black water, to confuse or startle predators, or even for communication and finding mates. The anglerfish, for example, uses a glowing lure attached to its head to draw smaller fish right into its mouth.</div>', questions: [
+                { q: "According to the professor, what is the primary mechanism behind bioluminescence?", options: ["The reflection of surface sunlight in the deep ocean.", "A symbiotic relationship with glowing algae.", "A chemical reaction occurring within the organism.", "The absorption of heat from underwater volcanic vents."], correct: 2 },
+                { q: "How does the anglerfish specifically utilize its bioluminescent capability?", options: ["By startling larger predators to escape safely into the dark.", "By illuminating the ocean floor to search for hidden food sources.", "By communicating with potential mates from a long distance.", "By luring potential prey into its mouth with a glowing appendage."], correct: 3 }
+            ]},
+            
+            { type: 'academic-reading', title: 'Task 20: Academic Talk - Behavioral Economics', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/9hkd5z9yoc1h23562owqu/Task-20.mp3?rlkey=ksn8ij26u9tc253nz6u03ueda&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;">Let\'s turn our attention to the concept of \'loss aversion\' in behavioral economics. Studies have shown that the psychological pain of losing something is roughly twice as powerful as the pleasure of gaining that exact same thing. In marketing, companies often use this principle to their advantage. For instance, offering a \'limited time only\' discount creates a sense of urgency because consumers are afraid of missing out on the deal. They are driven more by the fear of losing the opportunity than by the actual money they might save.</div>', questions: [
+                { q: "What is the core principle of \"loss aversion\" described in the talk?", options: ["Consumers actively avoid purchasing items that are heavily discounted.", "The psychological impact of a loss is significantly greater than that of an equivalent gain.", "People are naturally inclined to take financial risks when given the opportunity.", "Gaining money produces twice as much pleasure as losing money produces pain."], correct: 1 },
+                { q: "How do marketers successfully exploit the concept of loss aversion?", options: ["By offering comprehensive money-back guarantees on all products.", "By permanently lowering prices to build long-term brand loyalty.", "By aggressively comparing their products to inferior competitors.", "By emphasizing that a discount is temporary to induce a fear of missing out."], correct: 3 },
+                { q: "According to the professor, what primarily drives consumers during a \"limited time only\" sale?", options: ["The logical calculation of the actual money they will save.", "The desire to purchase items they don't actually need.", "The fear of losing the opportunity to get the deal.", "The social pressure to buy what others are buying."], correct: 2 }
+            ]},
+
+            // ACADEMIC DISCUSSION (Writing)
+            { type: 'writing-email', title: 'Task 21: Write for an Academic Discussion', canSkip: true, text: "<b>Professor's Prompt:</b>\n\"In our business class today, we discussed the shift toward remote work. Do you think remote work is ultimately more beneficial for the employee or for the company? Explain your reasoning.\"\n\n<b>Student A (Alex):</b>\n\"I think it benefits the company more because they save thousands of dollars on office space, electricity, and overhead costs.\"\n\n<b>Student B (Maria):</b>\n\"I disagree; it benefits the employee the most. The flexibility allows for a much better work-life balance and eliminates the stress of commuting.\"\n\n<b>Your Task:</b>\nWrite a response contributing your own thoughts to the discussion. You can agree with Alex, Maria, or present a completely new perspective. You have 10 minutes to write your response.", time: 600 },
+
+            // ACADEMIC READING
+            { type: 'academic-reading', title: 'Task 22: History of the Printing Press', canSkip: true, text: 'The invention of the printing press by Johannes Gutenberg in the 15th century is widely considered one of the most important events in human history. Before its invention, books were copied by hand, making them extremely rare and expensive. The printing press allowed for the mass production of books, drastically lowering their cost. This sudden availability of information fueled the Renaissance, the Scientific Revolution, and the Protestant Reformation. By making literature accessible to the general public, it played a critical role in increasing literacy rates and breaking the monopoly on knowledge previously held by the elite and the church.', questions: [{ q: "Why were books rare and expensive before the printing press?", options: ["They were copied entirely by hand.", "They were only printed on expensive paper.", "They were heavily taxed by the government.", "They were banned by the church."], correct: 0 }, { q: "What was a major consequence of the printing press's invention?", options: ["The end of the Scientific Revolution", "An increase in the price of literature", "A dramatic rise in literacy rates", "The decline of the Renaissance"], correct: 2 }, { q: "Who held a monopoly on knowledge before the printing press?", options: ["Johannes Gutenberg and his family", "The elite and the church", "Public libraries", "General merchants"], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 23: Cellular Respiration', canSkip: true, text: 'Cellular respiration is a biological process by which organisms convert glucose and oxygen into usable energy, specifically ATP (adenosine triphosphate). This process takes place primarily in the mitochondria, often referred to as the "powerhouse" of the cell. The byproducts of this reaction are carbon dioxide and water, which the organism expels. While plants produce their own glucose through photosynthesis, animals must obtain it by consuming other organisms. Both plants and animals, however, rely on cellular respiration to sustain their basic metabolic functions.', questions: [{ q: "What is the primary output of cellular respiration?", options: ["Carbon dioxide", "Oxygen", "Glucose", "Usable energy (ATP)"], correct: 3 }, { q: "Where does cellular respiration primarily occur?", options: ["In the mitochondria", "In the chloroplasts", "In the cell wall", "In the lungs"], correct: 0 }, { q: "How do animals obtain glucose for this process?", options: ["Through photosynthesis", "By absorbing it from the air", "By consuming other organisms", "By drinking water"], correct: 2 }] },
+            { type: 'academic-reading', title: 'Task 24: Supply and Demand', canSkip: true, text: 'In economics, the law of supply and demand dictates the price of goods and services in a free market. Supply refers to the quantity of a product that producers are willing to sell at a given price, while demand refers to the quantity that consumers are willing to buy. When demand for a product increases but supply remains unchanged, the price typically rises. Conversely, if there is a surplus of a product—meaning supply exceeds demand—prices usually fall as sellers compete to attract buyers. The point at which supply perfectly matches demand is known as market equilibrium.', questions: [{ q: "What does 'supply' refer to in a free market?", options: ["The amount of money consumers have", "The quantity of a product producers are willing to sell", "The taxes placed on a product", "The demand for cheaper goods"], correct: 1 }, { q: "What typically happens when supply exceeds demand?", options: ["Producers stop selling.", "Market equilibrium is reached instantly.", "Demand stops completely.", "Prices fall as sellers compete."], correct: 3 }, { q: "What is 'market equilibrium'?", options: ["The point where supply perfectly matches demand", "When a product's price is at its highest", "When producers refuse to sell goods", "When demand drastically exceeds supply"], correct: 0 }] },
+            
+            // SPEAKING TIMERS
+            { type: 'speaking-timer', title: 'Task 25: Independent Speaking', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 26: Campus Life (Speaking)', canSkip: true, time: 60 },
+            { type: 'speaking-timer', title: 'Task 27: Academic Course (Speaking)', canSkip: true, time: 60 },
+            
+            // WRITING (Email)
+            { type: 'writing-email', title: 'Task 28: Write an Email', canSkip: true, text: "You have realized that two of your final exams are scheduled for the exact same time on the same day. Write an email to your academic advisor requesting a schedule adjustment, explaining the conflict, and asking for their guidance on how to resolve the issue.", time: 420 }
+        ],
+
+//PASTE TEST 7 HERE
+
+"Test 7": [
+            { type: 'complete-words', title: 'Task 1: Artificial Intelligence', text: 'Arti[6] intelli[5] is transfo[5] how we wo[2] and li[2]. Machi[3] can now perfo[2] tas[2] that previou[3] requi[3] hum[2] thoug[2].', answers: ['ficial', 'gence', 'rming', 'rk', 've', 'nes', 'rm', 'ks', 'sly', 'red', 'an', 'ht'] },
+            { type: 'complete-words', title: 'Task 2: Ancient History', text: 'The Rom[2] Empi[2] was one of the mo[2] power[3] in histo[2]. It spann[2] acro[2] thr[2] continen[2], bring[3] advan[3] architec[4] and engin[6] to vari[3] regio[2].', answers: ['an', 're', 'st', 'ful', 'ry', 'ed', 'ss', 'ee', 'ts', 'ing', 'ced', 'ture', 'eering', 'ous', 'ns'] },
+            { type: 'complete-words', title: 'Task 3: Nutrition', text: 'A balan[3] di[2] is cruc[3] for mainta[5] go[2] heal[2]. Consum[3] a vari[3] of frui[2], vegeta[4], and prote[3] provi[3] essen[4] nutri[4] to the bo[2].', answers: ['ced', 'et', 'ial', 'ining', 'od', 'th', 'ing', 'ety', 'ts', 'bles', 'ins', 'des', 'tial', 'ents', 'dy'] },
+            
+            // READING TASKS (Notices)
+            { type: 'read-daily', title: 'Task 4: Workplace Email', text: 'NOTICE: The office server will be taken offline for routine maintenance this Saturday from 2:00 AM to 6:00 AM. During this window, employees will not have access to internal email or cloud storage. Please ensure all critical files are downloaded locally by Friday evening.', question: 'What should employees do before the weekend?', options: ['Update their internal email passwords.', 'Come to the office on Saturday morning.', 'Download necessary files to their local computers.', 'Contact IT for server access.'], correct: 2 },
+            { type: 'read-daily', title: 'Task 5: City Notice', text: 'TRAFFIC ALERT: Elm Street will be closed to all vehicle traffic between 4th Avenue and 7th Avenue starting Monday due to water main repairs. Detour signs will be posted, routing drivers down Oak Street. Local businesses will remain open with pedestrian access only.', question: 'How will customers access the businesses on Elm Street during the closure?', options: ['They must park on 7th Avenue and take a shuttle.', 'They can drive through if they show proof of business.', 'They can only access them on foot.', 'The businesses will be closed during the repairs.'], correct: 2 },
+            { type: 'read-daily', title: 'Task 6: Retail Policy', text: 'STORE POLICY: Items may be returned within 30 days of purchase for a full refund, provided they are in their original packaging and accompanied by a receipt. Electronics and clearance items are strictly final sale and cannot be returned or exchanged under any circumstances.', question: 'Which of the following items can be returned for a full refund?', options: ['A television with a receipt.', 'A clearance sweater without a receipt.', 'An unopened blender purchased 15 days ago with a receipt.', 'A used pair of shoes purchased 40 days ago.'], correct: 2 },
+            
+            // LISTENING TASKS (Announcements)
+            { type: 'listen-announcement', title: 'Task 7: Theater Announcement', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test.", script: 'Ladies and gentlemen, the 8:00 PM performance will begin in approximately five minutes. Please make your way to your seats and ensure that all mobile phones and electronic devices are completely switched off. As a reminder, photography and video recording are strictly prohibited during the show.', question: 'What are audience members strictly forbidden from doing?', options: ['Leaving their seats during the intermission.', 'Taking pictures or recording videos.', 'Bringing food into the theater.', 'Talking during the performance.'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/wl6zsiqfchbtlifxf47qv/Task-7.mp3?rlkey=mjdvdhabm0uzr4tzumc56qz4z&st=6hu0yx3u&raw=1' },
+            { type: 'listen-announcement', title: 'Task 8: Airport Announcement', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test.", script: 'Good morning, passengers. Flight 412 to Seattle is now ready for boarding at Gate B7. We ask that all First Class and Priority members line up at this time.', question: 'Who is currently being asked to line up for boarding?', options: ['All passengers travelling with small children.', 'Only passengers holding First Class or Priority tickets.', 'Passengers in rows 15 through 30.', 'Anyone who needs to check an oversized bag.'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/1cma9ujnc7lyumk4tr00k/Task-8.mp3?rlkey=v4ihetl5e162707vdi1s0hvbf&st=l5idsm0t&raw=1' },
+
+            // LISTEN & REPEAT
+            { type: 'listen-repeat', title: 'Task 9: Listen and repeat', sentences: [
+                { text: "The new Italian restaurant downtown has received excellent reviews.", audio: "https://dl.dropboxusercontent.com/scl/fi/8izwzgduvp5m1jwfwyndz/Sentence-1.mp3?rlkey=39syhiq46wmu0xftrcophp9qq&st=ia35j7ia&raw=1" },
+                { text: "Regular exercise is essential for maintaining cardiovascular health.", audio: "https://dl.dropboxusercontent.com/scl/fi/ah2x39wixwoi5d9w7mjro/Sentence-2.mp3?rlkey=xr7w4gia8gg1csmr5j8b7mgf0&st=utfdynog&raw=1" },
+                { text: "Please make sure to update your software to the latest version.", audio: "https://dl.dropboxusercontent.com/scl/fi/eszt36ptyic2esfxzkfp5/Sentence-3.mp3?rlkey=fo8efqauh84sdzde823r97tyg&st=0vs4zcfz&raw=1" },
+                { text: "The museum's ancient Egypt exhibit opens to the public next week.", audio: "https://dl.dropboxusercontent.com/scl/fi/qy8lm7sg7xlo9s2y6diwz/Sentence-4.mp3?rlkey=kt2hzm11omkxjn51yzwa520yb&st=itw2a5hn&raw=1" },
+                { text: "Public transportation is a great way to reduce your carbon footprint.", audio: "https://dl.dropboxusercontent.com/scl/fi/9cd5aamja20r60ftbaiz8/Sentence-5.mp3?rlkey=gj4iniwxma9imrsl82tthuh56&st=8ypb9u9e&raw=1" },
+                { text: "We are expecting heavy rain and thunderstorms throughout the weekend.", audio: "https://dl.dropboxusercontent.com/scl/fi/h9etygvnfk4a970ztumkb/Sentence-6.mp3?rlkey=pt9xtv4b9oodjqc97p2r53utt&st=7cc4lv2e&raw=1" },
+                { text: "The quarterly financial report will be presented at the board meeting.", audio: "https://dl.dropboxusercontent.com/scl/fi/yj8ag8dsdmwr6764dn1r4/Sentence-7.mp3?rlkey=egprug12l5yl0oak976zre9jy&st=misa1hfw&raw=1" },
+                { text: "Learning a second language can significantly improve cognitive function.", audio: "https://dl.dropboxusercontent.com/scl/fi/rkrwjluyzd46nsurfjyfb/Sentence-8.mp3?rlkey=k7tem2qetoet6ouajt1p56ttx&st=l97oqksv&raw=1" }
+            ]},
+            
+            // SENTENCE CONSTRUCTION
+            { type: 'build-sentence', title: 'Task 10: Sentence Construction 1', context: "Speaker A: 'Did you enjoy the concert last night?'", words: ['the', 'band', 'played', 'all', 'of', 'my', 'favorite', 'songs'], correctOrder: ['the', 'band', 'played', 'all', 'of', 'my', 'favorite', 'songs'] },
+            { type: 'build-sentence', title: 'Task 11: Sentence Construction 2', context: "Speaker A: 'Why is the traffic so bad today?'", words: ['there', 'is', 'a', 'major', 'accident', 'on', 'the', 'highway'], correctOrder: ['there', 'is', 'a', 'major', 'accident', 'on', 'the', 'highway'] },
+            { type: 'build-sentence', title: 'Task 12: Sentence Construction 3', context: "Speaker A: 'Have you seen my car keys?'", words: ['you', 'left', 'them', 'on', 'the', 'kitchen', 'counter', 'earlier'], correctOrder: ['you', 'left', 'them', 'on', 'the', 'kitchen', 'counter', 'earlier'] },
+            { type: 'build-sentence', title: 'Task 13: Sentence Construction 4', context: "Speaker A: 'What time is our flight departing?'", words: ['we', 'need', 'to', 'leave', 'for', 'the', 'airport', 'soon'], correctOrder: ['we', 'need', 'to', 'leave', 'for', 'the', 'airport', 'soon'] },
+            { type: 'build-sentence', title: 'Task 14: Sentence Construction 5', context: "Speaker A: 'How was your vacation in Italy?'", words: ['the', 'food', 'was', 'absolutely', 'delicious', 'every', 'single', 'day'], correctOrder: ['the', 'food', 'was', 'absolutely', 'delicious', 'every', 'single', 'day'] },
+            
+            // LISTEN & CHOOSE RESPONSE
+            { type: 'listen-announcement', title: 'Task 15: Choose a Response', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test.", script: 'Excuse me, could you tell me where the nearest post office is located?', question: 'Choose the most appropriate response:', options: ['Yes, I mailed the package yesterday.', 'It is just two blocks straight down this street.', 'Stamps have gotten very expensive recently.', 'The mail is usually delivered around noon.'], correct: 1, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/v7rl8x0jh5tvmr4zte5e9/Task-15.mp3?rlkey=3qvrdhpk6glz3ymha8z041o7i&st=0cn2tsap&raw=1' },
+            { type: 'listen-announcement', title: 'Task 16: Choose a Response', note: "We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won't have this option on the real test.", script: "Hi, I have a reservation under the name Davis for a table of four.", question: 'Choose the most appropriate response:', options: ['The food here is highly recommended.', 'I would prefer a table near the window.', 'Of course, let me show you to your seats.', 'We usually eat dinner at seven o\'clock.'], correct: 2, audioUrl: 'https://dl.dropboxusercontent.com/scl/fi/tym1gsrmn6vxlqf2den1k/Task-16.mp3?rlkey=wxqm8pqmo3d6lojvv4h1kfedc&st=7bjitnqo&raw=1' },
+
+            // LISTEN TO A CONVERSATION (Embedded HTML Audio approach to utilize existing multiple-question layout)
+            { type: 'academic-reading', title: 'Task 17: Conversation - Marketing Proposal', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/e3cnlc4zwowqxtnr4bjgg/Task-17.mp3?rlkey=fs6bnu2lzqvwxyrc0xyebl7qm&st=vsy4g7sp&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;"><b>Man:</b> "Hey, did you get a chance to look at the marketing proposal I emailed you this morning?"<br><b>Woman:</b> "Not yet, I\'ve been stuck in back-to-back meetings all day. Is it urgent?"<br><b>Man:</b> "The client wants our feedback by tomorrow at noon, so we should probably review it today."<br><b>Woman:</b> "Okay, let\'s grab a coffee and go over it together in about twenty minutes."</div>', questions: [
+                { q: "Why hasn't the woman reviewed the marketing proposal yet?", options: ["She deleted the email by accident.", "She has been occupied with continuous meetings all day.", "She doesn't believe the proposal is urgent.", "She is waiting for the client to provide feedback first."], correct: 1 },
+                { q: "What do the speakers agree to do to resolve the situation?", options: ["Request an extension from the client.", "Cancel their upcoming afternoon meetings.", "Meet over coffee shortly to review the document together.", "Email the feedback directly to the client right now."], correct: 2 }
+            ]},
+            
+            { type: 'academic-reading', title: 'Task 18: Conversation - Apartment Heating', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/sjdntob3ans1ggz02v6lh/Task-18.mp3?rlkey=23ctro7zyn3otzlxol8sexbqi&st=35v41eee&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;"><b>Woman:</b> "I can\'t believe how cold it is in this apartment. Is the heater broken again?"<br><b>Man:</b> "I think the thermostat is just acting up. I tried resetting it, but it didn\'t do anything."<br><b>Woman:</b> "We should probably call the landlord before it gets freezing tonight."<br><b>Man:</b> "Good idea. I\'ll give him a call right now and see if he can send a repairman."</div>', questions: [
+                { q: "What does the man suspect is causing the apartment to be so cold?", options: ["A broken window in the living room.", "A malfunctioning thermostat.", "The landlord turning off the building's gas.", "The heater being completely broken."], correct: 1 },
+                { q: "What is their immediate plan to fix the issue?", options: ["They are going to contact their landlord to request a repairman.", "They are going to purchase a new thermostat.", "They are going to reset the entire electrical panel.", "They are going to move out of the apartment before tonight."], correct: 0 }
+            ]},
+
+            // LISTEN TO AN ACADEMIC TALK (Embedded HTML Audio approach)
+            { type: 'academic-reading', title: 'Task 19: Academic Talk - Saturn\'s Rings', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/woaaa4t1mjn0m5jteepog/Task-19.mp3?rlkey=tycbxkt4s0zh45chm6o36wcz0&st=o79cd34c&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;">"Today, let\'s explore the rings of Saturn. Unlike the solid rings you might imagine, Saturn\'s ring system is actually made up of billions of individual pieces of ice and rock, ranging in size from tiny dust grains to giant boulders. These particles constantly orbit the planet, shaped by the gravitational pull of Saturn and its many moons. While they appear continuous from afar, they are actually divided by several large gaps, the most famous being the Cassini Division."</div>', questions: [
+                { q: "According to the professor, what are Saturn's rings primarily composed of?", options: ["Solid sheets of highly compressed metal.", "Thick clouds of radioactive gas.", "Billions of individual pieces of ice and rock.", "Gravitational waves pulling from nearby moons."], correct: 2 },
+                { q: "What is the 'Cassini Division' mentioned in the talk?", options: ["A specific scientific method for observing distant planets.", "A large gap that separates sections of Saturn's rings.", "A space station orbiting Saturn.", "The gravitational pull that holds the moons in place."], correct: 1 }
+            ]},
+            
+            { type: 'academic-reading', title: 'Task 20: Academic Talk - Animal Behavior', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/ypqi2hs3d17aspmpo0pug/Task-20.mp3?rlkey=1k39spbh6evz49dj1io5psrxl&st=zqshe2k1&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;">"Today we\'re going to explore a fascinating aspect of animal behavior: the waggle dance of the honeybee. When a foraging bee discovers a rich food source, it returns to the hive and performs a specific figure-eight movement. This \'dance\' effectively communicates the exact distance and direction of the flowers to the rest of the colony, using the sun\'s position as a reference point. It stands as one of the most complex examples of non-verbal communication in the insect world."</div>', questions: [
+                { q: "What is the primary purpose of the honeybee's 'waggle dance'?", options: ["To warn the colony of an approaching predator.", "To cool down the interior temperature of the hive.", "To communicate the location of a rich food source.", "To attract a mate during the breeding season."], correct: 2 },
+                { q: "What environmental feature do honeybees use as a reference point during this dance?", options: ["The direction of the wind.", "The position of the sun.", "The location of nearby rivers.", "The temperature of the ground."], correct: 1 }
+            ]},
+
+            // ACADEMIC DISCUSSION (Writing)
+            { type: 'writing-email', title: 'Task 21: Write for an Academic Discussion', canSkip: true, text: "<b>Professor's Prompt:</b>\n\"In our economics seminar today, we discussed the rapid advancement of automation and robotics in the manufacturing industry. Do you believe that replacing human factory workers with machines ultimately helps or harms the global economy? Explain your reasoning.\"\n\n<b>Student A (Michael):</b>\n\"I think it harms the economy. When machines replace humans, thousands of people lose their jobs, which leads to higher unemployment rates and less money being spent in local communities.\"\n\n<b>Student B (Sarah):</b>\n\"I disagree; I think it helps the economy overall. Automation makes production faster and cheaper, which lowers the cost of goods for everyone. Plus, it creates new, higher-paying jobs in tech and machine maintenance.\"\n\n<b>Your Task:</b>\nWrite a response contributing your own thoughts to the discussion. You can agree with Michael, Sarah, or present a completely new perspective. You have 10 minutes to write your response.", time: 600 },
+
+            // ACADEMIC READING
+            { type: 'academic-reading', title: 'Task 22: The Water Cycle', canSkip: true, text: 'The continuous movement of water on, above, and below the surface of the Earth is known as the water cycle, or the hydrologic cycle. This system is driven by solar energy and gravity. Water from oceans, lakes, and rivers evaporates into the atmosphere as water vapor. As it rises and cools, it condenses into clouds. Eventually, the condensed water falls back to the Earth\'s surface as precipitation, such as rain or snow. Some of this water flows over the ground as runoff, eventually returning to the oceans, while some infiltrates the soil to replenish groundwater supplies. This infinite cycle is vital for sustaining all life on Earth.', questions: [{ q: "What primarily drives the water cycle?", options: ["Ocean currents and wind", "Solar energy and gravity", "Geothermal heat and soil erosion", "Human intervention and industry"], correct: 1 }, { q: "What happens to water vapor as it rises and cools in the atmosphere?", options: ["It turns into groundwater.", "It evaporates instantly.", "It condenses into clouds.", "It falls as solar energy."], correct: 2 }, { q: "What is the term for water that flows over the ground to return to the oceans?", options: ["Condensation", "Infiltration", "Precipitation", "Runoff"], correct: 3 }] },
+            { type: 'academic-reading', title: 'Task 23: The Invention of the Telephone', canSkip: true, text: 'The invention of the telephone in the 1870s revolutionized global communication. While several inventors contributed to the underlying technology, Alexander Graham Bell was the first to be awarded a US patent for the device in 1876. Before the telephone, the telegraph was the fastest method of long-distance communication, but it was limited to sending Morse code, requiring skilled operators. The telephone allowed for the transmission of direct, vocal conversations over long distances in real time. This breakthrough rapidly accelerated business operations, changed social dynamics, and paved the way for the highly interconnected modern world we live in today.', questions: [{ q: "Who was awarded the first US patent for the telephone?", options: ["Thomas Edison", "Nikola Tesla", "Alexander Graham অর্জন Bell", "Samuel Morse"], correct: 2 }, { q: "What was a major limitation of the telegraph compared to the telephone?", options: ["It was far more expensive to build.", "It could only transmit vocal conversations.", "It required skilled operators to send Morse code.", "It could only be used for short distances."], correct: 2 }, { q: "How did the invention of the telephone impact society?", options: ["It slowed down business operations.", "It allowed for real-time vocal conversations over long distances.", "It made the telegraph completely obsolete within a month.", "It restricted communication to trained operators only."], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 24: Plate Tectonics', canSkip: true, text: 'The theory of plate tectonics describes the large-scale motion of the Earth\'s lithosphere, which is the rigid outer shell of the planet. This shell is broken into several massive pieces known as tectonic plates. These plates constantly, albeit slowly, move over the asthenosphere, the semi-fluid layer beneath them. The interactions at the boundaries of these plates are responsible for some of the most dramatic geological events on Earth. When plates collide, they can form towering mountain ranges. When they pull apart, they create rift valleys and ocean basins. Additionally, the friction and sudden slipping of these plates along fault lines are the primary cause of earthquakes.', questions: [{ q: "What is the lithosphere?", options: ["The semi-fluid layer beneath the Earth's crust.", "The rigid outer shell of the Earth.", "A specific type of mountain range.", "The deepest ocean basin on the planet."], correct: 1 }, { q: "What happens when tectonic plates pull apart from each other?", options: ["They create rift valleys and ocean basins.", "They form towering mountain ranges.", "They instantly cause massive volcanic eruptions.", "They stop moving completely."], correct: 0 }, { q: "What is the primary cause of earthquakes according to the passage?", options: ["The rapid heating of the asthenosphere.", "The formation of new ocean basins.", "The friction and sudden slipping of tectonic plates.", "The gravitational pull of the moon."], correct: 2 }] },
+            
+            // SPEAKING TIMERS
+            { type: 'speaking-timer', title: 'Task 25: Independent Speaking', canSkip: true, time: 45 },
+            { type: 'speaking-timer', title: 'Task 26: General Daily Life (Speaking)', canSkip: true, time: 60 },
+            { type: 'speaking-timer', title: 'Task 27: Business / Economics (Speaking)', canSkip: true, time: 60 },
+            
+            // WRITING (Email)
+            { type: 'writing-email', title: 'Task 28: Write an Email', canSkip: true, text: "You recently returned from a trip, but the airline lost your checked luggage. It has been three days and you still have not received any updates. Write an email to the airline's customer service department explaining the situation, providing your flight details, and requesting an immediate update and compensation.", time: 420 }
+        ],
+
+//PASTE TEST 8 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 9 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 10 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 11 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 12 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 13 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 14 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 15 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 16 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 17 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 18 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 19 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 20 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 21 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 22 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+, 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 8 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 9 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 10 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 11 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 12 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 13 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 14 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 15 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 16 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 17 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 18 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 19 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 20 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 21 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+//PASTE TEST 22 HERE 3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️3️⃣🚩⬇️
+
+
+
+
+    };
+
+    let curSet = []; let idx = 0; let results = []; let timer;
+
+    function start(k) { curSet=testData[k]; idx=0; results=[]; switchScreen('screen-exercise'); render(); }
+
+    function render() {
+        clearInterval(timer);
+        const ex = curSet[idx]; const cont = document.getElementById('exercise-content');
+        document.getElementById('skip-btn').style.display = ex.canSkip ? 'block' : 'none';
+        cont.innerHTML = `<h2>${ex.title}</h2>`;
+
+        if (ex.audioUrl) {
+            cont.innerHTML += `<div class="audio-container"><p>▶️ Play Audio Material</p><audio controls preload="metadata" crossorigin="anonymous"><source src="${ex.audioUrl}" type="audio/mpeg"></audio></div>`;
+        }
+
+        if (ex.type === 'complete-words') {
+            let h = ex.text.replace(/\[(\d+)\]/g, (m, p) => `<input type="text" class="fill-blank" maxlength="${p}" style="width: ${p}ch">`);
+            cont.innerHTML += `<div class="exercise-paragraph">${h}</div>`;
+        } else if (ex.type === 'listen-repeat') {
+            cont.innerHTML += `<div style="display:grid; gap:15px;">` + ex.sentences.map((s,i)=>`<div style="display:flex; align-items:center; gap:15px;"><button class="btn-audio-minimal" onclick="new Audio('${s.audio}').play().catch(e=>console.error(e))">▶️</button><button class="btn btn-outline" style="flex:1; margin:0;" onclick="this.parentElement.nextElementSibling.style.display='block'">Reveal Sentence ${i+1}</button></div><div style="background:#f8f9fa; padding:20px; border-left:5px solid var(--primary-blue); display:none; margin-bottom:10px;">${s.text}</div>`).join('') + `</div>`;
+        } else if (ex.type === 'speaking-timer') {
+            cont.innerHTML += `<div id="timer-box">00:${ex.time}</div><button class="btn" style="background:var(--success-green);" id="t-btn" onclick="runTimer(${ex.time}, 'timer-box')">Start Timer</button>`;
+        } else if (ex.type === 'build-sentence') {
+            let s = [...ex.words].sort(()=>Math.random()-0.5);
+            cont.innerHTML += `<div class="context-box">${ex.context}</div><div class="word-bank" id="w-bank">${s.map(w=>`<div class="draggable-word" onclick="toD(this)">${w}</div>`).join('')}</div><div id="d-area" class="drop-area" onclick="fromD(event)"></div>`;
+        } else if (ex.type === 'academic-reading') {
+            let qh = ex.questions.map((q,qi)=>`<div style="margin-bottom:30px;"><strong>${qi+1}. ${q.q}</strong>${q.options.map((o,oi)=>`<div class="option q${qi}" onclick="mSel(${qi},${oi})">${o}</div>`).join('')}</div>`).join('');
+            cont.innerHTML += `<div class="academic-grid"><div class="reading-text-box">${ex.text}</div><div>${qh}</div></div>`;
+        } else if (ex.options) {
+            let t = ex.script ? `<button class="btn btn-outline" onclick="this.nextElementSibling.style.display='block'">Show Script</button><div style="background:#f8f9fa; padding:20px; display:none; margin-bottom:20px; border-left: 4px solid var(--primary-blue);">${ex.script}</div>` : `<p>${ex.text || ""}</p>`;
+            cont.innerHTML += t + `<p><strong>${ex.question}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
+        } else if (ex.type === 'writing-email') {
+            cont.innerHTML += `<div class="small-timer" id="email-t">07:00</div><p>${ex.text}</p><textarea style="width:100%; height:200px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; outline:none;"></textarea>`;
+            setTimeout(()=>runTimer(ex.time, 'email-t', true), 100);
+        }
+    }
+
+    function runTimer(s, elementId, isEmail = false) {
+        if(!isEmail) document.getElementById('t-btn').style.display='none'; 
+        let t = s;
+        timer = setInterval(()=>{ 
+            t--; let m = Math.floor(t / 60); let sec = t % 60;
+            document.getElementById(elementId).innerText = `${m<10?'0'+m:m}:${sec<10?'0'+sec:sec}`;
+            if(t<=0){ clearInterval(timer); document.getElementById(elementId).innerText="DONE"; } 
+        },1000);
+    }
+
+    function mSel(qi,oi) { document.querySelectorAll(`.q${qi}`).forEach(e=>e.classList.remove('selected')); const t=document.querySelectorAll(`.q${qi}`)[oi]; t.classList.add('selected'); t.dataset.choice=oi; }
+    function select(e,i) { document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); e.classList.add('selected'); e.dataset.idx=i; }
+    function toD(e) { document.getElementById('d-area').appendChild(e); }
+    function fromD(e) { if(e.target.className==='draggable-word') document.getElementById('w-bank').appendChild(e.target); }
+
+    function submitAnswer() {
+        const ex=curSet[idx]; let r={title:ex.title, type:ex.type, isCorrect:false};
+        if(ex.type==='complete-words'){
+            const ui=Array.from(document.querySelectorAll('.fill-blank')).map(i=>i.value.trim().toLowerCase());
+            r.isCorrect = ui.every((v,i)=>v===ex.answers[i].toLowerCase()); r.ui=ui; r.ans=ex.answers; r.raw=ex.text;
+        } else if(ex.type==='academic-reading'){
+            r.qs=ex.questions.map((q,qi)=>{ const s=document.querySelector(`.q${qi}.selected`); const c=s?parseInt(s.dataset.choice):null; return {qText:q.q, isC:c===q.correct, uVal:c!==null?q.options[c]:"N/A", cVal:q.options[q.correct]};});
+            r.isCorrect=r.qs.every(q=>q.isC);
+        } else if(ex.type==='build-sentence'){
+            const b=Array.from(document.getElementById('d-area').children).map(c=>c.innerText);
+            r.isCorrect = (JSON.stringify(b)===JSON.stringify(ex.correctOrder)); r.uVal=b.join(' '); r.cVal=ex.correctOrder.join(' ');
+        } else if(ex.options) {
+            const s=document.querySelector('.selected'); const c=s?parseInt(s.dataset.idx):null;
+            r.isCorrect = c===ex.correct; r.uVal=c!==null?ex.options[c]:"N/A"; r.cVal=ex.options[ex.correct];
+        } else { r.isCorrect=true; }
+        results.push(r); idx++; idx<curSet.length?render():finish();
+    }
+
+    function finish() {
+        switchScreen('screen-results');
+        const v = results.filter(r=>!r.skipped && r.type!=='speaking-timer' && r.type!=='writing-email' && r.type!=='listen-repeat');
+        const sCount = v.filter(r=>r.isCorrect).length;
+        const p = sCount/(v.length||1);
+        let band = (p * 5 + 1).toFixed(1);
+        let ibt = Math.round(p * 120);
+
+        document.getElementById('score-display').innerHTML = `
+            <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${band} / 6.0</div>
+            <p style="font-size:1.2rem;">TOEFL Band Score</p>
+            <div style="font-size: 1.1rem; color: var(--text-neutral);">Approximate iBT Total: <strong>${ibt} / 120</strong></div>
+        `;
+
+        let feed = '';
+        results.forEach(r => {
+            if(r.skipped || r.type==='speaking-timer' || r.type==='writing-email' || r.type==='listen-repeat') return;
+            feed += `<div class="feedback-card"><h3>${r.title}</h3>`;
+            if(r.type==='complete-words'){
+                let u=r.raw, c=r.raw;
+                r.ui.forEach((val, i) => {
+                    let col = (val===r.ans[i].toLowerCase()) ? 'correct-text' : 'wrong-text';
+                    u = u.replace(/\[\d+\]/, `<span class="${col}">${val || "___"}</span>`);
+                    c = c.replace(/\[\d+\]/, `<span class="correct-text">${r.ans[i]}</span>`);
+                });
+                feed += `<div class="attempt-box"><span class="right-ans-label">Right Answer: <span class="neutral-text" style="color:var(--text-neutral);">${c.replace(/<span class=\"correct-text\">/g, '').replace(/<\/span>/g, '')}</span></span><span class="right-ans-label">Your Attempt: ${u}</span></div>`;
+            } else if(r.type==='academic-reading'){
+                r.qs.forEach(q => {
+                    let colClass = q.isC ? 'correct-text' : 'wrong-text';
+                    feed += `<div class="attempt-box"><p><strong>${q.qText}</strong></p><span class="right-ans-label">Right Answer: <span class="correct-text">${q.cVal}</span></span><span class="right-ans-label">Your Answer: <span class="${colClass}">${q.uVal}</span></span></div>`;
+                });
+            } else if(r.type==='build-sentence'){
+                let colClass = r.isCorrect ? 'correct-text' : 'wrong-text';
+                feed += `<div class="attempt-box"><span class="right-ans-label">Right Answer: <span class="neutral-text" style="color:var(--text-neutral);">${r.cVal}</span></span><span class="right-ans-label">Your Attempt: <span class="${colClass}">${r.uVal || ""}</span></span></div>`;
+            } else {
+                let colClass = r.isCorrect ? 'correct-text' : 'wrong-text';
+                feed += `<div class="attempt-box"><span class="right-ans-label">Right Answer: <span class="neutral-text" style="color:var(--text-neutral);">${r.cVal}</span></span><span class="right-ans-label">Your Answer: <span class="${colClass}">${r.uVal || ""}</span></span></div>`;
+            }
+            feed += `</div>`;
+        });
+        document.getElementById('feedback-display').innerHTML = feed;
+    }
+
+    function switchScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+    function skip() { results.push({title:curSet[idx].title, skipped:true}); idx++; idx<curSet.length?render():finish(); }
+</script>
+</body>
+</html>
