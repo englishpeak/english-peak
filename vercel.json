@@ -5,7 +5,7 @@
     { "source": "/itp-mc", "destination": "/?exercise=itp-mc", "permanent": false },
     { "source": "/itp", "destination": "/?exercise=itp", "permanent": false },
     { "source": "/ibt", "destination": "/?exercise=ibt", "permanent": false },
-    { "source": "/conv", "destination": "/?exercise=conv", "permanent": false }
+    { "source": "/conversations", "destination": "/?exercise=conv", "permanent": false }
 
 
 
