@@ -1193,14 +1193,30 @@ window.addEventListener('resize',checkHamburger);
 checkHamburger();
 
 // ── AUTO-OPEN EXERCISE FROM URL PARAMETER ──
-// Allows direct links like /?exercise=unscramble to open the exercise automatically
+// Waits for auth session to resolve before opening, so tier-based locks are correct
 (function() {
   var params = new URLSearchParams(window.location.search);
   var exercise = params.get('exercise');
-  if (exercise === 'unscramble') openExercise('unscramble');
-  if (exercise === 'emoji') openEmoji();
-  if (exercise === 'itp-mc') openExercise('itp-mc');
-  if (exercise === 'itp') openITPTests();
+  if (!exercise) return;
+
+  function openExerciseWhenReady() {
+    if (exercise === 'unscramble') openExercise('unscramble');
+    else if (exercise === 'emoji') openEmoji();
+    else if (exercise === 'itp-mc') openExercise('itp-mc');
+    else if (exercise === 'itp') openITPTests();
+  }
+
+  // Wait for Supabase session to resolve (max 2s) before opening
+  var waited = 0;
+  var interval = setInterval(function() {
+    waited += 100;
+    // Session is ready once currentTier is no longer the default 'visitor'
+    // OR once 2 seconds have passed (fallback for actual visitors)
+    if (currentTier !== 'visitor' || waited >= 2000) {
+      clearInterval(interval);
+      openExerciseWhenReady();
+    }
+  }, 100);
 })();
 
 // ═══ EXERCISE MODULES ═══
