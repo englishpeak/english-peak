@@ -924,6 +924,10 @@ function openIBT() {
 }
 function openConv() {
   var cfg=TIERS[currentTier];
+  if(!cfg.conv){
+    if(!_currentUser){ showAuthModal('register'); return; }
+    document.getElementById('lock-conv').classList.add('show'); return;
+  }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-conv').classList.add('active');
   document.getElementById('topbarTitle').textContent='Conversation Topics';
