@@ -930,7 +930,7 @@ function openConv() {
   document.getElementById('conv-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ Full':currentTier==='free'?'✓ Free':'🔐 Required';
   var frame = document.getElementById('frame-conv');
   var biz = (cfg.convBiz) ? '1' : '0';
-  frame.src = '/conv/?business=' + biz;
+  frame.src = '/conversations/?business=' + biz;
   closeMobileSidebar();
 }
 function hideLock(id){document.getElementById('lock-'+id).classList.remove('show');}
