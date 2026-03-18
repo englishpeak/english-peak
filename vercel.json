@@ -4,7 +4,9 @@
     { "source": "/emoji", "destination": "/?exercise=emoji", "permanent": false },
     { "source": "/itp-mc", "destination": "/?exercise=itp-mc", "permanent": false },
     { "source": "/itp", "destination": "/?exercise=itp", "permanent": false },
-    { "source": "/ibt", "destination": "/?exercise=ibt", "permanent": false }
+    { "source": "/ibt", "destination": "/?exercise=ibt", "permanent": false },
+    { "source": "/conv", "destination": "/?exercise=conv", "permanent": false }
+
 
 
   ]
