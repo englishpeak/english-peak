@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TOEFL Practice Sessions</title>
+
+<style>
+body { font-family: Arial, sans-serif; background: #ffffff; margin: 0; position: relative; transition: background-color 0.5s ease; }
+header { background: #0D3B6F; color: white; padding: 30px; text-align: center; font-size: 32px; font-weight: bold; }
+.container { max-width: 800px; margin: 50px auto; padding: 20px; position: relative; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);max-height: 80vh; 
+  overflow-y: auto; }
+.section-title { font-size: 18px; color: #0D3B6F; text-align: center; margin-bottom: 30px; }
+.question { font-size: 26px; margin-bottom: 35px; }
+.options button { display: block; width: 100%; padding: 14px; margin-bottom: 12px; font-size: 18px; cursor: pointer; transition: 0.2s; border: 1px solid #ccc; background: #fff; border-radius: 4px; }
+.options button:hover:not(:disabled) { background: #f0f0f0; }
+.correct-choice { background-color: #2e7d32 !important; color: white; border-color: #1b5e20; }
+.incorrect-choice { background-color: #c62828 !important; color: white; border-color: #b71c1c; }
+.feedback { font-size: 20px; margin-top: 20px; text-align: center; font-weight: bold; }
+.next-btn { margin: 30px auto 0; padding: 14px 28px; font-size: 18px; cursor: pointer; background: #470074; color: white; border: none; border-radius: 6px; display: block; }
+.footer { margin-top: 40px; text-align: center; color: #555; font-size: 14px; }
+
+/* Timer Style */
+#timer-display { position: absolute; top: 10px; right: 20px; font-size: 16px; color: #666; font-family: monospace; }
+
+/* Review Styling */
+.review-card { background: #f9f9f9; border-left: 5px solid #c62828; padding: 15px; margin-bottom: 20px; text-align: left; border-radius: 4px; }
+.review-q { font-weight: bold; font-size: 18px; margin-bottom: 10px; display: block; }
+.review-detail { font-size: 15px; line-height: 1.5; color: #333; }
+.correct-text { color: #2e7d32; font-weight: bold; }
+.wrong-text { color: #c62828; font-weight: bold; }
+.stats-box { background: #eef2f7; padding: 15px; border-radius: 8px; margin-bottom: 30px; display: flex; justify-content: space-around; font-weight: bold; color: #0D3B6F; }
+
+#magic-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: 0.3s;
+}
+#magic-toggle.active {
+  border-color: #470074;
+  background: #eef2f7;
+  box-shadow: 0 0 10px rgba(71, 0, 116, 0.5);
+}
+</style>
+
+<style>
+/* Responsive overrides */
+@media (max-width: 768px) {
+  header { font-size: 22px; padding: 18px; }
+  .container { margin: 15px; padding: 15px; max-height: none; }
+  .question { font-size: 20px; }
+  .options button { font-size: 16px; padding: 12px; }
+  .next-btn { font-size: 16px; padding: 12px 24px; }
+  .stats-box { flex-direction: column; gap: 8px; text-align: center; }
+  #magic-toggle { width: 42px; height: 42px; font-size: 20px; }
+}
+@media (max-width: 480px) {
+  header { font-size: 18px; padding: 14px; }
+  .question { font-size: 17px; }
+  .options button { font-size: 15px; }
+}
+</style>
+<script>
+var _allowedTests = [1, 2]; // default, overridden by parent via postMessage
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'setAllowedTests') {
+    _allowedTests = e.data.allowedTests;
+    // Re-apply locks if menu is visible
+    if (typeof applyMenuLocks === 'function') applyMenuLocks();
+  }
+  if (e.data && e.data.type === 'showModal') {
+    window.parent.postMessage({type:'showModal'}, '*');
+  }
+});
+document.addEventListener('DOMContentLoaded', function() {
+  var menuDiv = document.getElementById('menu');
+  if (!menuDiv) return;
+  var buttons = menuDiv.querySelectorAll('button');
+  buttons.forEach(function(btn) {
+    var match = btn.getAttribute('onclick') && btn.getAttribute('onclick').match(/startTest\((\d+)\)/);
+    if (match) {
+      var testNum = parseInt(match[1]);
+      if (_allowedTests.indexOf(testNum) === -1) {
+        btn.style.opacity = '0.45';
+        btn.style.background = '#888';
+        btn.style.cursor = 'pointer';
+        btn.textContent = '🔒 ' + btn.textContent.trim();
+        btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"}, "*")');
+      }
+    }
+  });
+});
+</script>
+</head>
+
+<body>
+
+<header>TOEFL Practice Sessions</header>
+
+<div class="container" id="app">
+  <div id="menu">
+    <div class="section-title">Select a Test</div>
+    
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(1)">Test 1</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(2)">Test 2</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(3)">Test 3</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(4)">Test 4</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(5)">Test 5</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(6)">Test 6</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(7)">Test 7</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(8)">Test 8</button>
+    
+    </div>
+</div>
+
+<button id="magic-toggle" onclick="toggleMagicMode()" title="Toggle Magic Background">🪄</button>
+<script>
+// ---------------- QUESTIONS DATA ----------------
+
+const tests = {
+  1: {
+    mc: [
+      { q:"You should have told me earlier; now it’s ____ late.", o:["very","too","much","so"], a:1, expl:"'Too' is used for an excessive degree that causes a problem." },
+      { q:"What surprised me the most was how ____ he was.", o:["eloquently","eloquence","eloquent","eloquents"], a:2, expl:"Use an adjective (eloquent) after the linking verb 'was'." },
+      { q:"Needless to say, we expect everybody ____ early tomorrow.", o:["be","been","to be","being"], a:2, expl:"'Expect' requires an object + to-infinitive (to be)." },
+      { q:"She postponed the meeting ____ the lack of preparation.", o:["although","while","because of","despite"], a:2, expl:"'Because of' precedes a noun phrase to show reason." },
+      { q:"If he had studied harder, he ____ the exam.", o:["passes","had passed","will pass","would have passed"], a:3, expl:"3rd Conditional: 'If + had + pp' needs 'would have + pp'." },
+      { q:"The report must be submitted ____ Friday.", o:["during","by","within","until"], a:1, expl:"'By' indicates a deadline." },
+      { q:"Hardly ____ finished speaking when the phone rang.", o:["he had","has he","had he","he has"], a:2, expl:"Negative Inversion: 'Hardly' at the start requires aux + subj order." },
+      { q:"The manager suggested the proposal ____ revised.", o:["was","be","being","is"], a:1, expl:"Subjunctive: Use base form (be) after 'suggest'." },
+      { q:"She spoke ____ quietly that no one heard her.", o:["very","such","too","so"], a:3, expl:"Structure: 'so + adverb + that'." },
+      { q:"Not only ____ late, but he forgot the documents.", o:["did he","he did","he was","was he"], a:3, expl:"Inversion: 'Not only' requires 'was he' because 'late' is an adjective." }
+    ],
+    ed: [
+      { s:"The students has completed the assignment on time.", o:["has","completed","the assignment","on time"], a:0, expl:"Agreement: 'Students' is plural; use 'have'." },
+      { s:"There was a lot of people waiting for the show.", o:["There was","people","waiting","for the show"], a:0, expl:"'People' is plural; use 'There were'." },
+      { s:"Because AI systems learns from data, accuracy depends on quality.", o:["Because","learns","depends","quality"], a:1, expl:"'Systems' is plural; use base verb 'learn'." },
+      { s:"Taylor Swift’s songwriting is studied for it’s narrative structure.", o:["songwriting","is studied","it’s","structure"], a:2, expl:"Possessive 'its' has no apostrophe." },
+      { s:"Competition accelerated advances on space exploration.", o:["Competition","accelerated","advances","on"], a:3, expl:"Correct idiom: 'advances in'." },
+      { s:"We should really to be careful online.", o:["We should","really","to be","online"], a:2, expl:"Modals take base verb without 'to'." },
+      { s:"I need to get it fix today.", o:["need","to get","it","fix"], a:3, expl:"Causative: 'get + obj + past participle' (fixed)." },
+      { s:"It depends on where do you live.", o:["depends","on","where","do"], a:3, expl:"Indirect Question: Use statement order ('where you live')." },
+      { s:"If I knew the quality, I wouldn’t bought it.", o:["If","knew","wouldn’t bought","it"], a:2, expl:"Tense: Use 'wouldn't have bought' for past unreal." },
+      { s:"He advised that she wears a suit.", o:["advised","that","wears","suit"], a:2, expl:"Subjunctive: Use base form 'wear' after 'advise'." }
+    ]
+  },
+  2: {
+    mc: [
+      { q:"I believe that ____ education is a fundamental right.", o:["a","an","the","(no article)"], a:3, expl:"General abstract nouns do not take articles." },
+      { q:"She is thought ____ the decision several days ago.", o:["to make","to have made","to be making","to have been making"], a:1, expl:"Perfect infinitive shows a past reported action." },
+      { q:"I'd rather you ____ the news to him personally.", o:["break","broke","had broken","will break"], a:1, expl:"'I'd rather' + subj needs simple past for present preference." },
+      { q:"By the end of the day, we ____ all the documents.", o:["review","will review","will have reviewed","will be reviewing"], a:2, expl:"Future Perfect: Completed by a future point." },
+      { q:"I wish I ____ more attention to the instructions.", o:["pay","have paid","had paid","would pay"], a:2, expl:"'Wish' + past perfect for past regrets." },
+      { q:"It can be difficult to ____ used to a new routine.", o:["get","be","make","have"], a:0, expl:"'Get used to' describes the adjustment process." },
+      { q:"The movie was not as exciting ____ the trailer suggested.", o:["than","as","like","that"], a:1, expl:"Equality: 'as + adj + as'." },
+      { q:"The harder you work, the ____ the results will be.", o:["good","better","best","more good"], a:1, expl:"Double Comparative: 'The + comp, the + comp'." },
+      { q:"The company ____ I work for is located downtown.", o:["who","whom","which","what"], a:2, expl:"'Which' refers to things/orgs." },
+      { q:"It was his persistence ____ led to the breakthrough.", o:["what","that","which","who"], a:1, expl:"Cleft sentence: 'It was... that'." }
+    ],
+    ed: [
+      { s:"The cost of the repairs were much higher than expected.", o:["cost","repairs","were","higher"], a:2, expl:"Agreement: 'Cost' is singular; use 'was'." },
+      { s:"I had the technician to fix my computer yesterday.", o:["had","technician","to fix","computer"], a:2, expl:"Causative 'have': 'have + person + base verb'." },
+      { s:"The package must be deliver by five o'clock today.", o:["must","be deliver","by","today"], a:1, expl:"Passive Modal: needs past participle ('delivered')." },
+      { s:"She is looking forward to start her new job.", o:["looking forward","to","start","new job"], a:2, expl:"'Looking forward to' needs gerund ('starting')." },
+      { s:"The course covers reading, writing, and how to speak.", o:["covers","reading","writing","how to speak"], a:3, expl:"Parallelism: Use 'speaking'." },
+      { s:"He has many colleagues, several of who attended the gala.", o:["many","several of who","attended","gala"], a:1, expl:"Obj of preposition: use 'whom'." },
+      { s:"It took me a long time deciding which car to buy.", o:["took","long time","deciding","to buy"], a:2, expl:"'It takes time + to-infinitive' (to decide)." },
+      { s:"While I was preparing dinner, the power was going out.", o:["while","preparing","was going","power"], a:2, expl:"Use simple past ('went out') for interruption." },
+      { s:"The building, that was completed last year, is the tallest.", o:["building","that","was completed","tallest"], a:1, expl:"Non-restrictive clauses must use 'which'." },
+      { s:"You can choose whichever you will prefer.", o:["choose","whichever","will prefer","you"], a:2, expl:"Redundancy: Use simple present after 'whichever'." }
+    ]
+  },
+  3: {
+    mc: [
+      { q:"After studying so hard, he was disappointed ____ the exam!", o:["to fail","failing","to have failed","failed"], a:2, expl:"Perfect infinitive for past regret." },
+      { q:"The company decided ____ the meeting until next week due to low attendance.", o:["to postpone","postponing","postponed","having postponed"], a:0, expl:"'Decide' needs to-infinitive." },
+      { q:"By the time the project reaches its final phase next month, the research team ____ more than five hundred individual samples.", o:["will analyze","is analyzing","will have analyzed","has analyzed"], a:2, expl:"Future Perfect for actions completed before future points." },
+      { q:"The supervisor had the technician ____ the entire electrical system before the factory resumed operations.", o:["to inspect","inspected","inspecting","inspect"], a:3, expl:"Causative 'have': base verb needed." },
+      { q:"The company's quarterly report, ____ to the shareholders yesterday, revealed a significant increase in revenue.", o:["sending","was sent","it was sent","sent"], a:3, expl:"Reduced relative clause (which was sent)." },
+      { q:"It is essential that every participant ____ their registration form by the deadline.", o:["submit","submits","will submit","is submitting"], a:0, expl:"Subjunctive: base form needed." },
+      { q:"After months of negotiation, the committee agreed ____ the proposal under revised conditions.", o:["approving","approved","to approve","having approved"], a:2, expl:"'Agree' needs to-infinitive." },
+      { q:"It was during the Renaissance ____ the foundations for modern scientific inquiry were established.", o:["which","that","where","what"], a:1, expl:"Cleft sentence." },
+      { q:"Only after the final review ____ the flaws in the original analysis become evident.", o:["have","were","did","had"], a:2, expl:"Inversion: 'Only after' + aux + subj." },
+      { q:"The explorer is believed ____ the remote island several years before the official records suggest.", o:["to discover","to have discovered","discovering","to be discovered"], a:1, expl:"Perfect infinitive for past belief." }
+    ],
+    ed: [
+      { s:"Because Earth's axis is tilted, the planet experience seasonal changes rather than uniform temperatures year-round.", o:["Because Earth's axis","is tilted","experience","rather than"], a:2, expl:"Agreement: 'Planet' is singular; use 'experiences'." },
+      { s:"Long before he became a global icon, Leonardo da Vinci was already filling notebooks with anatomical sketches centuries ahead to modern science.", o:["became","already filling","anatomical","ahead to"], a:3, expl:"Idiom: Use 'ahead of'." },
+      { s:"In professional basketball, players who combines shooting efficiency with defensive versatility tend to have the longest careers.", o:["combines","shooting efficiency","tend","to have the longest careers"], a:0, expl:"Agreement: 'Players' is plural; use 'combine'." },
+      { s:"Recent astronomical observings have confirmed that water vapor exists in the atmospheres of some exoplanets.", o:["astronomical","observings","exists","some exoplanets"], a:1, expl:"Word Form: Use noun 'observations'." },
+      { s:"During the Cold War, technological competition between the United States and the Soviet Union accelerated advances on space exploration.", o:["technological competition","between the United States and the Soviet Union","accelerated","advances on"], a:3, expl:"Preposition: Use 'advances in'." },
+      { s:"Therefore Serena Williams retired from professional tennis, her influence on the sport continues to shape training, fashion, and athlete activism.", o:["Therefore","influence","continues to shape","athlete activism"], a:0, expl:"Conjunction: Use 'Although'." },
+      { s:"When antibiotics were first introduced, they dramatically reduce mortality rates from previously fatal bacterial infections.", o:["first","introduced","reduce","previously"], a:2, expl:"Tense: needs past tense ('reduced')." },
+      { s:"It was Jane who cooked the meals while everyone else were busy setting the table.", o:["who","while","were","setting"], a:2, expl:"'Everyone' is singular; use 'was'." },
+      { s:"If muscle fibers are not regularly stressed, they gradually weaken by a process known as muscular atrophy.", o:["not regularly","gradually","by","known"], a:2, expl:"Preposition: Use 'through' for a process." },
+      { s:"Because artificial intelligence systems learn of data, their accuracy depends heavily on the quality and diversity of that information.", o:["Because","learn of","depends","diversity of"], a:1, expl:"Idiom: We learn 'from' data (the source). 'Learn of' means hearing something exists." }
+    ]
+  },
+  4: {
+    mc: [
+      { q: "The company hired fifty new employees, most of ____ have already completed their orientation.", o: ["whom", "who", "which", "that"], a: 0, expl:"'Whom' needed after quantifiers for people." },
+      { q: "Seldom ____ such a high level of artistic detail in modern architecture.", o: ["we have seen", "we saw", "have we seen", "is seen"], a: 2, expl:"Inversion: 'Seldom' + aux + subj." },
+      { q: "This time next week, the research team ____ across the Pacific on their way to the summit.", o: ["will fly", "will be flying", "will have flown", "is flying"], a: 1, expl:"Future Continuous for in-progress future actions." },
+      { q: "The prime minister ____ visit the affected regions tomorrow morning to assess the damage.", o: ["is to", "is due", "is about", "is for"], a: 0, expl:"Formal schedule: 'be + to-infinitive'." },
+      { q: "We will proceed with the international merger ____ the board of directors approves the final terms.", o: ["unless", "as long", "provided that", "if only"], a: 2, expl:"'Provided that' is a formal 'if'." },
+      { q: "If the architect had followed the original blueprints, the structural integrity ____ much stronger now.", o: ["will be", "had been", "would be", "would have been"], a: 2, expl:"Mixed Conditional: Past unreal + present state." },
+      { q: "The outdated security protocols are due ____ by the end of the current fiscal year.", o: ["to replace", "to be replaced", "replacing", "to being replaced"], a: 1, expl:"Passive Infinitive needed." },
+      { q: "The two rival organizations have spent decades competing with ____ for market dominance.", o: ["themselves", "each other", "one another's", "their own"], a: 1, expl:"Reciprocal: Use 'each other'." },
+      { q: "The view from the observatory was ____ spectacular, leaving the tourists completely speechless.", o: ["absolutely", "very", "fairly", "quite"], a: 0, expl:"Use absolute adverbs with extreme adjectives." },
+      { q: "She seems ____ very hard lately, which likely explains her sudden exhaustion.", o: ["to work", "working", "to be working", "to have worked"], a: 2, expl:"Continuous Infinitive for ongoing state." }
+    ],
+    ed: [
+      { s: "Under no circumstances the security codes should be shared with unauthorized personnel.", o: ["Under no circumstances", "the security codes should be", "shared with", "unauthorized personnel"], a: 1, expl:"Inversion: Use 'should the codes be'." },
+      { s: "The environmental impact of the new factory is a concern about which we must address immediately.", o: ["impact of", "about which", "must address", "immediately"], a: 1, expl:"Redundant preposition." },
+      { s: "By this time tomorrow, the relief team will playing a vital role in the recovery efforts.", o: ["By this time", "will playing", "vital role", "recovery efforts"], a: 1, expl:"Future Continuous needs 'be'." },
+      { s: "The flight is about departing, so please make your way to the boarding gate immediately.", o: ["is about", "departing", "make your way", "immediately"], a: 1, expl:"Use 'be about to' + base verb." },
+      { s: "Unless you don't finish the final draft today, the supervisor will not permit you to take the weekend off.", o: ["Unless you don't", "today", "permit you", "to take"], a: 0, expl:"Double Negative: Use 'Unless you finish'." },
+      { s: "If the company invested more in renewable energy five years ago, it would be a market leader today.", o: ["If the company invested", "renewable energy", "it would be", "leader today"], a: 0, expl:"Past unreal needs 'had invested'." },
+      { s: "The sensitive documents must submitted to the legal department for a full review before Friday.", o: ["sensitive", "must submitted", "legal department", "full review"], a: 1, expl:"Passive Modal needs 'be'." },
+      { s: "The members of the committee helped themselves to complete the complex task ahead of schedule.", o: ["members of", "themselves", "complex task", "ahead of"], a: 1, expl:"Use reciprocal 'each other'." },
+      { s: "The results of the preliminary study were very unique and unexpected by the research community.", o: ["results of", "preliminary", "very unique", "research community"], a: 2, expl:"'Unique' is absolute; no 'very'." },
+      { s: "They were reported to be have lived in the ancient city for over a decade before the war began.", o: ["reported", "be have lived", "ancient city", "before the war"], a: 1, expl:"Perfect Infinitive: 'to have lived'." }
+    ]
+  },
+  5: {
+    mc: [
+      { q: "The new policy had a ____ impact on the company's overall productivity.", o: ["significant", "significance", "significantly", "signify"], a: 0, expl:"Use adjective 'significant' for noun 'impact'." },
+      { q: "The documents ____ in the vault were rediscovered by historians decades later.", o: ["storing", "stored", "were stored", "they stored"], a: 1, expl:"Reduced Relative (passive)." },
+      { q: "Successful candidates must demonstrate leadership, creativity, and ____.", o: ["to adapt", "adaptability", "adapting", "adaptable"], a: 1, expl:"Parallelism: Use nouns." },
+      { q: "The engineering team worked around the clock to meet the ____ deadline.", o: ["tight", "heavy", "narrow", "wide"], a: 0, expl:"Collocation: 'tight' deadline." },
+      { q: "____ we receive the necessary funding, the research project will have to be cancelled.", o: ["Provided", "Unless", "Whether", "Suppose"], a: 1, expl:"'Unless' = 'if not'." },
+      { q: "The mathematical problem is considered too complex ____ by the current group of students.", o: ["to solve", "to be solved", "solving", "to being solved"], a: 1, expl:"Passive Infinitive." },
+      { q: "It is widely believed ____ the ancient ruins date back to the early Bronze Age.", o: ["that", "which", "whether", "what"], a: 0, expl:"Noun Clause with 'that'." },
+      { q: "The evidence presented during the trial was so ____ that the jury reached a verdict in minutes.", o: ["compelling", "compelled", "compulsion", "compellable"], a: 0, expl:"Vocabulary: 'Compelling' = convincing." },
+      { q: "If they had invested in the startup five years ago, they ____ millionaires now.", o: ["will be", "are", "would be", "would have been"], a: 2, expl:"Mixed Conditional." },
+      { q: "____ the gravity of the situation, the captain ordered an immediate evacuation of the vessel.", o: ["Realizing", "Realized", "To realize", "By realizing"], a: 0, expl:"Participle Phrase (active)." }
+    ],
+    ed: [
+      { s: "The list of requirements for the scholarship were posted on the notice board yesterday.", o: ["list", "for the scholarship", "were", "on the notice board"], a: 2, expl:"Agreement: 'list' is singular." },
+      { s: "The information provided in a brochures was extremely helpful for the new students.", o: ["information", "provided", "a", "extremely"], a: 2, expl:"Agreement: 'brochures' is plural." },
+      { s: "The CEO gave a short speech to complement the staff on their exceptional hard work.", o: ["gave", "short", "complement", "exceptional"], a: 2, expl:"Confusion: Use 'compliment' for praise." },
+      { s: "While the explorer hiked through the jungle, he had stumbled upon the entrance to an ancient temple.", o: ["While", "hiked", "had stumbled", "ancient"], a: 2, expl:"Tense: 'stumbled' for interruption." },
+      { s: "We recommend to check the weather forecast before departing on the cross-country trip.", o: ["recommend", "to check", "forecast", "departing"], a: 1, expl:"'Recommend' needs gerund." },
+      { s: "The job requires managing the database, writing reports, and to coordinate weekly meetings.", o: ["requires", "managing", "writing", "to coordinate"], a: 3, expl:"Parallelism: 'coordinating'." },
+      { s: "The supervisor wanted to know when would the shipment arrive at the main warehouse.", o: ["wanted to know", "when", "would the shipment", "at the main"], a: 2, expl:"Indirect Question: statement order needed." },
+      { s: "The more information we gathered about the project, the best our decisions became.", o: ["more", "gathered", "best", "became"], a: 2, expl:"Double Comp: Use 'the better'." },
+      { s: "The company issued a formally statement regarding the merger and the future of the employees.", o: ["company", "formally", "regarding", "future"], a: 1, expl:"Word Form: Use adjective 'formal'." },
+      { s: "The research project was so successfully because the team worked together effectively.", o: ["project", "successfully", "because", "effectively"], a: 1, expl:"Word Form: Use adj 'successful'." }
+    ]
+  },
+  // 📖📖📖 QUESTIONS CODE (START) 📖📖📖
+  // 6️⃣ PASTE HERE CODE FOR TEST 6 ---- ▶️
+6: {
+    mc: [
+      { q: "The candidate's ____ personality made her popular among the voters.", o: ["charismatic", "charisma", "charismatically", "charismatics"], a: 0, expl: "Use the adjective 'charismatic' to modify the noun 'personality'." },
+      { q: "The skyscraper ____ by the world-renowned architect dominates the city's skyline.", o: ["designing", "designed", "was designed", "it designed"], a: 1, expl: "Reduced Relative Clause: 'designed' is short for 'which was designed' (passive)." },
+      { q: "During the interview, he spoke about his experience in marketing, finance, and ____.", o: ["to manage", "management", "managing", "managed"], a: 1, expl: "Parallelism: The list contains nouns (marketing, finance); use the noun 'management'." },
+      { q: "The team had to overcome ____ obstacles before the project could be finalized.", o: ["formidable", "heavy", "tall", "deep"], a: 0, expl: "Vocabulary: 'Formidable' is the standard adjective for difficult or impressive obstacles." },
+      { q: "____ the weather improves, the outdoor concert will proceed as scheduled.", o: ["Provided", "Unless", "Whether", "Suppose"], a: 0, expl: "'Provided' is a formal synonym for 'if'." },
+      { q: "The instructions were too vague ____ correctly by the beginners.", o: ["to follow", "to be followed", "following", "to being followed"], a: 1, expl: "Passive Infinitive: The instructions receive the action of being followed." },
+      { q: "It remains uncertain ____ the new regulations will impact small businesses.", o: ["how", "which", "what", "whether"], a: 0, expl: "Noun Clause: Use 'how' to describe the manner of the impact." },
+      { q: "The results of the study were quite ____, contradicting several previous theories.", o: ["surprising", "surprised", "surprise", "surprisingly"], a: 0, expl: "Use the -ing adjective to describe the nature of the thing (the results)." },
+      { q: "If she had accepted the job offer, she ____ in New York today.", o: ["will be", "would be", "is", "would have been"], a: 1, expl: "Mixed Conditional: Past unreal condition (had accepted) affecting present state (would be)." },
+      { q: "We ________ the training course tomorrow, we're having a meeting with a potential client.", o: ["not attend", "won't be attending", "won't attend", "not going to attend"], a: 1, expl: "You can use the future continuous to talk about plans already made." }
+    ],
+    ed: [
+      { s: "A number of students has registered for the advanced photography course this semester.", o: ["A number of", "has registered", "advanced", "this semester"], a: 1, expl: "S-V Agreement: 'A number of' is plural; use 'have registered'." },
+      { s: "The students were given an assignments to complete over the weekend.", o: ["students", "given", "an", "complete"], a: 2, expl: "Articles: 'Assignments' is plural; you cannot use the singular article 'an' with plural nouns." },
+      { s: "The principal of the school gave the student some helpful advise about her career.", o: ["principal", "gave", "helpful", "advise"], a: 3, expl: "Word Form: 'Advise' is a verb. The noun form 'advice' is required here." },
+      { s: "While the team analyzed the data, they had discovered a significant error in the calculations.", o: ["While", "analyzed", "had discovered", "significant"], a: 2, expl: "Narrative Tense: Use simple past 'discovered' for a sudden interruption." },
+      { s: "The manager suggested to postpone the meeting until all members could attend.", o: ["suggested", "to postpone", "until", "could"], a: 1, expl: "Verb Pattern: 'Suggest' must be followed by a gerund ('postponing')." },
+      { s: "The internship involves attending meetings, answering phones, and to assist the senior staff.", o: ["involves", "attending", "answering", "to assist"], a: 3, expl: "Parallelism: All items in the list must be gerunds ('assisting')." },
+      { s: "The tourist asked where could he find the nearest currency exchange office.", o: ["asked", "where", "could he find", "nearest"], a: 2, expl: "Indirect Question: Use statement order ('where he could find')." },
+      { s: "Between the three applicants, the committee found it difficult to choose the best one.", o: ["Between", "applicants", "difficult", "best one"], a: 0, expl: "Prepositions: Use 'Among' for three or more choices." },
+      { s: "The company reported that its quarterly earnings were extreme low this year.", o: ["reported", "its", "quarterly", "extreme"], a: 3, expl: "Adjective vs Adverb: Use the adverb 'extremely' to modify the adjective 'low'." },
+      { s: "Each of the candidates were required to submit a portfolio of their recent work.", o: ["Each of", "were", "required", "their"], a: 1, expl: "S-V Agreement: 'Each' is always singular; use 'was'." }
+    ]
+  },
+
+  // 📖📖📖 QUESTIONS CODE (START) 📖📖📖
+  
+  // 7️⃣ PASTE HERE CODE FOR TEST 7 ---- ▶️
+
+7: {
+    mc: [
+      { q: "That’s the key to _______ a solution.", o: ["founded", "found", "find", "finding"], a: 3, expl: "After the phrase 'the key to', the 'to' is a preposition, so it must be followed by a gerund (-ing)." },
+      { q: "Before 2011, people were _________ to smoke in restaurants, cafés, and schools. Today, it is prohibited.", o: ["required", "not allowed", "allowed", "supposed"], a: 2, expl: "Vocabulary: The context contrast ('Today you can't') implies that in the past, it was permitted (allowed)." },
+      { q: "He spends a lot of time __________.", o: ["cooking and cleaning", "to cooking and to cleaning", "to cook and clean", "cook and clean"], a: 0, expl: "Verb Pattern: The verb 'spend' (time) is followed by a gerund (-ing)." },
+      { q: "She let her kids ________ up late when they were a bit older.", o: ["staying", "to stay", "stay", "stayed"], a: 2, expl: "Causative: The verb 'let' is followed by the object and the base form of the verb without 'to'." },
+      { q: "The director had the assistant _______ the report before the board meeting.", o: ["print", "to print", "printed", "printing"], a: 0, expl: "Causative: 'Have + person + base verb' is used when someone is assigned a task." },
+      { q: "It is widely believed that ______ honesty is the best policy in professional relationships.", o: ["a", "an", "the", "(no article)"], a: 3, expl: "Articles: Abstract nouns used in a general sense (like honesty) do not take an article." },
+      { q: "_______ for the final exam required more effort than he had originally anticipated.", o: ["Study", "Studied", "Studying", "To studying"], a: 2, expl: "Gerund as Subject: Use the -ing form when the action itself is the subject of the sentence." },
+      { q: "The scientist ______ research led to the discovery was awarded a prestigious prize.", o: ["who", "whom", "whose", "which"], a: 2, expl: "Relative Pronouns: Use 'whose' to show possession (the research of the scientist)." },
+      { q: "The manager was highly _______ of the team's performance during the recent crisis.", o: ["appreciate", "appreciation", "appreciative", "appreciatively"], a: 2, expl: "Word Form: After the linking verb 'was' and adverb 'highly', the adjective 'appreciative' is needed." },
+      { q: "She arrived late to the seminar _______ the heavy traffic on the main highway.", o: ["because", "although", "because of", "despite"], a: 2, expl: "Conjunctions: Use 'because of' before a noun phrase (the heavy traffic)." }
+    ],
+    ed: [
+      { s: "The police are looking for however robbed the bank during the holiday weekend.", o: ["looking for", "however", "robbed", "during"], a: 1, expl: "Relative Pronouns: Use 'whoever' to refer to a person; 'however' is used for manner or contrast." },
+      { s: "There are mouses in the kitchen, so we need to set traps immediately.", o: ["There are", "mouses", "so", "to set"], a: 1, expl: "Irregular Plurals: The plural of 'mouse' is 'mice'." },
+      { s: "Neither the manager nor the employees has been informed about the upcoming changes.", o: ["Neither", "nor", "has been", "about"], a: 2, expl: "Subject-Verb Agreement: With 'neither/nor', the verb agrees with the closest subject (employees), so it should be 'have been'." },
+      { s: "The new software is much more faster than the previous version we used last year.", o: ["much", "more faster", "than", "version"], a: 1, expl: "Comparatives: 'Faster' is already a comparative; adding 'more' is redundant and incorrect." },
+      { s: "The professor spoke very clear about the complex biological process.", o: ["spoke", "very", "clear", "complex"], a: 2, expl: "Adjectives vs. Adverbs: Use the adverb 'clearly' to modify the verb 'spoke'." },
+      { s: "He is a best student in the class, always achieving top marks on every exam.", o: ["a", "best", "in the class", "achieving"], a: 0, expl: "Superlatives: Use the definite article 'the' with superlative adjectives like 'best'." },
+      { s: "The team is interested on learning more about ancient civilizations in South America.", o: ["is", "interested on", "learning", "about"], a: 1, expl: "Prepositions: The correct adjective + preposition combination is 'interested in'." },
+      { s: "She enjoys swimming, hiking, and to ride her bicycle in the park on weekends.", o: ["enjoys", "hiking", "to ride", "on weekends"], a: 2, expl: "Parallelism: The list uses gerunds (swimming, hiking), so the third item must be 'riding'." },
+      { s: "I don't have many informations about the upcoming international conference.", o: ["don't have", "many", "informations", "upcoming"], a: 2, expl: "Count/Uncount Nouns: 'Information' is uncountable; it cannot be plural and should use 'much' instead of 'many'." },
+      { s: "Could you please tell me where is the library located in this building?", o: ["please", "tell me", "where is the library", "located"], a: 2, expl: "Indirect Questions: Use statement word order ('where the library is') when the question is embedded in a statement." }
+    ]
+  },
+
+  // 📖📖📖 QUESTIONS CODE (START) 📖📖📖
+  
+  // 8️⃣ PASTE HERE CODE FOR TEST 8 ---- ▶️
+
+8: {
+    mc: [
+      { q: "If the committee had reviewed the proposal more thoroughly, they ____ the obvious flaws.", o: ["will notice", "would notice", "would have noticed", "had noticed"], a: 2, expl: "Third Conditional: A past unreal situation ('had reviewed') requires 'would have + past participle' in the result clause." },
+      { q: "The new environmental regulations are expected ____ into effect by the end of the year.", o: ["to put", "to be put", "putting", "being put"], a: 1, expl: "Passive Infinitive: The regulations do not put themselves into effect; they are 'to be put' into effect by an authority." },
+      { q: "By the time the rescue team finally arrived, the stranded hikers ____ their food supplies.", o: ["exhausted", "exhaust", "were exhausting", "had exhausted"], a: 3, expl: "Past Perfect: Use 'had exhausted' to show that the action of finishing the food happened before the past action of the rescue team arriving." },
+      { q: "The more densely populated a city becomes, ____ it is to maintain adequate public transportation.", o: ["the more difficult", "more difficult", "it is more difficult", "the most difficult"], a: 0, expl: "Double Comparative: The structure requires 'The + comparative..., the + comparative...' to show cause and effect." },
+      { q: "The board members were highly ____ to the proposed changes, leading to a swift approval.", o: ["received", "reception", "comprehensively", "receptive"], a: 3, expl: "Vocabulary/Word Form: Use the adjective 'receptive' (meaning willing to consider new ideas) after the linking verb 'were'." },
+      { q: "This ancient artifact is believed to be significantly older ____ previously estimated by archaeologists.", o: ["than", "as was", "than was", "from what"], a: 2, expl: "Comparatives/Passives: The structure compares the age now to what it was thought to be before ('older than [it] was estimated')." },
+      { q: "I remember _____ my parents when I went to study abroad.", o: ["to call", "calling", "call", "called"], a: 1, expl: "Verb Patterns: 'Remember' + gerund (-ing) refers to a memory of a past action. You remember doing it." },
+      { q: "My brother is going to _______ me his suit because I don’t own one.", o: ["borrow", "present", "wear", "lend"], a: 3, expl: "Vocabulary: 'Lend' means to give something temporarily. 'Borrow' means to take something temporarily." },
+      { q: "I started playing well but near the end I _____ focus and made a few mistakes.", o: ["was", "got", "lost", "gave"], a: 2, expl: "Collocations: The correct idiomatic combination is 'to lose focus'." },
+      { q: "____ you require further assistance with your application, please do not hesitate to contact our office.", o: ["Should", "If", "Were", "Had"], a: 0, expl: "Conditionals/Inversion: 'Should you require' is a formal inversion of the first conditional 'If you should require' or 'If you require'." }
+    ],
+    ed: [
+      { s: "The researchers realized that they made a critical error in their calculations before publishing the study.", o: ["made", "realized that", "calculations", "before publishing"], a: 0, expl: "Past Perfect: The error happened before they realized it. It should be 'had made'." },
+      { s: "Of the two candidates interviewed for the managerial position, Mr. Davis is undoubtedly the most qualified.", o: ["Of the two", "interviewed for", "undoubtedly", "the most"], a: 3, expl: "Comparatives: When comparing exactly two things or people, use the comparative form ('the more qualified'), not the superlative." },
+      { s: "The newly constructed bridge was designing to withstand earthquakes of up to 8.0 on the Richter scale.", o: ["newly constructed", "to withstand", "of up to", "designing"], a: 3, expl: "Passive Voice: The bridge receives the action. It should be the past participle 'designed'." },
+      { s: "The severe weather conditions had a devastating affect on the region's agricultural output.", o: ["severe", "devastating", "affect", "agricultural"], a: 2, expl: "Vocabulary: 'Affect' is a verb. The noun form required here is 'effect' (to have an effect on)." },
+      { s: "If the government will implement stricter tax laws, many small businesses will struggle to survive.", o: ["will implement", "stricter", "will struggle", "to survive"], a: 0, expl: "First Conditional: The 'if' clause must be in the present simple tense ('implements'), not the future tense." },
+      { s: "The famous novel was translated to over fifty languages within a decade of its initial publication.", o: ["famous", "was translated", "to", "within"], a: 2, expl: "Prepositions: The correct collocation is 'translated into' a language, not 'to'." },
+      { s: "Despite the efforts, they took the decision to stop working late and concentrate on their studies.", o: ["Despite the efforts", "took the decision", "stop working", "concentrate on"], a: 1, expl: "Collocations: In English, you 'make a decision', you do not 'take a decision'." },
+      { s: "The climate in the southern region is much more humid than the north.", o: ["The climate", "in the", "much more", "than the north"], a: 3, expl: "Logical Comparisons: You must compare climate to climate. It should be 'than that of the north' or 'than the north's'." },
+      { s: "The orchestra had been practiced for months before their opening night performance at the national theater.", o: ["The orchestra", "for months", "had been practiced", "opening night"], a: 2, expl: "Past Perfect Continuous: The orchestra was actively doing the practicing. It should be the active 'had been practicing'." },
+      { s: "The CEO was completely oblivious of the growing dissatisfaction among the lower-level employees.", o: ["oblivious of", "completely", "growing", "among"], a: 0, expl: "Prepositions/Collocations: The correct adjective + preposition combination is 'oblivious to'." }
+    ]
+  },
+
+  // 📖📖📖 QUESTIONS CODE (START) 📖📖📖
+  
+  // 9️⃣ PASTE HERE CODE FOR TEST 9 ---- ▶️
+  // 🔟 PASTE HERE CODE FOR TEST 10 ---- ▶️
+
+  // 9️⃣ PASTE HERE CODE FOR TEST 9 ---- ▶️
+  
+  // 📖📖📖 QUESTIONS CODE (END) 📖📖📖
+
+  // 8️⃣ PASTE HERE CODE FOR TEST 8 ---- ▶️
+  
+  // 📖📖📖 QUESTIONS CODE (END) 📖📖📖
+
+  // 📖📖📖 QUESTIONS CODE (START) 📖📖📖
+  
+  // 7️⃣ PASTE HERE CODE FOR TEST 7 ---- ▶️
+  // 8️⃣ PASTE HERE CODE FOR TEST 8 ---- ▶️
+  // 9️⃣ PASTE HERE CODE FOR TEST 9 ---- ▶️
+  
+  // 📖📖📖 QUESTIONS CODE (END) 📖📖📖
+
+};
+
+// ---------------- STATE & LOGIC ----------------
+
+let currentTest = 1;
+let index = 0;        
+let score = 0;
+let mistakes = []; 
+let startTime;
+let timerInterval;
+let magicMode = false;
+const magicColors = ["#F9D9D8", "#FCEED9", "#EBFEDB", "#DFFEEB", "#E5DFFF"];
+
+function startTest(testNum) {
+  currentTest = testNum;
+  index = 0;
+  score = 0;
+  mistakes = [];
+  startTime = Date.now();
+  startTimerUI();
+  render();
+}
+
+function startTimerUI() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const mins = Math.floor(elapsed / 60);
+    const secs = elapsed % 60;
+    const display = document.getElementById("timer-display");
+    if (display) display.innerText = `Time: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }, 1000);
+}
+
+function render() {
+  const app = document.getElementById("app");
+  app.innerHTML = `<div id="timer-display">Time: 0:00</div>`;
+
+  if (index === 20) {
+    clearInterval(timerInterval);
+    const totalTimeSec = Math.floor((Date.now() - startTime) / 1000);
+    const avgTime = (totalTimeSec / 20).toFixed(1);
+
+    let reviewHTML = "";
+    if (mistakes.length > 0) {
+      reviewHTML = `<div class="section-title">Mistake Review</div>`;
+      mistakes.forEach(m => {
+        const qText = m.q.q || m.q.s;
+        const userChoice = m.q.o[m.userIdx];
+        const correctChoice = m.q.o[m.q.a];
+        reviewHTML += `
+          <div class="review-card">
+            <span class="review-q">${qText}</span>
+            <div class="review-detail">
+              <span class="wrong-text">Your Answer:</span> ${String.fromCharCode(97+m.userIdx)}. ${userChoice}<br>
+              <span class="correct-text">Correct Answer:</span> ${String.fromCharCode(97+m.q.a)}. ${correctChoice}<br><br>
+              <strong>Why?</strong> ${m.q.expl || "Explanation coming soon."}
+            </div>
+          </div>`;
+      });
+    } else {
+      reviewHTML = `<p style="text-align:center;">🎯 Perfect Score!</p>`;
+    }
+
+    app.innerHTML = `
+      <h2>🎉 Test Complete!</h2>
+      <div class="stats-box">
+        <div>Score: ${score}/20</div>
+        <div>Total Time: ${Math.floor(totalTimeSec/60)}m ${totalTimeSec%60}s</div>
+        <div>Avg: ${avgTime}s/q</div>
+      </div>
+      ${reviewHTML}
+      <button class="next-btn" onclick="backToMenu()">⬅ Back to Main Menu</button>
+    `;
+    
+    // Ensures the background reverts to white for the results screen
+    applyMagicColor(); 
+    return;
+  }
+
+  const currentData = tests[currentTest];
+  const q = (index < 10) ? currentData.mc[index] : currentData.ed[index - 10];
+  const text = q.q || q.s;
+  const opts = q.o;
+  const correct = q.a;
+
+  app.innerHTML += `
+    <div class="section-title">${index < 10 ? "Multiple Choice" : "Error Detection"}</div>
+    <div class="question">${text}</div>
+    <div class="options">
+      ${opts.map((o,i)=>`<button onclick="check(${i}, ${correct}, this)">${String.fromCharCode(97+i)}. ${o}</button>`).join("")}
+    </div>
+    <div class="footer">Question ${index + 1} of 20</div>
+  `;
+
+  // CRITICAL: This is now safely at the very bottom, applying colors AFTER buttons exist
+  applyMagicColor();
+}
+
+function check(choice, correct, btn) {
+  const currentData = tests[currentTest];
+  const qObj = (index < 10) ? currentData.mc[index] : currentData.ed[index - 10];
+  
+  document.querySelectorAll(".options button").forEach(b=>b.disabled=true);
+
+  if (choice === correct) {
+    score++;
+    btn.classList.add("correct-choice");
+    document.getElementById("app").innerHTML += `<div class="feedback">✅ Correct</div>`;
+  } else {
+    btn.classList.add("incorrect-choice");
+    mistakes.push({ q: qObj, userIdx: choice });
+    document.getElementById("app").innerHTML += `<div class="feedback">❌ Incorrect</div>`;
+  }
+
+  if (index === 9) {
+    document.getElementById("app").innerHTML += `<button class="next-btn" onclick="showTransition()">Next Section</button>`;
+  } else if (index === 19) {
+    document.getElementById("app").innerHTML += `<button class="next-btn" onclick="index++; render()">Show Results</button>`;
+  } else {
+    document.getElementById("app").innerHTML += `<button class="next-btn" onclick="index++; render()">Next Question</button>`;
+  }
+}
+
+function showTransition() {
+  index = 10;
+applyMagicColor();
+  document.getElementById("app").innerHTML = `
+    <div id="timer-display"></div>
+    <div class="question" style="text-align:center; margin-top:50px;">Ready for Section 2:<br><strong>Error Detection</strong></div>
+    <button class="next-btn" onclick="render()">Start Section</button>
+  `;
+}
+
+function backToMenu() {
+  clearInterval(timerInterval);
+index = -1; applyMagicColor();
+  document.getElementById("app").innerHTML = `
+    <div class="section-title">Select a Test</div>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(1)">Test 1</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(2)">Test 2</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(3)">Test 3</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(4)">Test 4</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(5)">Test 5</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(6)">Test 6</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(7)">Test 7</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(8)">Test 8</button>
+    `;
+  applyMenuLocks();
+}
+function applyMenuLocks() {
+  var menuBtns = document.querySelectorAll('#app button');
+  menuBtns.forEach(function(btn) {
+    var match = btn.getAttribute('onclick') && btn.getAttribute('onclick').match(/startTest\((\d+)\)/);
+    if (match) {
+      var testNum = parseInt(match[1]);
+      if (_allowedTests.indexOf(testNum) === -1) {
+        btn.style.opacity = '0.45';
+        btn.style.background = '#888';
+        btn.style.cursor = 'pointer';
+        if (!btn.textContent.startsWith('🔒')) btn.textContent = '🔒 ' + btn.textContent.trim();
+        btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"}, "*")');
+      }
+    }
+  });
+}
+function toggleMagicMode() {
+  magicMode = !magicMode;
+  const btn = document.getElementById("magic-toggle");
+  if (magicMode) {
+    btn.classList.add("active");
+  } else {
+    btn.classList.remove("active");
+  }
+  applyMagicColor();
+}
+
+function applyMagicColor() {
+  if (magicMode && index >= 0 && index < 20) {
+    // 1. Grab the specific color for this question
+    const currentColor = magicColors[index % magicColors.length];
+    
+    // 2. Paint the background
+    document.body.style.backgroundColor = currentColor;
+    
+    // 3. Paint the buttons the exact same color
+    const optionBtns = document.querySelectorAll(".options button");
+    optionBtns.forEach(btn => {
+      btn.style.backgroundColor = currentColor;
+    });
+  } else {
+    // Revert everything to white if the wand is off or we are on a menu
+    document.body.style.backgroundColor = "#ffffff";
+    const optionBtns = document.querySelectorAll(".options button");
+    optionBtns.forEach(btn => {
+      btn.style.backgroundColor = "#ffffff";
+    });
+  }  
+}
+</script>
+
+</body>
+</html>
