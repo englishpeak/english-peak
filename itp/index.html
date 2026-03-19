@@ -72,6 +72,7 @@ header { background: #0D3B6F; color: white; padding: 30px; text-align: center; f
 </style>
 <script>
 // Read allowed tests from URL parameter ?allowed=1,2,3
+var _allowedTests = [1, 2, 3];
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
@@ -441,7 +442,18 @@ function render() {
       ${reviewHTML}
       <button class="next-btn" onclick="backToMenu()">⬅ Back to Main Menu</button>
     `;
-    
+
+    // Report score to parent platform
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'exerciseComplete',
+        exerciseType: 'TOEFL ITP',
+        exerciseName: 'Test ' + currentTest,
+        score: score,
+        maxScore: 20
+      }, '*');
+    }
+
     // Ensures the background reverts to white for the results screen
     applyMagicColor(); 
     return;
