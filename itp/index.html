@@ -71,13 +71,17 @@ header { background: #0D3B6F; color: white; padding: 30px; text-align: center; f
 }
 </style>
 <script>
-// Read allowed tests from URL parameter ?allowed=1,2,3
+// Read allowed tests and mode from URL parameters
 var _allowedTests = [1, 2, 3];
+var _exerciseMode = 'itp'; // 'itp' or 'general'
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
   if (allowedParam) {
     _allowedTests = allowedParam.split(',').map(Number);
+  }
+  if (params.get('mode') === 'general') {
+    _exerciseMode = 'general';
   }
 })();
 document.addEventListener('DOMContentLoaded', function() {
@@ -447,7 +451,7 @@ function render() {
     if (window.parent && window.parent !== window) {
       window.parent.postMessage({
         type: 'exerciseComplete',
-        exerciseType: 'TOEFL ITP',
+        exerciseType: _exerciseMode === 'general' ? 'General English' : 'TOEFL ITP',
         exerciseName: 'Test ' + currentTest,
         score: score,
         maxScore: 20
