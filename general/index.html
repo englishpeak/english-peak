@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular English Tests</title>
+    <style>
+        :root {
+            --primary-color: #470074;
+            --title-color: #0D3B6F;
+            --background-color: #f8fafc;
+            --card-color: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --correct-bg: #f0fdf4;
+            --incorrect-bg: #fef2f2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 { color: var(--title-color); }
+
+        /* Menu Styles */
+        #menu-screen {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .menu-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-btn:hover { background-color: #6300a3; }
+
+        /* Quiz Styles */
+        #quiz-screen, #results-screen { display: none; }
+        
+        .question-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--title-color);
+        }
+        
+        .instruction-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: normal;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option-label:hover { background-color: #f1f5f9; }
+        .option-label input { margin-right: 12px; }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(71, 0, 116, 0.2);
+        }
+
+        /* Unscramble Drag & Drop Styles */
+        .word-bank, .answer-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            min-height: 50px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .word-bank { background-color: #f8fafc; }
+        .answer-area { border-color: var(--primary-color); background-color: rgba(71, 0, 116, 0.05); }
+
+        /* Static Question Mark Logic */
+        .answer-area-question::after {
+            content: '?';
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-left: 5px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .word-chip {
+            background-color: white;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .word-chip:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn, .back-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .back-btn { background-color: #8a2be2; margin-top: 10px; }
+
+        /* Results Styles */
+        .feedback-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .feedback-wrong { border-left: 5px solid #ef4444; background-color: var(--incorrect-bg); }
+        .feedback-correct { border-left: 5px solid #10b981; background-color: var(--correct-bg); }
+
+        .explanation {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+<script>
+// ── Tier lock via URL param ──────────────────────────────────────
+var _allowedTests = ['test1']; // default: visitor sees only test1
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var p = params.get('allowed');
+  if (p) _allowedTests = p.split(',');
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+  var allTests = ['test1','test2','test3','test4','test5','test6'];
+  allTests.forEach(function(testId) {
+    var btn = document.querySelector('.menu-btn[onclick="startTest(\''+testId+'\')"]');
+    if (!btn) return;
+    if (_allowedTests.indexOf(testId) === -1) {
+      // Locked
+      btn.style.opacity = '0.5';
+      btn.style.background = '#888';
+      btn.title = 'Upgrade to access this test';
+      var num = btn.textContent.trim();
+      btn.textContent = '🔒 ' + num;
+      btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"},"*"); return false;');
+    }
+  });
+});
+</script>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>General English Practice Modules</h1>
+        <p id="subtitle">Select a test to begin.</p>
+    </header>
+
+    <div id="menu-screen">
+        <button class="menu-btn" onclick="startTest('test1')">Test 1</button>
+        <button class="menu-btn" onclick="startTest('test2')">Test 2</button>
+        <button class="menu-btn" onclick="startTest('test3')">Test 3</button>
+        <button class="menu-btn" onclick="startTest('test4')">Test 4</button>
+        <button class="menu-btn" onclick="startTest('test5')">Test 5</button>
+        <button class="menu-btn" onclick="startTest('test6')">Test 6</button>
+
+
+
+
+        </div>
+
+    <div id="quiz-screen">
+        <div id="questions-container"></div>
+        <button class="submit-btn" onclick="submitTest()">Submit Test</button>
+        <button class="back-btn" onclick="returnToMenu()">Back to Menu</button>
+    </div>
+
+    <div id="results-screen">
+        <h2 style="color: var(--title-color);">Your Results</h2>
+        <h3 id="score-display"></h3>
+        <p>Review your answers below. Explanations are provided for the questions you missed to help you improve.</p>
+        <div id="feedback-container"></div>
+        <button class="menu-btn" style="margin-top: 20px;" onclick="returnToMenu()">Return to Menu</button>
+    </div>
+</div>
+
+<script>
+    const testBank = {
+        test1: [
+            { type: 'mcq', question: "I ___ a student.", options: ["am", "is", "are", "be"], answer: "am", explanation: "The pronoun 'I' always pairs with the 'to be' verb 'am'." },
+            { type: 'fill', question: "She goes to work ___ bus.", answer: "by", explanation: "We use 'by' to talk about means of transportation (by bus, by car, by train)." },
+            { type: 'unscramble', question: "is / blue / the / car", answer: "the car is blue", explanation: "Standard English sentence structure is Subject (The car) + Verb (is) + Adjective (blue)." },
+            { type: 'mcq', question: "___ you like pizza?", options: ["Are", "Does", "Do", "Have"], answer: "Do", explanation: "'Do' is the correct auxiliary verb for making yes/no questions in the Present Simple with the pronoun 'you'." },
+            { type: 'fill', question: "This is ___ book. (It belongs to me)", answer: "my", explanation: "The possessive adjective 'my' is used before a noun to show ownership." },
+            { type: 'mcq', question: "I ___ to the cinema yesterday.", options: ["go", "gone", "went", "going"], answer: "went", explanation: "The word 'yesterday' indicates the Past Simple tense. 'Went' is the irregular past tense of 'go'." },
+            { type: 'fill', question: "He is taller ___ his brother.", answer: "than", explanation: "When making a comparison between two things or people, we use 'than'." },
+            
+            // Notice the answers for these questions now include the ?
+            { type: 'unscramble', question: "you / did / where / go", answer: "where did you go?", explanation: "Question word (Where) + auxiliary (did) + subject (you) + base verb (go)." },
+            
+            { type: 'mcq', question: "How ___ apples do we have?", options: ["much", "many", "some", "any"], answer: "many", explanation: "Because 'apples' is a countable noun, we use 'many' to ask about quantity." },
+            { type: 'fill', question: "She is very good ___ tennis.", answer: "at", explanation: "The adjective 'good' is followed by the preposition 'at' when talking about skills." },
+            { type: 'mcq', question: "I have ___ visited Paris.", options: ["ever", "never", "yet", "since"], answer: "never", explanation: "'Never' is used with the Present Perfect to talk about life experiences that have not happened up to now." },
+            { type: 'fill', question: "We have lived here ___ 2010.", answer: "since", explanation: "'Since' is used with the Present Perfect to indicate the starting point of an action." },
+            
+            { type: 'unscramble', question: "mind / you / opening / do / window / the", answer: "do you mind opening the window?", explanation: "The polite request structure is 'Do you mind + verb-ing'." },
+            
+            { type: 'mcq', question: "The man ___ stole the car was caught.", options: ["which", "who", "whom", "whose"], answer: "who", explanation: "'Who' is the correct relative pronoun to refer to a person functioning as the subject of the clause." },
+            { type: 'fill', question: "He apologized ___ being late.", answer: "for", explanation: "The verb 'apologize' is followed by the preposition 'for' + gerund." },
+            
+            { type: 'unscramble', question: "long / have / been / you / how / waiting", answer: "how long have you been waiting?", explanation: "Present Perfect Continuous question format: How long + have/has + subject + been + verb-ing." },
+            
+            { type: 'mcq', question: "Look at those clouds! It ___ rain.", options: ["will", "is going to", "must", "can"], answer: "is going to", explanation: "'Going to' is used to make a future prediction when there is present, visible evidence (the clouds)." },
+            { type: 'fill', question: "I am looking forward ___ the weekend.", answer: "to", explanation: "'Look forward' is a phrasal verb that is always followed by the preposition 'to'." },
+            { type: 'mcq', question: "If I had known, I ___ you.", options: ["would help", "will help", "would have helped", "helped"], answer: "would have helped", explanation: "This is the Third Conditional, used for imaginary past situations. The structure is 'if + past perfect, would have + past participle'." },
+            { type: 'fill', question: "You can completely rely ___ me.", answer: "on", explanation: "The verb 'rely' always takes the preposition 'on'." },
+            { type: 'unscramble', question: "finished / time / we / the / by / work / had / arrived / they / the", answer: "by the time they arrived we had finished the work", explanation: "By the time + past simple (they arrived), subject + past perfect (we had finished) + object (the work)." },
+            { type: 'mcq', question: "Despite ___ tired, he kept working.", options: ["he was", "be", "being", "of being"], answer: "being", explanation: "The preposition 'despite' must be followed by a noun, a pronoun, or a gerund (verb-ing)." },
+            { type: 'fill', question: "He finally succeeded ___ passing the exam.", answer: "in", explanation: "The verb 'succeed' is followed by 'in' + gerund." },
+            { type: 'unscramble', question: "used / to / everyday / to / i / walk / school", answer: "i used to walk to school everyday", explanation: "Subject (I) + used to + base verb (walk) + to school + time expression (everyday)." },
+            { type: 'mcq', question: "We need to ___ this problem quickly.", options: ["sort out", "bring up", "call off", "put off"], answer: "sort out", explanation: "The phrasal verb 'sort out' means to resolve a problem or organize something." },
+            { type: 'fill', question: "The book consists ___ five chapters.", answer: "of", explanation: "The verb 'consist' is always followed by the preposition 'of'." },
+            { type: 'mcq', question: "Hardly ___ asleep when the alarm went off.", options: ["I had fallen", "had I fallen", "did I fall", "I fell"], answer: "had I fallen", explanation: "When a sentence starts with a negative adverbial like 'Hardly', subject-auxiliary inversion is required (auxiliary verb before the subject)." },
+            { type: 'fill', question: "He has a tendency to gloss ___ important details.", answer: "over", explanation: "To 'gloss over' is a phrasal verb meaning to avoid discussing something or treat it as less important." },
+            { type: 'unscramble', question: "circumstances / under / no / open / door / you / should / the", answer: "under no circumstances should you open the door", explanation: "Negative inversion: Under no circumstances + auxiliary (should) + subject (you) + verb (open) + object (the door)." },
+            { type: 'fill', question: "The success of the campaign hinges ___ local community support.", answer: "on", explanation: "The verb 'hinge' is followed by the preposition 'on', meaning to depend entirely on something." }
+        ],
+test2: [
+            // --- A1 Questions (5) ---
+            { type: 'mcq', question: "I ___ from Spain.", options: ["am", "is", "are", "be"], answer: "am", explanation: "With the pronoun 'I', the correct form of the verb 'to be' is 'am'." },
+            { type: 'fill', question: "He works ___ a hospital.", answer: "in", explanation: "We use the preposition 'in' when talking about working inside a building or institution." },
+            { type: 'unscramble', question: "name / your / is / what", answer: "what is your name?", explanation: "The standard question structure is Question Word (What) + Verb (is) + Subject (your name)." },
+            { type: 'mcq', question: "They ___ playing football right now.", options: ["am", "is", "are", "do"], answer: "are", explanation: "The present continuous tense with the pronoun 'They' requires the auxiliary verb 'are'." },
+            { type: 'fill', question: "I get up ___ 7 o'clock.", answer: "at", explanation: "We always use the preposition 'at' for specific times on the clock." },
+
+            // --- A2 Questions (5) ---
+            { type: 'mcq', question: "She ___ television every evening.", options: ["watch", "watches", "watching", "is watch"], answer: "watches", explanation: "For habits in the Present Simple with he/she/it, we add '-s' or '-es' to the verb." },
+            { type: 'fill', question: "We went to the beach ___ Saturday.", answer: "on", explanation: "We use the preposition 'on' with days of the week." },
+            { type: 'unscramble', question: "any / there / milk / fridge / is / the / in", answer: "is there any milk in the fridge?", explanation: "Yes/No questions start with the verb. Is + there + any + noun + prepositional phrase." },
+            { type: 'mcq', question: "I ___ a great book at the moment.", options: ["read", "reads", "am reading", "reading"], answer: "am reading", explanation: "The phrase 'at the moment' indicates an action happening right now, requiring the Present Continuous." },
+            { type: 'fill', question: "He is very interested ___ learning history.", answer: "in", explanation: "The adjective 'interested' is always followed by the preposition 'in'." },
+
+            // --- B1 Questions (8) ---
+            { type: 'mcq', question: "If I have enough money, I ___ a new laptop.", options: ["buy", "bought", "will buy", "would buy"], answer: "will buy", explanation: "This is the First Conditional (real possibilities): If + Present Simple, subject + will + base verb." },
+            { type: 'fill', question: "She has been working here ___ three months.", answer: "for", explanation: "We use 'for' with the Present Perfect to indicate a duration or period of time." },
+            { type: 'unscramble', question: "ever / you / to / been / london / have", answer: "have you ever been to london?", explanation: "Present Perfect question: Auxiliary (Have) + Subject (you) + ever + past participle (been) + destination." },
+            { type: 'mcq', question: "The cake ___ by my grandmother yesterday.", options: ["made", "was made", "is made", "has made"], answer: "was made", explanation: "This is a Passive Voice sentence in the past tense. The cake received the action." },
+            { type: 'fill', question: "He decided ___ go to the party after all.", answer: "to", explanation: "The verb 'decide' is followed by the infinitive form (to + verb)." },
+            { type: 'unscramble', question: "forward / looking / to / hearing / from / you / am / i", answer: "i am looking forward to hearing from you", explanation: "Subject (I) + am + looking forward to + gerund (hearing) + from you." },
+            { type: 'mcq', question: "You ___ to wear a uniform at this job. You can wear casual clothes.", options: ["mustn't", "don't have", "shouldn't", "can't"], answer: "don't have", explanation: "'Don't have to' means there is no obligation. ('Mustn't' means it is forbidden)." },
+            { type: 'fill', question: "She isn't used ___ waking up so early.", answer: "to", explanation: "The phrase 'be used to' (meaning accustomed to) is followed by a noun or a gerund (verb-ing)." },
+
+            // --- B2 Questions (8) ---
+            { type: 'mcq', question: "By this time next year, I ___ my degree.", options: ["will finish", "will have finished", "finish", "am finishing"], answer: "will have finished", explanation: "The Future Perfect is used to talk about an action that will be completed before a specific time in the future." },
+            { type: 'fill', question: "The company was set ___ in 2005 by two brothers.", answer: "up", explanation: "The phrasal verb 'set up' means to establish or start a business." },
+            { type: 'unscramble', question: "rather / stay / tonight / i / would / home", answer: "i would rather stay home tonight", explanation: "Subject (I) + would rather + base verb (stay) + object/place + time." },
+            { type: 'mcq', question: "He suggested ___ for a walk along the river.", options: ["to go", "go", "going", "went"], answer: "going", explanation: "The verb 'suggest' is directly followed by a gerund (verb-ing)." },
+            { type: 'fill', question: "I sincerely apologize ___ the unexpected delay.", answer: "for", explanation: "The verb 'apologize' takes the preposition 'for' before stating the reason." },
+            { type: 'unscramble', question: "mind / me / a / you / doing / favor / would", answer: "would you mind doing me a favor?", explanation: "Polite request structure: Would you mind + gerund (doing) + object." },
+            { type: 'mcq', question: "The weather was terrible; ___, we had a wonderful time.", options: ["furthermore", "therefore", "nevertheless", "consequently"], answer: "nevertheless", explanation: "'Nevertheless' is a formal transition word used to show contrast, similar to 'however' or 'in spite of that'." },
+            { type: 'fill', question: "She was completely unaware ___ the problem until today.", answer: "of", explanation: "The adjective 'unaware' is followed by the preposition 'of'." },
+
+            // --- C1 Questions (4) ---
+            { type: 'mcq', question: "Not only ___ the exam, but she also won a scholarship.", options: ["she passed", "did she pass", "passed she", "has she passed"], answer: "did she pass", explanation: "When a sentence starts with a negative or limiting adverbial like 'Not only', it requires subject-auxiliary inversion." },
+            { type: 'fill', question: "The project's success is contingent ___ securing enough funding.", answer: "on", explanation: "The formal adjective 'contingent' is followed by 'on' or 'upon', meaning to depend entirely on something." },
+            { type: 'unscramble', question: "account / no / on / should / touch / you / this / button", answer: "on no account should you touch this button", explanation: "Negative inversion: Prepositional phrase (On no account) + auxiliary (should) + subject (you) + base verb (touch)." },
+            { type: 'fill', question: "His erratic behavior borders ___ the ridiculous.", answer: "on", explanation: "'Borders on' is an advanced phrasal verb meaning to come very close to being something." }
+        ],
+test3: [
+            // --- A1 Questions (5) ---
+            { type: 'mcq', question: "The teacher ___ a live class on Tuesdays.", options: ["host", "hosts", "hosting", "is host"], answer: "hosts", explanation: "For regular habits or scheduled events in the Present Simple (with he/she/it), we add '-s' to the verb." },
+            { type: 'fill', question: "I am eating ___ banana.", answer: "a", explanation: "We use the indefinite article 'a' before singular, countable nouns starting with a consonant sound." },
+            { type: 'unscramble', question: "from / are / where / you", answer: "where are you from?", explanation: "Question word (Where) + 'to be' verb (are) + subject (you) + preposition (from)." },
+            { type: 'mcq', question: "My cat ___ sleeping on the sofa.", options: ["am", "is", "are", "be"], answer: "is", explanation: "The subject 'My cat' is singular (it), which pairs with the 'to be' verb 'is'." },
+            { type: 'fill', question: "They go to school ___ the morning.", answer: "in", explanation: "For parts of the day (morning, afternoon, evening), we use the preposition 'in'." },
+
+            // --- A2 Questions (5) ---
+            { type: 'mcq', question: "He bought a new microphone ___ his audio quality.", options: ["to improve", "improve", "improving", "improved"], answer: "to improve", explanation: "We use the infinitive of purpose ('to' + base verb) to explain why someone did something." },
+            { type: 'fill', question: "Nano usually wakes up early ___ weekdays.", answer: "on", explanation: "We use the preposition 'on' for specific days or parts of the week like 'weekdays'." },
+            { type: 'unscramble', question: "you / yesterday / did / what / do", answer: "what did you do yesterday?", explanation: "Question Word (What) + auxiliary (did) + subject (you) + base verb (do) + time expression." },
+            { type: 'mcq', question: "She is the ___ student in the class.", options: ["smarter", "smartest", "most smart", "more smart"], answer: "smartest", explanation: "To form the superlative of short adjectives (one syllable), we add '-est'." },
+            { type: 'fill', question: "I was waiting ___ the bus when it started to rain.", answer: "for", explanation: "The verb 'wait' is always followed by the preposition 'for' when referring to the object being anticipated." },
+
+            // --- B1 Questions (8) ---
+            { type: 'mcq', question: "I ___ making English lesson videos for three years.", options: ["am", "have been", "was", "had been"], answer: "have been", explanation: "The Present Perfect Continuous focuses on an action that started in the past and continues into the present." },
+            { type: 'fill', question: "If you practice every day, your English ___ improve significantly.", answer: "will", explanation: "In the First Conditional, the main clause uses 'will' + base verb to describe a likely future result." },
+            { type: 'unscramble', question: "long / english / been / how / learning / you / have", answer: "how long have you been learning english?", explanation: "How long + have + subject (you) + been + verb-ing (learning) + object." },
+            { type: 'mcq', question: "The platform, ___ was built last month, is very useful.", options: ["who", "which", "that", "where"], answer: "which", explanation: "In a non-defining relative clause (between commas) referring to a thing, we must use 'which', not 'that'." },
+            { type: 'fill', question: "He is looking forward ___ hosting his next live session.", answer: "to", explanation: "The phrase 'look forward' is always followed by the preposition 'to' (and then a gerund or noun)." },
+            { type: 'unscramble', question: "told / me / you / he / were / busy / that", answer: "he told me that you were busy", explanation: "Reported speech structure: Subject + reporting verb (told) + object (me) + that + reported clause." },
+            { type: 'mcq', question: "You ___ to pay for this app; it's completely free.", options: ["mustn't", "don't have", "shouldn't", "can't"], answer: "don't have", explanation: "'Don't have to' shows a lack of obligation. You can if you want, but it is not required." },
+            { type: 'fill', question: "Can you translate this sentence ___ Spanish?", answer: "into", explanation: "When changing something from one language to another, we use the preposition 'into'." },
+
+            // --- B2 Questions (8) ---
+            { type: 'mcq', question: "By the time the TOEFL test starts, I ___ all the practice materials.", options: ["will review", "will have reviewed", "review", "reviewed"], answer: "will have reviewed", explanation: "The Future Perfect (will have + past participle) describes an action that will be completed before a certain point in the future." },
+            { type: 'fill', question: "The website builder is quite intuitive; ___, it still takes time to master.", answer: "however", explanation: "We use 'however' to introduce a contrasting idea, often followed by a comma." },
+            { type: 'unscramble', question: "mind / giving / hand / you / me / would / a", answer: "would you mind giving me a hand?", explanation: "Polite request format: Would you mind + gerund (giving) + indirect object (me) + direct object (a hand)." },
+            { type: 'mcq', question: "She strongly objected ___ her personal equipment without permission.", options: ["to use", "use", "to using", "using"], answer: "to using", explanation: "The verb 'object' is followed by the preposition 'to', which must be followed by a noun or a gerund (verb-ing)." },
+            { type: 'fill', question: "The new software is highly compatible ___ Mac computers.", answer: "with", explanation: "The adjective 'compatible' is always followed by the preposition 'with'." },
+            { type: 'unscramble', question: "expected / the / much / than / exam / was / harder", answer: "the exam was much harder than expected", explanation: "Subject + verb + intensifier (much) + comparative (harder) + than expected." },
+            { type: 'mcq', question: "We'd better ___ the technical issues before the stream goes live.", options: ["to fix", "fix", "fixing", "fixed"], answer: "fix", explanation: "The phrase 'had better' (contracted to 'd better) is followed by the bare infinitive (base verb without 'to')." },
+            { type: 'fill', question: "His success as a creator is largely due ___ his engaging content.", answer: "to", explanation: "The phrase 'due to' means caused by or because of." },
+
+            // --- C1 Questions (4) ---
+            { type: 'mcq', question: "Seldom ___ such an interactive and well-designed learning platform.", options: ["I have seen", "have I seen", "I saw", "did I see"], answer: "have I seen", explanation: "When starting a sentence with a negative or restrictive adverb like 'Seldom', we must invert the subject and the auxiliary verb." },
+            { type: 'fill', question: "Students must abide ___ the rules during the examination.", answer: "by", explanation: "The formal phrasal verb 'abide by' means to accept or follow a rule, decision, or recommendation." },
+            { type: 'unscramble', question: "circumstances / under / no / password / reveal / you / should / your", answer: "under no circumstances should you reveal your password", explanation: "Negative inversion: Prepositional phrase (Under no circumstances) + auxiliary (should) + subject (you) + base verb (reveal)." },
+            { type: 'fill', question: "Her teaching style is characterized by a remarkable flair ___ explaining complex grammar.", answer: "for", explanation: "The noun 'flair' (meaning a natural ability or talent) is followed by the preposition 'for'." }
+        ],
+test4: [
+            // --- A1 Questions (5) - Topics: Food, Body, Daily Routine, Travel, Weather ---
+            { type: 'mcq', question: "I usually eat eggs for ___.", options: ["breakfast", "dinner", "dessert", "snack"], answer: "breakfast", explanation: "Eggs are traditionally eaten as the first meal of the day, which is breakfast." },
+            { type: 'fill', question: "Please turn on the AC, it is too ___ in this room.", answer: "hot", explanation: "The adjective 'hot' describes high temperature, which is why you would need an Air Conditioner (AC)." },
+            { type: 'unscramble', question: "read / every / book / a / night / i", answer: "i read a book every night", explanation: "Subject (I) + verb (read) + object (a book) + time expression (every night)." },
+            { type: 'mcq', question: "We are going to the ___ to catch our flight to Tokyo.", options: ["station", "airport", "port", "stop"], answer: "airport", explanation: "Airports are the locations where you catch flights (airplanes)." },
+            { type: 'fill', question: "A normal adult dog has four ___.", answer: "legs", explanation: "Dogs are quadrupeds, meaning they have four legs." },
+
+            // --- A2 Questions (5) - Topics: Shopping, Health, Music, Directions, Cooking ---
+            { type: 'mcq', question: "Excuse me, how ___ does this winter jacket cost?", options: ["many", "much", "price", "money"], answer: "much", explanation: "When asking about the price of an uncountable concept (money/cost), we use 'how much'." },
+            { type: 'fill', question: "I have a terrible headache, I need to take some ___.", answer: "medicine", explanation: "Medicine (or a pill/painkiller) is taken to treat illnesses like a headache." },
+            { type: 'unscramble', question: "play / guitar / you / the / can", answer: "can you play the guitar?", explanation: "Modal verb for ability (Can) + subject (you) + base verb (play) + object (the guitar)." },
+            { type: 'mcq', question: "Go straight down this street and take the first turning on the ___.", options: ["up", "straight", "left", "ahead"], answer: "left", explanation: "When giving directions, we turn on the 'left' or 'right'." },
+            { type: 'fill', question: "You need to ___ the water before you put the pasta in the pot.", answer: "boil", explanation: "To heat water until it bubbles and turns to steam is to 'boil' it." },
+
+            // --- B1 Questions (8) - Topics: Environment, Media, Socializing, Advice, Technology, Preferences ---
+            { type: 'mcq', question: "We must recycle plastic and glass to protect the ___.", options: ["nature", "ecology", "environment", "climate"], answer: "environment", explanation: "'The environment' is the standard overarching term for the natural world as a whole." },
+            { type: 'fill', question: "Don't forget to ___ off the computer when you finish working.", answer: "turn", explanation: "The phrasal verb 'turn off' means to power down a machine or device." },
+            { type: 'unscramble', question: "tried / food / you / have / local / the", answer: "have you tried the local food?", explanation: "Present Perfect question: Auxiliary (Have) + subject (you) + past participle (tried) + object (the local food)." },
+            { type: 'mcq', question: "The horror movie was completely ___; we couldn't sleep all night.", options: ["terrified", "terrifying", "thrilled", "thrilling"], answer: "terrifying", explanation: "We use adjectives ending in '-ing' (terrifying) to describe the thing that causes the feeling. ('-ed' describes how a person feels)." },
+            { type: 'fill', question: "I prefer drinking green tea ___ black coffee.", answer: "to", explanation: "When stating a general preference between two nouns, the correct preposition is 'to' (prefer X to Y)." },
+            { type: 'unscramble', question: "forward / party / the / looking / am / to / i", answer: "i am looking forward to the party", explanation: "Subject (I) + am + phrasal verb (looking forward to) + object (the party)." },
+            { type: 'mcq', question: "If you have a high fever, you really ___ see a doctor.", options: ["ought", "should", "had", "might"], answer: "should", explanation: "'Should' is used to give strong advice. ('Ought' would need 'to' after it)." },
+            { type: 'fill', question: "He is entirely responsible ___ planning the company retreat.", answer: "for", explanation: "The adjective 'responsible' is followed by the preposition 'for'." },
+
+            // --- B2 Questions (8) - Topics: Business, Crime/Law, Hypotheticals, Science, Relationships, History, Idioms, Emotions ---
+            { type: 'mcq', question: "After hours of negotiation, the two companies finally reached a ___.", options: ["promise", "compromise", "vow", "pledge"], answer: "compromise", explanation: "A 'compromise' is an agreement reached by adjustment of conflicting or opposing claims." },
+            { type: 'fill', question: "The suspect was found guilty ___ stealing the famous painting.", answer: "of", explanation: "In legal contexts, a person is found 'guilty of' a crime." },
+            { type: 'unscramble', question: "rich / i / buy / island / if / were / an / would / i", answer: "if i were rich i would buy an island", explanation: "Second Conditional: If + subject (I) + past simple (were) + adjective (rich), subject (I) + would + base verb (buy) + object." },
+            { type: 'mcq', question: "The new satellite is scheduled to be ___ into orbit tomorrow morning.", options: ["thrown", "projected", "launched", "released"], answer: "launched", explanation: "'Launch' is the specific collocation used for sending rockets, satellites, or spacecraft into the air/space." },
+            { type: 'fill', question: "I don't really get ___ with my new roommate; we argue a lot.", answer: "along", explanation: "The phrasal verb 'get along with' (or 'get on with') means to have a harmonious or friendly relationship." },
+            { type: 'unscramble', question: "discovered / centuries / the / was / ago / ruin / ancient", answer: "the ancient ruin was discovered centuries ago", explanation: "Passive voice: Subject (The ancient ruin) + 'to be' (was) + past participle (discovered) + time phrase (centuries ago)." },
+            { type: 'mcq', question: "I'm feeling a bit under the ___ today, so I'm going to stay in bed.", options: ["cloud", "sun", "weather", "storm"], answer: "weather", explanation: "'Under the weather' is a common English idiom meaning to feel slightly ill." },
+            { type: 'fill', question: "She was completely overwhelmed ___ the sheer volume of emails she received.", answer: "by", explanation: "The adjective 'overwhelmed' is usually followed by the preposition 'by' (or 'with')." },
+
+            // --- C1 Questions (4) - Topics: Academic/Research, Nuanced Grammar, Advanced Collocations ---
+            { type: 'mcq', question: "The recent findings represent a significant ___ in the field of renewable energy.", options: ["breakthrough", "breakdown", "breakout", "breakaway"], answer: "breakthrough", explanation: "A 'breakthrough' is a sudden, dramatic, and important discovery or development." },
+            { type: 'fill', question: "___ had the football match started when it began to pour with rain.", answer: "hardly", explanation: "'Hardly... when' (or Scarcely... when) is an advanced inversion structure meaning one event happened almost immediately after another." },
+            { type: 'unscramble', question: "doubt / highly / that / will / mind / i / he / his / change", answer: "i highly doubt that he will change his mind", explanation: "Subject (I) + adverb (highly) + verb (doubt) + that clause (he will change his mind)." },
+            { type: 'fill', question: "The latest scandal dealt a devastating ___ to the politician's career.", answer: "blow", explanation: "To 'deal a devastating blow' is an advanced collocation meaning to cause severe damage or a major setback." }
+        ],
+test5: [
+            // --- A1 Questions (5) - Topics: Colors, Family, Time, Weather, Hobbies ---
+            { type: 'mcq', question: "The sky ___ blue and the grass is green.", options: ["am", "is", "are", "be"], answer: "is", explanation: "The subject 'The sky' is singular (it), so it pairs with the verb 'is'." },
+            { type: 'fill', question: "My mother's sister is my ___.", answer: "aunt", explanation: "In English family vocabulary, your parents' sister is called your aunt." },
+            { type: 'unscramble', question: "play / tennis / to / like / i", answer: "i like to play tennis", explanation: "Subject (I) + verb (like) + infinitive (to play) + object (tennis)." },
+            { type: 'mcq', question: "There are sixty ___ in one minute.", options: ["hours", "days", "seconds", "weeks"], answer: "seconds", explanation: "A minute is composed of 60 seconds." },
+            { type: 'fill', question: "I need an ___ because it is raining outside.", answer: "umbrella", explanation: "An umbrella is the object used to protect yourself from the rain. (Note the article 'an' before a vowel sound)." },
+
+            // --- A2 Questions (5) - Topics: Jobs, Clothes, Transportation, Housing, Sports ---
+            { type: 'mcq', question: "A person who fixes teeth is called a ___.", options: ["dentist", "pilot", "farmer", "mechanic"], answer: "dentist", explanation: "A dentist is a medical professional who specializes in teeth and oral health." },
+            { type: 'fill', question: "It's freezing outside, so put on your winter ___.", answer: "jacket", explanation: "A jacket (or coat) is the item of clothing worn to keep warm in freezing weather." },
+            { type: 'unscramble', question: "you / how / work / do / to / get", answer: "how do you get to work?", explanation: "Question word (How) + auxiliary (do) + subject (you) + base verb (get) + prepositional phrase (to work)." },
+            { type: 'mcq', question: "We live on the third ___ of this apartment building.", options: ["room", "floor", "stage", "ground"], answer: "floor", explanation: "Levels in a building are referred to as 'floors'." },
+            { type: 'fill', question: "You kick the ball to score a goal in the sport of ___.", answer: "soccer", explanation: "Soccer (or football) is the sport where players kick a ball to score goals." },
+
+            // --- B1 Questions (8) - Topics: Geography, Future Plans, Advice, Entertainment, Daily Life, Health, Feelings, Preferences ---
+            { type: 'mcq', question: "The Sahara is the largest hot ___ in the world.", options: ["forest", "island", "desert", "ocean"], answer: "desert", explanation: "A desert is a dry, barren area of land, especially one covered with sand, like the Sahara." },
+            { type: 'fill', question: "I promise I ___ call you as soon as I arrive at the hotel.", answer: "will", explanation: "We use 'will' to make promises or spontaneous decisions about the future." },
+            { type: 'unscramble', question: "think / i / should / what / do / you / do", answer: "what do you think i should do?", explanation: "Question word (What) + auxiliary (do) + subject (you) + verb (think) + embedded clause (I should do)." },
+            { type: 'mcq', question: "The audience clapped loudly at the end of the theatrical ___.", options: ["performance", "perform", "performer", "performed"], answer: "performance", explanation: "We need a noun here to describe the event. 'Performance' is the noun form." },
+            { type: 'fill', question: "She ___ doing her homework when the lights suddenly went out.", answer: "was", explanation: "The Past Continuous (was doing) is used for an action that was in progress when interrupted by another past action." },
+            { type: 'unscramble', question: "healthy / diet / is / a / maintaining / important", answer: "maintaining a healthy diet is important", explanation: "Gerund phrase as subject (Maintaining a healthy diet) + verb (is) + adjective (important)." },
+            { type: 'mcq', question: "I was completely ___ when I saw the surprise party.", options: ["amaze", "amazing", "amazed", "amazement"], answer: "amazed", explanation: "Adjectives ending in '-ed' describe how a person feels. (Adjectives ending in '-ing' describe the thing that causes the feeling)." },
+            { type: 'fill', question: "He is very fond ___ playing the piano in his free time.", answer: "of", explanation: "The adjective 'fond' (meaning to like something) is always followed by the preposition 'of'." },
+
+            // --- B2 Questions (8) - Topics: Society, Psychology, Technology, Idioms, Business, Hypotheticals, Environment, Crime ---
+            { type: 'mcq', question: "The government plans to ___ a new law to reduce plastic waste.", options: ["implement", "infect", "impress", "imply"], answer: "implement", explanation: "To 'implement' means to put a plan, decision, or law into effect." },
+            { type: 'fill', question: "He finally admitted ___ making a serious mistake during the presentation.", answer: "to", explanation: "The verb 'admit' is often followed by the preposition 'to' and then a gerund (verb-ing)." },
+            { type: 'unscramble', question: "you / consider / upgrading / software / would / the", answer: "would you consider upgrading the software?", explanation: "Modal (Would) + subject (you) + verb (consider) + gerund (upgrading) + object (the software)." },
+            { type: 'mcq', question: "You can't judge a book by its ___; appearance isn't everything.", options: ["pages", "cover", "title", "story"], answer: "cover", explanation: "'Don't judge a book by its cover' is a common idiom meaning you shouldn't judge someone or something based solely on outward appearance." },
+            { type: 'fill', question: "The marketing team came ___ with a brilliant idea for the campaign.", answer: "up", explanation: "The phrasal verb 'come up with' means to produce or think of an idea or plan." },
+            { type: 'unscramble', question: "known / had / i / truth / the / differently / acted / have / would / i", answer: "had i known the truth i would have acted differently", explanation: "Third Conditional with inversion: Had + subject + past participle (Had I known), subject + would have + past participle (I would have acted)." },
+            { type: 'mcq', question: "Many ___ habitats are being destroyed by rapid urban development.", options: ["nature", "naturally", "natural", "naturalist"], answer: "natural", explanation: "We need an adjective to modify the noun 'habitats'. 'Natural' is the adjective form." },
+            { type: 'fill', question: "The detective is looking ___ the mysterious disappearance of the painting.", answer: "into", explanation: "The phrasal verb 'look into' means to investigate a situation or crime." },
+
+            // --- C1 Questions (4) - Topics: Abstract Argumentation, Advanced Grammar, Literature, Nuanced Vocabulary ---
+            { type: 'mcq', question: "The speaker's argument was so ___ that everyone in the room was convinced.", options: ["compelling", "compulsory", "complacent", "compliant"], answer: "compelling", explanation: "If an argument is 'compelling', it is evoking interest, attention, or admiration in a powerfully irresistible way." },
+            { type: 'fill', question: "Scarcely had she finished the report ___ her boss asked for another one.", answer: "when", explanation: "The advanced inversion structure 'Scarcely... when' is used to say that one thing happened almost immediately after another." },
+            { type: 'unscramble', question: "meaning / interpretation / subjective / is / largely / poem's / the / of", answer: "interpretation of the poem's meaning is largely subjective", explanation: "Subject noun phrase (Interpretation of the poem's meaning) + verb (is) + adverb (largely) + adjective (subjective)." },
+            { type: 'fill', question: "His stubbornness is a major hindrance ___ his professional growth.", answer: "to", explanation: "The noun 'hindrance' (meaning a thing that provides resistance or delay) is followed by the preposition 'to'." }
+        ],
+test6: [
+            // --- A1 Questions (5) - Topics: Animals, Home, Food, Colors, Time ---
+            { type: 'mcq', question: "A dog has four ___.", options: ["arms", "hands", "legs", "fingers"], answer: "legs", explanation: "Animals like dogs and cats walk on four legs." },
+            { type: 'fill', question: "I usually sleep ___ night.", answer: "at", explanation: "We use the preposition 'at' when talking about the night as a general time period." },
+            { type: 'unscramble', question: "like / i / eat / to / pizza", answer: "i like to eat pizza", explanation: "Subject (I) + verb (like) + infinitive (to eat) + object (pizza)." },
+            { type: 'mcq', question: "We cook our food in the ___.", options: ["bedroom", "bathroom", "kitchen", "garage"], answer: "kitchen", explanation: "The kitchen is the room in a house specifically designed for cooking." },
+            { type: 'fill', question: "An apple is usually red or ___.", answer: "green", explanation: "Green is the other most common color for apples." },
+
+            // --- A2 Questions (5) - Topics: Travel, Transportation, Directions, Shopping, Weather ---
+            { type: 'mcq', question: "I want to ___ the world when I grow up.", options: ["travel", "traveling", "travels", "traveled"], answer: "travel", explanation: "After 'want to', we must use the base form of the verb." },
+            { type: 'fill', question: "You must always wear a seatbelt in a ___.", answer: "car", explanation: "A car is the primary mode of personal road transport that requires a seatbelt." },
+            { type: 'unscramble', question: "is / where / nearest / hospital / the", answer: "where is the nearest hospital?", explanation: "Question word (Where) + verb (is) + subject (the nearest hospital)." },
+            { type: 'mcq', question: "I don't have ___ money to buy this expensive shirt.", options: ["many", "enough", "too", "some"], answer: "enough", explanation: "'Enough' means as much as is necessary or required." },
+            { type: 'fill', question: "Don't forget your coat, it's very ___ outside today.", answer: "cold", explanation: "A coat is worn to protect against cold weather." },
+
+            // --- B1 Questions (8) - Topics: Future Plans, Conditionals, Experiences, Health, Technology, Hobbies ---
+            { type: 'mcq', question: "We ___ visit my grandparents next weekend.", options: ["go to", "going to", "are going to", "went to"], answer: "are going to", explanation: "We use 'be going to' for planned future actions." },
+            { type: 'fill', question: "If you mix blue and yellow, you ___ green.", answer: "get", explanation: "This is the Zero Conditional (general truths): If + Present Simple, Present Simple." },
+            { type: 'unscramble', question: "seen / have / you / ever / a / whale", answer: "have you ever seen a whale?", explanation: "Present Perfect question: Auxiliary (Have) + subject (you) + ever + past participle (seen) + object (a whale)." },
+            { type: 'mcq', question: "He has a terrible toothache; he must go to the ___.", options: ["surgeon", "dentist", "nurse", "pharmacy"], answer: "dentist", explanation: "A dentist is the specific doctor who treats tooth and gum problems." },
+            { type: 'fill', question: "The beautiful painting is hanging ___ the wall.", answer: "on", explanation: "We use the preposition 'on' for surfaces, like a wall." },
+            { type: 'unscramble', question: "always / phone / my / i / with / carry / me", answer: "i always carry my phone with me", explanation: "Subject (I) + frequency adverb (always) + verb (carry) + object (my phone) + prepositional phrase (with me)." },
+            { type: 'mcq', question: "The movie was so ___ that I actually fell asleep in the cinema.", options: ["bored", "boring", "bore", "boredom"], answer: "boring", explanation: "Adjectives ending in '-ing' describe the thing that causes a feeling (the movie)." },
+            { type: 'fill', question: "She really enjoys ___ romance novels in the park.", answer: "reading", explanation: "The verb 'enjoy' must be followed by a gerund (verb-ing)." },
+
+            // --- B2 Questions (8) - Topics: Business, Problem Solving, Polite Requests, Careers, Science, Idioms ---
+            { type: 'mcq', question: "The company went ___ because it couldn't pay its massive debts.", options: ["broken", "bankrupt", "empty", "finished"], answer: "bankrupt", explanation: "'To go bankrupt' is the specific business term for legally declaring an inability to pay debts." },
+            { type: 'fill', question: "We need to figure ___ a way to solve this complicated issue.", answer: "out", explanation: "The phrasal verb 'figure out' means to understand or solve something." },
+            { type: 'unscramble', question: "could / you / please / tell / me / the / time", answer: "could you please tell me the time?", explanation: "Modal for polite request (Could) + subject (you) + please + base verb (tell) + indirect object (me) + direct object (the time)." },
+            { type: 'mcq', question: "The artist, ___ paintings sell for millions, lives in a small, quiet cabin.", options: ["who", "which", "whose", "whom"], answer: "whose", explanation: "'Whose' is the relative pronoun used to indicate possession (the artist's paintings)." },
+            { type: 'fill', question: "She is highly qualified ___ this senior management position.", answer: "for", explanation: "The adjective 'qualified' is followed by the preposition 'for'." },
+            { type: 'unscramble', question: "known / had / i / would / have / i / warned / you", answer: "had i known i would have warned you", explanation: "Third Conditional with inversion: Auxiliary (Had) + subject (I) + past participle (known), subject (I) + would have + past participle (warned) + object (you)." },
+            { type: 'mcq', question: "After resting all weekend, I feel as right as ___ today.", options: ["sun", "gold", "rain", "air"], answer: "rain", explanation: "'As right as rain' is an idiom meaning to feel completely well or healthy again." },
+            { type: 'fill', question: "Plants absorb carbon dioxide and release ___ into the air.", answer: "oxygen", explanation: "Oxygen is the gas produced by plants during photosynthesis." },
+
+            // --- C1 Questions (4) - Topics: Politics/Media, Advanced Inversion, Abstract Argumentation ---
+            { type: 'mcq', question: "The politician's controversial remarks sparked a ___ of criticism from the press.", options: ["storm", "flood", "river", "weather"], answer: "storm", explanation: "'A storm of' (or firestorm of) is an advanced collocation used to describe a sudden, strong reaction or outburst." },
+            { type: 'fill', question: "Rarely ___ I seen such a magnificent theatrical performance.", answer: "have", explanation: "Negative inversion: When starting with a limiting adverb like 'Rarely', the auxiliary verb (have) must come before the subject (I)." },
+            { type: 'unscramble', question: "success / on / perseverance / largely / hinges / your", answer: "your success largely hinges on perseverance", explanation: "Subject phrase (Your success) + adverb (largely) + verb (hinges) + preposition (on) + object (perseverance)." },
+            { type: 'fill', question: "His apology was completely devoid ___ any genuine emotion.", answer: "of", explanation: "The formal adjective 'devoid' (meaning completely lacking) is always followed by the preposition 'of'." }
+        ]
+    };
+
+    let currentActiveTest = [];
+    let userSelections = [];
+
+    function shuffleArray(array) {
+        let shuffled = array.slice();
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
+    function startTest(testId) {
+        currentActiveTest = shuffleArray(testBank[testId]);
+        userSelections = new Array(currentActiveTest.length).fill(null);
+        
+        document.getElementById('menu-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        document.getElementById('subtitle').innerText = "Answer all questions below.";
+        
+        renderQuestions(true); // true indicates a fresh start to scroll up
+    }
+
+    function renderQuestions(isFreshStart = false) {
+        const container = document.getElementById('questions-container');
+        container.innerHTML = '';
+
+        currentActiveTest.forEach((q, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-card';
+            
+            let html = '';
+            
+            if (q.type === 'mcq') {
+                html += `<div class="question-text">${index + 1}. ${q.question}</div>`;
+                html += `<div class="options-grid">`;
+                q.options.forEach((opt) => {
+                    const isChecked = userSelections[index] === opt ? 'checked' : '';
+                    html += `
+                        <label class="option-label">
+                            <input type="radio" name="q${index}" value="${opt}" ${isChecked} onchange="saveAnswer(${index}, '${opt.replace(/'/g, "\\'")}')">
+                            ${opt}
+                        </label>
+                    `;
+                });
+                html += `</div>`;
+            } 
+            else if (q.type === 'fill') {
+                html += `<div class="question-text">${index + 1}. <span class="instruction-text">Fill in the blank:</span>${q.question}</div>`;
+                const currentVal = userSelections[index] || '';
+                html += `<input type="text" class="text-input" placeholder="Type your answer..." value="${currentVal}" onkeyup="saveAnswer(${index}, this.value)">`;
+            } 
+            else if (q.type === 'unscramble') {
+                // Determine if it's a question based on the answer string
+                const isQuestion = q.answer.endsWith('?');
+                const promptTarget = isQuestion ? 'question' : 'sentence';
+                
+                html += `<div class="question-text">${index + 1}. <span class="instruction-text">Click the words below to build the correct ${promptTarget}:</span></div>`;
+                
+                let answeredWords = [];
+                let bankWords = [];
+                
+                if (userSelections[index]) {
+                    answeredWords = userSelections[index].split(' ').filter(w => w !== '');
+                    let tempBank = q.question.split(' / ').map(w => w.trim());
+                    
+                    answeredWords.forEach(aw => {
+                        let idx = tempBank.indexOf(aw);
+                        if (idx > -1) tempBank.splice(idx, 1);
+                    });
+                    bankWords = tempBank;
+                } else {
+                    bankWords = shuffleArray(q.question.split(' / ').map(w => w.trim()));
+                }
+
+                html += `<div id="word-bank-${index}" class="word-bank">`;
+                bankWords.forEach((word) => {
+                    html += `<span class="word-chip" onclick="moveToAnswer(this, ${index})">${word}</span>`;
+                });
+                html += `</div>`;
+                
+                html += `<div class="instruction-text">Your Answer:</div>`;
+                
+                // Add the CSS class that renders the '?' if it is a question
+                const extraClass = isQuestion ? ' answer-area-question' : '';
+                html += `<div id="answer-area-${index}" class="answer-area${extraClass}">`;
+                
+                answeredWords.forEach((word) => {
+                    html += `<span class="word-chip" onclick="moveToBank(this, ${index})">${word}</span>`;
+                });
+                html += `</div>`;
+            }
+            
+            qDiv.innerHTML = html;
+            container.appendChild(qDiv);
+        });
+        
+        if (isFreshStart) {
+            window.scrollTo(0, 0);
+        }
+    }
+
+    function moveToAnswer(element, index) {
+        const answerArea = document.getElementById(`answer-area-${index}`);
+        element.setAttribute('onclick', `moveToBank(this, ${index})`);
+        answerArea.appendChild(element);
+        updateUnscrambleAnswer(index);
+    }
+
+    function moveToBank(element, index) {
+        const wordBank = document.getElementById(`word-bank-${index}`);
+        element.setAttribute('onclick', `moveToAnswer(this, ${index})`);
+        wordBank.appendChild(element);
+        updateUnscrambleAnswer(index);
+    }
+
+    function updateUnscrambleAnswer(index) {
+        const answerArea = document.getElementById(`answer-area-${index}`);
+        // Ensure we only grab the actual chips, ignoring the CSS ::after pseudo-element
+        const words = Array.from(answerArea.querySelectorAll('.word-chip')).map(chip => chip.innerText);
+        saveAnswer(index, words.join(' '));
+    }
+
+    function saveAnswer(questionIndex, answer) {
+        userSelections[questionIndex] = answer;
+    }
+
+    function submitTest() {
+        if (userSelections.includes(null) || userSelections.some(ans => typeof ans === 'string' && ans.trim() === '')) {
+            alert("Please answer all questions before submitting.");
+            return;
+        }
+
+        document.getElementById('quiz-screen').style.display = 'none';
+        document.getElementById('results-screen').style.display = 'block';
+        calculateAndShowResults();
+    }
+
+    function calculateAndShowResults() {
+        let score = 0;
+        const feedbackContainer = document.getElementById('feedback-container');
+        feedbackContainer.innerHTML = '';
+
+        currentActiveTest.forEach((q, index) => {
+            const userAnswer = userSelections[index];
+            let isCorrect = false;
+
+            if (q.type === 'mcq') {
+                isCorrect = userAnswer === q.answer;
+            } else {
+                // Remove punctuation (?, ., !) during evaluation so we are just checking the words
+                const cleanUser = (userAnswer || '').replace(/[?.!]/g, '').toLowerCase().trim();
+                const cleanCorrect = q.answer.replace(/[?.!]/g, '').toLowerCase().trim();
+                isCorrect = cleanUser === cleanCorrect;
+            }
+            
+            if (isCorrect) {
+                score++;
+            } else {
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback-card feedback-wrong';
+                
+                let questionDisplay = q.question;
+                if(q.type === 'unscramble') {
+                    questionDisplay = "Unscramble: " + q.question.split(' / ').join(', ');
+                }
+
+                // Add the question mark to their displayed answer if it was an unscramble question
+                let displayUserAnswer = userAnswer || '(Blank)';
+                if (q.type === 'unscramble' && q.answer.endsWith('?') && userAnswer) {
+                    displayUserAnswer += '?';
+                }
+
+                feedbackDiv.innerHTML = `
+                    <strong>Question ${index + 1}:</strong> ${questionDisplay}<br>
+                    <span style="color: #ef4444;">Your Answer: ${displayUserAnswer}</span><br>
+                    <span style="color: #10b981;">Correct Answer: ${q.answer}</span>
+                    <div class="explanation"><strong>Why?</strong> ${q.explanation}</div>
+                `;
+                feedbackContainer.appendChild(feedbackDiv);
+            }
+        });
+
+        const total = currentActiveTest.length;
+        const percentage = Math.round((score / total) * 100);
+        
+        document.getElementById('score-display').innerText = `You scored ${score} out of ${total} (${percentage}%)`;
+
+        // Report score to parent platform
+        try {
+            var testName = 'General Test';
+            window.parent.postMessage({ type: 'score', exercise: 'general', name: testName, score: score, max: total }, '*');
+        } catch(e) {}
+        
+        if (score === total) {
+            feedbackContainer.innerHTML = `<div class="feedback-card feedback-correct"><strong>Perfect Score!</strong> Excellent job, you got every question right.</div>`;
+        }
+        window.scrollTo(0, 0);
+    }
+
+    function returnToMenu() {
+        document.getElementById('results-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'none';
+        document.getElementById('menu-screen').style.display = 'flex';
+        document.getElementById('subtitle').innerText = "Select a test to begin.";
+        currentActiveTest = [];
+        userSelections = [];
+    }
+</script>
+
+</body>
+</html>
