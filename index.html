@@ -361,6 +361,7 @@ body.sidebar-collapsed .main{margin-left:64px}
       <button class="ph-filter-btn active" data-filter="all" onclick="filterProgress(this,'all')">All</button>
       <button class="ph-filter-btn" data-filter="TOEFL ITP" onclick="filterProgress(this,'TOEFL ITP')">TOEFL ITP</button>
       <button class="ph-filter-btn" data-filter="TOEFL iBT" onclick="filterProgress(this,'TOEFL iBT')">TOEFL iBT</button>
+      <button class="ph-filter-btn" data-filter="General English" onclick="filterProgress(this,'General English')">General English</button>
       <button class="ph-filter-btn" data-filter="ITP Multiple Choice" onclick="filterProgress(this,'ITP Multiple Choice')">ITP MC</button>
       <button class="ph-filter-btn" data-filter="Unscramble" onclick="filterProgress(this,'Unscramble')">Unscramble</button>
       <button class="ph-filter-btn" data-filter="Emoji Flashcards" onclick="filterProgress(this,'Emoji Flashcards')">Emoji</button>
@@ -867,11 +868,11 @@ function loadFrame(frameId, b64, replacements) {
 // ═══ TIER STATE ═══
 var currentTier = 'visitor';
 var TIERS = {
-  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
-  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3'],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:[1],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
+  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:[1,2,3],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
+  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
 function setTier(tier,btn) {
@@ -966,7 +967,7 @@ function openGeneral() {
   var isFree = currentTier === 'free';
   document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 3 of 6' : '🔓 1 of 6';
   var frame = document.getElementById('frame-general');
-  frame.src = '/general?allowed=' + allowed.join(',');
+  frame.src = '/general?allowed=' + allowed.join(',') + '&mode=general';
   closeMobileSidebar();
 }
 
@@ -1104,7 +1105,7 @@ function renderProgress() {
       else resultHtml = '<span class="ph-result-fail">✗ Keep going</span>';
     }
 
-    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
+    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','General English':'📗','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
     tbody.innerHTML += '<tr style="border-top:1px solid var(--border)">'
       +'<td style="padding:13px 16px;font-size:0.8rem;color:#888;white-space:nowrap">'+dateStr+'<br><span style="font-size:0.72rem;color:#ccc">'+timeStr+'</span></td>'
       +'<td style="padding:13px 16px"><span style="font-size:1rem">'+typeIcon+'</span> <span style="font-size:0.85rem;font-weight:500;color:var(--ink)">'+row.exercise_type+'</span></td>'
