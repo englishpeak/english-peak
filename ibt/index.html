@@ -536,11 +536,29 @@ document.addEventListener('DOMContentLoaded', function() {
             { type: 'writing-email', title: 'Task 28: Write an Email', canSkip: true, text: "You recently returned from a trip, but the airline lost your checked luggage. It has been three days and you still have not received any updates. Write an email to the airline's customer service department explaining the situation, providing your flight details, and requesting an immediate update and compensation.", time: 420 }
         ],
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     };
 
-    let curSet = []; let idx = 0; let results = []; let timer;
+    let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
 
-    function start(k) { curSet=testData[k]; idx=0; results=[]; switchScreen('screen-exercise'); render(); }
+    function start(k) { _currentTestKey = k; curSet=testData[k]; idx=0; results=[]; switchScreen('screen-exercise'); render(); }
 
     function render() {
         clearInterval(timer);
@@ -620,6 +638,17 @@ document.addEventListener('DOMContentLoaded', function() {
             <p style="font-size:1.2rem;">TOEFL Band Score</p>
             <div style="font-size: 1.1rem; color: var(--text-neutral);">Approximate iBT Total: <strong>${ibt} / 120</strong></div>
         `;
+
+        // Report score to parent platform
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'exerciseComplete',
+                exerciseType: 'TOEFL iBT',
+                exerciseName: _currentTestKey || 'Test',
+                score: sCount,
+                maxScore: v.length
+            }, '*');
+        }
 
         let feed = '';
         results.forEach(r => {
