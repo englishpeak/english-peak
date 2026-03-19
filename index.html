@@ -304,7 +304,16 @@ body.sidebar-collapsed .main{margin-left:64px}
       </div>
     </div>
 
-        <div class="section-header"><h2>TOEFL Practice</h2><p>Timed mock tests · updated weekly</p></div>
+    <div class="section-header"><h2>General English</h2><p>Grammar &amp; vocabulary · A1 to C1</p></div>
+    <div class="cards-grid">
+      <div class="ex-card" onclick="openGeneral()">
+        <div class="card-header"><div class="card-icon blue">📝</div><div class="card-access access-free" id="access-general">🔓 Test 1 Free</div></div>
+        <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">6 tests · 1 unlocked</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-general"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access Tests 2 and 3. Upgrade to Practice+ for all 6 tests.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('general');event.stopPropagation()">Maybe later</button></div>
+      </div>
+    </div>
+
+    <div class="section-header"><h2>TOEFL Practice</h2><p>Timed mock tests · updated weekly</p></div>
     <div class="cards-grid">
       <div class="ex-card" onclick="openITPTests()">
         <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 8</div></div>
@@ -312,20 +321,14 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get Practice+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openIBT()">
-        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 6</div></div>
-        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">6 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks test 3. Practice+ unlocks all 5.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
+        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 7</div></div>
+        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">7 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. Practice+ unlocks all 7.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
       </div>
     </div>
 
     <div class="section-header"><h2>Conversation Practice</h2><p>Free account required</p></div>
     <div class="cards-grid">
-      <div class="ex-card" onclick="openGeneral()">
-        <div class="card-header"><div class="card-icon blue">📝</div><div class="card-access access-free" id="access-general">🔓 Test 1 Free</div></div>
-        <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">6 tests · 1 unlocked</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-general"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access Tests 2 and 3. Upgrade to Practice+ for all 6 tests.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('general');event.stopPropagation()">Maybe later</button></div>
-      </div>
-
       <div class="ex-card" onclick="openConv()">
         <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-locked" id="access-conv">🔐 Sign in</div></div>
         <div class="card-body"><div class="card-title">Conversation Topics</div><div class="card-desc">Curated discussion topics for all levels. Business English category for Practice+ members.</div><div class="card-meta"><span class="meta-item">🗣 All levels</span><span class="meta-item" id="meta-conv">💼 Business: Practice+</span></div><button class="card-btn btn-locked" id="btn-conv">🔐 Sign in to access</button></div>
@@ -707,9 +710,9 @@ function applyTier(tier) {
   document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8+' : '🔓 ' + ic + ' of 8';
 
   var bc = c.ibtTests.length;
-  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 6' : '🔓 ' + bc + ' of 6';
+  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 6' : '🔓 ' + bc + ' of 7';
   document.getElementById('access-ibt').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
-  document.getElementById('meta-ibt').textContent = '6 tests · ' + bc + ' unlocked';
+  document.getElementById('meta-ibt').textContent = '7 tests · ' + bc + ' unlocked';
   document.getElementById('btn-ibt').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
   document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 7' : '🔓 ' + bc + ' of 7';
 
@@ -870,11 +873,11 @@ function setTier(tier,btn) {
   document.getElementById('btn-itp-tests').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
   document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All 8+':'🔓 '+ic+' of 8';
   var bc=c.ibtTests.length;
-  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 6';
+  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 7';
   document.getElementById('access-ibt').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
-  document.getElementById('meta-ibt').textContent='6 tests · '+bc+' unlocked';
+  document.getElementById('meta-ibt').textContent='7 tests · '+bc+' unlocked';
   document.getElementById('btn-ibt').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 6';
+  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 7';
   if(c.conv){
     document.getElementById('access-conv').textContent=tier==='premium'?'✓ Full':'✓ Free';
     document.getElementById('access-conv').className='card-access '+(tier==='premium'?'access-premium':'access-free');
