@@ -19,15 +19,22 @@ const PLAN_IDS = {
 };
 
 async function getPayPalAccessToken() {
+  const credentials = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64');
+  console.log('Client ID length:', PAYPAL_CLIENT_ID?.length);
+  console.log('Secret length:', PAYPAL_CLIENT_SECRET?.length);
+  console.log('Credentials base64 length:', credentials?.length);
+  
   const res = await fetch('https://api-m.paypal.com/v1/oauth2/token', {
     method: 'POST',
     headers: {
-      'Authorization': 'Basic ' + Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64'),
+      'Authorization': 'Basic ' + credentials,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: 'grant_type=client_credentials',
   });
   const data = await res.json();
+  console.log('PayPal token response status:', res.status);
+  console.log('PayPal token response:', JSON.stringify(data));
   return data.access_token;
 }
 
