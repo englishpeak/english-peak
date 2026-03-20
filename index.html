@@ -318,8 +318,8 @@ body.sidebar-collapsed .main{margin-left:64px}
     <div class="section-header"><h2>TOEFL Practice</h2><p>Timed mock tests · updated weekly</p></div>
     <div class="cards-grid">
       <div class="ex-card" onclick="openITPTests()">
-        <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 8</div></div>
-        <div class="card-body"><div class="card-title">TOEFL ITP Mock Tests</div><div class="card-desc">Full timed ITP sessions with multiple choice and error detection. <strong>Immediate feedback</strong> included after every test!</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">📅 Weekly updates</span><span class="meta-item" id="meta-itp-tests">8 tests · 3 unlocked</span></div><button class="card-btn btn-partial" id="btn-itp-tests">Start Practice →</button></div>
+        <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 9</div></div>
+        <div class="card-body"><div class="card-title">TOEFL ITP Mock Tests</div><div class="card-desc">Full timed ITP sessions with multiple choice and error detection. <strong>Immediate feedback</strong> included after every test!</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">📅 Weekly updates</span><span class="meta-item" id="meta-itp-tests">9 tests · 3 unlocked</span></div><button class="card-btn btn-partial" id="btn-itp-tests">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get ePeak+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openIBT()">
@@ -425,7 +425,7 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   <!-- ═══ ITP TESTS (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-itp-tests">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL ITP Mock Tests</div><div class="exercise-badge" id="itp-tests-badge">🔓 3 of 8</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL ITP Mock Tests</div><div class="exercise-badge" id="itp-tests-badge">🔓 3 of 9</div></div>
     <iframe class="exercise-frame" id="frame-itp-tests" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -686,10 +686,6 @@ body.sidebar-collapsed .main{margin-left:64px}
           <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Continue with Google
         </button>
-        <div style="background:#f0f7ff;border:1px solid #bcd4f0;border-radius:8px;padding:9px 13px;margin-top:10px;display:flex;gap:8px;align-items:flex-start">
-          <span style="font-size:0.95rem;flex-shrink:0;margin-top:1px">🔒</span>
-          <span style="font-size:0.73rem;color:#4a6a8a;line-height:1.5">Google may show "<strong>jnqekougzmihjqffhuva.supabase.co</strong>" — this is normal. ePeak uses Supabase for secure authentication. Your login and data are fully protected.</span>
-        </div>
         <div class="auth-divider">or</div>
         <div class="auth-input-group"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com"></div>
         <div class="auth-input-group"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
@@ -704,10 +700,6 @@ body.sidebar-collapsed .main{margin-left:64px}
           <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Sign up with Google
         </button>
-        <div style="background:#f0f7ff;border:1px solid #bcd4f0;border-radius:8px;padding:9px 13px;margin-top:10px;display:flex;gap:8px;align-items:flex-start">
-          <span style="font-size:0.95rem;flex-shrink:0;margin-top:1px">🔒</span>
-          <span style="font-size:0.73rem;color:#4a6a8a;line-height:1.5">Google may show "<strong>jnqekougzmihjqffhuva.supabase.co</strong>" — this is normal. ePeak uses Supabase for secure authentication. Your login and data are fully protected.</span>
-        </div>
         <div class="auth-divider">or</div>
         <div class="auth-input-group"><label>Full Name</label><input type="text" id="registerName" placeholder="Alfred"></div>
         <div class="auth-input-group"><label>Email</label><input type="email" id="registerEmail" placeholder="you@example.com"></div>
@@ -912,11 +904,11 @@ function applyTier(tier) {
   document.getElementById('progAvailable').textContent = c.available;
 
   var ic = c.itpTests.length;
-  document.getElementById('access-itp-tests').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8+' : '🔓 ' + ic + ' of 8';
+  document.getElementById('access-itp-tests').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
   document.getElementById('access-itp-tests').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
-  document.getElementById('meta-itp-tests').textContent = '8 tests · ' + ic + ' unlocked';
+  document.getElementById('meta-itp-tests').textContent = '9 tests · ' + ic + ' unlocked';
   document.getElementById('btn-itp-tests').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8+' : '🔓 ' + ic + ' of 8';
+  document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
 
   var bc = c.ibtTests.length;
   document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 6' : '🔓 ' + bc + ' of 7';
@@ -1044,7 +1036,7 @@ async function doRegister() {
 async function signInGoogle() {
   await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: 'https://epeak.app' }
+    options: { redirectTo: 'https://english-peak.vercel.app' }
   });
 }
 
@@ -1078,9 +1070,9 @@ var currentTier = 'visitor';
 var TIERS = {
   visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
   free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3','test4'],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
 function setTier(tier,btn) {
@@ -1097,11 +1089,11 @@ function setTier(tier,btn) {
   document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
   document.getElementById('progAvailable').textContent=c.available;
   var ic=c.itpTests.length;
-  document.getElementById('access-itp-tests').textContent=tier==='premium'?'✓ All 8+':'🔓 '+ic+' of 8';
+  document.getElementById('access-itp-tests').textContent=tier==='premium'?'✓ All 9':'🔓 '+ic+' of 9';
   document.getElementById('access-itp-tests').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
-  document.getElementById('meta-itp-tests').textContent='8 tests · '+ic+' unlocked';
+  document.getElementById('meta-itp-tests').textContent='9 tests · '+ic+' unlocked';
   document.getElementById('btn-itp-tests').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All 8+':'🔓 '+ic+' of 8';
+  document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All 9':'🔓 '+ic+' of 9';
   var bc=c.ibtTests.length;
   document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 7';
   document.getElementById('access-ibt').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
@@ -1143,7 +1135,7 @@ function openITPTests() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-itp-tests').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'TOEFL ITP Mock Tests';
-  document.getElementById('itp-tests-badge').textContent = currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy' ? '✓ All 8+' : '🔓 '+allowed.length+' of 8';
+  document.getElementById('itp-tests-badge').textContent = currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy' ? '✓ All 9' : '🔓 '+allowed.length+' of 9';
   var frame = document.getElementById('frame-itp-tests');
   frame.src = '/itp?allowed=' + allowed.join(',');
   closeMobileSidebar();
