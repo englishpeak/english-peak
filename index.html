@@ -1167,8 +1167,7 @@ function openGeneral() {
   var isFree = currentTier === 'free';
   document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 4 of 6' : '🔓 1 of 6';
   var frame = document.getElementById('frame-general');
-  frame.src = '/general?allowed=' + allowed.join(',');
-  closeMobileSidebar();
+frame.src = '/general?allowed=' + allowed.join(',');  closeMobileSidebar();
 }
 
 function openConv() {
