@@ -4,8 +4,7 @@
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+const stripe = new Stripe('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');const sconst sb = createClient('https://jnqekougzmihjqffhuva.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpucWVrb3Vnem1paGpxZmZodXZhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3Mjc3MzU2NywiZXhwIjoyMDg4MzQ5NTY3fQ.G8J46Un4ORa7xG_pM3K1witBYyTj9MELvxI4NVsl2BY');b = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
 const PRICE_IDS = {
   mxn_monthly: 'price_1TCw7hF2ctV3Sh1lQXJDWYTl',
