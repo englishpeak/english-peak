@@ -1,5 +1,5 @@
 // api/create-subscription.js
-// Vercel Serverless Function — inicia una suscripción PayPal y guarda el ID en Supabase
+// Vercel Serverless Function — inicia una suscripción PayPal y guarda el ID en Supabase // updated
 
 import { createClient } from '@supabase/supabase-js';
 
