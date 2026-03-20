@@ -1,10 +1,12 @@
 // api/create-checkout-session.js
-// Vercel Serverless Function — crea un SetupIntent/Subscription con Stripe
-
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
-const stripe = new Stripe('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');const sconst sb = createClient('https://jnqekougzmihjqffhuva.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpucWVrb3Vnem1paGpxZmZodXZhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3Mjc3MzU2NywiZXhwIjoyMDg4MzQ5NTY3fQ.G8J46Un4ORa7xG_pM3K1witBYyTj9MELvxI4NVsl2BY');b = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+const stripe = new Stripe('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');
+const sb = createClient(
+  'https://jnqekougzmihjqffhuva.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpucWVrb3Vnem1paGpxZmZodXZhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3Mjc3MzU2NywiZXhwIjoyMDg4MzQ5NTY3fQ.G8J46Un4ORa7xG_pM3K1witBYyTj9MELvxI4NVsl2BY'
+);
 
 const PRICE_IDS = {
   mxn_monthly: 'price_1TCw7hF2ctV3Sh1lQXJDWYTl',
@@ -30,7 +32,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Busca o crea el customer en Stripe
     let customerId;
     const { data: profile } = await sb
       .from('profiles')
@@ -38,7 +39,7 @@ export default async function handler(req, res) {
       .eq('id', userId)
       .single();
 
-    if (profile?.stripe_customer_id) {
+    if (profile && profile.stripe_customer_id) {
       customerId = profile.stripe_customer_id;
     } else {
       const customer = await stripe.customers.create({
@@ -49,7 +50,6 @@ export default async function handler(req, res) {
       await sb.from('profiles').update({ stripe_customer_id: customerId }).eq('id', userId);
     }
 
-    // Crea la suscripción con payment_behavior incomplete para obtener clientSecret
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
       items: [{ price: priceId }],
@@ -61,7 +61,6 @@ export default async function handler(req, res) {
 
     const clientSecret = subscription.latest_invoice.payment_intent.client_secret;
 
-    // Guarda el subscription ID en Supabase
     await sb.from('profiles').update({
       stripe_subscription_id: subscription.id,
       subscription_status: 'pending',
@@ -69,11 +68,11 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       subscriptionId: subscription.id,
-      clientSecret,
+      clientSecret: clientSecret,
     });
 
   } catch (err) {
-    console.error('create-checkout-session error:', err);
+    console.error('create-checkout-session error:', err.message);
     return res.status(500).json({ error: err.message });
   }
 }
