@@ -1068,11 +1068,11 @@ function loadFrame(frameId, b64, replacements) {
 // ═══ TIER STATE ═══
 var currentTier = 'visitor';
 var TIERS = {
-  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:[1],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
-  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:[1,2,3],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
+  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3','test4'],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
+  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
 function setTier(tier,btn) {
