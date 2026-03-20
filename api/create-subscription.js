@@ -5,8 +5,8 @@ import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL          = process.env.SUPABASE_URL;
 const SUPABASE_KEY          = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const PAYPAL_CLIENT_ID      = process.env.PAYPAL_CLIENT_ID;
-const PAYPAL_CLIENT_SECRET  = process.env.PAYPAL_CLIENT_SECRET;
+const PAYPAL_CLIENT_ID      = 'AQ7DB27WRJCKjxejTeIV6QpcA60ePw7wcO3fQYWLCoUgB22rEGLSKEDu91K5U0jf5-g4oMqTUrj0FUW_';
+const PAYPAL_CLIENT_SECRET  = 'EMeQ3natyCHwp9odlML73GylHQEuklxZv0LAFcqB5z45LByJmylS3BH0nDkuVvbBkOfikCUPS_Z6mvgf';
 
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
