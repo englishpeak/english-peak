@@ -229,9 +229,10 @@ body.sidebar-collapsed .main{margin-left:64px}
     <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Progress</span></button>
     <button class="nav-item" onclick="showModal()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="nav-label">ePeak+</span></button>
     <button class="nav-item" onclick="alert('PDFs coming soon for ePeak+ members.')"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Downloads</span></button>
+    <button class="nav-item" id="navProfile" onclick="showProfile()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label">My Profile</span></button>
   </nav>
   <div class="sidebar-footer">
-    <div class="user-pill">
+    <div class="user-pill" onclick="showProfile()" style="cursor:pointer;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'" title="My Profile">
       <div class="user-avatar" id="sidebarAvatar">👤</div>
       <div class="user-info">
         <div class="user-name" id="sidebarName">Guest</div>
@@ -450,6 +451,106 @@ body.sidebar-collapsed .main{margin-left:64px}
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Conversation Topics</div><div class="exercise-badge" id="conv-badge">✓ Free</div></div>
     <iframe class="exercise-frame" id="frame-conv" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
+
+  <!-- ═══ PROFILE / SETTINGS ═══ -->
+  <div class="screen" id="screen-profile">
+  <div class="content" style="padding:32px;flex:1;max-width:680px">
+
+    <!-- Header card -->
+    <div class="progress-card" style="margin-bottom:28px">
+      <div style="display:flex;align-items:center;gap:20px;flex:1;min-width:0">
+        <div id="profileAvatarBig" style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:white;flex-shrink:0;border:3px solid rgba(255,255,255,0.3)">?</div>
+        <div style="min-width:0">
+          <div id="profileName" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+          <div id="profileEmail" style="font-size:0.82rem;opacity:0.65;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+          <div id="profileTierBadge" style="display:inline-block;margin-top:6px;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:white">Free Account</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscription section -->
+    <div style="background:white;border-radius:18px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:20px">
+      <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy)">Subscription</div>
+      </div>
+      <div style="padding:20px 24px" id="profileSubContent">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <div>
+            <div id="profileSubStatus" style="font-size:0.95rem;font-weight:600;color:var(--navy)">Free Account</div>
+            <div id="profileSubDetail" style="font-size:0.8rem;color:#888;margin-top:3px">Upgrade to ePeak+ to unlock all exercises.</div>
+          </div>
+          <div id="profileSubActions"></div>
+        </div>
+        <div id="profileCancelZone" style="display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
+          <div style="font-size:0.82rem;color:#888;margin-bottom:12px">Canceling will keep your ePeak+ access until the end of your current billing period.</div>
+          <button onclick="confirmCancelSubscription()" id="btnCancelSub"
+            style="padding:9px 20px;background:rgba(192,57,43,0.08);color:#c0392b;border:1.5px solid rgba(192,57,43,0.2);border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s">
+            Cancel subscription
+          </button>
+          <div id="cancelMsg" style="font-size:0.78rem;margin-top:8px;display:none"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account info -->
+    <div style="background:white;border-radius:18px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:20px">
+      <div style="padding:20px 24px;border-bottom:1px solid var(--border)">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy)">Account Info</div>
+      </div>
+      <div style="padding:0">
+
+        <!-- Display name -->
+        <div style="padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:16px">
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:3px">Display name</div>
+            <div id="profileDisplayName" style="font-size:0.92rem;color:var(--ink)">—</div>
+          </div>
+          <button onclick="showEditName()" style="padding:6px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;color:var(--navy);font-family:'Outfit',sans-serif;flex-shrink:0">Edit</button>
+        </div>
+        <!-- Edit name inline -->
+        <div id="editNameRow" style="display:none;padding:16px 24px;background:#f9fafc;border-bottom:1px solid var(--border)">
+          <input type="text" id="newNameInput" placeholder="Your name"
+            style="padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.9rem;font-family:'Outfit',sans-serif;color:var(--ink);outline:none;background:white;width:100%;max-width:280px;box-sizing:border-box;margin-right:8px">
+          <button onclick="saveDisplayName()" style="padding:9px 16px;background:var(--navy);color:white;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:8px">Save</button>
+          <button onclick="hideEditName()" style="padding:9px 14px;background:none;border:none;font-size:0.82rem;color:#888;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:8px">Cancel</button>
+          <div id="editNameMsg" style="font-size:0.78rem;margin-top:6px;display:none"></div>
+        </div>
+
+        <!-- Email -->
+        <div style="padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)">
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:3px">Email</div>
+            <div id="profileEmailField" style="font-size:0.92rem;color:var(--ink)">—</div>
+          </div>
+        </div>
+
+        <!-- Member since -->
+        <div style="padding:16px 24px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:3px">Member since</div>
+            <div id="profileMemberSince" style="font-size:0.92rem;color:var(--ink)">—</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Danger zone -->
+    <div style="background:white;border-radius:18px;border:1.5px solid rgba(192,57,43,0.2);overflow:hidden">
+      <div style="padding:20px 24px;border-bottom:1px solid rgba(192,57,43,0.1)">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#c0392b">Danger Zone</div>
+      </div>
+      <div style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-size:0.92rem;font-weight:600;color:var(--ink)">Sign out</div>
+          <div style="font-size:0.8rem;color:#888;margin-top:2px">Sign out of your ePeak account on this device.</div>
+        </div>
+        <button onclick="doSignOut()" style="padding:9px 20px;background:rgba(192,57,43,0.08);color:#c0392b;border:1.5px solid rgba(192,57,43,0.2);border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">Sign out</button>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- end profile -->
 
 </main>
 
@@ -1105,6 +1206,158 @@ async function showProgress() {
   document.getElementById('topbarSub').textContent = 'Your complete exercise history';
   closeMobileSidebar();
   await loadProgressHistory();
+}
+
+// ═══════════════════════════════════════
+// PROFILE / SETTINGS
+// ═══════════════════════════════════════
+async function showProfile() {
+  if (!_currentUser) { showAuthModal('login'); return; }
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('screen-profile').classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+  document.getElementById('navProfile').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'My Profile';
+  document.getElementById('topbarSub').textContent = 'Account settings & subscription';
+  closeMobileSidebar();
+  renderProfilePage();
+}
+
+function renderProfilePage() {
+  if (!_currentUser) return;
+  var profile = _currentProfile || {};
+  var tier    = profile.tier || 'free';
+  var name    = profile.full_name || _currentUser.email.split('@')[0];
+  var email   = _currentUser.email || '—';
+  var initial = name ? name[0].toUpperCase() : '?';
+  var created = _currentUser.created_at
+    ? new Date(_currentUser.created_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' })
+    : '—';
+
+  // Header card
+  document.getElementById('profileAvatarBig').textContent  = initial;
+  document.getElementById('profileName').textContent        = name;
+  document.getElementById('profileEmail').textContent       = email;
+  document.getElementById('profileDisplayName').textContent = name;
+  document.getElementById('profileEmailField').textContent  = email;
+  document.getElementById('profileMemberSince').textContent = created;
+
+  var tierLabels = {
+    premium:  '⭐ ePeak+ Member',
+    teacher:  '🎓 Teacher Account',
+    courtesy: '🎁 Courtesy Access',
+    free:     'Free Account'
+  };
+  document.getElementById('profileTierBadge').textContent = tierLabels[tier] || 'Free Account';
+
+  // Pre-fill name input
+  document.getElementById('newNameInput').value = name;
+
+  // Subscription section
+  var isPremium = (tier === 'premium' || tier === 'teacher' || tier === 'courtesy');
+  var subStatus = document.getElementById('profileSubStatus');
+  var subDetail = document.getElementById('profileSubDetail');
+  var subActions = document.getElementById('profileSubActions');
+  var cancelZone = document.getElementById('profileCancelZone');
+
+  if (tier === 'premium') {
+    subStatus.textContent = '⭐ ePeak+ Active';
+    subStatus.style.color = '#1a7a4a';
+    subDetail.textContent = 'You have full access to all exercises and content.';
+    subActions.innerHTML  = '<button onclick="toggleCancelZone()" style="padding:8px 16px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;color:#888;font-family:\'Outfit\',sans-serif">Manage subscription</button>';
+    cancelZone.style.display = 'none';
+  } else if (tier === 'teacher') {
+    subStatus.textContent = '🎓 Teacher Account';
+    subStatus.style.color = 'var(--navy)';
+    subDetail.textContent = 'Full access granted by ePeak. No subscription needed.';
+    subActions.innerHTML  = '';
+    cancelZone.style.display = 'none';
+  } else if (tier === 'courtesy') {
+    subStatus.textContent = '🎁 Courtesy Access';
+    subStatus.style.color = '#e65100';
+    subDetail.textContent = 'Complimentary access granted. Full exercises unlocked.';
+    subActions.innerHTML  = '';
+    cancelZone.style.display = 'none';
+  } else {
+    subStatus.textContent = 'Free Account';
+    subStatus.style.color = 'var(--navy)';
+    subDetail.textContent = 'Upgrade to ePeak+ to unlock all exercises and weekly content.';
+    subActions.innerHTML  = '<button onclick="showModal()" style="padding:9px 18px;background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:\'Outfit\',sans-serif">⭐ Upgrade to ePeak+</button>';
+    cancelZone.style.display = 'none';
+  }
+}
+
+function toggleCancelZone() {
+  var z = document.getElementById('profileCancelZone');
+  z.style.display = z.style.display === 'none' ? 'block' : 'none';
+}
+
+async function confirmCancelSubscription() {
+  var btn = document.getElementById('btnCancelSub');
+  var msg = document.getElementById('cancelMsg');
+  if (!confirm('Are you sure you want to cancel your ePeak+ subscription?\n\nYou\'ll keep access until the end of your current billing period.')) return;
+  btn.disabled = true;
+  btn.textContent = 'Canceling...';
+  msg.style.display = 'none';
+  try {
+    // Call Stripe cancel endpoint
+    var res = await fetch('/api/cancel-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: _currentUser.id })
+    });
+    var data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Could not cancel subscription');
+    // Update local profile
+    if (_currentProfile) _currentProfile.subscription_status = 'canceling';
+    msg.style.color = '#1a7a4a';
+    msg.textContent = '✅ Subscription canceled. You\'ll keep access until the end of your billing period.';
+    msg.style.display = 'block';
+    btn.style.display = 'none';
+    // Reload profile from DB
+    await loadProfile();
+    renderProfilePage();
+  } catch(e) {
+    msg.style.color = '#c0392b';
+    msg.textContent = '❌ ' + e.message;
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Cancel subscription';
+  }
+}
+
+function showEditName() {
+  document.getElementById('editNameRow').style.display = 'block';
+  document.getElementById('newNameInput').focus();
+  document.getElementById('editNameMsg').style.display = 'none';
+}
+function hideEditName() {
+  document.getElementById('editNameRow').style.display = 'none';
+}
+async function saveDisplayName() {
+  var input = document.getElementById('newNameInput');
+  var msg   = document.getElementById('editNameMsg');
+  var name  = input.value.trim();
+  if (!name) { msg.style.color='#c0392b'; msg.textContent='Please enter a name.'; msg.style.display='block'; return; }
+  msg.style.display = 'none';
+  var { error } = await sb.from('profiles').update({ full_name: name }).eq('id', _currentUser.id);
+  if (error) {
+    msg.style.color = '#c0392b';
+    msg.textContent = '❌ ' + error.message;
+    msg.style.display = 'block';
+    return;
+  }
+  if (_currentProfile) _currentProfile.full_name = name;
+  msg.style.color = '#1a7a4a';
+  msg.textContent = '✅ Name updated!';
+  msg.style.display = 'block';
+  hideEditName();
+  renderProfilePage();
+  // Update sidebar too
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('profileAvatarBig').textContent = name[0].toUpperCase();
+  document.getElementById('sidebarAvatar').textContent    = name[0].toUpperCase();
+  setTimeout(function(){ msg.style.display='none'; }, 3000);
 }
 
 async function loadProgressHistory() {
