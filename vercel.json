@@ -10,7 +10,7 @@
     { "source": "/ibt/:path*",      "destination": "/ibt_index.html" },
     { "source": "/conversations",        "destination": "/conv_index.html" },
     { "source": "/conversations/:path*", "destination": "/conv_index.html" },
-    { "source": "/general",         "destination": "/itp_index.html" },
-    { "source": "/general/:path*",  "destination": "/itp_index.html" }
+    { "source": "/general",         "destination": "/general_index.html" },
+    { "source": "/general/:path*",  "destination": "/general_index.html" }
   ]
 }
