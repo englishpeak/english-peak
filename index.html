@@ -1165,9 +1165,10 @@ function openGeneral() {
   document.getElementById('topbarTitle').textContent = 'General English Practice';
   var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
   var isFree = currentTier === 'free';
-  document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 3 of 6' : '🔓 1 of 6';
+  document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 4 of 6' : '🔓 1 of 6';
   var frame = document.getElementById('frame-general');
-frame.src = '/general?allowed=' + allowed.map(function(n){ return 'test'+n; }).join(',');  closeMobileSidebar();
+  frame.src = '/general?allowed=' + allowed.join(',');
+  closeMobileSidebar();
 }
 
 function openConv() {
