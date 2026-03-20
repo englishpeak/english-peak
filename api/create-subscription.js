@@ -12,29 +12,22 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Plan IDs de PayPal — 50% de descuento de lanzamiento hasta el 23 de junio de 2026
 const PLAN_IDS = {
-  mxn_monthly: 'P-5YD77387NJ355805NNG6KF7Y',
-  mxn_yearly:  'P-6SS599242F0241611NG6KGRA',
-  usd_monthly: 'P-10C29387TN016641KNG6KICI',
-  usd_yearly:  'P-74P53989VK6790431NG6KIQI',
+  mxn_monthly: 'P-4EW57030EK663731NNG6NUJI',
+  mxn_yearly:  'P-1F785907HY745615HNG6NUZI',
+  usd_monthly: 'P-72X67946PA061682BNG6NVEQ',
+  usd_yearly:  'P-8SF707964V258384LNG6NVTI',
 };
 
 async function getPayPalAccessToken() {
-  const credentials = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64');
-  console.log('Client ID length:', PAYPAL_CLIENT_ID?.length);
-  console.log('Secret length:', PAYPAL_CLIENT_SECRET?.length);
-  console.log('Credentials base64 length:', credentials?.length);
-  
   const res = await fetch('https://api-m.paypal.com/v1/oauth2/token', {
     method: 'POST',
     headers: {
-      'Authorization': 'Basic ' + credentials,
+      'Authorization': 'Basic ' + Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64'),
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: 'grant_type=client_credentials',
   });
   const data = await res.json();
-  console.log('PayPal token response status:', res.status);
-  console.log('PayPal token response:', JSON.stringify(data));
   return data.access_token;
 }
 
