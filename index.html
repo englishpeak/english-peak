@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ePeak</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 /* ── RESET & VARS ── */
 :root{--navy:#0D3B6F;--purple:#470074;--ink:#1A1A2E;--sky:#4A90D9;--bg:#F7F8FC;--border:rgba(13,59,111,0.12);--green:#1a7a4a;--gold:#C9A84C;--sidebar:240px;}
@@ -453,79 +454,116 @@ body.sidebar-collapsed .main{margin-left:64px}
 
 <!-- UPGRADE MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal" style="max-width:480px;text-align:left;padding:36px">
+  <div class="modal" style="max-width:500px;text-align:left;padding:36px">
 
-    <div style="text-align:center;margin-bottom:28px">
-      <div style="font-size:2.4rem;margin-bottom:10px">⭐</div>
-      <div class="modal-title2" style="font-size:1.8rem">Unlock ePeak+</div>
-      <div class="modal-sub2" style="margin-bottom:0">All exercises · Weekly content · No ads · PDFs</div>
-    </div>
+    <!-- Step 1: Plan selector -->
+    <div id="stepPlan">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:2.4rem;margin-bottom:10px">⭐</div>
+        <div class="modal-title2" style="font-size:1.8rem">Unlock ePeak+</div>
+        <div class="modal-sub2" style="margin-bottom:0">Todos los ejercicios · Contenido semanal · Sin anuncios · PDFs</div>
+      </div>
 
-    <!-- Currency selector -->
-    <div style="display:flex;gap:8px;margin-bottom:20px;justify-content:center">
-      <button id="btnCurrencyMXN" onclick="selectCurrency('mxn')"
-        style="flex:1;padding:8px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid var(--navy);background:var(--navy);color:white;transition:all .2s">
-        🇲🇽 MXN
-      </button>
-      <button id="btnCurrencyUSD" onclick="selectCurrency('usd')"
-        style="flex:1;padding:8px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:var(--bg);color:var(--navy);transition:all .2s">
-        🇺🇸 USD
-      </button>
-    </div>
+      <!-- Currency selector -->
+      <div style="display:flex;gap:8px;margin-bottom:20px">
+        <button id="btnCurrencyMXN" onclick="selectCurrency('mxn')"
+          style="flex:1;padding:8px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid var(--navy);background:var(--navy);color:white;transition:all .2s">
+          🇲🇽 MXN
+        </button>
+        <button id="btnCurrencyUSD" onclick="selectCurrency('usd')"
+          style="flex:1;padding:8px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:var(--bg);color:var(--navy);transition:all .2s">
+          🇺🇸 USD
+        </button>
+      </div>
 
-    <!-- Monthly plan -->
-    <div class="modal-opt" id="planMonthly" onclick="selectPlan('monthly')"
-      style="margin-bottom:12px;cursor:pointer;border:2px solid var(--border);transition:all .2s">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div>
-          <div class="modal-opt-title">📅 Mensual</div>
-          <div class="modal-opt-sub">Cancela cuando quieras</div>
+      <!-- Monthly plan -->
+      <div class="modal-opt" id="planMonthly" onclick="selectPlan('monthly')"
+        style="margin-bottom:12px;cursor:pointer;border:2px solid var(--border);transition:all .2s">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div class="modal-opt-title">📅 Mensual</div>
+            <div class="modal-opt-sub">Cancela cuando quieras</div>
+          </div>
+          <div style="text-align:right">
+            <div id="priceMonthly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$99 MXN</div>
+            <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceFull">$199 MXN</div>
+            <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+          </div>
         </div>
-        <div style="text-align:right">
-          <div id="priceMonthly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$99 MXN</div>
-          <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceFull">$199 MXN</div>
-          <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+      </div>
+
+      <!-- Yearly plan -->
+      <div class="modal-opt highlight" id="planYearly" onclick="selectPlan('yearly')"
+        style="margin-bottom:20px;cursor:pointer;border:2px solid var(--purple);background:linear-gradient(135deg,rgba(13,59,111,0.03),rgba(71,0,116,0.05));transition:all .2s">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div class="modal-opt-title">🗓 Anual <span style="font-size:0.72rem;font-weight:600;color:var(--green);background:rgba(13,122,74,0.1);padding:2px 8px;border-radius:10px;margin-left:6px">MEJOR PRECIO</span></div>
+            <div class="modal-opt-sub" id="yearlySubtext">Ahorra vs mensual · equivale a $79.58/mes</div>
+          </div>
+          <div style="text-align:right">
+            <div id="priceYearly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$955 MXN</div>
+            <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceYearlyFull">$1,910 MXN</div>
+            <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+          </div>
         </div>
+      </div>
+
+      <!-- Continue to payment button -->
+      <button onclick="goToPayment()"
+        style="width:100%;padding:16px;background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;margin-bottom:12px">
+        Continuar con el pago →
+      </button>
+
+      <button onclick="closeModal();showAuthModal('register')"
+        style="width:100%;padding:12px;background:var(--bg);color:var(--navy);border:1.5px solid var(--border);border-radius:10px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;margin-bottom:14px">
+        🆓 Crear cuenta gratis (sin pago)
+      </button>
+
+      <div style="text-align:center;margin-bottom:16px">
+        <button class="modal-close-btn" onclick="closeModal()">Quizás después</button>
+      </div>
+
+      <div style="display:flex;gap:16px;padding-top:16px;border-top:1px solid var(--border);justify-content:center;flex-wrap:wrap">
+        <span style="font-size:0.72rem;color:#888">✓ Cancela cuando quieras</span>
+        <span style="font-size:0.72rem;color:#888">✓ Sin contratos</span>
+        <span style="font-size:0.72rem;color:#888">✓ Pago seguro con Stripe</span>
       </div>
     </div>
 
-    <!-- Yearly plan -->
-    <div class="modal-opt highlight" id="planYearly" onclick="selectPlan('yearly')"
-      style="margin-bottom:20px;cursor:pointer;border:2px solid var(--purple);background:linear-gradient(135deg,rgba(13,59,111,0.03),rgba(71,0,116,0.05));transition:all .2s">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <!-- Step 2: Payment form -->
+    <div id="stepPayment" style="display:none">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <button onclick="backToPlan()" style="background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--navy)">←</button>
         <div>
-          <div class="modal-opt-title">🗓 Anual <span style="font-size:0.72rem;font-weight:600;color:var(--green);background:rgba(13,122,74,0.1);padding:2px 8px;border-radius:10px;margin-left:6px">MEJOR PRECIO</span></div>
-          <div class="modal-opt-sub">Ahorra vs mensual · equivale a $79.58/mes</div>
-        </div>
-        <div style="text-align:right">
-          <div id="priceYearly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$955 MXN</div>
-          <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceYearlyFull">$1,910 MXN</div>
-          <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy)">Datos de pago</div>
+          <div id="paymentSummary" style="font-size:0.78rem;color:#888">ePeak+ Anual · $955 MXN</div>
         </div>
       </div>
-    </div>
 
-    <!-- PayPal button -->
-    <button id="btnPayPal" onclick="startPayPalSubscription()"
-      style="width:100%;padding:16px;background:linear-gradient(135deg,#0070BA,#003087);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;transition:opacity .2s">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
-      Suscribirme con PayPal
-    </button>
+      <!-- Name field -->
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:7px">Nombre en la tarjeta</label>
+        <input type="text" id="cardholderName" placeholder="Como aparece en tu tarjeta"
+          style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;font-family:'Outfit',sans-serif;color:var(--ink);outline:none;background:var(--bg);box-sizing:border-box">
+      </div>
 
-    <!-- Free account option -->
-    <button onclick="closeModal();showAuthModal('register')"
-      style="width:100%;padding:12px;background:var(--bg);color:var(--navy);border:1.5px solid var(--border);border-radius:10px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;margin-bottom:14px">
-      🆓 Crear cuenta gratis (sin pago)
-    </button>
+      <!-- Stripe card element -->
+      <div style="margin-bottom:20px">
+        <label style="display:block;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:7px">Datos de tarjeta</label>
+        <div id="card-element" style="padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg)"></div>
+        <div id="card-errors" style="color:#c0392b;font-size:0.78rem;margin-top:6px"></div>
+      </div>
 
-    <div style="text-align:center">
-      <button class="modal-close-btn" onclick="closeModal()">Quizás después</button>
-    </div>
+      <!-- Pay button -->
+      <button id="btnPay" onclick="submitPayment()"
+        style="width:100%;padding:16px;background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;margin-bottom:12px">
+        🔒 Suscribirme ahora
+      </button>
 
-    <div style="display:flex;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);justify-content:center;flex-wrap:wrap">
-      <span style="font-size:0.72rem;color:#888">✓ Cancela cuando quieras</span>
-      <span style="font-size:0.72rem;color:#888">✓ Sin contratos</span>
-      <span style="font-size:0.72rem;color:#888">✓ Seguro con PayPal</span>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <span style="font-size:0.72rem;color:#aaa">🔒 Pago seguro con Stripe</span>
+        <span style="font-size:0.72rem;color:#aaa">✓ Cancela cuando quieras</span>
+      </div>
     </div>
 
   </div>
@@ -1311,14 +1349,16 @@ checkHamburger();
 
 
 // ═══════════════════════════════════════
-// PAYPAL SUBSCRIPTION
+// STRIPE SUBSCRIPTION
 // ═══════════════════════════════════════
 var _selectedCurrency = 'mxn';
 var _selectedPlan     = 'yearly';
+var _stripeInstance   = null;
+var _cardElement      = null;
 
 var _prices = {
-  mxn: { monthly: '$99 MXN', monthly_full: '$199 MXN', yearly: '$955 MXN', yearly_full: '$1,910 MXN' },
-  usd: { monthly: '$6 USD',  monthly_full: '$12 USD',  yearly: '$58 USD',  yearly_full: '$116 USD'  },
+  mxn: { monthly: '$99 MXN', monthly_full: '$199 MXN', yearly: '$955 MXN', yearly_full: '$1,910 MXN', yearly_sub: 'Ahorra vs mensual · equivale a $79.58/mes' },
+  usd: { monthly: '$6 USD',  monthly_full: '$12 USD',  yearly: '$58 USD',  yearly_full: '$116 USD', yearly_sub: 'Save vs monthly · equals $4.83/mo' },
 };
 
 function selectCurrency(currency) {
@@ -1337,6 +1377,8 @@ function selectCurrency(currency) {
   document.getElementById('priceFull').textContent       = p.monthly_full;
   document.getElementById('priceYearly').textContent     = p.yearly;
   document.getElementById('priceYearlyFull').textContent = p.yearly_full;
+  var sub = document.getElementById('yearlySubtext');
+  if (sub) sub.textContent = p.yearly_sub;
 }
 
 function selectPlan(plan) {
@@ -1349,18 +1391,67 @@ function selectPlan(plan) {
   yearly.style.borderColor  = plan === 'yearly'  ? 'var(--purple)' : 'var(--border)';
 }
 
-async function startPayPalSubscription() {
+function goToPayment() {
   if (!_currentUser) {
     closeModal();
     showAuthModal('register');
     return;
   }
-  var btn = document.getElementById('btnPayPal');
-  btn.disabled = true;
-  btn.textContent = 'Redirigiendo a PayPal...';
+  // Muestra el step de pago
+  document.getElementById('stepPlan').style.display    = 'none';
+  document.getElementById('stepPayment').style.display = 'block';
+
+  // Actualiza el resumen
+  var p = _prices[_selectedCurrency];
+  var price = _selectedPlan === 'yearly' ? p.yearly : p.monthly;
+  var cycle = _selectedPlan === 'yearly' ? 'Anual' : 'Mensual';
+  document.getElementById('paymentSummary').textContent = 'ePeak+ ' + cycle + ' · ' + price;
+
+  // Inicializa Stripe si no está listo
+  if (!_stripeInstance) {
+    _stripeInstance = Stripe('pk_live_51TCvwtF2ctV3Sh1lTU3LA83PMB6iauAI884Sk7rDdvM2VROgXolKaN32aLFTJ5RkbHqDCR0jNlMrDOEep9zQWDHw006BiEmdcM');
+    var elements = _stripeInstance.elements();
+    _cardElement = elements.create('card', {
+      style: {
+        base: {
+          fontFamily: "'Outfit', sans-serif",
+          fontSize: '16px',
+          color: '#1A1A2E',
+          '::placeholder': { color: '#aab' },
+        },
+      },
+    });
+    _cardElement.mount('#card-element');
+    _cardElement.on('change', function(e) {
+      var el = document.getElementById('card-errors');
+      if (el) el.textContent = e.error ? e.error.message : '';
+    });
+  }
+}
+
+function backToPlan() {
+  document.getElementById('stepPlan').style.display    = 'block';
+  document.getElementById('stepPayment').style.display = 'none';
+}
+
+async function submitPayment() {
+  if (!_currentUser || !_stripeInstance || !_cardElement) return;
+
+  var btn  = document.getElementById('btnPay');
+  var name = document.getElementById('cardholderName').value.trim();
+
+  if (!name) {
+    document.getElementById('card-errors').textContent = 'Por favor ingresa el nombre en la tarjeta.';
+    return;
+  }
+
+  btn.disabled    = true;
+  btn.textContent = 'Procesando...';
+
   try {
+    // 1. Crea la sesión en el servidor
     var planKey = _selectedCurrency + '_' + _selectedPlan;
-    var res = await fetch('/api/create-subscription', {
+    var res = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1370,21 +1461,38 @@ async function startPayPalSubscription() {
       }),
     });
     var data = await res.json();
-    if (!res.ok || !data.approvalUrl) {
-      throw new Error(data.error || 'No se pudo crear la suscripción');
+
+    if (!res.ok) throw new Error(data.error || 'Error al crear la sesión');
+
+    // 2. Confirma el pago con Stripe directamente
+    var { error, paymentIntent } = await _stripeInstance.confirmCardPayment(data.clientSecret, {
+      payment_method: {
+        card: _cardElement,
+        billing_details: { name: name, email: _currentUser.email },
+      },
+    });
+
+    if (error) {
+      document.getElementById('card-errors').textContent = error.message;
+      btn.disabled    = false;
+      btn.textContent = '🔒 Suscribirme ahora';
+      return;
     }
-    window.location.href = data.approvalUrl;
+
+    // 3. Pago exitoso — redirige a success
+    window.location.href = 'https://epeak.app/?payment=success';
+
   } catch (err) {
-    console.error('startPayPalSubscription error:', err);
-    btn.disabled = false;
-    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg> Suscribirme con PayPal';
-    alert('Error: ' + err.message + '\n\nIntenta de nuevo o contacta soporte.');
+    console.error('submitPayment error:', err);
+    document.getElementById('card-errors').textContent = 'Error: ' + err.message;
+    btn.disabled    = false;
+    btn.textContent = '🔒 Suscribirme ahora';
   }
 }
 
-// Detecta regreso de PayPal con ?payment=success o ?payment=cancelled
+// Detecta regreso con ?payment=success o ?payment=cancelled
 (function checkPaymentReturn() {
-  var params = new URLSearchParams(window.location.search);
+  var params  = new URLSearchParams(window.location.search);
   var payment = params.get('payment');
   if (payment === 'success') {
     setTimeout(async function() {
@@ -1397,6 +1505,7 @@ async function startPayPalSubscription() {
     history.replaceState({}, document.title, window.location.pathname);
   }
 })();
+
 
 </script>
 </body>
