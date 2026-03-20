@@ -22,7 +22,7 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 .nav-item{display:flex;align-items:center;gap:12px;padding:11px 10px;border-radius:10px;color:rgba(255,255,255,0.55);font-size:0.88rem;font-weight:500;cursor:pointer;transition:all .2s;margin-bottom:4px;border:none;background:none;width:100%;text-align:left;font-family:'Outfit',sans-serif;white-space:nowrap;overflow:hidden}
 .nav-item:hover{background:rgba(255,255,255,0.08);color:white}
 .nav-item.active{background:rgba(255,255,255,0.12);color:white}
-.nav-item .icon{font-size:1.1rem;width:22px;height:22px;text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.nav-item .icon{font-size:1.1rem;width:22px;text-align:center;flex-shrink:0}
 .nav-item .nav-label{transition:opacity .2s;opacity:1}
 .sidebar.collapsed .nav-label{opacity:0;width:0;overflow:hidden}
 .sidebar-footer{padding:12px 8px;border-top:1px solid rgba(255,255,255,0.08);overflow:hidden}
@@ -224,10 +224,10 @@ body.sidebar-collapsed .main{margin-left:64px}
     
   </div>
   <nav class="sidebar-nav">
-    <button class="nav-item active" onclick="showDashboard()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="nav-label">Dashboard</span></button>
-    <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Progress</span></button>
-    <button class="nav-item" onclick="showModal()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="nav-label">ePeak+</span></button>
-    <button class="nav-item" onclick="alert('PDFs coming soon for ePeak+ members.')"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Downloads</span></button>
+    <button class="nav-item active" onclick="showDashboard()"><span class="icon">🏠</span><span class="nav-label">Dashboard</span></button>
+    <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon">📊</span><span class="nav-label">My Progress</span></button>
+    <button class="nav-item" onclick="showModal()"><span class="icon">⭐</span><span class="nav-label">ePeak+</span></button>
+    <button class="nav-item" onclick="alert('PDFs coming soon for ePeak+ members.')"><span class="icon">📥</span><span class="nav-label">Downloads</span></button>
   </nav>
   <div class="sidebar-footer">
     <div class="user-pill">
@@ -284,7 +284,7 @@ body.sidebar-collapsed .main{margin-left:64px}
       </div>
       <div class="progress-stats">
         <div class="prog-stat"><div class="prog-num" id="progCompleted">0</div><div class="prog-label">Completed</div></div>
-        <div class="prog-stat"><div class="prog-num" id="progAvailable">7</div><div class="prog-label">Available</div></div>
+        <div class="prog-stat"><div class="prog-num" id="progAvailable">4</div><div class="prog-label">Available</div></div>
       </div>
     </div>
 
@@ -361,7 +361,6 @@ body.sidebar-collapsed .main{margin-left:64px}
       <button class="ph-filter-btn active" data-filter="all" onclick="filterProgress(this,'all')">All</button>
       <button class="ph-filter-btn" data-filter="TOEFL ITP" onclick="filterProgress(this,'TOEFL ITP')">TOEFL ITP</button>
       <button class="ph-filter-btn" data-filter="TOEFL iBT" onclick="filterProgress(this,'TOEFL iBT')">TOEFL iBT</button>
-      <button class="ph-filter-btn" data-filter="General English" onclick="filterProgress(this,'General English')">General English</button>
       <button class="ph-filter-btn" data-filter="ITP Multiple Choice" onclick="filterProgress(this,'ITP Multiple Choice')">ITP MC</button>
       <button class="ph-filter-btn" data-filter="Unscramble" onclick="filterProgress(this,'Unscramble')">Unscramble</button>
       <button class="ph-filter-btn" data-filter="Emoji Flashcards" onclick="filterProgress(this,'Emoji Flashcards')">Emoji</button>
@@ -454,22 +453,81 @@ body.sidebar-collapsed .main{margin-left:64px}
 
 <!-- UPGRADE MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-icon">⭐</div>
-    <div class="modal-title2">Unlock ePeak+</div>
-    <div class="modal-sub2">Unlimited exercises, weekly new content, downloadable PDFs, and no ads.</div>
-    <div class="modal-opts">
-      <div class="modal-opt highlight" onclick="alert('PayPal integration coming soon!')">
-        <div class="modal-opt-title">⭐ ePeak+ · Monthly</div>
-        <div class="modal-opt-sub">All exercises · Weekly content · No ads · PDFs</div>
-        <div class="modal-opt-price">🎉 Launch offer: $99 MXN/mo <s style="color:#bbb;font-weight:400">$199</s></div>
-      </div>
-      <div class="modal-opt" onclick="closeModal();showAuthModal('register')">
-        <div class="modal-opt-title">🆓 Create free account</div>
-        <div class="modal-opt-sub">Unlock more exercises and save your progress · No payment needed</div>
+  <div class="modal" style="max-width:480px;text-align:left;padding:36px">
+
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="font-size:2.4rem;margin-bottom:10px">⭐</div>
+      <div class="modal-title2" style="font-size:1.8rem">Unlock ePeak+</div>
+      <div class="modal-sub2" style="margin-bottom:0">All exercises · Weekly content · No ads · PDFs</div>
+    </div>
+
+    <!-- Currency selector -->
+    <div style="display:flex;gap:8px;margin-bottom:20px;justify-content:center">
+      <button id="btnCurrencyMXN" onclick="selectCurrency('mxn')"
+        style="flex:1;padding:8px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid var(--navy);background:var(--navy);color:white;transition:all .2s">
+        🇲🇽 MXN
+      </button>
+      <button id="btnCurrencyUSD" onclick="selectCurrency('usd')"
+        style="flex:1;padding:8px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:var(--bg);color:var(--navy);transition:all .2s">
+        🇺🇸 USD
+      </button>
+    </div>
+
+    <!-- Monthly plan -->
+    <div class="modal-opt" id="planMonthly" onclick="selectPlan('monthly')"
+      style="margin-bottom:12px;cursor:pointer;border:2px solid var(--border);transition:all .2s">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="modal-opt-title">📅 Mensual</div>
+          <div class="modal-opt-sub">Cancela cuando quieras</div>
+        </div>
+        <div style="text-align:right">
+          <div id="priceMonthly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$99 MXN</div>
+          <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceFull">$199 MXN</div>
+          <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+        </div>
       </div>
     </div>
-    <button class="modal-close-btn" onclick="closeModal()">Maybe later</button>
+
+    <!-- Yearly plan -->
+    <div class="modal-opt highlight" id="planYearly" onclick="selectPlan('yearly')"
+      style="margin-bottom:20px;cursor:pointer;border:2px solid var(--purple);background:linear-gradient(135deg,rgba(13,59,111,0.03),rgba(71,0,116,0.05));transition:all .2s">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="modal-opt-title">🗓 Anual <span style="font-size:0.72rem;font-weight:600;color:var(--green);background:rgba(13,122,74,0.1);padding:2px 8px;border-radius:10px;margin-left:6px">MEJOR PRECIO</span></div>
+          <div class="modal-opt-sub">Ahorra vs mensual · equivale a $79.58/mes</div>
+        </div>
+        <div style="text-align:right">
+          <div id="priceYearly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$955 MXN</div>
+          <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceYearlyFull">$1,910 MXN</div>
+          <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PayPal button -->
+    <button id="btnPayPal" onclick="startPayPalSubscription()"
+      style="width:100%;padding:16px;background:linear-gradient(135deg,#0070BA,#003087);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;transition:opacity .2s">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+      Suscribirme con PayPal
+    </button>
+
+    <!-- Free account option -->
+    <button onclick="closeModal();showAuthModal('register')"
+      style="width:100%;padding:12px;background:var(--bg);color:var(--navy);border:1.5px solid var(--border);border-radius:10px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;margin-bottom:14px">
+      🆓 Crear cuenta gratis (sin pago)
+    </button>
+
+    <div style="text-align:center">
+      <button class="modal-close-btn" onclick="closeModal()">Quizás después</button>
+    </div>
+
+    <div style="display:flex;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);justify-content:center;flex-wrap:wrap">
+      <span style="font-size:0.72rem;color:#888">✓ Cancela cuando quieras</span>
+      <span style="font-size:0.72rem;color:#888">✓ Sin contratos</span>
+      <span style="font-size:0.72rem;color:#888">✓ Seguro con PayPal</span>
+    </div>
+
   </div>
 </div>
 
@@ -731,27 +789,6 @@ function applyTier(tier) {
     document.getElementById('meta-conv').textContent = '💼 Business: ePeak+';
   }
   document.getElementById('conv-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : tierKey === 'free' ? '✓ Free' : '🔐 Required';
-
-  // General English badge
-  var isFullAccess = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy');
-  var isFreeUser   = tierKey === 'free';
-  var gc = c.generalTests.length;
-  if (isFullAccess) {
-    document.getElementById('access-general').textContent = '✓ All 6';
-    document.getElementById('access-general').className   = 'card-access access-premium';
-    document.getElementById('meta-general').textContent   = '6 tests · All unlocked';
-    document.getElementById('btn-general').className      = 'card-btn btn-open';
-  } else if (isFreeUser) {
-    document.getElementById('access-general').textContent = '🔓 ' + gc + ' of 6';
-    document.getElementById('access-general').className   = 'card-access access-partial';
-    document.getElementById('meta-general').textContent   = '6 tests · ' + gc + ' unlocked';
-    document.getElementById('btn-general').className      = 'card-btn btn-partial';
-  } else {
-    document.getElementById('access-general').textContent = '🔓 Test 1 Free';
-    document.getElementById('access-general').className   = 'card-access access-partial';
-    document.getElementById('meta-general').textContent   = '6 tests · 1 unlocked';
-    document.getElementById('btn-general').className      = 'card-btn btn-partial';
-  }
 }
 
 async function doSignOut() {
@@ -868,11 +905,11 @@ function loadFrame(frameId, b64, replacements) {
 // ═══ TIER STATE ═══
 var currentTier = 'visitor';
 var TIERS = {
-  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:[1],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
-  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:[1,2,3],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:[1,2,3,4,5,6],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:4,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock more exercises.'},
+  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3'],completed:0,available:5,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
+  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:6,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:6,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:6,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
 function setTier(tier,btn) {
@@ -928,7 +965,7 @@ function openExercise(id) {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-'+id).classList.add('active');
   closeMobileSidebar();
-  if(id==='itp-mc'){document.getElementById('frame-itp-mc').src='/itp-mc';}
+  if(id==='itp-mc'){document.getElementById('frame-itp-mc').src='/itp-mc/';}
 }
 function openITPTests() {
   var allowed=TIERS[currentTier].itpTests;
@@ -937,14 +974,14 @@ function openITPTests() {
   document.getElementById('topbarTitle').textContent = 'TOEFL ITP Mock Tests';
   document.getElementById('itp-tests-badge').textContent = currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy' ? '✓ All 8+' : '🔓 '+allowed.length+' of 8';
   var frame = document.getElementById('frame-itp-tests');
-  frame.src = '/itp?allowed=' + allowed.join(',');
+  frame.src = '/itp/?allowed=' + allowed.join(',');
   closeMobileSidebar();
 }
 function openEmoji() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-emoji').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Emoji Flashcards';
-  document.getElementById('frame-emoji').src = '/emoji';
+  document.getElementById('frame-emoji').src = '/emoji/';
   closeMobileSidebar();
 }
 
@@ -955,7 +992,7 @@ function openIBT() {
   document.getElementById('topbarTitle').textContent='TOEFL iBT Practice';
   document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All 7':'🔓 '+allowed.length+' of 7';
   var frame = document.getElementById('frame-ibt');
-  frame.src = '/ibt?allowed=' + allowed.join(',');
+  frame.src = '/ibt/?allowed=' + allowed.join(',');
   closeMobileSidebar();
 }
 function openGeneral() {
@@ -967,7 +1004,7 @@ function openGeneral() {
   var isFree = currentTier === 'free';
   document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 3 of 6' : '🔓 1 of 6';
   var frame = document.getElementById('frame-general');
-  frame.src = '/general?allowed=' + allowed.join(',') + '&mode=general';
+  frame.src = '/general/?allowed=' + allowed.join(',');
   closeMobileSidebar();
 }
 
@@ -983,7 +1020,7 @@ function openConv() {
   document.getElementById('conv-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ Full':currentTier==='free'?'✓ Free':'🔐 Required';
   var frame = document.getElementById('frame-conv');
   var biz = (cfg.convBiz) ? '1' : '0';
-  frame.src = '/conversations?business=' + biz;
+  frame.src = '/conversations/?business=' + biz;
   closeMobileSidebar();
 }
 function hideLock(id){document.getElementById('lock-'+id).classList.remove('show');}
@@ -1105,7 +1142,7 @@ function renderProgress() {
       else resultHtml = '<span class="ph-result-fail">✗ Keep going</span>';
     }
 
-    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','General English':'📗','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
+    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
     tbody.innerHTML += '<tr style="border-top:1px solid var(--border)">'
       +'<td style="padding:13px 16px;font-size:0.8rem;color:#888;white-space:nowrap">'+dateStr+'<br><span style="font-size:0.72rem;color:#ccc">'+timeStr+'</span></td>'
       +'<td style="padding:13px 16px"><span style="font-size:1rem">'+typeIcon+'</span> <span style="font-size:0.85rem;font-weight:500;color:var(--ink)">'+row.exercise_type+'</span></td>'
@@ -1272,6 +1309,94 @@ checkHamburger();
 
 // ═══ EXERCISE MODULES ═══
 
+
+// ═══════════════════════════════════════
+// PAYPAL SUBSCRIPTION
+// ═══════════════════════════════════════
+var _selectedCurrency = 'mxn';
+var _selectedPlan     = 'yearly';
+
+var _prices = {
+  mxn: { monthly: '$99 MXN', monthly_full: '$199 MXN', yearly: '$955 MXN', yearly_full: '$1,910 MXN' },
+  usd: { monthly: '$6 USD',  monthly_full: '$12 USD',  yearly: '$58 USD',  yearly_full: '$116 USD'  },
+};
+
+function selectCurrency(currency) {
+  _selectedCurrency = currency;
+  var mxnBtn = document.getElementById('btnCurrencyMXN');
+  var usdBtn = document.getElementById('btnCurrencyUSD');
+  if (!mxnBtn || !usdBtn) return;
+  mxnBtn.style.background  = currency === 'mxn' ? 'var(--navy)' : 'var(--bg)';
+  mxnBtn.style.color        = currency === 'mxn' ? 'white' : 'var(--navy)';
+  mxnBtn.style.borderColor  = currency === 'mxn' ? 'var(--navy)' : 'var(--border)';
+  usdBtn.style.background   = currency === 'usd' ? 'var(--navy)' : 'var(--bg)';
+  usdBtn.style.color        = currency === 'usd' ? 'white' : 'var(--navy)';
+  usdBtn.style.borderColor  = currency === 'usd' ? 'var(--navy)' : 'var(--border)';
+  var p = _prices[currency];
+  document.getElementById('priceMonthly').textContent    = p.monthly;
+  document.getElementById('priceFull').textContent       = p.monthly_full;
+  document.getElementById('priceYearly').textContent     = p.yearly;
+  document.getElementById('priceYearlyFull').textContent = p.yearly_full;
+}
+
+function selectPlan(plan) {
+  _selectedPlan = plan;
+  var monthly = document.getElementById('planMonthly');
+  var yearly  = document.getElementById('planYearly');
+  if (!monthly || !yearly) return;
+  monthly.style.borderColor = plan === 'monthly' ? 'var(--navy)' : 'var(--border)';
+  monthly.style.background  = plan === 'monthly' ? 'white' : '';
+  yearly.style.borderColor  = plan === 'yearly'  ? 'var(--purple)' : 'var(--border)';
+}
+
+async function startPayPalSubscription() {
+  if (!_currentUser) {
+    closeModal();
+    showAuthModal('register');
+    return;
+  }
+  var btn = document.getElementById('btnPayPal');
+  btn.disabled = true;
+  btn.textContent = 'Redirigiendo a PayPal...';
+  try {
+    var planKey = _selectedCurrency + '_' + _selectedPlan;
+    var res = await fetch('/api/create-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        plan:      planKey,
+        userId:    _currentUser.id,
+        userEmail: _currentUser.email,
+      }),
+    });
+    var data = await res.json();
+    if (!res.ok || !data.approvalUrl) {
+      throw new Error(data.error || 'No se pudo crear la suscripción');
+    }
+    window.location.href = data.approvalUrl;
+  } catch (err) {
+    console.error('startPayPalSubscription error:', err);
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg> Suscribirme con PayPal';
+    alert('Error: ' + err.message + '\n\nIntenta de nuevo o contacta soporte.');
+  }
+}
+
+// Detecta regreso de PayPal con ?payment=success o ?payment=cancelled
+(function checkPaymentReturn() {
+  var params = new URLSearchParams(window.location.search);
+  var payment = params.get('payment');
+  if (payment === 'success') {
+    setTimeout(async function() {
+      if (_currentUser) await loadProfile();
+      alert('✅ ¡Suscripción activada! Bienvenido a ePeak+. Ya tienes acceso completo.');
+      history.replaceState({}, document.title, window.location.pathname);
+    }, 1500);
+  } else if (payment === 'cancelled') {
+    alert('Suscripción cancelada. Puedes intentarlo de nuevo cuando quieras.');
+    history.replaceState({}, document.title, window.location.pathname);
+  }
+})();
 
 </script>
 </body>
