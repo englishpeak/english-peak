@@ -1,5 +1,5 @@
 // api/stripe-webhook.js
-// Vercel Serverless Function — recibe eventos de Stripe y actualiza Supabase
+// Vercel Serverless Function — receives Stripe events and updates Supabase
 
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
@@ -20,12 +20,22 @@ async function setUserTier(userId, tier, extraData = {}) {
   else console.log(`✅ User ${userId} → tier: ${tier}`);
 }
 
+// Helper: find userId from Stripe customer ID as fallback
+async function getUserIdFromCustomer(customerId) {
+  const { data } = await sb
+    .from('profiles')
+    .select('id')
+    .eq('stripe_customer_id', customerId)
+    .single();
+  return data?.id || null;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Lee el raw body para verificar la firma de Stripe
+  // Read raw body for Stripe signature verification
   let rawBody = '';
   await new Promise((resolve, reject) => {
     req.on('data', chunk => { rawBody += chunk; });
@@ -48,14 +58,54 @@ export default async function handler(req, res) {
   try {
     switch (event.type) {
 
-      // ── Suscripción creada y activa ───────────────────────────────────────
+      // ── Payment intent succeeded (fires after card payment confirmed) ──────
+      case 'payment_intent.succeeded': {
+        const paymentIntent = event.data.object;
+        // Get the invoice from the payment intent to find the subscription
+        if (!paymentIntent.invoice) break;
+
+        const invoice = await stripe.invoices.retrieve(paymentIntent.invoice);
+        if (!invoice.subscription) break;
+
+        const subscription = await stripe.subscriptions.retrieve(invoice.subscription);
+        let userId = subscription.metadata?.supabase_user_id;
+
+        // Fallback: look up by customer ID in Supabase
+        if (!userId && subscription.customer) {
+          userId = await getUserIdFromCustomer(subscription.customer);
+        }
+
+        if (!userId) {
+          console.error('No userId found for payment_intent.succeeded');
+          break;
+        }
+
+        if (subscription.status === 'active' || subscription.status === 'trialing') {
+          await setUserTier(userId, 'premium', {
+            stripe_subscription_id: subscription.id,
+            subscription_status: 'active',
+          });
+        }
+        break;
+      }
+
+      // ── Subscription created or updated ───────────────────────────────────
       case 'customer.subscription.created':
       case 'customer.subscription.updated': {
         const subscription = event.data.object;
-        const userId = subscription.metadata?.supabase_user_id;
-        if (!userId) break;
+        let userId = subscription.metadata?.supabase_user_id;
 
-        if (subscription.status === 'active') {
+        // Fallback: look up by customer ID
+        if (!userId && subscription.customer) {
+          userId = await getUserIdFromCustomer(subscription.customer);
+        }
+
+        if (!userId) {
+          console.error('No userId for subscription event:', subscription.id);
+          break;
+        }
+
+        if (subscription.status === 'active' || subscription.status === 'trialing') {
           await setUserTier(userId, 'premium', {
             stripe_subscription_id: subscription.id,
             subscription_status: 'active',
@@ -71,11 +121,17 @@ export default async function handler(req, res) {
         break;
       }
 
-      // ── Suscripción cancelada ─────────────────────────────────────────────
+      // ── Subscription deleted (cancelled) ─────────────────────────────────
       case 'customer.subscription.deleted': {
         const subscription = event.data.object;
-        const userId = subscription.metadata?.supabase_user_id;
+        let userId = subscription.metadata?.supabase_user_id;
+
+        if (!userId && subscription.customer) {
+          userId = await getUserIdFromCustomer(subscription.customer);
+        }
+
         if (!userId) break;
+
         await setUserTier(userId, 'free', {
           subscription_status: 'cancelled',
           stripe_subscription_id: null,
@@ -83,14 +139,19 @@ export default async function handler(req, res) {
         break;
       }
 
-      // ── Pago completado (renovación) ──────────────────────────────────────
+      // ── Invoice payment succeeded (renewals) ─────────────────────────────
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object;
         const subscriptionId = invoice.subscription;
         if (!subscriptionId) break;
 
         const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-        const userId = subscription.metadata?.supabase_user_id;
+        let userId = subscription.metadata?.supabase_user_id;
+
+        if (!userId && subscription.customer) {
+          userId = await getUserIdFromCustomer(subscription.customer);
+        }
+
         if (!userId) break;
 
         await setUserTier(userId, 'premium', {
@@ -100,14 +161,19 @@ export default async function handler(req, res) {
         break;
       }
 
-      // ── Pago fallido ──────────────────────────────────────────────────────
+      // ── Invoice payment failed ────────────────────────────────────────────
       case 'invoice.payment_failed': {
         const invoice = event.data.object;
         const subscriptionId = invoice.subscription;
         if (!subscriptionId) break;
 
         const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-        const userId = subscription.metadata?.supabase_user_id;
+        let userId = subscription.metadata?.supabase_user_id;
+
+        if (!userId && subscription.customer) {
+          userId = await getUserIdFromCustomer(subscription.customer);
+        }
+
         if (!userId) break;
 
         await setUserTier(userId, 'free', { subscription_status: 'payment_failed' });
