@@ -1666,6 +1666,7 @@ async function submitPayment() {
   btn.disabled    = true;
   btn.textContent = 'Procesando...';
   try {
+    // Step 1: Create subscription in Stripe via our backend
     var planKey = _selectedCurrency + '_' + _selectedPlan;
     var res = await fetch('/api/create-checkout-session', {
       method: 'POST',
@@ -1678,19 +1679,50 @@ async function submitPayment() {
     });
     var data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Error al crear la sesión');
+
+    // Step 2: Confirm card payment with Stripe.js
     var result = await _stripeInstance.confirmCardPayment(data.clientSecret, {
       payment_method: {
         card: _cardElement,
         billing_details: { name: name, email: _currentUser.email },
       },
     });
+
     if (result.error) {
       document.getElementById('card-errors').textContent = result.error.message;
       btn.disabled    = false;
       btn.textContent = '🔒 Suscribirme ahora';
       return;
     }
-    window.location.href = 'https://epeak.app/?payment=success';
+
+    // Step 3: Payment succeeded — immediately update tier in Supabase via backend
+    // This is the critical fix: don't rely solely on the webhook
+    btn.textContent = 'Activando acceso...';
+    try {
+      var confirmRes = await fetch('/api/confirm-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subscriptionId: data.subscriptionId,
+          userId: _currentUser.id,
+        }),
+      });
+      var confirmData = await confirmRes.json();
+      if (confirmRes.ok && confirmData.success) {
+        // Reload profile so the UI reflects the new tier immediately
+        await loadProfile();
+      } else {
+        console.warn('confirm-payment returned:', confirmData);
+        // Not a fatal error — webhook will catch it — but log it
+      }
+    } catch (confirmErr) {
+      // Non-fatal: webhook will still update the tier
+      console.warn('confirm-payment call failed (webhook will handle it):', confirmErr.message);
+    }
+
+    // Step 4: Redirect to success page
+    window.location.href = window.location.origin + '/?payment=success';
+
   } catch (err) {
     console.error('submitPayment error:', err);
     document.getElementById('card-errors').textContent = 'Error: ' + err.message;
