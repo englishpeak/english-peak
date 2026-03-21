@@ -32,7 +32,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Get or create Stripe customer
     let customerId;
     const { data: profile } = await sb
       .from('profiles')
@@ -51,7 +50,6 @@ export default async function handler(req, res) {
       await sb.from('profiles').update({ stripe_customer_id: customerId }).eq('id', userId);
     }
 
-    // Create subscription
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
       items: [{ price: priceId }],
