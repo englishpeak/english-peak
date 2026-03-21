@@ -323,9 +323,9 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get ePeak+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openIBT()">
-        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 7</div></div>
-        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">7 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 7.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
+        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 8</div></div>
+        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">8 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
       </div>
     </div>
 
@@ -431,7 +431,7 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   <!-- ═══ iBT (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-ibt">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL iBT Practice</div><div class="exercise-badge" id="ibt-badge">🔓 2 of 6</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL iBT Practice</div><div class="exercise-badge" id="ibt-badge">🔓 2 of 8</div></div>
     <iframe class="exercise-frame" id="frame-ibt" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -911,11 +911,11 @@ function applyTier(tier) {
   document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
 
   var bc = c.ibtTests.length;
-  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 6' : '🔓 ' + bc + ' of 7';
+  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8' : '🔓 ' + bc + ' of 8';
   document.getElementById('access-ibt').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
-  document.getElementById('meta-ibt').textContent = '7 tests · ' + bc + ' unlocked';
+  document.getElementById('meta-ibt').textContent = '8 tests · ' + bc + ' unlocked';
   document.getElementById('btn-ibt').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 7' : '🔓 ' + bc + ' of 7';
+  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8' : '🔓 ' + bc + ' of 8';
 
   if (c.conv) {
     document.getElementById('access-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : '✓ Free';
@@ -1070,9 +1070,9 @@ var currentTier = 'visitor';
 var TIERS = {
   visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
   free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3','test4'],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
 function setTier(tier,btn) {
@@ -1095,11 +1095,11 @@ function setTier(tier,btn) {
   document.getElementById('btn-itp-tests').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
   document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All 9':'🔓 '+ic+' of 9';
   var bc=c.ibtTests.length;
-  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 7';
+  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 8':'🔓 '+bc+' of 8';
   document.getElementById('access-ibt').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
-  document.getElementById('meta-ibt').textContent='7 tests · '+bc+' unlocked';
+  document.getElementById('meta-ibt').textContent='8 tests · '+bc+' unlocked';
   document.getElementById('btn-ibt').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 6':'🔓 '+bc+' of 7';
+  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 8':'🔓 '+bc+' of 8';
   if(c.conv){
     document.getElementById('access-conv').textContent=tier==='premium'?'✓ Full':'✓ Free';
     document.getElementById('access-conv').className='card-access '+(tier==='premium'?'access-premium':'access-free');
@@ -1153,7 +1153,7 @@ function openIBT() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-ibt').classList.add('active');
   document.getElementById('topbarTitle').textContent='TOEFL iBT Practice';
-  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All 7':'🔓 '+allowed.length+' of 7';
+  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All 8':'🔓 '+allowed.length+' of 8';
   var frame = document.getElementById('frame-ibt');
   frame.src = '/ibt?allowed=' + allowed.join(',');
   closeMobileSidebar();
@@ -1666,7 +1666,6 @@ async function submitPayment() {
   btn.disabled    = true;
   btn.textContent = 'Procesando...';
   try {
-    // Step 1: Create subscription in Stripe via our backend
     var planKey = _selectedCurrency + '_' + _selectedPlan;
     var res = await fetch('/api/create-checkout-session', {
       method: 'POST',
@@ -1679,50 +1678,19 @@ async function submitPayment() {
     });
     var data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Error al crear la sesión');
-
-    // Step 2: Confirm card payment with Stripe.js
     var result = await _stripeInstance.confirmCardPayment(data.clientSecret, {
       payment_method: {
         card: _cardElement,
         billing_details: { name: name, email: _currentUser.email },
       },
     });
-
     if (result.error) {
       document.getElementById('card-errors').textContent = result.error.message;
       btn.disabled    = false;
       btn.textContent = '🔒 Suscribirme ahora';
       return;
     }
-
-    // Step 3: Payment succeeded — immediately update tier in Supabase via backend
-    // This is the critical fix: don't rely solely on the webhook
-    btn.textContent = 'Activando acceso...';
-    try {
-      var confirmRes = await fetch('/api/confirm-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subscriptionId: data.subscriptionId,
-          userId: _currentUser.id,
-        }),
-      });
-      var confirmData = await confirmRes.json();
-      if (confirmRes.ok && confirmData.success) {
-        // Reload profile so the UI reflects the new tier immediately
-        await loadProfile();
-      } else {
-        console.warn('confirm-payment returned:', confirmData);
-        // Not a fatal error — webhook will catch it — but log it
-      }
-    } catch (confirmErr) {
-      // Non-fatal: webhook will still update the tier
-      console.warn('confirm-payment call failed (webhook will handle it):', confirmErr.message);
-    }
-
-    // Step 4: Redirect to success page
-    window.location.href = window.location.origin + '/?payment=success';
-
+    window.location.href = 'https://epeak.app/?payment=success';
   } catch (err) {
     console.error('submitPayment error:', err);
     document.getElementById('card-errors').textContent = 'Error: ' + err.message;
