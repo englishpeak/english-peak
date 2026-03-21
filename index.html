@@ -827,7 +827,8 @@ async function loadProfile() {
 
 function updateUIForUser() {
   if (!_currentProfile) return;
-  var tier = _currentProfile.tier || 'free';
+  // Admins always get full access regardless of their stored tier value
+  var tier = (_currentProfile.is_admin) ? 'premium' : (_currentProfile.tier || 'free');
   var name = _currentProfile.full_name || _currentUser.email.split('@')[0];
   var initial = name ? name[0].toUpperCase() : '?';
 
