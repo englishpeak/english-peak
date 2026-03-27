@@ -1027,7 +1027,19 @@ async function doRegister() {
   btn.disabled = false; btn.textContent = 'Create free account';
 
   if (result.error) {
-    err.textContent = result.error.message;
+    var msg = result.error.message || '';
+    // Translate common Supabase errors to friendly Spanish/English
+    if (msg.toLowerCase().includes('rate limit') || msg.toLowerCase().includes('too many')) {
+      err.textContent = 'Too many attempts. Please wait a few minutes and try again, or use "Sign up with Google" instead.';
+    } else if (msg.toLowerCase().includes('already registered') || msg.toLowerCase().includes('already exists') || msg.toLowerCase().includes('user already')) {
+      err.textContent = 'This email is already registered. Try signing in instead.';
+    } else if (msg.toLowerCase().includes('invalid email')) {
+      err.textContent = 'Please enter a valid email address.';
+    } else if (msg.toLowerCase().includes('password')) {
+      err.textContent = 'Password must be at least 6 characters.';
+    } else {
+      err.textContent = msg;
+    }
     err.style.display = 'block'; return;
   }
   succ.textContent = '✅ Account created! Check your email to confirm, then sign in.';
@@ -1035,9 +1047,13 @@ async function doRegister() {
 }
 
 async function signInGoogle() {
+  // Support both vercel preview URL and production domain
+  var redirectTo = window.location.origin.includes('epeak.app')
+    ? 'https://epeak.app'
+    : 'https://english-peak.vercel.app';
   await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: 'https://english-peak.vercel.app' }
+    options: { redirectTo: redirectTo }
   });
 }
 
@@ -1168,7 +1184,8 @@ function openGeneral() {
   var isFree = currentTier === 'free';
   document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 4 of 6' : '🔓 1 of 6';
   var frame = document.getElementById('frame-general');
-frame.src = '/general?allowed=' + allowed.join(',');  closeMobileSidebar();
+  frame.src = '/general?mode=general&allowed=' + allowed.join(',');
+  closeMobileSidebar();
 }
 
 function openConv() {
@@ -1529,8 +1546,15 @@ function showToast(msg, isError) {
 }
 
 // ─── logActivity: saves exercise session to Supabase ───
-async function logActivity(exerciseType, exerciseName, score, maxScore, details) {
+// Has a built-in retry (1×) in case _currentUser is not yet set (race condition on page load)
+async function logActivity(exerciseType, exerciseName, score, maxScore, details, _retryCount) {
+  _retryCount = _retryCount || 0;
   if (!_currentUser) {
+    if (_retryCount < 3) {
+      // Wait 1.5s and retry — handles race condition where session restores after postMessage fires
+      setTimeout(function(){ logActivity(exerciseType, exerciseName, score, maxScore, details, _retryCount + 1); }, 1500);
+      return;
+    }
     showToast('⚠️ Not logged in — activity not saved', true);
     return;
   }
@@ -1549,11 +1573,11 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
       var el = document.getElementById('progCompleted');
       if (el) el.textContent = (parseInt(el.textContent, 10) || 0) + 1;
     } else {
-      showToast('❌ Save failed: ' + error.message, true);
+      showToast('❌ Could not save progress. Please try again.', true);
       console.error('logActivity error:', error);
     }
   } catch(e) {
-    showToast('❌ Save error: ' + e.message, true);
+    showToast('❌ Network error — progress not saved.', true);
     console.error('logActivity exception:', e);
   }
 }
@@ -1573,7 +1597,9 @@ function showModal() {
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('show');
 }
-window.addEventListener('message',function(e){if(e.data==='showModal')showModal();});
+window.addEventListener('message',function(e){
+  if(e.data && (e.data.type==='showModal' || e.data==='showModal')) showModal();
+});
 
 // ═══════════════════════════════════════
 // STRIPE SUBSCRIPTION
