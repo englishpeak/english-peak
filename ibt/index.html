@@ -576,8 +576,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // LISTEN TO A CONVERSATION
             { type: 'academic-reading', title: 'Task 17: Conversation - IT Support', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/yz8zuqwqusrswpx9ipkd0/Task-17.mp3?rlkey=vkgpqfq749hvm4pn3s2n6vale&st=kwhoulyu&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;"><b>Man:</b> "Hi, I\'m having trouble with my laptop. It keeps disconnecting from the Wi-Fi."<br><b>Woman:</b> "I can help with that. Have you tried restarting the router at your desk?"<br><b>Man:</b> "Yes, I did that about ten minutes ago, but it didn\'t seem to make a difference."<br><b>Woman:</b> "Alright, let me take a look at your network settings. It might just need a software update."</div>', questions: [
-                { q: "What technical problem is the woman experiencing?", options: ["Her laptop will not turn on.", "Her laptop keeps disconnecting from the Wi-Fi.", "She forgot her network password.", "Her router is physically broken."], correct: 1 },
-                { q: "What does the man propose to do next to solve the issue?", options: ["Check her network settings for a potential software update.", "Replace the router at her desk entirely.", "Call an external technician to fix the hardware.", "Format the laptop and reinstall the operating system."], correct: 0 }
+                { q: "What technical problem is the man experiencing?", options: ["His laptop will not turn on.", "His laptop keeps disconnecting from the Wi-Fi.", "He forgot his network password.", "His router is physically broken."], correct: 1 },
+                { q: "What does the woman propose to do next to solve the issue?", options: ["Check his network settings for a potential software update.", "Replace the router at his desk entirely.", "Call an external technician to fix the hardware.", "Format the laptop and reinstall the operating system."], correct: 0 }
             ]},
 
             { type: 'academic-reading', title: 'Task 18: Conversation - Travel Planning', canSkip: true, text: '<audio controls controlsList="nodownload" style="width: 100%; margin-bottom: 10px;"><source src="https://dl.dropboxusercontent.com/scl/fi/ux6tkd21m4rvx5tj1kagb/Task-18.mp3?rlkey=dqnsvk7d9iro8b7pt4ucn88mb&st=ydjpqgyc&raw=1" type="audio/mpeg"></audio><p><small><i>We suggest that you only listen to the audio files one time for a more realistic experience. Also, try not to read the script unless it is strictly necessary since you won\'t have this option on the real test.</i></small></p><button type="button" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="margin-top: 10px; padding: 5px 10px; cursor: pointer;">Show Script</button><div style="display: none; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #0056b3;"><b>Woman:</b> "Are we still planning to drive up to the mountains this weekend?"<br><b>Man:</b> "I want to, but I checked the weather forecast and it looks like heavy snow starting Friday night."<br><b>Woman:</b> "Oh, that\'s disappointing. My car definitely doesn\'t have the right tires for a snowstorm."<br><b>Man:</b> "Maybe we should cancel the cabin and just do a staycation in the city instead."</div>', questions: [
@@ -648,10 +648,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (ex.type === 'complete-words') {
-            let h = ex.text.replace(/___?\[(\d+)\]|\[(\d+)\]/g, (m, p1, p2) => {
-                const len = parseInt(p1 || p2);
-                return `<input type="text" class="fill-blank" maxlength="${len}" style="width: ${Math.max(len, 3)}ch">`;
-            });
+            let h = ex.text.replace(/\[(\d+)\]/g, (m, p) => `<input type="text" class="fill-blank" maxlength="${p}" style="width: ${p}ch">`);
             cont.innerHTML += `<div class="exercise-paragraph">${h}</div>`;
         } else if (ex.type === 'listen-repeat') {
             cont.innerHTML += `<div style="display:grid; gap:15px;">` + ex.sentences.map((s,i)=>`<div style="display:flex; align-items:center; gap:15px;"><button class="btn-audio-minimal" onclick="new Audio('${s.audio}').play().catch(e=>console.error(e))">▶️</button><button class="btn btn-outline" style="flex:1; margin:0;" onclick="this.parentElement.nextElementSibling.style.display='block'">Reveal Sentence ${i+1}</button></div><div style="background:#f8f9fa; padding:20px; border-left:5px solid var(--primary-blue); display:none; margin-bottom:10px;">${s.text}</div>`).join('') + `</div>`;
@@ -738,8 +735,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 let u=r.raw, c=r.raw;
                 r.ui.forEach((val, i) => {
                     let col = (val===r.ans[i].toLowerCase()) ? 'correct-text' : 'wrong-text';
-                    u = u.replace(/___?\[\d+\]|\[\d+\]/, `<span class="${col}">${val || "___"}</span>`);
-                    c = c.replace(/___?\[\d+\]|\[\d+\]/, `<span class="correct-text">${r.ans[i]}</span>`);
+                    u = u.replace(/\[\d+\]/, `<span class="${col}">${val || "___"}</span>`);
+                    c = c.replace(/\[\d+\]/, `<span class="correct-text">${r.ans[i]}</span>`);
                 });
                 feed += `<div class="attempt-box"><span class="right-ans-label">Right Answer: <span class="neutral-text" style="color:var(--text-neutral);">${c.replace(/<span class=\"correct-text\">/g, '').replace(/<\/span>/g, '')}</span></span><span class="right-ans-label">Your Attempt: ${u}</span></div>`;
             } else if(r.type==='academic-reading'){
