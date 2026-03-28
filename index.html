@@ -323,9 +323,9 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get ePeak+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openIBT()">
-        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 8</div></div>
-        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">8 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
+        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 9</div></div>
+        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">9 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 9.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
       </div>
     </div>
 
@@ -431,7 +431,7 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   <!-- ═══ iBT (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-ibt">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL iBT Practice</div><div class="exercise-badge" id="ibt-badge">🔓 2 of 8</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL iBT Practice</div><div class="exercise-badge" id="ibt-badge">🔓 2 of 9</div></div>
     <iframe class="exercise-frame" id="frame-ibt" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -912,11 +912,11 @@ function applyTier(tier) {
   document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
 
   var bc = c.ibtTests.length;
-  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8' : '🔓 ' + bc + ' of 8';
+  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + bc + ' of 9';
   document.getElementById('access-ibt').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
-  document.getElementById('meta-ibt').textContent = '8 tests · ' + bc + ' unlocked';
+  document.getElementById('meta-ibt').textContent = '9 tests · ' + bc + ' unlocked';
   document.getElementById('btn-ibt').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 8' : '🔓 ' + bc + ' of 8';
+  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + bc + ' of 9';
 
   if (c.conv) {
     document.getElementById('access-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : '✓ Free';
@@ -1027,19 +1027,7 @@ async function doRegister() {
   btn.disabled = false; btn.textContent = 'Create free account';
 
   if (result.error) {
-    var msg = result.error.message || '';
-    // Translate common Supabase errors to friendly Spanish/English
-    if (msg.toLowerCase().includes('rate limit') || msg.toLowerCase().includes('too many')) {
-      err.textContent = 'Too many attempts. Please wait a few minutes and try again, or use "Sign up with Google" instead.';
-    } else if (msg.toLowerCase().includes('already registered') || msg.toLowerCase().includes('already exists') || msg.toLowerCase().includes('user already')) {
-      err.textContent = 'This email is already registered. Try signing in instead.';
-    } else if (msg.toLowerCase().includes('invalid email')) {
-      err.textContent = 'Please enter a valid email address.';
-    } else if (msg.toLowerCase().includes('password')) {
-      err.textContent = 'Password must be at least 6 characters.';
-    } else {
-      err.textContent = msg;
-    }
+    err.textContent = result.error.message;
     err.style.display = 'block'; return;
   }
   succ.textContent = '✅ Account created! Check your email to confirm, then sign in.';
@@ -1047,13 +1035,9 @@ async function doRegister() {
 }
 
 async function signInGoogle() {
-  // Support both vercel preview URL and production domain
-  var redirectTo = window.location.origin.includes('epeak.app')
-    ? 'https://epeak.app'
-    : 'https://english-peak.vercel.app';
   await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: redirectTo }
+    options: { redirectTo: 'https://english-peak.vercel.app' }
   });
 }
 
@@ -1087,9 +1071,9 @@ var currentTier = 'visitor';
 var TIERS = {
   visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
   free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3','test4'],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:14,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8','Test 9'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8','Test 9'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:15,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8','Test 9'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
 }
 
 function setTier(tier,btn) {
@@ -1112,11 +1096,11 @@ function setTier(tier,btn) {
   document.getElementById('btn-itp-tests').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
   document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All 9':'🔓 '+ic+' of 9';
   var bc=c.ibtTests.length;
-  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 8':'🔓 '+bc+' of 8';
+  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 9':'🔓 '+bc+' of 9';
   document.getElementById('access-ibt').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
-  document.getElementById('meta-ibt').textContent='8 tests · '+bc+' unlocked';
+  document.getElementById('meta-ibt').textContent='9 tests · '+bc+' unlocked';
   document.getElementById('btn-ibt').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 8':'🔓 '+bc+' of 8';
+  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 9':'🔓 '+bc+' of 9';
   if(c.conv){
     document.getElementById('access-conv').textContent=tier==='premium'?'✓ Full':'✓ Free';
     document.getElementById('access-conv').className='card-access '+(tier==='premium'?'access-premium':'access-free');
@@ -1170,7 +1154,7 @@ function openIBT() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-ibt').classList.add('active');
   document.getElementById('topbarTitle').textContent='TOEFL iBT Practice';
-  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All 8':'🔓 '+allowed.length+' of 8';
+  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All 9':'🔓 '+allowed.length+' of 9';
   var frame = document.getElementById('frame-ibt');
   frame.src = '/ibt?allowed=' + allowed.join(',');
   closeMobileSidebar();
@@ -1184,8 +1168,7 @@ function openGeneral() {
   var isFree = currentTier === 'free';
   document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 4 of 6' : '🔓 1 of 6';
   var frame = document.getElementById('frame-general');
-  frame.src = '/general?mode=general&allowed=' + allowed.join(',');
-  closeMobileSidebar();
+frame.src = '/general?allowed=' + allowed.join(',');  closeMobileSidebar();
 }
 
 function openConv() {
@@ -1546,15 +1529,8 @@ function showToast(msg, isError) {
 }
 
 // ─── logActivity: saves exercise session to Supabase ───
-// Has a built-in retry (1×) in case _currentUser is not yet set (race condition on page load)
-async function logActivity(exerciseType, exerciseName, score, maxScore, details, _retryCount) {
-  _retryCount = _retryCount || 0;
+async function logActivity(exerciseType, exerciseName, score, maxScore, details) {
   if (!_currentUser) {
-    if (_retryCount < 3) {
-      // Wait 1.5s and retry — handles race condition where session restores after postMessage fires
-      setTimeout(function(){ logActivity(exerciseType, exerciseName, score, maxScore, details, _retryCount + 1); }, 1500);
-      return;
-    }
     showToast('⚠️ Not logged in — activity not saved', true);
     return;
   }
@@ -1573,11 +1549,11 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details,
       var el = document.getElementById('progCompleted');
       if (el) el.textContent = (parseInt(el.textContent, 10) || 0) + 1;
     } else {
-      showToast('❌ Could not save progress. Please try again.', true);
+      showToast('❌ Save failed: ' + error.message, true);
       console.error('logActivity error:', error);
     }
   } catch(e) {
-    showToast('❌ Network error — progress not saved.', true);
+    showToast('❌ Save error: ' + e.message, true);
     console.error('logActivity exception:', e);
   }
 }
@@ -1597,9 +1573,7 @@ function showModal() {
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('show');
 }
-window.addEventListener('message',function(e){
-  if(e.data && (e.data.type==='showModal' || e.data==='showModal')) showModal();
-});
+window.addEventListener('message',function(e){if(e.data==='showModal')showModal();});
 
 // ═══════════════════════════════════════
 // STRIPE SUBSCRIPTION
