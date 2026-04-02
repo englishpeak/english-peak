@@ -787,24 +787,30 @@ document.addEventListener('DOMContentLoaded', function() {
         let band = (p * 5 + 1).toFixed(1);
         let ibt = Math.round(p * 120);
 
+        // Report score to parent platform — first, before any rendering that could throw
+        let _reported = false;
+        try {
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'exerciseComplete',
+                    exerciseType: 'TOEFL iBT',
+                    exerciseName: _currentTestKey || 'Test',
+                    score: sCount,
+                    maxScore: v.length
+                }, '*');
+                _reported = true;
+            }
+        } catch(e) { console.error('postMessage error:', e); }
+
         document.getElementById('score-display').innerHTML = `
             <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${band} / 6.0</div>
             <p style="font-size:1.2rem;">TOEFL Band Score</p>
             <div style="font-size: 1.1rem; color: var(--text-neutral);">Approximate iBT Total: <strong>${ibt} / 120</strong></div>
+            ${_reported ? '<div style="margin-top:16px;font-size:0.85rem;color:#1a7a4a;font-weight:600;">✅ Progress saved to My Progress</div>' : ''}
         `;
 
-        // Report score to parent platform
-        if (window.parent && window.parent !== window) {
-            window.parent.postMessage({
-                type: 'exerciseComplete',
-                exerciseType: 'TOEFL iBT',
-                exerciseName: _currentTestKey || 'Test',
-                score: sCount,
-                maxScore: v.length
-            }, '*');
-        }
-
         let feed = '';
+        try {
         results.forEach(r => {
             if(r.skipped || r.type==='speaking-timer' || r.type==='writing-email' || r.type==='listen-repeat') return;
             feed += `<div class="feedback-card"><h3>${r.title}</h3>`;
@@ -830,6 +836,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             feed += `</div>`;
         });
+        } catch(e) { console.error('feedback render error:', e); }
         document.getElementById('feedback-display').innerHTML = feed;
     }
 
