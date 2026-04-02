@@ -1517,7 +1517,7 @@ function showToast(msg, isError) {
   if (!t) {
     t = document.createElement('div');
     t.id = '_debugToast';
-    t.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;padding:12px 20px;border-radius:10px;font-family:Outfit,sans-serif;font-size:0.85rem;font-weight:600;max-width:340px;box-shadow:0 4px 20px rgba(0,0,0,0.15);transition:opacity .4s';
+    t.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:999999;padding:12px 20px;border-radius:10px;font-family:Outfit,sans-serif;font-size:0.85rem;font-weight:600;max-width:340px;box-shadow:0 4px 20px rgba(0,0,0,0.15);transition:opacity .4s';
     document.body.appendChild(t);
   }
   t.style.background = isError ? '#c0392b' : '#1a7a4a';
@@ -1525,7 +1525,7 @@ function showToast(msg, isError) {
   t.textContent = msg;
   t.style.opacity = '1';
   clearTimeout(t._hide);
-  t._hide = setTimeout(function(){ t.style.opacity='0'; }, 4000);
+  t._hide = setTimeout(function(){ t.style.opacity='0'; }, 8000);
 }
 
 // ─── logActivity: saves exercise session to Supabase ───
