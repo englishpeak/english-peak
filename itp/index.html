@@ -450,20 +450,29 @@ function render() {
         <div>Total Time: ${Math.floor(totalTimeSec/60)}m ${totalTimeSec%60}s</div>
         <div>Avg: ${avgTime}s/q</div>
       </div>
+      <div id="_itp_saved_msg"></div>
       ${reviewHTML}
       <button class="next-btn" onclick="backToMenu()">⬅ Back to Main Menu</button>
     `;
 
-    // Report score to parent platform
+    // Report score to parent platform — before rendering so it fires even if render errors
+    let _reported = false;
     if (window.parent && window.parent !== window) {
-      window.parent.postMessage({
-        type: 'exerciseComplete',
-        exerciseType: _exerciseMode === 'general' ? 'General English' : 'TOEFL ITP',
-        exerciseName: 'Test ' + currentTest,
-        score: score,
-        maxScore: 20
-      }, '*');
+      try {
+        window.parent.postMessage({
+          type: 'exerciseComplete',
+          exerciseType: _exerciseMode === 'general' ? 'General English' : 'TOEFL ITP',
+          exerciseName: 'Test ' + currentTest,
+          score: score,
+          maxScore: 20
+        }, '*');
+        _reported = true;
+      } catch(e) { console.error('postMessage error:', e); }
     }
+    var savedMsg = document.getElementById('_itp_saved_msg');
+    if (savedMsg) savedMsg.innerHTML = _reported
+      ? '<p style="text-align:center;color:#1a7a4a;font-weight:600;font-size:0.9rem;">✅ Progress saved to My Progress</p>'
+      : '';
 
     // Ensures the background reverts to white for the results screen
     applyMagicColor(); 
