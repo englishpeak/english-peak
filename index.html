@@ -906,18 +906,18 @@ function applyTier(tier) {
   document.getElementById('progAvailable').textContent = c.available;
 
   var ic = c.itpTests.length;
-  document.getElementById('access-itp-tests').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
+  document.getElementById('access-itp-tests').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+ITP_TOTAL : '🔓 ' + ic + ' of ' + ITP_TOTAL;
   document.getElementById('access-itp-tests').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
-  document.getElementById('meta-itp-tests').textContent = '9 tests · ' + ic + ' unlocked';
+  document.getElementById('meta-itp-tests').textContent = ITP_TOTAL + ' tests · ' + ic + ' unlocked';
   document.getElementById('btn-itp-tests').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
+  document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+ITP_TOTAL : '🔓 ' + ic + ' of ' + ITP_TOTAL;
 
   var bc = c.ibtTests.length;
-  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + bc + ' of 9';
+  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+IBT_TOTAL : '🔓 ' + bc + ' of ' + IBT_TOTAL;
   document.getElementById('access-ibt').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
-  document.getElementById('meta-ibt').textContent = '9 tests · ' + bc + ' unlocked';
+  document.getElementById('meta-ibt').textContent = IBT_TOTAL + ' tests · ' + bc + ' unlocked';
   document.getElementById('btn-ibt').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + bc + ' of 9';
+  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+IBT_TOTAL : '🔓 ' + bc + ' of ' + IBT_TOTAL;
 
   if (c.conv) {
     document.getElementById('access-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : '✓ Free';
@@ -939,19 +939,19 @@ function applyTier(tier) {
   var isFreeUser   = tierKey === 'free';
   var gc = c.generalTests.length;
   if (isFullAccess) {
-    document.getElementById('access-general').textContent = '✓ All 6';
+    document.getElementById('access-general').textContent = '✓ All ' + GEN_TOTAL;
     document.getElementById('access-general').className   = 'card-access access-premium';
-    document.getElementById('meta-general').textContent   = '6 tests · All unlocked';
+    document.getElementById('meta-general').textContent   = GEN_TOTAL + ' tests · All unlocked';
     document.getElementById('btn-general').className      = 'card-btn btn-open';
   } else if (isFreeUser) {
-    document.getElementById('access-general').textContent = '🔓 ' + gc + ' of 6';
+    document.getElementById('access-general').textContent = '🔓 ' + gc + ' of ' + GEN_TOTAL;
     document.getElementById('access-general').className   = 'card-access access-partial';
-    document.getElementById('meta-general').textContent   = '6 tests · ' + gc + ' unlocked';
+    document.getElementById('meta-general').textContent   = GEN_TOTAL + ' tests · ' + gc + ' unlocked';
     document.getElementById('btn-general').className      = 'card-btn btn-partial';
   } else {
     document.getElementById('access-general').textContent = '🔓 Test 1 Free';
     document.getElementById('access-general').className   = 'card-access access-partial';
-    document.getElementById('meta-general').textContent   = '6 tests · 1 unlocked';
+    document.getElementById('meta-general').textContent   = GEN_TOTAL + ' tests · 1 unlocked';
     document.getElementById('btn-general').className      = 'card-btn btn-partial';
   }
 }
@@ -1068,14 +1068,33 @@ function loadFrame(frameId, b64, replacements) {
 }
 
 // ═══ TIER STATE ═══
-var currentTier = 'visitor';
-var TIERS = {
-  visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:[1,2,3],ibtTests:['Test 1','Test 2'],conv:false,convBiz:false,generalTests:['test1'],completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
-  free:     {name:'',label:'Free Account',avatar:'',itpTests:[1,2,3,4,5,6],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5'],conv:true,convBiz:false,generalTests:['test1','test2','test3','test4'],completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-  premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8','Test 9'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-  teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8','Test 9'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:15,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-  courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:[1,2,3,4,5,6,7,8,9],ibtTests:['Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7','Test 8','Test 9'],conv:true,convBiz:true,generalTests:['test1','test2','test3','test4','test5','test6'],completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+// ─── Configuración de acceso por tier ─────────────────────────────────────────
+// SOLO EDITA ESTAS 3 LÍNEAS cuando agregues tests nuevos:
+var ITP_TOTAL = 9;   // Total de tests ITP que existen
+var IBT_TOTAL = 9;   // Total de tests iBT que existen
+var GEN_TOTAL = 6;   // Total de General English tests
+
+// Acceso por tier — se calcula automáticamente desde los totales de arriba
+function _buildTiers() {
+  function itpFree(n)    { return Array.from({length:Math.min(6,n)}, function(_,i){return i+1;}); }
+  function itpVisitor(n) { return Array.from({length:Math.min(3,n)}, function(_,i){return i+1;}); }
+  function ibtFree(n)    { return Array.from({length:Math.min(5,n)}, function(_,i){return 'Test '+(i+1);}); }
+  function ibtVisitor(n) { return Array.from({length:Math.min(2,n)}, function(_,i){return 'Test '+(i+1);}); }
+  function ibtAll(n)     { return Array.from({length:n}, function(_,i){return 'Test '+(i+1);}); }
+  function itpAll(n)     { return Array.from({length:n}, function(_,i){return i+1;}); }
+  function genFree(n)    { return Array.from({length:Math.min(4,n)}, function(_,i){return 'test'+(i+1);}); }
+  function genVisitor(n) { return ['test1']; }
+  function genAll(n)     { return Array.from({length:n}, function(_,i){return 'test'+(i+1);}); }
+  return {
+    visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:itpVisitor(ITP_TOTAL),ibtTests:ibtVisitor(IBT_TOTAL),conv:false,convBiz:false,generalTests:genVisitor(GEN_TOTAL),completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
+    free:     {name:'',label:'Free Account',avatar:'',itpTests:itpFree(ITP_TOTAL),ibtTests:ibtFree(IBT_TOTAL),conv:true,convBiz:false,generalTests:genFree(GEN_TOTAL),completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
+    premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+    teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),completed:0,available:15,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+    courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+  };
 }
+var TIERS = _buildTiers();
+var currentTier = 'visitor';
 
 function setTier(tier,btn) {
   currentTier=tier;
@@ -1091,17 +1110,17 @@ function setTier(tier,btn) {
   document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
   document.getElementById('progAvailable').textContent=c.available;
   var ic=c.itpTests.length;
-  document.getElementById('access-itp-tests').textContent=tier==='premium'?'✓ All 9':'🔓 '+ic+' of 9';
+  document.getElementById('access-itp-tests').textContent=tier==='premium'?'✓ All '+ITP_TOTAL:'🔓 '+ic+' of '+ITP_TOTAL;
   document.getElementById('access-itp-tests').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
-  document.getElementById('meta-itp-tests').textContent='9 tests · '+ic+' unlocked';
+  document.getElementById('meta-itp-tests').textContent=ITP_TOTAL+' tests · '+ic+' unlocked';
   document.getElementById('btn-itp-tests').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All 9':'🔓 '+ic+' of 9';
+  document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All '+ITP_TOTAL:'🔓 '+ic+' of '+ITP_TOTAL;
   var bc=c.ibtTests.length;
-  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All 9':'🔓 '+bc+' of 9';
+  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All '+IBT_TOTAL:'🔓 '+bc+' of '+IBT_TOTAL;
   document.getElementById('access-ibt').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
-  document.getElementById('meta-ibt').textContent='9 tests · '+bc+' unlocked';
+  document.getElementById('meta-ibt').textContent=IBT_TOTAL+' tests · '+bc+' unlocked';
   document.getElementById('btn-ibt').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All 9':'🔓 '+bc+' of 9';
+  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All '+IBT_TOTAL:'🔓 '+bc+' of '+IBT_TOTAL;
   if(c.conv){
     document.getElementById('access-conv').textContent=tier==='premium'?'✓ Full':'✓ Free';
     document.getElementById('access-conv').className='card-access '+(tier==='premium'?'access-premium':'access-free');
@@ -1137,7 +1156,7 @@ function openITPTests() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-itp-tests').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'TOEFL ITP Mock Tests';
-  document.getElementById('itp-tests-badge').textContent = currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy' ? '✓ All 9' : '🔓 '+allowed.length+' of 9';
+  document.getElementById('itp-tests-badge').textContent = currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy' ? '✓ All '+ITP_TOTAL : '🔓 '+allowed.length+' of '+ITP_TOTAL;
   var frame = document.getElementById('frame-itp-tests');
   frame.src = '/itp?allowed=' + allowed.join(',');
   closeMobileSidebar();
@@ -1155,7 +1174,7 @@ function openIBT() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-ibt').classList.add('active');
   document.getElementById('topbarTitle').textContent='TOEFL iBT Practice';
-  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All 9':'🔓 '+allowed.length+' of 9';
+  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All '+IBT_TOTAL:'🔓 '+allowed.length+' of '+IBT_TOTAL;
   var frame = document.getElementById('frame-ibt');
   frame.src = '/ibt?allowed=' + allowed.join(',');
   closeMobileSidebar();
@@ -1167,7 +1186,7 @@ function openGeneral() {
   document.getElementById('topbarTitle').textContent = 'General English Practice';
   var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
   var isFree = currentTier === 'free';
-  document.getElementById('general-badge').textContent = isFullAccess ? '✓ All 6' : isFree ? '🔓 4 of 6' : '🔓 1 of 6';
+  document.getElementById('general-badge').textContent = isFullAccess ? '✓ All '+GEN_TOTAL : isFree ? '🔓 4 of '+GEN_TOTAL : '🔓 1 of '+GEN_TOTAL;
   var frame = document.getElementById('frame-general');
 frame.src = '/general?allowed=' + allowed.join(',');  closeMobileSidebar();
 }
