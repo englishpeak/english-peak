@@ -71,34 +71,37 @@ header { background: #0D3B6F; color: white; padding: 30px; text-align: center; f
 }
 </style>
 <script>
-var _allowedTests = [];
-var _exerciseMode = 'itp';
+// Read allowed tests and mode from URL parameters
+var _allowedTests = [1, 2, 3];
+var _exerciseMode = 'itp'; // 'itp' or 'general'
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
-  if (allowedParam) _allowedTests = allowedParam.split(',').map(Number);
-  if (params.get('mode') === 'general') _exerciseMode = 'general';
+  if (allowedParam) {
+    _allowedTests = allowedParam.split(',').map(Number);
+  }
+  if (params.get('mode') === 'general') {
+    _exerciseMode = 'general';
+  }
 })();
-
-function _buildITPMenu() {
+document.addEventListener('DOMContentLoaded', function() {
   var menuDiv = document.getElementById('menu');
   if (!menuDiv) return;
-  var titleEl = menuDiv.querySelector('.section-title');
-  menuDiv.innerHTML = ''; if (titleEl) menuDiv.appendChild(titleEl);
-  Object.keys(tests).map(Number).sort(function(a,b){return a-b;}).forEach(function(num) {
-    var btn = document.createElement('button');
-    btn.className = 'next-btn'; btn.style.marginBottom = '10px';
-    var isLocked = _allowedTests.length > 0 && _allowedTests.indexOf(num) === -1;
-    if (isLocked) {
-      btn.textContent = '🔒 Test ' + num; btn.style.opacity = '0.45'; btn.style.background = '#888';
-      btn.onclick = function(e) { e.preventDefault(); window.parent.postMessage({type:'showModal'}, '*'); };
-    } else {
-      btn.textContent = 'Test ' + num;
-      btn.onclick = (function(n){ return function(){ startTest(n); }; })(num);
+  var buttons = menuDiv.querySelectorAll('button');
+  buttons.forEach(function(btn) {
+    var match = btn.getAttribute('onclick') && btn.getAttribute('onclick').match(/startTest\((\d+)\)/);
+    if (match) {
+      var testNum = parseInt(match[1]);
+      if (_allowedTests.indexOf(testNum) === -1) {
+        btn.style.opacity = '0.45';
+        btn.style.background = '#888';
+        btn.style.cursor = 'pointer';
+        btn.textContent = '🔒 ' + btn.textContent.trim();
+        btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"}, "*")');
+      }
     }
-    menuDiv.appendChild(btn);
   });
-}
+});
 </script>
 </head>
 
@@ -107,10 +110,20 @@ function _buildITPMenu() {
 <header>TOEFL Practice Sessions</header>
 
 <div class="container" id="app">
-<div id="menu">
-  <div class="section-title">Select a Test</div>
-  <!-- Botones generados por _buildITPMenu() -->
-</div>
+  <div id="menu">
+    <div class="section-title">Select a Test</div>
+    
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(1)">Test 1</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(2)">Test 2</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(3)">Test 3</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(4)">Test 4</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(5)">Test 5</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(6)">Test 6</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(7)">Test 7</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(8)">Test 8</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(9)">Test 9</button>
+    
+    </div>
 </div>
 
 <button id="magic-toggle" onclick="toggleMagicMode()" title="Toggle Magic Background">🪄</button>
@@ -522,23 +535,20 @@ applyMagicColor();
 
 function backToMenu() {
   clearInterval(timerInterval);
-  index = -1; applyMagicColor();
-  document.getElementById("app").innerHTML = '<div class="section-title">Select a Test</div>';
-  // Reconstruye los botones con locks correctos
-  var keys = Object.keys(tests).map(Number).sort(function(a,b){return a-b;});
-  keys.forEach(function(num) {
-    var btn = document.createElement('button');
-    btn.className = 'next-btn'; btn.style.marginBottom = '10px';
-    var isLocked = _allowedTests.length > 0 && _allowedTests.indexOf(num) === -1;
-    if (isLocked) {
-      btn.textContent = '🔒 Test ' + num; btn.style.opacity = '0.45'; btn.style.background = '#888';
-      btn.onclick = function(e) { e.preventDefault(); window.parent.postMessage({type:'showModal'}, '*'); };
-    } else {
-      btn.textContent = 'Test ' + num;
-      btn.onclick = (function(n){ return function(){ startTest(n); }; })(num);
-    }
-    document.getElementById('app').appendChild(btn);
-  });
+index = -1; applyMagicColor();
+  document.getElementById("app").innerHTML = `
+    <div class="section-title">Select a Test</div>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(1)">Test 1</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(2)">Test 2</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(3)">Test 3</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(4)">Test 4</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(5)">Test 5</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(6)">Test 6</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(7)">Test 7</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(8)">Test 8</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(9)">Test 9</button>
+    `;
+  applyMenuLocks();
 }
 function applyMenuLocks() {
   var menuBtns = document.querySelectorAll('#app button');
@@ -589,7 +599,6 @@ function applyMagicColor() {
     });
   }  
 }
-  _buildITPMenu();
 </script>
 
 </body>
