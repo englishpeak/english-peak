@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -893,33 +894,72 @@ function updateUIForVisitor() {
   applyTier('visitor');
 }
 
-// ─── Configuración de acceso por tier ────────────────────────────────────────
-// SOLO EDITA ESTAS 3 LÍNEAS cuando agregues tests nuevos:
-var ITP_TOTAL = 9;   // Total de tests ITP que existen
-var IBT_TOTAL = 9;   // Total de tests iBT que existen
-var GEN_TOTAL = 6;   // Total de General English tests
+function applyTier(tier) {
+  // Map tier to TIERS config
+  var tierKey = (tier === 'premium' || tier === 'teacher' || tier === 'courtesy') ? tier : tier === 'free' ? 'free' : 'visitor';
+  if (!TIERS[tierKey]) tierKey = 'free';
+  var c = TIERS[tierKey];
+  if (!c) return;
+  currentTier = tierKey;
 
-// Acceso por tier — se calcula automáticamente desde los totales de arriba
-function _buildTiers() {
-  function itpFree(n)    { return Array.from({length:Math.min(6,n)}, function(_,i){return i+1;}); }
-  function itpVisitor(n) { return Array.from({length:Math.min(3,n)}, function(_,i){return i+1;}); }
-  function ibtFree(n)    { return Array.from({length:Math.min(5,n)}, function(_,i){return 'Test '+(i+1);}); }
-  function ibtVisitor(n) { return Array.from({length:Math.min(2,n)}, function(_,i){return 'Test '+(i+1);}); }
-  function ibtAll(n)     { return Array.from({length:n}, function(_,i){return 'Test '+(i+1);}); }
-  function itpAll(n)     { return Array.from({length:n}, function(_,i){return i+1;}); }
-  function genFree(n)    { return Array.from({length:Math.min(4,n)}, function(_,i){return 'test'+(i+1);}); }
-  function genVisitor(n) { return ['test1']; }
-  function genAll(n)     { return Array.from({length:n}, function(_,i){return 'test'+(i+1);}); }
+  document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
+  document.getElementById('progAvailable').textContent = c.available;
 
-  return {
-    visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:itpVisitor(ITP_TOTAL),ibtTests:ibtVisitor(IBT_TOTAL),conv:false,convBiz:false,generalTests:genVisitor(GEN_TOTAL),completed:0,available:7,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
-    free:     {name:'',label:'Free Account',avatar:'',itpTests:itpFree(ITP_TOTAL),ibtTests:ibtFree(IBT_TOTAL),conv:true,convBiz:false,generalTests:genFree(GEN_TOTAL),completed:0,available:10,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-    premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-    teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),completed:0,available:15,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-    courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),completed:0,available:15,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
-  };
+  var ic = c.itpTests.length;
+  document.getElementById('access-itp-tests').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
+  document.getElementById('access-itp-tests').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
+  document.getElementById('meta-itp-tests').textContent = '9 tests · ' + ic + ' unlocked';
+  document.getElementById('btn-itp-tests').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
+  document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + ic + ' of 9';
+
+  var bc = c.ibtTests.length;
+  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + bc + ' of 9';
+  document.getElementById('access-ibt').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
+  document.getElementById('meta-ibt').textContent = '9 tests · ' + bc + ' unlocked';
+  document.getElementById('btn-ibt').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
+  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All 9' : '🔓 ' + bc + ' of 9';
+
+  if (c.conv) {
+    document.getElementById('access-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : '✓ Free';
+    document.getElementById('access-conv').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-free');
+    document.getElementById('btn-conv').className = 'card-btn btn-open';
+    document.getElementById('btn-conv').textContent = 'View Topics →';
+    document.getElementById('meta-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '💼 Business: Included' : '💼 Business: ePeak+ only';
+  } else {
+    document.getElementById('access-conv').textContent = '🔐 Sign in';
+    document.getElementById('access-conv').className = 'card-access access-locked';
+    document.getElementById('btn-conv').className = 'card-btn btn-locked';
+    document.getElementById('btn-conv').textContent = '🔐 Sign in to access';
+    document.getElementById('meta-conv').textContent = '💼 Business: ePeak+';
+  }
+  document.getElementById('conv-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : tierKey === 'free' ? '✓ Free' : '🔐 Required';
+
+  // General English badge
+  var isFullAccess = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy');
+  var isFreeUser   = tierKey === 'free';
+  var gc = c.generalTests.length;
+  if (isFullAccess) {
+    document.getElementById('access-general').textContent = '✓ All 6';
+    document.getElementById('access-general').className   = 'card-access access-premium';
+    document.getElementById('meta-general').textContent   = '6 tests · All unlocked';
+    document.getElementById('btn-general').className      = 'card-btn btn-open';
+  } else if (isFreeUser) {
+    document.getElementById('access-general').textContent = '🔓 ' + gc + ' of 6';
+    document.getElementById('access-general').className   = 'card-access access-partial';
+    document.getElementById('meta-general').textContent   = '6 tests · ' + gc + ' unlocked';
+    document.getElementById('btn-general').className      = 'card-btn btn-partial';
+  } else {
+    document.getElementById('access-general').textContent = '🔓 Test 1 Free';
+    document.getElementById('access-general').className   = 'card-access access-partial';
+    document.getElementById('meta-general').textContent   = '6 tests · 1 unlocked';
+    document.getElementById('btn-general').className      = 'card-btn btn-partial';
+  }
 }
-var TIERS = _buildTiers();
+
+async function doSignOut() {
+  await sb.auth.signOut();
+  updateUIForVisitor();
+}
 
 // ═══════════════════════════════════════
 // AUTH MODAL
