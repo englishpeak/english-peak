@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(7)">Test 7</button>
     <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(8)">Test 8</button>
     <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(9)">Test 9</button>
+    <button class="next-btn" style="margin-bottom: 10px;" onclick="startTest(10)">Test 10</button>
+
     
     </div>
 </div>
@@ -378,7 +380,36 @@ const tests = {
       { s: "This time tomorrow, I will hosting a live practice session for my advanced students.", o: ["This time", "will hosting", "live practice", "advanced"], a: 1, expl: "Future Continuous (B1): The structure to show an action in progress in the future is 'will be + verb-ing' ('will be hosting')." }
     ]
   },
+  
+10: {
+    mc: [
+      { q: "____ had the presentation begun when the fire alarm interrupted the conference.", o: ["Hardly", "No sooner", "Not only", "Rarely"], a: 0, expl: "Negative Inversion: 'Hardly' is paired with 'when' to show that one event happened immediately after another. 'No sooner' is paired with 'than'." },
+      { q: "The new corporate policy, ____ to reduce paper waste, will be implemented next quarter.", o: ["designing", "designed", "was designed", "which designed"], a: 1, expl: "Reduced Relative Clauses: The passive reduction of 'which was designed' becomes simply 'designed'." },
+      { q: "The regulatory board insists that every laboratory ____ strict safety protocols at all times.", o: ["maintains", "maintain", "maintaining", "maintained"], a: 1, expl: "Subjunctive Mood: Verbs of demanding or insisting (like 'insists that') require the base form of the verb ('maintain') for all subjects." },
+      { q: "It took months, but little ____ little he started to learn and adapt well to the new procedures and regulations.", o: ["for", "to", "so", "by"], a: 3, expl: "Idioms & Collocations: The correct fixed expression for 'gradually' is 'little by little'." },
+      { q: "____ by the complexity of the assignment, the student sought help from the professor during office hours.", o: ["Overwhelming", "Overwhelmed", "To overwhelm", "Overwhelms"], a: 1, expl: "Participle Clauses: Use the past participle (-ed) to show that the subject (the student) received the feeling or action." },
+      { q: "One thing Karla has to improve her performance on is ____ deadlines.", o: ["achieving", "complying", "meeting", "finishing"], a: 2, expl: "Collocations: In professional English, the standard verb used with 'deadlines' is 'meeting' (to finish something on time)." },
+      { q: "It is not yet clear ____ the new software will be completely compatible with legacy operating systems.", o: ["what", "whether", "that", "which"], a: 1, expl: "Noun Clauses: Use 'whether' to introduce a noun clause expressing a choice or an uncertainty (if it will or will not be compatible)." },
+      { q: "The facility manager had the broken air conditioning units ____ before the summer heatwave began.", o: ["replace", "replaced", "to replace", "replacing"], a: 1, expl: "Causatives: The structure 'have + object + past participle' is used when arranging for a professional to do a task for you." },
+      { q: "Scientists stated that the mission ____ provide valuable data to support future human landings on the Moon.", o: ["would", "will", "can", "to"], a: 0, expl: "Reported Speech / Future in the Past: When the reporting verb is in the past ('stated'), 'will' shifts back to 'would'." },
+      { q: "The committee's final decision was ____ upon the findings of the independent financial audit.", o: ["contingent", "partial", "absolute", "subjective"], a: 0, expl: "Vocabulary (C1): 'Contingent upon' is a formal academic collocation meaning 'dependent on'." }
+    ],
+    ed: [
+      { s: "The cost of raw materials and transportation have increased significantly over the past fiscal year.", o: ["cost", "have", "significantly", "past"], a: 1, expl: "Subject-Verb Agreement: The true subject is 'cost' (singular). The verb should be 'has'." },
+      { s: "Last night was such a busy night. I supposed to call my mother but I got off work late.", o: ["such a busy night", "I supposed", "to call", "got off"], a: 1, expl: "Verb Patterns / Passives: The correct structure for an expectation or obligation is the passive form 'I was supposed to'." },
+      { s: "To be successful in this role, a candidate must demonstrate strong leadership, effective communication, and to solve problems quickly.", o: ["To be", "demonstrate", "communication", "to solve"], a: 3, expl: "Parallelism: The list consists of noun phrases. 'To solve' must be changed to a noun phrase like 'problem-solving skills'." },
+      { s: "The financial analyst provided a comprehensive and detail report on the current market trends.", o: ["financial", "detail", "on", "trends"], a: 1, expl: "Word Form: An adjective is needed to modify the noun 'report'. It should be 'detailed'." },
+      { s: "The two rival companies decided to join together in order to dominate the international tech market.", o: ["decided", "join together", "in order to", "international"], a: 1, expl: "Redundancy: The verb 'join' already implies coming together. 'Together' is redundant and should be removed." },
+      { s: "The scientists are conducting extensive research on the impact of microplastics at the marine ecosystem.", o: ["conducting", "on", "impact", "at"], a: 3, expl: "Prepositions: The correct preposition for exerting an effect or impact is 'on' or 'in' an ecosystem, not 'at'." },
+      { s: "By the time the CEO arrived at the meeting, the board already voted on the controversial merger.", o: ["By the time", "arrived", "already voted", "on"], a: 2, expl: "Past Perfect: An action completed before another past action ('arrived') requires the past perfect ('had already voted')." },
+      { s: "The human resources department requires all new employees to submit their informations before their first day.", o: ["requires", "new employees", "informations", "before"], a: 2, expl: "Count/Uncount Nouns: 'Information' is an uncountable noun and cannot be pluralized with an 's'." },
+      { s: "The newly implemented software system runs much more efficient than the legacy system it replaced.", o: ["newly implemented", "much", "efficient", "replaced"], a: 2, expl: "Adjective vs. Adverb: An adverb is needed to modify the verb 'runs'. It should be 'efficiently'." },
+      { s: "The environmental organization strongly opposes to build a new shopping center in the historic district.", o: ["strongly opposes", "to build", "shopping", "historic"], a: 1, expl: "Verb Patterns: The verb 'oppose' is followed by a gerund. It should be 'opposes building' (or 'is opposed to building')." }
+    ]
+  },
 
+  // 📖📖📖 QUESTIONS CODE (START) 📖📖📖
+  
 };
 
 // ---------------- STATE & LOGIC ----------------
