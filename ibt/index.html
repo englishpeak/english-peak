@@ -1,4 +1,4 @@
-/
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,32 +109,35 @@
     </style>
 
 <script>
-var _allowedTests = [];
+var _allowedTests = ['Test 1','Test 2'];
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
-  if (allowedParam) _allowedTests = allowedParam.split(',');
+  if (allowedParam) {
+    _allowedTests = allowedParam.split(',');
+  }
 })();
-
-function _buildIBTMenu() {
+document.addEventListener('DOMContentLoaded', function() {
   var menuGrid = document.getElementById('menu-grid');
   if (!menuGrid) return;
-  menuGrid.innerHTML = '';
-  Object.keys(testData).forEach(function(key) {
-    var btn = document.createElement('button');
-    btn.className = 'btn';
-    var isLocked = _allowedTests.length > 0 && _allowedTests.indexOf(key) === -1;
-    if (isLocked) {
-      btn.textContent = '🔒 ' + key;
-      btn.style.opacity = '0.5'; btn.style.background = '#888';
-      btn.onclick = function(e) { e.preventDefault(); window.parent.postMessage({type:'showModal'}, '*'); };
-    } else {
-      btn.textContent = key;
-      btn.onclick = (function(k){ return function(){ start(k); }; })(key);
+  var buttons = menuGrid.querySelectorAll('button');
+  buttons.forEach(function(btn) {
+    var testName = btn.textContent.trim();
+    if (_allowedTests.indexOf(testName) === -1) {
+      btn.style.opacity = '0.5';
+      btn.style.cursor = 'pointer';
+      btn.style.background = '#888';
+      btn.title = 'Upgrade to access this test';
+      btn.textContent = '🔒 ' + testName;
+      btn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.parent.postMessage({type:'showModal'}, '*');
+        return false;
+      };
     }
-    menuGrid.appendChild(btn);
   });
-}
+});
 </script>
 </head>
 <body>
@@ -142,9 +145,17 @@ function _buildIBTMenu() {
 <div id="app-wrapper">
     <div id="screen-home" class="screen active">
         <h1>New TOEFL iBT Practice</h1>
-       <div id="menu-grid">
-  <!-- Generado automáticamente por _buildIBTMenu() -->
-</div>
+        <div id="menu-grid">
+            <button class="btn" onclick="start('Test 1')">Test 1</button>
+            <button class="btn" onclick="start('Test 2')">Test 2</button>
+            <button class="btn" onclick="start('Test 3')">Test 3</button>
+            <button class="btn" onclick="start('Test 4')">Test 4</button>
+            <button class="btn" onclick="start('Test 5')">Test 5</button>
+            <button class="btn" onclick="start('Test 6')">Test 6</button>
+            <button class="btn" onclick="start('Test 7')">Test 7</button>
+            <button class="btn" onclick="start('Test 8')">Test 8</button>
+            <button class="btn" onclick="start('Test 9')">Test 9</button>
+            </div>
     </div>
 
     <div id="screen-exercise" class="screen">
@@ -832,6 +843,5 @@ function _buildIBTMenu() {
     function switchScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
     function skip() { results.push({title:curSet[idx].title, skipped:true}); idx++; idx<curSet.length?render():finish(); }
 </script>
-    _buildIBTMenu();
 </body>
 </html>
