@@ -748,7 +748,7 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
 window.sb = sb;
 
 // Listen for messages from iframes (tier restriction + score logging)
-window.addEventListener('message', async function(e) {
+window.addEventListener('message', function(e) {
   if (e.data && e.data.type === 'showModal') {
     if (!_currentUser) {
       showAuthModal('register');
@@ -760,15 +760,8 @@ window.addEventListener('message', async function(e) {
   if (e.data && e.data.type === 'exerciseComplete') {
     var d = e.data;
     // d.exerciseType, d.exerciseName, d.score, d.maxScore
-    // Wait for session if _currentUser not yet available (race condition on page load)
-    if (!_currentUser) {
-      try {
-        var { data: sessionData } = await sb.auth.getSession();
-        if (sessionData && sessionData.session) _currentUser = sessionData.session.user;
-      } catch(e2) { /* ignore */ }
-    }
     if (typeof logActivity === 'function') {
-      await logActivity(d.exerciseType || 'Exercise', d.exerciseName || 'Session', d.score != null ? d.score : null, d.maxScore || null, d.details || null);
+      logActivity(d.exerciseType || 'Exercise', d.exerciseName || 'Session', d.score != null ? d.score : null, d.maxScore || null, d.details || null);
     }
   }
 });
@@ -1392,17 +1385,6 @@ async function loadProgressHistory() {
   var notIn   = document.getElementById('ph-not-logged-in');
   var table   = document.getElementById('ph-table');
   loading.style.display='block'; empty.style.display='none'; notIn.style.display='none'; table.style.display='none';
-
-  // Race condition fix: if session not yet resolved, try once directly
-  if (!_currentUser) {
-    try {
-      var { data: sd } = await sb.auth.getSession();
-      if (sd && sd.session && sd.session.user) {
-        _currentUser = sd.session.user;
-        if (!_currentProfile) await loadProfile();
-      }
-    } catch(e2) { /* ignore */ }
-  }
 
   if (!_currentUser) {
     loading.style.display='none';
