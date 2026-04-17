@@ -689,6 +689,7 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="auth-divider">or</div>
         <div class="auth-input-group"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com"></div>
         <div class="auth-input-group"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+        <div style="text-align:right;margin-top:-8px;margin-bottom:14px;"><span onclick="switchAuthTab('forgot')" style="font-size:0.78rem;color:var(--navy);cursor:pointer;text-decoration:underline">Forgot password?</span></div>
         <button class="auth-btn" id="loginBtn" onclick="doLogin()">Sign in</button>
         <div class="auth-error" id="loginError"></div>
       </div>
@@ -707,6 +708,16 @@ body.sidebar-collapsed .main{margin-left:64px}
         <button class="auth-btn" id="registerBtn" onclick="doRegister()">Create free account</button>
         <div class="auth-error" id="registerError"></div>
         <div class="auth-success" id="registerSuccess"></div>
+      </div>
+      <!-- FORGOT PASSWORD -->
+      <div id="authPanelForgot" style="display:none">
+        <div class="auth-title">Reset password</div>
+        <div class="auth-sub">Enter your email and we'll send you a reset link.</div>
+        <div class="auth-input-group"><label>Email</label><input type="email" id="forgotEmail" placeholder="you@example.com"></div>
+        <button class="auth-btn" id="forgotBtn" onclick="doForgotPassword()">Send reset link</button>
+        <div class="auth-error" id="forgotError"></div>
+        <div class="auth-success" id="forgotSuccess"></div>
+        <div style="text-align:center;margin-top:14px;"><span onclick="switchAuthTab('login')" style="font-size:0.78rem;color:var(--navy);cursor:pointer;text-decoration:underline">← Back to sign in</span></div>
       </div>
     </div>
   </div>
@@ -982,9 +993,10 @@ function closeAuthModal() {
   document.getElementById('authModalOverlay').classList.remove('show');
 }
 function switchAuthTab(tab) {
-  document.getElementById('authPanelLogin').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('authPanelLogin').style.display    = tab === 'login'    ? 'block' : 'none';
   document.getElementById('authPanelRegister').style.display = tab === 'register' ? 'block' : 'none';
-  document.getElementById('authTabLogin').classList.toggle('active', tab === 'login');
+  document.getElementById('authPanelForgot').style.display   = tab === 'forgot'   ? 'block' : 'none';
+  document.getElementById('authTabLogin').classList.toggle('active',    tab === 'login');
   document.getElementById('authTabRegister').classList.toggle('active', tab === 'register');
 }
 
@@ -1038,6 +1050,23 @@ async function doRegister() {
     err.style.display = 'block'; return;
   }
   succ.textContent = '✅ Account created! Check your email to confirm, then sign in.';
+  succ.style.display = 'block';
+}
+
+async function doForgotPassword() {
+  var email = document.getElementById('forgotEmail').value.trim();
+  var btn   = document.getElementById('forgotBtn');
+  var err   = document.getElementById('forgotError');
+  var succ  = document.getElementById('forgotSuccess');
+  err.style.display = 'none'; succ.style.display = 'none';
+  if (!email) { err.textContent = 'Please enter your email.'; err.style.display = 'block'; return; }
+  btn.disabled = true; btn.textContent = 'Sending...';
+  var { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://epeak.app/?reset=1'
+  });
+  btn.disabled = false; btn.textContent = 'Send reset link';
+  if (error) { err.textContent = error.message; err.style.display = 'block'; return; }
+  succ.textContent = '✅ Check your email for the reset link.';
   succ.style.display = 'block';
 }
 
@@ -1737,6 +1766,22 @@ async function submitPayment() {
     btn.textContent = '🔒 Suscribirme ahora';
   }
 }
+
+// Detecta regreso con ?reset=1 (password reset email link)
+(function checkPasswordReset() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('reset') !== '1') return;
+  history.replaceState({}, document.title, window.location.pathname);
+  // Supabase restores the session via the URL hash automatically
+  setTimeout(function() {
+    var newPass = prompt('Enter your new password (minimum 6 characters):');
+    if (!newPass || newPass.length < 6) { alert('Password too short. Please try the reset link again.'); return; }
+    sb.auth.updateUser({ password: newPass }).then(function(res) {
+      if (res.error) alert('Error updating password: ' + res.error.message);
+      else alert('✅ Password updated successfully! You are now signed in.');
+    });
+  }, 800);
+})();
 
 // Detecta regreso con ?payment=success o ?payment=cancelled
 (function checkPaymentReturn() {
