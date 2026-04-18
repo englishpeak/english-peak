@@ -1062,7 +1062,7 @@ async function doForgotPassword() {
   if (!email) { err.textContent = 'Please enter your email.'; err.style.display = 'block'; return; }
   btn.disabled = true; btn.textContent = 'Sending...';
   var { error } = await sb.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://epeak.app/?reset=1'
+    redirectTo: 'https://epeak.app/'
   });
   btn.disabled = false; btn.textContent = 'Send reset link';
   if (error) { err.textContent = error.message; err.style.display = 'block'; return; }
@@ -1767,21 +1767,90 @@ async function submitPayment() {
   }
 }
 
-// Detecta regreso con ?reset=1 (password reset email link)
+// Detecta regreso desde el email de reset de contraseña de Supabase
+// Supabase envía el token en el hash fragment: #access_token=...&type=recovery
 (function checkPasswordReset() {
-  var params = new URLSearchParams(window.location.search);
-  if (params.get('reset') !== '1') return;
+  var hash = window.location.hash;
+  if (!hash || hash.indexOf('type=recovery') === -1) return;
+
+  // Limpia el hash de la URL para que no se repita
   history.replaceState({}, document.title, window.location.pathname);
-  // Supabase restores the session via the URL hash automatically
+
+  // Supabase procesa el hash automáticamente al inicializarse.
+  // Esperamos a que el cliente termine y luego mostramos el modal de nueva contraseña.
   setTimeout(function() {
-    var newPass = prompt('Enter your new password (minimum 6 characters):');
-    if (!newPass || newPass.length < 6) { alert('Password too short. Please try the reset link again.'); return; }
-    sb.auth.updateUser({ password: newPass }).then(function(res) {
-      if (res.error) alert('Error updating password: ' + res.error.message);
-      else alert('✅ Password updated successfully! You are now signed in.');
-    });
-  }, 800);
+    showResetPasswordModal();
+  }, 1200);
 })();
+
+function showResetPasswordModal() {
+  // Crea un modal flotante limpio para ingresar la nueva contraseña
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(13,59,111,0.35);backdrop-filter:blur(6px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px';
+  overlay.innerHTML = `
+    <div style="background:white;border-radius:24px;padding:36px;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(13,59,111,0.2)">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:#0D3B6F;margin-bottom:8px">Set new password</div>
+      <div style="font-size:0.85rem;color:#888;margin-bottom:22px">Enter a new password for your ePeak account.</div>
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:7px">New password</label>
+        <input type="password" id="resetPassInput" placeholder="At least 6 characters"
+          style="width:100%;padding:11px 14px;border:1.5px solid rgba(13,59,111,0.12);border-radius:10px;font-size:0.9rem;font-family:'Outfit',sans-serif;color:#1A1A2E;outline:none;background:#F7F8FC;box-sizing:border-box">
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="display:block;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:7px">Confirm password</label>
+        <input type="password" id="resetPassConfirm" placeholder="Repeat your password"
+          style="width:100%;padding:11px 14px;border:1.5px solid rgba(13,59,111,0.12);border-radius:10px;font-size:0.9rem;font-family:'Outfit',sans-serif;color:#1A1A2E;outline:none;background:#F7F8FC;box-sizing:border-box">
+      </div>
+      <div id="resetPassMsg" style="font-size:0.8rem;margin-bottom:12px;display:none"></div>
+      <button id="resetPassBtn" onclick="submitNewPassword()"
+        style="width:100%;padding:13px;background:linear-gradient(135deg,#0D3B6F,#470074);color:white;border:none;border-radius:10px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">
+        Update password
+      </button>
+    </div>`;
+  document.body.appendChild(overlay);
+  document.getElementById('resetPassInput').focus();
+  window._resetOverlay = overlay;
+}
+
+async function submitNewPassword() {
+  var pass    = document.getElementById('resetPassInput').value;
+  var confirm = document.getElementById('resetPassConfirm').value;
+  var msg     = document.getElementById('resetPassMsg');
+  var btn     = document.getElementById('resetPassBtn');
+
+  msg.style.display = 'none';
+
+  if (!pass || pass.length < 6) {
+    msg.style.color = '#c0392b'; msg.textContent = 'Password must be at least 6 characters.'; msg.style.display = 'block'; return;
+  }
+  if (pass !== confirm) {
+    msg.style.color = '#c0392b'; msg.textContent = 'Passwords do not match.'; msg.style.display = 'block'; return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Updating...';
+
+  // Verificamos que la sesión de recovery esté activa
+  var { data: sessionData } = await sb.auth.getSession();
+  if (!sessionData || !sessionData.session) {
+    msg.style.color = '#c0392b';
+    msg.textContent = 'Session expired. Please request a new reset link.';
+    msg.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Update password';
+    return;
+  }
+
+  var { error } = await sb.auth.updateUser({ password: pass });
+  if (error) {
+    msg.style.color = '#c0392b'; msg.textContent = '❌ ' + error.message; msg.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Update password';
+    return;
+  }
+
+  // Éxito: cerrar modal y recargar UI
+  if (window._resetOverlay) document.body.removeChild(window._resetOverlay);
+  await loadProfile();
+  alert('✅ Password updated! You are now signed in.');
+}
 
 // Detecta regreso con ?payment=success o ?payment=cancelled
 (function checkPaymentReturn() {
