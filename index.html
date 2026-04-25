@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -860,22 +861,24 @@ function updateUIForUser() {
   var switcher = document.querySelector('.tier-switcher');
   if (switcher) switcher.style.display = 'none';
 
-  // Show/hide upgrade button and sign in button
-  var upgradeBtn = document.getElementById('upgradeTopBtn');
-  var signinBtn = document.getElementById('signinTopBtn');
-  if (signinBtn) signinBtn.style.display = 'none';
-  if (tier === 'premium' || tier === 'teacher' || tier === 'courtesy') {
-    upgradeBtn.style.display = 'none';
-  } else {
-    upgradeBtn.style.display = 'block';
-    upgradeBtn.textContent = '⭐ Get ePeak+';
-    upgradeBtn.onclick = showModal;
-  }
-
-  // Show user info in topbar
+  // Show user info in topbar (replaces the buttons area)
   var userTopbar = document.getElementById('userTopbarArea');
   if (userTopbar) {
     userTopbar.innerHTML = '<div class="user-topbar-info"><span class="user-topbar-name">' + name + '</span><button class="signout-link" onclick="doSignOut()">Sign out</button></div>';
+  }
+
+  // Show/hide upgrade button and sign in button (may no longer exist after innerHTML replacement above)
+  var upgradeBtn = document.getElementById('upgradeTopBtn');
+  var signinBtn = document.getElementById('signinTopBtn');
+  if (signinBtn) signinBtn.style.display = 'none';
+  if (upgradeBtn) {
+    if (tier === 'premium' || tier === 'teacher' || tier === 'courtesy') {
+      upgradeBtn.style.display = 'none';
+    } else {
+      upgradeBtn.style.display = 'block';
+      upgradeBtn.textContent = '⭐ Get ePeak+';
+      upgradeBtn.onclick = showModal;
+    }
   }
 
   // Update progress card
@@ -896,9 +899,8 @@ function updateUIForVisitor() {
   document.getElementById('sidebarName').textContent = 'Guest';
   document.getElementById('sidebarAvatar').textContent = '👤';
   document.getElementById('sidebarTier').textContent = 'Visitor';
-  document.getElementById('upgradeTopBtn').style.display = 'block';
-  document.getElementById('upgradeTopBtn').textContent = '⭐ Get ePeak+';
-  document.getElementById('upgradeTopBtn').onclick = showModal;
+  var upgradeBtnV = document.getElementById('upgradeTopBtn');
+  if (upgradeBtnV) { upgradeBtnV.style.display = 'block'; upgradeBtnV.textContent = '⭐ Get ePeak+'; upgradeBtnV.onclick = showModal; }
   var signinBtnV = document.getElementById('signinTopBtn');
   if (signinBtnV) { signinBtnV.style.display = 'block'; signinBtnV.onclick = function(){ showAuthModal('login'); }; }
   var userTopbar = document.getElementById('userTopbarArea');
@@ -1139,7 +1141,7 @@ function setTier(tier,btn) {
   document.getElementById('sidebarName').textContent=c.name;
   document.getElementById('sidebarTier').textContent=c.label;
   document.getElementById('sidebarAvatar').textContent=c.avatar;
-  document.getElementById('upgradeTopBtn').style.display=tier==='premium'?'none':'block';
+  var _upgBtn=document.getElementById('upgradeTopBtn'); if(_upgBtn) _upgBtn.style.display=tier==='premium'||tier==='teacher'||tier==='courtesy'?'none':'block';
   document.getElementById('progTitle').textContent=c.ptitle;
   document.getElementById('progSub').textContent=c.psub;
   document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
