@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -771,16 +772,30 @@ window.addEventListener('message', async function(e) {
   // Score reporting from iframe exercises
   if (e.data && e.data.type === 'exerciseComplete') {
     var d = e.data;
-    // d.exerciseType, d.exerciseName, d.score, d.maxScore
     // Wait for session if _currentUser not yet available (race condition on page load)
     if (!_currentUser) {
       try {
         var { data: sessionData } = await sb.auth.getSession();
-        if (sessionData && sessionData.session) _currentUser = sessionData.session.user;
-      } catch(e2) { /* ignore */ }
+        if (sessionData && sessionData.session && sessionData.session.user) {
+          _currentUser = sessionData.session.user;
+        }
+      } catch(sessionErr) {
+        console.warn('logActivity: could not resolve session', sessionErr);
+      }
     }
     if (typeof logActivity === 'function') {
-      await logActivity(d.exerciseType || 'Exercise', d.exerciseName || 'Session', d.score != null ? d.score : null, d.maxScore || null, d.details || null);
+      await logActivity(
+        d.exerciseType || 'Exercise',
+        d.exerciseName || 'Session',
+        d.score != null ? d.score : null,
+        d.maxScore || null,
+        d.details || null
+      );
+      // Auto-refresh MyProgress if it's currently visible
+      var progressScreen = document.getElementById('screen-progress');
+      if (progressScreen && progressScreen.classList.contains('active')) {
+        await loadProgressHistory();
+      }
     }
   }
 });
@@ -1425,15 +1440,24 @@ async function loadProgressHistory() {
   loading.style.display='block'; empty.style.display='none'; notIn.style.display='none'; table.style.display='none';
 
   // Race condition fix: si la sesión aún no resolvió cuando se abre My Progress,
-  // intentamos obtenerla directamente antes de asumir que no hay usuario.
+  // esperamos hasta 3 intentos con un breve delay antes de asumir que no hay usuario.
   if (!_currentUser) {
-    try {
-      var { data: sd } = await sb.auth.getSession();
-      if (sd && sd.session && sd.session.user) {
-        _currentUser = sd.session.user;
-        if (!_currentProfile) await loadProfile();
+    for (var attempt = 0; attempt < 3; attempt++) {
+      try {
+        var { data: sd } = await sb.auth.getSession();
+        if (sd && sd.session && sd.session.user) {
+          _currentUser = sd.session.user;
+          if (!_currentProfile) await loadProfile();
+          break; // sesión resuelta, salir del bucle
+        }
+      } catch(sessionErr) {
+        console.warn('loadProgressHistory: getSession attempt ' + (attempt+1) + ' failed', sessionErr);
       }
-    } catch(e2) { /* ignorar */ }
+      if (attempt < 2) {
+        // Esperar 300ms antes del siguiente intento
+        await new Promise(function(resolve){ setTimeout(resolve, 300); });
+      }
+    }
   }
 
   if (!_currentUser) {
@@ -1615,8 +1639,14 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
     });
     if (!error) {
       showToast('✅ Progress saved: ' + exerciseType + ' — ' + exerciseName + (score != null ? ' (' + score + '/' + maxScore + ')' : ''), false);
+      // Actualizar el contador del dashboard
       var el = document.getElementById('progCompleted');
       if (el) el.textContent = (parseInt(el.textContent, 10) || 0) + 1;
+      // Si MyProgress está visible, refrescar los datos completos para consistencia
+      var progressScreen = document.getElementById('screen-progress');
+      if (progressScreen && progressScreen.classList.contains('active')) {
+        await loadProgressHistory();
+      }
     } else {
       showToast('❌ Save failed: ' + error.message, true);
       console.error('logActivity error:', error);
