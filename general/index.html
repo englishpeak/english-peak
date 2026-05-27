@@ -213,7 +213,7 @@ var _allowedTests = ['test1']; // default: visitor sees only test1
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
-  var allTests = ['test1','test2','test3','test4','test5','test6'];
+  var allTests = ['test1','test2','test3','test4','test5','test6','test7'];
   allTests.forEach(function(testId) {
     var btn = document.querySelector('.menu-btn[onclick="startTest(\''+testId+'\')"]');
     if (!btn) return;
@@ -245,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="menu-btn" onclick="startTest('test4')">Test 4</button>
         <button class="menu-btn" onclick="startTest('test5')">Test 5</button>
         <button class="menu-btn" onclick="startTest('test6')">Test 6</button>
+        <button class="menu-btn" onclick="startTest('test7')">Test 7</button>
 
 
 
@@ -513,6 +514,48 @@ test6: [
             { type: 'fill', question: "His apology was completely devoid ___ any genuine emotion.", answer: "of", explanation: "The formal adjective 'devoid' (meaning completely lacking) is always followed by the preposition 'of'." }
         ]
     };
+
+    test7: [
+            // --- A1 Questions (5) - Topics: Math/Numbers, Daily Objects, Clothing, Family, Opposites ---
+            { type: 'mcq', question: "Ten plus five ___ fifteen.", options: ["is", "are", "am", "be"], answer: "is", explanation: "When stating simple math facts, we use the singular verb 'is'." },
+            { type: 'fill', question: "I wear ___ on my feet before putting on my shoes.", answer: "socks", explanation: "Socks are the clothing items worn directly on the feet inside shoes." },
+            { type: 'unscramble', question: "have / i / brothers / two", answer: "i have two brothers", explanation: "Subject (I) + verb (have) + number (two) + plural noun (brothers)." },
+            { type: 'mcq', question: "She ___ a cup of coffee every morning.", options: ["drink", "drinks", "drinking", "is drink"], answer: "drinks", explanation: "For a daily habit with a third-person singular subject (She), we add '-s' to the verb." },
+            { type: 'fill', question: "The opposite of hot is ___.", answer: "cold", explanation: "Cold is the direct antonym of hot." },
+
+            // --- A2 Questions (5) - Topics: Goals, Furniture, Weekend Activities, Shopping, Growing up ---
+            { type: 'mcq', question: "I am saving money ___ a new phone.", options: ["for buy", "to buying", "to buy", "buy"], answer: "to buy", explanation: "We use the infinitive of purpose ('to' + base verb) to explain the reason for doing something." },
+            { type: 'fill', question: "My sister is sitting ___ the sofa.", answer: "on", explanation: "We use the preposition 'on' for sitting on surfaces like a sofa, couch, or chair." },
+            { type: 'unscramble', question: "you / do / weekend / what / did / the / over", answer: "what did you do over the weekend?", explanation: "Question word (What) + auxiliary (did) + subject (you) + base verb (do) + time phrase (over the weekend)." },
+            { type: 'mcq', question: "This shirt is too expensive. I need a ___ one.", options: ["cheap", "cheaper", "cheapest", "more cheap"], answer: "cheaper", explanation: "We are comparing two things, so we need the comparative form of the short adjective 'cheap'." },
+            { type: 'fill', question: "He wants to be an engineer when he grows ___.", answer: "up", explanation: "The phrasal verb 'grow up' means to become an adult." },
+
+            // --- B1 Questions (8) - Topics: Future predictions, Conditionals, Friendship, Indirect speech, Feelings, Warnings, Travel ---
+            { type: 'mcq', question: "I think electric cars ___ the most common vehicles in ten years.", options: ["are", "will be", "going to be", "have been"], answer: "will be", explanation: "We use 'will' for future predictions based on personal opinions or beliefs (often following 'I think')." },
+            { type: 'fill', question: "If I don't set an alarm, I ___ oversleep.", answer: "will", explanation: "First Conditional: If + present simple (don't set), subject + will + base verb." },
+            { type: 'unscramble', question: "long / known / friend / how / you / your / have / best", answer: "how long have you known your best friend?", explanation: "How long + auxiliary (have) + subject (you) + past participle (known) + object (your best friend)." },
+            { type: 'mcq', question: "He asked me what time ___.", options: ["the movie started", "did the movie start", "started the movie", "the movie start"], answer: "the movie started", explanation: "In embedded (indirect) questions, we use statement word order (subject + verb) without the auxiliary 'do/did'." },
+            { type: 'fill', question: "I am really tired ___ doing the same chores every day.", answer: "of", explanation: "The adjective 'tired', when meaning 'annoyed or bored with something', is followed by the preposition 'of'." },
+            { type: 'unscramble', question: "told / she / that / call / me / later / would / she", answer: "she told me that she would call later", explanation: "Reported speech: Subject (She) + reporting verb (told) + object (me) + that clause (she would call later)." },
+            { type: 'mcq', question: "You ___ touch that wire! It's very dangerous.", options: ["don't have to", "mustn't", "shouldn't", "needn't"], answer: "mustn't", explanation: "'Mustn't' is used to express strong prohibition or something that is dangerous." },
+            { type: 'fill', question: "The flight was delayed ___ of the heavy snow.", answer: "because", explanation: "We use the phrase 'because of' before a noun phrase (the heavy snow) to state a reason." },
+
+            // --- B2 Questions (8) - Topics: Language skills, Work achievements, Polite requests, Inversion, Events, Time relations, Economics, Security ---
+            { type: 'mcq', question: "The more you practice speaking, the ___ you will become.", options: ["more confident", "most confident", "confident", "much confident"], answer: "more confident", explanation: "This uses the 'the + comparative, the + comparative' structure to show cause and effect." },
+            { type: 'fill', question: "The manager congratulated the team ___ completing the project ahead of schedule.", answer: "on", explanation: "The verb 'congratulate' is followed by the preposition 'on'." },
+            { type: 'unscramble', question: "mind / me / salt / you / passing / the / would", answer: "would you mind passing me the salt?", explanation: "Polite request: Would you mind + gerund (passing) + indirect object (me) + direct object (the salt)." },
+            { type: 'mcq', question: "___ had the ceremony concluded than the guests started leaving.", options: ["Hardly", "No sooner", "As soon as", "Barely"], answer: "No sooner", explanation: "'No sooner... than' is an advanced inversion structure. (Hardly and Barely pair with 'when')." },
+            { type: 'fill', question: "Despite the bad weather, they went ___ with the outdoor concert.", answer: "ahead", explanation: "The phrasal verb 'go ahead' means to proceed with a plan or event." },
+            { type: 'unscramble', question: "by / arrived / the / time / they / left / had / already / we", answer: "by the time they arrived we had already left", explanation: "Time clause (By the time they arrived) + subject (we) + past perfect (had already left)." },
+            { type: 'mcq', question: "It is highly likely that the stock market ___ rebound by next quarter.", options: ["would", "will", "has", "did"], answer: "will", explanation: "We use 'will' to state strong future possibilities or predictions following phrases like 'highly likely that'." },
+            { type: 'fill', question: "He was prevented ___ entering the building without an ID.", answer: "from", explanation: "The verb 'prevent' is followed by the preposition 'from' and a gerund." },
+
+            // --- C1 Questions (4) - Topics: Public relations, Corporate transparency, Security protocols, Idioms of success ---
+            { type: 'mcq', question: "The committee's decision was met with a ___ of protests from the local community.", options: ["barrage", "puddle", "breeze", "whisper"], answer: "barrage", explanation: "A 'barrage' is an advanced metaphor meaning a rapid and continuous delivery of something (like protests or questions)." },
+            { type: 'fill', question: "It is imperative that the CEO ___ transparent with the shareholders.", answer: "be", explanation: "The subjunctive mood requires the base form of the verb ('be') for all subjects after adjectives like 'imperative'." },
+            { type: 'unscramble', question: "circumstances / under / no / left / should / unattended / luggage / be", answer: "under no circumstances should luggage be left unattended", explanation: "Negative inversion: Phrase (Under no circumstances) + auxiliary (should) + subject (luggage) + passive verb (be left) + adjective." },
+            { type: 'fill', question: "Her brilliant performance paved the ___ for a successful career in Hollywood.", answer: "way", explanation: "To 'pave the way' is an advanced idiom meaning to create the right conditions for something to happen." }
+        ]
 
     let currentActiveTest = [];
     let userSelections = [];
