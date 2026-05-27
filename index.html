@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -312,8 +313,8 @@ body.sidebar-collapsed .main{margin-left:64px}
     <div class="cards-grid">
       <div class="ex-card" onclick="openGeneral()">
         <div class="card-header"><div class="card-icon blue">📝</div><div class="card-access access-free" id="access-general">🔓 Test 1 Free</div></div>
-        <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">6 tests · 1 unlocked</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-general"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access Tests 2 and 3. Upgrade to ePeak+ for all 6 tests.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('general');event.stopPropagation()">Maybe later</button></div>
+        <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">7 tests · 1 unlocked</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-general"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access Tests 2 and 3. Upgrade to ePeak+ for all 7 tests.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('general');event.stopPropagation()">Maybe later</button></div>
       </div>
     </div>
 
@@ -1124,7 +1125,7 @@ function loadFrame(frameId, b64, replacements) {
 // SOLO EDITA ESTAS 3 LÍNEAS cuando agregues tests nuevos:
 var ITP_TOTAL = 17;   // Total de tests ITP que existen
 var IBT_TOTAL = 17;   // Total de tests iBT que existen
-var GEN_TOTAL = 7;   // Total de General English tests
+var GEN_TOTAL = 7;   // ← Cambia este número al agregar nuevos General English tests
 
 // Acceso por tier — se calcula automáticamente desde los totales de arriba
 function _buildTiers() {
