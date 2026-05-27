@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,23 +212,6 @@ var _allowedTests = ['test1']; // default: visitor sees only test1
   var p = params.get('allowed');
   if (p) _allowedTests = p.split(',');
 })();
-
-document.addEventListener('DOMContentLoaded', function() {
-  var allTests = ['test1','test2','test3','test4','test5','test6','test7'];
-  allTests.forEach(function(testId) {
-    var btn = document.querySelector('.menu-btn[onclick="startTest(\''+testId+'\')"]');
-    if (!btn) return;
-    if (_allowedTests.indexOf(testId) === -1) {
-      // Locked
-      btn.style.opacity = '0.5';
-      btn.style.background = '#888';
-      btn.title = 'Upgrade to access this test';
-      var num = btn.textContent.trim();
-      btn.textContent = '🔒 ' + num;
-      btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"},"*"); return false;');
-    }
-  });
-});
 </script>
 </head>
 <body>
@@ -239,17 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
 
     <div id="menu-screen">
-        <button class="menu-btn" onclick="startTest('test1')">Test 1</button>
-        <button class="menu-btn" onclick="startTest('test2')">Test 2</button>
-        <button class="menu-btn" onclick="startTest('test3')">Test 3</button>
-        <button class="menu-btn" onclick="startTest('test4')">Test 4</button>
-        <button class="menu-btn" onclick="startTest('test5')">Test 5</button>
-        <button class="menu-btn" onclick="startTest('test6')">Test 6</button>
-        <button class="menu-btn" onclick="startTest('test7')">Test 7</button>
-
-
-
-
+        <!-- Los botones se generan automáticamente desde testBank -->
         </div>
 
     <div id="quiz-screen">
@@ -557,6 +531,32 @@ test6: [
       ]
     };
     
+    // ── Generar botones dinámicamente desde testBank ──────────────
+    (function() {
+      var menuScreen = document.getElementById('menu-screen');
+      var testIds = Object.keys(testBank);
+      testIds.forEach(function(testId, i) {
+        var num = i + 1;
+        var btn = document.createElement('button');
+        btn.className = 'menu-btn';
+        btn.textContent = 'Test ' + num;
+        var isLocked = _allowedTests.indexOf(testId) === -1;
+        if (isLocked) {
+          btn.style.opacity = '0.5';
+          btn.style.background = '#888';
+          btn.title = 'Upgrade to access this test';
+          btn.textContent = '🔒 Test ' + num;
+          btn.addEventListener('click', function() {
+            window.parent.postMessage({ type: 'showModal' }, '*');
+          });
+        } else {
+          btn.addEventListener('click', function() { startTest(testId); });
+        }
+        menuScreen.appendChild(btn);
+      });
+    })();
+    // ─────────────────────────────────────────────────────────────
+
     let currentActiveTest = [];
     let userSelections = [];
 
