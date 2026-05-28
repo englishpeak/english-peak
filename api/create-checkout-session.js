@@ -9,10 +9,10 @@ const sb = createClient(
 );
 
 const PRICE_IDS = {
-  mxn_monthly: 'price_1TCw7hF2ctV3Sh1lQXJDWYTl',
-  mxn_yearly:  'price_1TCw8LF2ctV3Sh1lqShYQgcq',
-  usd_monthly: 'price_1TCw8lF2ctV3Sh1lgO4R0oDj',
-  usd_yearly:  'price_1TCw90F2ctV3Sh1lUccMCWW3',
+  mxn_monthly: 'price_1TbYiiF2ctV3Sh1lNf3LXDMb',  // HOT SALE $39.80 MXN/mes
+  mxn_yearly:  'price_1TbYqIF2ctV3Sh1lBkp8ICiM',   // HOT SALE $382 MXN/año
+  usd_monthly: 'price_1TbYowF2ctV3Sh1lmsClO9vG',   // HOT SALE $1.99 USD/mes
+  usd_yearly:  'price_1TbYpxF2ctV3Sh1lQ5A461by',   // HOT SALE $23.20 USD/año
 };
 
 export default async function handler(req, res) {
