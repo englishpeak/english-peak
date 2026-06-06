@@ -761,6 +761,16 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
 });
 window.sb = sb;
 
+async function getAuthHeaders() {
+  var { data } = await sb.auth.getSession();
+  var token = data && data.session && data.session.access_token;
+  if (!token) throw new Error('Please sign in again.');
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + token
+  };
+}
+
 // Listen for messages from iframes (tier restriction + score logging)
 window.addEventListener('message', async function(e) {
   if (e.data && e.data.type === 'showModal') {
@@ -1374,9 +1384,10 @@ async function confirmCancelSubscription() {
   msg.style.display = 'none';
   try {
     // Call Stripe cancel endpoint
+    var authHeaders = await getAuthHeaders();
     var res = await fetch('/api/cancel-subscription', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders,
       body: JSON.stringify({ userId: _currentUser.id })
     });
     var data = await res.json();
@@ -1768,9 +1779,10 @@ async function submitPayment() {
   btn.textContent = 'Procesando...';
   try {
     var planKey = _selectedCurrency + '_' + _selectedPlan;
+    var authHeaders = await getAuthHeaders();
     var res = await fetch('/api/create-checkout-session', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders,
       body: JSON.stringify({
         plan:      planKey,
         userId:    _currentUser.id,
@@ -1791,6 +1803,16 @@ async function submitPayment() {
       btn.textContent = '🔒 Suscribirme ahora';
       return;
     }
+    var confirmRes = await fetch('/api/confirm-payment', {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        subscriptionId: data.subscriptionId,
+        userId: _currentUser.id,
+      }),
+    });
+    var confirmData = await confirmRes.json();
+    if (!confirmRes.ok) throw new Error(confirmData.error || 'Payment succeeded, but premium activation failed.');
     window.location.href = 'https://epeak.app/?payment=success';
   } catch (err) {
     console.error('submitPayment error:', err);

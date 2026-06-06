@@ -1,16 +1,16 @@
 {
   "rewrites": [
-    { "source": "/itp-mc",          "destination": "/itpmc_index.html" },
-    { "source": "/itp-mc/:path*",   "destination": "/itpmc_index.html" },
-    { "source": "/emoji",           "destination": "/emoji_index.html" },
-    { "source": "/emoji/:path*",    "destination": "/emoji_index.html" },
+    { "source": "/itp-mc",          "destination": "/itp-mc/index.html" },
+    { "source": "/itp-mc/:path*",   "destination": "/itp-mc/index.html" },
+    { "source": "/emoji",           "destination": "/emoji/index.html" },
+    { "source": "/emoji/:path*",    "destination": "/emoji/index.html" },
     { "source": "/itp",             "destination": "/itp_index.html" },
     { "source": "/itp/:path*",      "destination": "/itp_index.html" },
     { "source": "/ibt",             "destination": "/ibt_index.html" },
     { "source": "/ibt/:path*",      "destination": "/ibt_index.html" },
-    { "source": "/conversations",        "destination": "/conv_index.html" },
-    { "source": "/conversations/:path*", "destination": "/conv_index.html" },
-    { "source": "/general",         "destination": "/general_index.html" },
-    { "source": "/general/:path*",  "destination": "/general_index.html" }
+    { "source": "/conversations",        "destination": "/conversations/index.html" },
+    { "source": "/conversations/:path*", "destination": "/conversations/index.html" },
+    { "source": "/general",         "destination": "/general/index.html" },
+    { "source": "/general/:path*",  "destination": "/general/index.html" }
   ]
 }

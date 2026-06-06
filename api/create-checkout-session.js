@@ -16,15 +16,34 @@ const PRICE_IDS = {
   usd_yearly:  'price_1TCw90F2ctV3Sh1lUccMCWW3',
 };
 
+async function getAuthenticatedUser(req) {
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+  if (!token) return { error: 'Missing authorization token' };
+
+  const { data, error } = await sb.auth.getUser(token);
+  if (error || !data?.user) return { error: 'Invalid authorization token' };
+  return { user: data.user };
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const auth = await getAuthenticatedUser(req);
+  if (auth.error) {
+    return res.status(401).json({ error: auth.error });
+  }
+
   const { plan, userId, userEmail } = req.body;
 
-  if (!plan || !userId || !userEmail) {
+  if (!plan || !userId) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  if (userId !== auth.user.id) {
+    return res.status(403).json({ error: 'User mismatch' });
   }
 
   const priceId = PRICE_IDS[plan];
@@ -44,7 +63,7 @@ export default async function handler(req, res) {
       customerId = profile.stripe_customer_id;
     } else {
       const customer = await stripe.customers.create({
-        email: userEmail,
+        email: auth.user.email || userEmail,
         metadata: { supabase_user_id: userId },
       });
       customerId = customer.id;

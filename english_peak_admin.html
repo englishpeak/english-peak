@@ -754,9 +754,9 @@ async function loadCodes() {
     const created = new Date(c.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
     const tierBadge = c.tier === 'premium'
       ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
-      : newTier === 'teacher'
+      : c.tier === 'teacher'
         ? '<span class="tier-badge tier-teacher">🎓 Teacher</span>'
-        : newTier === 'courtesy'
+        : c.tier === 'courtesy'
           ? '<span class="tier-badge tier-courtesy">🎁 Courtesy</span>'
           : '<span class="tier-badge tier-free">Free</span>';
 

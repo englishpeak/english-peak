@@ -748,7 +748,14 @@ test6: [
         // Report score to parent platform
         try {
             var testName = 'General Test';
-            window.parent.postMessage({ type: 'score', exercise: 'general', name: testName, score: score, max: total }, '*');
+            window.parent.postMessage({
+                type: 'exerciseComplete',
+                exerciseType: 'General English',
+                exerciseName: testName,
+                score: score,
+                maxScore: total,
+                details: { percentage: percentage }
+            }, '*');
         } catch(e) {}
         
         if (score === total) {
