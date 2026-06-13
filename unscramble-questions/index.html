@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unscramble the Questions - English Peak Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #00243C;
+  --purple: #470074;
+  --text: #f8fafc;
+  --soft-text: #dbe4f0;
+  --card: rgba(255, 255, 255, 0.12);
+  --card-border: rgba(255, 255, 255, 0.22);
+  --button: rgba(255, 255, 255, 0.9);
+  --button-text: #21304d;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: Outfit, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: var(--text);
+}
+
+#unscramble-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 42px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.35rem;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--soft-text);
+  margin-bottom: 24px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.filter {
+  position: relative;
+}
+
+.filter button,
+button.action {
+  background: var(--button);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: var(--button-text);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.filter button:hover,
+button.action:hover {
+  background: white;
+}
+
+.filter-menu {
+  position: absolute;
+  top: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 150px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 8px;
+  padding: 12px;
+  display: none;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
+  z-index: 10;
+}
+
+.filter-menu label {
+  display: block;
+  color: #21304d;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+
+.filter-menu label:last-child {
+  margin-bottom: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24);
+}
+
+.level-note {
+  text-align: center;
+  color: var(--soft-text);
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.blanks-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.blanks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.blank {
+  min-width: 86px;
+  min-height: 42px;
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.82);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.blank:first-child {
+  text-transform: capitalize;
+}
+
+.punctuation {
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: -8px;
+}
+
+.words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.word {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #21304d;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  user-select: none;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+.word:hover {
+  background: white;
+}
+
+.controls {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.feedback {
+  text-align: center;
+  font-weight: 800;
+  margin-top: 18px;
+  min-height: 24px;
+}
+
+.correct {
+  color: #bbf7d0;
+}
+
+.incorrect {
+  color: #fecaca;
+}
+
+@media (max-width: 640px) {
+  #unscramble-wrap {
+    padding: 30px 14px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    padding: 22px 16px;
+  }
+
+  .blank {
+    min-width: 72px;
+  }
+}
+
+.member-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.member-gate-card {
+  width: min(460px, 100%);
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24);
+}
+
+.member-gate-card h1 {
+  font-size: 2rem;
+}
+
+.member-gate-card p {
+  color: var(--soft-text);
+  line-height: 1.5;
+  margin: 12px 0 22px;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+<div class="member-gate" id="memberGate" hidden>
+  <div class="member-gate-card">
+    <h1>Free account required</h1>
+    <p>Sign in or create a free ePeak account to use Unscramble the Questions.</p>
+    <button class="action" type="button" onclick="window.top.location.href='/'">Go to ePeak sign in</button>
+  </div>
+</div>
+
+<div id="unscramble-wrap" hidden>
+  <div class="container">
+    <h1>Unscramble the Questions</h1>
+    <p class="subtitle">Put the words in the correct order to form a question.</p>
+
+    <div class="top-bar">
+      <div class="filter">
+        <button type="button" onclick="toggleFilter()">Filter by level</button>
+        <div class="filter-menu" id="filterMenu">
+          <label><input type="checkbox" value="A1" checked onchange="loadQuestion()"> A1</label>
+          <label><input type="checkbox" value="A2" checked onchange="loadQuestion()"> A2</label>
+          <label><input type="checkbox" value="B1" checked onchange="loadQuestion()"> B1</label>
+          <label><input type="checkbox" value="B2" checked onchange="loadQuestion()"> B2</label>
+          <label><input type="checkbox" value="C1" checked onchange="loadQuestion()"> C1</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="level-note" id="levelNote"></div>
+      <div class="blanks-wrapper">
+        <div class="blanks" id="blanks"></div>
+        <div class="punctuation" id="punctuation"></div>
+      </div>
+      <div class="words" id="words"></div>
+      <div class="controls">
+        <button class="action" type="button" onclick="checkAnswer()">Check answer</button>
+        <button class="action" type="button" onclick="loadQuestion()">Next question</button>
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://jnqekougzmihjqffhuva.supabase.co";
+const SUPABASE_KEY = "sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storageKey: "epeak-auth"
+  }
+});
+
+function logActivity(exerciseType, exerciseName, score, maxScore) {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({
+      type: "exerciseComplete",
+      exerciseType: exerciseType,
+      exerciseName: exerciseName,
+      score: score,
+      maxScore: maxScore
+    }, window.location.origin);
+  }
+}
+
+// Add more questions here later. Keep the same format:
+// { level: "A1", text: "Are you ready?" },
+const questions = [
+  // A1 questions
+  { level: "A1", text: "How are you today?" },
+  { level: "A1", text: "Are you hungry now?" },
+  { level: "A1", text: "Do you like music?" },
+  { level: "A1", text: "Do you drink coffee?" },
+  { level: "A1", text: "What is your favorite color?" },
+  { level: "A1", text: "What is your favorite food?" },
+  { level: "A1", text: "Where do you live?" },
+  { level: "A1", text: "Who is your best friend?" },
+  { level: "A1", text: "Can you cook?" },
+  { level: "A1", text: "Can you swim?" },
+  { level: "A1", text: "Is your room clean?" },
+  { level: "A1", text: "What time do you wake up?" },
+  { level: "A1", text: "Do you have a pet?" },
+  { level: "A1", text: "Do you like rainy days?" },
+  { level: "A1", text: "What do you do on Sundays?" },
+
+  // A2 questions
+  { level: "A2", text: "What are you doing tomorrow?" },
+  { level: "A2", text: "What did you eat yesterday?" },
+  { level: "A2", text: "When was your last vacation?" },
+  { level: "A2", text: "Where did you go last weekend?" },
+  { level: "A2", text: "How was your morning?" },
+  { level: "A2", text: "What do you usually eat for breakfast?" },
+  { level: "A2", text: "How often do you watch movies?" },
+  { level: "A2", text: "What kind of weather do you like?" },
+  { level: "A2", text: "Do you prefer tea or coffee?" },
+  { level: "A2", text: "Who do you usually talk to every day?" },
+  { level: "A2", text: "What are you going to do tonight?" },
+  { level: "A2", text: "How long have you lived in your city?" },
+  { level: "A2", text: "What did you buy recently?" },
+  { level: "A2", text: "When do you feel most relaxed?" },
+  { level: "A2", text: "What place do you want to visit?" },
+
+  // B1 questions
+  { level: "B1", text: "What is your best friend like?" },
+  { level: "B1", text: "What have you been doing lately?" },
+  { level: "B1", text: "Have you ever tried a strange food?" },
+  { level: "B1", text: "What would you do on a free day?" },
+  { level: "B1", text: "What makes you feel proud?" },
+  { level: "B1", text: "What is something you are learning now?" },
+  { level: "B1", text: "When was the last time you laughed a lot?" },
+  { level: "B1", text: "What do you do when you feel stressed?" },
+  { level: "B1", text: "What is a habit you want to change?" },
+  { level: "B1", text: "How has your routine changed this year?" },
+  { level: "B1", text: "What advice would you give your younger self?" },
+  { level: "B1", text: "What kind of people do you enjoy talking to?" },
+  { level: "B1", text: "What is the most useful app on your phone?" },
+  { level: "B1", text: "Have you ever met someone famous?" },
+  { level: "B1", text: "What do you usually do when plans change?" },
+
+  // B2 questions
+  { level: "B2", text: "What is a small decision that changed your life?" },
+  { level: "B2", text: "How do you decide who to trust?" },
+  { level: "B2", text: "What do you wish people understood about you?" },
+  { level: "B2", text: "Would you rather have more time or more money?" },
+  { level: "B2", text: "What is something you used to believe?" },
+  { level: "B2", text: "How do you deal with awkward conversations?" },
+  { level: "B2", text: "What is the best compliment you have received?" },
+  { level: "B2", text: "What topic could you talk about for hours?" },
+  { level: "B2", text: "What do you tend to spend too much money on?" },
+  { level: "B2", text: "How do you know when you need a break?" },
+  { level: "B2", text: "What kind of advertising actually catches your attention?" },
+  { level: "B2", text: "What is a rule you think people should question?" },
+  { level: "B2", text: "How would your friends describe your personality?" },
+  { level: "B2", text: "What experience made you more confident?" },
+  { level: "B2", text: "What would you change about your daily routine?" },
+
+  // C1 questions
+  { level: "C1", text: "What assumption about life have you recently reconsidered?" },
+  { level: "C1", text: "How do you balance ambition with peace of mind?" },
+  { level: "C1", text: "What makes a conversation genuinely meaningful to you?" },
+  { level: "C1", text: "To what extent does your environment affect your mood?" },
+  { level: "C1", text: "What personal value has become more important over time?" },
+  { level: "C1", text: "How do you distinguish confidence from arrogance?" },
+  { level: "C1", text: "What is a hardship that taught you something valuable?" },
+  { level: "C1", text: "How do you handle opinions that challenge your beliefs?" },
+  { level: "C1", text: "What does success look like at this stage of your life?" },
+  { level: "C1", text: "How has technology changed the way you maintain friendships?" },
+  { level: "C1", text: "What kind of advice do people usually ask you for?" },
+  { level: "C1", text: "What do you think people often misunderstand about happiness?" },
+  { level: "C1", text: "How do you decide which problems deserve your energy?" },
+  { level: "C1", text: "What is a belief you hold but rarely discuss?" },
+  { level: "C1", text: "How would your priorities change if life slowed down?" }
+];
+
+let currentQuestionParts = [];
+let punctuationMark = "?";
+let totalAnswers = 0;
+let correctInBlock = 0;
+let loggedSessions = 0;
+const sessionSize = 5;
+
+function toggleFilter() {
+  const menu = document.getElementById("filterMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function getActiveLevels() {
+  return Array.from(document.querySelectorAll(".filter-menu input:checked"))
+    .map(function(checkbox) {
+      return checkbox.value;
+    });
+}
+
+function loadQuestion() {
+  const activeLevels = getActiveLevels();
+  const pool = questions.filter(function(question) {
+    return activeLevels.includes(question.level);
+  });
+
+  if (!pool.length) {
+    document.getElementById("levelNote").textContent = "Choose at least one level.";
+    document.getElementById("blanks").innerHTML = "";
+    document.getElementById("words").innerHTML = "";
+    document.getElementById("punctuation").textContent = "";
+    document.getElementById("feedback").textContent = "";
+    return;
+  }
+
+  const chosen = pool[Math.floor(Math.random() * pool.length)];
+  punctuationMark = chosen.text.slice(-1);
+  currentQuestionParts = chosen.text.slice(0, -1).toLowerCase().split(" ");
+
+  document.getElementById("levelNote").textContent = "Level: " + chosen.level;
+  document.getElementById("punctuation").textContent = punctuationMark;
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("feedback").className = "feedback";
+
+  const blanks = document.getElementById("blanks");
+  const words = document.getElementById("words");
+  blanks.innerHTML = "";
+  words.innerHTML = "";
+
+  currentQuestionParts.forEach(function() {
+    const blank = document.createElement("div");
+    blank.className = "blank";
+    blank.onclick = function() {
+      if (blank.textContent) {
+        addWord(blank.textContent.toLowerCase());
+        blank.textContent = "";
+      }
+    };
+    blanks.appendChild(blank);
+  });
+
+  shuffle(currentQuestionParts.slice()).forEach(function(word) {
+    addWord(word);
+  });
+}
+
+function addWord(word) {
+  const wordButton = document.createElement("div");
+  wordButton.className = "word";
+  wordButton.textContent = word;
+  wordButton.onclick = function() {
+    placeWord(wordButton);
+  };
+  document.getElementById("words").appendChild(wordButton);
+}
+
+function placeWord(wordButton) {
+  const blanks = document.querySelectorAll(".blank");
+
+  for (let i = 0; i < blanks.length; i++) {
+    if (!blanks[i].textContent) {
+      blanks[i].textContent = wordButton.textContent;
+      wordButton.remove();
+      break;
+    }
+  }
+}
+
+function checkAnswer() {
+  const attempt = Array.from(document.querySelectorAll(".blank"))
+    .map(function(blank) {
+      return blank.textContent.toLowerCase();
+    })
+    .join(" ");
+
+  const feedback = document.getElementById("feedback");
+  const isCorrect = attempt === currentQuestionParts.join(" ");
+
+  if (isCorrect) {
+    feedback.textContent = "Correct!";
+    feedback.className = "feedback correct";
+    correctInBlock++;
+  } else {
+    feedback.textContent = "Not quite. Try again!";
+    feedback.className = "feedback incorrect";
+  }
+
+  totalAnswers++;
+  if (totalAnswers % sessionSize === 0) {
+    loggedSessions++;
+    logActivity("Unscramble", "Questions Session " + loggedSessions, correctInBlock, sessionSize);
+    correctInBlock = 0;
+  }
+}
+
+function shuffle(items) {
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = items[i];
+    items[i] = items[j];
+    items[j] = temp;
+  }
+  return items;
+}
+
+async function initMemberAccess() {
+  const gate = document.getElementById("memberGate");
+  const practice = document.getElementById("unscramble-wrap");
+
+  try {
+    const result = await sb.auth.getSession();
+    const session = result && result.data && result.data.session;
+    if (session && session.user) {
+      gate.hidden = true;
+      practice.hidden = false;
+      loadQuestion();
+      return;
+    }
+  } catch (error) {}
+
+  practice.hidden = true;
+  gate.hidden = false;
+}
+
+initMemberAccess();
+</script>
+</body>
+</html>
