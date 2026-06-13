@@ -227,48 +227,11 @@ button.action:hover {
     min-width: 72px;
   }
 }
-
-.member-gate {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-.member-gate-card {
-  width: min(460px, 100%);
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24);
-}
-
-.member-gate-card h1 {
-  font-size: 2rem;
-}
-
-.member-gate-card p {
-  color: var(--soft-text);
-  line-height: 1.5;
-  margin: 12px 0 22px;
-}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
-<div class="member-gate" id="memberGate" hidden>
-  <div class="member-gate-card">
-    <h1>Free account required</h1>
-    <p>Sign in or create a free ePeak account to use Unscramble the Questions.</p>
-    <button class="action" type="button" onclick="window.top.location.href='/'">Go to ePeak sign in</button>
-  </div>
-</div>
-
-<div id="unscramble-wrap" hidden>
+<div id="unscramble-wrap">
   <div class="container">
     <h1>Unscramble the Questions</h1>
     <p class="subtitle">Put the words in the correct order to form a question.</p>
@@ -303,17 +266,6 @@ button.action:hover {
 </div>
 
 <script>
-const SUPABASE_URL = "https://jnqekougzmihjqffhuva.supabase.co";
-const SUPABASE_KEY = "sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-    detectSessionInUrl: true,
-    storageKey: "ep-auth-token"
-  }
-});
-
 function logActivity(exerciseType, exerciseName, score, maxScore) {
   if (window.parent && window.parent !== window) {
     window.parent.postMessage({
@@ -539,35 +491,7 @@ function shuffle(items) {
   return items;
 }
 
-async function initMemberAccess() {
-  const gate = document.getElementById("memberGate");
-  const practice = document.getElementById("unscramble-wrap");
-
-  // The main ePeak dashboard already checks membership before loading this iframe.
-  // Direct visits still run the Supabase session check below.
-  if (window.parent && window.parent !== window) {
-    gate.hidden = true;
-    practice.hidden = false;
-    loadQuestion();
-    return;
-  }
-
-  try {
-    const result = await sb.auth.getSession();
-    const session = result && result.data && result.data.session;
-    if (session && session.user) {
-      gate.hidden = true;
-      practice.hidden = false;
-      loadQuestion();
-      return;
-    }
-  } catch (error) {}
-
-  practice.hidden = true;
-  gate.hidden = false;
-}
-
-initMemberAccess();
+loadQuestion();
 </script>
 </body>
 </html>
