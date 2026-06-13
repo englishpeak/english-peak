@@ -543,6 +543,15 @@ async function initMemberAccess() {
   const gate = document.getElementById("memberGate");
   const practice = document.getElementById("unscramble-wrap");
 
+  // The main ePeak dashboard already checks membership before loading this iframe.
+  // Direct visits still run the Supabase session check below.
+  if (window.parent && window.parent !== window) {
+    gate.hidden = true;
+    practice.hidden = false;
+    loadQuestion();
+    return;
+  }
+
   try {
     const result = await sb.auth.getSession();
     const session = result && result.data && result.data.session;
