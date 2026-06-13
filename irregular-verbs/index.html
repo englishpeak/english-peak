@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -615,23 +616,6 @@
         checkedThisRound = true;
         attemptedCount.textContent = attempted;
         correctCount.textContent = correct;
-
-        try {
-          if (window.parent && window.parent !== window) {
-            window.parent.postMessage({
-              type: "exerciseComplete",
-              exerciseType: "Irregular Verbs",
-              exerciseName: "Practice Round",
-              score: allCorrect ? 1 : 0,
-              maxScore: 1,
-              details: {
-                shownForm: labels[current.shownForm],
-                shownValue: current.shownValue,
-                verb: current.verb.base[0]
-              }
-            }, window.location.origin);
-          }
-        } catch (error) {}
       }
 
       if (allCorrect) {
