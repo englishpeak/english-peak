@@ -537,7 +537,7 @@ async function doLogin() {
 
     if (!profileByEmail || !profileByEmail.is_admin) {
       await sb.auth.signOut();
-      err.textContent = `Access denied. (Debug: profile=${JSON.stringify(profile)}, error=${JSON.stringify(profileError)})`;
+      err.textContent = 'Access denied. Please use an admin account.';
       err.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Sign in to Admin Panel';

@@ -130,8 +130,14 @@ window.addEventListener('load', function() {
   if(!_allowBusiness){
     document.querySelectorAll('.dropdown-content button, .dropdown-content a').forEach(function(btn){
       if((btn.textContent||'').toLowerCase().indexOf('business')!==-1){
-        var orig=btn.getAttribute('onclick');
-        btn.setAttribute('onclick',"parent.postMessage('showModal','*')");
+        btn.onclick = function(e) {
+          e.preventDefault();
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({type:'showModal'}, window.location.origin);
+          } else {
+            window.location.href = '/';
+          }
+        };
         btn.style.opacity='0.5';
         if(btn.textContent.indexOf('🔒')===-1) btn.textContent='🔒 '+btn.textContent;
       }

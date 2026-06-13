@@ -771,9 +771,14 @@ async function getAuthHeaders() {
   };
 }
 
+function isTrustedExerciseMessage(e) {
+  return e.origin === window.location.origin || (window.location.protocol === 'file:' && e.origin === 'null');
+}
+
 // Listen for messages from iframes (tier restriction + score logging)
 window.addEventListener('message', async function(e) {
-  if (e.data && e.data.type === 'showModal') {
+  if (!isTrustedExerciseMessage(e)) return;
+  if (e.data === 'showModal' || (e.data && e.data.type === 'showModal')) {
     if (!_currentUser) {
       showAuthModal('register');
     } else {
@@ -783,6 +788,9 @@ window.addEventListener('message', async function(e) {
   // Score reporting from iframe exercises
   if (e.data && e.data.type === 'exerciseComplete') {
     var d = e.data;
+    if (typeof d.exerciseType !== 'string' || typeof d.exerciseName !== 'string') return;
+    if (d.score != null && typeof d.score !== 'number') return;
+    if (d.maxScore != null && typeof d.maxScore !== 'number') return;
     // Wait for session if _currentUser not yet available (race condition on page load)
     if (!_currentUser) {
       try {
@@ -1101,7 +1109,7 @@ async function doForgotPassword() {
 async function signInGoogle() {
   await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: 'https://english-peak.vercel.app' }
+    options: { redirectTo: 'https://epeak.app/' }
   });
 }
 
@@ -1684,7 +1692,6 @@ function showModal() {
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('show');
 }
-window.addEventListener('message',function(e){if(e.data==='showModal')showModal();});
 
 // ═══════════════════════════════════════
 // STRIPE SUBSCRIPTION

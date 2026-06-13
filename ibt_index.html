@@ -109,6 +109,13 @@
 
 <script>
 var _allowedTests = ['Test 1','Test 2'];
+function notifyUpgrade() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({type:'showModal'}, window.location.origin);
+  } else {
+    window.location.href = '/';
+  }
+}
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
@@ -131,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.onclick = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        window.parent.postMessage({type:'showModal'}, '*');
+        notifyUpgrade();
         return false;
       };
     }
@@ -523,7 +530,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // ACADEMIC READING
             { type: 'academic-reading', title: 'Task 22: The Water Cycle', canSkip: true, text: 'The continuous movement of water on, above, and below the surface of the Earth is known as the water cycle, or the hydrologic cycle. This system is driven by solar energy and gravity. Water from oceans, lakes, and rivers evaporates into the atmosphere as water vapor. As it rises and cools, it condenses into clouds. Eventually, the condensed water falls back to the Earth\'s surface as precipitation, such as rain or snow. Some of this water flows over the ground as runoff, eventually returning to the oceans, while some infiltrates the soil to replenish groundwater supplies. This infinite cycle is vital for sustaining all life on Earth.', questions: [{ q: "What primarily drives the water cycle?", options: ["Ocean currents and wind", "Solar energy and gravity", "Geothermal heat and soil erosion", "Human intervention and industry"], correct: 1 }, { q: "What happens to water vapor as it rises and cools in the atmosphere?", options: ["It turns into groundwater.", "It evaporates instantly.", "It condenses into clouds.", "It falls as solar energy."], correct: 2 }, { q: "What is the term for water that flows over the ground to return to the oceans?", options: ["Condensation", "Infiltration", "Precipitation", "Runoff"], correct: 3 }] },
-            { type: 'academic-reading', title: 'Task 23: The Invention of the Telephone', canSkip: true, text: 'The invention of the telephone in the 1870s revolutionized global communication. While several inventors contributed to the underlying technology, Alexander Graham Bell was the first to be awarded a US patent for the device in 1876. Before the telephone, the telegraph was the fastest method of long-distance communication, but it was limited to sending Morse code, requiring skilled operators. The telephone allowed for the transmission of direct, vocal conversations over long distances in real time. This breakthrough rapidly accelerated business operations, changed social dynamics, and paved the way for the highly interconnected modern world we live in today.', questions: [{ q: "Who was awarded the first US patent for the telephone?", options: ["Thomas Edison", "Nikola Tesla", "Alexander Graham অর্জন Bell", "Samuel Morse"], correct: 2 }, { q: "What was a major limitation of the telegraph compared to the telephone?", options: ["It was far more expensive to build.", "It could only transmit vocal conversations.", "It required skilled operators to send Morse code.", "It could only be used for short distances."], correct: 2 }, { q: "How did the invention of the telephone impact society?", options: ["It slowed down business operations.", "It allowed for real-time vocal conversations over long distances.", "It made the telegraph completely obsolete within a month.", "It restricted communication to trained operators only."], correct: 1 }] },
+            { type: 'academic-reading', title: 'Task 23: The Invention of the Telephone', canSkip: true, text: 'The invention of the telephone in the 1870s revolutionized global communication. While several inventors contributed to the underlying technology, Alexander Graham Bell was the first to be awarded a US patent for the device in 1876. Before the telephone, the telegraph was the fastest method of long-distance communication, but it was limited to sending Morse code, requiring skilled operators. The telephone allowed for the transmission of direct, vocal conversations over long distances in real time. This breakthrough rapidly accelerated business operations, changed social dynamics, and paved the way for the highly interconnected modern world we live in today.', questions: [{ q: "Who was awarded the first US patent for the telephone?", options: ["Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Samuel Morse"], correct: 2 }, { q: "What was a major limitation of the telegraph compared to the telephone?", options: ["It was far more expensive to build.", "It could only transmit vocal conversations.", "It required skilled operators to send Morse code.", "It could only be used for short distances."], correct: 2 }, { q: "How did the invention of the telephone impact society?", options: ["It slowed down business operations.", "It allowed for real-time vocal conversations over long distances.", "It made the telegraph completely obsolete within a month.", "It restricted communication to trained operators only."], correct: 1 }] },
             { type: 'academic-reading', title: 'Task 24: Plate Tectonics', canSkip: true, text: 'The theory of plate tectonics describes the large-scale motion of the Earth\'s lithosphere, which is the rigid outer shell of the planet. This shell is broken into several massive pieces known as tectonic plates. These plates constantly, albeit slowly, move over the asthenosphere, the semi-fluid layer beneath them. The interactions at the boundaries of these plates are responsible for some of the most dramatic geological events on Earth. When plates collide, they can form towering mountain ranges. When they pull apart, they create rift valleys and ocean basins. Additionally, the friction and sudden slipping of these plates along fault lines are the primary cause of earthquakes.', questions: [{ q: "What is the lithosphere?", options: ["The semi-fluid layer beneath the Earth's crust.", "The rigid outer shell of the Earth.", "A specific type of mountain range.", "The deepest ocean basin on the planet."], correct: 1 }, { q: "What happens when tectonic plates pull apart from each other?", options: ["They create rift valleys and ocean basins.", "They form towering mountain ranges.", "They instantly cause massive volcanic eruptions.", "They stop moving completely."], correct: 0 }, { q: "What is the primary cause of earthquakes according to the passage?", options: ["The rapid heating of the asthenosphere.", "The formation of new ocean basins.", "The friction and sudden slipping of tectonic plates.", "The gravitational pull of the moon."], correct: 2 }] },
             
             // SPEAKING TIMERS
@@ -646,7 +653,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 exerciseName: _currentTestKey || 'Test',
                 score: sCount,
                 maxScore: v.length
-            }, '*');
+            }, window.location.origin);
         }
 
         let feed = '';

@@ -207,6 +207,13 @@
 <script>
 // ── Tier lock via URL param ──────────────────────────────────────
 var _allowedTests = ['test1']; // default: visitor sees only test1
+function notifyUpgrade() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'showModal' }, window.location.origin);
+  } else {
+    window.location.href = '/';
+  }
+}
 (function() {
   var params = new URLSearchParams(window.location.search);
   var p = params.get('allowed');
@@ -547,7 +554,7 @@ test6: [
           btn.title = 'Upgrade to access this test';
           btn.textContent = '🔒 Test ' + num;
           btn.addEventListener('click', function() {
-            window.parent.postMessage({ type: 'showModal' }, '*');
+            notifyUpgrade();
           });
         } else {
           btn.addEventListener('click', function() { startTest(testId); });
@@ -755,7 +762,7 @@ test6: [
                 score: score,
                 maxScore: total,
                 details: { percentage: percentage }
-            }, '*');
+            }, window.location.origin);
         } catch(e) {}
         
         if (score === total) {

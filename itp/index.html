@@ -71,8 +71,15 @@ header { background: #0D3B6F; color: white; padding: 30px; text-align: center; f
 }
 </style>
 <script>
-var _allowedTests = [];
+var _allowedTests = [1, 2, 3];
 var _exerciseMode = 'itp';
+function notifyUpgrade() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({type:'showModal'}, window.location.origin);
+  } else {
+    window.location.href = '/';
+  }
+}
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
@@ -86,11 +93,11 @@ function _buildITPMenu() {
   Object.keys(tests).map(Number).sort(function(a,b){return a-b;}).forEach(function(num) {
     var btn = document.createElement('button');
     btn.className = 'next-btn'; btn.style.marginBottom = '10px';
-    var isLocked = _allowedTests.length > 0 && _allowedTests.indexOf(num) === -1;
+    var isLocked = _allowedTests.indexOf(num) === -1;
     if (isLocked) {
       btn.textContent = '🔒 Test ' + num;
       btn.style.opacity = '0.45'; btn.style.background = '#888';
-      btn.onclick = function(e) { e.preventDefault(); window.parent.postMessage({type:'showModal'}, '*'); };
+      btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
     } else {
       btn.textContent = 'Test ' + num;
       btn.onclick = (function(n){ return function(){ startTest(n); }; })(num);
@@ -753,7 +760,7 @@ function render() {
           exerciseName: 'Test ' + currentTest,
           score: score,
           maxScore: 20
-        }, '*');
+        }, window.location.origin);
         _reported = true;
       } catch(e) { console.error('postMessage error:', e); }
     }
@@ -829,11 +836,11 @@ function backToMenu() {
   Object.keys(tests).map(Number).sort(function(a,b){return a-b;}).forEach(function(num) {
     var btn = document.createElement('button');
     btn.className = 'next-btn'; btn.style.marginBottom = '10px';
-    var isLocked = _allowedTests.length > 0 && _allowedTests.indexOf(num) === -1;
+    var isLocked = _allowedTests.indexOf(num) === -1;
     if (isLocked) {
       btn.textContent = '🔒 Test ' + num;
       btn.style.opacity = '0.45'; btn.style.background = '#888';
-      btn.onclick = function(e) { e.preventDefault(); window.parent.postMessage({type:'showModal'}, '*'); };
+      btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
     } else {
       btn.textContent = 'Test ' + num;
       btn.onclick = (function(n){ return function(){ startTest(n); }; })(num);

@@ -72,6 +72,13 @@ header { background: #0D3B6F; color: white; padding: 30px; text-align: center; f
 <script>
 // Read allowed tests from URL parameter ?allowed=1,2,3
 var _allowedTests = [1, 2, 3];
+function notifyUpgrade() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({type:"showModal"}, window.location.origin);
+  } else {
+    window.location.href = '/';
+  }
+}
 (function() {
   var params = new URLSearchParams(window.location.search);
   var allowedParam = params.get('allowed');
@@ -92,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.style.background = '#888';
         btn.style.cursor = 'pointer';
         btn.textContent = '🔒 ' + btn.textContent.trim();
-        btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"}, "*")');
+        btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
       }
     }
   });
@@ -450,7 +457,7 @@ function render() {
         exerciseName: 'Test ' + currentTest,
         score: score,
         maxScore: 20
-      }, '*');
+      }, window.location.origin);
     }
 
     // Ensures the background reverts to white for the results screen
@@ -539,7 +546,7 @@ function applyMenuLocks() {
         btn.style.background = '#888';
         btn.style.cursor = 'pointer';
         if (!btn.textContent.startsWith('🔒')) btn.textContent = '🔒 ' + btn.textContent.trim();
-        btn.setAttribute('onclick', 'window.parent.postMessage({type:"showModal"}, "*")');
+        btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
       }
     }
   });
