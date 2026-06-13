@@ -305,6 +305,10 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="card-header"><div class="card-icon red">NEW</div><div class="card-access access-new">New</div></div>
         <div class="card-body"><div class="card-title">Irregular Verbs Practice</div><div class="card-desc">Complete the missing verb forms: base form, simple past, and past participle. Shuffled prompts with instant feedback.</div><div class="card-meta"><span class="meta-item">⚡ Quick practice</span><span class="meta-item">📚 100+ verbs</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
+      <div class="ex-card" onclick="openUnscrambleQuestions()">
+        <div class="card-header"><div class="card-icon purple">?</div><div class="card-access access-free">Free Account</div></div>
+        <div class="card-body"><div class="card-title">Unscramble the Questions</div><div class="card-desc">Put question words in the correct order. Filter by level from A1 to C1 and build stronger speaking patterns.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item">🔐 Free account</span></div><button class="card-btn btn-partial">Start Practice →</button></div>
+      </div>
     </div>
 
     <div class="section-header"><h2>Free Exercises</h2><p>No account needed</p></div>
@@ -462,6 +466,12 @@ body.sidebar-collapsed .main{margin-left:64px}
   <div class="exercise-screen" id="exercise-irregular-verbs">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Irregular Verbs Practice</div><div class="exercise-badge" style="background:rgba(220,38,38,0.1);color:#DC2626">New</div></div>
     <iframe class="exercise-frame" id="frame-irregular-verbs" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
+  </div>
+
+  <!-- ═══ UNSCRAMBLE QUESTIONS (iframe) ═══ -->
+  <div class="exercise-screen" id="exercise-unscramble-questions">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Unscramble the Questions</div><div class="exercise-badge">Free Account</div></div>
+    <iframe class="exercise-frame" id="frame-unscramble-questions" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ GENERAL ENGLISH (iframe) ═══ -->
@@ -1263,6 +1273,18 @@ function openIrregularVerbs() {
   document.getElementById('topbarTitle').textContent = 'Irregular Verbs Practice';
   document.getElementById('topbarSub').textContent = 'Practice base, past, and participle forms';
   document.getElementById('frame-irregular-verbs').src = '/irregular-verbs';
+  closeMobileSidebar();
+}
+function openUnscrambleQuestions() {
+  if (!_currentUser) {
+    showAuthModal('register');
+    return;
+  }
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-unscramble-questions').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'Unscramble the Questions';
+  document.getElementById('topbarSub').textContent = 'Free member practice for question word order';
+  document.getElementById('frame-unscramble-questions').src = '/unscramble-questions';
   closeMobileSidebar();
 }
 function openITPTests() {
