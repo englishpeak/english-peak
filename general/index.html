@@ -541,7 +541,9 @@ test6: [
     // ── Generar botones dinámicamente desde testBank ──────────────
     (function() {
       var menuScreen = document.getElementById('menu-screen');
-      var testIds = Object.keys(testBank);
+      var testIds = Object.keys(testBank).sort(function(a, b) {
+        return parseInt(a.replace('test', ''), 10) - parseInt(b.replace('test', ''), 10);
+      });
       testIds.forEach(function(testId, i) {
         var num = i + 1;
         var btn = document.createElement('button');

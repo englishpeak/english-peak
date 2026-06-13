@@ -313,7 +313,7 @@ body.sidebar-collapsed .main{margin-left:64px}
     <div class="cards-grid">
       <div class="ex-card" onclick="openGeneral()">
         <div class="card-header"><div class="card-icon blue">📝</div><div class="card-access access-free" id="access-general">🔓 Test 1 Free</div></div>
-        <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">7 tests · 1 unlocked</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
+        <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">Loading tests...</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-general"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access Tests 2 and 3. Upgrade to ePeak+ for all 7 tests.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('general');event.stopPropagation()">Maybe later</button></div>
       </div>
     </div>
@@ -446,7 +446,7 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   <!-- ═══ CONVERSATIONS (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-general">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">General English Practice</div><div class="exercise-badge" id="general-badge">🔓 1 of 6</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">General English Practice</div><div class="exercise-badge" id="general-badge">Loading...</div></div>
     <iframe class="exercise-frame" id="frame-general" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -1206,6 +1206,14 @@ function setTier(tier,btn) {
     document.getElementById('meta-conv').textContent='💼 Business: ePeak+';
   }
   document.getElementById('conv-badge').textContent=tier==='premium'?'✓ Full':tier==='free'?'✓ Free':'🔐 Required';
+
+  var gc=c.generalTests.length;
+  var hasGeneralFullAccess=tier==='premium'||tier==='teacher'||tier==='courtesy';
+  document.getElementById('access-general').textContent=hasGeneralFullAccess?'✓ All '+GEN_TOTAL:'🔓 '+gc+' of '+GEN_TOTAL;
+  document.getElementById('access-general').className='card-access '+(hasGeneralFullAccess?'access-premium':'access-partial');
+  document.getElementById('meta-general').textContent=GEN_TOTAL+' tests · '+(hasGeneralFullAccess?'All':gc)+' unlocked';
+  document.getElementById('btn-general').className='card-btn '+(hasGeneralFullAccess?'btn-open':'btn-partial');
+  document.getElementById('general-badge').textContent=hasGeneralFullAccess?'✓ All '+GEN_TOTAL:'🔓 '+gc+' of '+GEN_TOTAL;
 }
 
 // ═══ NAVIGATION ═══
@@ -1256,10 +1264,10 @@ function openGeneral() {
   document.getElementById('exercise-general').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'General English Practice';
   var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
-  var isFree = currentTier === 'free';
-  document.getElementById('general-badge').textContent = isFullAccess ? '✓ All '+GEN_TOTAL : isFree ? '🔓 4 of '+GEN_TOTAL : '🔓 1 of '+GEN_TOTAL;
+  document.getElementById('general-badge').textContent = isFullAccess ? '✓ All '+GEN_TOTAL : '🔓 '+allowed.length+' of '+GEN_TOTAL;
   var frame = document.getElementById('frame-general');
-frame.src = '/general?allowed=' + allowed.join(',');  closeMobileSidebar();
+  frame.src = '/general?allowed=' + allowed.join(',');
+  closeMobileSidebar();
 }
 
 function openConv() {
