@@ -25,6 +25,10 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 .nav-item{display:flex;align-items:center;gap:12px;padding:11px 10px;border-radius:10px;color:rgba(255,255,255,0.55);font-size:0.88rem;font-weight:500;cursor:pointer;transition:all .2s;margin-bottom:4px;border:none;background:none;width:100%;text-align:left;font-family:'Outfit',sans-serif;white-space:nowrap;overflow:hidden}
 .nav-item:hover{background:rgba(255,255,255,0.08);color:white}
 .nav-item.active{background:rgba(255,255,255,0.12);color:white}
+.nav-item.nav-new{color:white;background:rgba(220,38,38,0.16);border:1px solid rgba(255,255,255,0.08)}
+.nav-item.nav-new:hover{background:rgba(220,38,38,0.26)}
+.nav-new-pill{margin-left:auto;background:#DC2626;color:white;border-radius:999px;padding:2px 7px;font-size:0.62rem;font-weight:700;letter-spacing:.04em}
+.sidebar.collapsed .nav-new-pill{display:none}
 .nav-item .icon{font-size:1.1rem;width:22px;height:22px;text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .nav-item .nav-label{transition:opacity .2s;opacity:1}
 .sidebar.collapsed .nav-label{opacity:0;width:0;overflow:hidden}
@@ -99,9 +103,9 @@ body.sidebar-collapsed .main{margin-left:64px}
 .ex-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(13,59,111,0.1)}
 .card-header{padding:22px 22px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .card-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.card-icon.blue{background:rgba(13,59,111,0.08)}.card-icon.purple{background:rgba(71,0,116,0.08)}.card-icon.green{background:rgba(26,122,74,0.08)}.card-icon.gold{background:rgba(201,168,76,0.1)}
+.card-icon.blue{background:rgba(13,59,111,0.08)}.card-icon.purple{background:rgba(71,0,116,0.08)}.card-icon.green{background:rgba(26,122,74,0.08)}.card-icon.gold{background:rgba(201,168,76,0.1)}.card-icon.red{background:rgba(220,38,38,0.1);color:#DC2626}
 .card-access{font-size:0.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;flex-shrink:0}
-.access-free{background:rgba(26,122,74,0.1);color:var(--green)}.access-partial{background:rgba(74,144,217,0.12);color:var(--sky)}.access-premium{background:rgba(201,168,76,0.15);color:#8a6800}.access-locked{background:rgba(0,0,0,0.06);color:#999}
+.access-free{background:rgba(26,122,74,0.1);color:var(--green)}.access-partial{background:rgba(74,144,217,0.12);color:var(--sky)}.access-premium{background:rgba(201,168,76,0.15);color:#8a6800}.access-new{background:rgba(220,38,38,0.1);color:#DC2626}.access-locked{background:rgba(0,0,0,0.06);color:#999}
 .card-body{padding:0 22px 22px}
 .card-title{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:5px}
 .card-desc{font-size:0.82rem;color:#666;line-height:1.55;margin-bottom:14px}
@@ -229,6 +233,7 @@ body.sidebar-collapsed .main{margin-left:64px}
   </div>
   <nav class="sidebar-nav">
     <button class="nav-item active" onclick="showDashboard()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="nav-label">Dashboard</span></button>
+    <button class="nav-item nav-new" onclick="showNewPractice()"><span class="icon">✦</span><span class="nav-label">NEW</span><span class="nav-new-pill">NEW</span></button>
     <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Progress</span></button>
     <button class="nav-item" onclick="showModal()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="nav-label">ePeak+</span></button>
     <button class="nav-item" onclick="alert('PDFs coming soon for ePeak+ members.')"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Downloads</span></button>
@@ -290,6 +295,14 @@ body.sidebar-collapsed .main{margin-left:64px}
       <div class="progress-stats">
         <div class="prog-stat"><div class="prog-num" id="progCompleted">0</div><div class="prog-label">Completed</div></div>
         <div class="prog-stat"><div class="prog-num" id="progAvailable">7</div><div class="prog-label">Available</div></div>
+      </div>
+    </div>
+
+    <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh activities and experiments</p></div>
+    <div class="cards-grid">
+      <div class="ex-card" onclick="openIrregularVerbs()">
+        <div class="card-header"><div class="card-icon red">NEW</div><div class="card-access access-new">New</div></div>
+        <div class="card-body"><div class="card-title">Irregular Verbs Practice</div><div class="card-desc">Complete the missing verb forms: base form, simple past, and past participle. Shuffled prompts with instant feedback.</div><div class="card-meta"><span class="meta-item">⚡ Quick practice</span><span class="meta-item">📚 100+ verbs</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
     </div>
 
@@ -370,6 +383,7 @@ body.sidebar-collapsed .main{margin-left:64px}
       <button class="ph-filter-btn" data-filter="ITP Multiple Choice" onclick="filterProgress(this,'ITP Multiple Choice')">ITP MC</button>
       <button class="ph-filter-btn" data-filter="Unscramble" onclick="filterProgress(this,'Unscramble')">Unscramble</button>
       <button class="ph-filter-btn" data-filter="Emoji Flashcards" onclick="filterProgress(this,'Emoji Flashcards')">Emoji</button>
+      <button class="ph-filter-btn" data-filter="Irregular Verbs" onclick="filterProgress(this,'Irregular Verbs')">Irregular Verbs</button>
     </div>
 
     <!-- Chart mini area -->
@@ -444,7 +458,13 @@ body.sidebar-collapsed .main{margin-left:64px}
     <iframe class="exercise-frame" id="frame-emoji" src="" style="width:100%;height:calc(100vh - 56px);border:none;"></iframe>
   </div>
 
-  <!-- ═══ CONVERSATIONS (iframe) ═══ -->
+  <!-- ═══ IRREGULAR VERBS (iframe) ═══ -->
+  <div class="exercise-screen" id="exercise-irregular-verbs">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Irregular Verbs Practice</div><div class="exercise-badge" style="background:rgba(220,38,38,0.1);color:#DC2626">New</div></div>
+    <iframe class="exercise-frame" id="frame-irregular-verbs" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
+  </div>
+
+  <!-- ═══ GENERAL ENGLISH (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-general">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">General English Practice</div><div class="exercise-badge" id="general-badge">Loading...</div></div>
     <iframe class="exercise-frame" id="frame-general" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
@@ -1229,6 +1249,21 @@ function openExercise(id) {
   document.getElementById('exercise-'+id).classList.add('active');
   closeMobileSidebar();
   if(id==='itp-mc'){document.getElementById('frame-itp-mc').src='/itp-mc';}
+}
+function showNewPractice() {
+  showDashboard();
+  setTimeout(function(){
+    var section = document.getElementById('new-practice-section');
+    if(section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 40);
+}
+function openIrregularVerbs() {
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-irregular-verbs').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'Irregular Verbs Practice';
+  document.getElementById('topbarSub').textContent = 'Practice base, past, and participle forms';
+  document.getElementById('frame-irregular-verbs').src = '/irregular-verbs';
+  closeMobileSidebar();
 }
 function openITPTests() {
   var allowed=TIERS[currentTier].itpTests;

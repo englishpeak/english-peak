@@ -4,6 +4,8 @@
     { "source": "/itp-mc/:path*",   "destination": "/itp-mc/index.html" },
     { "source": "/emoji",           "destination": "/emoji/index.html" },
     { "source": "/emoji/:path*",    "destination": "/emoji/index.html" },
+    { "source": "/irregular-verbs",        "destination": "/irregular-verbs/index.html" },
+    { "source": "/irregular-verbs/:path*", "destination": "/irregular-verbs/index.html" },
     { "source": "/itp",             "destination": "/itp_index.html" },
     { "source": "/itp/:path*",      "destination": "/itp_index.html" },
     { "source": "/ibt",             "destination": "/ibt_index.html" },
