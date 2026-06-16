@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -355,10 +356,6 @@
             <strong id="correctCount">0</strong>
             <span>Correct</span>
           </div>
-          <div class="stat">
-            <strong id="verbCount">0</strong>
-            <span>Verbs</span>
-          </div>
         </div>
       </section>
 
@@ -513,7 +510,6 @@
     const shownMode = document.querySelector("#shownMode");
     const attemptedCount = document.querySelector("#attemptedCount");
     const correctCount = document.querySelector("#correctCount");
-    const verbCount = document.querySelector("#verbCount");
     const checkButton = document.querySelector("#checkButton");
     const nextButton = document.querySelector("#nextButton");
 
@@ -637,7 +633,6 @@
       }
     });
 
-    verbCount.textContent = verbs.length;
     renderPrompt();
   </script>
 </body>
