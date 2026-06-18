@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -395,10 +396,25 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <div><h2>Downloads</h2><p>Publish Google Drive links for PDFs, worksheets and class files</p></div>
         <button class="btn btn-primary" onclick="showDownloadModal()">+ New Download</button>
       </div>
+      <div class="table-wrap" style="margin-bottom:20px;padding:18px">
+        <div class="section-hdr" style="margin-bottom:12px">
+          <div><h2 style="font-size:1.15rem">Categories</h2><p>Add categories and use the arrows to choose how they appear on the site.</p></div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <input id="newDownloadCategory" placeholder="e.g. Phrasal Verbs" style="padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:inherit">
+            <button class="btn btn-primary btn-sm" onclick="createDownloadCategory()">+ Add Category</button>
+          </div>
+        </div>
+        <div id="downloadCategoriesLoading" class="loading"><span class="spinner"></span> Loading categories...</div>
+        <table id="downloadCategoriesTable" style="display:none">
+          <thead><tr><th>Order</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="downloadCategoriesBody"></tbody>
+        </table>
+        <div id="downloadCategoriesEmpty" class="empty-state" style="display:none"><p>No categories yet. Add the first one above.</p></div>
+      </div>
       <div class="table-wrap">
         <div id="downloadsLoading" class="loading"><span class="spinner"></span> Loading downloads...</div>
         <table id="downloadsTable" style="display:none">
-          <thead><tr><th>Title</th><th>Type</th><th>Access</th><th>Status</th><th>Google Drive Link</th><th>Actions</th></tr></thead>
+          <thead><tr><th>Title</th><th>Category</th><th>Type</th><th>Access</th><th>Status</th><th>Google Drive Link</th><th>Actions</th></tr></thead>
           <tbody id="downloadsBody"></tbody>
         </table>
         <div id="downloadsEmpty" class="empty-state" style="display:none"><div class="empty-icon">⬇</div><p>No downloads yet. Add a Google Drive share link to publish one.</p></div>
@@ -439,6 +455,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
       <div class="form-group"><label>Title</label><input id="downloadTitle" placeholder="e.g. TOEFL ITP Structure Worksheet"></div>
       <div class="form-group"><label>Description</label><textarea id="downloadDescription" rows="3" placeholder="What students will download..."></textarea></div>
       <div class="form-group"><label>Google Drive URL</label><input id="downloadUrl" placeholder="https://drive.google.com/file/d/.../view"></div>
+      <div class="form-group"><label>Category</label><select id="downloadCategory"><option value="">Loading categories...</option></select></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="form-group"><label>File Type</label><input id="downloadType" placeholder="PDF" value="PDF"></div>
         <div class="form-group"><label>Access</label><select id="downloadAccess"><option value="premium">ePeak+</option><option value="free">Free account</option><option value="public">Public</option></select></div>
@@ -763,7 +780,10 @@ async function confirmTierChange() {
 // ═══════════════════════════════════
 // DOWNLOADS
 // ═══════════════════════════════════
+let downloadCategories = [];
+
 async function loadDownloadsAdmin() {
+  await loadDownloadCategories();
   document.getElementById('downloadsLoading').style.display = 'block';
   document.getElementById('downloadsTable').style.display = 'none';
   document.getElementById('downloadsEmpty').style.display = 'none';
@@ -780,8 +800,10 @@ async function loadDownloadsAdmin() {
   tbody.innerHTML = '';
   data.forEach(d => {
     const access = d.access_tier === 'public' ? 'Public' : d.access_tier === 'free' ? 'Free account' : 'ePeak+';
+    const category = downloadCategories.find(c => c.id === d.category_id);
     tbody.innerHTML += `<tr>
       <td><div style="font-weight:600;color:var(--navy)">${escapeAdmin(d.title)}</div><div style="font-size:0.75rem;color:var(--muted);max-width:260px">${escapeAdmin(d.description || '')}</div></td>
+      <td>${escapeAdmin(category ? category.name : 'General Downloads')}</td>
       <td>${escapeAdmin(d.file_type || 'File')}</td>
       <td><span class="tier-badge ${d.access_tier === 'premium' ? 'tier-premium' : d.access_tier === 'free' ? 'tier-free' : 'tier-teacher'}">${access}</span></td>
       <td>${d.is_active ? '<span class="ps-pass">Published</span>' : '<span class="tier-badge tier-free">Hidden</span>'}</td>
@@ -791,12 +813,89 @@ async function loadDownloadsAdmin() {
   });
 }
 
+async function loadDownloadCategories() {
+  const loading = document.getElementById('downloadCategoriesLoading');
+  const table = document.getElementById('downloadCategoriesTable');
+  const empty = document.getElementById('downloadCategoriesEmpty');
+  loading.style.display = 'block';
+  table.style.display = 'none';
+  empty.style.display = 'none';
+  const { data, error } = await sb.from('download_categories').select('*').order('sort_order').order('created_at');
+  loading.style.display = 'none';
+  if (error) {
+    empty.style.display = 'block';
+    empty.querySelector('p').textContent = 'Run the updated supabase_downloads_setup.sql to enable categories.';
+    downloadCategories = [];
+    return;
+  }
+  downloadCategories = data || [];
+  refreshDownloadCategorySelect();
+  if (!downloadCategories.length) { empty.style.display = 'block'; return; }
+  table.style.display = 'table';
+  const tbody = document.getElementById('downloadCategoriesBody');
+  tbody.innerHTML = downloadCategories.map((category, index) => `<tr>
+    <td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="moveDownloadCategory(${index},-1)" ${index === 0 ? 'disabled' : ''}>↑</button> <button class="btn btn-ghost btn-sm" onclick="moveDownloadCategory(${index},1)" ${index === downloadCategories.length - 1 ? 'disabled' : ''}>↓</button></td>
+    <td><strong style="color:var(--navy)">${escapeAdmin(category.name)}</strong></td>
+    <td>${category.is_active ? '<span class="ps-pass">Visible</span>' : '<span class="tier-badge tier-free">Hidden</span>'}</td>
+    <td style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="toggleDownloadCategory('${category.id}',${!category.is_active})">${category.is_active ? 'Hide' : 'Show'}</button><button class="btn btn-danger btn-sm" onclick="deleteDownloadCategory('${category.id}')">Delete</button></td>
+  </tr>`).join('');
+}
+
+function refreshDownloadCategorySelect() {
+  const select = document.getElementById('downloadCategory');
+  if (!select) return;
+  select.innerHTML = downloadCategories.filter(c => c.is_active).map(c => `<option value="${c.id}">${escapeAdmin(c.name)}</option>`).join('');
+  if (!select.options.length) select.innerHTML = '<option value="">Create a category first</option>';
+}
+
+async function createDownloadCategory() {
+  const input = document.getElementById('newDownloadCategory');
+  const name = input.value.trim();
+  if (!name) { showToast('Enter a category name.', 'error'); return; }
+  const nextOrder = downloadCategories.length ? Math.max(...downloadCategories.map(c => c.sort_order || 0)) + 1 : 0;
+  const { error } = await sb.from('download_categories').insert({ name, sort_order: nextOrder, is_active: true });
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+  input.value = '';
+  showToast('✅ Category added', 'success');
+  loadDownloadCategories();
+}
+
+async function moveDownloadCategory(index, direction) {
+  const otherIndex = index + direction;
+  if (otherIndex < 0 || otherIndex >= downloadCategories.length) return;
+  const current = downloadCategories[index];
+  const other = downloadCategories[otherIndex];
+  const currentOrder = current.sort_order;
+  const otherOrder = other.sort_order;
+  const first = await sb.from('download_categories').update({ sort_order: otherOrder }).eq('id', current.id);
+  if (first.error) { showToast('Error: ' + first.error.message, 'error'); return; }
+  const second = await sb.from('download_categories').update({ sort_order: currentOrder }).eq('id', other.id);
+  if (second.error) { showToast('Error: ' + second.error.message, 'error'); return; }
+  loadDownloadCategories();
+}
+
+async function toggleDownloadCategory(id, is_active) {
+  const { error } = await sb.from('download_categories').update({ is_active }).eq('id', id);
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+  showToast(is_active ? '✅ Category visible' : '🙈 Category hidden', 'success');
+  loadDownloadCategories();
+}
+
+async function deleteDownloadCategory(id) {
+  if (!confirm('Delete this category? Its downloads will move to General Downloads.')) return;
+  const { error } = await sb.from('download_categories').delete().eq('id', id);
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+  showToast('🗑 Category deleted', 'success');
+  loadDownloadsAdmin();
+}
+
 function showDownloadModal() {
   document.getElementById('downloadTitle').value = '';
   document.getElementById('downloadDescription').value = '';
   document.getElementById('downloadUrl').value = '';
   document.getElementById('downloadType').value = 'PDF';
   document.getElementById('downloadAccess').value = 'premium';
+  refreshDownloadCategorySelect();
   document.getElementById('downloadModal').classList.add('show');
 }
 
@@ -806,8 +905,9 @@ async function createDownload() {
   const drive_url = document.getElementById('downloadUrl').value.trim();
   const file_type = document.getElementById('downloadType').value.trim() || 'File';
   const access_tier = document.getElementById('downloadAccess').value;
-  if (!title || !drive_url) { showToast('Title and Google Drive URL are required.', 'error'); return; }
-  const { error } = await sb.from('downloads').insert({ title, description, drive_url, file_type, access_tier, is_active: true, created_by: currentUser.id });
+  const category_id = document.getElementById('downloadCategory').value || null;
+  if (!title || !drive_url || !category_id) { showToast('Title, Google Drive URL and category are required.', 'error'); return; }
+  const { error } = await sb.from('downloads').insert({ title, description, drive_url, file_type, access_tier, category_id, is_active: true, created_by: currentUser.id });
   if (error) { showToast('Error: ' + error.message, 'error'); return; }
   await sb.from('admin_log').insert({ admin_id: currentUser.id, action: 'download_created', details: { title, access_tier } });
   closeModal('downloadModal');
@@ -1123,6 +1223,5 @@ function showToast(msg, type = '') {
   setTimeout(() => t.classList.remove('show'), 3200);
 }
 </script>
-<script src="/downloads-admin.js"></script>
 </body>
 </html>
