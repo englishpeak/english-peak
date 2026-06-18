@@ -3,6 +3,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,6 +112,9 @@ body.sidebar-collapsed .main{margin-left:64px}
 .download-thumb:hover img{transform:scale(1.025)}
 .download-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--navy);background:linear-gradient(135deg,#f5f7fa,#e8edf3)}
 .download-thumb-label{position:absolute;right:12px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(13,59,111,.9);color:white;font-size:.72rem;font-weight:600}
+.download-category{margin:0 0 30px}
+.download-category-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--navy);margin:0 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--border)}
+.download-category .cards-grid{margin-top:0}
 .card-access{font-size:0.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;flex-shrink:0}
 .access-free{background:rgba(26,122,74,0.1);color:var(--green)}.access-partial{background:rgba(74,144,217,0.12);color:var(--sky)}.access-premium{background:rgba(201,168,76,0.15);color:#8a6800}.access-new{background:rgba(220,38,38,0.1);color:#DC2626}.access-locked{background:rgba(0,0,0,0.06);color:#999}
 .card-body{padding:0 22px 22px}
@@ -1307,7 +1311,13 @@ async function loadDownloads() {
   closeDownloadPreview();
   window.downloadFiles = [];
   grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Loading...</div><div class="card-desc">Fetching the latest resources.</div></div></div>';
-  var { data, error } = await sb.from('downloads').select('*').eq('is_active', true).order('created_at', { ascending: false });
+  var results = await Promise.all([
+    sb.from('download_categories').select('*').eq('is_active', true).order('sort_order').order('created_at'),
+    sb.from('downloads').select('*').eq('is_active', true).order('sort_order').order('created_at', { ascending: false })
+  ]);
+  var categories = results[0].data || [];
+  var data = results[1].data;
+  var error = results[0].error || results[1].error;
   if (error) {
     grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Downloads table not ready</div><div class="card-desc">Ask an admin to create the Supabase downloads table using the SQL included in the PR notes, then refresh this page.</div></div></div>';
     sub.textContent = 'Setup required';
@@ -1323,14 +1333,28 @@ async function loadDownloads() {
   document.getElementById('downloadsCount').textContent = data.length;
   sub.textContent = data.length + ' published resource' + (data.length === 1 ? '' : 's') + ' · preview files without leaving this page';
   grid.innerHTML = '';
+  grid.style.display = 'block';
   window.downloadFiles = data;
+  var groups = categories.map(function(category){
+    return { id: category.id, name: category.name, files: [] };
+  });
+  var uncategorized = { id: null, name: 'General Downloads', files: [] };
   data.forEach(function(file, index){
+    var group = groups.find(function(item){ return item.id === file.category_id; }) || uncategorized;
+    group.files.push({ file: file, index: index });
+  });
+  if (uncategorized.files.length) groups.push(uncategorized);
+  groups.filter(function(group){ return group.files.length; }).forEach(function(group){
+    var cards = '';
+    group.files.forEach(function(item){
+    var file = item.file;
+    var index = item.index;
     var accessTier = file.access_tier || 'premium';
     var allowed = canAccessDownload(accessTier);
     var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
     var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
     var thumbnail = getDownloadThumbnailUrl(file.drive_url);
-    grid.innerHTML += '<div class="ex-card">'
+    cards += '<div class="ex-card">'
       + (allowed ? '<button class="download-thumb" onclick="openDownloadPreview(' + index + ')" aria-label="Vista previa de ' + escapeAttr(file.title || 'archivo') + '">'
         + (thumbnail ? '<img src="' + escapeAttr(thumbnail) + '" alt="" loading="lazy" onerror="showDownloadThumbnailFallback(this,\'' + escapeAttr(icon) + '\')">' : '<span class="download-thumb-fallback">' + escapeHtml(icon) + '</span>')
         + '<span class="download-thumb-label">Vista previa</span></button>' : '')
@@ -1339,6 +1363,8 @@ async function loadDownloads() {
       + '<div class="card-meta"><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
       + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
       + '</div></div>';
+    });
+    grid.innerHTML += '<section class="download-category"><h3 class="download-category-title">' + escapeHtml(group.name) + '</h3><div class="cards-grid">' + cards + '</div></section>';
   });
 }
 
