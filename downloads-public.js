@@ -85,57 +85,21 @@
       return;
     }
     downloadFiles = result.data;
-    var viewerTier = await getViewerTier();
     setCount(downloadFiles.length);
     sub.textContent = downloadFiles.length + ' published resource' + (downloadFiles.length === 1 ? '' : 's') + ' · preview files without leaving this page';
     grid.innerHTML = '';
     downloadFiles.forEach(function(file, index){
       var accessTier = file.access_tier || 'premium';
-      var allowed = canAccessDownload(accessTier, viewerTier);
       var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
       var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
       grid.innerHTML += '<div class="ex-card">'
-        + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access ' + (allowed ? 'access-premium' : 'access-locked') + '">' + label + '</div></div>'
+        + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access access-premium">' + label + '</div></div>'
         + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
         + '<div class="card-meta"><span class="meta-item">☁️ Google Drive</span><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
-        + (allowed
-          ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>'
-          : '<button class="card-btn btn-locked" onclick="requestDownloadAccess()">🔐 Unlock access</button>')
+        + '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button>'
+        + '<a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>'
         + '</div></div>';
     });
-  }
-
-
-  async function getViewerTier(){
-    if (!epSb) return 'visitor';
-    var authResult = await epSb.auth.getUser();
-    var user = authResult.data && authResult.data.user;
-    if (!user) return 'visitor';
-    var profileResult = await epSb.from('profiles').select('tier,is_admin').eq('id', user.id).single();
-    if (profileResult.error || !profileResult.data) return 'free';
-    if (profileResult.data.is_admin) return 'premium';
-    return profileResult.data.tier || 'free';
-  }
-
-  function canAccessDownload(accessTier, viewerTier){
-    if (accessTier === 'public') return true;
-    if (viewerTier === 'visitor') return false;
-    if (accessTier === 'free') return true;
-    return viewerTier === 'premium' || viewerTier === 'teacher' || viewerTier === 'courtesy';
-  }
-
-  function requestDownloadAccess(){
-    if (typeof showAuthModal === 'function' && epSb) {
-      epSb.auth.getUser().then(function(result){
-        if (result.data && result.data.user) {
-          if (typeof showModal === 'function') showModal();
-        } else {
-          showAuthModal('login');
-        }
-      });
-      return;
-    }
-    if (typeof showModal === 'function') showModal();
   }
 
   function setCount(value){
@@ -188,5 +152,4 @@
   window.showDownloads = showDownloads;
   window.openDownloadPreview = openDownloadPreview;
   window.closeDownloadPreview = closeDownloadPreview;
-  window.requestDownloadAccess = requestDownloadAccess;
 })();
