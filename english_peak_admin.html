@@ -266,7 +266,6 @@ tr:hover td { background: rgba(13,59,111,0.02); }
     <button class="tab-btn active" onclick="switchTab('users', this)">👥 Users <span class="tab-badge" id="badge-users">—</span></button>
     <button class="tab-btn" onclick="switchTab('codes', this)">🎟 Access Codes <span class="tab-badge" id="badge-codes">—</span></button>
     <button class="tab-btn" onclick="switchTab('progress', this)">📊 Student Progress <span class="tab-badge" id="badge-progress">—</span></button>
-    <button class="tab-btn" onclick="switchTab('downloads', this)">⬇ Downloads <span class="tab-badge" id="badge-downloads">—</span></button>
     <button class="tab-btn" onclick="switchTab('log', this)">📋 Audit Log</button>
   </div>
 
@@ -389,22 +388,6 @@ tr:hover td { background: rgba(13,59,111,0.02); }
       </div>
     </div>
 
-    <!-- ═══ DOWNLOADS TAB ═══ -->
-    <div class="tab-panel" id="tab-downloads">
-      <div class="section-hdr">
-        <div><h2>Downloads</h2><p>Publish Google Drive links for PDFs, worksheets and class files</p></div>
-        <button class="btn btn-primary" onclick="showDownloadModal()">+ New Download</button>
-      </div>
-      <div class="table-wrap">
-        <div id="downloadsLoading" class="loading"><span class="spinner"></span> Loading downloads...</div>
-        <table id="downloadsTable" style="display:none">
-          <thead><tr><th>Title</th><th>Type</th><th>Access</th><th>Status</th><th>Google Drive Link</th><th>Actions</th></tr></thead>
-          <tbody id="downloadsBody"></tbody>
-        </table>
-        <div id="downloadsEmpty" class="empty-state" style="display:none"><div class="empty-icon">⬇</div><p>No downloads yet. Add a Google Drive share link to publish one.</p></div>
-      </div>
-    </div>
-
     <!-- ═══ LOG TAB ═══ -->
     <div class="tab-panel" id="tab-log">
       <div class="section-hdr">
@@ -426,25 +409,6 @@ tr:hover td { background: rgba(13,59,111,0.02); }
       </div>
     </div>
 
-  </div>
-</div>
-
-<!-- DOWNLOAD MODAL -->
-<div class="modal-overlay" id="downloadModal">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('downloadModal')">✕</button>
-    <h3>New Download</h3>
-    <p>Upload the file to Google Drive, set sharing to “Anyone with the link can view”, then paste the share link here.</p>
-    <div class="modal-form">
-      <div class="form-group"><label>Title</label><input id="downloadTitle" placeholder="e.g. TOEFL ITP Structure Worksheet"></div>
-      <div class="form-group"><label>Description</label><textarea id="downloadDescription" rows="3" placeholder="What students will download..."></textarea></div>
-      <div class="form-group"><label>Google Drive URL</label><input id="downloadUrl" placeholder="https://drive.google.com/file/d/.../view"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="form-group"><label>File Type</label><input id="downloadType" placeholder="PDF" value="PDF"></div>
-        <div class="form-group"><label>Access</label><select id="downloadAccess"><option value="premium">ePeak+</option><option value="free">Free account</option><option value="public">Public</option></select></div>
-      </div>
-    </div>
-    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('downloadModal')">Cancel</button><button class="btn btn-primary" onclick="createDownload()">Publish</button></div>
   </div>
 </div>
 
@@ -598,7 +562,6 @@ function showApp() {
   document.getElementById('adminUserEmail').textContent = currentUser.email;
   loadUsers();
   loadCodes();
-  loadDownloadsAdmin();
   loadLog();
 }
 
@@ -630,7 +593,6 @@ function switchTab(name, btn) {
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
   if (name === 'progress' && _allProgress.length === 0) loadAdminProgress();
-  if (name === 'downloads') loadDownloadsAdmin();
 }
 
 // ═══════════════════════════════════
@@ -757,81 +719,6 @@ async function confirmTierChange() {
   showToast(`✅ Tier updated to ${tierNames[newTier] || newTier}`, 'success');
   loadUsers();
   loadLog();
-}
-
-
-// ═══════════════════════════════════
-// DOWNLOADS
-// ═══════════════════════════════════
-async function loadDownloadsAdmin() {
-  document.getElementById('downloadsLoading').style.display = 'block';
-  document.getElementById('downloadsTable').style.display = 'none';
-  document.getElementById('downloadsEmpty').style.display = 'none';
-  const { data, error } = await sb.from('downloads').select('*').order('created_at', { ascending: false });
-  document.getElementById('downloadsLoading').style.display = 'none';
-  if (error || !data || data.length === 0) {
-    document.getElementById('downloadsEmpty').style.display = 'block';
-    document.getElementById('badge-downloads').textContent = '0';
-    return;
-  }
-  document.getElementById('badge-downloads').textContent = data.length;
-  document.getElementById('downloadsTable').style.display = 'table';
-  const tbody = document.getElementById('downloadsBody');
-  tbody.innerHTML = '';
-  data.forEach(d => {
-    const access = d.access_tier === 'public' ? 'Public' : d.access_tier === 'free' ? 'Free account' : 'ePeak+';
-    tbody.innerHTML += `<tr>
-      <td><div style="font-weight:600;color:var(--navy)">${escapeAdmin(d.title)}</div><div style="font-size:0.75rem;color:var(--muted);max-width:260px">${escapeAdmin(d.description || '')}</div></td>
-      <td>${escapeAdmin(d.file_type || 'File')}</td>
-      <td><span class="tier-badge ${d.access_tier === 'premium' ? 'tier-premium' : d.access_tier === 'free' ? 'tier-free' : 'tier-teacher'}">${access}</span></td>
-      <td>${d.is_active ? '<span class="ps-pass">Published</span>' : '<span class="tier-badge tier-free">Hidden</span>'}</td>
-      <td><a href="${escapeAdmin(d.drive_url)}" target="_blank" rel="noopener" style="color:var(--navy);font-size:0.78rem">Open Drive ↗</a></td>
-      <td style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="toggleDownload('${d.id}', ${!d.is_active})">${d.is_active ? 'Hide' : 'Publish'}</button><button class="btn btn-danger btn-sm" onclick="deleteDownload('${d.id}')">Delete</button></td>
-    </tr>`;
-  });
-}
-
-function showDownloadModal() {
-  document.getElementById('downloadTitle').value = '';
-  document.getElementById('downloadDescription').value = '';
-  document.getElementById('downloadUrl').value = '';
-  document.getElementById('downloadType').value = 'PDF';
-  document.getElementById('downloadAccess').value = 'premium';
-  document.getElementById('downloadModal').classList.add('show');
-}
-
-async function createDownload() {
-  const title = document.getElementById('downloadTitle').value.trim();
-  const description = document.getElementById('downloadDescription').value.trim();
-  const drive_url = document.getElementById('downloadUrl').value.trim();
-  const file_type = document.getElementById('downloadType').value.trim() || 'File';
-  const access_tier = document.getElementById('downloadAccess').value;
-  if (!title || !drive_url) { showToast('Title and Google Drive URL are required.', 'error'); return; }
-  const { error } = await sb.from('downloads').insert({ title, description, drive_url, file_type, access_tier, is_active: true, created_by: currentUser.id });
-  if (error) { showToast('Error: ' + error.message, 'error'); return; }
-  await sb.from('admin_log').insert({ admin_id: currentUser.id, action: 'download_created', details: { title, access_tier } });
-  closeModal('downloadModal');
-  showToast('✅ Download published', 'success');
-  loadDownloadsAdmin();
-}
-
-async function toggleDownload(id, is_active) {
-  const { error } = await sb.from('downloads').update({ is_active }).eq('id', id);
-  if (error) { showToast('Error: ' + error.message, 'error'); return; }
-  showToast(is_active ? '✅ Download published' : '🙈 Download hidden', 'success');
-  loadDownloadsAdmin();
-}
-
-async function deleteDownload(id) {
-  if (!confirm('Delete this download?')) return;
-  const { error } = await sb.from('downloads').delete().eq('id', id);
-  if (error) { showToast('Error: ' + error.message, 'error'); return; }
-  showToast('🗑 Download deleted', 'success');
-  loadDownloadsAdmin();
-}
-
-function escapeAdmin(value) {
-  return String(value || '').replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 }
 
 // ═══════════════════════════════════
@@ -1123,5 +1010,6 @@ function showToast(msg, type = '') {
   setTimeout(() => t.classList.remove('show'), 3200);
 }
 </script>
+<script src="/downloads-admin.js"></script>
 </body>
 </html>

@@ -237,7 +237,7 @@ body.sidebar-collapsed .main{margin-left:64px}
     <button class="nav-item nav-new" onclick="showNewPractice()"><span class="icon">✦</span><span class="nav-label">NEW</span><span class="nav-new-pill">NEW</span></button>
     <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Progress</span></button>
     <button class="nav-item" onclick="showModal()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="nav-label">ePeak+</span></button>
-    <button class="nav-item" id="navDownloads" onclick="showDownloads()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Downloads</span></button>
+    <button class="nav-item" onclick="alert('PDFs coming soon for ePeak+ members.')"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Downloads</span></button>
     <button class="nav-item" id="navProfile" onclick="showProfile()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label">My Profile</span></button>
   </nav>
   <div class="sidebar-footer">
@@ -361,34 +361,6 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   </div>
   </div><!-- end dashboard -->
-
-  <!-- ═══ DOWNLOADS ═══ -->
-  <div class="screen" id="screen-downloads">
-  <div class="content" style="padding:32px;flex:1">
-    <div class="progress-card">
-      <div class="progress-text">
-        <h3>Downloads</h3>
-        <p>Worksheets, PDFs and class resources hosted in Google Drive. Sign in to see member resources.</p>
-      </div>
-      <div class="progress-stats"><div class="prog-stat"><div class="prog-num" id="downloadsCount">0</div><div class="prog-label">Files</div></div></div>
-    </div>
-    <div class="section-header"><h2>Resource Library</h2><p id="downloadsSub">Loading files...</p></div>
-    <div class="cards-grid" id="downloadsGrid"></div>
-    <div id="downloadPreviewPanel" style="display:none;background:white;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(13,59,111,0.08);margin-top:8px">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap">
-        <div>
-          <div id="downloadPreviewTitle" style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--navy)">Vista previa del archivo</div>
-          <div id="downloadPreviewDesc" style="font-size:0.82rem;color:#777;margin-top:2px"></div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <a id="downloadFileBtn" class="upgrade-btn" href="#" download>⬇ Descargar archivo</a>
-          <button class="back-btn" onclick="closeDownloadPreview()">Cerrar vista previa</button>
-        </div>
-      </div>
-      <iframe id="downloadPreviewFrame" title="Download preview" style="width:100%;height:70vh;border:0;background:#f3f5f8" loading="lazy"></iframe>
-    </div>
-  </div>
-  </div>
 
   <!-- ═══ MY PROGRESS ═══ -->
   <div class="screen" id="screen-progress">
@@ -1282,105 +1254,6 @@ function showDashboard() {
   document.getElementById('topbarSub').textContent='Choose an exercise to get started';
   closeMobileSidebar();
 }
-
-var _downloadFiles = [];
-
-async function showDownloads() {
-  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
-  document.getElementById('screen-downloads').classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-  document.getElementById('navDownloads').classList.add('active');
-  document.getElementById('topbarTitle').textContent = 'Downloads';
-  document.getElementById('topbarSub').textContent = 'PDFs and class resources';
-  closeMobileSidebar();
-  await loadDownloads();
-}
-
-function canAccessDownload(accessTier) {
-  if (accessTier === 'public') return true;
-  if (!_currentUser) return false;
-  if (accessTier === 'free') return true;
-  return currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
-}
-
-async function loadDownloads() {
-  var grid = document.getElementById('downloadsGrid');
-  var sub = document.getElementById('downloadsSub');
-  closeDownloadPreview();
-  grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Loading...</div><div class="card-desc">Fetching the latest resources.</div></div></div>';
-  var { data, error } = await sb.from('downloads').select('*').eq('is_active', true).order('created_at', { ascending: false });
-  if (error) {
-    _downloadFiles = [];
-    grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Downloads table not ready</div><div class="card-desc">Ask an admin to create the Supabase downloads table using the SQL included in the PR notes, then refresh this page.</div></div></div>';
-    sub.textContent = 'Setup required';
-    document.getElementById('downloadsCount').textContent = '0';
-    return;
-  }
-  if (!data || !data.length) {
-    _downloadFiles = [];
-    grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">No files yet</div><div class="card-desc">Uploads added in the admin panel will appear here.</div></div></div>';
-    sub.textContent = 'No resources published yet';
-    document.getElementById('downloadsCount').textContent = '0';
-    return;
-  }
-  _downloadFiles = data;
-  document.getElementById('downloadsCount').textContent = data.length;
-  sub.textContent = data.length + ' published resource' + (data.length === 1 ? '' : 's') + ' · preview files without leaving this page';
-  grid.innerHTML = '';
-  data.forEach(function(file, index){
-    var accessTier = file.access_tier || 'premium';
-    var allowed = canAccessDownload(accessTier);
-    var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
-    var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
-    grid.innerHTML += '<div class="ex-card">'
-      + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access ' + (allowed ? 'access-premium' : 'access-locked') + '">' + label + '</div></div>'
-      + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
-      + '<div class="card-meta"><span class="meta-item">☁️ Google Drive</span><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
-      + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
-      + '</div></div>';
-  });
-}
-
-function openDownloadPreview(index) {
-  var file = _downloadFiles[index];
-  if (!file) return;
-  var previewPanel = document.getElementById('downloadPreviewPanel');
-  document.getElementById('downloadPreviewTitle').textContent = file.title || 'File preview';
-  document.getElementById('downloadPreviewDesc').textContent = file.description || 'Vista previa sin salir de ePeak.';
-  document.getElementById('downloadPreviewFrame').src = getPreviewUrl(file.drive_url);
-  document.getElementById('downloadFileBtn').href = getDownloadUrl(file.drive_url);
-  previewPanel.style.display = 'block';
-  previewPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function closeDownloadPreview() {
-  var previewPanel = document.getElementById('downloadPreviewPanel');
-  var frame = document.getElementById('downloadPreviewFrame');
-  if (previewPanel) previewPanel.style.display = 'none';
-  if (frame) frame.src = 'about:blank';
-}
-
-function getDriveFileId(url) {
-  var value = String(url || '');
-  var match = value.match(/\/file\/d\/([^/]+)/) || value.match(/[?&]id=([^&]+)/) || value.match(/\/d\/([^/]+)/);
-  return match ? decodeURIComponent(match[1]) : '';
-}
-
-function getPreviewUrl(url) {
-  var id = getDriveFileId(url);
-  return id ? 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/preview' : url;
-}
-
-function getDownloadUrl(url) {
-  var id = getDriveFileId(url);
-  return id ? 'https://drive.google.com/uc?export=download&id=' + encodeURIComponent(id) : url;
-}
-
-function escapeHtml(value) {
-  return String(value || '').replace(/[&<>"]/g, function(ch){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]); });
-}
-function escapeAttr(value) { return escapeHtml(value).replace(/'/g, '&#39;'); }
-
 function openExercise(id) {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-'+id).classList.add('active');
@@ -2185,5 +2058,6 @@ checkHamburger();
 
 
 </script>
+<script src="/downloads-public.js"></script>
 </body>
 </html>
