@@ -2,6 +2,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1335,7 +1336,7 @@ async function loadDownloads() {
         + '<span class="download-thumb-label">Vista previa</span></button>' : '')
       + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access ' + (allowed ? 'access-premium' : 'access-locked') + '">' + label + '</div></div>'
       + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
-      + '<div class="card-meta"><span class="meta-item">☁️ Google Drive</span><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
+      + '<div class="card-meta"><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
       + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
       + '</div></div>';
   });
