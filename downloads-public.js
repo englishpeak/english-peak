@@ -32,7 +32,7 @@
     section.innerHTML = ''
       + '<div class="content" style="padding:32px;flex:1">'
       + '  <div class="progress-card">'
-      + '    <div class="progress-text"><h3>Downloads</h3><p>Worksheets, PDFs and class resources hosted in Google Drive. Sign in to see member resources.</p></div>'
+      + '    <div class="progress-text"><h3>Downloads</h3><p>Worksheets, PDFs and class resources. Sign in to see member resources.</p></div>'
       + '    <div class="progress-stats"><div class="prog-stat"><div class="prog-num" id="downloadsCount">0</div><div class="prog-label">Files</div></div></div>'
       + '  </div>'
       + '  <div class="section-header"><h2>Resource Library</h2><p id="downloadsSub">Loading files...</p></div>'

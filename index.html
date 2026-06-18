@@ -105,6 +105,11 @@ body.sidebar-collapsed .main{margin-left:64px}
 .card-header{padding:22px 22px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .card-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .card-icon.blue{background:rgba(13,59,111,0.08)}.card-icon.purple{background:rgba(71,0,116,0.08)}.card-icon.green{background:rgba(26,122,74,0.08)}.card-icon.gold{background:rgba(201,168,76,0.1)}.card-icon.red{background:rgba(220,38,38,0.1);color:#DC2626}
+.download-thumb{display:block;width:100%;height:180px;padding:0;border:0;border-bottom:1.5px solid var(--border);background:#f3f5f8;cursor:pointer;overflow:hidden;position:relative}
+.download-thumb img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .22s}
+.download-thumb:hover img{transform:scale(1.025)}
+.download-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--navy);background:linear-gradient(135deg,#f5f7fa,#e8edf3)}
+.download-thumb-label{position:absolute;right:12px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(13,59,111,.9);color:white;font-size:.72rem;font-weight:600}
 .card-access{font-size:0.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;flex-shrink:0}
 .access-free{background:rgba(26,122,74,0.1);color:var(--green)}.access-partial{background:rgba(74,144,217,0.12);color:var(--sky)}.access-premium{background:rgba(201,168,76,0.15);color:#8a6800}.access-new{background:rgba(220,38,38,0.1);color:#DC2626}.access-locked{background:rgba(0,0,0,0.06);color:#999}
 .card-body{padding:0 22px 22px}
@@ -368,12 +373,19 @@ body.sidebar-collapsed .main{margin-left:64px}
     <div class="progress-card">
       <div class="progress-text">
         <h3>Downloads</h3>
-        <p>Worksheets, PDFs and class resources hosted in Google Drive. Sign in to see member resources.</p>
+        <p>Worksheets, PDFs and class resources. Sign in to see member resources.</p>
       </div>
       <div class="progress-stats"><div class="prog-stat"><div class="prog-num" id="downloadsCount">0</div><div class="prog-label">Files</div></div></div>
     </div>
     <div class="section-header"><h2>Resource Library</h2><p id="downloadsSub">Loading files...</p></div>
     <div class="cards-grid" id="downloadsGrid"></div>
+    <div id="downloadPreviewPanel" style="display:none;background:white;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(13,59,111,0.08);margin-top:24px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap">
+        <div><div id="downloadPreviewTitle" style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--navy)">Vista previa del archivo</div><div id="downloadPreviewDesc" style="font-size:0.82rem;color:#777;margin-top:2px"></div></div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><a id="downloadFileBtn" class="upgrade-btn" href="#" download>⬇ Descargar archivo</a><button class="back-btn" onclick="closeDownloadPreview()">Cerrar vista previa</button></div>
+      </div>
+      <iframe id="downloadPreviewFrame" title="Vista previa del archivo" style="width:100%;height:70vh;border:0;background:#f3f5f8" loading="lazy" allow="autoplay"></iframe>
+    </div>
   </div>
   </div>
 
@@ -1291,6 +1303,8 @@ function canAccessDownload(accessTier) {
 async function loadDownloads() {
   var grid = document.getElementById('downloadsGrid');
   var sub = document.getElementById('downloadsSub');
+  closeDownloadPreview();
+  window.downloadFiles = [];
   grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Loading...</div><div class="card-desc">Fetching the latest resources.</div></div></div>';
   var { data, error } = await sb.from('downloads').select('*').eq('is_active', true).order('created_at', { ascending: false });
   if (error) {
@@ -1306,20 +1320,71 @@ async function loadDownloads() {
     return;
   }
   document.getElementById('downloadsCount').textContent = data.length;
-  sub.textContent = data.length + ' published resource' + (data.length === 1 ? '' : 's');
+  sub.textContent = data.length + ' published resource' + (data.length === 1 ? '' : 's') + ' · preview files without leaving this page';
   grid.innerHTML = '';
-  data.forEach(function(file){
+  window.downloadFiles = data;
+  data.forEach(function(file, index){
     var accessTier = file.access_tier || 'premium';
     var allowed = canAccessDownload(accessTier);
     var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
     var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
+    var thumbnail = getDownloadThumbnailUrl(file.drive_url);
     grid.innerHTML += '<div class="ex-card">'
+      + (allowed ? '<button class="download-thumb" onclick="openDownloadPreview(' + index + ')" aria-label="Vista previa de ' + escapeAttr(file.title || 'archivo') + '">'
+        + (thumbnail ? '<img src="' + escapeAttr(thumbnail) + '" alt="" loading="lazy" onerror="showDownloadThumbnailFallback(this,\'' + escapeAttr(icon) + '\')">' : '<span class="download-thumb-fallback">' + escapeHtml(icon) + '</span>')
+        + '<span class="download-thumb-label">Vista previa</span></button>' : '')
       + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access ' + (allowed ? 'access-premium' : 'access-locked') + '">' + label + '</div></div>'
       + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
       + '<div class="card-meta"><span class="meta-item">☁️ Google Drive</span><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
-      + (allowed ? '<a class="card-btn btn-open" href="' + escapeAttr(file.drive_url) + '" target="_blank" rel="noopener">Download / Open →</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
+      + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
       + '</div></div>';
   });
+}
+
+function getDriveFileId(url) {
+  var value = String(url || '');
+  var match = value.match(/\/(?:file|document|spreadsheets|presentation)\/d\/([^/?#]+)/) || value.match(/[?&]id=([^&#]+)/) || value.match(/\/d\/([^/?#]+)/);
+  return match ? decodeURIComponent(match[1]) : '';
+}
+
+function getPreviewUrl(url) {
+  var id = getDriveFileId(url);
+  return id ? 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/preview' : url;
+}
+
+function getDownloadUrl(url) {
+  var id = getDriveFileId(url);
+  return id ? 'https://drive.google.com/uc?export=download&id=' + encodeURIComponent(id) : url;
+}
+
+function getDownloadThumbnailUrl(url) {
+  var id = getDriveFileId(url);
+  return id ? 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(id) + '&sz=w640' : '';
+}
+
+function showDownloadThumbnailFallback(image, label) {
+  var fallback = document.createElement('span');
+  fallback.className = 'download-thumb-fallback';
+  fallback.textContent = label || 'FILE';
+  image.replaceWith(fallback);
+}
+
+function openDownloadPreview(index) {
+  var file = window.downloadFiles && window.downloadFiles[index];
+  if (!file || !canAccessDownload(file.access_tier || 'premium')) return;
+  document.getElementById('downloadPreviewTitle').textContent = file.title || 'File preview';
+  document.getElementById('downloadPreviewDesc').textContent = file.description || 'Vista previa sin salir de ePeak.';
+  document.getElementById('downloadPreviewFrame').src = getPreviewUrl(file.drive_url);
+  document.getElementById('downloadFileBtn').href = getDownloadUrl(file.drive_url);
+  document.getElementById('downloadPreviewPanel').style.display = 'block';
+  document.getElementById('downloadPreviewPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeDownloadPreview() {
+  var panel = document.getElementById('downloadPreviewPanel');
+  var frame = document.getElementById('downloadPreviewFrame');
+  if (panel) panel.style.display = 'none';
+  if (frame) frame.src = 'about:blank';
 }
 
 function escapeHtml(value) {
@@ -2131,6 +2196,5 @@ checkHamburger();
 
 
 </script>
-<script src="/downloads-public.js"></script>
 </body>
 </html>
