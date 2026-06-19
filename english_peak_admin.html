@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,6 +161,10 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 .tier-admin { background: rgba(71,0,116,0.1); color: var(--purple); }
 .tier-teacher { background: rgba(13,59,111,0.1); color: var(--navy); }
 .tier-courtesy { background: rgba(255,152,0,0.1); color: #e65100; }
+.stat-card[data-user-filter] { cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, outline-color .18s ease; outline: 2px solid transparent; outline-offset: 2px; }
+.stat-card[data-user-filter]:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13,59,111,0.1); }
+.stat-card[data-user-filter]:focus-visible { outline-color: var(--navy); }
+.stat-card[data-user-filter].active-filter { outline-color: var(--navy); box-shadow: 0 10px 24px rgba(13,59,111,0.12); }
 
 /* Empty state */
 .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
@@ -276,12 +281,12 @@ tr:hover td { background: rgba(13,59,111,0.02); }
     <!-- ═══ USERS TAB ═══ -->
     <div class="tab-panel active" id="tab-users">
       <div class="stats-row">
-        <div class="stat-card"><div class="stat-label">Total Users</div><div class="stat-num" id="stat-total">—</div><div class="stat-sub">registered accounts</div></div>
-        <div class="stat-card green"><div class="stat-label">Free Tier</div><div class="stat-num" id="stat-free">—</div><div class="stat-sub">active free users</div></div>
-        <div class="stat-card gold"><div class="stat-label">Practice+</div><div class="stat-num" id="stat-premium">—</div><div class="stat-sub">premium members</div></div>
-        <div class="stat-card purple"><div class="stat-label">Admins</div><div class="stat-num" id="stat-admins">—</div><div class="stat-sub">staff members</div></div>
-        <div class="stat-card" style="border-top:3px solid var(--navy)"><div class="stat-label">Teachers</div><div class="stat-num" id="stat-teachers">—</div><div class="stat-sub">school staff</div></div>
-        <div class="stat-card" style="border-top:3px solid #e65100"><div class="stat-label">Courtesy</div><div class="stat-num" id="stat-courtesy">—</div><div class="stat-sub">complimentary access</div></div>
+        <div class="stat-card active-filter" data-user-filter="all" role="button" tabindex="0" onclick="filterUsersByTier('all')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('all')}"><div class="stat-label">Total Users</div><div class="stat-num" id="stat-total">—</div><div class="stat-sub">registered accounts</div></div>
+        <div class="stat-card green" data-user-filter="free" role="button" tabindex="0" onclick="filterUsersByTier('free')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('free')}"><div class="stat-label">Free Tier</div><div class="stat-num" id="stat-free">—</div><div class="stat-sub">active free users</div></div>
+        <div class="stat-card gold" data-user-filter="premium" role="button" tabindex="0" onclick="filterUsersByTier('premium')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('premium')}"><div class="stat-label">Practice+</div><div class="stat-num" id="stat-premium">—</div><div class="stat-sub">premium members</div></div>
+        <div class="stat-card purple" data-user-filter="admin" role="button" tabindex="0" onclick="filterUsersByTier('admin')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('admin')}"><div class="stat-label">Admins</div><div class="stat-num" id="stat-admins">—</div><div class="stat-sub">staff members</div></div>
+        <div class="stat-card" data-user-filter="teacher" role="button" tabindex="0" onclick="filterUsersByTier('teacher')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('teacher')}" style="border-top:3px solid var(--navy)"><div class="stat-label">Teachers</div><div class="stat-num" id="stat-teachers">—</div><div class="stat-sub">school staff</div></div>
+        <div class="stat-card" data-user-filter="courtesy" role="button" tabindex="0" onclick="filterUsersByTier('courtesy')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('courtesy')}" style="border-top:3px solid #e65100"><div class="stat-label">Courtesy</div><div class="stat-num" id="stat-courtesy">—</div><div class="stat-sub">complimentary access</div></div>
       </div>
       <div class="section-hdr">
         <div><h2>All Users</h2><p>Click a user to manage their account</p></div>
@@ -401,12 +406,13 @@ tr:hover td { background: rgba(13,59,111,0.02); }
           <div><h2 style="font-size:1.15rem">Categories</h2><p>Add categories and use the arrows to choose how they appear on the site.</p></div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <input id="newDownloadCategory" placeholder="e.g. Phrasal Verbs" style="padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:inherit">
+            <select id="newDownloadCategoryAccess" aria-label="Category access" style="padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-family:inherit;background:white"><option value="premium">Sólo ePeak+</option><option value="public">Todos</option></select>
             <button class="btn btn-primary btn-sm" onclick="createDownloadCategory()">+ Add Category</button>
           </div>
         </div>
         <div id="downloadCategoriesLoading" class="loading"><span class="spinner"></span> Loading categories...</div>
         <table id="downloadCategoriesTable" style="display:none">
-          <thead><tr><th>Order</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+          <thead><tr><th>Order</th><th>Category</th><th>Access</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="downloadCategoriesBody"></tbody>
         </table>
         <div id="downloadCategoriesEmpty" class="empty-state" style="display:none"><p>No categories yet. Add the first one above.</p></div>
@@ -456,10 +462,8 @@ tr:hover td { background: rgba(13,59,111,0.02); }
       <div class="form-group"><label>Description</label><textarea id="downloadDescription" rows="3" placeholder="What students will download..."></textarea></div>
       <div class="form-group"><label>Google Drive URL</label><input id="downloadUrl" placeholder="https://drive.google.com/file/d/.../view"></div>
       <div class="form-group"><label>Category</label><select id="downloadCategory"><option value="">Loading categories...</option></select></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="form-group"><label>File Type</label><input id="downloadType" placeholder="PDF" value="PDF"></div>
-        <div class="form-group"><label>Access</label><select id="downloadAccess"><option value="premium">ePeak+</option><option value="free">Free account</option><option value="public">Public</option></select></div>
-      </div>
+      <div class="form-group"><label>File Type</label><input id="downloadType" placeholder="PDF" value="PDF"></div>
+      <p style="margin:0;font-size:.78rem">Access is inherited from the selected category. General Downloads always requires a free account.</p>
     </div>
     <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('downloadModal')">Cancel</button><button class="btn btn-primary" onclick="createDownload()">Publish</button></div>
   </div>
@@ -548,6 +552,7 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 let currentUser = null;
 let allUsers = [];
 let selectedUserId = null;
+let activeUserFilter = 'all';
 
 // ═══════════════════════════════════
 // AUTH
@@ -731,10 +736,23 @@ function renderUsers(data) {
 
 function filterUsers() {
   const q = document.getElementById('userSearch').value.toLowerCase();
-  const filtered = allUsers.filter(u =>
-    u.email.toLowerCase().includes(q) || (u.full_name || '').toLowerCase().includes(q)
-  );
+  const filtered = allUsers.filter(u => {
+    const matchesSearch = (u.email || '').toLowerCase().includes(q) || (u.full_name || '').toLowerCase().includes(q);
+    const matchesTier = activeUserFilter === 'all'
+      || (activeUserFilter === 'admin' ? u.is_admin : u.tier === activeUserFilter && (activeUserFilter !== 'free' || !u.is_admin));
+    return matchesSearch && matchesTier;
+  });
   renderUsers(filtered);
+}
+
+function filterUsersByTier(tier) {
+  activeUserFilter = tier;
+  document.querySelectorAll('[data-user-filter]').forEach(card => {
+    const active = card.dataset.userFilter === tier;
+    card.classList.toggle('active-filter', active);
+    card.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  filterUsers();
 }
 
 // ═══════════════════════════════════
@@ -799,13 +817,14 @@ async function loadDownloadsAdmin() {
   const tbody = document.getElementById('downloadsBody');
   tbody.innerHTML = '';
   data.forEach(d => {
-    const access = d.access_tier === 'public' ? 'Public' : d.access_tier === 'free' ? 'Free account' : 'ePeak+';
     const category = downloadCategories.find(c => c.id === d.category_id);
+    const accessTier = category ? (category.access_tier || 'premium') : 'free';
+    const access = accessTier === 'public' ? 'Todos' : accessTier === 'free' ? 'Cuenta gratuita' : 'ePeak+';
     tbody.innerHTML += `<tr>
       <td><div style="font-weight:600;color:var(--navy)">${escapeAdmin(d.title)}</div><div style="font-size:0.75rem;color:var(--muted);max-width:260px">${escapeAdmin(d.description || '')}</div></td>
       <td>${escapeAdmin(category ? category.name : 'General Downloads')}</td>
       <td>${escapeAdmin(d.file_type || 'File')}</td>
-      <td><span class="tier-badge ${d.access_tier === 'premium' ? 'tier-premium' : d.access_tier === 'free' ? 'tier-free' : 'tier-teacher'}">${access}</span></td>
+      <td><span class="tier-badge ${accessTier === 'premium' ? 'tier-premium' : accessTier === 'free' ? 'tier-free' : 'tier-teacher'}">${access}</span></td>
       <td>${d.is_active ? '<span class="ps-pass">Published</span>' : '<span class="tier-badge tier-free">Hidden</span>'}</td>
       <td><a href="${escapeAdmin(d.drive_url)}" target="_blank" rel="noopener" style="color:var(--navy);font-size:0.78rem">Open Drive ↗</a></td>
       <td style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="toggleDownload('${d.id}', ${!d.is_active})">${d.is_active ? 'Hide' : 'Publish'}</button><button class="btn btn-danger btn-sm" onclick="deleteDownload('${d.id}')">Delete</button></td>
@@ -836,6 +855,7 @@ async function loadDownloadCategories() {
   tbody.innerHTML = downloadCategories.map((category, index) => `<tr>
     <td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="moveDownloadCategory(${index},-1)" ${index === 0 ? 'disabled' : ''}>↑</button> <button class="btn btn-ghost btn-sm" onclick="moveDownloadCategory(${index},1)" ${index === downloadCategories.length - 1 ? 'disabled' : ''}>↓</button></td>
     <td><strong style="color:var(--navy)">${escapeAdmin(category.name)}</strong></td>
+    <td><select aria-label="Access for ${escapeAdmin(category.name)}" onchange="updateDownloadCategoryAccess('${category.id}',this.value)" style="padding:7px 9px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;background:white"><option value="premium" ${(category.access_tier || 'premium') === 'premium' ? 'selected' : ''}>Sólo ePeak+</option><option value="public" ${category.access_tier === 'public' ? 'selected' : ''}>Todos</option></select></td>
     <td>${category.is_active ? '<span class="ps-pass">Visible</span>' : '<span class="tier-badge tier-free">Hidden</span>'}</td>
     <td style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="toggleDownloadCategory('${category.id}',${!category.is_active})">${category.is_active ? 'Hide' : 'Show'}</button><button class="btn btn-danger btn-sm" onclick="deleteDownloadCategory('${category.id}')">Delete</button></td>
   </tr>`).join('');
@@ -851,13 +871,21 @@ function refreshDownloadCategorySelect() {
 async function createDownloadCategory() {
   const input = document.getElementById('newDownloadCategory');
   const name = input.value.trim();
+  const access_tier = document.getElementById('newDownloadCategoryAccess').value;
   if (!name) { showToast('Enter a category name.', 'error'); return; }
   const nextOrder = downloadCategories.length ? Math.max(...downloadCategories.map(c => c.sort_order || 0)) + 1 : 0;
-  const { error } = await sb.from('download_categories').insert({ name, sort_order: nextOrder, is_active: true });
+  const { error } = await sb.from('download_categories').insert({ name, access_tier, sort_order: nextOrder, is_active: true });
   if (error) { showToast('Error: ' + error.message, 'error'); return; }
   input.value = '';
   showToast('✅ Category added', 'success');
   loadDownloadCategories();
+}
+
+async function updateDownloadCategoryAccess(id, access_tier) {
+  const { error } = await sb.from('download_categories').update({ access_tier }).eq('id', id);
+  if (error) { showToast('Error: ' + error.message, 'error'); loadDownloadCategories(); return; }
+  showToast(access_tier === 'public' ? '✅ Category available to everyone' : '🔒 Category limited to ePeak+', 'success');
+  loadDownloadsAdmin();
 }
 
 async function moveDownloadCategory(index, direction) {
@@ -894,7 +922,6 @@ function showDownloadModal() {
   document.getElementById('downloadDescription').value = '';
   document.getElementById('downloadUrl').value = '';
   document.getElementById('downloadType').value = 'PDF';
-  document.getElementById('downloadAccess').value = 'premium';
   refreshDownloadCategorySelect();
   document.getElementById('downloadModal').classList.add('show');
 }
@@ -904,9 +931,10 @@ async function createDownload() {
   const description = document.getElementById('downloadDescription').value.trim();
   const drive_url = document.getElementById('downloadUrl').value.trim();
   const file_type = document.getElementById('downloadType').value.trim() || 'File';
-  const access_tier = document.getElementById('downloadAccess').value;
   const category_id = document.getElementById('downloadCategory').value || null;
   if (!title || !drive_url || !category_id) { showToast('Title, Google Drive URL and category are required.', 'error'); return; }
+  const category = downloadCategories.find(c => c.id === category_id);
+  const access_tier = category ? (category.access_tier || 'premium') : 'free';
   const { error } = await sb.from('downloads').insert({ title, description, drive_url, file_type, access_tier, category_id, is_active: true, created_by: currentUser.id });
   if (error) { showToast('Error: ' + error.message, 'error'); return; }
   await sb.from('admin_log').insert({ admin_id: currentUser.id, action: 'download_created', details: { title, access_tier } });
