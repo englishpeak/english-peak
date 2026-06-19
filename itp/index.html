@@ -737,17 +737,67 @@ const tests = {
       { q: "______ all the applications, the committee selected five candidates.", o: ["Reviewed", "Having reviewed", "Being reviewed", "To have reviewing"], a: 1, expl: "Initial Participle Phrases: A perfect active participle ('Having + past participle') shows that an action was completed prior to the main action." },
       { q: "______ the panel decides will be announced tomorrow.", o: ["Whoever", "However", "Whatever", "Whether"], a: 2, expl: "Noun Clauses with -ever: 'Whatever' acts as the subject of the noun clause, meaning 'anything that' the panel decides." }
     ],
-    ed: [
-      { s: "(A) Each of the (B) laboratory assistants (C) have been asked to submit (D) a separate report.", o: ["Each of the", "laboratory assistants", "have been asked to submit", "a separate report."], a: 2, expl: "Subject-Verb Agreement: The pronoun 'Each' is singular, so the verb must be 'has been asked to submit'." },
-      { s: "The astronomers detected (A) a unusual change (B) in the light coming from (C) a distant star (D) last month.", o: ["a unusual change", "in the light coming from", "a distant star", "last month."], a: 0, expl: "Articles: The word 'unusual' begins with a vowel sound, requiring the article 'an' instead of 'a'." },
-      { s: "(A) The paintings (B) displaying in the east gallery (C) were donated by (D) a local collector.", o: ["The paintings", "displaying in the east gallery", "were donated by", "a local collector."], a: 1, expl: "Reduced Relative Clause: The passive meaning requires the past participle 'displayed' (short for 'which are displayed'), not the active gerund." },
-      { s: "(A) The project involves collecting historical documents, (B) cataloging photographs, and (C) to preserve recorded interviews (D) for future researchers.", o: ["The project involves collecting historical documents,", "cataloging photographs, and", "to preserve recorded interviews", "for future researchers."], a: 2, expl: "Parallelism: Items in a series must share the same grammatical form. It should be the gerund 'preserving' to match 'collecting' and 'cataloging'." },
-      { s: "(A) The interns are interested (B) in to learn how the archive (C) is organized before (D) they begin work.", o: ["The interns are interested", "in to learn how the archive", "is organized before", "they begin work."], a: 1, expl: "Gerunds after Prepositions: Prepositions (like 'in') must be followed by a gerund, making it 'in learning'." },
-      { s: "(A) All application forms (B) must submit before noon (C) if they are to be considered (D) by the committee.", o: ["All application forms", "must submit before noon", "if they are to be considered", "by the committee."], a: 1, expl: "Modal Passive: The application forms receive the action, requiring the passive structure 'must be submitted'." },
-      { s: "(A) By the time the guests (B) arrived, the opening ceremony (C) already began (D) in the main hall.", o: ["By the time the guests", "arrived, the opening ceremony", "already began", "in the main hall."], a: 2, expl: "Narrative Tenses: An action completed before another past action requires the past perfect ('had already begun')." },
-      { s: "Marta (A) explained that she (B) will send (C) the revised budget (D) the following day.", o: ["explained that she", "will send", "the revised budget", "the following day."], a: 1, expl: "Reported Speech: Following the past reporting verb 'explained', the future 'will' must shift back to 'would send'." },
-      { s: "(A) The new route is (B) considerably more shorter than (C) the one we (D) normally take.", o: ["The new route is", "considerably more shorter than", "the one we", "normally take."], a: 1, expl: "Comparative Structures: 'Shorter' is already a comparative adjective. Adding 'more' creates an ungrammatical double comparative." },
-      { s: "Daniel (A) wishes that he (B) prepared more carefully (C) for last year’s (D) job interview.", o: ["wishes that he", "prepared more carefully", "for last year’s", "job interview."], a: 1, expl: "Wishes and Past Regrets: Expressing a wish about a past event requires the past perfect ('had prepared')." }
+   ed: [
+      { 
+        s: "(A) Each of the (B) laboratory assistants (C) have been asked to submit (D) a separate report.", 
+        o: ["Each of", "laboratory assistants", "have been asked", "a separate report"], 
+        a: 2, 
+        expl: "Subject-Verb Agreement: The pronoun 'Each' is singular, so the verb must be 'has been asked'[cite: 3]." 
+      },
+      { 
+        s: "The astronomers detected (A) a unusual change (B) in the light coming from (C) a distant star (D) last month.", 
+        o: ["a unusual change", "in the light", "a distant star", "last month"], 
+        a: 0, 
+        expl: "Articles: The word 'unusual' begins with a vowel sound, requiring the article 'an' instead of 'a'[cite: 3]." 
+      },
+      { 
+        s: "(A) The paintings (B) displaying in the east gallery (C) were donated by (D) a local collector.", 
+        o: ["The paintings", "displaying", "were donated", "a local collector"], 
+        a: 1, 
+        expl: "Reduced Relative Clause: The passive meaning requires the past participle 'displayed' (short for 'which are displayed'), not the active gerund[cite: 3]." 
+      },
+      { 
+        s: "(A) The project involves collecting historical documents, (B) cataloging photographs, and (C) to preserve recorded interviews (D) for future researchers.", 
+        o: ["The project involves", "cataloging photographs", "to preserve", "for future researchers"], 
+        a: 2, 
+        expl: "Parallelism: Items in a series must share the same grammatical form. It should be the gerund 'preserving' to match 'collecting' and 'cataloging'[cite: 3]." 
+      },
+      { 
+        s: "(A) The interns are interested (B) in to learn how the archive (C) is organized before (D) they begin work.", 
+        o: ["The interns are interested", "in to learn", "is organized", "they begin work"], 
+        a: 1, 
+        expl: "Gerunds after Prepositions: Prepositions (like 'in') must be followed by a gerund, making it 'in learning'[cite: 3]." 
+      },
+      { 
+        s: "(A) All application forms (B) must submit before noon (C) if they are to be considered (D) by the committee.", 
+        o: ["All application forms", "must submit", "if they are to be considered", "by the"], 
+        a: 1, 
+        expl: "Modal Passive: The application forms receive the action, requiring the passive structure 'must be submitted'[cite: 3]." 
+      },
+      { 
+        s: "(A) By the time the guests (B) arrived, the opening ceremony (C) already began (D) in the main hall.", 
+        o: ["By the time", "arrived", "already began", "in the main hall"], 
+        a: 2, 
+        expl: "Narrative Tenses: An action completed before another past action requires the past perfect ('had already begun')[cite: 3]." 
+      },
+      { 
+        s: "Marta (A) explained that she (B) will send (C) the revised budget (D) the following day.", 
+        o: ["explained", "will send", "the revised budget", "the following day"], 
+        a: 1, 
+        expl: "Reported Speech: Following the past reporting verb 'explained', the future 'will' must shift back to 'would send'[cite: 3]." 
+      },
+      { 
+        s: "(A) The new route is (B) considerably more shorter than (C) the one we (D) normally take.", 
+        o: ["The new route", "considerably more shorter", "the one we", "normally take"], 
+        a: 1, 
+        expl: "Comparative Structures: 'Shorter' is already a comparative adjective. Adding 'more' creates an ungrammatical double comparative[cite: 3]." 
+      },
+      { 
+        s: "Daniel (A) wishes that he (B) prepared more carefully (C) for last year’s (D) job interview.", 
+        o: ["wishes that", "prepared", "for last year’s", "job interview"], 
+        a: 1, 
+        expl: "Wishes and Past Regrets: Expressing a wish about a past event requires the past perfect ('had prepared')[cite: 3]." 
+      }
     ]
   },
 
