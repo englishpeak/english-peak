@@ -69,6 +69,13 @@
     if (!grid || !epSb) return;
     closeDownloadPreview();
     grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Loading...</div><div class="card-desc">Fetching the latest resources.</div></div></div>';
+    var auth = await epSb.auth.getSession();
+    var user = auth.data && auth.data.session && auth.data.session.user;
+    var profile = null;
+    if (user) {
+      var profileResult = await epSb.from('profiles').select('tier,is_admin').eq('id', user.id).single();
+      profile = profileResult.data;
+    }
     var results = await Promise.all([
       epSb.from('download_categories').select('*').eq('is_active', true).order('sort_order').order('created_at'),
       epSb.from('downloads').select('*').eq('is_active', true).order('sort_order').order('created_at', { ascending: false })
@@ -94,8 +101,8 @@
     sub.textContent = downloadFiles.length + ' published resource' + (downloadFiles.length === 1 ? '' : 's') + ' · preview files without leaving this page';
     grid.innerHTML = '';
     grid.style.display = 'block';
-    var groups = categories.map(function(category){ return { id: category.id, name: category.name, files: [] }; });
-    var uncategorized = { id: null, name: 'General Downloads', files: [] };
+    var groups = categories.map(function(category){ return { id: category.id, name: category.name, accessTier: category.access_tier || 'premium', files: [] }; });
+    var uncategorized = { id: null, name: 'General Downloads', accessTier: 'free', files: [] };
     downloadFiles.forEach(function(file, index){
       var group = groups.find(function(item){ return item.id === file.category_id; }) || uncategorized;
       group.files.push({ file: file, index: index });
@@ -106,15 +113,15 @@
       group.files.forEach(function(item){
       var file = item.file;
       var index = item.index;
-      var accessTier = file.access_tier || 'premium';
+      var accessTier = group.accessTier;
+      var allowed = accessTier === 'public' || (accessTier === 'free' && !!user) || (accessTier === 'premium' && !!profile && (profile.is_admin || ['premium','teacher','courtesy'].indexOf(profile.tier) > -1));
       var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
       var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
       cards += '<div class="ex-card">'
         + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access access-premium">' + label + '</div></div>'
         + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
         + '<div class="card-meta"><span class="meta-item">☁️ Google Drive</span><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
-        + '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button>'
-        + '<a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>'
+        + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!user ? "showAuthModal(\'login\')" : 'showModal()') + '">🔐 Unlock access</button>')
         + '</div></div>';
       });
       grid.innerHTML += '<section style="margin-bottom:30px"><h3 style="font-family:\'Cormorant Garamond\',serif;font-size:1.55rem;color:var(--navy);margin:0 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--border)">' + escapeHtml(group.name) + '</h3><div class="cards-grid">' + cards + '</div></section>';
