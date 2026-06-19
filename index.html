@@ -4,6 +4,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1336,9 +1337,9 @@ async function loadDownloads() {
   grid.style.display = 'block';
   window.downloadFiles = data;
   var groups = categories.map(function(category){
-    return { id: category.id, name: category.name, files: [] };
+    return { id: category.id, name: category.name, accessTier: category.access_tier || 'premium', files: [] };
   });
-  var uncategorized = { id: null, name: 'General Downloads', files: [] };
+  var uncategorized = { id: null, name: 'General Downloads', accessTier: 'free', files: [] };
   data.forEach(function(file, index){
     var group = groups.find(function(item){ return item.id === file.category_id; }) || uncategorized;
     group.files.push({ file: file, index: index });
@@ -1349,7 +1350,7 @@ async function loadDownloads() {
     group.files.forEach(function(item){
     var file = item.file;
     var index = item.index;
-    var accessTier = file.access_tier || 'premium';
+    var accessTier = group.accessTier;
     var allowed = canAccessDownload(accessTier);
     var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
     var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
