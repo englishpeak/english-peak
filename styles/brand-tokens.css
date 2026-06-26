@@ -1,0 +1,84 @@
+/* English Peak brand tokens. Import this file in new UI surfaces before component styles. */
+:root {
+  --ep-navy: #0D3B6F;
+  --ep-purple: #470074;
+  --ep-ink: #1A1A2E;
+  --ep-sky: #4A90D9;
+  --ep-bg: #F7F8FC;
+  --ep-surface: #FFFFFF;
+  --ep-card-soft: #F4F6FB;
+  --ep-border: rgba(13,59,111,0.12);
+  --ep-success: #1A7A4A;
+  --ep-error: #C62828;
+  --ep-danger: #DC2626;
+  --ep-gold: #C9A84C;
+  --ep-muted: #666666;
+  --ep-muted-light: #999999;
+
+  --ep-font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ep-font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  --ep-radius-sm: 8px;
+  --ep-radius-md: 10px;
+  --ep-radius-lg: 12px;
+  --ep-radius-xl: 18px;
+  --ep-radius-2xl: 24px;
+
+  --ep-gradient-brand: linear-gradient(135deg, var(--ep-navy), var(--ep-purple));
+  --ep-gradient-data: linear-gradient(180deg, var(--ep-sky), var(--ep-navy));
+  --ep-gradient-soft: linear-gradient(135deg, #f5f7fa, #e8edf3);
+
+  --ep-shadow-card: 0 12px 36px rgba(13,59,111,0.10);
+  --ep-shadow-modal: 0 24px 80px rgba(13,59,111,0.20);
+
+  /* Legacy aliases used by current standalone HTML files. */
+  --navy: var(--ep-navy);
+  --purple: var(--ep-purple);
+  --ink: var(--ep-ink);
+  --sky: var(--ep-sky);
+  --bg: var(--ep-bg);
+  --border: var(--ep-border);
+  --green: var(--ep-success);
+  --gold: var(--ep-gold);
+}
+
+.ep-brand-scope {
+  font-family: var(--ep-font-sans);
+  background: var(--ep-bg);
+  color: var(--ep-ink);
+}
+
+.ep-heading {
+  font-family: var(--ep-font-serif);
+  color: var(--ep-navy);
+  font-weight: 700;
+}
+
+.ep-card {
+  background: var(--ep-surface);
+  border: 1.5px solid var(--ep-border);
+  border-radius: var(--ep-radius-xl);
+}
+
+.ep-btn-primary {
+  background: var(--ep-gradient-brand);
+  color: #fff;
+  border: 0;
+  border-radius: var(--ep-radius-md);
+  padding: 11px 18px;
+  font-family: var(--ep-font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(13,59,111,0.20);
+}
+
+.ep-badge {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-family: var(--ep-font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
