@@ -249,6 +249,7 @@ body.sidebar-collapsed .main{margin-left:64px}
     <button class="nav-item" id="navProgress" onclick="showProgress()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Progress</span></button>
     <button class="nav-item" onclick="showModal()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="nav-label">ePeak+</span></button>
     <button class="nav-item" id="navDownloads" onclick="showDownloads()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Downloads</span></button>
+    <button class="nav-item" onclick="window.location.href='/audio-studio'"><span class="icon">🎙</span><span class="nav-label">Audio Studio</span></button>
     <button class="nav-item" id="navProfile" onclick="showProfile()"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label">My Profile</span></button>
   </nav>
   <div class="sidebar-footer">
@@ -366,6 +367,14 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 9</div></div>
         <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">9 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 9.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
+      </div>
+    </div>
+
+    <div class="section-header"><h2>Teacher Tools</h2><p>Private productivity tools</p></div>
+    <div class="cards-grid">
+      <div class="ex-card" onclick="window.location.href='/audio-studio'">
+        <div class="card-header"><div class="card-icon purple">🎙</div><div class="card-access access-new">Internal</div></div>
+        <div class="card-body"><div class="card-title">Audio Studio</div><div class="card-desc">Generate realistic ESL dialogue audio from scripts with speaker voices, turn pauses, MP3 export and transcript download.</div><div class="card-meta"><span class="meta-item">OpenAI TTS</span><span class="meta-item">MP3 + TXT</span></div><button class="card-btn btn-open">Open Studio →</button></div>
       </div>
     </div>
 

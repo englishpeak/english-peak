@@ -19,6 +19,8 @@
     { "source": "/reading",         "destination": "/reading/index.html" },
     { "source": "/reading/:path*",  "destination": "/reading/index.html" },
     { "source": "/listening",       "destination": "/listening/index.html" },
-    { "source": "/listening/:path*", "destination": "/listening/index.html" }
+    { "source": "/listening/:path*", "destination": "/listening/index.html" },
+    { "source": "/audio-studio",       "destination": "/audio-studio/index.html" },
+    { "source": "/audio-studio/:path*", "destination": "/audio-studio/index.html" }
   ]
 }
