@@ -1,7 +1,7 @@
 const MODEL = 'gpt-4o-mini-tts';
 const MAX_LINES = 40;
 const MAX_CHARS_PER_LINE = 900;
-const VALID_VOICES = new Set(['alloy', 'ash', 'ballad', 'coral', 'echo', 'fable', 'nova', 'onyx', 'sage', 'shimmer', 'verse']);
+const VALID_VOICES = new Set(['alloy', 'ash', 'ballad', 'cedar', 'coral', 'echo', 'fable', 'marin', 'nova', 'onyx', 'sage', 'shimmer', 'verse']);
 
 
 function createOpenAIClient(apiKey) {
