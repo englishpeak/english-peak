@@ -56,6 +56,7 @@ button{font-family:inherit}
 .feedback-meta{font-size:.84rem;color:#555;margin-bottom:8px}
 .why{font-size:.88rem;color:#555;background:#f8fafc;border-radius:9px;padding:10px;margin-top:8px}
 .saved{color:var(--green);font-size:.86rem;font-weight:700;margin-top:10px}
+.nav-warning{display:none;margin-top:14px;padding:10px 12px;border-radius:10px;background:#fff7ed;border:1px solid rgba(201,168,76,.28);color:#8a4b00;font-size:.86rem;font-weight:700}
 @media(max-width:860px){.wrap{padding:16px}.hero{display:block}.reader-shell{grid-template-columns:1fr}.panel{padding:18px}.hero h1{font-size:1.7rem}}
 </style>
 </head>
@@ -86,6 +87,7 @@ button{font-family:inherit}
       </article>
       <aside class="panel">
         <div id="questions"></div>
+        <div class="nav-warning" id="nav-warning" role="status" aria-live="polite"></div>
         <div class="actions">
           <button class="btn secondary" id="prev-btn" onclick="prevPassage()">Previous</button>
           <button class="btn" id="next-btn" onclick="nextPassage()">Next passage</button>
@@ -420,6 +422,7 @@ var allowedTests = ["reading1","reading2"];
 var currentTest = null;
 var passageIndex = 0;
 var answers = {};
+var allowUnansweredPassageAdvance = false;
 
 function accessLabel(index, id) {
   if (index < 2) return { text: "Open", cls: "public" };
@@ -467,6 +470,7 @@ function startTest(id) {
   currentTest = READING_TESTS.find(function(test){ return test.id === id; });
   passageIndex = 0;
   answers = {};
+  allowUnansweredPassageAdvance = false;
   showScreen("test-screen");
   renderPassage();
 }
@@ -493,16 +497,21 @@ function renderPassage() {
   });
   document.getElementById("prev-btn").disabled = passageIndex === 0;
   document.getElementById("next-btn").textContent = passageIndex === currentTest.passages.length - 1 ? "Submit test" : "Next passage";
+  var warning = document.getElementById("nav-warning");
+  warning.style.display = "none";
+  warning.textContent = "";
 }
 
 function selectAnswer(qIndex, optIndex) {
   answers[passageIndex + "-" + qIndex] = optIndex;
+  allowUnansweredPassageAdvance = false;
   renderPassage();
 }
 
 function prevPassage() {
   if (passageIndex > 0) {
     passageIndex -= 1;
+    allowUnansweredPassageAdvance = false;
     renderPassage();
   }
 }
@@ -511,7 +520,14 @@ function nextPassage() {
   var unanswered = currentTest.passages[passageIndex].questions.some(function(_, qIndex){
     return answers[passageIndex + "-" + qIndex] == null;
   });
-  if (unanswered && !confirm("Some questions on this passage are unanswered. Continue anyway?")) return;
+  if (unanswered && !allowUnansweredPassageAdvance) {
+    allowUnansweredPassageAdvance = true;
+    var warning = document.getElementById("nav-warning");
+    warning.textContent = "Some questions on this passage are unanswered. Click Next passage again to continue anyway.";
+    warning.style.display = "block";
+    return;
+  }
+  allowUnansweredPassageAdvance = false;
   if (passageIndex < currentTest.passages.length - 1) {
     passageIndex += 1;
     renderPassage();

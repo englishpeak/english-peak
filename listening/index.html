@@ -68,6 +68,7 @@ audio{width:100%;margin:6px 0 14px}
 .feedback-meta{font-size:.84rem;color:#555;margin-bottom:8px}
 .why{font-size:.88rem;color:#555;background:#f8fafc;border-radius:9px;padding:10px;margin-top:8px}
 .saved{color:var(--green);font-size:.86rem;font-weight:700;margin-top:10px}
+.nav-warning{display:none;margin-top:14px;padding:10px 12px;border-radius:10px;background:#fff7ed;border:1px solid rgba(201,168,76,.28);color:#8a4b00;font-size:.86rem;font-weight:700}
 @media(max-width:860px){.wrap{padding:16px}.hero{display:block}.listen-shell{grid-template-columns:1fr}.panel{padding:18px}.hero h1{font-size:1.7rem}}
 </style>
 </head>
@@ -126,6 +127,7 @@ audio{width:100%;margin:6px 0 14px}
       </article>
       <aside class="panel">
         <div id="questions"></div>
+        <div class="nav-warning" id="nav-warning" role="status" aria-live="polite"></div>
         <div class="actions">
           <button class="btn secondary" id="prev-btn" onclick="prevAudio()">Previous</button>
           <button class="btn" id="next-btn" onclick="nextAudio()">Next audio</button>
@@ -521,6 +523,7 @@ var allowedTests = ["listening1","listening2"];
 var currentTest = null;
 var audioIndex = 0;
 var answers = {};
+var allowUnansweredAudioAdvance = false;
 
 function accessLabel(index, id) {
   if (index < 2) return { text: "Open", cls: "public" };
@@ -575,6 +578,7 @@ function startTest(id) {
   currentTest = LISTENING_TESTS.find(function(test){ return test.id === id; });
   audioIndex = 0;
   answers = {};
+  allowUnansweredAudioAdvance = false;
   showScreen("test-screen");
   renderAudio();
 }
@@ -607,10 +611,14 @@ function renderAudio() {
   });
   document.getElementById("prev-btn").disabled = audioIndex === 0;
   document.getElementById("next-btn").textContent = audioIndex === currentTest.audios.length - 1 ? "Submit test" : "Next audio";
+  var warning = document.getElementById("nav-warning");
+  warning.style.display = "none";
+  warning.textContent = "";
 }
 
 function selectAnswer(qIndex, optIndex) {
   answers[audioIndex + "-" + qIndex] = optIndex;
+  allowUnansweredAudioAdvance = false;
   renderAudio();
 }
 
@@ -625,6 +633,7 @@ function toggleScript() {
 function prevAudio() {
   if (audioIndex > 0) {
     audioIndex -= 1;
+    allowUnansweredAudioAdvance = false;
     renderAudio();
   }
 }
@@ -633,7 +642,14 @@ function nextAudio() {
   var unanswered = currentTest.audios[audioIndex].questions.some(function(_, qIndex){
     return answers[audioIndex + "-" + qIndex] == null;
   });
-  if (unanswered && !confirm("Some questions on this audio are unanswered. Continue anyway?")) return;
+  if (unanswered && !allowUnansweredAudioAdvance) {
+    allowUnansweredAudioAdvance = true;
+    var warning = document.getElementById("nav-warning");
+    warning.textContent = "Some questions on this audio are unanswered. Click Next audio again to continue anyway.";
+    warning.style.display = "block";
+    return;
+  }
+  allowUnansweredAudioAdvance = false;
   if (audioIndex < currentTest.audios.length - 1) {
     audioIndex += 1;
     renderAudio();
