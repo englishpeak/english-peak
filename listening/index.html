@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -512,6 +513,9 @@ var allowedTests = ["listening1","listening2"];
   var params = new URLSearchParams(window.location.search);
   var allowed = params.get("allowed");
   if (allowed) allowedTests = allowed.split(",").filter(Boolean);
+  LISTENING_TESTS.slice(0, 2).forEach(function(test) {
+    if (allowedTests.indexOf(test.id) === -1) allowedTests.push(test.id);
+  });
 })();
 
 var currentTest = null;
