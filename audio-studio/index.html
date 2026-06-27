@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Studio · ePeak</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/brand-tokens.css">
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:var(--ep-font-sans);background:radial-gradient(circle at top left,rgba(74,144,217,.16),transparent 34%),var(--ep-bg);color:var(--ep-ink)}
+    .studio{max-width:1180px;margin:0 auto;padding:34px 20px 52px}.hero{background:var(--ep-gradient-brand);color:#fff;border-radius:28px;padding:34px;box-shadow:var(--ep-shadow-modal);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.72}.hero h1{font-family:var(--ep-font-serif);font-size:clamp(2.4rem,6vw,4.2rem);line-height:.95;margin:8px 0 10px}.hero p{max-width:620px;margin:0;color:rgba(255,255,255,.76);line-height:1.6}.hero a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:10px 14px;font-weight:700;background:rgba(255,255,255,.1)}
+    .grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(330px,.65fr);gap:22px;margin-top:22px}.card{background:var(--ep-surface);border:1.5px solid var(--ep-border);border-radius:22px;padding:22px;box-shadow:0 12px 36px rgba(13,59,111,.08)}.card h2{font-family:var(--ep-font-serif);font-size:1.55rem;color:var(--ep-navy);margin:0 0 6px}.muted{color:var(--ep-muted);font-size:.92rem;line-height:1.55}.label{display:block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ep-navy);margin:18px 0 8px}textarea,input,select{width:100%;border:1.5px solid var(--ep-border);border-radius:14px;background:#fbfcff;color:var(--ep-ink);font:inherit;padding:12px 14px;outline:none}textarea:focus,input:focus,select:focus{border-color:rgba(13,59,111,.45);box-shadow:0 0 0 4px rgba(74,144,217,.12)}textarea{min-height:340px;resize:vertical;line-height:1.55}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.btn{border:0;border-radius:12px;padding:12px 18px;font-family:var(--ep-font-sans);font-weight:700;cursor:pointer}.btn-primary{background:var(--ep-gradient-brand);color:#fff;box-shadow:0 4px 16px rgba(13,59,111,.22)}.btn-secondary{background:#fff;color:var(--ep-navy);border:1.5px solid var(--ep-border)}.btn:disabled{opacity:.58;cursor:not-allowed}.speaker{border:1.5px solid var(--ep-border);border-radius:18px;padding:16px;background:linear-gradient(180deg,#fff,#f9fbff);margin-top:12px}.speaker-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.pill{display:inline-flex;align-items:center;border-radius:999px;background:rgba(13,59,111,.08);color:var(--ep-navy);font-size:.74rem;font-weight:700;padding:5px 10px}.speaker-grid{display:grid;grid-template-columns:150px 1fr;gap:12px}.status{margin-top:16px;border-radius:16px;background:var(--ep-card-soft);border:1.5px solid var(--ep-border);padding:14px;color:var(--ep-navy);font-weight:600}.status.error{background:rgba(198,40,40,.08);color:var(--ep-error);border-color:rgba(198,40,40,.18)}.progress{height:9px;background:rgba(13,59,111,.1);border-radius:999px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:var(--ep-gradient-brand);transition:width .25s}.downloads a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;margin-right:10px;margin-top:12px}.setup{font-size:.86rem;background:#fbfcff;border:1px dashed rgba(13,59,111,.25);border-radius:16px;padding:14px;line-height:1.6}.setup code{color:var(--ep-purple);font-weight:700}audio{width:100%;margin-top:12px}.line-list{max-height:210px;overflow:auto;padding-right:4px}.line-item{font-size:.84rem;color:var(--ep-muted);padding:8px 0;border-bottom:1px solid rgba(13,59,111,.08)}.line-item strong{color:var(--ep-navy)}@media(max-width:860px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.speaker-grid{grid-template-columns:1fr}textarea{min-height:260px}}
+  </style>
+</head>
+<body>
+  <main class="studio">
+    <section class="hero">
+      <div><div class="eyebrow">Private teacher productivity tool</div><h1>Audio Studio</h1><p>Generate realistic ESL conversations from pasted scripts with secure OpenAI Text-to-Speech generation, speaker voices, pauses, and downloadable transcripts.</p></div>
+      <a href="/">← Dashboard</a>
+    </section>
+    <section class="grid">
+      <div class="card">
+        <h2>Conversation script</h2><p class="muted">Paste one turn per line using <strong>Speaker: dialogue</strong>. Scripts are sent only for this generation and are not saved permanently.</p>
+        <label class="label" for="scriptInput">Script input</label><textarea id="scriptInput" placeholder="Client: Thanks for joining the call.&#10;Supplier: Of course."></textarea>
+        <div class="row" style="margin-top:14px"><button class="btn btn-secondary" id="exampleBtn">Use example script</button><button class="btn btn-secondary" id="detectBtn">Detect speakers</button></div>
+        <label class="label" for="pauseMs">Pause between turns</label><select id="pauseMs"><option value="250">250 ms</option><option value="400" selected>400 ms</option><option value="600">600 ms</option><option value="800">800 ms</option><option value="1000">1 second</option></select>
+        <div class="row" style="margin-top:20px"><button class="btn btn-primary" id="generateBtn">Generate audio</button><span class="muted" id="lineCount">No valid lines detected yet.</span></div>
+      </div>
+      <aside class="card">
+        <h2>Detected speakers</h2><p class="muted">Assign a voice and speaking style to each speaker before generating.</p><div id="speakersPanel"></div>
+      </aside>
+    </section>
+    <section class="grid">
+      <div class="card"><h2>Preview & downloads</h2><p class="muted">The backend generates each line separately, inserts the selected pause, merges the audio, and returns one MP3.</p><div id="status" class="status">Ready. Paste a script and detect speakers.</div><div class="progress"><div class="bar" id="progressBar"></div></div><audio id="audioPreview" controls style="display:none"></audio><div class="downloads" id="downloads" style="display:none"><a class="btn btn-primary" id="mp3Download" download="epeak-audio-studio.mp3">Download MP3</a><a class="btn btn-secondary" id="txtDownload" download="epeak-audio-studio-transcript.txt">Download TXT transcript</a></div></div>
+      <aside class="card"><h2>Setup</h2><div class="setup">Create <code>.env.local</code> locally with:<br><code>OPENAI_API_KEY=sk-...</code><br><br>On Vercel, add the same variable in Project Settings → Environment Variables. The API key is read only by <code>/api/audio-studio-generate</code>, never by frontend code.</div><div class="line-list" id="linePreview"></div></aside>
+    </section>
+  </main>
+<script>
+const EXAMPLE = `Client: Thanks for joining the call. We like the product samples, but we need to discuss delivery timing.
+Supplier: Of course. Our standard timeline is four weeks after the purchase order is approved.
+Client: Four weeks may be difficult. Our launch campaign starts in three weeks.
+Supplier: We could prioritize your order, but there would be an express production fee.
+Client: How much are we talking about?
+Supplier: Around eight percent added to the total invoice.
+Client: That’s higher than expected. If we agree to a larger order, could you reduce the fee?
+Supplier: Possibly. If you confirm the larger quantity today, I can offer five percent instead.
+Client: Send that in writing, and I’ll review it with my team this afternoon.`;
+const VOICES = ['alloy','ash','ballad','cedar','coral','echo','fable','marin','nova','onyx','sage','shimmer','verse'];
+const defaults = { Client:{voice:'onyx',instructions:'Professional, confident voice. Clear ESL pronunciation, natural pacing, polished business tone.'}, Supplier:{voice:'sage',instructions:'Calm, businesslike voice. Clear ESL pronunciation, measured pace, supportive professional tone.'} };
+let settings = {}; let audioUrl = ''; let txtUrl = '';
+const $ = (id) => document.getElementById(id);
+function parseScript(){return $('scriptInput').value.split(/\n+/).map(l=>l.trim()).filter(Boolean).map(raw=>{const m=raw.match(/^([^:]{1,50}):\s*(.+)$/);return m?{speaker:m[1].trim(),text:m[2].trim()}:null;}).filter(Boolean)}
+function speakerDefaults(name){return defaults[name] || { voice: name.toLowerCase().includes('supplier') ? 'sage' : 'onyx', instructions: name.toLowerCase().includes('supplier') ? defaults.Supplier.instructions : defaults.Client.instructions };}
+function detectSpeakers(){const lines=parseScript();const names=[...new Set(lines.map(l=>l.speaker))];names.forEach(n=>{settings[n]=settings[n]||speakerDefaults(n)});$('lineCount').textContent=lines.length?`${lines.length} line${lines.length===1?'':'s'} · ${names.length} speaker${names.length===1?'':'s'}`:'No valid Speaker: lines found.';$('linePreview').innerHTML=lines.map((l,i)=>`<div class="line-item"><strong>${i+1}. ${escapeHtml(l.speaker)}:</strong> ${escapeHtml(l.text)}</div>`).join('');renderSpeakers(names);return {lines,names}}
+function renderSpeakers(names){$('speakersPanel').innerHTML=names.length?names.map(name=>`<div class="speaker"><div class="speaker-head"><strong>${escapeHtml(name)}</strong><span class="pill">${name==='Client'?'Confident default':name==='Supplier'?'Calm default':'Custom'}</span></div><div class="speaker-grid"><select data-speaker="${escapeAttr(name)}" data-field="voice">${VOICES.map(v=>`<option value="${v}" ${settings[name].voice===v?'selected':''}>${v}</option>`).join('')}</select><input data-speaker="${escapeAttr(name)}" data-field="instructions" value="${escapeAttr(settings[name].instructions)}" placeholder="Speaking style / instructions"></div></div>`).join(''):'<div class="status">No speakers detected yet.</div>';document.querySelectorAll('[data-speaker]').forEach(el=>el.addEventListener('change',saveSetting));document.querySelectorAll('input[data-speaker]').forEach(el=>el.addEventListener('input',saveSetting));}
+function saveSetting(e){const name=e.target.dataset.speaker;settings[name]=settings[name]||speakerDefaults(name);settings[name][e.target.dataset.field]=e.target.value;}
+function setStatus(text,error=false,percent=null){$('status').textContent=text;$('status').classList.toggle('error',error);if(percent!==null)$('progressBar').style.width=percent+'%'}
+function blobUrl(base64,mime){const bytes=Uint8Array.from(atob(base64),c=>c.charCodeAt(0));return URL.createObjectURL(new Blob([bytes],{type:mime}))}
+function transcript(lines){return lines.map(l=>`${l.speaker}: ${l.text}`).join('\n')}
+async function generate(){const {lines,names}=detectSpeakers();if(!$('scriptInput').value.trim())return setStatus('Please paste a script before generating.',true,0);if(!lines.length)return setStatus('Invalid script. Use Speaker: dialogue on each line.',true,0);if(!names.length)return setStatus('No speakers detected.',true,0);$('generateBtn').disabled=true;$('downloads').style.display='none';$('audioPreview').style.display='none';setStatus(`Generating line 1 of ${lines.length}…`,false,8);let timer=setInterval(()=>{const w=parseFloat($('progressBar').style.width)||8;if(w<82){const approx=Math.min(lines.length,Math.max(1,Math.ceil((w/82)*lines.length)));setStatus(`Generating line ${approx} of ${lines.length}…`,false,w+3)}},900);try{const res=await fetch('/api/audio-studio-generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lines,speakerSettings:settings,pauseMs:Number($('pauseMs').value)})});const data=await res.json();if(!res.ok)throw new Error(data.error||'Generation failed.');clearInterval(timer);if(audioUrl)URL.revokeObjectURL(audioUrl);if(txtUrl)URL.revokeObjectURL(txtUrl);audioUrl=blobUrl(data.audioBase64,data.mimeType);txtUrl=URL.createObjectURL(new Blob([transcript(lines)],{type:'text/plain'}));$('audioPreview').src=audioUrl;$('audioPreview').style.display='block';$('mp3Download').href=audioUrl;$('txtDownload').href=txtUrl;$('downloads').style.display='block';setStatus(`Complete: generated ${data.lineCount} lines with ${data.model}.`,false,100)}catch(err){clearInterval(timer);setStatus(err.message,true,0)}finally{$('generateBtn').disabled=false}}
+function escapeHtml(v){return String(v).replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}function escapeAttr(v){return escapeHtml(v).replace(/'/g,'&#39;')}
+$('exampleBtn').addEventListener('click',()=>{$('scriptInput').value=EXAMPLE;detectSpeakers();setStatus('Example script loaded. Review voices, then generate.',false,0)});$('detectBtn').addEventListener('click',detectSpeakers);$('scriptInput').addEventListener('input',detectSpeakers);$('generateBtn').addEventListener('click',generate);detectSpeakers();
+</script>
+</body>
+</html>
