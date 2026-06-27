@@ -17,6 +17,8 @@
     { "source": "/general",         "destination": "/general/index.html" },
     { "source": "/general/:path*",  "destination": "/general/index.html" },
     { "source": "/reading",         "destination": "/reading/index.html" },
-    { "source": "/reading/:path*",  "destination": "/reading/index.html" }
+    { "source": "/reading/:path*",  "destination": "/reading/index.html" },
+    { "source": "/listening",       "destination": "/listening/index.html" },
+    { "source": "/listening/:path*", "destination": "/listening/index.html" }
   ]
 }

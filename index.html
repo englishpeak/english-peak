@@ -316,6 +316,10 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="card-header"><div class="card-icon red">R</div><div class="card-access access-new" id="access-reading">New</div></div>
         <div class="card-body"><div class="card-title">Reading Practice</div><div class="card-desc">Eight modular reading tests with business, science, pop culture and biography passages. Each test includes feedback for every answer and saves scores to My Progress.</div><div class="card-meta"><span class="meta-item">📖 8 tests</span><span class="meta-item">🧠 3 passages each</span><span class="meta-item" id="meta-reading">Loading access...</span></div><button class="card-btn btn-partial" id="btn-reading">Start Practice →</button></div>
       </div>
+      <div class="ex-card" id="card-listening" style="display:none" onclick="openListening()">
+        <div class="card-header"><div class="card-icon red">L</div><div class="card-access access-new" id="access-listening">New</div></div>
+        <div class="card-body"><div class="card-title">Listening Practice</div><div class="card-desc">Modular listening tests with monologues, conversations, scripts, audio links and challenging multiple-choice questions.</div><div class="card-meta"><span class="meta-item">4 audios per test</span><span class="meta-item">12 questions</span><span class="meta-item" id="meta-listening">Hidden until content is added</span></div><button class="card-btn btn-partial" id="btn-listening">Start Practice →</button></div>
+      </div>
     </div>
 
     <div class="section-header"><h2>Free Exercises</h2><p>No account needed</p></div>
@@ -422,6 +426,7 @@ body.sidebar-collapsed .main{margin-left:64px}
       <button class="ph-filter-btn" data-filter="TOEFL ITP" onclick="filterProgress(this,'TOEFL ITP')">TOEFL ITP</button>
       <button class="ph-filter-btn" data-filter="TOEFL iBT" onclick="filterProgress(this,'TOEFL iBT')">TOEFL iBT</button>
       <button class="ph-filter-btn" data-filter="Reading" onclick="filterProgress(this,'Reading')">Reading</button>
+      <button class="ph-filter-btn" data-filter="Listening" onclick="filterProgress(this,'Listening')">Listening</button>
       <button class="ph-filter-btn" data-filter="General English" onclick="filterProgress(this,'General English')">General English</button>
       <button class="ph-filter-btn" data-filter="ITP Multiple Choice" onclick="filterProgress(this,'ITP Multiple Choice')">ITP MC</button>
       <button class="ph-filter-btn" data-filter="Unscramble" onclick="filterProgress(this,'Unscramble')">Unscramble</button>
@@ -522,6 +527,12 @@ body.sidebar-collapsed .main{margin-left:64px}
   <div class="exercise-screen" id="exercise-reading">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Reading Practice</div><div class="exercise-badge" id="reading-badge">Loading...</div></div>
     <iframe class="exercise-frame" id="frame-reading" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
+  </div>
+
+  <!-- ═══ LISTENING PRACTICE (hidden until content exists) ═══ -->
+  <div class="exercise-screen" id="exercise-listening">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Listening Practice</div><div class="exercise-badge" id="listening-badge">Hidden</div></div>
+    <iframe class="exercise-frame" id="frame-listening" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <div class="exercise-screen" id="exercise-conv">
@@ -1100,6 +1111,7 @@ function applyTier(tier) {
     document.getElementById('btn-reading').className      = 'card-btn btn-partial';
   }
   document.getElementById('reading-badge').textContent = isFullAccess ? '✓ All ' + READING_TOTAL : '🔓 ' + rc + ' of ' + READING_TOTAL;
+  updateListeningCard(c, isFullAccess);
 }
 
 async function doSignOut() {
@@ -1238,6 +1250,7 @@ var ITP_TOTAL = 22;   // Total de tests ITP que existen
 var IBT_TOTAL = 22;   // Total de tests iBT que existen
 var GEN_TOTAL = 8;   // ← Cambia este número al agregar nuevos General English tests
 var READING_TOTAL = 8; // Total de Reading tests that exist
+var LISTENING_TOTAL = 0; // Keep 0 while Listening is hidden; increase when tests are added
 
 // Acceso por tier — se calcula automáticamente desde los totales de arriba
 function _buildTiers() {
@@ -1253,12 +1266,15 @@ function _buildTiers() {
   function readingVisitor(n) { return Array.from({length:Math.min(2,n)}, function(_,i){return 'reading'+(i+1);}); }
   function readingFree(n)    { return Array.from({length:Math.min(5,n)}, function(_,i){return 'reading'+(i+1);}); }
   function readingAll(n)     { return Array.from({length:n}, function(_,i){return 'reading'+(i+1);}); }
+  function listeningVisitor(n) { return Array.from({length:Math.min(2,n)}, function(_,i){return 'listening'+(i+1);}); }
+  function listeningFree(n)    { return Array.from({length:Math.min(5,n)}, function(_,i){return 'listening'+(i+1);}); }
+  function listeningAll(n)     { return Array.from({length:n}, function(_,i){return 'listening'+(i+1);}); }
   return {
-    visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:itpVisitor(ITP_TOTAL),ibtTests:ibtVisitor(IBT_TOTAL),conv:false,convBiz:false,generalTests:genVisitor(GEN_TOTAL),readingTests:readingVisitor(READING_TOTAL),completed:0,available:9,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
-    free:     {name:'',label:'Free Account',avatar:'',itpTests:itpFree(ITP_TOTAL),ibtTests:ibtFree(IBT_TOTAL),conv:true,convBiz:false,generalTests:genFree(GEN_TOTAL),readingTests:readingFree(READING_TOTAL),completed:0,available:13,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
-    premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),completed:0,available:16,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
-    teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),completed:0,available:16,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
-    courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),completed:0,available:16,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
+    visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:itpVisitor(ITP_TOTAL),ibtTests:ibtVisitor(IBT_TOTAL),conv:false,convBiz:false,generalTests:genVisitor(GEN_TOTAL),readingTests:readingVisitor(READING_TOTAL),listeningTests:listeningVisitor(LISTENING_TOTAL),completed:0,available:9,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
+    free:     {name:'',label:'Free Account',avatar:'',itpTests:itpFree(ITP_TOTAL),ibtTests:ibtFree(IBT_TOTAL),conv:true,convBiz:false,generalTests:genFree(GEN_TOTAL),readingTests:readingFree(READING_TOTAL),listeningTests:listeningFree(LISTENING_TOTAL),completed:0,available:13,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
+    premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:16,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
+    teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:16,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
+    courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:16,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
   };
 }
 var TIERS = _buildTiers();
@@ -1318,6 +1334,32 @@ function setTier(tier,btn) {
   document.getElementById('meta-reading').textContent=READING_TOTAL+' tests · '+(hasGeneralFullAccess?'All':rc)+' unlocked';
   document.getElementById('btn-reading').className='card-btn '+(hasGeneralFullAccess?'btn-open':'btn-partial');
   document.getElementById('reading-badge').textContent=hasGeneralFullAccess?'✓ All '+READING_TOTAL:'🔓 '+rc+' of '+READING_TOTAL;
+  updateListeningCard(c, hasGeneralFullAccess);
+}
+
+function updateListeningCard(c, isFullAccess) {
+  var card = document.getElementById('card-listening');
+  if (!card) return;
+  card.style.display = LISTENING_TOTAL > 0 ? '' : 'none';
+  var lc = c.listeningTests ? c.listeningTests.length : 0;
+  var access = document.getElementById('access-listening');
+  var meta = document.getElementById('meta-listening');
+  var btn = document.getElementById('btn-listening');
+  var badge = document.getElementById('listening-badge');
+  if (LISTENING_TOTAL <= 0) {
+    if (access) access.textContent = 'Hidden';
+    if (meta) meta.textContent = 'Hidden until content is added';
+    if (btn) btn.className = 'card-btn btn-locked';
+    if (badge) badge.textContent = 'Hidden';
+    return;
+  }
+  if (access) {
+    access.textContent = isFullAccess ? '✓ All ' + LISTENING_TOTAL : '🔓 ' + lc + ' of ' + LISTENING_TOTAL;
+    access.className = 'card-access ' + (isFullAccess ? 'access-premium' : 'access-new');
+  }
+  if (meta) meta.textContent = LISTENING_TOTAL + ' tests · ' + (isFullAccess ? 'All' : lc) + ' unlocked';
+  if (btn) btn.className = 'card-btn ' + (isFullAccess ? 'btn-open' : 'btn-partial');
+  if (badge) badge.textContent = isFullAccess ? '✓ All ' + LISTENING_TOTAL : '🔓 ' + lc + ' of ' + LISTENING_TOTAL;
 }
 
 // ═══ NAVIGATION ═══
@@ -1544,6 +1586,20 @@ function openReading() {
   document.getElementById('reading-badge').textContent = isFullAccess ? '✓ All '+READING_TOTAL : '🔓 '+allowed.length+' of '+READING_TOTAL;
   var frame = document.getElementById('frame-reading');
   frame.src = '/reading?allowed=' + allowed.join(',');
+  closeMobileSidebar();
+}
+
+function openListening() {
+  if (LISTENING_TOTAL <= 0) return;
+  var allowed = TIERS[currentTier].listeningTests || [];
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-listening').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'Listening Practice';
+  document.getElementById('topbarSub').textContent = 'Monologues, conversations and challenging comprehension questions';
+  var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
+  document.getElementById('listening-badge').textContent = isFullAccess ? '✓ All '+LISTENING_TOTAL : '🔓 '+allowed.length+' of '+LISTENING_TOTAL;
+  var frame = document.getElementById('frame-listening');
+  frame.src = '/listening?allowed=' + allowed.join(',');
   closeMobileSidebar();
 }
 
@@ -1855,7 +1911,7 @@ function renderProgress() {
       else resultHtml = '<span class="ph-result-fail">✗ Keep going</span>';
     }
 
-    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','Reading':'📖','General English':'📗','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
+    var typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','Reading':'📖','Listening':'🎧','General English':'📗','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'}[row.exercise_type] || '📌';
     tbody.innerHTML += '<tr style="border-top:1px solid var(--border)">'
       +'<td style="padding:13px 16px;font-size:0.8rem;color:#888;white-space:nowrap">'+dateStr+'<br><span style="font-size:0.72rem;color:#ccc">'+timeStr+'</span></td>'
       +'<td style="padding:13px 16px"><span style="font-size:1rem">'+typeIcon+'</span> <span style="font-size:0.85rem;font-weight:500;color:var(--ink)">'+row.exercise_type+'</span></td>'
@@ -2258,6 +2314,7 @@ checkHamburger();
     else if (exercise === 'itp') openITPTests();
     else if (exercise === 'ibt') openIBT();
     else if (exercise === 'reading') openReading();
+    else if (exercise === 'listening') openListening();
     else if (exercise === 'conv') openConv();
     else if (exercise === 'general') openGeneral();
   }
