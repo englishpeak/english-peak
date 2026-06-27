@@ -1252,7 +1252,7 @@ var ITP_TOTAL = 22;   // Total de tests ITP que existen
 var IBT_TOTAL = 22;   // Total de tests iBT que existen
 var GEN_TOTAL = 8;   // ← Cambia este número al agregar nuevos General English tests
 var READING_TOTAL = 8; // Total de Reading tests that exist
-var LISTENING_TOTAL = 3; // Keep 0 while Listening is hidden; increase when tests are added
+var LISTENING_TOTAL = 3; // Auto-synced from listening/index.html; fallback if fetch is unavailable
 
 // Acceso por tier — se calcula automáticamente desde los totales de arriba
 function _buildTiers() {
@@ -1281,6 +1281,35 @@ function _buildTiers() {
 }
 var TIERS = _buildTiers();
 var currentTier = 'visitor';
+
+function countListeningTestsFromHtml(html) {
+  var start = html.indexOf('var LISTENING_TESTS = [');
+  if (start === -1) return 0;
+  var end = html.indexOf('];\n\nvar allowedTests', start);
+  if (end === -1) return 0;
+  var source = html.slice(start, end);
+  source = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
+  var seen = {};
+  var match;
+  var idPattern = /id\s*:\s*["'](listening\d+)["']/g;
+  while ((match = idPattern.exec(source))) seen[match[1]] = true;
+  return Object.keys(seen).length;
+}
+
+async function refreshListeningTotalFromIndex() {
+  if (!window.fetch) return;
+  try {
+    var res = await fetch('/listening/index.html', { cache: 'no-store' });
+    if (!res.ok) return;
+    var discoveredTotal = countListeningTestsFromHtml(await res.text());
+    if (!discoveredTotal || discoveredTotal === LISTENING_TOTAL) return;
+    LISTENING_TOTAL = discoveredTotal;
+    TIERS = _buildTiers();
+    applyTier(currentTier);
+  } catch (e) {
+    console.warn('Unable to auto-sync listening total:', e);
+  }
+}
 
 function setTier(tier,btn) {
   currentTier=tier;
@@ -2289,6 +2318,7 @@ function hideAudioStudioEntrypoints() {
 
 hideAudioStudioEntrypoints();
 document.addEventListener('DOMContentLoaded', hideAudioStudioEntrypoints);
+document.addEventListener('DOMContentLoaded', refreshListeningTotalFromIndex);
 setTimeout(hideAudioStudioEntrypoints, 500);
 
 // ═══ SIDEBAR ═══
