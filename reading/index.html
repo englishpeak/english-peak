@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,30 +122,150 @@ var READING_TESTS = [
         title: "The Pivot That Saved a Startup",
         text: "When a small software company launched its first product, the founders expected customers to use it as a project-management tool. Instead, support emails kept mentioning one minor feature: a simple internal chat window. The team faced an uncomfortable choice. They could keep polishing the product they had imagined, or they could follow the behavior customers were already showing. After two months of interviews, they rebuilt the service around workplace communication. The change was not a sudden stroke of genius; it was a disciplined surrender to evidence. Revenue grew because the company stopped asking users to fit the original plan and started designing around the problem users had actually revealed.",
         questions: [
-          { q: "What is the main point of the passage?", options: ["Successful companies avoid changing their original product vision.", "Customer behavior can reveal a stronger business opportunity than the founders first imagined.", "Internal chat tools are always more profitable than project-management tools.", "Support emails are unreliable sources of product information."], answer: 1, why: "The passage emphasizes that the company grew after listening to actual user behavior rather than defending its original idea." },
-          { q: "The phrase 'disciplined surrender to evidence' suggests that the founders", options: ["gave up because the product had no future.", "changed direction only after carefully studying user signals.", "copied a competitor's communication platform.", "ignored their own interviews and followed instinct."], answer: 1, why: "The wording combines humility with method: they surrendered to evidence, but did so through interviews and analysis." },
-          { q: "Why did revenue grow after the pivot?", options: ["The company raised prices immediately.", "The new product matched the problem users cared about.", "The team removed customer support from the workflow.", "The original project-management market disappeared."], answer: 1, why: "Revenue improved because the redesigned product solved the need customers had already demonstrated." },
-          { q: "Which lesson best follows from the passage?", options: ["A minor feature may expose a major market need.", "Founders should never build project-management tools.", "Users usually know the full strategy a company should follow.", "Interviews matter less than the first product plan."], answer: 0, why: "The chat feature was minor at first, but it revealed the product's strongest direction." }
+          {
+            q: "What is the main point of the passage?",
+            options: [
+            "Successful companies avoid changing their original product vision.",
+            "Internal chat tools are always more profitable than project-management tools.",
+            "Customer behavior can reveal a stronger business opportunity than the founders first imagined.",
+            "Support emails are unreliable sources of product information."
+          ],
+            answer: 2,
+            why: "The passage emphasizes that the company grew after listening to actual user behavior rather than defending its original idea."
+          },
+          {
+            q: "The phrase 'disciplined surrender to evidence' suggests that the founders",
+            options: [
+            "changed direction only after carefully studying user signals.",
+            "copied a competitor's communication platform.",
+            "ignored their own interviews and followed instinct.",
+            "gave up because the product had no future."
+          ],
+            answer: 0,
+            why: "The wording combines humility with method: they surrendered to evidence, but did so through interviews and analysis."
+          },
+          {
+            q: "Why did revenue grow after the pivot?",
+            options: [
+            "The original project-management market disappeared.",
+            "The company raised prices immediately.",
+            "The team removed customer support from the workflow.",
+            "The new product matched the problem users cared about."
+          ],
+            answer: 3,
+            why: "Revenue improved because the redesigned product solved the need customers had already demonstrated."
+          },
+          {
+            q: "Which lesson best follows from the passage?",
+            options: [
+            "Founders should never build project-management tools.",
+            "A minor feature may expose a major market need.",
+            "Users usually know the full strategy a company should follow.",
+            "Interviews matter less than the first product plan."
+          ],
+            answer: 1,
+            why: "The chat feature was minor at first, but it revealed the product's strongest direction."
+          }
         ]
       },
       {
         title: "A Battery With a Second Life",
         text: "Electric-vehicle batteries are often judged by how long they can power a car, but that is only their first career. Once a battery can no longer deliver the intense bursts of energy required for driving, it may still store electricity reliably for buildings. Some energy companies now collect retired vehicle batteries and arrange them into stationary packs that absorb solar power during the day and release it after sunset. This approach does not eliminate the need for recycling, because batteries eventually degrade beyond practical use. However, it can delay disposal, reduce demand for newly mined materials, and make renewable energy easier to manage when sunlight and consumption do not occur at the same time.",
         questions: [
-          { q: "According to the passage, why can retired vehicle batteries still be useful?", options: ["Buildings require less demanding energy performance than cars.", "Solar panels cannot work without old car batteries.", "Retired batteries become more powerful after leaving vehicles.", "Recycling companies refuse to process electric-vehicle batteries."], answer: 0, why: "The passage says old batteries may fail at intense driving demands but still store energy reliably for buildings." },
-          { q: "What does the passage imply about recycling?", options: ["Second-life use replaces recycling completely.", "Recycling remains necessary, but it can be postponed.", "Recycling is only useful for solar panels.", "Recycling makes batteries unsuitable for buildings."], answer: 1, why: "It explicitly says second-life use does not eliminate recycling but can delay disposal." },
-          { q: "What problem with renewable energy does second-life storage address?", options: ["Solar power is produced and needed at different times.", "Wind turbines damage electric vehicles.", "Buildings cannot connect to the electrical grid.", "Mining materials prevents panels from producing electricity."], answer: 0, why: "The batteries store daytime solar energy and release it after sunset, when demand may continue." },
-          { q: "The author's tone toward second-life batteries is best described as", options: ["cautiously supportive.", "openly dismissive.", "angry and suspicious.", "uncritically celebratory."], answer: 0, why: "The author presents benefits while noting limits, especially eventual degradation and recycling needs." }
+          {
+            q: "According to the passage, why can retired vehicle batteries still be useful?",
+            options: [
+            "Retired batteries become more powerful after leaving vehicles.",
+            "Buildings require less demanding energy performance than cars.",
+            "Recycling companies refuse to process electric-vehicle batteries.",
+            "Solar panels cannot work without old car batteries."
+          ],
+            answer: 1,
+            why: "The passage says old batteries may fail at intense driving demands but still store energy reliably for buildings."
+          },
+          {
+            q: "What does the passage imply about recycling?",
+            options: [
+            "Recycling makes batteries unsuitable for buildings.",
+            "Second-life use replaces recycling completely.",
+            "Recycling is only useful for solar panels.",
+            "Recycling remains necessary, but it can be postponed."
+          ],
+            answer: 3,
+            why: "It explicitly says second-life use does not eliminate recycling but can delay disposal."
+          },
+          {
+            q: "What problem with renewable energy does second-life storage address?",
+            options: [
+            "Solar power is produced and needed at different times.",
+            "Wind turbines damage electric vehicles.",
+            "Buildings cannot connect to the electrical grid.",
+            "Mining materials prevents panels from producing electricity."
+          ],
+            answer: 0,
+            why: "The batteries store daytime solar energy and release it after sunset, when demand may continue."
+          },
+          {
+            q: "The author's tone toward second-life batteries is best described as",
+            options: [
+            "angry and suspicious.",
+            "uncritically celebratory.",
+            "cautiously supportive.",
+            "openly dismissive."
+          ],
+            answer: 2,
+            why: "The author presents benefits while noting limits, especially eventual degradation and recycling needs."
+          }
         ]
       },
       {
         title: "Streaming and the Shape of Attention",
         text: "A decade ago, television executives worried mainly about ratings at a scheduled hour. Streaming platforms changed the question. They can measure where viewers pause, abandon an episode, replay a scene, or continue into the next installment. This data has influenced how some shows are edited: early conflicts appear sooner, recaps become sharper, and episode endings are designed to reduce hesitation. Critics argue that such decisions may flatten storytelling by rewarding constant stimulation. Supporters respond that audience data does not write scripts; it simply reveals when attention weakens. The deeper issue is not whether data should exist, but how much creative authority it should be allowed to gain.",
         questions: [
-          { q: "What is the central tension in the passage?", options: ["Whether scheduled television has better actors than streaming shows.", "Whether viewer data should influence creative decisions and to what degree.", "Whether recaps should be removed from all modern shows.", "Whether streaming platforms can measure audience behavior accurately."], answer: 1, why: "The final sentence frames the main issue as the amount of creative authority data should have." },
-          { q: "Why might episode endings be designed differently on streaming platforms?", options: ["To discourage viewers from watching another episode.", "To make viewers less hesitant to continue watching.", "To satisfy television ratings agencies.", "To avoid collecting audience data."], answer: 1, why: "The passage states endings are designed to reduce hesitation before the next installment." },
-          { q: "Which concern do critics raise?", options: ["Data may encourage storytelling that relies too much on constant stimulation.", "Streaming platforms cannot detect when viewers pause.", "Shows now have fewer conflicts than before.", "Audience data prevents any editing changes."], answer: 0, why: "Critics worry that rewarding constant stimulation may flatten storytelling." },
-          { q: "Supporters of audience data would most likely agree that", options: ["data replaces writers entirely.", "data can identify weak attention points without creating the story itself.", "scheduled ratings are more detailed than streaming metrics.", "all creative authority should belong to algorithms."], answer: 1, why: "Supporters say data does not write scripts; it reveals when attention weakens." }
+          {
+            q: "What is the central tension in the passage?",
+            options: [
+            "Whether streaming platforms can measure audience behavior accurately.",
+            "Whether scheduled television has better actors than streaming shows.",
+            "Whether recaps should be removed from all modern shows.",
+            "Whether viewer data should influence creative decisions and to what degree."
+          ],
+            answer: 3,
+            why: "The final sentence frames the main issue as the amount of creative authority data should have."
+          },
+          {
+            q: "Why might episode endings be designed differently on streaming platforms?",
+            options: [
+            "To discourage viewers from watching another episode.",
+            "To make viewers less hesitant to continue watching.",
+            "To satisfy television ratings agencies.",
+            "To avoid collecting audience data."
+          ],
+            answer: 1,
+            why: "The passage states endings are designed to reduce hesitation before the next installment."
+          },
+          {
+            q: "Which concern do critics raise?",
+            options: [
+            "Shows now have fewer conflicts than before.",
+            "Audience data prevents any editing changes.",
+            "Data may encourage storytelling that relies too much on constant stimulation.",
+            "Streaming platforms cannot detect when viewers pause."
+          ],
+            answer: 2,
+            why: "Critics worry that rewarding constant stimulation may flatten storytelling."
+          },
+          {
+            q: "Supporters of audience data would most likely agree that",
+            options: [
+            "data can identify weak attention points without creating the story itself.",
+            "all creative authority should belong to algorithms.",
+            "data replaces writers entirely.",
+            "scheduled ratings are more detailed than streaming metrics."
+          ],
+            answer: 0,
+            why: "Supporters say data does not write scripts; it reveals when attention weakens."
+          }
         ]
       }
     ]
@@ -158,30 +279,150 @@ var READING_TESTS = [
         title: "Steve Jobs and the Discipline of Saying No",
         text: "Steve Jobs is often remembered for dramatic product launches, but one of his quieter strengths was subtraction. After returning to Apple in 1997, he pushed the company to reduce a confusing range of products into a smaller matrix. The decision disappointed teams whose projects were canceled, yet it clarified Apple's identity and concentrated engineering talent. Jobs did not treat simplicity as decoration; he treated it as strategy. A simple product line made it easier for customers to understand what Apple sold and easier for employees to understand what mattered. The passage of time has made the launches famous, but the cancellations helped make the launches possible.",
         questions: [
-          { q: "What does the passage suggest about Jobs's use of simplicity?", options: ["It was mainly an aesthetic preference.", "It functioned as a strategic business tool.", "It was popular because it avoided difficult decisions.", "It meant Apple stopped investing in engineering."], answer: 1, why: "The passage says he treated simplicity as strategy and used it to focus customers and employees." },
-          { q: "Why were some teams disappointed?", options: ["Their projects were canceled during the product-line reduction.", "They had to design a more confusing product range.", "Customers stopped understanding Apple's products.", "Jobs ended all public product launches."], answer: 0, why: "The text says the decision disappointed teams whose projects were canceled." },
-          { q: "The final sentence implies that successful launches depended partly on", options: ["keeping every project alive until release.", "earlier decisions to remove distractions.", "avoiding a clear company identity.", "making the product line more complex."], answer: 1, why: "The cancellations concentrated focus and resources, helping later launches succeed." },
-          { q: "Which title best captures the passage?", options: ["Why Apple Avoided Engineering Talent", "The Strategy of Focus at Apple", "The End of All Apple Product Launches", "How Customers Designed Apple's Matrix"], answer: 1, why: "The passage is about how focus and subtraction clarified Apple's strategy." }
+          {
+            q: "What does the passage suggest about Jobs's use of simplicity?",
+            options: [
+            "It was mainly an aesthetic preference.",
+            "It functioned as a strategic business tool.",
+            "It was popular because it avoided difficult decisions.",
+            "It meant Apple stopped investing in engineering."
+          ],
+            answer: 1,
+            why: "The passage says he treated simplicity as strategy and used it to focus customers and employees."
+          },
+          {
+            q: "Why were some teams disappointed?",
+            options: [
+            "Customers stopped understanding Apple's products.",
+            "Jobs ended all public product launches.",
+            "They had to design a more confusing product range.",
+            "Their projects were canceled during the product-line reduction."
+          ],
+            answer: 3,
+            why: "The text says the decision disappointed teams whose projects were canceled."
+          },
+          {
+            q: "The final sentence implies that successful launches depended partly on",
+            options: [
+            "earlier decisions to remove distractions.",
+            "making the product line more complex.",
+            "keeping every project alive until release.",
+            "avoiding a clear company identity."
+          ],
+            answer: 0,
+            why: "The cancellations concentrated focus and resources, helping later launches succeed."
+          },
+          {
+            q: "Which title best captures the passage?",
+            options: [
+            "Why Apple Avoided Engineering Talent",
+            "The End of All Apple Product Launches",
+            "The Strategy of Focus at Apple",
+            "How Customers Designed Apple's Matrix"
+          ],
+            answer: 2,
+            why: "The passage is about how focus and subtraction clarified Apple's strategy."
+          }
         ]
       },
       {
         title: "Michael Jordan and Productive Friction",
         text: "Michael Jordan's career is frequently summarized through championships, but that shorthand can hide the daily intensity behind them. Teammates have described practices in which Jordan pushed standards so aggressively that comfort rarely survived. This pressure did not automatically create excellence; pressure without trust can become fear. What made the system productive was that Jordan held himself to the same level he demanded from others and performed under the stakes he created. His example shows a difficult leadership paradox: high expectations can sharpen a team when they are connected to shared goals, but the same expectations can damage a group when they become personal humiliation.",
         questions: [
-          { q: "What nuance does the passage add to Jordan's reputation?", options: ["Championships resulted only from natural talent.", "His demanding style could be productive, but only under certain conditions.", "He avoided intense practices to preserve comfort.", "His teammates never experienced pressure."], answer: 1, why: "The passage distinguishes useful pressure tied to trust and goals from damaging humiliation." },
-          { q: "Why was Jordan's pressure described as productive?", options: ["He demanded standards that he also met himself.", "He removed all shared goals from the team.", "He made teammates fear public interviews.", "He focused only on individual statistics."], answer: 0, why: "The text says he held himself to the same level and performed under the stakes he created." },
-          { q: "Which situation would the author likely criticize?", options: ["A leader with high standards and shared team goals.", "A leader who demands excellence while accepting the same pressure.", "A leader who uses expectations mainly to humiliate people.", "A leader who connects practice intensity to performance."], answer: 2, why: "The passage warns that expectations damage a group when they become personal humiliation." },
-          { q: "The phrase 'productive friction' most nearly means", options: ["conflict that weakens every relationship.", "pressure that can improve performance when properly grounded.", "a refusal to practice with intensity.", "comfort that protects a team from goals."], answer: 1, why: "Friction means pressure or tension; productive means it sharpens the team under the right conditions." }
+          {
+            q: "What nuance does the passage add to Jordan's reputation?",
+            options: [
+            "He avoided intense practices to preserve comfort.",
+            "His teammates never experienced pressure.",
+            "His demanding style could be productive, but only under certain conditions.",
+            "Championships resulted only from natural talent."
+          ],
+            answer: 2,
+            why: "The passage distinguishes useful pressure tied to trust and goals from damaging humiliation."
+          },
+          {
+            q: "Why was Jordan's pressure described as productive?",
+            options: [
+            "He demanded standards that he also met himself.",
+            "He focused only on individual statistics.",
+            "He removed all shared goals from the team.",
+            "He made teammates fear public interviews."
+          ],
+            answer: 0,
+            why: "The text says he held himself to the same level and performed under the stakes he created."
+          },
+          {
+            q: "Which situation would the author likely criticize?",
+            options: [
+            "A leader with high standards and shared team goals.",
+            "A leader who demands excellence while accepting the same pressure.",
+            "A leader who connects practice intensity to performance.",
+            "A leader who uses expectations mainly to humiliate people."
+          ],
+            answer: 3,
+            why: "The passage warns that expectations damage a group when they become personal humiliation."
+          },
+          {
+            q: "The phrase 'productive friction' most nearly means",
+            options: [
+            "a refusal to practice with intensity.",
+            "pressure that can improve performance when properly grounded.",
+            "comfort that protects a team from goals.",
+            "conflict that weakens every relationship."
+          ],
+            answer: 1,
+            why: "Friction means pressure or tension; productive means it sharpens the team under the right conditions."
+          }
         ]
       },
       {
         title: "The Scientist Who Changed the Question",
         text: "In many laboratories, progress begins when someone notices that the accepted question is too narrow. A young materials scientist studying plastics initially asked how to make a package stronger. After visiting a coastal cleanup site, she changed the question: how could packaging perform briefly and then disappear safely? That shift moved her from durability toward controlled breakdown. Her team began testing plant-based polymers that resisted moisture for several weeks but decomposed under industrial composting conditions. The work was slower than improving ordinary plastic, and early versions failed basic shipping tests. Still, the reframed question opened a path that strength alone could not have produced.",
         questions: [
-          { q: "What changed after the scientist visited the cleanup site?", options: ["She abandoned packaging research entirely.", "She shifted from asking about strength to asking about safe disappearance.", "She decided ordinary plastic decomposed too quickly.", "She stopped testing materials under shipping conditions."], answer: 1, why: "The visit reframed her question from making packaging stronger to making it break down safely." },
-          { q: "Why were early versions unsuccessful?", options: ["They failed basic shipping tests.", "They decomposed only in the ocean.", "They were made from metal rather than plants.", "They resisted moisture for many years."], answer: 0, why: "The passage directly states that early versions failed basic shipping tests." },
-          { q: "What broader idea does the passage illustrate?", options: ["Scientific progress can come from reframing the problem.", "Durability is always more important than environmental impact.", "Industrial composting prevents all research delays.", "Coastal cleanups make laboratory testing unnecessary."], answer: 0, why: "The central idea is that changing the question opened a new research path." },
-          { q: "The author mentions slower progress to show that", options: ["the new direction was easy but unpopular.", "a better question does not remove technical difficulty.", "plant-based polymers cannot resist moisture.", "ordinary plastic was already perfect."], answer: 1, why: "The passage balances promise with difficulty: the reframed question helped, but testing remained hard." }
+          {
+            q: "What changed after the scientist visited the cleanup site?",
+            options: [
+            "She stopped testing materials under shipping conditions.",
+            "She abandoned packaging research entirely.",
+            "She decided ordinary plastic decomposed too quickly.",
+            "She shifted from asking about strength to asking about safe disappearance."
+          ],
+            answer: 3,
+            why: "The visit reframed her question from making packaging stronger to making it break down safely."
+          },
+          {
+            q: "Why were early versions unsuccessful?",
+            options: [
+            "They decomposed only in the ocean.",
+            "They were made from metal rather than plants.",
+            "They failed basic shipping tests.",
+            "They resisted moisture for many years."
+          ],
+            answer: 2,
+            why: "The passage directly states that early versions failed basic shipping tests."
+          },
+          {
+            q: "What broader idea does the passage illustrate?",
+            options: [
+            "Scientific progress can come from reframing the problem.",
+            "Industrial composting prevents all research delays.",
+            "Coastal cleanups make laboratory testing unnecessary.",
+            "Durability is always more important than environmental impact."
+          ],
+            answer: 0,
+            why: "The central idea is that changing the question opened a new research path."
+          },
+          {
+            q: "The author mentions slower progress to show that",
+            options: [
+            "ordinary plastic was already perfect.",
+            "a better question does not remove technical difficulty.",
+            "the new direction was easy but unpopular.",
+            "plant-based polymers cannot resist moisture."
+          ],
+            answer: 1,
+            why: "The passage balances promise with difficulty: the reframed question helped, but testing remained hard."
+          }
         ]
       }
     ]
@@ -195,30 +436,150 @@ var READING_TESTS = [
         title: "The Price of Convenience",
         text: "Subscription services often present themselves as inexpensive because each monthly fee looks small in isolation. The business model depends on a different calculation: customers are less likely to cancel when the cost feels forgettable and the service is embedded in daily routines. This does not make subscriptions deceptive by nature; many provide real value. The risk is accumulation. A music app, cloud storage plan, language tool, streaming service, and delivery membership can quietly become a large fixed expense. The smartest consumers do not reject subscriptions automatically. They periodically ask whether the service still solves a current problem or merely survives because canceling requires attention.",
         questions: [
-          { q: "What is the main risk described in the passage?", options: ["Every subscription is intentionally deceptive.", "Small fees can accumulate into a significant fixed expense.", "Customers cancel useful services too quickly.", "Monthly fees are always larger than annual fees."], answer: 1, why: "The passage focuses on accumulation: individually small costs become large together." },
-          { q: "Why are customers less likely to cancel?", options: ["The services are impossible to cancel legally.", "The costs feel small and the services become routine.", "Subscriptions never provide value.", "Companies require customers to buy five services."], answer: 1, why: "The model benefits when fees feel forgettable and the service fits daily routines." },
-          { q: "The author's advice is best summarized as", options: ["avoid all recurring payments.", "review whether each subscription still serves a present need.", "cancel only the cheapest service first.", "keep subscriptions because cancellation is rude."], answer: 1, why: "The final sentence recommends asking whether the service still solves a current problem." },
-          { q: "The tone of the passage toward subscriptions is", options: ["balanced.", "furious.", "promotional.", "confused."], answer: 0, why: "It recognizes real value but warns about unnoticed accumulation." }
+          {
+            q: "What is the main risk described in the passage?",
+            options: [
+            "Every subscription is intentionally deceptive.",
+            "Customers cancel useful services too quickly.",
+            "Small fees can accumulate into a significant fixed expense.",
+            "Monthly fees are always larger than annual fees."
+          ],
+            answer: 2,
+            why: "The passage focuses on accumulation: individually small costs become large together."
+          },
+          {
+            q: "Why are customers less likely to cancel?",
+            options: [
+            "Subscriptions never provide value.",
+            "The costs feel small and the services become routine.",
+            "Companies require customers to buy five services.",
+            "The services are impossible to cancel legally."
+          ],
+            answer: 1,
+            why: "The model benefits when fees feel forgettable and the service fits daily routines."
+          },
+          {
+            q: "The author's advice is best summarized as",
+            options: [
+            "keep subscriptions because cancellation is rude.",
+            "avoid all recurring payments.",
+            "cancel only the cheapest service first.",
+            "review whether each subscription still serves a present need."
+          ],
+            answer: 3,
+            why: "The final sentence recommends asking whether the service still solves a current problem."
+          },
+          {
+            q: "The tone of the passage toward subscriptions is",
+            options: [
+            "balanced.",
+            "furious.",
+            "promotional.",
+            "confused."
+          ],
+            answer: 0,
+            why: "It recognizes real value but warns about unnoticed accumulation."
+          }
         ]
       },
       {
         title: "Why Trends Feel Sudden",
         text: "Online trends often appear to explode overnight, but the visible moment is usually late in the process. A dance, phrase, or editing style may circulate for weeks inside smaller communities before a large creator amplifies it. Once the trend reaches a broader audience, imitation accelerates because people are not only copying the original idea; they are copying proof that the idea has social momentum. By the time a brand notices the trend, joining it may already feel stale. This explains why effective cultural marketing depends less on chasing every viral moment and more on understanding the communities where those moments quietly begin.",
         questions: [
-          { q: "Why do trends seem to appear suddenly?", options: ["Their earlier circulation is often hidden in smaller communities.", "They are invented by brands on the day they become popular.", "Large creators prevent anyone from seeing them.", "They do not exist before news organizations report them."], answer: 0, why: "The passage says the visible explosion is late; trends often circulate quietly first." },
-          { q: "What does imitation copy besides the original idea?", options: ["Evidence that the idea has momentum.", "A brand's legal permission.", "The private messages of small creators.", "The exact schedule of a marketing campaign."], answer: 0, why: "People copy proof of social momentum, not just the content itself." },
-          { q: "Why may brand participation feel stale?", options: ["Brands always understand communities too early.", "By the time brands notice, the trend may already be overexposed.", "Trends cannot be used in marketing.", "Large creators refuse to work with brands."], answer: 1, why: "The passage says late participation can feel stale after broad amplification." },
-          { q: "What strategy does the passage favor?", options: ["Chasing every viral moment immediately.", "Studying communities where trends begin.", "Ignoring all small online communities.", "Waiting until a trend disappears completely."], answer: 1, why: "The final sentence recommends understanding origin communities over chasing every viral moment." }
+          {
+            q: "Why do trends seem to appear suddenly?",
+            options: [
+            "Large creators prevent anyone from seeing them.",
+            "Their earlier circulation is often hidden in smaller communities.",
+            "They do not exist before news organizations report them.",
+            "They are invented by brands on the day they become popular."
+          ],
+            answer: 1,
+            why: "The passage says the visible explosion is late; trends often circulate quietly first."
+          },
+          {
+            q: "What does imitation copy besides the original idea?",
+            options: [
+            "Evidence that the idea has momentum.",
+            "The exact schedule of a marketing campaign.",
+            "A brand's legal permission.",
+            "The private messages of small creators."
+          ],
+            answer: 0,
+            why: "People copy proof of social momentum, not just the content itself."
+          },
+          {
+            q: "Why may brand participation feel stale?",
+            options: [
+            "Brands always understand communities too early.",
+            "Trends cannot be used in marketing.",
+            "By the time brands notice, the trend may already be overexposed.",
+            "Large creators refuse to work with brands."
+          ],
+            answer: 2,
+            why: "The passage says late participation can feel stale after broad amplification."
+          },
+          {
+            q: "What strategy does the passage favor?",
+            options: [
+            "Ignoring all small online communities.",
+            "Waiting until a trend disappears completely.",
+            "Chasing every viral moment immediately.",
+            "Studying communities where trends begin."
+          ],
+            answer: 3,
+            why: "The final sentence recommends understanding origin communities over chasing every viral moment."
+          }
         ]
       },
       {
         title: "Memory and the Spacing Effect",
         text: "Students often reread notes the night before an exam because fluency feels like mastery. The page looks familiar, so the brain mistakes recognition for durable memory. Cognitive science suggests a less comfortable method: spacing practice across time and forcing retrieval before the answer is visible. When learners struggle to recall an idea on Monday, revisit it on Thursday, and test it again the following week, they create stronger retrieval paths. This process can feel slower than rereading because it exposes forgetting. Yet that exposure is precisely the point. A study routine that feels smooth may be hiding weakness, while a routine that feels effortful may be building access.",
         questions: [
-          { q: "What mistaken belief does the passage identify?", options: ["Familiarity with notes can be confused with real mastery.", "Testing yourself always damages memory.", "Spacing practice means studying only once.", "Forgetting proves learning is impossible."], answer: 0, why: "The passage says fluency and recognition can be mistaken for durable memory." },
-          { q: "Why is effortful recall useful?", options: ["It creates stronger retrieval paths.", "It prevents students from noticing mistakes.", "It makes answers visible before practice.", "It replaces all future review."], answer: 0, why: "The passage says struggling to retrieve across time strengthens memory access." },
-          { q: "The author contrasts smooth and effortful routines to show that", options: ["ease can hide weakness, while difficulty can support learning.", "all difficult routines are a waste of time.", "rereading is always better than retrieval.", "exams should test recognition only."], answer: 0, why: "The final sentence directly contrasts smooth weakness with effortful access-building." },
-          { q: "Which study plan best matches the passage?", options: ["Reread all notes once the night before.", "Review, self-test days later, and test again the following week.", "Avoid looking at forgotten material.", "Only study topics that already feel familiar."], answer: 1, why: "This plan uses spacing and retrieval, the two methods the passage supports." }
+          {
+            q: "What mistaken belief does the passage identify?",
+            options: [
+            "Forgetting proves learning is impossible.",
+            "Testing yourself always damages memory.",
+            "Spacing practice means studying only once.",
+            "Familiarity with notes can be confused with real mastery."
+          ],
+            answer: 3,
+            why: "The passage says fluency and recognition can be mistaken for durable memory."
+          },
+          {
+            q: "Why is effortful recall useful?",
+            options: [
+            "It prevents students from noticing mistakes.",
+            "It creates stronger retrieval paths.",
+            "It makes answers visible before practice.",
+            "It replaces all future review."
+          ],
+            answer: 1,
+            why: "The passage says struggling to retrieve across time strengthens memory access."
+          },
+          {
+            q: "The author contrasts smooth and effortful routines to show that",
+            options: [
+            "ease can hide weakness, while difficulty can support learning.",
+            "rereading is always better than retrieval.",
+            "exams should test recognition only.",
+            "all difficult routines are a waste of time."
+          ],
+            answer: 0,
+            why: "The final sentence directly contrasts smooth weakness with effortful access-building."
+          },
+          {
+            q: "Which study plan best matches the passage?",
+            options: [
+            "Only study topics that already feel familiar.",
+            "Reread all notes once the night before.",
+            "Review, self-test days later, and test again the following week.",
+            "Avoid looking at forgotten material."
+          ],
+            answer: 2,
+            why: "This plan uses spacing and retrieval, the two methods the passage supports."
+          }
         ]
       }
     ]
@@ -232,30 +593,150 @@ var READING_TESTS = [
         title: "The Problem With Averages",
         text: "A city report announced that commute times had improved by four minutes on average after a new bus route opened. The headline sounded like a clear success. A closer look showed a more complicated result. Riders near the new route saved fifteen minutes, while riders in two outer neighborhoods lost time because buses were reassigned from their lines. The average was accurate, but it concealed distribution. Public policy can fail when leaders treat the mean as the whole story. Averages are useful beginnings; they become misleading when they prevent questions about who benefited, who paid the cost, and whether the trade-off was intentional.",
         questions: [
-          { q: "What is the passage's main warning?", options: ["Averages can hide unequal effects across groups.", "City reports should never include numbers.", "New bus routes always make commutes worse.", "Outer neighborhoods never use public transit."], answer: 0, why: "The passage says the average was accurate but concealed who gained and who lost." },
-          { q: "Why was the headline incomplete?", options: ["It ignored the distribution behind the average improvement.", "It used minutes instead of hours.", "It was based on imaginary commute data.", "It focused only on outer neighborhoods."], answer: 0, why: "The headline reported an average improvement but not the uneven outcomes." },
-          { q: "What does 'the mean' refer to in the passage?", options: ["The average commute change.", "An intentionally cruel policy.", "The busiest bus station.", "The opinion of outer-neighborhood riders."], answer: 0, why: "In this statistical context, the mean is the average." },
-          { q: "Which question would best extend the author's analysis?", options: ["Which neighborhoods gained or lost time after the route change?", "What color were the new buses?", "Did the report use a readable font?", "Could the city stop measuring commutes?"], answer: 0, why: "The author wants questions about distribution: who benefited and who paid the cost." }
+          {
+            q: "What is the passage's main warning?",
+            options: [
+            "Averages can hide unequal effects across groups.",
+            "City reports should never include numbers.",
+            "New bus routes always make commutes worse.",
+            "Outer neighborhoods never use public transit."
+          ],
+            answer: 0,
+            why: "The passage says the average was accurate but concealed who gained and who lost."
+          },
+          {
+            q: "Why was the headline incomplete?",
+            options: [
+            "It was based on imaginary commute data.",
+            "It focused only on outer neighborhoods.",
+            "It ignored the distribution behind the average improvement.",
+            "It used minutes instead of hours."
+          ],
+            answer: 2,
+            why: "The headline reported an average improvement but not the uneven outcomes."
+          },
+          {
+            q: "What does 'the mean' refer to in the passage?",
+            options: [
+            "The opinion of outer-neighborhood riders.",
+            "The average commute change.",
+            "An intentionally cruel policy.",
+            "The busiest bus station."
+          ],
+            answer: 1,
+            why: "In this statistical context, the mean is the average."
+          },
+          {
+            q: "Which question would best extend the author's analysis?",
+            options: [
+            "What color were the new buses?",
+            "Did the report use a readable font?",
+            "Could the city stop measuring commutes?",
+            "Which neighborhoods gained or lost time after the route change?"
+          ],
+            answer: 3,
+            why: "The author wants questions about distribution: who benefited and who paid the cost."
+          }
         ]
       },
       {
         title: "Citizen Science and Trust",
         text: "When residents help collect air-quality data, the project gains more than extra sensors. Participation can change the relationship between scientists and the public. People who gather measurements on their own streets often understand results with a different urgency than people who only read a final report. However, citizen science requires careful design. If volunteers are not trained, the data may be inconsistent; if experts dismiss local knowledge, the project may lose trust. The strongest programs combine professional standards with community attention. They treat residents neither as passive audiences nor as replacements for scientists, but as partners in asking sharper questions.",
         questions: [
-          { q: "What benefit beyond extra sensors does citizen science provide?", options: ["It can improve public engagement and trust.", "It removes the need for expert standards.", "It guarantees perfect data without training.", "It prevents residents from seeing results."], answer: 0, why: "The passage stresses a changed relationship and stronger local understanding." },
-          { q: "What risk occurs if volunteers are not trained?", options: ["Measurements may become inconsistent.", "Scientists will have too many sensors.", "Local knowledge will replace air quality.", "Reports will become shorter."], answer: 0, why: "The passage explicitly links lack of training to inconsistent data." },
-          { q: "How should strong programs treat residents?", options: ["As partners in forming better questions.", "As passive audiences only.", "As complete replacements for scientists.", "As obstacles to professional standards."], answer: 0, why: "The final sentence says residents should be partners in asking sharper questions." },
-          { q: "The passage argues for a balance between", options: ["professional standards and community attention.", "short reports and long reports.", "air sensors and weather balloons.", "public silence and expert secrecy."], answer: 0, why: "The strongest programs combine professional standards with community attention." }
+          {
+            q: "What benefit beyond extra sensors does citizen science provide?",
+            options: [
+            "It guarantees perfect data without training.",
+            "It prevents residents from seeing results.",
+            "It can improve public engagement and trust.",
+            "It removes the need for expert standards."
+          ],
+            answer: 2,
+            why: "The passage stresses a changed relationship and stronger local understanding."
+          },
+          {
+            q: "What risk occurs if volunteers are not trained?",
+            options: [
+            "Reports will become shorter.",
+            "Scientists will have too many sensors.",
+            "Local knowledge will replace air quality.",
+            "Measurements may become inconsistent."
+          ],
+            answer: 3,
+            why: "The passage explicitly links lack of training to inconsistent data."
+          },
+          {
+            q: "How should strong programs treat residents?",
+            options: [
+            "As passive audiences only.",
+            "As partners in forming better questions.",
+            "As complete replacements for scientists.",
+            "As obstacles to professional standards."
+          ],
+            answer: 1,
+            why: "The final sentence says residents should be partners in asking sharper questions."
+          },
+          {
+            q: "The passage argues for a balance between",
+            options: [
+            "professional standards and community attention.",
+            "air sensors and weather balloons.",
+            "public silence and expert secrecy.",
+            "short reports and long reports."
+          ],
+            answer: 0,
+            why: "The strongest programs combine professional standards with community attention."
+          }
         ]
       },
       {
         title: "When Pop Culture Teaches Science",
         text: "A blockbuster film can make a scientific idea memorable, but memory is not the same as accuracy. After a popular space movie, teachers noticed more students asking about gravity, time, and survival beyond Earth. That curiosity was valuable, even when the film simplified physics for drama. The best classroom response was not to mock the inaccuracies, but to use them as entry points. Students compared the movie's choices with real constraints and asked why a director might bend reality. In that moment, pop culture became a bridge: not a textbook, but a shared reference that made difficult concepts discussable.",
         questions: [
-          { q: "What distinction does the passage make?", options: ["A memorable film is not necessarily scientifically accurate.", "Movies can never inspire scientific curiosity.", "Teachers should avoid discussing popular films.", "Scientific textbooks are less accurate than dramas."], answer: 0, why: "The first sentence states that memory and accuracy are different." },
-          { q: "What classroom strategy does the passage support?", options: ["Use inaccuracies as starting points for analysis.", "Mock students for enjoying the film.", "Treat the film as a complete textbook.", "Avoid comparing fiction and real constraints."], answer: 0, why: "The passage says the best response was to use inaccuracies as entry points." },
-          { q: "Why is pop culture described as a bridge?", options: ["It provides a shared reference for discussing difficult concepts.", "It replaces the need for scientific reasoning.", "It forces directors to follow textbooks.", "It prevents students from asking questions."], answer: 0, why: "The film gives students and teachers a common example to examine." },
-          { q: "The author's attitude toward science in films is", options: ["pragmatic and educational.", "entirely hostile.", "carelessly approving of every error.", "unrelated to teaching."], answer: 0, why: "The author values curiosity while still examining inaccuracies." }
+          {
+            q: "What distinction does the passage make?",
+            options: [
+            "Scientific textbooks are less accurate than dramas.",
+            "A memorable film is not necessarily scientifically accurate.",
+            "Movies can never inspire scientific curiosity.",
+            "Teachers should avoid discussing popular films."
+          ],
+            answer: 1,
+            why: "The first sentence states that memory and accuracy are different."
+          },
+          {
+            q: "What classroom strategy does the passage support?",
+            options: [
+            "Mock students for enjoying the film.",
+            "Treat the film as a complete textbook.",
+            "Avoid comparing fiction and real constraints.",
+            "Use inaccuracies as starting points for analysis."
+          ],
+            answer: 3,
+            why: "The passage says the best response was to use inaccuracies as entry points."
+          },
+          {
+            q: "Why is pop culture described as a bridge?",
+            options: [
+            "It forces directors to follow textbooks.",
+            "It prevents students from asking questions.",
+            "It provides a shared reference for discussing difficult concepts.",
+            "It replaces the need for scientific reasoning."
+          ],
+            answer: 2,
+            why: "The film gives students and teachers a common example to examine."
+          },
+          {
+            q: "The author's attitude toward science in films is",
+            options: [
+            "pragmatic and educational.",
+            "unrelated to teaching.",
+            "entirely hostile.",
+            "carelessly approving of every error."
+          ],
+            answer: 0,
+            why: "The author values curiosity while still examining inaccuracies."
+          }
         ]
       }
     ]
@@ -269,30 +750,150 @@ var READING_TESTS = [
         title: "The Quiet Cost of Fast Decisions",
         text: "Fast decisions are praised in business because delay can be expensive. Yet speed has its own hidden cost when teams confuse decisiveness with skipping disagreement. In one product meeting, everyone supported a launch date that privately worried them. No one wanted to appear negative, so the plan moved forward until a supplier problem forced a public delay. The issue was not that the team lacked intelligence; it lacked permission to surface risk early. Healthy disagreement is not the enemy of speed. It can protect speed by moving conflict into the planning stage, where problems are cheaper to solve.",
         questions: [
-          { q: "What problem does the passage identify?", options: ["Teams may mistake silence for agreement.", "All fast decisions are irresponsible.", "Supplier problems are always impossible to predict.", "Disagreement should happen only after launch."], answer: 0, why: "The team appeared to agree, but members privately had concerns they did not voice." },
-          { q: "Why did the launch plan fail?", options: ["A supplier problem exposed a risk that had not been discussed early.", "The team had too much open disagreement.", "The product had no customers.", "The launch date was chosen by customers."], answer: 0, why: "The public delay followed a supplier problem that could have been surfaced as risk." },
-          { q: "How can disagreement protect speed?", options: ["By making problems visible while they are cheaper to solve.", "By delaying every project indefinitely.", "By preventing planning meetings.", "By removing suppliers from the process."], answer: 0, why: "The passage says early conflict in planning makes problems cheaper to solve." },
-          { q: "The passage's view of decisiveness is that it should include", options: ["permission to raise concerns.", "avoidance of all negative comments.", "total silence from team members.", "launching before risk is understood."], answer: 0, why: "The author supports fast decisions that still allow risks to be surfaced." }
+          {
+            q: "What problem does the passage identify?",
+            options: [
+            "All fast decisions are irresponsible.",
+            "Supplier problems are always impossible to predict.",
+            "Disagreement should happen only after launch.",
+            "Teams may mistake silence for agreement."
+          ],
+            answer: 3,
+            why: "The team appeared to agree, but members privately had concerns they did not voice."
+          },
+          {
+            q: "Why did the launch plan fail?",
+            options: [
+            "A supplier problem exposed a risk that had not been discussed early.",
+            "The product had no customers.",
+            "The launch date was chosen by customers.",
+            "The team had too much open disagreement."
+          ],
+            answer: 0,
+            why: "The public delay followed a supplier problem that could have been surfaced as risk."
+          },
+          {
+            q: "How can disagreement protect speed?",
+            options: [
+            "By removing suppliers from the process.",
+            "By delaying every project indefinitely.",
+            "By making problems visible while they are cheaper to solve.",
+            "By preventing planning meetings."
+          ],
+            answer: 2,
+            why: "The passage says early conflict in planning makes problems cheaper to solve."
+          },
+          {
+            q: "The passage's view of decisiveness is that it should include",
+            options: [
+            "avoidance of all negative comments.",
+            "permission to raise concerns.",
+            "total silence from team members.",
+            "launching before risk is understood."
+          ],
+            answer: 1,
+            why: "The author supports fast decisions that still allow risks to be surfaced."
+          }
         ]
       },
       {
         title: "Why Creators Build Rituals",
         text: "Creative work is often romanticized as waiting for inspiration, but many artists rely on routines that look almost ordinary. A songwriter may begin every morning by drafting weak lines for twenty minutes. A designer may collect images before attempting original sketches. These rituals do not guarantee brilliance. Their value is that they reduce the number of decisions required to begin. Once the starting conditions are familiar, attention can move from whether to work toward what the work is becoming. Rituals are not cages for creativity; used well, they are ramps that help the mind enter uncertainty with less resistance.",
         questions: [
-          { q: "What is the main function of creative rituals in the passage?", options: ["They make it easier to begin creative work.", "They guarantee a brilliant final product.", "They prevent artists from changing ideas.", "They replace the need for attention."], answer: 0, why: "The passage says rituals reduce decisions required to begin and help attention enter the work." },
-          { q: "Why mention weak songwriting lines?", options: ["To show that routines can include imperfect starting work.", "To argue that songwriters should publish weak lines.", "To prove inspiration is unnecessary forever.", "To show designers and songwriters use identical tools."], answer: 0, why: "The example shows routine creates a starting point even before quality appears." },
-          { q: "The phrase 'ramps that help the mind enter uncertainty' means rituals", options: ["ease the transition into difficult creative work.", "remove all uncertainty from art.", "trap creativity in fixed rules.", "make originality impossible."], answer: 0, why: "A ramp helps entry; here it helps creators begin uncertain work with less resistance." },
-          { q: "Which view would the author most likely reject?", options: ["Real creativity requires waiting passively for inspiration.", "Routines can support original work.", "A ritual may involve collecting materials.", "Starting conditions can affect attention."], answer: 0, why: "The opening contrasts the inspiration myth with routine-based creative practice." }
+          {
+            q: "What is the main function of creative rituals in the passage?",
+            options: [
+            "They prevent artists from changing ideas.",
+            "They replace the need for attention.",
+            "They make it easier to begin creative work.",
+            "They guarantee a brilliant final product."
+          ],
+            answer: 2,
+            why: "The passage says rituals reduce decisions required to begin and help attention enter the work."
+          },
+          {
+            q: "Why mention weak songwriting lines?",
+            options: [
+            "To show designers and songwriters use identical tools.",
+            "To show that routines can include imperfect starting work.",
+            "To argue that songwriters should publish weak lines.",
+            "To prove inspiration is unnecessary forever."
+          ],
+            answer: 1,
+            why: "The example shows routine creates a starting point even before quality appears."
+          },
+          {
+            q: "The phrase 'ramps that help the mind enter uncertainty' means rituals",
+            options: [
+            "remove all uncertainty from art.",
+            "trap creativity in fixed rules.",
+            "make originality impossible.",
+            "ease the transition into difficult creative work."
+          ],
+            answer: 3,
+            why: "A ramp helps entry; here it helps creators begin uncertain work with less resistance."
+          },
+          {
+            q: "Which view would the author most likely reject?",
+            options: [
+            "Real creativity requires waiting passively for inspiration.",
+            "A ritual may involve collecting materials.",
+            "Starting conditions can affect attention.",
+            "Routines can support original work."
+          ],
+            answer: 0,
+            why: "The opening contrasts the inspiration myth with routine-based creative practice."
+          }
         ]
       },
       {
         title: "Risk in the Age of Forecasts",
         text: "Modern companies have access to dashboards that estimate demand, churn, delivery times, and customer sentiment. These tools can improve decisions, but they may also create a false sense of control. A forecast is not a promise about the future; it is a structured guess based on assumptions. When conditions change, the model may continue to look precise while becoming less relevant. Strong managers use forecasts as conversation partners rather than oracles. They ask what the model is missing, which assumptions are fragile, and what action would still make sense if the prediction turns out to be wrong.",
         questions: [
-          { q: "What false belief can dashboards create?", options: ["That precise-looking forecasts fully control the future.", "That customer sentiment cannot be measured.", "That demand never changes.", "That managers should avoid all data."], answer: 0, why: "The passage warns that dashboards can create a false sense of control." },
-          { q: "How does the author define a forecast?", options: ["A structured guess based on assumptions.", "A guaranteed promise about future events.", "An irrelevant decoration for meetings.", "A replacement for all management judgment."], answer: 0, why: "The passage explicitly says a forecast is a structured guess based on assumptions." },
-          { q: "What should strong managers ask?", options: ["What the model might be missing and which assumptions are fragile.", "How to make the model look more precise.", "How to avoid discussing wrong predictions.", "Why all dashboards should be removed."], answer: 0, why: "The final sentence lists those exact kinds of questions." },
-          { q: "Calling forecasts 'conversation partners rather than oracles' suggests they should be", options: ["questioned and interpreted.", "worshiped as certain truth.", "ignored completely.", "used only after a crisis."], answer: 0, why: "A conversation partner invites questioning; an oracle implies unquestioned authority." }
+          {
+            q: "What false belief can dashboards create?",
+            options: [
+            "That precise-looking forecasts fully control the future.",
+            "That managers should avoid all data.",
+            "That customer sentiment cannot be measured.",
+            "That demand never changes."
+          ],
+            answer: 0,
+            why: "The passage warns that dashboards can create a false sense of control."
+          },
+          {
+            q: "How does the author define a forecast?",
+            options: [
+            "A guaranteed promise about future events.",
+            "An irrelevant decoration for meetings.",
+            "A structured guess based on assumptions.",
+            "A replacement for all management judgment."
+          ],
+            answer: 2,
+            why: "The passage explicitly says a forecast is a structured guess based on assumptions."
+          },
+          {
+            q: "What should strong managers ask?",
+            options: [
+            "How to avoid discussing wrong predictions.",
+            "What the model might be missing and which assumptions are fragile.",
+            "Why all dashboards should be removed.",
+            "How to make the model look more precise."
+          ],
+            answer: 1,
+            why: "The final sentence lists those exact kinds of questions."
+          },
+          {
+            q: "Calling forecasts 'conversation partners rather than oracles' suggests they should be",
+            options: [
+            "used only after a crisis.",
+            "worshiped as certain truth.",
+            "ignored completely.",
+            "questioned and interpreted."
+          ],
+            answer: 3,
+            why: "A conversation partner invites questioning; an oracle implies unquestioned authority."
+          }
         ]
       }
     ]
@@ -306,30 +907,150 @@ var READING_TESTS = [
         title: "The Lab That Shared Failure",
         text: "A pharmaceutical research team began holding monthly failure reviews after noticing that unsuccessful experiments were disappearing into private folders. The meetings were not designed for blame. Each scientist explained what had been tested, what result appeared, and what assumption became weaker. Over time, the reviews prevented other teams from repeating dead ends and helped managers see patterns across projects. The cultural shift was difficult because researchers were used to presenting polished progress. But once failure became searchable knowledge, the lab moved faster. The point was not to celebrate failure itself; it was to stop wasting the information that failure had already paid for.",
         questions: [
-          { q: "Why did the lab create failure reviews?", options: ["Unsuccessful experiments were being hidden and not reused as knowledge.", "Scientists wanted to blame one another publicly.", "Managers wanted fewer patterns across projects.", "Successful experiments had become illegal."], answer: 0, why: "The reviews responded to failed experiments disappearing into private folders." },
-          { q: "What changed after failures became searchable?", options: ["Teams avoided repeating known dead ends.", "Researchers stopped running experiments.", "Managers ignored project patterns.", "Only polished progress was recorded."], answer: 0, why: "The passage says reviews prevented repeated dead ends and revealed patterns." },
-          { q: "The author says failure had 'already paid for' information to mean", options: ["resources had been spent, so the learning should not be wasted.", "scientists owed money after every mistake.", "failure is more valuable than success in every case.", "experiments should be priced for customers."], answer: 0, why: "Failed experiments consume time and resources; sharing the learning preserves value." },
-          { q: "What was difficult about the cultural shift?", options: ["Researchers were accustomed to presenting polished progress.", "No one knew how to write private folders.", "The lab had no unsuccessful experiments.", "Managers refused to see patterns."], answer: 0, why: "The passage directly states this habit made the shift difficult." }
+          {
+            q: "Why did the lab create failure reviews?",
+            options: [
+            "Scientists wanted to blame one another publicly.",
+            "Unsuccessful experiments were being hidden and not reused as knowledge.",
+            "Managers wanted fewer patterns across projects.",
+            "Successful experiments had become illegal."
+          ],
+            answer: 1,
+            why: "The reviews responded to failed experiments disappearing into private folders."
+          },
+          {
+            q: "What changed after failures became searchable?",
+            options: [
+            "Managers ignored project patterns.",
+            "Only polished progress was recorded.",
+            "Teams avoided repeating known dead ends.",
+            "Researchers stopped running experiments."
+          ],
+            answer: 2,
+            why: "The passage says reviews prevented repeated dead ends and revealed patterns."
+          },
+          {
+            q: "The author says failure had 'already paid for' information to mean",
+            options: [
+            "resources had been spent, so the learning should not be wasted.",
+            "experiments should be priced for customers.",
+            "scientists owed money after every mistake.",
+            "failure is more valuable than success in every case."
+          ],
+            answer: 0,
+            why: "Failed experiments consume time and resources; sharing the learning preserves value."
+          },
+          {
+            q: "What was difficult about the cultural shift?",
+            options: [
+            "No one knew how to write private folders.",
+            "The lab had no unsuccessful experiments.",
+            "Managers refused to see patterns.",
+            "Researchers were accustomed to presenting polished progress."
+          ],
+            answer: 3,
+            why: "The passage directly states this habit made the shift difficult."
+          }
         ]
       },
       {
         title: "A Founder Without a Spotlight",
         text: "Not every influential founder becomes a celebrity. Some build companies by creating systems that make individual heroics less necessary. One logistics founder spent her first years documenting decisions that had previously lived only in experienced employees' memories. Drivers received clearer route exceptions, warehouse teams used shared checklists, and customer-service agents could see the same delivery constraints as dispatchers. None of these changes made a dramatic headline. Together, they reduced mistakes and made the company easier to scale. Her biography is a reminder that leadership can look less like constant public charisma and more like designing conditions in which ordinary work becomes reliably excellent.",
         questions: [
-          { q: "What kind of leadership does the passage highlight?", options: ["System-building that makes reliable work easier.", "Public charisma without operational detail.", "Heroic improvisation in every task.", "Avoiding documentation to preserve memory."], answer: 0, why: "The founder improves systems, documentation, and shared visibility." },
-          { q: "Why did documentation matter?", options: ["Important decisions had been trapped in employee memory.", "It created dramatic headlines immediately.", "It made route exceptions more confusing.", "It prevented customer-service agents from seeing constraints."], answer: 0, why: "The passage says decisions previously lived only in experienced employees' memories." },
-          { q: "What was the combined effect of small operational changes?", options: ["Fewer mistakes and easier scaling.", "More individual heroics and less consistency.", "A complete end to logistics constraints.", "Less information for warehouse teams."], answer: 0, why: "Together, the changes reduced mistakes and helped scale the company." },
-          { q: "The founder is 'without a spotlight' because", options: ["her influence came through unglamorous systems rather than celebrity.", "she refused to lead the company.", "the company failed before becoming visible.", "her work had no effect on employees."], answer: 0, why: "The passage contrasts quiet systems leadership with public charisma." }
+          {
+            q: "What kind of leadership does the passage highlight?",
+            options: [
+            "Heroic improvisation in every task.",
+            "Avoiding documentation to preserve memory.",
+            "Public charisma without operational detail.",
+            "System-building that makes reliable work easier."
+          ],
+            answer: 3,
+            why: "The founder improves systems, documentation, and shared visibility."
+          },
+          {
+            q: "Why did documentation matter?",
+            options: [
+            "It prevented customer-service agents from seeing constraints.",
+            "Important decisions had been trapped in employee memory.",
+            "It created dramatic headlines immediately.",
+            "It made route exceptions more confusing."
+          ],
+            answer: 1,
+            why: "The passage says decisions previously lived only in experienced employees' memories."
+          },
+          {
+            q: "What was the combined effect of small operational changes?",
+            options: [
+            "More individual heroics and less consistency.",
+            "A complete end to logistics constraints.",
+            "Fewer mistakes and easier scaling.",
+            "Less information for warehouse teams."
+          ],
+            answer: 2,
+            why: "Together, the changes reduced mistakes and helped scale the company."
+          },
+          {
+            q: "The founder is 'without a spotlight' because",
+            options: [
+            "her influence came through unglamorous systems rather than celebrity.",
+            "the company failed before becoming visible.",
+            "her work had no effect on employees.",
+            "she refused to lead the company."
+          ],
+            answer: 0,
+            why: "The passage contrasts quiet systems leadership with public charisma."
+          }
         ]
       },
       {
         title: "The Science of Heat Islands",
         text: "Cities are often warmer than surrounding rural areas because concrete, asphalt, and dark roofs absorb and re-emit heat. This heat-island effect is not evenly distributed. Neighborhoods with fewer trees and more wide roads can remain hotter deep into the night, increasing health risks during heat waves. Solutions such as reflective roofs, shaded corridors, and tree planting sound simple, but implementation is political as well as technical. Trees require maintenance, reflective materials require incentives, and shade often competes with parking or development priorities. The science identifies where heat accumulates; policy determines whether cooler design reaches the people most exposed.",
         questions: [
-          { q: "What causes the urban heat-island effect?", options: ["Materials like asphalt and dark roofs absorb and release heat.", "Cities receive more sunlight than rural areas.", "Trees re-emit more heat than concrete.", "Rural areas ban reflective roofs."], answer: 0, why: "The first sentence identifies concrete, asphalt, and dark roofs as heat-absorbing materials." },
-          { q: "Why is the effect unequal?", options: ["Neighborhood design and tree coverage differ.", "All neighborhoods have identical roads.", "Heat waves avoid rural areas.", "Reflective roofs work only at night."], answer: 0, why: "Areas with fewer trees and wider roads can remain hotter." },
-          { q: "Why are solutions political?", options: ["They involve maintenance, incentives, and trade-offs with development priorities.", "Science cannot identify hot areas.", "Trees do not affect shade.", "Heat accumulation is imaginary."], answer: 0, why: "The passage lists practical policy choices around maintenance, incentives, parking, and development." },
-          { q: "What is the final contrast in the passage?", options: ["Science can locate the problem, but policy decides who receives relief.", "Rural areas need more parking than cities.", "Dark roofs are cooler than reflective roofs.", "Technical solutions require no public decisions."], answer: 0, why: "The last sentence contrasts scientific identification with policy implementation." }
+          {
+            q: "What causes the urban heat-island effect?",
+            options: [
+            "Rural areas ban reflective roofs.",
+            "Cities receive more sunlight than rural areas.",
+            "Materials like asphalt and dark roofs absorb and release heat.",
+            "Trees re-emit more heat than concrete."
+          ],
+            answer: 2,
+            why: "The first sentence identifies concrete, asphalt, and dark roofs as heat-absorbing materials."
+          },
+          {
+            q: "Why is the effect unequal?",
+            options: [
+            "Neighborhood design and tree coverage differ.",
+            "All neighborhoods have identical roads.",
+            "Heat waves avoid rural areas.",
+            "Reflective roofs work only at night."
+          ],
+            answer: 0,
+            why: "Areas with fewer trees and wider roads can remain hotter."
+          },
+          {
+            q: "Why are solutions political?",
+            options: [
+            "Trees do not affect shade.",
+            "Heat accumulation is imaginary.",
+            "Science cannot identify hot areas.",
+            "They involve maintenance, incentives, and trade-offs with development priorities."
+          ],
+            answer: 3,
+            why: "The passage lists practical policy choices around maintenance, incentives, parking, and development."
+          },
+          {
+            q: "What is the final contrast in the passage?",
+            options: [
+            "Technical solutions require no public decisions.",
+            "Science can locate the problem, but policy decides who receives relief.",
+            "Rural areas need more parking than cities.",
+            "Dark roofs are cooler than reflective roofs."
+          ],
+            answer: 1,
+            why: "The last sentence contrasts scientific identification with policy implementation."
+          }
         ]
       }
     ]
@@ -343,30 +1064,150 @@ var READING_TESTS = [
         title: "The Comeback Album",
         text: "When a famous singer releases a comeback album, listeners often hear two stories at once. One is musical: melodies, production choices, and lyrics. The other is biographical: years of silence, public criticism, or personal change. Reviewers may praise a song not only because it sounds strong, but because it seems to answer a narrative the audience already knows. This can be powerful, but it can also distort judgment. A weaker track may receive extra affection because it fits the comeback story, while a stronger but less autobiographical song may be ignored. Pop culture rarely separates art from context for long.",
         questions: [
-          { q: "What two stories do listeners hear in a comeback album?", options: ["The music itself and the artist's public narrative.", "The producer's budget and the record label's address.", "Only melodies and no biography.", "Only criticism and no songs."], answer: 0, why: "The passage contrasts musical features with the biographical comeback story." },
-          { q: "How can context distort judgment?", options: ["A song may be valued because it fits the narrative rather than because it is strongest musically.", "Listeners become unable to hear lyrics.", "Reviewers stop discussing albums entirely.", "All autobiographical songs are automatically weak."], answer: 0, why: "The passage says weaker tracks may receive extra affection if they fit the story." },
-          { q: "The author's view of comeback narratives is", options: ["mixed: powerful but potentially distorting.", "entirely negative.", "unrelated to criticism.", "purely technical."], answer: 0, why: "The author notes both power and distortion." },
-          { q: "What does the final sentence mean?", options: ["Audience interpretation usually connects artwork with surrounding context.", "Pop culture permanently separates art from biography.", "Context disappears before albums are reviewed.", "Comeback albums contain no production choices."], answer: 0, why: "The sentence says art and context are rarely separated for long." }
+          {
+            q: "What two stories do listeners hear in a comeback album?",
+            options: [
+            "The music itself and the artist's public narrative.",
+            "The producer's budget and the record label's address.",
+            "Only melodies and no biography.",
+            "Only criticism and no songs."
+          ],
+            answer: 0,
+            why: "The passage contrasts musical features with the biographical comeback story."
+          },
+          {
+            q: "How can context distort judgment?",
+            options: [
+            "Reviewers stop discussing albums entirely.",
+            "All autobiographical songs are automatically weak.",
+            "Listeners become unable to hear lyrics.",
+            "A song may be valued because it fits the narrative rather than because it is strongest musically."
+          ],
+            answer: 3,
+            why: "The passage says weaker tracks may receive extra affection if they fit the story."
+          },
+          {
+            q: "The author's view of comeback narratives is",
+            options: [
+            "purely technical.",
+            "mixed: powerful but potentially distorting.",
+            "entirely negative.",
+            "unrelated to criticism."
+          ],
+            answer: 1,
+            why: "The author notes both power and distortion."
+          },
+          {
+            q: "What does the final sentence mean?",
+            options: [
+            "Pop culture permanently separates art from biography.",
+            "Context disappears before albums are reviewed.",
+            "Audience interpretation usually connects artwork with surrounding context.",
+            "Comeback albums contain no production choices."
+          ],
+            answer: 2,
+            why: "The sentence says art and context are rarely separated for long."
+          }
         ]
       },
       {
         title: "Coral Under Stress",
         text: "Coral reefs can look like colorful rocks, but they are living partnerships between coral animals and microscopic algae. When water temperatures rise for too long, the relationship can break down and corals expel the algae that help feed them. This process, called bleaching, does not mean the coral is immediately dead, but it does mean the animal is under severe stress. Recovery is possible if conditions improve quickly. Repeated heat events, however, shorten recovery time and make reefs more vulnerable to disease. Protecting reefs therefore requires both local action, such as reducing pollution, and broader efforts to limit warming.",
         questions: [
-          { q: "What are corals described as?", options: ["Living partnerships between animals and algae.", "Colorful rocks with no living tissue.", "Only microscopic algae.", "Pollution filters built by humans."], answer: 0, why: "The opening explains corals as partnerships between coral animals and algae." },
-          { q: "What happens during bleaching?", options: ["Corals expel helpful algae under heat stress.", "Corals become stronger because of warmer water.", "Algae permanently protect corals from disease.", "The reef immediately turns into rock."], answer: 0, why: "Bleaching is defined as expelling algae when temperatures stay high." },
-          { q: "Why are repeated heat events dangerous?", options: ["They reduce recovery time and increase vulnerability.", "They make local pollution impossible.", "They guarantee instant recovery.", "They eliminate all disease from reefs."], answer: 0, why: "The passage says repeated events shorten recovery time and increase disease vulnerability." },
-          { q: "What protection strategy does the passage support?", options: ["Combining local pollution reduction with broader warming limits.", "Only painting reefs brighter colors.", "Avoiding all local action.", "Increasing water temperatures quickly."], answer: 0, why: "The final sentence calls for both local and broader climate action." }
+          {
+            q: "What are corals described as?",
+            options: [
+            "Only microscopic algae.",
+            "Living partnerships between animals and algae.",
+            "Pollution filters built by humans.",
+            "Colorful rocks with no living tissue."
+          ],
+            answer: 1,
+            why: "The opening explains corals as partnerships between coral animals and algae."
+          },
+          {
+            q: "What happens during bleaching?",
+            options: [
+            "Corals expel helpful algae under heat stress.",
+            "The reef immediately turns into rock.",
+            "Corals become stronger because of warmer water.",
+            "Algae permanently protect corals from disease."
+          ],
+            answer: 0,
+            why: "Bleaching is defined as expelling algae when temperatures stay high."
+          },
+          {
+            q: "Why are repeated heat events dangerous?",
+            options: [
+            "They make local pollution impossible.",
+            "They guarantee instant recovery.",
+            "They reduce recovery time and increase vulnerability.",
+            "They eliminate all disease from reefs."
+          ],
+            answer: 2,
+            why: "The passage says repeated events shorten recovery time and increase disease vulnerability."
+          },
+          {
+            q: "What protection strategy does the passage support?",
+            options: [
+            "Avoiding all local action.",
+            "Increasing water temperatures quickly.",
+            "Only painting reefs brighter colors.",
+            "Combining local pollution reduction with broader warming limits."
+          ],
+            answer: 3,
+            why: "The final sentence calls for both local and broader climate action."
+          }
         ]
       },
       {
         title: "The Business of Nostalgia",
         text: "Studios often revive old franchises because nostalgia lowers uncertainty. An audience already recognizes the characters, music, or visual style, so marketing does not need to build awareness from zero. Yet nostalgia is not a complete strategy. If a revival merely repeats familiar images, it may attract opening-week attention but fail to create lasting interest. Successful revivals usually preserve an emotional signature while changing the conflict for a new generation. The commercial challenge is delicate: too much change can feel like betrayal, while too little change can feel like a museum exhibit with expensive lighting.",
         questions: [
-          { q: "Why do studios revive old franchises?", options: ["Existing recognition lowers marketing uncertainty.", "Original stories are legally impossible.", "Nostalgia guarantees lasting interest.", "Audiences dislike familiar characters."], answer: 0, why: "The passage says recognition means awareness does not start from zero." },
-          { q: "What problem occurs if a revival only repeats familiar images?", options: ["It may get initial attention but not lasting interest.", "It becomes too different for fans.", "It eliminates all marketing value.", "It creates a new generation automatically."], answer: 0, why: "The passage distinguishes opening-week attention from lasting interest." },
-          { q: "What do successful revivals usually do?", options: ["Keep an emotional signature while updating conflict.", "Change everything so recognition disappears.", "Avoid old music and characters completely.", "Repeat the original without adjustment."], answer: 0, why: "The passage says successful revivals preserve emotion while changing conflict." },
-          { q: "The museum comparison criticizes revivals that", options: ["preserve too much without creating new life.", "change too much for old fans.", "lack any familiar images.", "refuse to use lighting."], answer: 0, why: "A museum exhibit suggests static preservation rather than renewed storytelling." }
+          {
+            q: "Why do studios revive old franchises?",
+            options: [
+            "Audiences dislike familiar characters.",
+            "Original stories are legally impossible.",
+            "Existing recognition lowers marketing uncertainty.",
+            "Nostalgia guarantees lasting interest."
+          ],
+            answer: 2,
+            why: "The passage says recognition means awareness does not start from zero."
+          },
+          {
+            q: "What problem occurs if a revival only repeats familiar images?",
+            options: [
+            "It becomes too different for fans.",
+            "It eliminates all marketing value.",
+            "It creates a new generation automatically.",
+            "It may get initial attention but not lasting interest."
+          ],
+            answer: 3,
+            why: "The passage distinguishes opening-week attention from lasting interest."
+          },
+          {
+            q: "What do successful revivals usually do?",
+            options: [
+            "Keep an emotional signature while updating conflict.",
+            "Avoid old music and characters completely.",
+            "Repeat the original without adjustment.",
+            "Change everything so recognition disappears."
+          ],
+            answer: 0,
+            why: "The passage says successful revivals preserve emotion while changing conflict."
+          },
+          {
+            q: "The museum comparison criticizes revivals that",
+            options: [
+            "refuse to use lighting.",
+            "preserve too much without creating new life.",
+            "change too much for old fans.",
+            "lack any familiar images."
+          ],
+            answer: 1,
+            why: "A museum exhibit suggests static preservation rather than renewed storytelling."
+          }
         ]
       }
     ]
@@ -380,36 +1221,154 @@ var READING_TESTS = [
         title: "The Manager Who Removed Meetings",
         text: "A new manager inherited a team whose calendars were full but whose projects moved slowly. Instead of demanding longer hours, she audited meetings for decisions. Any meeting that produced no decision, useful debate, or shared understanding was canceled or replaced with a written update. At first, employees worried that fewer meetings would mean less alignment. The opposite happened. Because remaining meetings had clearer purposes, people prepared better and left with fewer vague responsibilities. The manager's insight was simple: collaboration is not measured by the number of rooms people enter, but by the quality of coordination those rooms produce.",
         questions: [
-          { q: "What did the manager audit meetings for?", options: ["Whether they produced decisions, debate, or shared understanding.", "Whether they lasted longer than two hours.", "Whether every employee attended each one.", "Whether they avoided written updates."], answer: 0, why: "The passage lists decisions, useful debate, and shared understanding as criteria." },
-          { q: "What was the result of fewer meetings?", options: ["Remaining meetings became clearer and more useful.", "Employees became less aligned.", "Projects stopped completely.", "People received more vague responsibilities."], answer: 0, why: "The passage says clearer purposes improved preparation and responsibility." },
-          { q: "What assumption does the passage challenge?", options: ["More meetings automatically mean better collaboration.", "Written updates can replace some meetings.", "Meetings should have purposes.", "Coordination matters in teamwork."], answer: 0, why: "The final sentence rejects measuring collaboration by number of meetings." },
-          { q: "Which meeting would the manager most likely keep?", options: ["One that resolves a decision requiring live debate.", "One that repeats information already written clearly.", "One with no agenda or outcome.", "One held only because it occurs weekly."], answer: 0, why: "A useful debate or decision fits her criteria for keeping a meeting." }
+          {
+            q: "What did the manager audit meetings for?",
+            options: [
+            "Whether they lasted longer than two hours.",
+            "Whether every employee attended each one.",
+            "Whether they avoided written updates.",
+            "Whether they produced decisions, debate, or shared understanding."
+          ],
+            answer: 3,
+            why: "The passage lists decisions, useful debate, and shared understanding as criteria."
+          },
+          {
+            q: "What was the result of fewer meetings?",
+            options: [
+            "Projects stopped completely.",
+            "People received more vague responsibilities.",
+            "Remaining meetings became clearer and more useful.",
+            "Employees became less aligned."
+          ],
+            answer: 2,
+            why: "The passage says clearer purposes improved preparation and responsibility."
+          },
+          {
+            q: "What assumption does the passage challenge?",
+            options: [
+            "Coordination matters in teamwork.",
+            "More meetings automatically mean better collaboration.",
+            "Written updates can replace some meetings.",
+            "Meetings should have purposes."
+          ],
+            answer: 1,
+            why: "The final sentence rejects measuring collaboration by number of meetings."
+          },
+          {
+            q: "Which meeting would the manager most likely keep?",
+            options: [
+            "One that resolves a decision requiring live debate.",
+            "One that repeats information already written clearly.",
+            "One with no agenda or outcome.",
+            "One held only because it occurs weekly."
+          ],
+            answer: 0,
+            why: "A useful debate or decision fits her criteria for keeping a meeting."
+          }
         ]
       },
       {
         title: "Telescopes and Patience",
         text: "Astronomical discovery often rewards patience more than spectacle. A telescope may collect faint signals for months before a pattern becomes visible. The public usually sees the final image: a bright galaxy, a possible exoplanet, or a map of ancient radiation. Behind that image are calibration checks, rejected noise, and cautious arguments about whether the signal means what researchers hope it means. This patience matters because astronomy studies objects that cannot be touched or repeated in a laboratory. The discipline must build confidence from distance, using many indirect clues until the most reasonable explanation survives competing possibilities.",
         questions: [
-          { q: "Why does astronomy require special patience?", options: ["It builds evidence from distant, indirect clues.", "Astronomers can touch every object they study.", "Signals are always bright immediately.", "Laboratory repetition is easy for galaxies."], answer: 0, why: "The passage stresses distance, indirect clues, and limited laboratory repetition." },
-          { q: "What does the public usually see?", options: ["The polished final image rather than the long validation process.", "Only rejected noise.", "Every calibration check in real time.", "The competing explanations before any image."], answer: 0, why: "The public sees the final image, while behind it are checks and arguments." },
-          { q: "Why are calibration checks important?", options: ["They help separate meaningful signal from noise.", "They make telescopes collect less data.", "They replace cautious argument.", "They prove every hoped-for explanation."], answer: 0, why: "Checks and rejected noise are part of validating whether a pattern is real." },
-          { q: "The final sentence suggests scientific confidence comes from", options: ["the explanation that best survives alternatives.", "the first exciting interpretation.", "public enthusiasm alone.", "the brightest color in an image."], answer: 0, why: "Confidence builds when the most reasonable explanation survives competing possibilities." }
+          {
+            q: "Why does astronomy require special patience?",
+            options: [
+            "It builds evidence from distant, indirect clues.",
+            "Signals are always bright immediately.",
+            "Laboratory repetition is easy for galaxies.",
+            "Astronomers can touch every object they study."
+          ],
+            answer: 0,
+            why: "The passage stresses distance, indirect clues, and limited laboratory repetition."
+          },
+          {
+            q: "What does the public usually see?",
+            options: [
+            "The competing explanations before any image.",
+            "The polished final image rather than the long validation process.",
+            "Only rejected noise.",
+            "Every calibration check in real time."
+          ],
+            answer: 1,
+            why: "The public sees the final image, while behind it are checks and arguments."
+          },
+          {
+            q: "Why are calibration checks important?",
+            options: [
+            "They make telescopes collect less data.",
+            "They replace cautious argument.",
+            "They prove every hoped-for explanation.",
+            "They help separate meaningful signal from noise."
+          ],
+            answer: 3,
+            why: "Checks and rejected noise are part of validating whether a pattern is real."
+          },
+          {
+            q: "The final sentence suggests scientific confidence comes from",
+            options: [
+            "public enthusiasm alone.",
+            "the brightest color in an image.",
+            "the explanation that best survives alternatives.",
+            "the first exciting interpretation."
+          ],
+            answer: 2,
+            why: "Confidence builds when the most reasonable explanation survives competing possibilities."
+          }
         ]
       },
       {
         title: "A Biography in Small Choices",
         text: "Biographies often highlight dramatic turning points, but a life can also be shaped by small repeated choices. A young teacher who stayed after class to help one student did not know that the habit would define her career. Years later, former students remembered not a single grand speech, but the consistency of being noticed. When she became a principal, she designed schedules that gave teachers time for individual conferences, arguing that institutions should protect the small moments they claim to value. Her story suggests that character is not only revealed in crises; it is accumulated in routines that quietly tell others what matters.",
         questions: [
-          { q: "What does the biography emphasize?", options: ["Small repeated choices can shape a life and career.", "Only dramatic crises reveal character.", "Grand speeches matter more than consistent attention.", "Institutions cannot protect personal values."], answer: 0, why: "The passage contrasts dramatic turning points with repeated choices and routines." },
-          { q: "What did former students remember?", options: ["The consistency of being noticed.", "A single famous speech.", "The principal's budget reports.", "A crisis that ended her career."], answer: 0, why: "The passage says they remembered consistent attention, not one grand speech." },
-          { q: "Why did she redesign schedules?", options: ["To protect time for individual student conferences.", "To remove all teacher-student contact.", "To make routines less important.", "To focus only on dramatic ceremonies."], answer: 0, why: "She created schedules that gave teachers time for individual conferences." },
-          { q: "What does the final sentence imply about character?", options: ["It is built and communicated through routine behavior.", "It appears only during emergencies.", "It depends mainly on public recognition.", "It is unrelated to institutional design."], answer: 0, why: "The final sentence says character is accumulated in routines that show what matters." }
+          {
+            q: "What does the biography emphasize?",
+            options: [
+            "Institutions cannot protect personal values.",
+            "Small repeated choices can shape a life and career.",
+            "Only dramatic crises reveal character.",
+            "Grand speeches matter more than consistent attention."
+          ],
+            answer: 1,
+            why: "The passage contrasts dramatic turning points with repeated choices and routines."
+          },
+          {
+            q: "What did former students remember?",
+            options: [
+            "A single famous speech.",
+            "The principal's budget reports.",
+            "A crisis that ended her career.",
+            "The consistency of being noticed."
+          ],
+            answer: 3,
+            why: "The passage says they remembered consistent attention, not one grand speech."
+          },
+          {
+            q: "Why did she redesign schedules?",
+            options: [
+            "To protect time for individual student conferences.",
+            "To make routines less important.",
+            "To focus only on dramatic ceremonies.",
+            "To remove all teacher-student contact."
+          ],
+            answer: 0,
+            why: "She created schedules that gave teachers time for individual conferences."
+          },
+          {
+            q: "What does the final sentence imply about character?",
+            options: [
+            "It is unrelated to institutional design.",
+            "It appears only during emergencies.",
+            "It is built and communicated through routine behavior.",
+            "It depends mainly on public recognition."
+          ],
+            answer: 2,
+            why: "The final sentence says character is accumulated in routines that show what matters."
+          }
         ]
       }
     ]
   }
-
-  // PASTE THE NEXT READING TEST OBJECT RIGHT ABOVE THIS LINE.
 ];
 
 var allowedTests = ["reading1","reading2"];
