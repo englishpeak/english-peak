@@ -35,6 +35,7 @@ html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color
 .sidebar.collapsed .nav-new-pill{display:none}
 .nav-item .icon{font-size:1.1rem;width:22px;height:22px;text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .nav-item .nav-label{transition:opacity .2s;opacity:1}
+.nav-item[data-tool="audio-studio"],.ex-card[data-tool="audio-studio"]{display:none!important}
 .sidebar.collapsed .nav-label{opacity:0;width:0;overflow:hidden}
 .sidebar-footer{padding:12px 8px;border-top:1px solid rgba(255,255,255,0.08);overflow:hidden}
 .user-pill{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.07)}
@@ -2279,6 +2280,24 @@ async function submitNewPassword() {
     history.replaceState({}, document.title, window.location.pathname);
   }
 })();
+
+// Ensure Audio Studio remains direct-URL only. This also removes any stale
+// sidebar/card entry that may be injected by an older cached dashboard shell.
+function hideAudioStudioEntrypoints() {
+  document.querySelectorAll('.nav-item, .ex-card').forEach(function(item) {
+    var text = (item.textContent || '').toLowerCase();
+    var click = (item.getAttribute('onclick') || '').toLowerCase();
+    var href = (item.getAttribute('href') || '').toLowerCase();
+    if (text.indexOf('audio studio') !== -1 || click.indexOf('audio-studio') !== -1 || href.indexOf('audio-studio') !== -1) {
+      item.setAttribute('data-tool', 'audio-studio');
+      item.remove();
+    }
+  });
+}
+
+hideAudioStudioEntrypoints();
+document.addEventListener('DOMContentLoaded', hideAudioStudioEntrypoints);
+setTimeout(hideAudioStudioEntrypoints, 500);
 
 // ═══ SIDEBAR ═══
 var _sidebarCollapsed = false;
