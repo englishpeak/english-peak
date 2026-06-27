@@ -963,7 +963,17 @@ function renderAudio() {
 function selectAnswer(qIndex, optIndex) {
   answers[audioIndex + "-" + qIndex] = optIndex;
   allowUnansweredAudioAdvance = false;
-  renderAudio();
+
+  var questionBlock = document.getElementById("questions").children[qIndex];
+  if (questionBlock) {
+    Array.prototype.forEach.call(questionBlock.querySelectorAll(".option"), function(option, index) {
+      option.classList.toggle("selected", index === optIndex);
+    });
+  }
+
+  var warning = document.getElementById("nav-warning");
+  warning.style.display = "none";
+  warning.textContent = "";
 }
 
 function toggleScript() {
