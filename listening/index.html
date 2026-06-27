@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +43,11 @@ button{font-family:inherit}
 .audio-title{font-family:"Cormorant Garamond",serif;color:var(--navy);font-size:1.55rem;font-weight:700;margin:0 0 12px}
 audio{width:100%;margin:6px 0 14px}
 .audio-missing{background:#fff7ed;color:#8a4b00;border:1px solid rgba(201,168,76,.28);border-radius:10px;padding:12px;font-size:.88rem;margin-bottom:14px}
-.script-box{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:16px;font-size:.94rem;color:#263044;white-space:pre-wrap}
+.script-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.script-note{font-size:.82rem;color:#777}
+.script-toggle{background:#fff;color:var(--navy);border:1.5px solid var(--border);border-radius:9px;padding:9px 14px;font-size:.84rem;font-weight:700;cursor:pointer}
+.script-toggle:hover{background:#f8fafc;border-color:rgba(13,59,111,.28)}
+.script-box{display:none;background:#f8fafc;border:1px solid var(--border);border-left:4px solid var(--navy);border-radius:12px;padding:16px;font-size:.94rem;color:#263044;white-space:pre-wrap;margin-top:12px}
 .progress-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;color:#777;font-size:.82rem}
 .bar{height:8px;background:rgba(13,59,111,.08);border-radius:999px;overflow:hidden;flex:1}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--sky),var(--navy));border-radius:999px}
 .question{padding:16px 0;border-top:1px solid var(--border)}
@@ -69,7 +74,7 @@ audio{width:100%;margin:6px 0 14px}
   <section id="menu-screen" class="screen active">
     <div class="hero">
       <div>
-        <h1>Listening Practice</h1>
+        <h1>🎧 Listening Practice</h1>
         <p>Hidden workspace for future listening tests. Each test supports four audios, two monologues, two conversations, three challenging questions per audio, scripts, feedback, and My Progress reporting.</p>
       </div>
       <span class="pill" id="access-summary">Hidden</span>
@@ -111,6 +116,10 @@ audio{width:100%;margin:6px 0 14px}
         <div class="audio-kicker" id="audio-kicker">Listening Test</div>
         <h2 class="audio-title" id="audio-title"></h2>
         <div id="audio-player-wrap"></div>
+        <div class="script-tools">
+          <button type="button" class="script-toggle" id="script-toggle" onclick="toggleScript()">Show script</button>
+          <span class="script-note">Use only if needed and as a last resort :)</span>
+        </div>
         <div class="script-box" id="script-box"></div>
       </article>
       <aside class="panel">
@@ -139,8 +148,179 @@ audio{width:100%;margin:6px 0 14px}
 
 <script>
 var LISTENING_TESTS = [
-  // PASTE LISTENING TEST 1 HERE.
-  // Then paste Test 2 directly below it, and keep adding each new test below the latest one.
+  {
+    id: "listening1",
+    title: "Listening Test 1",
+    theme: "Work routines, office culture, academic history, and supplier negotiations",
+    audios: [
+      {
+        type: "monologue",
+        title: "A Day in Financial Planning",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/nptpmerxvd14w5hkq72jw/Audio-1.mp3?rlkey=2fyvbaiyfennnb7xfd54f778o&st=5h5npnq1&raw=1",
+        script: "Hi, my name is Clara, and I work as a financial advisor for young professionals and small business owners. Most mornings, I start by reviewing market news, but I try not to let headlines control my whole day. My real work is listening to clients and helping them make practical decisions. Some people want to invest aggressively, while others are just trying to build an emergency fund. I usually spend my afternoons meeting clients, updating financial plans, and explaining risks in plain language. Outside work, I keep my own routine simple: coffee, a short walk, and no checking my investment apps after dinner.",
+        questions: [
+          {
+            q: "What does Clara suggest about market news?",
+            options: [
+              "It is useful, but it should not dominate her decisions.",
+              "It is the only source she uses when advising clients.",
+              "It is usually too simple for young professionals.",
+              "It is something she avoids reading in the morning."
+            ],
+            answer: 0,
+            why: "Clara says she reviews market news but tries not to let headlines control her whole day, so she treats it as useful but limited."
+          },
+          {
+            q: "What contrast does Clara make between different clients?",
+            options: [
+              "Some prefer business ownership, while others prefer office jobs.",
+              "Some want aggressive investments, while others need basic financial stability.",
+              "Some refuse emergency funds, while others already have too much savings.",
+              "Some understand risk clearly, while others avoid all financial planning."
+            ],
+            answer: 1,
+            why: "She contrasts clients who want to invest aggressively with clients who are trying to build an emergency fund."
+          },
+          {
+            q: "Why does Clara avoid checking investment apps after dinner?",
+            options: [
+              "She believes financial apps are always inaccurate.",
+              "She wants to keep personal boundaries around her routine.",
+              "Her clients ask her to stop reviewing their accounts.",
+              "Market news is unavailable in the evening."
+            ],
+            answer: 1,
+            why: "Her evening rule is part of a simple personal routine, suggesting she protects her attention outside work."
+          }
+        ]
+      },
+      {
+        type: "conversation",
+        title: "The Office Coffee Situation",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/vcbzx0hufi7k1roz85zu9/Audio-2.mp3?rlkey=7gg2geqrqo7lkx8d1q2207h6h&st=hashbf57&raw=1",
+        script: "Maya: Did you notice the coffee machine is gone again?\n\nLeo: Yeah, maintenance took it this morning. Apparently it was leaking behind the counter.\n\nMaya: That explains the mysterious puddle near the printer.\n\nLeo: I thought someone had just spilled water and decided to emotionally move on.\n\nMaya: Very professional. So what are we supposed to drink during the budget meeting?\n\nLeo: There's instant coffee in the kitchen.\n\nMaya: That feels less like coffee and more like a warning.\n\nLeo: I'm going downstairs before the meeting. Want anything?\n\nMaya: Yes, please. Something strong enough to make spreadsheets look interesting.",
+        questions: [
+          {
+            q: "Why was the coffee machine removed?",
+            options: [
+              "It was being replaced with a newer machine.",
+              "It had been leaking behind the counter.",
+              "The budget meeting needed more space.",
+              "Someone spilled coffee on the printer."
+            ],
+            answer: 1,
+            why: "Leo says maintenance took the machine because it was leaking behind the counter."
+          },
+          {
+            q: "What does Maya imply about instant coffee?",
+            options: [
+              "She thinks it is not very appealing.",
+              "She prefers it to coffee from downstairs.",
+              "She believes it caused the leak.",
+              "She wants it served during every meeting."
+            ],
+            answer: 0,
+            why: "Her joke that instant coffee feels like a warning shows she does not find it appealing."
+          },
+          {
+            q: "What will Leo most likely do next?",
+            options: [
+              "Cancel the budget meeting.",
+              "Repair the office coffee machine.",
+              "Go downstairs to buy drinks before the meeting.",
+              "Move the printer away from the puddle."
+            ],
+            answer: 2,
+            why: "Leo says he is going downstairs before the meeting and asks Maya if she wants anything."
+          }
+        ]
+      },
+      {
+        type: "monologue",
+        title: "The Library of Alexandria",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/lbdedu4lj0j1edy69krim/Audio-3.mp3?rlkey=unsmm75k5ilx8lbwqa9f753s4&st=zm62v6xc&raw=1",
+        script: "The Library of Alexandria, founded in ancient Egypt around the third century BCE, was more than a building filled with scrolls. It represented one of the earliest large-scale attempts to collect knowledge from across the known world. Scholars there studied mathematics, astronomy, medicine, literature, and geography. Although popular stories often describe the library being destroyed in one dramatic fire, historians now believe its decline was probably gradual. Political conflict, reduced funding, and several separate episodes of damage may all have contributed. What makes the library important is not only what was lost, but what it symbolized: the idea that knowledge from many cultures could be gathered, compared, and preserved.",
+        questions: [
+          {
+            q: "What main idea does the speaker emphasize about the Library of Alexandria?",
+            options: [
+              "It was important mainly because its building was unusually large.",
+              "It symbolized an ambitious effort to collect and preserve knowledge.",
+              "It focused exclusively on Egyptian religious texts.",
+              "It was famous because all its scrolls survived intact."
+            ],
+            answer: 1,
+            why: "The speaker says the library represented a large-scale attempt to collect knowledge and symbolized gathering and preserving ideas from many cultures."
+          },
+          {
+            q: "How does the speaker challenge the popular story about the library's destruction?",
+            options: [
+              "By saying it was probably never damaged at all.",
+              "By arguing that its decline was likely gradual rather than one dramatic event.",
+              "By claiming it was destroyed before it collected any scrolls.",
+              "By suggesting scholars burned it intentionally."
+            ],
+            answer: 1,
+            why: "The speaker contrasts the popular single-fire story with historians' view that the decline was probably gradual."
+          },
+          {
+            q: "Which factor is NOT mentioned as possibly contributing to the library's decline?",
+            options: [
+              "Political conflict",
+              "Reduced funding",
+              "Several separate episodes of damage",
+              "A shortage of trained translators"
+            ],
+            answer: 3,
+            why: "The speaker mentions political conflict, reduced funding, and separate damage episodes, but not a shortage of translators."
+          }
+        ]
+      },
+      {
+        type: "conversation",
+        title: "Delivery Terms",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/mfbueslfqjh0nuiu7azv2/Audio-4.mp3?rlkey=ex8ryhunc2l8dq8r8flwcmvno&st=hqt7s3fo&raw=1",
+        script: "Client: Thanks for joining the call. We like the product samples, but we need to discuss delivery timing.\n\nSupplier: Of course. Our standard timeline is four weeks after the purchase order is approved.\n\nClient: Four weeks may be difficult. Our launch campaign starts in three weeks.\n\nSupplier: We could prioritize your order, but there would be an express production fee.\n\nClient: How much are we talking about?\n\nSupplier: Around eight percent added to the total invoice.\n\nClient: That's higher than expected. If we agree to a larger order, could you reduce the fee?\n\nSupplier: Possibly. If you confirm the larger quantity today, I can offer five percent instead.\n\nClient: Send that in writing, and I'll review it with my team this afternoon.",
+        questions: [
+          {
+            q: "What is the client's main concern?",
+            options: [
+              "The quality of the product samples",
+              "The supplier's standard delivery timeline",
+              "The lack of a purchase order form",
+              "The supplier's refusal to discuss pricing"
+            ],
+            answer: 1,
+            why: "The client likes the samples but says four weeks may be difficult because the campaign starts in three weeks."
+          },
+          {
+            q: "What condition would allow the supplier to reduce the express fee?",
+            options: [
+              "The client must delay the launch campaign.",
+              "The client must confirm a larger order that day.",
+              "The supplier must change the product samples.",
+              "The client must pay the full invoice immediately."
+            ],
+            answer: 1,
+            why: "The supplier says a five percent express fee is possible if the client confirms the larger quantity today."
+          },
+          {
+            q: "What will the client probably do after the call?",
+            options: [
+              "Reject the samples and find another supplier.",
+              "Ask for the revised terms in writing and discuss them internally.",
+              "Approve the eight percent fee without further review.",
+              "Cancel the launch campaign for three weeks."
+            ],
+            answer: 1,
+            why: "The client asks the supplier to send the offer in writing and says they will review it with their team that afternoon."
+          }
+        ]
+      }
+    ]
+  },
+  // PASTE LISTENING TEST 2 DIRECTLY BELOW TEST 1.
+  // Keep adding each new test below the latest one.
   // Required shape:
   // {
   //   id: "listening1",
@@ -232,7 +412,10 @@ function renderAudio() {
   document.getElementById("audio-player-wrap").innerHTML = audio.audioUrl
     ? '<audio controls controlsList="nodownload"><source src="' + escapeAttr(audio.audioUrl) + '"></audio>'
     : '<div class="audio-missing">Audio link pending. Paste the Google Drive or direct audio URL into <strong>audioUrl</strong> when it is ready.</div>';
-  document.getElementById("script-box").textContent = audio.script || "Script pending. Paste the finalized script here before publishing this test.";
+  var scriptBox = document.getElementById("script-box");
+  scriptBox.textContent = audio.script || "Script pending. Paste the finalized script here before publishing this test.";
+  scriptBox.style.display = "none";
+  document.getElementById("script-toggle").textContent = "Show script";
   var questions = document.getElementById("questions");
   questions.innerHTML = "";
   audio.questions.forEach(function(q, qIndex) {
@@ -253,6 +436,14 @@ function renderAudio() {
 function selectAnswer(qIndex, optIndex) {
   answers[audioIndex + "-" + qIndex] = optIndex;
   renderAudio();
+}
+
+function toggleScript() {
+  var scriptBox = document.getElementById("script-box");
+  var toggle = document.getElementById("script-toggle");
+  var isHidden = scriptBox.style.display === "none" || !scriptBox.style.display;
+  scriptBox.style.display = isHidden ? "block" : "none";
+  toggle.textContent = isHidden ? "Hide script" : "Show script";
 }
 
 function prevAudio() {

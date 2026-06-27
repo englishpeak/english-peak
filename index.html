@@ -314,12 +314,12 @@ body.sidebar-collapsed .main{margin-left:64px}
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh reading tests</p></div>
     <div class="cards-grid">
       <div class="ex-card" onclick="openReading()">
-        <div class="card-header"><div class="card-icon red">R</div><div class="card-access access-new" id="access-reading">New</div></div>
+        <div class="card-header"><div class="card-icon red">📖</div><div class="card-access access-new" id="access-reading">New</div></div>
         <div class="card-body"><div class="card-title">Reading Practice</div><div class="card-desc">Eight modular reading tests with business, science, pop culture and biography passages. Each test includes feedback for every answer and saves scores to My Progress.</div><div class="card-meta"><span class="meta-item">📖 8 tests</span><span class="meta-item">🧠 3 passages each</span><span class="meta-item" id="meta-reading">Loading access...</span></div><button class="card-btn btn-partial" id="btn-reading">Start Practice →</button></div>
       </div>
       <div class="ex-card" id="card-listening" style="display:none" onclick="openListening()">
-        <div class="card-header"><div class="card-icon red">L</div><div class="card-access access-new" id="access-listening">New</div></div>
-        <div class="card-body"><div class="card-title">Listening Practice</div><div class="card-desc">Modular listening tests with monologues, conversations, scripts, audio links and challenging multiple-choice questions.</div><div class="card-meta"><span class="meta-item">4 audios per test</span><span class="meta-item">12 questions</span><span class="meta-item" id="meta-listening">Hidden until content is added</span></div><button class="card-btn btn-partial" id="btn-listening">Start Practice →</button></div>
+        <div class="card-header"><div class="card-icon red">🎧</div><div class="card-access access-new" id="access-listening">New</div></div>
+        <div class="card-body"><div class="card-title">Listening Practice</div><div class="card-desc">Modular listening tests with monologues, conversations, scripts, audio links and challenging multiple-choice questions.</div><div class="card-meta"><span class="meta-item">🎧 4 audios per test</span><span class="meta-item">❓ 12 questions</span><span class="meta-item" id="meta-listening">Hidden until content is added</span></div><button class="card-btn btn-partial" id="btn-listening">Start Practice →</button></div>
       </div>
     </div>
 
@@ -347,11 +347,11 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="lock-overlay" id="lock-general"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access Tests 2 and 3. Upgrade to ePeak+ for all 7 tests.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('general');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openIrregularVerbs()">
-        <div class="card-header"><div class="card-icon green">IV</div><div class="card-access access-free">✓ Free</div></div>
+        <div class="card-header"><div class="card-icon green">📚</div><div class="card-access access-free">✓ Free</div></div>
         <div class="card-body"><div class="card-title">Irregular Verbs Practice</div><div class="card-desc">Complete the missing verb forms: base form, simple past, and past participle. Shuffled prompts with instant feedback.</div><div class="card-meta"><span class="meta-item">⚡ Quick practice</span><span class="meta-item">📚 100+ verbs</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
       <div class="ex-card" onclick="openUnscrambleQuestions()">
-        <div class="card-header"><div class="card-icon purple">?</div><div class="card-access access-free">Free Account</div></div>
+        <div class="card-header"><div class="card-icon purple">❓</div><div class="card-access access-free">Free Account</div></div>
         <div class="card-body"><div class="card-title">Unscramble the Questions</div><div class="card-desc">Put question words in the correct order. Filter by level from A1 to C1 and build stronger speaking patterns.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item">🔐 Free account</span></div><button class="card-btn btn-partial">Start Practice →</button></div>
       </div>
     </div>
@@ -508,13 +508,13 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   <!-- ═══ IRREGULAR VERBS (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-irregular-verbs">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Irregular Verbs Practice</div><div class="exercise-badge" style="background:rgba(220,38,38,0.1);color:#DC2626">New</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">📚 Irregular Verbs Practice</div><div class="exercise-badge" style="background:rgba(220,38,38,0.1);color:#DC2626">New</div></div>
     <iframe class="exercise-frame" id="frame-irregular-verbs" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ UNSCRAMBLE QUESTIONS (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-unscramble-questions">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Unscramble the Questions</div><div class="exercise-badge">Free Account</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">❓ Unscramble the Questions</div><div class="exercise-badge">Free Account</div></div>
     <iframe class="exercise-frame" id="frame-unscramble-questions" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -526,13 +526,13 @@ body.sidebar-collapsed .main{margin-left:64px}
 
   <!-- ═══ READING PRACTICE (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-reading">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Reading Practice</div><div class="exercise-badge" id="reading-badge">Loading...</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">📖 Reading Practice</div><div class="exercise-badge" id="reading-badge">Loading...</div></div>
     <iframe class="exercise-frame" id="frame-reading" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ LISTENING PRACTICE (hidden until content exists) ═══ -->
   <div class="exercise-screen" id="exercise-listening">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Listening Practice</div><div class="exercise-badge" id="listening-badge">Hidden</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">🎧 Listening Practice</div><div class="exercise-badge" id="listening-badge">Hidden</div></div>
     <iframe class="exercise-frame" id="frame-listening" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -1251,7 +1251,7 @@ var ITP_TOTAL = 22;   // Total de tests ITP que existen
 var IBT_TOTAL = 22;   // Total de tests iBT que existen
 var GEN_TOTAL = 8;   // ← Cambia este número al agregar nuevos General English tests
 var READING_TOTAL = 8; // Total de Reading tests that exist
-var LISTENING_TOTAL = 0; // Keep 0 while Listening is hidden; increase when tests are added
+var LISTENING_TOTAL = 1; // Keep 0 while Listening is hidden; increase when tests are added
 
 // Acceso por tier — se calcula automáticamente desde los totales de arriba
 function _buildTiers() {
@@ -1520,7 +1520,7 @@ function showNewPractice() {
 function openIrregularVerbs() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-irregular-verbs').classList.add('active');
-  document.getElementById('topbarTitle').textContent = 'Irregular Verbs Practice';
+  document.getElementById('topbarTitle').textContent = '📚 Irregular Verbs Practice';
   document.getElementById('topbarSub').textContent = 'Practice base, past, and participle forms';
   document.getElementById('frame-irregular-verbs').src = '/irregular-verbs';
   closeMobileSidebar();
@@ -1532,7 +1532,7 @@ function openUnscrambleQuestions() {
   }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-unscramble-questions').classList.add('active');
-  document.getElementById('topbarTitle').textContent = 'Unscramble the Questions';
+  document.getElementById('topbarTitle').textContent = '❓ Unscramble the Questions';
   document.getElementById('topbarSub').textContent = 'Free member practice for question word order';
   document.getElementById('frame-unscramble-questions').src = '/unscramble-questions';
   closeMobileSidebar();
@@ -1581,7 +1581,7 @@ function openReading() {
   var allowed = TIERS[currentTier].readingTests;
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-reading').classList.add('active');
-  document.getElementById('topbarTitle').textContent = 'Reading Practice';
+  document.getElementById('topbarTitle').textContent = '📖 Reading Practice';
   document.getElementById('topbarSub').textContent = 'Business, science, pop culture and biography passages';
   var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
   document.getElementById('reading-badge').textContent = isFullAccess ? '✓ All '+READING_TOTAL : '🔓 '+allowed.length+' of '+READING_TOTAL;
@@ -1595,7 +1595,7 @@ function openListening() {
   var allowed = TIERS[currentTier].listeningTests || [];
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-listening').classList.add('active');
-  document.getElementById('topbarTitle').textContent = 'Listening Practice';
+  document.getElementById('topbarTitle').textContent = '🎧 Listening Practice';
   document.getElementById('topbarSub').textContent = 'Monologues, conversations and challenging comprehension questions';
   var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
   document.getElementById('listening-badge').textContent = isFullAccess ? '✓ All '+LISTENING_TOTAL : '🔓 '+allowed.length+' of '+LISTENING_TOTAL;
