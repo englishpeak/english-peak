@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,7 @@ button{font-family:inherit}
 .panel{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px}
 .passage-kicker{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:#888;font-weight:700;margin-bottom:6px}
 .passage-title{font-family:"Cormorant Garamond",serif;color:var(--navy);font-size:1.55rem;font-weight:700;margin:0 0 12px}
-.passage-text{font-size:1rem;color:#263044;text-align:justify}
+.passage-text{font-size:1rem;color:#263044;text-align:justify;white-space:pre-line}
 .progress-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;color:#777;font-size:.82rem}
 .bar{height:8px;background:rgba(13,59,111,.08);border-radius:999px;overflow:hidden;flex:1}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--sky),var(--navy));border-radius:999px}
 .question{padding:16px 0;border-top:1px solid var(--border)}
@@ -115,156 +116,123 @@ button{font-family:inherit}
 var READING_TESTS = [
   {
     id: "reading1",
-    title: "Brands That Change Direction",
-    theme: "Business and technology",
+    title: "ePeak Reading Test 1",
+    theme: "Biography, Science, and Business",
     passages: [
       {
-        title: "The Pivot That Saved a Startup",
-        text: "When a small software company launched its first product, the founders expected customers to use it as a project-management tool. Instead, support emails kept mentioning one minor feature: a simple internal chat window. The team faced an uncomfortable choice. They could keep polishing the product they had imagined, or they could follow the behavior customers were already showing. After two months of interviews, they rebuilt the service around workplace communication. The change was not a sudden stroke of genius; it was a disciplined surrender to evidence. Revenue grew because the company stopped asking users to fit the original plan and started designing around the problem users had actually revealed.",
+        title: "Steve Jobs: Ninety Days from Collapse",
+        text: "In the summer of 1997, Apple was closer to disappearing than most people realize. The company that would later revolutionize smartphones and laptops had lost hundreds of millions of dollars, its products confused customers, and its future looked so uncertain that many experts believed bankruptcy was only a matter of time. Apple reportedly had enough cash to survive for about ninety days. Then Steve Jobs walked back into the company he had helped create—and immediately began making unpopular decisions.\n\nMany people remember Jobs as the man who introduced the iPhone or the iPad, but those famous product launches came years later. His first challenge was much less glamorous: deciding what not to build. At the time, Apple sold dozens of computers and experimental devices, many of which competed with one another. Engineers were working hard, but their efforts were scattered across too many projects.\n\nJobs shocked employees by canceling a large number of products. Entire teams suddenly found themselves without projects. Some workers were frustrated, believing years of effort had been wasted. However, Jobs argued that saying “no” was just as important as saying “yes.” Instead of trying to build everything, Apple would focus on creating a small number of exceptional products.\n\nThe strategy worked because it simplified nearly every part of the company. Customers could finally understand which computers suited their needs. Engineers concentrated their talent on fewer projects, allowing those products to improve more quickly. Marketing also became clearer because Apple no longer had to explain dozens of confusing models.\n\nPerhaps the most surprising moment came only a few weeks later when Microsoft—Apple’s biggest rival—announced a $150 million investment in the struggling company. Many Apple fans booed the announcement, but Jobs knew Apple needed stability more than pride. Accepting help from a competitor was controversial, yet it gave the company valuable time to rebuild.\n\nLooking back, it is easy to think Apple’s success was inevitable. In reality, the company’s future depended on a series of difficult decisions made during just a few months. Steve Jobs did not save Apple by inventing a revolutionary product overnight. He first saved it by eliminating distractions, making painful choices, and giving the company something it had almost lost: focus.",
         questions: [
           {
-            q: "What is the main point of the passage?",
+            q: "What is the main idea of the passage?",
             options: [
-            "Successful companies avoid changing their original product vision.",
-            "Internal chat tools are always more profitable than project-management tools.",
-            "Customer behavior can reveal a stronger business opportunity than the founders first imagined.",
-            "Support emails are unreliable sources of product information."
-          ],
+              "Steve Jobs saved Apple primarily by inventing revolutionary new products.",
+              "Apple’s recovery resulted mainly from Microsoft’s financial investment.",
+              "Steve Jobs helped save Apple by simplifying the company’s priorities and restoring its focus.",
+              "Apple’s success was inevitable because it had always been a profitable company."
+            ],
             answer: 2,
-            why: "The passage emphasizes that the company grew after listening to actual user behavior rather than defending its original idea."
+            why: "The passage emphasizes that Jobs’ greatest contribution in 1997 was not introducing new products but eliminating distractions and concentrating Apple’s resources on fewer, better products. Option (a) refers to products introduced years later, (b) mentions an important event but not the central idea, and (d) contradicts the passage, which states that Apple was close to bankruptcy."
           },
           {
-            q: "The phrase 'disciplined surrender to evidence' suggests that the founders",
+            q: "Why did Steve Jobs cancel so many Apple projects?",
             options: [
-            "changed direction only after carefully studying user signals.",
-            "copied a competitor's communication platform.",
-            "ignored their own interviews and followed instinct.",
-            "gave up because the product had no future."
-          ],
-            answer: 0,
-            why: "The wording combines humility with method: they surrendered to evidence, but did so through interviews and analysis."
-          },
-          {
-            q: "Why did revenue grow after the pivot?",
-            options: [
-            "The original project-management market disappeared.",
-            "The company raised prices immediately.",
-            "The team removed customer support from the workflow.",
-            "The new product matched the problem users cared about."
-          ],
-            answer: 3,
-            why: "Revenue improved because the redesigned product solved the need customers had already demonstrated."
-          },
-          {
-            q: "Which lesson best follows from the passage?",
-            options: [
-            "Founders should never build project-management tools.",
-            "A minor feature may expose a major market need.",
-            "Users usually know the full strategy a company should follow.",
-            "Interviews matter less than the first product plan."
-          ],
+              "He wanted engineers to spend less time developing new technology.",
+              "He believed concentrating on fewer products would improve quality and clarity.",
+              "Microsoft required Apple to reduce the number of products before investing.",
+              "Customers had complained that Apple did not manufacture enough computers."
+            ],
             answer: 1,
-            why: "The chat feature was minor at first, but it revealed the product's strongest direction."
+            why: "The passage explains that Jobs believed saying “no” was just as important as saying “yes.” By reducing the number of projects, Apple could focus its engineering talent and simplify its product line. Option (a) misrepresents his goal, while (c) and (d) are never mentioned."
+          },
+          {
+            q: "The word scattered in paragraph 2 is closest in meaning to:",
+            options: [
+              "concentrated",
+              "spread across many different activities",
+              "carefully organized",
+              "permanently canceled"
+            ],
+            answer: 1,
+            why: "Here, scattered means that Apple’s engineering efforts were spread over too many different projects instead of being focused on a few important ones. It does not mean organized, canceled, or concentrated."
           }
         ]
       },
       {
-        title: "A Battery With a Second Life",
-        text: "Electric-vehicle batteries are often judged by how long they can power a car, but that is only their first career. Once a battery can no longer deliver the intense bursts of energy required for driving, it may still store electricity reliably for buildings. Some energy companies now collect retired vehicle batteries and arrange them into stationary packs that absorb solar power during the day and release it after sunset. This approach does not eliminate the need for recycling, because batteries eventually degrade beyond practical use. However, it can delay disposal, reduce demand for newly mined materials, and make renewable energy easier to manage when sunlight and consumption do not occur at the same time.",
+        title: "Why Iceland Has Almost No Mosquitoes",
+        text: "Mosquitoes are among the most widespread insects on Earth. They thrive in tropical rainforests, deserts, cities, and even regions close to the Arctic Circle. Yet one country has managed to avoid becoming their home almost entirely. Surprisingly, that country is Iceland.\n\nConsidering Iceland’s climate, many people assume the explanation is simple: it is just too cold. However, scientists believe the answer is much more interesting than temperature alone. In fact, mosquitoes survive in places that experience colder winters than Iceland, including parts of Canada, Alaska, and northern Scandinavia.\n\nThe real difference appears to be Iceland’s unusual weather patterns. Mosquitoes depend on calm, shallow pools of water where they can lay their eggs. Their life cycle also requires predictable seasonal changes. Iceland’s climate, however, rarely follows a stable pattern. Winter temperatures often rise above freezing for short periods before dropping again. These repeated freeze-thaw cycles interrupt the development of mosquito larvae before they can mature into adults.\n\nThe island’s volcanic landscape also plays a role. Much of Iceland’s water flows quickly through rivers fed by glaciers or disappears into porous volcanic rock instead of remaining in the quiet ponds mosquitoes prefer. Without enough suitable breeding areas, large mosquito populations struggle to establish themselves.\n\nScientists are careful not to say Iceland will remain mosquito-free forever. As global temperatures continue to rise, ecosystems around the world are changing in unexpected ways. Species that once could not survive in certain regions are gradually expanding their range. Researchers regularly monitor Iceland’s wildlife to detect any new arrivals that might affect public health or local ecosystems.\n\nFor visitors, however, the absence of mosquitoes often comes as a pleasant surprise. Hikers can explore valleys, waterfalls, and lava fields without constantly swatting insects away. It is one of those rare natural mysteries that seems almost unbelievable until you experience it yourself. In a world where mosquitoes are nearly impossible to escape, Iceland remains an extraordinary exception.",
         questions: [
           {
-            q: "According to the passage, why can retired vehicle batteries still be useful?",
+            q: "According to the passage, why does Iceland have almost no mosquitoes?",
             options: [
-            "Retired batteries become more powerful after leaving vehicles.",
-            "Buildings require less demanding energy performance than cars.",
-            "Recycling companies refuse to process electric-vehicle batteries.",
-            "Solar panels cannot work without old car batteries."
-          ],
+              "Because the country experiences colder winters than anywhere else.",
+              "Because its unusual climate and geography interrupt the mosquito life cycle.",
+              "Because scientists regularly remove mosquito populations.",
+              "Because mosquitoes cannot survive near volcanoes."
+            ],
             answer: 1,
-            why: "The passage says old batteries may fail at intense driving demands but still store energy reliably for buildings."
+            why: "The passage explains that Iceland’s repeated freeze-thaw cycles and lack of suitable breeding areas prevent mosquitoes from establishing stable populations. Option (a) is incomplete because colder places do have mosquitoes. Options (c) and (d) are unsupported."
           },
           {
-            q: "What does the passage imply about recycling?",
+            q: "Which of the following contributes to Iceland’s lack of mosquitoes?",
             options: [
-            "Recycling makes batteries unsuitable for buildings.",
-            "Second-life use replaces recycling completely.",
-            "Recycling is only useful for solar panels.",
-            "Recycling remains necessary, but it can be postponed."
-          ],
-            answer: 3,
-            why: "It explicitly says second-life use does not eliminate recycling but can delay disposal."
+              "Calm lakes remain frozen throughout the year.",
+              "Most water quickly flows away or disappears into volcanic rock.",
+              "Strong winds prevent insects from flying.",
+              "Mosquitoes avoid glacier-fed rivers because the water is salty."
+            ],
+            answer: 1,
+            why: "The passage specifically states that much of Iceland’s water flows rapidly through rivers or disappears into porous volcanic rock, leaving few calm pools where mosquitoes can reproduce. The other choices introduce ideas not mentioned in the text."
           },
           {
-            q: "What problem with renewable energy does second-life storage address?",
+            q: "The author mentions climate change primarily to suggest that:",
             options: [
-            "Solar power is produced and needed at different times.",
-            "Wind turbines damage electric vehicles.",
-            "Buildings cannot connect to the electrical grid.",
-            "Mining materials prevents panels from producing electricity."
-          ],
-            answer: 0,
-            why: "The batteries store daytime solar energy and release it after sunset, when demand may continue."
-          },
-          {
-            q: "The author's tone toward second-life batteries is best described as",
-            options: [
-            "angry and suspicious.",
-            "uncritically celebratory.",
-            "cautiously supportive.",
-            "openly dismissive."
-          ],
-            answer: 2,
-            why: "The author presents benefits while noting limits, especially eventual degradation and recycling needs."
+              "Iceland will certainly become filled with mosquitoes.",
+              "scientists are uncertain whether Iceland will always remain mosquito-free.",
+              "volcanic activity is becoming less common.",
+              "mosquitoes are adapting only in tropical regions."
+            ],
+            answer: 1,
+            why: "The passage carefully states that researchers do not claim Iceland will remain mosquito-free forever because changing climates may allow new species to expand their range. The author does not predict that mosquitoes will definitely arrive."
           }
         ]
       },
       {
-        title: "Streaming and the Shape of Attention",
-        text: "A decade ago, television executives worried mainly about ratings at a scheduled hour. Streaming platforms changed the question. They can measure where viewers pause, abandon an episode, replay a scene, or continue into the next installment. This data has influenced how some shows are edited: early conflicts appear sooner, recaps become sharper, and episode endings are designed to reduce hesitation. Critics argue that such decisions may flatten storytelling by rewarding constant stimulation. Supporters respond that audience data does not write scripts; it simply reveals when attention weakens. The deeper issue is not whether data should exist, but how much creative authority it should be allowed to gain.",
+        title: "How LEGO Nearly Went Bankrupt",
+        text: "Today, LEGO is one of the world’s most successful toy companies, generating billions of dollars in revenue each year. Children and adults alike recognize its colorful plastic bricks almost instantly. Yet at the beginning of the 2000s, the company faced a crisis so severe that some analysts believed it might not survive.\n\nIronically, LEGO’s problems came from trying to do too much. Instead of focusing on its famous building bricks, the company expanded into clothing, video games, theme parks, television projects, action figures, and hundreds of highly specialized building sets. New products appeared so quickly that manufacturing became increasingly complicated and expensive.\n\nInside the company, thousands of unique pieces were being produced, many of which appeared in only a single set before disappearing forever. Designers had tremendous creative freedom, but factories struggled to keep up with the growing complexity. Costs increased faster than sales, and by 2003 LEGO was losing nearly one million dollars every day.\n\nThe turnaround began when new leadership asked a surprisingly simple question: What made LEGO successful in the first place? Instead of constantly chasing new ideas, the company returned its attention to the humble plastic brick that had made it famous decades earlier. Product lines became simpler, unnecessary pieces were eliminated, and designers focused on creating more value from fewer components.\n\nLEGO also strengthened partnerships with well-known franchises such as Star Wars and Harry Potter. These collaborations attracted new audiences without abandoning the company’s core identity. Rather than replacing traditional creativity, licensed themes encouraged builders to recreate beloved worlds while still using the same familiar system of bricks.\n\nToday, LEGO’s recovery is often studied in business schools as an example of strategic focus. The lesson is not that innovation is dangerous. Instead, it demonstrates that successful companies must understand the difference between meaningful innovation and unnecessary complexity. Sometimes the smartest way to move forward is not by adding something new, but by rediscovering what made people fall in love with a product in the first place.",
         questions: [
           {
-            q: "What is the central tension in the passage?",
+            q: "What lesson does LEGO’s recovery best illustrate?",
             options: [
-            "Whether streaming platforms can measure audience behavior accurately.",
-            "Whether scheduled television has better actors than streaming shows.",
-            "Whether recaps should be removed from all modern shows.",
-            "Whether viewer data should influence creative decisions and to what degree."
-          ],
-            answer: 3,
-            why: "The final sentence frames the main issue as the amount of creative authority data should have."
-          },
-          {
-            q: "Why might episode endings be designed differently on streaming platforms?",
-            options: [
-            "To discourage viewers from watching another episode.",
-            "To make viewers less hesitant to continue watching.",
-            "To satisfy television ratings agencies.",
-            "To avoid collecting audience data."
-          ],
-            answer: 1,
-            why: "The passage states endings are designed to reduce hesitation before the next installment."
-          },
-          {
-            q: "Which concern do critics raise?",
-            options: [
-            "Shows now have fewer conflicts than before.",
-            "Audience data prevents any editing changes.",
-            "Data may encourage storytelling that relies too much on constant stimulation.",
-            "Streaming platforms cannot detect when viewers pause."
-          ],
+              "Companies should avoid innovation whenever possible.",
+              "Expanding into many industries always increases profits.",
+              "Successful businesses must balance innovation with strategic focus.",
+              "Toy companies should rely entirely on licensed products."
+            ],
             answer: 2,
-            why: "Critics worry that rewarding constant stimulation may flatten storytelling."
+            why: "The passage concludes that innovation is valuable only when it supports a company’s core strengths. LEGO succeeded after simplifying its business rather than constantly expanding. The other options exaggerate or contradict the author’s message."
           },
           {
-            q: "Supporters of audience data would most likely agree that",
+            q: "What was one major problem LEGO faced before its recovery?",
             options: [
-            "data can identify weak attention points without creating the story itself.",
-            "all creative authority should belong to algorithms.",
-            "data replaces writers entirely.",
-            "scheduled ratings are more detailed than streaming metrics."
-          ],
+              "It produced too many specialized pieces, making manufacturing more complicated.",
+              "It refused to create products based on popular movies.",
+              "Customers no longer wanted building bricks.",
+              "The company completely stopped designing new products."
+            ],
             answer: 0,
-            why: "Supporters say data does not write scripts; it reveals when attention weakens."
+            why: "The passage explains that LEGO created thousands of unique pieces, increasing manufacturing complexity and costs. The remaining options are either false or unsupported by the text."
+          },
+          {
+            q: "Why does the author mention partnerships with Star Wars and Harry Potter?",
+            options: [
+              "To argue that licensed products are always more successful than original ideas.",
+              "To provide an example of how LEGO expanded while remaining true to its core identity.",
+              "To criticize LEGO for becoming too dependent on famous movies.",
+              "To explain why LEGO abandoned traditional building bricks."
+            ],
+            answer: 1,
+            why: "The partnerships demonstrate that LEGO could innovate and attract new customers without losing the building-brick system that made the company successful. The author uses these examples to support the broader idea of strategic focus rather than unlimited expansion."
           }
         ]
       }
@@ -272,156 +240,123 @@ var READING_TESTS = [
   },
   {
     id: "reading2",
-    title: "People Behind Big Leaps",
-    theme: "Biography and innovation",
+    title: "ePeak Reading Test 2",
+    theme: "Biography / Sports, History, and Technology",
     passages: [
       {
-        title: "Steve Jobs and the Discipline of Saying No",
-        text: "Steve Jobs is often remembered for dramatic product launches, but one of his quieter strengths was subtraction. After returning to Apple in 1997, he pushed the company to reduce a confusing range of products into a smaller matrix. The decision disappointed teams whose projects were canceled, yet it clarified Apple's identity and concentrated engineering talent. Jobs did not treat simplicity as decoration; he treated it as strategy. A simple product line made it easier for customers to understand what Apple sold and easier for employees to understand what mattered. The passage of time has made the launches famous, but the cancellations helped make the launches possible.",
+        title: "The Game Michael Jordan Refused to Miss",
+        text: "By the time Game 5 of the 1997 NBA Finals began, many people believed Michael Jordan would spend the evening watching from the bench. Just hours before tip-off, he was lying in a hotel room with a high fever, severe dehydration, and barely enough strength to stand. Team doctors were unsure whether he should play at all. Yet when the Chicago Bulls took the court against the Utah Jazz, Jordan walked onto the floor anyway.\n\nFor years, fans referred to the performance simply as “The Flu Game.” More recently, several people close to the team have suggested that food poisoning may have been the real cause. Whatever the illness actually was, everyone agreed on one point: Jordan was physically exhausted.\n\nThroughout the game, his body language revealed how much he was struggling. During time-outs he often sat motionless, conserving every bit of energy. He moved more slowly than usual, and teammates noticed that even walking back to the bench seemed unusually difficult. Yet whenever the Bulls needed a basket, Jordan continued demanding the ball.\n\nAs the fourth quarter unfolded, the game remained extremely close. With less than a minute remaining, Jordan received a pass beyond the three-point line. Despite his obvious fatigue, he calmly released the shot. The ball sailed through the net, giving Chicago the lead and eventually securing an 90–88 victory.\n\nJordan finished the night with 38 points, seven rebounds, five assists, and three steals. After the final buzzer, he leaned heavily on teammate Scottie Pippen simply to leave the court. The image of Pippen supporting Jordan as they walked toward the locker room has become one of the most famous photographs in basketball history.\n\nThe game has often been used to symbolize determination, but sports psychologists point out a more practical lesson. Elite athletes rarely perform because they feel perfect. Instead, they develop routines that allow them to focus despite discomfort, pressure, or unexpected setbacks. Jordan’s greatest achievement that evening may not have been scoring 38 points—it was continuing to make smart decisions while his body was telling him to stop.\n\nToday, nearly three decades later, “The Flu Game” remains one of the defining moments of Jordan’s career, not because it proved he was invincible, but because it showed how resilience often means performing well even when circumstances are far from ideal.",
         questions: [
           {
-            q: "What does the passage suggest about Jobs's use of simplicity?",
+            q: "What is the main message of the passage?",
             options: [
-            "It was mainly an aesthetic preference.",
-            "It functioned as a strategic business tool.",
-            "It was popular because it avoided difficult decisions.",
-            "It meant Apple stopped investing in engineering."
-          ],
-            answer: 1,
-            why: "The passage says he treated simplicity as strategy and used it to focus customers and employees."
-          },
-          {
-            q: "Why were some teams disappointed?",
-            options: [
-            "Customers stopped understanding Apple's products.",
-            "Jobs ended all public product launches.",
-            "They had to design a more confusing product range.",
-            "Their projects were canceled during the product-line reduction."
-          ],
-            answer: 3,
-            why: "The text says the decision disappointed teams whose projects were canceled."
-          },
-          {
-            q: "The final sentence implies that successful launches depended partly on",
-            options: [
-            "earlier decisions to remove distractions.",
-            "making the product line more complex.",
-            "keeping every project alive until release.",
-            "avoiding a clear company identity."
-          ],
-            answer: 0,
-            why: "The cancellations concentrated focus and resources, helping later launches succeed."
-          },
-          {
-            q: "Which title best captures the passage?",
-            options: [
-            "Why Apple Avoided Engineering Talent",
-            "The End of All Apple Product Launches",
-            "The Strategy of Focus at Apple",
-            "How Customers Designed Apple's Matrix"
-          ],
+              "Michael Jordan became famous because he never got sick during his career.",
+              "Athletic success depends mainly on physical strength rather than mental discipline.",
+              "Jordan’s performance demonstrates that resilience often means performing well despite difficult circumstances.",
+              "The 1997 NBA Finals were the most competitive championship series in basketball history."
+            ],
             answer: 2,
-            why: "The passage is about how focus and subtraction clarified Apple's strategy."
+            why: "The passage emphasizes that Jordan’s greatest achievement was not simply scoring 38 points, but maintaining good decision-making while physically exhausted. His performance illustrates resilience rather than perfection. The other options either exaggerate or focus on details that are not the central message."
+          },
+          {
+            q: "Why does the author mention that Jordan leaned on Scottie Pippen after the game?",
+            options: [
+              "To show that Jordan was unable to finish the game.",
+              "To emphasize how physically demanding his performance had been.",
+              "To suggest that Pippen was the true leader of the Bulls.",
+              "To explain why Chicago almost lost the game."
+            ],
+            answer: 1,
+            why: "Jordan’s need for physical support after the game reinforces how exhausted he was. It strengthens the reader’s appreciation of his performance. The passage never suggests that he failed to finish the game or that Pippen replaced him as the team’s leader."
+          },
+          {
+            q: "The word setbacks in the sixth paragraph is closest in meaning to:",
+            options: [
+              "opportunities",
+              "disappointments or difficulties",
+              "celebrations",
+              "victories"
+            ],
+            answer: 1,
+            why: "In this context, setbacks refers to obstacles or difficult situations that athletes must overcome. The passage argues that elite performers stay focused despite discomfort, pressure, and setbacks."
           }
         ]
       },
       {
-        title: "Michael Jordan and Productive Friction",
-        text: "Michael Jordan's career is frequently summarized through championships, but that shorthand can hide the daily intensity behind them. Teammates have described practices in which Jordan pushed standards so aggressively that comfort rarely survived. This pressure did not automatically create excellence; pressure without trust can become fear. What made the system productive was that Jordan held himself to the same level he demanded from others and performed under the stakes he created. His example shows a difficult leadership paradox: high expectations can sharpen a team when they are connected to shared goals, but the same expectations can damage a group when they become personal humiliation.",
+        title: "The Dancing Plague That Still Baffles Historians",
+        text: "Imagine walking through your city’s main square and seeing dozens of people dancing uncontrollably. They are not celebrating a festival or performing for an audience. They simply cannot stop. Hours turn into days, and some collapse from exhaustion while others continue moving as if trapped by an invisible force.\n\nAs strange as it sounds, this appears to have happened during the summer of 1518 in the city of Strasbourg, which today lies in eastern France. According to historical records, a woman began dancing alone in the street for reasons no one understood. Within a week, dozens of other people had joined her. Soon the number had grown into the hundreds.\n\nLocal authorities were completely confused. Instead of stopping the dancing, they believed the victims needed to dance until they recovered. Musicians were hired to provide music, and temporary stages were even built in an effort to help people “dance the illness away.” Unsurprisingly, the strategy failed.\n\nModern historians continue debating what actually happened. One popular theory once suggested that contaminated rye bread caused hallucinations similar to those produced by certain natural chemicals. However, many researchers now consider that explanation unlikely because the dancers behaved in surprisingly coordinated ways over an extended period.\n\nAnother possibility is something known as mass psychogenic illness. Under extreme stress, fear, or social pressure, groups of people can develop real physical symptoms without any infectious disease being present. Europe during the early sixteenth century faced famine, disease, religious conflict, and widespread uncertainty. Some historians believe these hardships created psychological conditions capable of triggering extraordinary collective behavior.\n\nAlthough the exact cause remains unknown, the Dancing Plague reminds us that history is filled with events that resist simple explanations. It also demonstrates that people centuries ago responded to mysteries much as we do today: by proposing theories, arguing over evidence, and trying to understand experiences that seemed impossible at the time.\n\nMore than five hundred years later, the dancers of Strasbourg continue moving through history—not in the streets, but in one of history’s most fascinating unsolved mysteries.",
         questions: [
           {
-            q: "What nuance does the passage add to Jordan's reputation?",
+            q: "What is the main purpose of the passage?",
             options: [
-            "He avoided intense practices to preserve comfort.",
-            "His teammates never experienced pressure.",
-            "His demanding style could be productive, but only under certain conditions.",
-            "Championships resulted only from natural talent."
-          ],
-            answer: 2,
-            why: "The passage distinguishes useful pressure tied to trust and goals from damaging humiliation."
-          },
-          {
-            q: "Why was Jordan's pressure described as productive?",
-            options: [
-            "He demanded standards that he also met himself.",
-            "He focused only on individual statistics.",
-            "He removed all shared goals from the team.",
-            "He made teammates fear public interviews."
-          ],
-            answer: 0,
-            why: "The text says he held himself to the same level and performed under the stakes he created."
-          },
-          {
-            q: "Which situation would the author likely criticize?",
-            options: [
-            "A leader with high standards and shared team goals.",
-            "A leader who demands excellence while accepting the same pressure.",
-            "A leader who connects practice intensity to performance.",
-            "A leader who uses expectations mainly to humiliate people."
-          ],
-            answer: 3,
-            why: "The passage warns that expectations damage a group when they become personal humiliation."
-          },
-          {
-            q: "The phrase 'productive friction' most nearly means",
-            options: [
-            "a refusal to practice with intensity.",
-            "pressure that can improve performance when properly grounded.",
-            "comfort that protects a team from goals.",
-            "conflict that weakens every relationship."
-          ],
+              "To prove that contaminated food caused the Dancing Plague.",
+              "To describe a historical mystery that still lacks a definitive explanation.",
+              "To criticize the medical practices of sixteenth-century Europe.",
+              "To explain how modern medicine would have solved the problem."
+            ],
             answer: 1,
-            why: "Friction means pressure or tension; productive means it sharpens the team under the right conditions."
+            why: "The author presents several possible explanations while emphasizing that historians have not reached a final conclusion. The passage explores the mystery rather than proving one theory correct."
+          },
+          {
+            q: "According to the passage, how did local authorities initially respond to the dancing?",
+            options: [
+              "They quarantined the dancers immediately.",
+              "They hired musicians and encouraged the dancers to continue.",
+              "They sent everyone home to rest.",
+              "They arrested people for disturbing the peace."
+            ],
+            answer: 1,
+            why: "The passage states that authorities believed the dancers needed to continue dancing until they recovered, so they hired musicians and built stages. The other actions are never mentioned."
+          },
+          {
+            q: "Why does the author discuss the theory of mass psychogenic illness?",
+            options: [
+              "To demonstrate that it has been scientifically proven.",
+              "To provide one possible explanation for the unusual historical event.",
+              "To compare modern diseases with medieval epidemics.",
+              "To argue that psychological illnesses are always contagious."
+            ],
+            answer: 1,
+            why: "The author presents mass psychogenic illness as one of several theories historians have proposed. It is offered as a possible explanation—not as a proven fact."
           }
         ]
       },
       {
-        title: "The Scientist Who Changed the Question",
-        text: "In many laboratories, progress begins when someone notices that the accepted question is too narrow. A young materials scientist studying plastics initially asked how to make a package stronger. After visiting a coastal cleanup site, she changed the question: how could packaging perform briefly and then disappear safely? That shift moved her from durability toward controlled breakdown. Her team began testing plant-based polymers that resisted moisture for several weeks but decomposed under industrial composting conditions. The work was slower than improving ordinary plastic, and early versions failed basic shipping tests. Still, the reframed question opened a path that strength alone could not have produced.",
+        title: "Why Spotify Often Knows What You Want to Hear",
+        text: "Many people have had the same surprising experience. They open Spotify intending to listen to one song, only to discover that the next few recommendations feel almost perfectly chosen. Sometimes the platform introduces an artist they have never heard before, yet the music somehow fits their taste remarkably well. It can feel almost as if the app is reading their mind.\n\nThe explanation is less mysterious than it appears. Recommendation systems rely on enormous amounts of data rather than intuition. Every day, Spotify analyzes billions of listening events from users around the world. It considers not only which songs people play, but also which tracks they skip, replay, save to playlists, or listen to repeatedly over time.\n\nOne important technique is known as collaborative filtering. Instead of focusing only on your personal listening history, the system looks for users with similar habits. If thousands of people who enjoy the same artists as you also begin listening to a new musician, the algorithm may recommend that artist before you ever search for them yourself.\n\nSpotify also studies the music itself. Modern computer models can identify characteristics such as tempo, energy, acoustic qualities, danceability, and even whether a song generally feels cheerful or melancholic. This allows recommendations to go beyond simple genre labels. Two songs may belong to completely different musical genres yet create a similar emotional experience for listeners.\n\nOf course, recommendation systems are not perfect. Sometimes they become trapped in what researchers call a “filter bubble,” repeatedly suggesting music that sounds increasingly similar while making it harder for listeners to discover something completely different. For this reason, Spotify occasionally introduces unexpected recommendations to keep musical exploration alive.\n\nThe goal is not merely to predict what you already know you like. The most successful recommendation systems attempt something much more difficult: introducing listeners to music they might love before they even realize it exists. When that happens, technology feels surprisingly human—not because it understands emotions, but because it has learned to recognize patterns hidden within millions of listening decisions.",
         questions: [
           {
-            q: "What changed after the scientist visited the cleanup site?",
+            q: "According to the passage, why are Spotify’s recommendations often accurate?",
             options: [
-            "She stopped testing materials under shipping conditions.",
-            "She abandoned packaging research entirely.",
-            "She decided ordinary plastic decomposed too quickly.",
-            "She shifted from asking about strength to asking about safe disappearance."
-          ],
-            answer: 3,
-            why: "The visit reframed her question from making packaging stronger to making it break down safely."
-          },
-          {
-            q: "Why were early versions unsuccessful?",
-            options: [
-            "They decomposed only in the ocean.",
-            "They were made from metal rather than plants.",
-            "They failed basic shipping tests.",
-            "They resisted moisture for many years."
-          ],
-            answer: 2,
-            why: "The passage directly states that early versions failed basic shipping tests."
-          },
-          {
-            q: "What broader idea does the passage illustrate?",
-            options: [
-            "Scientific progress can come from reframing the problem.",
-            "Industrial composting prevents all research delays.",
-            "Coastal cleanups make laboratory testing unnecessary.",
-            "Durability is always more important than environmental impact."
-          ],
-            answer: 0,
-            why: "The central idea is that changing the question opened a new research path."
-          },
-          {
-            q: "The author mentions slower progress to show that",
-            options: [
-            "ordinary plastic was already perfect.",
-            "a better question does not remove technical difficulty.",
-            "the new direction was easy but unpopular.",
-            "plant-based polymers cannot resist moisture."
-          ],
+              "Because employees manually choose songs for every user.",
+              "Because the system combines user behavior with information about the music itself.",
+              "Because musicians pay Spotify to promote their songs.",
+              "Because users complete detailed surveys before listening."
+            ],
             answer: 1,
-            why: "The passage balances promise with difficulty: the reframed question helped, but testing remained hard."
+            why: "The passage explains that Spotify analyzes listening habits while also studying characteristics of the songs themselves. Together, these methods produce personalized recommendations."
+          },
+          {
+            q: "Why does Spotify sometimes recommend unexpected songs?",
+            options: [
+              "To encourage listeners to discover music outside their usual preferences.",
+              "Because the recommendation system frequently makes random mistakes.",
+              "To advertise newly released albums.",
+              "Because users request more variety every day."
+            ],
+            answer: 0,
+            why: "The passage explains that recommendation systems can become trapped in a “filter bubble.” Suggesting unexpected songs helps listeners explore new music instead of hearing only similar artists."
+          },
+          {
+            q: "The phrase filter bubble is closest in meaning to:",
+            options: [
+              "a music playlist shared by friends",
+              "a system that limits exposure to new or different content",
+              "a collection of songs with similar audio quality",
+              "a software error that deletes recommendations"
+            ],
+            answer: 1,
+            why: "A filter bubble refers to a situation in which recommendation systems repeatedly show users similar content, making it more difficult to discover something different. It is not a technical malfunction or a playlist."
           }
         ]
       }
@@ -429,156 +364,123 @@ var READING_TESTS = [
   },
   {
     id: "reading3",
-    title: "Markets, Minds, and Media",
-    theme: "Business and pop culture",
+    title: "ePeak Reading Test 3",
+    theme: "Psychology, Science, and Business",
     passages: [
       {
-        title: "The Price of Convenience",
-        text: "Subscription services often present themselves as inexpensive because each monthly fee looks small in isolation. The business model depends on a different calculation: customers are less likely to cancel when the cost feels forgettable and the service is embedded in daily routines. This does not make subscriptions deceptive by nature; many provide real value. The risk is accumulation. A music app, cloud storage plan, language tool, streaming service, and delivery membership can quietly become a large fixed expense. The smartest consumers do not reject subscriptions automatically. They periodically ask whether the service still solves a current problem or merely survives because canceling requires attention.",
+        title: "Why Expensive Things Often Taste Better",
+        text: "Imagine sitting at a restaurant with two identical glasses of wine in front of you. One is labeled as costing $15 a bottle, while the other supposedly comes from a rare vineyard and costs $150. Most people would confidently describe the expensive wine as richer, smoother, and more complex. Now imagine discovering afterward that both glasses contained exactly the same wine.\n\nAs unbelievable as it sounds, experiments similar to this have been conducted many times. Researchers have repeatedly found that expectations influence how people experience products. When participants believe something is expensive, they often report enjoying it more—even when the product itself never changes.\n\nScientists have even observed this effect inside the brain. In one famous study, volunteers tasted identical wines while lying inside an MRI scanner. When they believed a wine was more expensive, areas of the brain associated with pleasure became more active. In other words, people were not pretending to enjoy the wine more. Their brains were genuinely responding differently because of what they expected.\n\nThis psychological phenomenon extends far beyond food and drinks. Consumers frequently assume that higher prices indicate better quality, greater craftsmanship, or superior performance. Luxury brands understand this relationship extremely well. Their products are often marketed not only for what they do but also for what they represent. Owning an expensive watch or handbag may communicate status, success, or exclusivity, making the experience feel more valuable than the physical object alone.\n\nOf course, expensive products are not always overpriced. Many truly require higher-quality materials, more skilled labor, or years of research and development. The important point is that price itself becomes part of the experience. Expectations shape perception long before we begin evaluating the product objectively.\n\nThis idea explains why blind taste tests sometimes produce surprising results. Wines costing only a fraction of premium bottles occasionally receive equally favorable ratings when participants do not know which is which. Similar experiments have shown unexpected outcomes with coffee, chocolate, bottled water, and even pain medication.\n\nUnderstanding this bias does not make anyone immune to it. Human beings naturally use mental shortcuts when making decisions. The next time something feels exceptionally good simply because it carries a premium price tag, it may be worth asking one simple question: am I judging the product—or my expectations?",
         questions: [
           {
-            q: "What is the main risk described in the passage?",
+            q: "What is the main idea of the passage?",
             options: [
-            "Every subscription is intentionally deceptive.",
-            "Customers cancel useful services too quickly.",
-            "Small fees can accumulate into a significant fixed expense.",
-            "Monthly fees are always larger than annual fees."
-          ],
-            answer: 2,
-            why: "The passage focuses on accumulation: individually small costs become large together."
-          },
-          {
-            q: "Why are customers less likely to cancel?",
-            options: [
-            "Subscriptions never provide value.",
-            "The costs feel small and the services become routine.",
-            "Companies require customers to buy five services.",
-            "The services are impossible to cancel legally."
-          ],
+              "Luxury products are always made with higher-quality materials.",
+              "People often enjoy products more because of their expectations rather than actual differences in quality.",
+              "Blind taste tests prove that expensive products are usually overrated.",
+              "Scientists have discovered that expensive wines permanently change brain activity."
+            ],
             answer: 1,
-            why: "The model benefits when fees feel forgettable and the service fits daily routines."
+            why: "The passage explains that expectations strongly influence perception. Research shows that people often enjoy identical products more when they believe they are expensive. Option (a) is too absolute, while (c) and (d) exaggerate or misrepresent the author’s point."
           },
           {
-            q: "The author's advice is best summarized as",
+            q: "Why does the author mention blind taste tests?",
             options: [
-            "keep subscriptions because cancellation is rude.",
-            "avoid all recurring payments.",
-            "cancel only the cheapest service first.",
-            "review whether each subscription still serves a present need."
-          ],
-            answer: 3,
-            why: "The final sentence recommends asking whether the service still solves a current problem."
+              "To prove that luxury products should no longer exist.",
+              "To demonstrate that price information can influence people’s judgments.",
+              "To criticize the marketing strategies of luxury brands.",
+              "To explain how scientists evaluate brain activity."
+            ],
+            answer: 1,
+            why: "Blind taste tests remove information about price, allowing researchers to observe whether expectations affect people’s opinions. The passage uses these experiments to show that perceived quality is often influenced by what people believe before they taste a product."
           },
           {
-            q: "The tone of the passage toward subscriptions is",
+            q: "The word craftsmanship in paragraph four is closest in meaning to:",
             options: [
-            "balanced.",
-            "furious.",
-            "promotional.",
-            "confused."
-          ],
+              "artistic or technical skill in making products",
+              "factory machinery",
+              "marketing strategy",
+              "customer satisfaction"
+            ],
             answer: 0,
-            why: "It recognizes real value but warns about unnoticed accumulation."
+            why: "In this context, craftsmanship refers to the quality and skill involved in producing an item. Consumers often associate expensive products with superior craftsmanship, even before evaluating them objectively."
           }
         ]
       },
       {
-        title: "Why Trends Feel Sudden",
-        text: "Online trends often appear to explode overnight, but the visible moment is usually late in the process. A dance, phrase, or editing style may circulate for weeks inside smaller communities before a large creator amplifies it. Once the trend reaches a broader audience, imitation accelerates because people are not only copying the original idea; they are copying proof that the idea has social momentum. By the time a brand notices the trend, joining it may already feel stale. This explains why effective cultural marketing depends less on chasing every viral moment and more on understanding the communities where those moments quietly begin.",
+        title: "Voyager 1: The Spacecraft That Refuses to Retire",
+        text: "Nearly fifty years ago, engineers at NASA launched a spacecraft designed to study the outer planets of our solar system. Few people imagined that it would become the most distant human-made object ever built—or that it would still be sending messages back to Earth decades later.\n\nVoyager 1 lifted off in September 1977, beginning a mission that originally focused on Jupiter and Saturn. The spacecraft transmitted breathtaking photographs of giant storms, volcanic moons, and planetary rings unlike anything scientists had previously seen. After completing those encounters, however, Voyager’s journey was far from over.\n\nInstead of shutting the mission down, NASA decided to let the spacecraft continue traveling into deep space. Today, Voyager 1 has moved more than 24 billion kilometers from Earth. Radio signals traveling at the speed of light require over twenty hours to reach it, meaning engineers must wait nearly two days to discover whether a command has succeeded.\n\nKeeping such an old spacecraft alive is an extraordinary engineering challenge. Voyager carries technology developed in the 1970s—long before smartphones, laptops, or even the internet existed. Its onboard computers possess less computing power than many modern calculators. Yet thanks to careful planning and remarkable reliability, the spacecraft continues operating in one of the harshest environments imaginable.\n\nIn 2012, Voyager 1 crossed a historic boundary by entering interstellar space, the region beyond the Sun’s protective bubble of charged particles. Although it has not left the solar system entirely, it has reached an environment no previous spacecraft had ever explored directly. Every measurement it sends provides scientists with valuable information about a region that had existed only in theoretical models.\n\nThe spacecraft cannot continue forever. Its power source slowly weakens each year, forcing engineers to shut down nonessential instruments one by one in order to conserve energy. Eventually, communication will end, and Voyager will continue drifting silently through the Milky Way for millions of years.\n\nLong after humanity has forgotten today’s smartphones, social media platforms, and streaming services, Voyager will still be traveling among the stars. It serves as a remarkable reminder that some of our greatest achievements are not the fastest or the newest—but the ones built carefully enough to outlast generations.",
         questions: [
           {
-            q: "Why do trends seem to appear suddenly?",
+            q: "What is the central idea of the passage?",
             options: [
-            "Large creators prevent anyone from seeing them.",
-            "Their earlier circulation is often hidden in smaller communities.",
-            "They do not exist before news organizations report them.",
-            "They are invented by brands on the day they become popular."
-          ],
-            answer: 1,
-            why: "The passage says the visible explosion is late; trends often circulate quietly first."
-          },
-          {
-            q: "What does imitation copy besides the original idea?",
-            options: [
-            "Evidence that the idea has momentum.",
-            "The exact schedule of a marketing campaign.",
-            "A brand's legal permission.",
-            "The private messages of small creators."
-          ],
+              "Voyager 1 continues to demonstrate the remarkable durability and scientific value of long-term space exploration.",
+              "NASA originally designed Voyager 1 to leave the solar system as quickly as possible.",
+              "Modern smartphones are more powerful than spacecraft.",
+              "Engineers expect Voyager 1 to return to Earth in the future."
+            ],
             answer: 0,
-            why: "People copy proof of social momentum, not just the content itself."
+            why: "The passage highlights Voyager 1’s extraordinary longevity and continued scientific importance decades after its launch. The other choices focus on minor details or contradict information presented in the passage."
           },
           {
-            q: "Why may brand participation feel stale?",
+            q: "According to the passage, why must engineers wait nearly two days after sending a command to Voyager 1?",
             options: [
-            "Brands always understand communities too early.",
-            "Trends cannot be used in marketing.",
-            "By the time brands notice, the trend may already be overexposed.",
-            "Large creators refuse to work with brands."
-          ],
-            answer: 2,
-            why: "The passage says late participation can feel stale after broad amplification."
+              "Because the spacecraft processes commands very slowly.",
+              "Because radio signals require more than twenty hours to reach the spacecraft.",
+              "Because NASA communicates with Voyager only once a week.",
+              "Because the spacecraft enters sleep mode every night."
+            ],
+            answer: 1,
+            why: "The passage explains that Voyager is now so far from Earth that radio signals traveling at the speed of light need over twenty hours to reach it. Engineers must then wait for the spacecraft’s response, making the process extremely slow."
           },
           {
-            q: "What strategy does the passage favor?",
+            q: "Why does the author compare Voyager’s computer to a modern calculator?",
             options: [
-            "Ignoring all small online communities.",
-            "Waiting until a trend disappears completely.",
-            "Chasing every viral moment immediately.",
-            "Studying communities where trends begin."
-          ],
-            answer: 3,
-            why: "The final sentence recommends understanding origin communities over chasing every viral moment."
+              "To criticize NASA’s outdated technology.",
+              "To emphasize how impressive the spacecraft’s continued operation is despite its age.",
+              "To explain why Voyager cannot collect scientific data anymore.",
+              "To argue that modern calculators should be used in space missions."
+            ],
+            answer: 1,
+            why: "The comparison helps readers appreciate how old Voyager’s technology is. Despite having far less computing power than modern devices, it continues operating successfully after nearly five decades."
           }
         ]
       },
       {
-        title: "Memory and the Spacing Effect",
-        text: "Students often reread notes the night before an exam because fluency feels like mastery. The page looks familiar, so the brain mistakes recognition for durable memory. Cognitive science suggests a less comfortable method: spacing practice across time and forcing retrieval before the answer is visible. When learners struggle to recall an idea on Monday, revisit it on Thursday, and test it again the following week, they create stronger retrieval paths. This process can feel slower than rereading because it exposes forgetting. Yet that exposure is precisely the point. A study routine that feels smooth may be hiding weakness, while a routine that feels effortful may be building access.",
+        title: "The $50 Million Mistake That Changed Entertainment",
+        text: "In the year 2000, Netflix was still a relatively small company that rented DVDs through the mail. Its founders believed the future of home entertainment looked promising, but the business was struggling financially. Instead of trying to defeat the industry’s biggest player, they proposed something unexpected: they offered to sell Netflix to Blockbuster for about $50 million.\n\nAccording to people who attended the meeting, Blockbuster executives were not impressed. At the time, the company dominated the video rental market with thousands of stores around the world. Customers visited on Friday evenings, browsed shelves filled with movies, and often paid late fees if they returned them after the due date. Compared with that enormous business, Netflix seemed insignificant.\n\nBlockbuster declined the offer.\n\nLooking back, the decision appears almost unbelievable, but it made sense based on the information available at the time. Physical stores generated enormous profits, and very few consumers had internet connections fast enough to stream movies. Investing heavily in a small mail-order DVD company looked risky and unnecessary.\n\nMeanwhile, Netflix continued experimenting. The company introduced a subscription model that eliminated late fees, allowing customers to keep DVDs as long as they wished. More importantly, its leaders constantly asked how improvements in internet technology might eventually change entertainment.\n\nAs broadband connections became faster, Netflix shifted from mailing DVDs to delivering movies online. That transition transformed not only the company but also the entire entertainment industry. Today, streaming has largely replaced traditional video rental stores, while Blockbuster has almost completely disappeared.\n\nBusiness professors frequently use this story to illustrate the danger of focusing too heavily on present success. Blockbuster believed it was competing in the video rental business, while Netflix gradually realized it was really competing in the much broader business of home entertainment. That small difference in perspective shaped two completely different futures.\n\nThe lesson extends far beyond movies. Successful companies must continually ask themselves whether they are protecting today’s business model or preparing for tomorrow’s. History suggests those are not always the same thing.",
         questions: [
           {
-            q: "What mistaken belief does the passage identify?",
+            q: "What lesson does the passage primarily illustrate?",
             options: [
-            "Forgetting proves learning is impossible.",
-            "Testing yourself always damages memory.",
-            "Spacing practice means studying only once.",
-            "Familiarity with notes can be confused with real mastery."
-          ],
-            answer: 3,
-            why: "The passage says fluency and recognition can be mistaken for durable memory."
-          },
-          {
-            q: "Why is effortful recall useful?",
-            options: [
-            "It prevents students from noticing mistakes.",
-            "It creates stronger retrieval paths.",
-            "It makes answers visible before practice.",
-            "It replaces all future review."
-          ],
+              "Companies should never reject acquisition offers.",
+              "Businesses must be willing to adapt to future technological changes rather than relying only on present success.",
+              "Streaming services immediately replaced DVD rentals after they were invented.",
+              "Physical stores are always less profitable than online businesses."
+            ],
             answer: 1,
-            why: "The passage says struggling to retrieve across time strengthens memory access."
+            why: "The passage argues that Blockbuster focused too heavily on its successful current business model, while Netflix anticipated future technological changes. The lesson applies broadly to business strategy, not just the entertainment industry."
           },
           {
-            q: "The author contrasts smooth and effortful routines to show that",
+            q: "Why did Blockbuster reject Netflix’s offer in 2000?",
             options: [
-            "ease can hide weakness, while difficulty can support learning.",
-            "rereading is always better than retrieval.",
-            "exams should test recognition only.",
-            "all difficult routines are a waste of time."
-          ],
+              "Because executives believed their existing business model would continue to succeed.",
+              "Because Netflix demanded too much money for the company.",
+              "Because streaming technology already dominated the market.",
+              "Because customers disliked renting DVDs through the mail."
+            ],
             answer: 0,
-            why: "The final sentence directly contrasts smooth weakness with effortful access-building."
+            why: "The passage explains that Blockbuster’s physical stores were highly profitable, and streaming technology was still limited. Based on the information available at the time, executives believed purchasing Netflix was unnecessary."
           },
           {
-            q: "Which study plan best matches the passage?",
+            q: "The word dominated in paragraph two is closest in meaning to:",
             options: [
-            "Only study topics that already feel familiar.",
-            "Reread all notes once the night before.",
-            "Review, self-test days later, and test again the following week.",
-            "Avoid looking at forgotten material."
-          ],
-            answer: 2,
-            why: "This plan uses spacing and retrieval, the two methods the passage supports."
+              "controlled or led",
+              "abandoned",
+              "expanded slowly",
+              "competed equally"
+            ],
+            answer: 0,
+            why: "In this context, dominated means that Blockbuster was the clear market leader in video rentals. It does not simply mean participating in the market—it means controlling a large share of it."
           }
         ]
       }
@@ -586,156 +488,123 @@ var READING_TESTS = [
   },
   {
     id: "reading4",
-    title: "Science in Public Life",
-    theme: "Science and society",
+    title: "ePeak Reading Test 4",
+    theme: "History, Science, and Business",
     passages: [
       {
-        title: "The Problem With Averages",
-        text: "A city report announced that commute times had improved by four minutes on average after a new bus route opened. The headline sounded like a clear success. A closer look showed a more complicated result. Riders near the new route saved fifteen minutes, while riders in two outer neighborhoods lost time because buses were reassigned from their lines. The average was accurate, but it concealed distribution. Public policy can fail when leaders treat the mean as the whole story. Averages are useful beginnings; they become misleading when they prevent questions about who benefited, who paid the cost, and whether the trade-off was intentional.",
+        title: "The Race to the South Pole",
+        text: "At the beginning of the twentieth century, one of the last great unexplored places on Earth was Antarctica. Maps showed an enormous white continent, but no human had ever reached its southernmost point. For explorers, arriving at the South Pole became one of the greatest prizes of the era. Two men, separated by thousands of kilometers, would eventually compete in a race that became one of history’s most dramatic survival stories.\n\nThe first was Roald Amundsen, a Norwegian explorer famous for his careful planning. The second was Robert Falcon Scott, a British naval officer whose expedition attracted enormous public attention back home. Although both men shared the same goal, they approached the challenge in very different ways.\n\nAmundsen spent years studying Arctic survival techniques. Instead of relying mainly on machinery or manpower, he used sled dogs, lightweight equipment, and clothing inspired by Indigenous peoples who had lived in extremely cold environments for centuries. Every kilogram of food, every supply depot, and every travel route was planned with remarkable precision.\n\nScott, by contrast, believed that modern technology and determination would overcome the harsh conditions. His expedition included motorized sledges, Siberian ponies, dogs, and teams of men pulling heavy sleds themselves. Unfortunately, the machinery quickly failed, the ponies struggled in deep snow, and much of the burden eventually fell on the explorers.\n\nOn December 14, 1911, Amundsen and his team became the first humans to stand at the South Pole. They planted the Norwegian flag, took measurements to confirm their position, and immediately began the journey home, arriving safely months later.\n\nScott reached the Pole just over a month afterward. Instead of celebrating, he found Amundsen’s tent already standing there, complete with a letter addressed to the King of Norway. The disappointment was devastating. Worse still, the most dangerous part of the expedition still lay ahead.\n\nDuring the return journey, Scott and his four companions battled extreme cold, exhaustion, hunger, and powerful blizzards. One by one, the men died only a few kilometers from a supply depot that might have saved them. When rescuers discovered Scott’s final diary months later, they found remarkably calm entries describing the team’s determination even in the face of certain death.\n\nToday, historians no longer view the expedition simply as a story of victory and defeat. Instead, it illustrates how preparation, adaptability, and respect for local knowledge can sometimes matter more than courage alone.",
         questions: [
           {
-            q: "What is the passage's main warning?",
+            q: "What is the central lesson of the passage?",
             options: [
-            "Averages can hide unequal effects across groups.",
-            "City reports should never include numbers.",
-            "New bus routes always make commutes worse.",
-            "Outer neighborhoods never use public transit."
-          ],
-            answer: 0,
-            why: "The passage says the average was accurate but concealed who gained and who lost."
-          },
-          {
-            q: "Why was the headline incomplete?",
-            options: [
-            "It was based on imaginary commute data.",
-            "It focused only on outer neighborhoods.",
-            "It ignored the distribution behind the average improvement.",
-            "It used minutes instead of hours."
-          ],
+              "Modern technology is always more reliable than traditional methods.",
+              "Courage alone is usually enough to overcome difficult challenges.",
+              "Careful preparation and adaptability can be just as important as determination.",
+              "Roald Amundsen succeeded mainly because he traveled a shorter distance."
+            ],
             answer: 2,
-            why: "The headline reported an average improvement but not the uneven outcomes."
+            why: "The passage contrasts Amundsen’s careful planning with Scott’s heavier reliance on machinery and determination. The author concludes that preparation, adaptability, and learning from Indigenous knowledge played a crucial role in Amundsen’s success. The other choices oversimplify or contradict the passage."
           },
           {
-            q: "What does 'the mean' refer to in the passage?",
+            q: "Why does the author compare the approaches of Amundsen and Scott?",
             options: [
-            "The opinion of outer-neighborhood riders.",
-            "The average commute change.",
-            "An intentionally cruel policy.",
-            "The busiest bus station."
-          ],
+              "To demonstrate that explorers should always avoid using technology.",
+              "To illustrate how different strategies can greatly influence the outcome of a difficult expedition.",
+              "To prove that Scott was a more courageous explorer than Amundsen.",
+              "To explain why Antarctica was eventually abandoned by explorers."
+            ],
             answer: 1,
-            why: "In this statistical context, the mean is the average."
+            why: "The comparison helps readers understand that both explorers were determined, but their planning and decision-making differed significantly. The passage does not criticize technology itself or claim that one explorer was braver than the other."
           },
           {
-            q: "Which question would best extend the author's analysis?",
+            q: "The word burden in paragraph four is closest in meaning to:",
             options: [
-            "What color were the new buses?",
-            "Did the report use a readable font?",
-            "Could the city stop measuring commutes?",
-            "Which neighborhoods gained or lost time after the route change?"
-          ],
-            answer: 3,
-            why: "The author wants questions about distribution: who benefited and who paid the cost."
+              "responsibility or heavy load",
+              "celebration",
+              "destination",
+              "opportunity"
+            ],
+            answer: 0,
+            why: "Here, burden refers to the heavy physical work of pulling sleds after the machinery and ponies failed. It means a demanding responsibility or load, not an opportunity or destination."
           }
         ]
       },
       {
-        title: "Citizen Science and Trust",
-        text: "When residents help collect air-quality data, the project gains more than extra sensors. Participation can change the relationship between scientists and the public. People who gather measurements on their own streets often understand results with a different urgency than people who only read a final report. However, citizen science requires careful design. If volunteers are not trained, the data may be inconsistent; if experts dismiss local knowledge, the project may lose trust. The strongest programs combine professional standards with community attention. They treat residents neither as passive audiences nor as replacements for scientists, but as partners in asking sharper questions.",
+        title: "The Day the Sun Disappeared",
+        text: "On August 21, 2017, millions of people across North America stopped what they were doing and looked toward the sky. Schools closed, highways filled with travelers, hotels sold out months in advance, and scientists prepared equipment that had taken years to organize. For just over two minutes in some locations, the middle of the day would suddenly resemble twilight.\n\nA total solar eclipse occurs when the Moon passes directly between Earth and the Sun, temporarily blocking almost all of the Sun’s visible light. Although eclipses happen somewhere on Earth every year or two, they are surprisingly rare from any specific location. For many observers, witnessing one requires traveling hundreds or even thousands of kilometers.\n\nAs the eclipse approached, people noticed changes that seemed almost surreal. Temperatures dropped several degrees within minutes. Birds stopped singing and returned to their nests, believing evening had arrived. Streetlights switched on automatically, while bright stars and planets became visible in the daytime sky.\n\nPerhaps the most spectacular moment came during totality, when the Moon completely covered the Sun. The sky turned dark enough to reveal the Sun’s corona—a glowing outer atmosphere normally hidden by the Sun’s overwhelming brightness. Delicate streams of light appeared to stretch millions of kilometers into space, creating one of nature’s most extraordinary sights.\n\nScientists treasure total solar eclipses because they briefly allow direct observation of features that are otherwise extremely difficult to study. Although modern satellites constantly monitor the Sun, eclipses continue providing valuable opportunities to test instruments and refine scientific models.\n\nThe emotional impact of an eclipse often surprises first-time observers. Many describe an overwhelming sense of silence as daylight suddenly disappears. Others report feeling unexpectedly connected to generations of people who witnessed the same event centuries before scientific explanations existed.\n\nPerhaps that emotional reaction explains why eclipses continue attracting enormous crowds despite lasting only a few minutes. In a world filled with digital entertainment, few natural events can persuade millions of people to stop, look upward, and share exactly the same moment of wonder.",
         questions: [
           {
-            q: "What benefit beyond extra sensors does citizen science provide?",
+            q: "According to the passage, why are total solar eclipses so significant?",
             options: [
-            "It guarantees perfect data without training.",
-            "It prevents residents from seeing results.",
-            "It can improve public engagement and trust.",
-            "It removes the need for expert standards."
-          ],
-            answer: 2,
-            why: "The passage stresses a changed relationship and stronger local understanding."
-          },
-          {
-            q: "What risk occurs if volunteers are not trained?",
-            options: [
-            "Reports will become shorter.",
-            "Scientists will have too many sensors.",
-            "Local knowledge will replace air quality.",
-            "Measurements may become inconsistent."
-          ],
-            answer: 3,
-            why: "The passage explicitly links lack of training to inconsistent data."
-          },
-          {
-            q: "How should strong programs treat residents?",
-            options: [
-            "As passive audiences only.",
-            "As partners in forming better questions.",
-            "As complete replacements for scientists.",
-            "As obstacles to professional standards."
-          ],
+              "They permanently change Earth’s climate.",
+              "They combine scientific value with an unforgettable human experience.",
+              "They happen only once every hundred years.",
+              "They allow people to observe distant galaxies."
+            ],
             answer: 1,
-            why: "The final sentence says residents should be partners in asking sharper questions."
+            why: "The passage explains that eclipses provide scientists with valuable research opportunities while also inspiring wonder among ordinary observers. The author emphasizes both their scientific and emotional importance."
           },
           {
-            q: "The passage argues for a balance between",
+            q: "Which of the following is mentioned as occurring during a total solar eclipse?",
             options: [
-            "professional standards and community attention.",
-            "air sensors and weather balloons.",
-            "public silence and expert secrecy.",
-            "short reports and long reports."
-          ],
-            answer: 0,
-            why: "The strongest programs combine professional standards with community attention."
+              "Ocean tides stop moving.",
+              "Birds begin behaving as if night has arrived.",
+              "The Moon becomes brighter than the Sun.",
+              "Temperatures increase dramatically."
+            ],
+            answer: 1,
+            why: "The passage states that birds stopped singing and returned to their nests because they believed evening had arrived. The other options are either incorrect or not mentioned."
+          },
+          {
+            q: "Why does the author describe people’s emotional reactions to an eclipse?",
+            options: [
+              "To suggest that scientific explanations reduce people’s enjoyment.",
+              "To show that eclipses remain powerful experiences even in the modern world.",
+              "To argue that eclipses should only be observed by scientists.",
+              "To explain why many people are afraid of astronomical events."
+            ],
+            answer: 1,
+            why: "The author points out that even though eclipses are scientifically understood, they continue to inspire awe and emotional responses. This reinforces the idea that knowledge and wonder can coexist."
           }
         ]
       },
       {
-        title: "When Pop Culture Teaches Science",
-        text: "A blockbuster film can make a scientific idea memorable, but memory is not the same as accuracy. After a popular space movie, teachers noticed more students asking about gravity, time, and survival beyond Earth. That curiosity was valuable, even when the film simplified physics for drama. The best classroom response was not to mock the inaccuracies, but to use them as entry points. Students compared the movie's choices with real constraints and asked why a director might bend reality. In that moment, pop culture became a bridge: not a textbook, but a shared reference that made difficult concepts discussable.",
+        title: "Why Costco Still Sells a $1.50 Hot Dog",
+        text: "Inflation has affected almost every product consumers buy. Prices for groceries, fuel, and restaurant meals have risen dramatically over the past few decades. Yet one famous item has barely changed at all. Since 1985, customers at Costco have been able to buy a hot dog and a refillable soft drink for just $1.50.\n\nThe price has become so legendary that many shoppers assume the company must lose enormous amounts of money on every sale. The reality is more complicated. Although the meal itself generates little profit, it serves a much larger purpose within Costco’s business strategy.\n\nEconomists refer to products like this as loss leaders. A company intentionally sells a small number of items at extremely low prices because doing so encourages customers to visit the store. Once shoppers are inside, they often purchase groceries, electronics, clothing, furniture, and dozens of other products with much healthier profit margins.\n\nCostco has gone even further to protect the famous price. Rather than depending on outside suppliers, the company eventually built its own factories to manufacture many of the hot dogs it sells. Controlling production allowed Costco to reduce costs while maintaining consistent quality, making it easier to preserve the meal’s iconic price despite rising expenses elsewhere.\n\nThe hot dog also represents something less tangible: trust. Customers see the unchanged price as evidence that Costco works hard to deliver value throughout the store. Even members who never order the meal know the story, and it reinforces the company’s reputation for putting long-term customer loyalty ahead of short-term profits.\n\nFormer Costco CEO Jim Sinegal reportedly defended the famous price with remarkable determination. According to company insiders, when someone suggested raising it, he responded with a blunt warning: “If you raise the price of the hot dog, I will kill you.” The comment was obviously not meant literally, but it perfectly captured how seriously leadership viewed one seemingly insignificant product.\n\nBusiness schools frequently discuss Costco’s hot dog because it demonstrates an important principle. Sometimes a company’s most valuable product is not the one that earns the highest profit. Instead, it is the one that communicates the strongest promise to customers—and keeps that promise year after year.",
         questions: [
           {
-            q: "What distinction does the passage make?",
+            q: "What is the main point of the passage?",
             options: [
-            "Scientific textbooks are less accurate than dramas.",
-            "A memorable film is not necessarily scientifically accurate.",
-            "Movies can never inspire scientific curiosity.",
-            "Teachers should avoid discussing popular films."
-          ],
+              "Costco loses money because it refuses to raise prices.",
+              "Low-priced products can strengthen customer loyalty and support a broader business strategy.",
+              "Hot dogs are Costco’s most profitable product.",
+              "Inflation has had little effect on the retail industry."
+            ],
             answer: 1,
-            why: "The first sentence states that memory and accuracy are different."
+            why: "The passage explains that the famous hot dog is an example of a loss leader. Although it generates little profit directly, it encourages store visits and reinforces customers’ trust in Costco’s value."
           },
           {
-            q: "What classroom strategy does the passage support?",
+            q: "Why did Costco eventually begin producing many of its own hot dogs?",
             options: [
-            "Mock students for enjoying the film.",
-            "Treat the film as a complete textbook.",
-            "Avoid comparing fiction and real constraints.",
-            "Use inaccuracies as starting points for analysis."
-          ],
-            answer: 3,
-            why: "The passage says the best response was to use inaccuracies as entry points."
+              "To introduce new recipes that competitors could not copy.",
+              "To reduce production costs and maintain the famous $1.50 price.",
+              "Because outside suppliers stopped selling hot dogs.",
+              "Because customers requested a different type of meat."
+            ],
+            answer: 1,
+            why: "The passage explains that producing its own hot dogs gave Costco greater control over costs and quality, making it easier to preserve the iconic price despite inflation."
           },
           {
-            q: "Why is pop culture described as a bridge?",
+            q: "The phrase loss leader is closest in meaning to:",
             options: [
-            "It forces directors to follow textbooks.",
-            "It prevents students from asking questions.",
-            "It provides a shared reference for discussing difficult concepts.",
-            "It replaces the need for scientific reasoning."
-          ],
-            answer: 2,
-            why: "The film gives students and teachers a common example to examine."
-          },
-          {
-            q: "The author's attitude toward science in films is",
-            options: [
-            "pragmatic and educational.",
-            "unrelated to teaching.",
-            "entirely hostile.",
-            "carelessly approving of every error."
-          ],
-            answer: 0,
-            why: "The author values curiosity while still examining inaccuracies."
+              "a discontinued product",
+              "an inexpensive product intended to attract customers",
+              "a product that has failed in the marketplace",
+              "a product that costs more than competitors’ versions"
+            ],
+            answer: 1,
+            why: "A loss leader is a product sold at little or no profit to encourage customers to visit a store and purchase additional items. It is a common retail strategy and a key concept discussed in the passage."
           }
         ]
       }
@@ -743,156 +612,123 @@ var READING_TESTS = [
   },
   {
     id: "reading5",
-    title: "Work, Risk, and Creativity",
-    theme: "Business and culture",
+    title: "ePeak Reading Test 5",
+    theme: "Technology, Psychology, and Science",
     passages: [
       {
-        title: "The Quiet Cost of Fast Decisions",
-        text: "Fast decisions are praised in business because delay can be expensive. Yet speed has its own hidden cost when teams confuse decisiveness with skipping disagreement. In one product meeting, everyone supported a launch date that privately worried them. No one wanted to appear negative, so the plan moved forward until a supplier problem forced a public delay. The issue was not that the team lacked intelligence; it lacked permission to surface risk early. Healthy disagreement is not the enemy of speed. It can protect speed by moving conflict into the planning stage, where problems are cheaper to solve.",
+        title: "How Google Maps Knows There’s Traffic Before You Do",
+        text: "Imagine driving down a highway where every car suddenly slows to a crawl. You haven’t reported anything, no police officer has closed the road, and there are no traffic cameras nearby. Yet only a few minutes later, thousands of people opening Google Maps can already see a thick red line warning them about the congestion.\n\nHow is that possible?\n\nContrary to popular belief, Google Maps does not rely primarily on cameras or satellites to detect traffic. Instead, it depends on something far more ordinary: millions of smartphones that people carry every day. Whenever users allow location services, their phones anonymously share small pieces of information about their speed and position. Individually, those data points reveal almost nothing. Together, however, they create an incredibly detailed picture of how traffic is moving.\n\nImagine hundreds of phones traveling along the same highway at 100 kilometers per hour. Suddenly, nearly all of them slow to 20. Google’s systems recognize the pattern almost instantly. Rather than assuming a single driver has stopped for coffee, the software compares hundreds—or even thousands—of anonymous devices moving together. If enough of them slow down at the same place, the system concludes that congestion has probably formed.\n\nThe same technology can identify road closures, construction zones, and even temporary delays caused by sporting events or concerts. Over time, Google’s algorithms also learn historical patterns. They know, for example, that traffic near an airport behaves differently on Monday morning than on Sunday night. By combining real-time information with years of historical data, the app can estimate not only current travel times but also how conditions are likely to change over the next several minutes.\n\nOf course, collecting location information raises important privacy questions. Google emphasizes that the data used for traffic analysis are aggregated and anonymized rather than tied to individual identities. Even so, discussions about digital privacy continue as technology becomes increasingly capable of understanding how people move through the world.\n\nThe next time Google Maps recommends a faster route before you even notice traffic ahead, it may feel almost magical. In reality, the app isn’t predicting the future. It’s simply recognizing patterns that become visible only when millions of small pieces of information come together.",
         questions: [
           {
-            q: "What problem does the passage identify?",
+            q: "What is the main purpose of the passage?",
             options: [
-            "All fast decisions are irresponsible.",
-            "Supplier problems are always impossible to predict.",
-            "Disagreement should happen only after launch.",
-            "Teams may mistake silence for agreement."
-          ],
-            answer: 3,
-            why: "The team appeared to agree, but members privately had concerns they did not voice."
-          },
-          {
-            q: "Why did the launch plan fail?",
-            options: [
-            "A supplier problem exposed a risk that had not been discussed early.",
-            "The product had no customers.",
-            "The launch date was chosen by customers.",
-            "The team had too much open disagreement."
-          ],
+              "To explain how Google Maps identifies traffic using large amounts of anonymous location data.",
+              "To encourage people to disable location services on their smartphones.",
+              "To compare Google Maps with traditional paper maps.",
+              "To describe how satellites monitor every road in real time."
+            ],
             answer: 0,
-            why: "The public delay followed a supplier problem that could have been surfaced as risk."
+            why: "The passage explains that Google Maps detects traffic by analyzing anonymous location information from millions of smartphones. Although privacy is briefly discussed, the main purpose is to explain how the technology works."
           },
           {
-            q: "How can disagreement protect speed?",
+            q: "Why does the passage describe hundreds of phones slowing down on the same highway?",
             options: [
-            "By removing suppliers from the process.",
-            "By delaying every project indefinitely.",
-            "By making problems visible while they are cheaper to solve.",
-            "By preventing planning meetings."
-          ],
-            answer: 2,
-            why: "The passage says early conflict in planning makes problems cheaper to solve."
-          },
-          {
-            q: "The passage's view of decisiveness is that it should include",
-            options: [
-            "avoidance of all negative comments.",
-            "permission to raise concerns.",
-            "total silence from team members.",
-            "launching before risk is understood."
-          ],
+              "To show that Google can identify individual drivers.",
+              "To illustrate how patterns allow Google to recognize traffic congestion.",
+              "To demonstrate that smartphones frequently lose their GPS signal.",
+              "To explain why highways are more crowded than city streets."
+            ],
             answer: 1,
-            why: "The author supports fast decisions that still allow risks to be surfaced."
+            why: "The example helps readers understand that one slow-moving phone means very little, but hundreds of phones slowing down together reveal a meaningful traffic pattern. The passage focuses on recognizing collective behavior rather than tracking individuals."
+          },
+          {
+            q: "The word aggregated in the sixth paragraph is closest in meaning to:",
+            options: [
+              "combined into larger groups",
+              "permanently stored",
+              "carefully deleted",
+              "individually identified"
+            ],
+            answer: 0,
+            why: "In this context, aggregated means that information from many users is combined before being analyzed. This helps protect individual privacy while still allowing traffic patterns to be detected."
           }
         ]
       },
       {
-        title: "Why Creators Build Rituals",
-        text: "Creative work is often romanticized as waiting for inspiration, but many artists rely on routines that look almost ordinary. A songwriter may begin every morning by drafting weak lines for twenty minutes. A designer may collect images before attempting original sketches. These rituals do not guarantee brilliance. Their value is that they reduce the number of decisions required to begin. Once the starting conditions are familiar, attention can move from whether to work toward what the work is becoming. Rituals are not cages for creativity; used well, they are ramps that help the mind enter uncertainty with less resistance.",
+        title: "Why Waiting in Line Feels Longer Than It Really Is",
+        text: "Have you ever noticed that waiting three minutes for an elevator can feel much longer than spending three minutes talking with a friend? The clock measures both experiences equally, yet our brains often disagree.\n\nPsychologists have spent decades studying why people perceive waiting so differently from actual time. Their conclusion is surprisingly simple: people rarely dislike waiting itself. Instead, they dislike uncertain waiting.\n\nImagine arriving at an airport security checkpoint. If an employee tells you the line will take exactly fifteen minutes, most travelers remain relatively calm. However, if no information is available, the same fifteen-minute wait often feels much longer. Uncertainty forces the brain to keep asking the same question: How much longer will this take? That constant monitoring makes time seem to slow down.\n\nBusinesses have quietly applied this principle for years. Many amusement parks design winding queues that allow visitors to see steady progress instead of standing motionless. Elevators frequently include mirrors—not simply for appearance, but because people looking at themselves become less aware of the passage of time. Restaurants may offer menus before customers are seated, giving them something meaningful to do while they wait.\n\nResearchers have also found that occupied time generally feels shorter than unoccupied time. Watching an interesting video while waiting at the doctor’s office often makes the delay seem surprisingly brief. In contrast, staring at a blank wall encourages people to focus entirely on the passing seconds.\n\nTechnology companies have adopted similar strategies. Progress bars, animated loading circles, and estimated arrival times all serve the same psychological purpose. Even when they cannot reduce the actual waiting time, they reduce uncertainty and reassure users that something is happening behind the scenes.\n\nInterestingly, these techniques do not change reality. A five-minute wait remains five minutes. What changes is our perception of that experience. Human beings judge time emotionally as much as mathematically.\n\nThe next time a line seems endless, consider what your brain is really reacting to. You may discover that the greatest source of frustration is not the number of minutes passing—but the feeling of not knowing when they will end.",
         questions: [
           {
-            q: "What is the main function of creative rituals in the passage?",
+            q: "According to the passage, why do some waits feel longer than others?",
             options: [
-            "They prevent artists from changing ideas.",
-            "They replace the need for attention.",
-            "They make it easier to begin creative work.",
-            "They guarantee a brilliant final product."
-          ],
-            answer: 2,
-            why: "The passage says rituals reduce decisions required to begin and help attention enter the work."
-          },
-          {
-            q: "Why mention weak songwriting lines?",
-            options: [
-            "To show designers and songwriters use identical tools.",
-            "To show that routines can include imperfect starting work.",
-            "To argue that songwriters should publish weak lines.",
-            "To prove inspiration is unnecessary forever."
-          ],
+              "Because people dislike waiting under all circumstances.",
+              "Because uncertainty strongly influences how people perceive time.",
+              "Because clocks often measure time inaccurately.",
+              "Because businesses intentionally create longer lines."
+            ],
             answer: 1,
-            why: "The example shows routine creates a starting point even before quality appears."
+            why: "The passage explains that uncertainty—not simply waiting itself—is what makes delays feel longer. Knowing how long a wait will last often makes the experience much less frustrating."
           },
           {
-            q: "The phrase 'ramps that help the mind enter uncertainty' means rituals",
+            q: "According to the passage, why are mirrors commonly placed near elevators?",
             options: [
-            "remove all uncertainty from art.",
-            "trap creativity in fixed rules.",
-            "make originality impossible.",
-            "ease the transition into difficult creative work."
-          ],
-            answer: 3,
-            why: "A ramp helps entry; here it helps creators begin uncertain work with less resistance."
+              "To make small spaces appear larger.",
+              "To help people become less aware of the passage of time.",
+              "To improve building security.",
+              "To allow maintenance workers to inspect elevators."
+            ],
+            answer: 1,
+            why: "The passage states that mirrors distract people from focusing on the wait, making time seem to pass more quickly. Their psychological effect is emphasized rather than their decorative purpose."
           },
           {
-            q: "Which view would the author most likely reject?",
+            q: "Why does the author mention progress bars and loading animations?",
             options: [
-            "Real creativity requires waiting passively for inspiration.",
-            "A ritual may involve collecting materials.",
-            "Starting conditions can affect attention.",
-            "Routines can support original work."
-          ],
-            answer: 0,
-            why: "The opening contrasts the inspiration myth with routine-based creative practice."
+              "To criticize modern software design.",
+              "To provide examples of how companies reduce the psychological discomfort of waiting.",
+              "To explain why computers sometimes operate slowly.",
+              "To argue that digital technology has increased people’s patience."
+            ],
+            answer: 1,
+            why: "Progress bars and loading animations reassure users that something is happening, reducing uncertainty even if the actual waiting time remains unchanged. They illustrate the passage’s central psychological principle."
           }
         ]
       },
       {
-        title: "Risk in the Age of Forecasts",
-        text: "Modern companies have access to dashboards that estimate demand, churn, delivery times, and customer sentiment. These tools can improve decisions, but they may also create a false sense of control. A forecast is not a promise about the future; it is a structured guess based on assumptions. When conditions change, the model may continue to look precise while becoming less relevant. Strong managers use forecasts as conversation partners rather than oracles. They ask what the model is missing, which assumptions are fragile, and what action would still make sense if the prediction turns out to be wrong.",
+        title: "The Trees That Secretly Talk to One Another",
+        text: "A walk through a forest can seem peaceful and silent. Trees stand motionless for decades, sometimes centuries, appearing to live completely independent lives. Yet beneath the ground, scientists have discovered a hidden network that is changing the way we think about forests.\n\nFor many years, researchers believed trees competed almost exclusively for sunlight, water, and nutrients. Competition certainly exists, but recent studies suggest cooperation plays a much larger role than previously imagined. Underground, the roots of many trees connect to vast networks of microscopic fungi known as mycorrhizae. These fungi form partnerships with plants, exchanging minerals and water for sugars produced during photosynthesis.\n\nThe result is sometimes described as the “wood wide web”—a nickname that compares these underground fungal networks to the internet. Although the comparison is imperfect, it captures an important idea: resources and chemical signals can move from one tree to another through shared fungal connections.\n\nScientists have observed situations in which older, healthier trees appear to transfer nutrients to younger seedlings growing in deep shade. Other experiments suggest that damaged trees may release chemical warning signals, allowing nearby plants to strengthen their defenses before insects arrive. Researchers continue debating exactly how extensive these exchanges are, but there is little doubt that forests are far more interconnected than once believed.\n\nThis discovery has influenced modern forestry and conservation. Rather than viewing a forest as a collection of individual trees, many ecologists now emphasize protecting the relationships that allow the ecosystem to function as a whole. Removing a few large trees, for example, may have consequences that extend far beyond the visible changes above ground.\n\nScientists are careful to avoid exaggerating these findings. Trees are not having conversations in the human sense, nor are they making conscious decisions. Instead, millions of years of evolution have produced biological systems that allow organisms to respond to changing conditions in remarkably sophisticated ways.\n\nThe next time you walk through a forest, remember that much of its activity is taking place where you cannot see it. Beneath every step lies an invisible world of fungi, roots, and chemical exchanges—a reminder that nature’s most fascinating stories are often hidden underground.",
         questions: [
           {
-            q: "What false belief can dashboards create?",
+            q: "What is the central idea of the passage?",
             options: [
-            "That precise-looking forecasts fully control the future.",
-            "That managers should avoid all data.",
-            "That customer sentiment cannot be measured.",
-            "That demand never changes."
-          ],
-            answer: 0,
-            why: "The passage warns that dashboards can create a false sense of control."
-          },
-          {
-            q: "How does the author define a forecast?",
-            options: [
-            "A guaranteed promise about future events.",
-            "An irrelevant decoration for meetings.",
-            "A structured guess based on assumptions.",
-            "A replacement for all management judgment."
-          ],
-            answer: 2,
-            why: "The passage explicitly says a forecast is a structured guess based on assumptions."
-          },
-          {
-            q: "What should strong managers ask?",
-            options: [
-            "How to avoid discussing wrong predictions.",
-            "What the model might be missing and which assumptions are fragile.",
-            "Why all dashboards should be removed.",
-            "How to make the model look more precise."
-          ],
+              "Trees communicate with each other through spoken sounds.",
+              "Forests are more interconnected than scientists once believed because of underground fungal networks.",
+              "Trees compete constantly and rarely cooperate.",
+              "Scientists have completely explained every aspect of forest ecosystems."
+            ],
             answer: 1,
-            why: "The final sentence lists those exact kinds of questions."
+            why: "The passage explains that underground fungal networks connect trees, allowing resources and chemical signals to move between them. This has changed scientists’ understanding of how forests function."
           },
           {
-            q: "Calling forecasts 'conversation partners rather than oracles' suggests they should be",
+            q: "Why does the author compare the underground fungal network to the internet?",
             options: [
-            "used only after a crisis.",
-            "worshiped as certain truth.",
-            "ignored completely.",
-            "questioned and interpreted."
-          ],
-            answer: 3,
-            why: "A conversation partner invites questioning; an oracle implies unquestioned authority."
+              "To suggest that trees use modern technology.",
+              "To help readers understand how information and resources can move through connected systems.",
+              "To argue that computers were inspired by forests.",
+              "To prove that the comparison is scientifically exact."
+            ],
+            answer: 1,
+            why: "The phrase “wood wide web” is used as a helpful analogy. Although the author notes that the comparison is not perfect, it helps readers visualize how trees are connected through underground fungal networks."
+          },
+          {
+            q: "The word interconnected in paragraph four is closest in meaning to:",
+            options: [
+              "isolated",
+              "closely linked together",
+              "permanently protected",
+              "rapidly growing"
+            ],
+            answer: 1,
+            why: "Interconnected means that different parts of the forest are connected and influence one another. The passage argues that forests function as complex systems rather than collections of isolated trees."
           }
         ]
       }
@@ -900,156 +736,123 @@ var READING_TESTS = [
   },
   {
     id: "reading6",
-    title: "Premium Reading Set A",
-    theme: "Science, business, biography",
+    title: "ePeak Reading Test 6",
+    theme: "Business, Science, and Biography",
     passages: [
       {
-        title: "The Lab That Shared Failure",
-        text: "A pharmaceutical research team began holding monthly failure reviews after noticing that unsuccessful experiments were disappearing into private folders. The meetings were not designed for blame. Each scientist explained what had been tested, what result appeared, and what assumption became weaker. Over time, the reviews prevented other teams from repeating dead ends and helped managers see patterns across projects. The cultural shift was difficult because researchers were used to presenting polished progress. But once failure became searchable knowledge, the lab moved faster. The point was not to celebrate failure itself; it was to stop wasting the information that failure had already paid for.",
+        title: "How Starbucks Sells More Than Coffee",
+        text: "Ask someone what Starbucks sells, and the obvious answer is coffee. Yet Howard Schultz, the man most closely associated with the company’s global expansion, often argued that Starbucks was never simply in the coffee business. Instead, he believed it was creating what sociologists call a “third place”—a space that exists somewhere between home and work.\n\nBefore Starbucks expanded internationally, coffee shops in the United States were often places where customers bought a drink and quickly left. Schultz imagined something different after visiting Italy in the early 1980s. He was fascinated by the neighborhood cafés he found there. People weren’t rushing in and out. They were reading newspapers, meeting friends, discussing business, or simply watching the world go by. The coffee mattered, but so did the atmosphere.\n\nWhen Starbucks adopted this philosophy, it changed countless small details. Comfortable chairs replaced purely functional seating. Soft music played in the background. Employees were encouraged to learn customers’ names, and stores offered free Wi-Fi years before it became common. None of these features directly improved the taste of the coffee, but together they transformed the overall experience.\n\nThis strategy also explained why many customers were willing to pay significantly more than they would at a convenience store. They were purchasing not only a beverage but also an environment—a place to study, work remotely, hold informal meetings, or simply take a break during a busy day. In many cities, Starbucks became a familiar destination for freelancers, university students, and travelers looking for a comfortable place to spend an hour.\n\nOf course, maintaining that atmosphere has become more challenging over time. Mobile ordering, delivery services, and changing work habits have altered how customers interact with cafés. Increasingly, people pick up their drinks without staying. As a result, Starbucks has had to reconsider how it balances speed, convenience, and the welcoming environment that originally defined its identity.\n\nThe company’s story illustrates an important lesson in business strategy. Successful businesses often compete on more than the physical product they sell. Sometimes the most valuable thing a company offers cannot be held in your hand at all. Instead, it is a feeling, an experience, or a place people choose to return to again and again.",
         questions: [
           {
-            q: "Why did the lab create failure reviews?",
+            q: "What is the central idea of the passage?",
             options: [
-            "Scientists wanted to blame one another publicly.",
-            "Unsuccessful experiments were being hidden and not reused as knowledge.",
-            "Managers wanted fewer patterns across projects.",
-            "Successful experiments had become illegal."
-          ],
+              "Starbucks became successful mainly because it serves better coffee than its competitors.",
+              "Starbucks built its brand by offering customers an experience rather than simply a beverage.",
+              "Starbucks expanded globally because it introduced free Wi-Fi before other cafés.",
+              "Starbucks was the first company to open coffee shops outside the United States."
+            ],
             answer: 1,
-            why: "The reviews responded to failed experiments disappearing into private folders."
+            why: "The passage emphasizes Howard Schultz’s idea of creating a “third place” between home and work. Starbucks’ success came from the overall experience—including the atmosphere and sense of community—not just the coffee itself. The other choices focus on details rather than the author’s main point."
           },
           {
-            q: "What changed after failures became searchable?",
+            q: "Why does the author describe Schultz’s visit to Italy?",
             options: [
-            "Managers ignored project patterns.",
-            "Only polished progress was recorded.",
-            "Teams avoided repeating known dead ends.",
-            "Researchers stopped running experiments."
-          ],
-            answer: 2,
-            why: "The passage says reviews prevented repeated dead ends and revealed patterns."
+              "To explain where Starbucks purchases its coffee beans.",
+              "To illustrate how observing another culture inspired Starbucks’ business model.",
+              "To argue that Italian coffee is superior to American coffee.",
+              "To show why Starbucks first expanded into Europe."
+            ],
+            answer: 1,
+            why: "The passage explains that Schultz admired the social atmosphere of Italian cafés and adapted that concept to Starbucks. The visit is presented as the inspiration behind the company’s “third place” philosophy."
           },
           {
-            q: "The author says failure had 'already paid for' information to mean",
+            q: "The phrase third place in the first paragraph refers to:",
             options: [
-            "resources had been spent, so the learning should not be wasted.",
-            "experiments should be priced for customers.",
-            "scientists owed money after every mistake.",
-            "failure is more valuable than success in every case."
-          ],
-            answer: 0,
-            why: "Failed experiments consume time and resources; sharing the learning preserves value."
-          },
-          {
-            q: "What was difficult about the cultural shift?",
-            options: [
-            "No one knew how to write private folders.",
-            "The lab had no unsuccessful experiments.",
-            "Managers refused to see patterns.",
-            "Researchers were accustomed to presenting polished progress."
-          ],
-            answer: 3,
-            why: "The passage directly states this habit made the shift difficult."
+              "the third Starbucks store opened by the company",
+              "a location that serves as a social space between home and work",
+              "a café located in the center of a city",
+              "an employee training facility"
+            ],
+            answer: 1,
+            why: "In sociology, a third place is an informal gathering space separate from home (the first place) and work (the second place). The passage explains that Schultz wanted Starbucks to become exactly this type of environment."
           }
         ]
       },
       {
-        title: "A Founder Without a Spotlight",
-        text: "Not every influential founder becomes a celebrity. Some build companies by creating systems that make individual heroics less necessary. One logistics founder spent her first years documenting decisions that had previously lived only in experienced employees' memories. Drivers received clearer route exceptions, warehouse teams used shared checklists, and customer-service agents could see the same delivery constraints as dispatchers. None of these changes made a dramatic headline. Together, they reduced mistakes and made the company easier to scale. Her biography is a reminder that leadership can look less like constant public charisma and more like designing conditions in which ordinary work becomes reliably excellent.",
+        title: "The Strange Physics Behind Boomerangs",
+        text: "Many people believe a boomerang is simply a curved piece of wood that always returns to the person who throws it. In reality, only certain boomerangs are designed to come back, and making one return successfully requires a surprisingly complex combination of physics, engineering, and skill.\n\nBoomerangs have been used by Indigenous Australians for thousands of years. Contrary to popular belief, most traditional boomerangs were actually designed for hunting and did not return after being thrown. Returning boomerangs were often used for recreation, training, or driving birds into nets. Their unusual flight fascinated observers long before scientists fully understood why it occurred.\n\nThe secret lies in the boomerang’s spinning motion. As it rotates through the air, each wing behaves much like the wing of an airplane, generating lift. However, because the upper wing is moving forward faster than the lower wing during part of the rotation, it produces slightly more lift. This difference creates forces that continuously tilt the spinning object.\n\nInstead of simply falling to the ground, the boomerang begins curving sideways through the air. Its rapid rotation creates gyroscopic precession, a phenomenon that also explains why spinning bicycle wheels remain stable and why toy tops stay upright while rotating. Combined with careful throwing technique, this effect allows the boomerang to follow a broad circular path before returning close to its starting point.\n\nThrowing a returning boomerang is far more difficult than movies often suggest. It must usually be released almost vertically rather than horizontally, and even small changes in wind speed or release angle can dramatically alter its flight. Experienced throwers spend years learning how to adjust for changing weather conditions.\n\nBeyond its entertainment value, the boomerang continues to interest engineers studying rotating flight. Similar principles influence the design of helicopter blades, drones, and certain types of wind turbines. What appears to be a simple wooden toy is actually an elegant demonstration of aerodynamic principles that continue shaping modern technology.\n\nThe next time you see a boomerang return to its thrower, remember that you are not witnessing magic. You are watching several laws of physics working together with remarkable precision.",
         questions: [
           {
-            q: "What kind of leadership does the passage highlight?",
+            q: "According to the passage, why does a returning boomerang come back to its thrower?",
             options: [
-            "Heroic improvisation in every task.",
-            "Avoiding documentation to preserve memory.",
-            "Public charisma without operational detail.",
-            "System-building that makes reliable work easier."
-          ],
-            answer: 3,
-            why: "The founder improves systems, documentation, and shared visibility."
-          },
-          {
-            q: "Why did documentation matter?",
-            options: [
-            "It prevented customer-service agents from seeing constraints.",
-            "Important decisions had been trapped in employee memory.",
-            "It created dramatic headlines immediately.",
-            "It made route exceptions more confusing."
-          ],
+              "Because magnets inside the wood pull it back.",
+              "Because several aerodynamic forces work together during its spinning flight.",
+              "Because the wind always pushes it in a circular path.",
+              "Because Indigenous Australians designed all boomerangs to return."
+            ],
             answer: 1,
-            why: "The passage says decisions previously lived only in experienced employees' memories."
+            why: "The passage explains that lift, gyroscopic precession, and proper throwing technique combine to produce the boomerang’s curved flight path. It is a result of physics rather than magnets or wind alone."
           },
           {
-            q: "What was the combined effect of small operational changes?",
+            q: "Which statement about traditional boomerangs is supported by the passage?",
             options: [
-            "More individual heroics and less consistency.",
-            "A complete end to logistics constraints.",
-            "Fewer mistakes and easier scaling.",
-            "Less information for warehouse teams."
-          ],
+              "Most were designed to return after being thrown.",
+              "They were used mainly for sporting competitions.",
+              "Many were intended for hunting and did not return.",
+              "They were invented to study the principles of flight."
+            ],
             answer: 2,
-            why: "Together, the changes reduced mistakes and helped scale the company."
+            why: "The passage clearly states that most traditional boomerangs were hunting tools and were not designed to return. Returning boomerangs represented only one category of these tools."
           },
           {
-            q: "The founder is 'without a spotlight' because",
+            q: "Why does the author mention helicopters, drones, and wind turbines?",
             options: [
-            "her influence came through unglamorous systems rather than celebrity.",
-            "the company failed before becoming visible.",
-            "her work had no effect on employees.",
-            "she refused to lead the company."
-          ],
-            answer: 0,
-            why: "The passage contrasts quiet systems leadership with public charisma."
+              "To show that boomerangs have become obsolete.",
+              "To illustrate that the same physical principles apply to modern engineering.",
+              "To compare the cost of different flying machines.",
+              "To argue that engineers copied every aspect of the boomerang."
+            ],
+            answer: 1,
+            why: "The author uses these examples to demonstrate that the aerodynamic principles behind boomerangs continue to influence modern technology. The comparison highlights the practical importance of understanding their flight."
           }
         ]
       },
       {
-        title: "The Science of Heat Islands",
-        text: "Cities are often warmer than surrounding rural areas because concrete, asphalt, and dark roofs absorb and re-emit heat. This heat-island effect is not evenly distributed. Neighborhoods with fewer trees and more wide roads can remain hotter deep into the night, increasing health risks during heat waves. Solutions such as reflective roofs, shaded corridors, and tree planting sound simple, but implementation is political as well as technical. Trees require maintenance, reflective materials require incentives, and shade often competes with parking or development priorities. The science identifies where heat accumulates; policy determines whether cooler design reaches the people most exposed.",
+        title: "The Man Who Failed More Than Five Thousand Times",
+        text: "When people hear the name James Dyson, they usually think of sleek vacuum cleaners that sell for hundreds of dollars. Few realize that before building one of the world’s most successful engineering companies, Dyson spent fifteen years working on a single idea—and failing thousands of times.\n\nDuring the late 1970s, Dyson became frustrated with his household vacuum cleaner. Like many traditional models, it relied on disposable bags that gradually clogged with dust. As the bag filled, suction became weaker, making the machine less effective over time. Dyson wondered why a vacuum cleaner should lose performance simply because it was doing its job.\n\nHis inspiration came from an unexpected place. While visiting an industrial facility, he noticed enormous cyclone towers that used centrifugal force to separate tiny particles from the air. He began wondering whether the same principle could work inside a much smaller household appliance.\n\nTurning that idea into reality proved far more difficult than expected. Dyson built prototype after prototype, modifying angles, airflow, and internal components. Some designs barely worked. Others performed well but were too expensive to manufacture. In total, he famously produced 5,127 prototypes before creating a design that met his expectations.\n\nFinding someone willing to manufacture the invention was another challenge. Several major companies rejected the concept, believing consumers would never pay more for a bagless vacuum cleaner. Rather than abandoning the project, Dyson eventually launched his own company, accepting enormous financial risk to bring the product to market himself.\n\nThe gamble paid off. Dyson’s bagless vacuum cleaners eventually transformed the industry, forcing many competitors to rethink designs that had remained largely unchanged for decades. Today, the company develops products ranging from air purifiers to hair dryers, all reflecting the same philosophy of questioning familiar designs.\n\nPeople often celebrate Dyson’s success, but he prefers talking about the failures that came before it. In interviews, he has argued that each unsuccessful prototype eliminated one more incorrect solution, bringing him slightly closer to the correct one. To him, failure was never the opposite of progress. It was simply one step within the engineering process.\n\nHis story serves as a reminder that innovation rarely arrives in a single flash of inspiration. More often, it emerges through thousands of small improvements made by people willing to keep experimenting long after others would have given up.",
         questions: [
           {
-            q: "What causes the urban heat-island effect?",
+            q: "What is the primary lesson of James Dyson’s story?",
             options: [
-            "Rural areas ban reflective roofs.",
-            "Cities receive more sunlight than rural areas.",
-            "Materials like asphalt and dark roofs absorb and release heat.",
-            "Trees re-emit more heat than concrete."
-          ],
-            answer: 2,
-            why: "The first sentence identifies concrete, asphalt, and dark roofs as heat-absorbing materials."
-          },
-          {
-            q: "Why is the effect unequal?",
-            options: [
-            "Neighborhood design and tree coverage differ.",
-            "All neighborhoods have identical roads.",
-            "Heat waves avoid rural areas.",
-            "Reflective roofs work only at night."
-          ],
-            answer: 0,
-            why: "Areas with fewer trees and wider roads can remain hotter."
-          },
-          {
-            q: "Why are solutions political?",
-            options: [
-            "Trees do not affect shade.",
-            "Heat accumulation is imaginary.",
-            "Science cannot identify hot areas.",
-            "They involve maintenance, incentives, and trade-offs with development priorities."
-          ],
-            answer: 3,
-            why: "The passage lists practical policy choices around maintenance, incentives, parking, and development."
-          },
-          {
-            q: "What is the final contrast in the passage?",
-            options: [
-            "Technical solutions require no public decisions.",
-            "Science can locate the problem, but policy decides who receives relief.",
-            "Rural areas need more parking than cities.",
-            "Dark roofs are cooler than reflective roofs."
-          ],
+              "Successful inventions usually happen on the first attempt.",
+              "Innovation often requires persistence through repeated failures.",
+              "Vacuum cleaners have changed very little over time.",
+              "Large companies rarely reject promising ideas."
+            ],
             answer: 1,
-            why: "The last sentence contrasts scientific identification with policy implementation."
+            why: "The passage emphasizes that Dyson’s success resulted from years of experimentation and thousands of unsuccessful prototypes. Failure is presented as an essential part of the innovation process rather than its opposite."
+          },
+          {
+            q: "Why does the author describe the cyclone towers Dyson observed?",
+            options: [
+              "To explain where Dyson first sold his products.",
+              "To show how an unexpected observation inspired a completely new idea.",
+              "To compare industrial machinery with household appliances.",
+              "To argue that industrial equipment is more efficient than vacuum cleaners."
+            ],
+            answer: 1,
+            why: "The cyclone towers provided Dyson with the inspiration to rethink how vacuum cleaners could separate dust from air. The passage illustrates how innovation often begins with ideas borrowed from unexpected places."
+          },
+          {
+            q: "The word prototype in paragraph four is closest in meaning to:",
+            options: [
+              "an early experimental version of a product",
+              "a factory used for manufacturing",
+              "a patent protecting an invention",
+              "a machine sold to customers"
+            ],
+            answer: 0,
+            why: "A prototype is an initial model built for testing and improvement before final production. Dyson created 5,127 prototypes while refining his design, demonstrating that successful products often evolve through many experimental versions."
           }
         ]
       }
@@ -1057,156 +860,123 @@ var READING_TESTS = [
   },
   {
     id: "reading7",
-    title: "Premium Reading Set B",
-    theme: "Pop culture and science",
+    title: "ePeak Reading Test 7",
+    theme: "Technology, History, and Business",
     passages: [
       {
-        title: "The Comeback Album",
-        text: "When a famous singer releases a comeback album, listeners often hear two stories at once. One is musical: melodies, production choices, and lyrics. The other is biographical: years of silence, public criticism, or personal change. Reviewers may praise a song not only because it sounds strong, but because it seems to answer a narrative the audience already knows. This can be powerful, but it can also distort judgment. A weaker track may receive extra affection because it fits the comeback story, while a stronger but less autobiographical song may be ignored. Pop culture rarely separates art from context for long.",
+        title: "The Day a Computer Beat the World’s Best Chess Player",
+        text: "For centuries, chess has been regarded as one of the purest tests of human intelligence. Great players spend decades studying strategy, recognizing patterns, and planning dozens of moves ahead. Because of this, many experts once believed that no computer could ever defeat the strongest human champion. They underestimated how quickly technology would evolve.\n\nIn May 1997, millions of people watched as Garry Kasparov, the reigning World Chess Champion, faced IBM’s supercomputer Deep Blue in a six-game match that would become one of the most famous competitions in the history of artificial intelligence.\n\nKasparov had already defeated an earlier version of Deep Blue the previous year. Although the computer had shown flashes of brilliance, it still made mistakes that experienced players could exploit. IBM’s engineers spent months redesigning the machine, dramatically increasing both its processing power and the quality of its chess software.\n\nUnlike a human grandmaster, Deep Blue did not become tired, nervous, or distracted. It could evaluate approximately 200 million positions every second, considering countless possibilities before selecting a move. Yet raw computing power alone was not enough. Human chess experts also helped teach the system strategic principles that allowed it to recognize strong positional ideas rather than simply calculating endlessly.\n\nThe match quickly became psychological as well as technical. During one game, Deep Blue played an unexpectedly subtle move that convinced Kasparov the computer possessed a deeper understanding than he had imagined. Years later, some analysts argued that the move may actually have resulted from a programming limitation rather than advanced intelligence. Nevertheless, the uncertainty affected Kasparov’s confidence throughout the remainder of the match.\n\nWhen Deep Blue ultimately won, headlines around the world described the event as a historic victory for machines. Some people celebrated the achievement, while others worried that computers were beginning to outperform humans in activities once considered uniquely intellectual.\n\nToday, that victory is viewed differently. Modern artificial intelligence systems still rely on human creativity, engineering, and enormous amounts of data. Rather than replacing human intelligence entirely, they have become powerful tools that expand what people can accomplish. Deep Blue did not prove that humans had become obsolete. It demonstrated that collaboration between human knowledge and computational power could achieve something previously thought impossible.",
         questions: [
           {
-            q: "What two stories do listeners hear in a comeback album?",
+            q: "What is the main message of the passage?",
             options: [
-            "The music itself and the artist's public narrative.",
-            "The producer's budget and the record label's address.",
-            "Only melodies and no biography.",
-            "Only criticism and no songs."
-          ],
-            answer: 0,
-            why: "The passage contrasts musical features with the biographical comeback story."
-          },
-          {
-            q: "How can context distort judgment?",
-            options: [
-            "Reviewers stop discussing albums entirely.",
-            "All autobiographical songs are automatically weak.",
-            "Listeners become unable to hear lyrics.",
-            "A song may be valued because it fits the narrative rather than because it is strongest musically."
-          ],
-            answer: 3,
-            why: "The passage says weaker tracks may receive extra affection if they fit the story."
-          },
-          {
-            q: "The author's view of comeback narratives is",
-            options: [
-            "purely technical.",
-            "mixed: powerful but potentially distorting.",
-            "entirely negative.",
-            "unrelated to criticism."
-          ],
+              "Computers have completely replaced human chess players.",
+              "Deep Blue’s victory demonstrated the growing potential of combining human expertise with advanced computing.",
+              "Garry Kasparov lost because he underestimated the rules of chess.",
+              "Artificial intelligence has surpassed humans in every intellectual activity."
+            ],
             answer: 1,
-            why: "The author notes both power and distortion."
+            why: "The passage concludes that Deep Blue’s success was not simply a triumph of machines over people. Human chess experts contributed to its development, showing how collaboration between human knowledge and computational power can achieve remarkable results. The other options exaggerate or misrepresent the author’s conclusion."
           },
           {
-            q: "What does the final sentence mean?",
+            q: "Why does the author mention Kasparov’s reaction to Deep Blue’s unexpected move?",
             options: [
-            "Pop culture permanently separates art from biography.",
-            "Context disappears before albums are reviewed.",
-            "Audience interpretation usually connects artwork with surrounding context.",
-            "Comeback albums contain no production choices."
-          ],
-            answer: 2,
-            why: "The sentence says art and context are rarely separated for long."
+              "To illustrate that psychological factors influenced the outcome of the match.",
+              "To prove that Deep Blue intentionally tried to confuse its opponent.",
+              "To show that Kasparov immediately admitted the computer was superior.",
+              "To explain how computers imitate human emotions."
+            ],
+            answer: 0,
+            why: "The passage explains that Kasparov became uncertain after one particularly subtle move, and that uncertainty affected his confidence. The author uses this example to show that the contest involved psychology as well as technology."
+          },
+          {
+            q: "The word subtle in paragraph five is closest in meaning to:",
+            options: [
+              "obvious and easy to recognize",
+              "clever in a quiet or difficult-to-notice way",
+              "completely unexpected and illegal",
+              "careless or accidental"
+            ],
+            answer: 1,
+            why: "In this context, subtle describes a sophisticated chess move whose strength was not immediately obvious. It suggests precision and complexity rather than something dramatic or accidental."
           }
         ]
       },
       {
-        title: "Coral Under Stress",
-        text: "Coral reefs can look like colorful rocks, but they are living partnerships between coral animals and microscopic algae. When water temperatures rise for too long, the relationship can break down and corals expel the algae that help feed them. This process, called bleaching, does not mean the coral is immediately dead, but it does mean the animal is under severe stress. Recovery is possible if conditions improve quickly. Repeated heat events, however, shorten recovery time and make reefs more vulnerable to disease. Protecting reefs therefore requires both local action, such as reducing pollution, and broader efforts to limit warming.",
+        title: "The Library That Held the Knowledge of the Ancient World",
+        text: "More than two thousand years ago, travelers arriving in the Egyptian city of Alexandria encountered one of the most ambitious intellectual projects ever attempted. Its rulers dreamed of collecting every important book ever written. The result became the legendary Library of Alexandria, a place that has fascinated historians for centuries.\n\nAlthough the exact size of the library remains uncertain, ancient writers claimed it contained hundreds of thousands of scrolls covering mathematics, astronomy, medicine, philosophy, literature, and geography. Scholars from across the Mediterranean traveled there not only to read but also to debate ideas, conduct research, and teach students.\n\nThe rulers of Egypt pursued books with remarkable determination. Some historical accounts suggest that ships entering Alexandria’s harbor were temporarily required to surrender any written works they carried. Scribes carefully copied the manuscripts before returning the copies—or, according to some stories, sometimes returning the originals while keeping the duplicates for the library itself. Whether every detail of these stories is true remains uncertain, but they illustrate how valuable knowledge had become.\n\nContrary to popular belief, historians no longer think the library disappeared in a single dramatic fire. Instead, evidence suggests it declined gradually over several centuries. Political conflicts, changing governments, economic difficulties, and multiple smaller disasters likely contributed to its eventual disappearance. The popular image of one catastrophic event destroying all human knowledge is probably more legend than history.\n\nEven so, the library’s influence extends far beyond its physical existence. It represented an extraordinary belief: that knowledge from different cultures should be gathered, preserved, translated, and shared rather than remaining isolated. Greek, Egyptian, Persian, Jewish, and many other traditions interacted within the same intellectual community.\n\nToday, enormous digital databases perform a similar role on a much larger scale. Millions of books, scientific papers, and historical documents can be accessed within seconds from almost anywhere in the world. Although modern technology differs dramatically from ancient scrolls, the underlying ambition remains surprisingly familiar.\n\nThe Library of Alexandria reminds us that civilizations are remembered not only for the monuments they build, but also for the knowledge they choose to preserve. Long after empires disappear, ideas continue traveling across generations.",
         questions: [
           {
-            q: "What are corals described as?",
+            q: "What is the central idea of the passage?",
             options: [
-            "Only microscopic algae.",
-            "Living partnerships between animals and algae.",
-            "Pollution filters built by humans.",
-            "Colorful rocks with no living tissue."
-          ],
+              "The Library of Alexandria was destroyed by a single catastrophic fire.",
+              "The Library of Alexandria represented humanity’s early effort to collect and preserve knowledge from many cultures.",
+              "Ancient libraries contained only Greek literature.",
+              "Modern digital libraries have completely replaced traditional libraries."
+            ],
             answer: 1,
-            why: "The opening explains corals as partnerships between coral animals and algae."
+            why: "The passage emphasizes the Library of Alexandria’s ambition to gather knowledge from different civilizations and preserve it for future generations. It also corrects the popular misconception that the library disappeared in one single fire."
           },
           {
-            q: "What happens during bleaching?",
+            q: "According to the passage, why were ships entering Alexandria’s harbor significant?",
             options: [
-            "Corals expel helpful algae under heat stress.",
-            "The reef immediately turns into rock.",
-            "Corals become stronger because of warmer water.",
-            "Algae permanently protect corals from disease."
-          ],
-            answer: 0,
-            why: "Bleaching is defined as expelling algae when temperatures stay high."
+              "They transported building materials for the library.",
+              "They often carried written works that scribes copied for the library’s collection.",
+              "They delivered scientists from across Europe every month.",
+              "They served as mobile classrooms for students."
+            ],
+            answer: 1,
+            why: "The passage explains that historical accounts suggest ships were required to surrender written works so they could be copied. Whether every detail is accurate remains uncertain, but the practice illustrates how seriously the rulers valued knowledge."
           },
           {
-            q: "Why are repeated heat events dangerous?",
+            q: "Why does the author compare the Library of Alexandria with modern digital databases?",
             options: [
-            "They make local pollution impossible.",
-            "They guarantee instant recovery.",
-            "They reduce recovery time and increase vulnerability.",
-            "They eliminate all disease from reefs."
-          ],
-            answer: 2,
-            why: "The passage says repeated events shorten recovery time and increase disease vulnerability."
-          },
-          {
-            q: "What protection strategy does the passage support?",
-            options: [
-            "Avoiding all local action.",
-            "Increasing water temperatures quickly.",
-            "Only painting reefs brighter colors.",
-            "Combining local pollution reduction with broader warming limits."
-          ],
-            answer: 3,
-            why: "The final sentence calls for both local and broader climate action."
+              "To argue that printed books are becoming obsolete.",
+              "To show that the desire to collect and share knowledge continues today in a different form.",
+              "To criticize the quality of modern online information.",
+              "To suggest that digital libraries are direct copies of the ancient library."
+            ],
+            answer: 1,
+            why: "The comparison highlights a shared goal across thousands of years: preserving and making knowledge accessible. The passage does not claim that digital databases replace the ancient library exactly; instead, it emphasizes the continuity of this human ambition."
           }
         ]
       },
       {
-        title: "The Business of Nostalgia",
-        text: "Studios often revive old franchises because nostalgia lowers uncertainty. An audience already recognizes the characters, music, or visual style, so marketing does not need to build awareness from zero. Yet nostalgia is not a complete strategy. If a revival merely repeats familiar images, it may attract opening-week attention but fail to create lasting interest. Successful revivals usually preserve an emotional signature while changing the conflict for a new generation. The commercial challenge is delicate: too much change can feel like betrayal, while too little change can feel like a museum exhibit with expensive lighting.",
+        title: "Why Coca-Cola Rarely Changes Its Logo",
+        text: "Many companies redesign their logos every few years. Fonts change, colors are updated, and entire brand identities are refreshed to match new trends. Yet one of the world’s most recognizable logos has remained remarkably consistent for well over a century. The familiar flowing script of Coca-Cola has changed only slightly since the late nineteenth century.\n\nAt first glance, this might seem surprising. After all, businesses constantly seek innovation. Why would a global company resist modernizing something as visible as its logo?\n\nThe answer lies in one of the most valuable assets a brand can possess: recognition. Marketing researchers have found that consumers often make purchasing decisions in just a few seconds. During that brief moment, familiar visual cues become extremely important. A customer scanning a supermarket shelf may recognize Coca-Cola’s distinctive red color and handwritten script almost instantly, even before reading the name.\n\nChanging those visual signals too dramatically could create unnecessary confusion. Companies spend decades—and billions of dollars—building associations between their products and specific colors, shapes, and designs. Every advertisement, vending machine, delivery truck, and sports sponsorship reinforces the same visual identity. Over time, those repeated exposures become deeply embedded in consumers’ memories.\n\nThis does not mean Coca-Cola ignores design altogether. The company frequently updates packaging, advertising campaigns, bottle shapes, and limited-edition products. However, these changes usually occur around the logo rather than replacing it. Designers sometimes refer to this approach as evolution instead of revolution: making small improvements while preserving the features people already recognize.\n\nMany other successful brands follow a similar philosophy. Apple, Nike, McDonald’s, and LEGO have all refined their visual identities over time without abandoning the core elements that customers immediately associate with their products.\n\nThe lesson extends beyond graphic design. Strong brands are built through consistency as much as creativity. Innovation remains essential, but trust often grows from familiarity. Coca-Cola’s logo demonstrates that sometimes the most effective change is knowing what not to change.",
         questions: [
           {
-            q: "Why do studios revive old franchises?",
+            q: "Why has Coca-Cola made only minor changes to its logo over the years?",
             options: [
-            "Audiences dislike familiar characters.",
-            "Original stories are legally impossible.",
-            "Existing recognition lowers marketing uncertainty.",
-            "Nostalgia guarantees lasting interest."
-          ],
-            answer: 2,
-            why: "The passage says recognition means awareness does not start from zero."
-          },
-          {
-            q: "What problem occurs if a revival only repeats familiar images?",
-            options: [
-            "It becomes too different for fans.",
-            "It eliminates all marketing value.",
-            "It creates a new generation automatically.",
-            "It may get initial attention but not lasting interest."
-          ],
-            answer: 3,
-            why: "The passage distinguishes opening-week attention from lasting interest."
-          },
-          {
-            q: "What do successful revivals usually do?",
-            options: [
-            "Keep an emotional signature while updating conflict.",
-            "Avoid old music and characters completely.",
-            "Repeat the original without adjustment.",
-            "Change everything so recognition disappears."
-          ],
-            answer: 0,
-            why: "The passage says successful revivals preserve emotion while changing conflict."
-          },
-          {
-            q: "The museum comparison criticizes revivals that",
-            options: [
-            "refuse to use lighting.",
-            "preserve too much without creating new life.",
-            "change too much for old fans.",
-            "lack any familiar images."
-          ],
+              "Because the company no longer invests in advertising.",
+              "Because maintaining visual recognition helps strengthen customer trust and brand identity.",
+              "Because redesigning a logo is too expensive for large companies.",
+              "Because consumers dislike all modern graphic design."
+            ],
             answer: 1,
-            why: "A museum exhibit suggests static preservation rather than renewed storytelling."
+            why: "The passage explains that Coca-Cola values consistency because familiar visual elements help customers recognize the brand quickly and reinforce trust. The other choices are unsupported or overly general."
+          },
+          {
+            q: "Why does the author mention brands such as Apple, Nike, McDonald’s, and LEGO?",
+            options: [
+              "To demonstrate that many successful companies refine their identities without abandoning their core visual elements.",
+              "To compare the quality of their products with Coca-Cola’s.",
+              "To argue that every company should use similar logos.",
+              "To explain which brands spend the most money on advertising."
+            ],
+            answer: 0,
+            why: "These examples support the author’s argument that strong brands usually evolve gradually instead of making dramatic visual changes. They reinforce the broader marketing principle discussed throughout the passage."
+          },
+          {
+            q: "The word consistency in the final paragraph is closest in meaning to:",
+            options: [
+              "the ability to change frequently",
+              "the quality of remaining stable and uniform over time",
+              "the process of attracting new customers",
+              "the willingness to copy competitors"
+            ],
+            answer: 1,
+            why: "In the passage, consistency refers to maintaining a recognizable identity over many years. The author argues that customers often develop trust when brands remain visually stable while making only gradual improvements."
           }
         ]
       }
@@ -1214,156 +984,123 @@ var READING_TESTS = [
   },
   {
     id: "reading8",
-    title: "Premium Reading Set C",
-    theme: "Leadership and discovery",
+    title: "ePeak Reading Test 8",
+    theme: "Biography, Science, and Business",
     passages: [
       {
-        title: "The Manager Who Removed Meetings",
-        text: "A new manager inherited a team whose calendars were full but whose projects moved slowly. Instead of demanding longer hours, she audited meetings for decisions. Any meeting that produced no decision, useful debate, or shared understanding was canceled or replaced with a written update. At first, employees worried that fewer meetings would mean less alignment. The opposite happened. Because remaining meetings had clearer purposes, people prepared better and left with fewer vague responsibilities. The manager's insight was simple: collaboration is not measured by the number of rooms people enter, but by the quality of coordination those rooms produce.",
+        title: "Roger Federer: Winning by Losing Less",
+        text: "When people talk about Roger Federer, they often mention his 20 Grand Slam titles, graceful playing style, or remarkable longevity. To many tennis fans, he appeared almost unbeatable during his prime. Yet one statistic tells a very different story—and perhaps explains his success better than any trophy ever could.\n\nIn a commencement speech at Dartmouth College in 2024, Federer shared an unexpected fact from his professional career. Although he won nearly 80 percent of the matches he played on the ATP Tour, he captured only 54 percent of the individual points. In other words, even one of the greatest tennis players in history lost almost half of the points he played.\n\nThe statistic surprised many people because it challenged the common belief that champions dominate every moment of competition. Federer explained that success in tennis does not come from winning every point. Players regularly miss easy shots, double-fault serves, and lose entire games. What separates elite athletes is not perfection but resilience. They quickly accept mistakes, refocus their attention, and prepare for the next opportunity instead of dwelling on the previous error.\n\nThis mindset extends far beyond sports. Entrepreneurs rarely see every business idea succeed. Scientists conduct countless experiments that fail before making an important discovery. Writers produce drafts that never reach publication. In almost every competitive field, progress depends less on avoiding mistakes than on recovering from them efficiently.\n\nFederer’s calm demeanor on the court reflected this philosophy. Even after making an unforced error, he rarely displayed dramatic frustration. Sports psychologists often point to emotional regulation as one of the defining characteristics of elite performers. By preventing disappointment from affecting future decisions, athletes increase their chances of performing consistently under pressure.\n\nToday, Federer’s observation has become one of the most widely quoted lessons from his career. Rather than encouraging people to chase perfection, it reminds them that excellence is often built through countless small recoveries. Winning does not require being flawless. More often, it requires responding wisely to the moments when you are not.",
         questions: [
           {
-            q: "What did the manager audit meetings for?",
+            q: "What is the main lesson of the passage?",
             options: [
-            "Whether they lasted longer than two hours.",
-            "Whether every employee attended each one.",
-            "Whether they avoided written updates.",
-            "Whether they produced decisions, debate, or shared understanding."
-          ],
-            answer: 3,
-            why: "The passage lists decisions, useful debate, and shared understanding as criteria."
-          },
-          {
-            q: "What was the result of fewer meetings?",
-            options: [
-            "Projects stopped completely.",
-            "People received more vague responsibilities.",
-            "Remaining meetings became clearer and more useful.",
-            "Employees became less aligned."
-          ],
+              "Roger Federer became successful because he won almost every point he played.",
+              "Elite performers succeed by minimizing mistakes rather than learning from them.",
+              "Long-term success often depends on recovering quickly from setbacks instead of expecting perfection.",
+              "Tennis is more mentally demanding than every other professional sport."
+            ],
             answer: 2,
-            why: "The passage says clearer purposes improved preparation and responsibility."
+            why: "The passage explains that Federer won only 54% of the points he played, yet became one of the greatest players in history. The author’s message is that success comes from resilience and moving on from mistakes rather than trying to avoid every failure."
           },
           {
-            q: "What assumption does the passage challenge?",
+            q: "Why does the author mention entrepreneurs, scientists, and writers?",
             options: [
-            "Coordination matters in teamwork.",
-            "More meetings automatically mean better collaboration.",
-            "Written updates can replace some meetings.",
-            "Meetings should have purposes."
-          ],
+              "To compare their salaries with those of professional athletes.",
+              "To show that the principle of learning from failure applies far beyond sports.",
+              "To argue that tennis players should pursue different careers after retirement.",
+              "To explain why Federer chose to speak at a university commencement ceremony."
+            ],
             answer: 1,
-            why: "The final sentence rejects measuring collaboration by number of meetings."
+            why: "These examples broaden the lesson beyond tennis. The author wants readers to understand that resilience is valuable in many professions, not only in athletics."
           },
           {
-            q: "Which meeting would the manager most likely keep?",
+            q: "The word dwelling in paragraph three is closest in meaning to:",
             options: [
-            "One that resolves a decision requiring live debate.",
-            "One that repeats information already written clearly.",
-            "One with no agenda or outcome.",
-            "One held only because it occurs weekly."
-          ],
+              "concentrating excessively on",
+              "celebrating",
+              "remembering accurately",
+              "forgetting completely"
+            ],
             answer: 0,
-            why: "A useful debate or decision fits her criteria for keeping a meeting."
+            why: "In this context, dwelling on means continuing to think about a mistake instead of moving forward. The passage argues that successful performers quickly refocus their attention on the next opportunity."
           }
         ]
       },
       {
-        title: "Telescopes and Patience",
-        text: "Astronomical discovery often rewards patience more than spectacle. A telescope may collect faint signals for months before a pattern becomes visible. The public usually sees the final image: a bright galaxy, a possible exoplanet, or a map of ancient radiation. Behind that image are calibration checks, rejected noise, and cautious arguments about whether the signal means what researchers hope it means. This patience matters because astronomy studies objects that cannot be touched or repeated in a laboratory. The discipline must build confidence from distance, using many indirect clues until the most reasonable explanation survives competing possibilities.",
+        title: "Why Roman Concrete Still Hasn’t Given Up",
+        text: "Modern concrete is everywhere. It forms the foundations of skyscrapers, highways, bridges, and apartment buildings across the globe. Yet despite remarkable advances in engineering, many modern concrete structures begin showing signs of deterioration after only a few decades. Meanwhile, some Roman structures built nearly 2,000 years ago remain standing today.\n\nFor generations, engineers wondered how this was possible. Ancient Rome lacked modern machinery, computer modeling, and industrial chemistry. Nevertheless, many of its harbors, aqueducts, and monumental buildings have survived earthquakes, storms, and centuries of constant exposure to the elements.\n\nRecent research has revealed that the answer lies partly in the material itself. Roman builders mixed volcanic ash with lime and seawater to create a unique type of concrete. For many years, scientists believed tiny white fragments found inside the material were simply evidence of poor construction. More recent studies suggest the opposite.\n\nThose fragments appear to give Roman concrete an extraordinary ability to repair itself. When small cracks form and water enters the structure, chemical reactions can produce new mineral crystals that gradually fill the damaged areas before the cracks grow larger. Researchers refer to this process as self-healing, although it occurs naturally through the chemistry of the material rather than through any mechanical system.\n\nModern engineers are now studying these ancient techniques in hopes of creating longer-lasting and more environmentally friendly construction materials. Cement production is responsible for a significant percentage of global carbon dioxide emissions, so increasing the lifespan of buildings could reduce both costs and environmental impact.\n\nThe Romans certainly did not understand chemistry in the modern scientific sense. They learned largely through observation, experimentation, and centuries of practical experience. Even so, their discoveries continue influencing twenty-first-century engineering laboratories.\n\nIt is a remarkable reminder that technological progress does not always move in a straight line. Sometimes the future advances by rediscovering ideas from the distant past.",
         questions: [
           {
-            q: "Why does astronomy require special patience?",
+            q: "According to the passage, why are scientists interested in Roman concrete today?",
             options: [
-            "It builds evidence from distant, indirect clues.",
-            "Signals are always bright immediately.",
-            "Laboratory repetition is easy for galaxies.",
-            "Astronomers can touch every object they study."
-          ],
-            answer: 0,
-            why: "The passage stresses distance, indirect clues, and limited laboratory repetition."
-          },
-          {
-            q: "What does the public usually see?",
-            options: [
-            "The competing explanations before any image.",
-            "The polished final image rather than the long validation process.",
-            "Only rejected noise.",
-            "Every calibration check in real time."
-          ],
+              "Because it was less expensive to produce than modern concrete.",
+              "Because its unique composition may help engineers develop stronger and more sustainable construction materials.",
+              "Because modern concrete is no longer used in construction.",
+              "Because Roman builders fully understood modern chemistry."
+            ],
             answer: 1,
-            why: "The public sees the final image, while behind it are checks and arguments."
+            why: "The passage explains that Roman concrete appears capable of repairing small cracks naturally. Scientists hope to apply these discoveries to create longer-lasting, environmentally friendly building materials."
           },
           {
-            q: "Why are calibration checks important?",
+            q: "What role do the small white fragments inside Roman concrete appear to play?",
             options: [
-            "They make telescopes collect less data.",
-            "They replace cautious argument.",
-            "They prove every hoped-for explanation.",
-            "They help separate meaningful signal from noise."
-          ],
-            answer: 3,
-            why: "Checks and rejected noise are part of validating whether a pattern is real."
+              "They weaken the material over time.",
+              "They help create minerals that repair small cracks when water enters.",
+              "They improve the appearance of Roman buildings.",
+              "They reduce the weight of concrete structures."
+            ],
+            answer: 1,
+            why: "Researchers now believe these fragments contribute to the concrete’s self-healing properties by encouraging chemical reactions that gradually fill developing cracks."
           },
           {
-            q: "The final sentence suggests scientific confidence comes from",
+            q: "Why does the author conclude that “the future advances by rediscovering ideas from the distant past”?",
             options: [
-            "public enthusiasm alone.",
-            "the brightest color in an image.",
-            "the explanation that best survives alternatives.",
-            "the first exciting interpretation."
-          ],
-            answer: 2,
-            why: "Confidence builds when the most reasonable explanation survives competing possibilities."
+              "To suggest that modern engineering has stopped making progress.",
+              "To emphasize that ancient knowledge can still inspire modern scientific innovation.",
+              "To argue that Roman construction techniques should completely replace modern methods.",
+              "To criticize engineers for ignoring historical discoveries."
+            ],
+            answer: 1,
+            why: "The final sentence summarizes the passage’s central message: studying ancient engineering can help solve modern problems. The author is not suggesting that technology has stopped advancing but that valuable ideas sometimes come from the past."
           }
         ]
       },
       {
-        title: "A Biography in Small Choices",
-        text: "Biographies often highlight dramatic turning points, but a life can also be shaped by small repeated choices. A young teacher who stayed after class to help one student did not know that the habit would define her career. Years later, former students remembered not a single grand speech, but the consistency of being noticed. When she became a principal, she designed schedules that gave teachers time for individual conferences, arguing that institutions should protect the small moments they claim to value. Her story suggests that character is not only revealed in crises; it is accumulated in routines that quietly tell others what matters.",
+        title: "The Accidental Invention That Stuck Around",
+        text: "Some of the world’s most successful products were created to solve problems that nobody expected. One famous example is the Post-it Note—a product that almost never existed because its key ingredient was originally considered a failure.\n\nIn 1968, chemist Spencer Silver was working for the company 3M while attempting to develop an exceptionally strong adhesive. Instead, he accidentally created the opposite: a glue that stuck lightly to surfaces but could also be removed without leaving residue. From a commercial perspective, the invention seemed almost useless. Companies wanted stronger adhesives, not weaker ones.\n\nSilver believed his discovery had potential, but for years no one could figure out what it might actually be used for. The unusual adhesive remained little more than an interesting laboratory curiosity.\n\nEverything changed several years later when another 3M employee, Art Fry, encountered a frustrating everyday problem. While singing in his church choir, he used small slips of paper to mark pages in his hymnbook. Unfortunately, they constantly fell out whenever he opened the book.\n\nSuddenly, Silver’s forgotten invention made perfect sense.\n\nFry applied the removable adhesive to small pieces of paper, creating bookmarks that stayed in place without damaging the pages. The idea gradually evolved into the familiar sticky notes now found in offices, classrooms, and homes around the world.\n\nEven then, success was not immediate. Early market tests produced disappointing sales because customers did not immediately understand why they needed the product. 3M eventually began giving away free samples to office workers. Once people experienced the notes firsthand, demand increased dramatically. It turned out that many consumers had never imagined such a product until they actually used one.\n\nBusiness schools frequently discuss the story because it illustrates an important principle about innovation. New ideas do not always emerge from carefully following a business plan. Sometimes they appear when people recognize an unexpected use for something that already exists.\n\nToday, billions of Post-it Notes are sold every year in dozens of colors and sizes. Their success serves as a reminder that some of history’s most valuable inventions begin not with the perfect answer—but with a mistake that someone was curious enough to explore.",
         questions: [
           {
-            q: "What does the biography emphasize?",
+            q: "What is the main idea of the passage?",
             options: [
-            "Institutions cannot protect personal values.",
-            "Small repeated choices can shape a life and career.",
-            "Only dramatic crises reveal character.",
-            "Grand speeches matter more than consistent attention."
-          ],
+              "Successful inventions always result from carefully planned business strategies.",
+              "The Post-it Note became successful because an unexpected discovery eventually found the right practical use.",
+              "Strong adhesives are more valuable than removable ones.",
+              "Office products are the most profitable inventions in history."
+            ],
             answer: 1,
-            why: "The passage contrasts dramatic turning points with repeated choices and routines."
+            why: "The passage tells the story of how an adhesive originally considered a failure became highly successful after someone recognized an unexpected application for it. The author’s main message is about innovation through creative problem-solving."
           },
           {
-            q: "What did former students remember?",
+            q: "Why did 3M begin giving away free samples of Post-it Notes?",
             options: [
-            "A single famous speech.",
-            "The principal's budget reports.",
-            "A crisis that ended her career.",
-            "The consistency of being noticed."
-          ],
-            answer: 3,
-            why: "The passage says they remembered consistent attention, not one grand speech."
-          },
-          {
-            q: "Why did she redesign schedules?",
-            options: [
-            "To protect time for individual student conferences.",
-            "To make routines less important.",
-            "To focus only on dramatic ceremonies.",
-            "To remove all teacher-student contact."
-          ],
-            answer: 0,
-            why: "She created schedules that gave teachers time for individual conferences."
-          },
-          {
-            q: "What does the final sentence imply about character?",
-            options: [
-            "It is unrelated to institutional design.",
-            "It appears only during emergencies.",
-            "It is built and communicated through routine behavior.",
-            "It depends mainly on public recognition."
-          ],
+              "Because customers complained that the product was too expensive.",
+              "Because the company wanted to reduce excess inventory.",
+              "Because people often recognized the product’s usefulness only after trying it themselves.",
+              "Because office workers requested free stationery."
+            ],
             answer: 2,
-            why: "The final sentence says character is accumulated in routines that show what matters."
+            why: "The passage explains that early sales were disappointing because customers did not immediately understand the product’s value. Once they experienced using it, demand increased significantly."
+          },
+          {
+            q: "The word curiosity in paragraph three is closest in meaning to:",
+            options: [
+              "a strong desire to learn or explore",
+              "disappointment with an invention",
+              "a manufacturing problem",
+              "an advertising campaign"
+            ],
+            answer: 0,
+            why: "Although Silver’s adhesive seemed commercially useless at first, it remained an interesting laboratory curiosity. Here, curiosity refers to something unusual that attracts interest and invites further exploration."
           }
         ]
       }
@@ -1401,8 +1138,8 @@ function renderMenu() {
     card.className = "test-card" + (locked ? " locked" : "");
     card.innerHTML = '<div class="test-top"><div class="test-num">Test ' + (index + 1) + '</div><span class="access ' + access.cls + '">' + access.text + '</span></div>'
       + '<div class="test-title">' + escapeHTML(test.title) + '</div>'
-      + '<p class="test-desc">' + escapeHTML(test.theme) + '. Three passages, twelve challenging questions, full explanations.</p>'
-      + '<div class="meta"><span>3 passages</span><span>12 questions</span><span>Multiple choice</span></div>';
+      + '<p class="test-desc">' + escapeHTML(test.theme) + '. Three passages, ' + test.passages.reduce(function(total, passage) { return total + passage.questions.length; }, 0) + ' challenging questions, full explanations.</p>'
+      + '<div class="meta"><span>3 passages</span><span>' + test.passages.reduce(function(total, passage) { return total + passage.questions.length; }, 0) + ' questions</span><span>Multiple choice</span></div>';
     card.onclick = function() {
       if (locked) return notifyUpgrade();
       startTest(test.id);
