@@ -1180,6 +1180,179 @@ var LISTENING_TESTS = [
       }
     ]
   }
+  ,
+  {
+    id: "listening7",
+    title: "Listening Test 7",
+    theme: "Museum exhibits, software debugging, wildlife conservation, and digital payments",
+    audios: [
+      {
+        type: "conversation",
+        title: "A Delayed Dinosaur Gallery",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/7roms5ktf9nj9l7tu8cgq/audio-1.mp3?rlkey=5c53tsp62bex0ojkb2nvrxwmz&st=77tpsrsz&raw=1",
+        script: "Visitor: Excuse me, I thought the dinosaur exhibit opened today.\n\nMuseum Guide: It was supposed to, but the largest fossil arrived later than expected.\n\nVisitor: Oh, that’s disappointing. Is the entire exhibit closed?\n\nMuseum Guide: Not at all. Most of it is open already. Only one gallery is still being prepared, and it should be ready tomorrow morning.\n\nVisitor: In that case, I’ll look around today and probably come back this weekend.",
+        questions: [
+          {
+            q: "Why wasn’t the entire exhibit opened as planned?",
+            options: [
+              "The museum was closed for repairs.",
+              "The largest fossil arrived late.",
+              "The staff went on strike.",
+              "The electricity failed."
+            ],
+            answer: 1,
+            why: "The guide explains that the opening was delayed because the largest fossil had not arrived on time."
+          },
+          {
+            q: "What will the visitor most likely do?",
+            options: [
+              "Ask for a refund.",
+              "Leave immediately.",
+              "Visit another museum.",
+              "Return another day to see the completed gallery."
+            ],
+            answer: 3,
+            why: "The visitor says they will probably return during the weekend after exploring the parts already open."
+          },
+          {
+            q: "What can be inferred about the museum?",
+            options: [
+              "Most of the exhibition is already available.",
+              "It canceled the dinosaur exhibit permanently.",
+              "It only displays fossils on weekends.",
+              "It recently changed its location."
+            ],
+            answer: 0,
+            why: "The guide clearly states that only one gallery remains closed while the rest is already open."
+          }
+        ]
+      },
+      {
+        type: "conversation",
+        title: "Finding an App Crash",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/nx99lifvof9n5bl1h1waz/audio-2.mp3?rlkey=lvf6paqqe2s49yj25vlza23l9&st=dzzjec59&raw=1",
+        script: "Developer: I finally figured out why the app kept crashing.\n\nDesigner: Was it the new interface?\n\nDeveloper: Surprisingly, no. A tiny memory issue was causing the problem after people used the app for several minutes.\n\nDesigner: I’m glad you found it before tomorrow’s update.\n\nDeveloper: Me too. Bugs like that are difficult to notice during short tests.",
+        questions: [
+          {
+            q: "What problem are the speakers discussing?",
+            options: [
+              "A delayed software release.",
+              "A poorly designed interface.",
+              "A software bug that caused the app to crash.",
+              "A slow internet connection."
+            ],
+            answer: 2,
+            why: "The conversation focuses on identifying and fixing the cause of the application crashes."
+          },
+          {
+            q: "What caused the crashes?",
+            options: [
+              "A memory issue.",
+              "An interface design error.",
+              "An outdated operating system.",
+              "A network failure."
+            ],
+            answer: 0,
+            why: "The developer explains that a small memory problem caused the crashes after extended use."
+          },
+          {
+            q: "Why were the bugs difficult to discover?",
+            options: [
+              "They happened only on certain devices.",
+              "They appeared after the app had been running for several minutes.",
+              "They occurred only during updates.",
+              "They affected only designers."
+            ],
+            answer: 1,
+            why: "Short tests didn’t reveal the problem because it occurred only after longer periods of use."
+          }
+        ]
+      },
+      {
+        type: "monologue",
+        title: "Reintroducing Animals to the Wild",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/yco4bmr6zjm4hipo91fgc/audio-3.mp3?rlkey=phqeq9q0ioww6pfwqdtvc4mc7&st=0j7klcox&raw=1",
+        script: "When people hear that an animal species has returned to an area after many years, they often assume it happened naturally. In reality, successful reintroduction programs require years of planning. Scientists must study food sources, monitor predators, and even teach some animals survival skills before releasing them into the wild. A single release may look simple, but it’s usually the result of thousands of hours of research and cooperation between conservation groups.",
+        questions: [
+          {
+            q: "What is the speaker mainly discussing?",
+            options: [
+              "Why some animal species disappear.",
+              "How predators affect ecosystems.",
+              "The history of wildlife conservation.",
+              "The careful planning behind animal reintroduction programs."
+            ],
+            answer: 3,
+            why: "The speaker emphasizes the extensive preparation required before animals can be safely reintroduced into the wild."
+          },
+          {
+            q: "Before releasing animals, scientists must do all of the following EXCEPT:",
+            options: [
+              "Study available food.",
+              "Monitor predators.",
+              "Build new zoos.",
+              "Teach survival skills in some cases."
+            ],
+            answer: 2,
+            why: "The speaker never mentions building zoos. The other three activities are specifically described."
+          },
+          {
+            q: "What conclusion does the speaker reach?",
+            options: [
+              "Most reintroduction programs fail.",
+              "Animals adapt immediately after release.",
+              "Successful conservation requires long-term cooperation and research.",
+              "Wild animals should never be relocated."
+            ],
+            answer: 2,
+            why: "The speaker concludes that successful releases are the result of years of planning and cooperation among conservation organizations."
+          }
+        ]
+      },
+      {
+        type: "monologue",
+        title: "Digital Payments in Local Economies",
+        audioUrl: "https://dl.dropboxusercontent.com/scl/fi/5r9kjykcaqk4bkqlrfcr8/audio-4.mp3?rlkey=w2ial8ll9lmjutfxhdisywxv9&st=wskr1szr&raw=1",
+        script: "Just a decade ago, many small businesses accepted only cash. Today, even street musicians and local market vendors often display digital payment codes. Economists say this shift isn’t simply about convenience. Electronic payments also make it easier for businesses to track sales, manage inventory, and reduce the risks associated with carrying large amounts of cash. Technology has quietly changed the way many local economies operate.",
+        questions: [
+          {
+            q: "According to the speaker, what is one advantage of electronic payments?",
+            options: [
+              "They help businesses manage sales more efficiently.",
+              "They completely eliminate business expenses.",
+              "They replace the need for inventory.",
+              "They increase the amount of cash businesses carry."
+            ],
+            answer: 0,
+            why: "Electronic payment systems help businesses monitor sales, manage inventory, and reduce cash-related risks."
+          },
+          {
+            q: "Why does the speaker mention street musicians and market vendors?",
+            options: [
+              "To criticize traditional businesses.",
+              "To show how widespread digital payments have become.",
+              "To recommend careers in music.",
+              "To explain how banks operate."
+            ],
+            answer: 1,
+            why: "These examples demonstrate that digital payments are now common even in small, informal businesses."
+          },
+          {
+            q: "Why does the speaker give this talk?",
+            options: [
+              "To encourage listeners to avoid using cash.",
+              "To explain how banks process electronic transactions.",
+              "To compare different payment apps.",
+              "To describe how technology has changed everyday business practices."
+            ],
+            answer: 3,
+            why: "The speaker’s purpose is to explain the broader economic impact of digital payment technology rather than promote any particular payment method."
+          }
+        ]
+      }
+    ]
+  }
+
 
   // PASTE LISTENING TEST 2 DIRECTLY BELOW TEST 1.
   // Keep adding each new test below the latest one.
