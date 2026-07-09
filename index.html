@@ -338,9 +338,13 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="card-header"><div class="card-icon" style="background:linear-gradient(135deg,#f9d849,#f97316);font-size:1.4rem;display:flex;align-items:center;justify-content:center;">😊</div><div class="card-access access-free">✓ FREE</div></div>
         <div class="card-body"><div class="card-title">Emoji Flashcards</div><div class="card-desc">Guess the word from the emoji. Build vocabulary with instant visual clues.</div><div class="card-meta"><span class="meta-item">😄 150+ emojis</span><span class="meta-item">⚡ Instant feedback</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
+    </div>
+
+    <div class="section-header"><h2>Business</h2><p>Business English tools</p></div>
+    <div class="cards-grid">
       <div class="ex-card" onclick="openBusinessFlashcards()">
         <div class="card-header"><div class="card-icon purple">💼</div><div class="card-access access-free">Pilot</div></div>
-        <div class="card-body"><div class="card-title">Business Flashcards</div><div class="card-desc">Business Result Elementary vocabulary with flashcards, matching, Jeopardy-style questions, and fill-in-the-blanks practice.</div><div class="card-meta"><span class="meta-item">💼 Elementary</span><span class="meta-item">🧩 4 activities</span></div><button class="card-btn btn-open">Start Practice →</button></div>
+        <div class="card-body"><div class="card-title">Business Flashcards</div><div class="card-desc">Business vocabulary with flashcards, matching, Jeopardy-style questions, and fill-in-the-blanks practice.</div><div class="card-meta"><span class="meta-item">💼 Vocabulary levels</span><span class="meta-item">🧩 4 activities</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
     </div>
 
@@ -1599,7 +1603,7 @@ function openBusinessFlashcards() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-business-flashcards').classList.add('active');
   document.getElementById('topbarTitle').textContent = '💼 Business Flashcards';
-  document.getElementById('topbarSub').textContent = 'Business Result Elementary vocabulary';
+  document.getElementById('topbarSub').textContent = 'Business vocabulary practice';
   document.getElementById('frame-business-flashcards').src = '/business-flashcards';
   closeMobileSidebar();
 }

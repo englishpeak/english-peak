@@ -127,6 +127,8 @@ let selectedLevels = new Set(['elementary']);
 const tierRank = { visitor: 0, account: 1, epeakPlus: 2 };
 
 function getRequiredTier(level, unit) {
+  // Units are internal only. Access is based on the public level model:
+  // visitors get Elementary units 1-3, accounts get all Elementary, and ePeak+ gets every higher level.
   if (level === 'elementary' && [1, 2, 3].includes(unit)) return 'visitor';
   if (level === 'elementary') return 'account';
   return 'epeakPlus';
@@ -134,7 +136,7 @@ function getRequiredTier(level, unit) {
 
 function canAccessCard(card) {
   if (!ACCESS_CONTROL_ENABLED) return true;
-  const requiredTier = card.accessTier || getRequiredTier(card.level, card.unit);
+  const requiredTier = getRequiredTier(card.level, card.unit);
   return tierRank[currentUserTier] >= tierRank[requiredTier];
 }
 
