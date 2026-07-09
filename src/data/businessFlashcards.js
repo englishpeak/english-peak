@@ -781,7 +781,426 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 4,
+    word: "always",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "every time or on every occasion",
+    examples: [
+      "She always checks her email before meetings.",
+      "Our team always starts work at nine."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "battery",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a device that gives power to equipment",
+    examples: [
+      "The laptop battery is almost empty.",
+      "We need a new battery for the microphone."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "button",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a small part you press to use a machine",
+    examples: [
+      "Press the green button to start.",
+      "The power button is on the side."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "click on",
+    partOfSpeech: "phrasal verb",
+    category: "Technology Actions",
+    definition: "to choose something on a computer screen",
+    examples: [
+      "Click on the file to open it.",
+      "Please click on the link in the email."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "connect",
+    partOfSpeech: "verb",
+    category: "Technology Actions",
+    definition: "to join a device to a network or system",
+    examples: [
+      "Connect your laptop to the projector.",
+      "The phone cannot connect to the office Wi-Fi."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "electronic device",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a machine that uses electronic parts",
+    examples: [
+      "A tablet is an electronic device.",
+      "Please switch off electronic devices during the flight."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "enter",
+    partOfSpeech: "verb",
+    category: "Technology Actions",
+    definition: "to put information into a computer or system",
+    examples: [
+      "Enter your password to log in.",
+      "Please enter your name on the form."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "key in",
+    partOfSpeech: "phrasal verb",
+    category: "Technology Actions",
+    definition: "to type information into a computer",
+    examples: [
+      "Key in your username carefully.",
+      "The receptionist keyed in the customer details."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "landing",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "the moment when an aircraft returns to the ground",
+    examples: [
+      "The landing was smooth and on time.",
+      "Please close your laptop before landing."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "laptop",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a small computer that you can carry",
+    examples: [
+      "I use my laptop for online meetings.",
+      "She took her laptop to the conference."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "log on",
+    partOfSpeech: "phrasal verb",
+    category: "Technology Actions",
+    definition: "to start using a computer system",
+    examples: [
+      "Log on with your company username.",
+      "I cannot log on to the platform."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "microphone",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a device used to record or make sound louder",
+    examples: [
+      "Please check your microphone before the call.",
+      "The presenter used a wireless microphone."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "mobile phone",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a phone you can carry and use anywhere",
+    examples: [
+      "My mobile phone is charging.",
+      "Employees use mobile phones for quick messages."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "never",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "not at any time",
+    examples: [
+      "Never share your password with anyone.",
+      "The printer never works without paper."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "often",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "many times or frequently",
+    examples: [
+      "We often use video calls for meetings.",
+      "Customers often ask about delivery times."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "password",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a secret word or code for access",
+    examples: [
+      "Create a strong password for your account.",
+      "I forgot my password this morning."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "photocopier",
+    partOfSpeech: "noun",
+    category: "Office Equipment",
+    definition: "a machine that makes copies of documents",
+    examples: [
+      "The photocopier is next to reception.",
+      "We need paper for the photocopier."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "power points",
+    partOfSpeech: "noun",
+    category: "Office Equipment",
+    definition: "places where you connect electrical equipment",
+    examples: [
+      "There are power points under the desk.",
+      "We need more power points in the meeting room."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "press",
+    partOfSpeech: "verb",
+    category: "Technology Actions",
+    definition: "to push a button or key",
+    examples: [
+      "Press enter to continue.",
+      "Please press the red button to stop the machine."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "printer",
+    partOfSpeech: "noun",
+    category: "Office Equipment",
+    definition: "a machine that prints documents from a computer",
+    examples: [
+      "The printer is out of paper.",
+      "We bought a new printer for the office."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "put in",
+    partOfSpeech: "phrasal verb",
+    category: "Technology Actions",
+    definition: "to place something inside a machine",
+    examples: [
+      "Put in your card and enter the code.",
+      "She put in a coin to use the machine."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "rarely",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "not often",
+    examples: [
+      "He rarely misses a meeting.",
+      "The system rarely has technical problems."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "recharge",
+    partOfSpeech: "verb",
+    category: "Technology Actions",
+    definition: "to fill a battery with power again",
+    examples: [
+      "I need to recharge my laptop.",
+      "Please recharge the company phone tonight."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "record",
+    partOfSpeech: "verb",
+    category: "Technology Actions",
+    definition: "to save sound or video",
+    examples: [
+      "We record all training sessions.",
+      "The teacher recorded the online class."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "screen",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "the flat part where you see information",
+    examples: [
+      "The screen is too bright.",
+      "Share your screen during the meeting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "sometimes",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "on some occasions, but not always",
+    examples: [
+      "We sometimes work from home.",
+      "The website sometimes loads slowly."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "start menu",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "a computer menu with programs and options",
+    examples: [
+      "Open the program from the start menu.",
+      "The start menu shows all applications."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "switch off",
+    partOfSpeech: "phrasal verb",
+    category: "Technology Actions",
+    definition: "to turn a machine or device off",
+    examples: [
+      "Switch off the projector after the presentation.",
+      "Please switch off your phone during the meeting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "switch on",
+    partOfSpeech: "phrasal verb",
+    category: "Technology Actions",
+    definition: "to turn a machine or device on",
+    examples: [
+      "Switch on the printer before you send the file.",
+      "He switched on the laptop before the call."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "take-off",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "the moment when an aircraft leaves the ground",
+    examples: [
+      "Please close your laptop before take-off.",
+      "The take-off was delayed by ten minutes."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "ticket machine",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a machine that prints travel tickets",
+    examples: [
+      "Buy your ticket from the ticket machine.",
+      "The ticket machine accepts credit cards."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "username",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "the name used to access a computer system",
+    examples: [
+      "Enter your username and password.",
+      "I forgot my company username."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "usually",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "most of the time",
+    examples: [
+      "We usually start meetings at ten.",
+      "The manager usually answers emails quickly."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "warehouse",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "a building where goods are stored",
+    examples: [
+      "The warehouse stores thousands of products.",
+      "Orders leave the warehouse every afternoon."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 4,
+    word: "wireless",
+    partOfSpeech: "adjective",
+    category: "Technology & Devices",
+    definition: "working without wires or cables",
+    examples: [
+      "We use wireless microphones in the classroom.",
+      "The office has a wireless internet connection."
+    ]
+  },
 
 //////////////////////////////
 //
