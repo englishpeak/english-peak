@@ -462,7 +462,318 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 3,
+    word: "area",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "a part of a place or region",
+    examples: [
+      "The sales area is very busy today.",
+      "We opened a new office in this area."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "call sb back",
+    partOfSpeech: "phrasal verb",
+    category: "Communication",
+    definition: "to telephone someone again later",
+    examples: [
+      "I will call the client back after lunch.",
+      "Please call me back when you are free."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "canteen",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a place where workers can eat",
+    examples: [
+      "The staff canteen opens at noon.",
+      "We had lunch in the company canteen."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "conference",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a large meeting for people with similar work",
+    examples: [
+      "She attended a marketing conference in Chicago.",
+      "The conference starts on Monday morning."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "consumer product",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "a product bought and used by customers",
+    examples: [
+      "This company makes popular consumer products.",
+      "The new phone is a successful consumer product."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "contact number",
+    partOfSpeech: "noun",
+    category: "Communication",
+    definition: "a phone number used to reach someone",
+    examples: [
+      "Please write your contact number on the form.",
+      "The supplier gave us a new contact number."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "continent",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "one of the world’s large land areas",
+    examples: [
+      "The company sells products on every continent.",
+      "Asia is an important continent for our business."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "destination",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "the place where someone or something is going",
+    examples: [
+      "The shipment arrived at its destination yesterday.",
+      "London is the final destination for the team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "distribution centre",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "a place that stores and sends goods",
+    examples: [
+      "The products leave the distribution centre every morning.",
+      "We built a new distribution centre near the airport."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "exhibition",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "an event where products are shown to people",
+    examples: [
+      "The company presented its products at the exhibition.",
+      "Many international buyers visited the exhibition."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "factory",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "a building where goods are made",
+    examples: [
+      "The factory produces furniture for hotels.",
+      "Our factory is outside the city."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "global",
+    partOfSpeech: "adjective",
+    category: "International Business",
+    definition: "connected with the whole world",
+    examples: [
+      "We need a global marketing strategy.",
+      "The company has a global customer base."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "head office",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "the main office of a company",
+    examples: [
+      "The head office is in New York.",
+      "All major decisions come from head office."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "international",
+    partOfSpeech: "adjective",
+    category: "International Business",
+    definition: "connected with two or more countries",
+    examples: [
+      "She works for an international company.",
+      "We have international clients in Europe."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "leave a message",
+    partOfSpeech: "phrase",
+    category: "Communication",
+    definition: "to give information when someone is unavailable",
+    examples: [
+      "Please leave a message after the tone.",
+      "I left a message for the sales manager."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "leisure",
+    partOfSpeech: "noun",
+    category: "General Business Vocabulary",
+    definition: "free time outside work",
+    examples: [
+      "The hotel serves business and leisure travelers.",
+      "Employees need time for leisure and rest."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "location",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "the place where something is",
+    examples: [
+      "The location is perfect for a new store.",
+      "Our office location is near the train station."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "market",
+    partOfSpeech: "noun",
+    category: "Sales & Customers",
+    definition: "an area or group of possible customers",
+    examples: [
+      "The Asian market is growing quickly.",
+      "We need to understand our target market."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "nearby",
+    partOfSpeech: "adverb",
+    category: "Business Locations",
+    definition: "not far away",
+    examples: [
+      "There is a café nearby.",
+      "The warehouse is nearby, so delivery is fast."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "region",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "a large area of a country or the world",
+    examples: [
+      "Sales are strong in this region.",
+      "The company opened offices across the region."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "sales office",
+    partOfSpeech: "noun",
+    category: "Sales & Customers",
+    definition: "an office that sells a company’s products",
+    examples: [
+      "The sales office contacted the customer.",
+      "We visited the sales office in Madrid."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "take a message",
+    partOfSpeech: "phrase",
+    category: "Communication",
+    definition: "to write down information for another person",
+    examples: [
+      "Can I take a message for Mr. Lee?",
+      "The receptionist took a message from the supplier."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "technical centre",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "a place that helps customers with technical problems",
+    examples: [
+      "The technical centre repaired the machine.",
+      "Customers can call the technical centre for support."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "unlike",
+    partOfSpeech: "preposition",
+    category: "General Business Vocabulary",
+    definition: "different from another person or thing",
+    examples: [
+      "Unlike our competitors, we offer free delivery.",
+      "This model is unlike the older version."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "workplace",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a place where people work",
+    examples: [
+      "Safety is important in every workplace.",
+      "The company wants a friendly workplace."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 3,
+    word: "worldwide",
+    partOfSpeech: "adverb",
+    category: "International Business",
+    definition: "in all parts of the world",
+    examples: [
+      "The company sells its products worldwide.",
+      "Our software is used worldwide."
+    ]
+  },
 
 //////////////////////////////
 //
