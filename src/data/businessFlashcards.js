@@ -47,7 +47,414 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 2,
+    word: "abroad",
+    partOfSpeech: "adverb",
+    category: "Business Operations",
+    definition: "in or to another country",
+    examples: [
+      "Our manager is working abroad this month.",
+      "The company sends employees abroad for training."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "automobile",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "a car or motor vehicle",
+    examples: [
+      "The company manufactures automobiles in Mexico.",
+      "They export automobiles to several countries."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "book",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to reserve something in advance",
+    examples: [
+      "I booked a hotel for the conference.",
+      "She booked a flight for tomorrow morning."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "buy",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to get something by paying money",
+    examples: [
+      "We buy office supplies every month.",
+      "The customer wants to buy a new printer."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "chain",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "a group of stores or hotels owned by one company",
+    examples: [
+      "The restaurant chain has over fifty locations.",
+      "They work for an international hotel chain."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "confirm",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to officially say that something is agreed",
+    examples: [
+      "Please confirm your reservation today.",
+      "The client confirmed the meeting by email."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "customer",
+    partOfSpeech: "noun",
+    category: "Sales & Customers",
+    definition: "a person who buys goods or services",
+    examples: [
+      "Every customer receives excellent service.",
+      "The customer asked about the delivery date."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "delivery",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the process of taking goods to customers",
+    examples: [
+      "The delivery arrived this morning.",
+      "Our delivery service is very reliable."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "develop",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to create or improve something successfully",
+    examples: [
+      "They develop new software every year.",
+      "Our team is developing a better solution."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "electronics",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "electronic products and technology",
+    examples: [
+      "He works in the electronics industry.",
+      "The store sells consumer electronics."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "employ",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to give someone a job",
+    examples: [
+      "The company employs over two hundred people.",
+      "They plan to employ more engineers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "equipment",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the tools and machines needed for work",
+    examples: [
+      "The equipment is ready for installation.",
+      "We ordered new office equipment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "export",
+    partOfSpeech: "verb",
+    category: "Business Operations",
+    definition: "to sell goods to another country",
+    examples: [
+      "They export coffee to Europe.",
+      "Our company exports products worldwide."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "financial services",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "services related to money and banking",
+    examples: [
+      "She works in financial services.",
+      "The company offers financial services to businesses."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "flexible",
+    partOfSpeech: "adjective",
+    category: "Business Operations",
+    definition: "able to change when necessary",
+    examples: [
+      "We offer flexible working hours.",
+      "The schedule is flexible this week."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "hospitality",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "the business of hotels, restaurants, and tourism",
+    examples: [
+      "He works in the hospitality industry.",
+      "Hospitality creates many local jobs."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "industry",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "a group of businesses producing similar products or services",
+    examples: [
+      "The technology industry is growing rapidly.",
+      "She has experience in the fashion industry."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "job fair",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "an event where companies meet job seekers",
+    examples: [
+      "We met many candidates at the job fair.",
+      "The university organized a job fair."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "million",
+    partOfSpeech: "noun",
+    category: "Business Quantities",
+    definition: "the number one million",
+    examples: [
+      "The company earned one million dollars.",
+      "Over one million customers use the service."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "office supplies",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "items needed for office work",
+    examples: [
+      "We ordered more office supplies yesterday.",
+      "The cabinet stores office supplies."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "order",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to request goods or services",
+    examples: [
+      "I ordered new business cards.",
+      "The customer ordered fifty laptops."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "pharmaceuticals",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "medicines produced by companies",
+    examples: [
+      "The company develops pharmaceuticals.",
+      "Pharmaceuticals require strict quality control."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "produce",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to make goods or products",
+    examples: [
+      "They produce high-quality furniture.",
+      "Our factory produces medical equipment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "provide",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to give or offer something",
+    examples: [
+      "We provide technical support.",
+      "The company provides excellent training."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "real estate",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "the business of buying and selling property",
+    examples: [
+      "She works in real estate.",
+      "They invest in commercial real estate."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "recruitment",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the process of hiring new employees",
+    examples: [
+      "The recruitment process takes two weeks.",
+      "Human Resources manages recruitment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "repeat",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to say or do something again",
+    examples: [
+      "Could you repeat your question?",
+      "Please repeat the customer's order."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "sell",
+    partOfSpeech: "verb",
+    category: "Sales & Customers",
+    definition: "to give goods in exchange for money",
+    examples: [
+      "They sell office furniture online.",
+      "Our team sells software solutions."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "service",
+    partOfSpeech: "noun",
+    category: "Sales & Customers",
+    definition: "help or work provided for customers",
+    examples: [
+      "The restaurant offers excellent service.",
+      "Customer service answered my questions."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "slowly",
+    partOfSpeech: "adverb",
+    category: "Business Operations",
+    definition: "at a low speed",
+    examples: [
+      "Sales increased slowly this year.",
+      "The project is moving slowly."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "software",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "computer programs used to perform tasks",
+    examples: [
+      "Our software helps businesses manage projects.",
+      "They installed new accounting software."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "staff",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the people who work for an organization",
+    examples: [
+      "The staff attended the meeting.",
+      "Our staff receives regular training."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "stock",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "goods available for sale",
+    examples: [
+      "The store has plenty of stock.",
+      "We need to order more stock."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 2,
+    word: "transport",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the system used to move people or goods",
+    examples: [
+      "Transport costs are increasing.",
+      "Good transport is important for deliveries."
+    ]
+  },
 
 //////////////////////////////
 //
