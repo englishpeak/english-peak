@@ -338,6 +338,10 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div class="card-header"><div class="card-icon" style="background:linear-gradient(135deg,#f9d849,#f97316);font-size:1.4rem;display:flex;align-items:center;justify-content:center;">😊</div><div class="card-access access-free">✓ FREE</div></div>
         <div class="card-body"><div class="card-title">Emoji Flashcards</div><div class="card-desc">Guess the word from the emoji. Build vocabulary with instant visual clues.</div><div class="card-meta"><span class="meta-item">😄 150+ emojis</span><span class="meta-item">⚡ Instant feedback</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
+      <div class="ex-card" onclick="openBusinessFlashcards()">
+        <div class="card-header"><div class="card-icon purple">💼</div><div class="card-access access-free">Pilot</div></div>
+        <div class="card-body"><div class="card-title">Business Flashcards</div><div class="card-desc">Business Result Elementary Unit 1 vocabulary with flashcards, matching, Jeopardy-style questions, and fill-in-the-blanks practice.</div><div class="card-meta"><span class="meta-item">💼 Unit 1</span><span class="meta-item">🧩 3 activities</span></div><button class="card-btn btn-open">Start Practice →</button></div>
+      </div>
     </div>
 
     <div class="section-header"><h2>General English</h2><p>Grammar &amp; vocabulary · A1 to C1</p></div>
@@ -505,6 +509,12 @@ body.sidebar-collapsed .main{margin-left:64px}
   <div class="exercise-screen" id="exercise-emoji">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title" id="topbarTitleEmoji">Emoji Flashcards</div></div>
     <iframe class="exercise-frame" id="frame-emoji" src="" style="width:100%;height:calc(100vh - 56px);border:none;"></iframe>
+  </div>
+
+  <!-- ═══ BUSINESS FLASHCARDS (iframe) ═══ -->
+  <div class="exercise-screen" id="exercise-business-flashcards">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">💼 Business Flashcards</div><div class="exercise-badge">Pilot</div></div>
+    <iframe class="exercise-frame" id="frame-business-flashcards" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ IRREGULAR VERBS (iframe) ═══ -->
@@ -1582,6 +1592,15 @@ function openEmoji() {
   document.getElementById('exercise-emoji').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Emoji Flashcards';
   document.getElementById('frame-emoji').src = '/emoji';
+  closeMobileSidebar();
+}
+
+function openBusinessFlashcards() {
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-business-flashcards').classList.add('active');
+  document.getElementById('topbarTitle').textContent = '💼 Business Flashcards';
+  document.getElementById('topbarSub').textContent = 'Business Result Elementary Unit 1 vocabulary';
+  document.getElementById('frame-business-flashcards').src = '/business-flashcards';
   closeMobileSidebar();
 }
 
