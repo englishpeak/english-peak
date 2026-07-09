@@ -2424,7 +2424,246 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 9,
+    word: "advice",
+    partOfSpeech: "noun",
+    category: "Business Communication",
+    definition: "a suggestion about what someone should do",
+    examples: [
+      "The consultant gave us useful advice.",
+      "I need advice about choosing a supplier."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "cheap",
+    partOfSpeech: "adjective",
+    category: "Price & Value",
+    definition: "costing little money",
+    examples: [
+      "This printer is cheap but reliable.",
+      "Cheap products are not always low quality."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "comfort",
+    partOfSpeech: "noun",
+    category: "Customer Experience",
+    definition: "something that makes people feel relaxed",
+    examples: [
+      "The hotel focuses on customer comfort.",
+      "Comfort is important in business class."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "competition",
+    partOfSpeech: "noun",
+    category: "Market & Competition",
+    definition: "a situation where companies try to be better",
+    examples: [
+      "Competition is strong in this market.",
+      "Healthy competition can improve customer service."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "competitive",
+    partOfSpeech: "adjective",
+    category: "Market & Competition",
+    definition: "as good as or better than other options",
+    examples: [
+      "We offer competitive prices.",
+      "The company needs a competitive product."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "competitor",
+    partOfSpeech: "noun",
+    category: "Market & Competition",
+    definition: "a company that sells similar products or services",
+    examples: [
+      "Our main competitor lowered its prices.",
+      "We studied the competitor's new website."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "discount",
+    partOfSpeech: "noun",
+    category: "Price & Value",
+    definition: "a lower price than usual",
+    examples: [
+      "The customer received a ten percent discount.",
+      "We offer a discount for large orders."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "expensive",
+    partOfSpeech: "adjective",
+    category: "Price & Value",
+    definition: "costing a lot of money",
+    examples: [
+      "The new software is expensive.",
+      "Expensive equipment needs careful maintenance."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "facilities",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "buildings, services, or equipment for a purpose",
+    examples: [
+      "The hotel has excellent business facilities.",
+      "Our training facilities are modern and comfortable."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "fast",
+    partOfSpeech: "adjective",
+    category: "Speed & Performance",
+    definition: "moving or happening quickly",
+    examples: [
+      "We need fast delivery for this order.",
+      "The new system is fast and easy to use."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "high quality",
+    partOfSpeech: "adjective",
+    category: "Price & Value",
+    definition: "very good compared with other options",
+    examples: [
+      "The company sells high quality furniture.",
+      "Customers expect high quality service."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "low price",
+    partOfSpeech: "noun",
+    category: "Price & Value",
+    definition: "a small amount of money for something",
+    examples: [
+      "The store offers a low price on laptops.",
+      "A low price can attract new customers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "mail order",
+    partOfSpeech: "noun",
+    category: "Sales & Customers",
+    definition: "buying goods by mail, phone, or online",
+    examples: [
+      "The company started as a mail order business.",
+      "Customers can buy products by mail order."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "major",
+    partOfSpeech: "adjective",
+    category: "Market & Competition",
+    definition: "very important or large",
+    examples: [
+      "This is a major market for us.",
+      "The company made a major investment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "market segment",
+    partOfSpeech: "noun",
+    category: "Market & Competition",
+    definition: "a group of customers with similar needs",
+    examples: [
+      "Young professionals are an important market segment.",
+      "We created a product for this market segment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "model",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "a particular type or design of product",
+    examples: [
+      "This model is popular with small businesses.",
+      "The new model has more storage space."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "slow",
+    partOfSpeech: "adjective",
+    category: "Speed & Performance",
+    definition: "not moving or happening quickly",
+    examples: [
+      "The internet connection is slow today.",
+      "Slow service can frustrate customers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "storage space",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "space where things can be kept",
+    examples: [
+      "This laptop has a lot of storage space.",
+      "The warehouse needs more storage space."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "up-to-date",
+    partOfSpeech: "adjective",
+    category: "Speed & Performance",
+    definition: "modern or using the latest information",
+    examples: [
+      "The database is up-to-date.",
+      "We need up-to-date software for the team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 9,
+    word: "wide choice",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "many different options to choose from",
+    examples: [
+      "The website offers a wide choice of products.",
+      "Customers like having a wide choice."
+    ]
+  },
 
 //////////////////////////////
 //
