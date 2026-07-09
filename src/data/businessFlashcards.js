@@ -3678,7 +3678,342 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "annual",
+    partOfSpeech: "adjective",
+    category: "Business Operations",
+    definition: "happening once every year or relating to a one-year period",
+    examples: [
+      "The company holds its annual conference in October.",
+      "Annual sales increased by twelve percent."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "based in",
+    partOfSpeech: "phrase",
+    category: "Companies",
+    definition: "having your main office or place of work in a particular location",
+    examples: [
+      "The company is based in Singapore.",
+      "Our marketing team is based in Mexico City."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "commercial",
+    partOfSpeech: "adjective",
+    category: "Business Operations",
+    definition: "related to business, trade, or making a profit",
+    examples: [
+      "The company develops commercial software.",
+      "Commercial success depends on customer demand."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "community",
+    partOfSpeech: "noun",
+    category: "Society & Business",
+    definition: "the people who live in or belong to a particular area or group",
+    examples: [
+      "The company supports the local community.",
+      "Businesses benefit from strong community relationships."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "competitor",
+    partOfSpeech: "noun",
+    category: "Competition",
+    definition: "a person or company trying to be more successful than others",
+    examples: [
+      "Our biggest competitor launched a new product.",
+      "We monitor competitor prices every month."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "convenience food",
+    partOfSpeech: "noun",
+    category: "Products",
+    definition: "prepared food that is quick and easy to cook or eat",
+    examples: [
+      "The company specializes in convenience food.",
+      "Sales of convenience food continue to grow."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "employ",
+    partOfSpeech: "verb",
+    category: "Human Resources",
+    definition: "to give someone a paid job",
+    examples: [
+      "The company employs over 2,000 people.",
+      "They plan to employ more engineers next year."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "employee",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "a person who works for a company and receives payment",
+    examples: [
+      "Every employee receives annual training.",
+      "Employees can work remotely twice a week."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "environment",
+    partOfSpeech: "noun",
+    category: "Sustainability",
+    definition: "the natural world around us",
+    examples: [
+      "The company is committed to protecting the environment.",
+      "Reducing waste helps the environment."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "exporter",
+    partOfSpeech: "noun",
+    category: "International Trade",
+    definition: "a company or person that sells goods to other countries",
+    examples: [
+      "Brazil is a major coffee exporter.",
+      "The exporter ships products worldwide."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "guide",
+    partOfSpeech: "noun",
+    category: "Documents",
+    definition: "a book or document that provides useful information",
+    examples: [
+      "The employee guide explains company policies.",
+      "Visitors received a travel guide."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "head office",
+    partOfSpeech: "noun",
+    category: "Companies",
+    definition: "the main office of a company",
+    examples: [
+      "The head office is located in London.",
+      "Major decisions are made at head office."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "lock",
+    partOfSpeech: "noun",
+    category: "Security",
+    definition: "a device used to keep something closed securely",
+    examples: [
+      "The office has an electronic lock.",
+      "Please check the lock before leaving."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "manufacture",
+    partOfSpeech: "verb",
+    category: "Production",
+    definition: "to make goods, usually in large quantities using machines",
+    examples: [
+      "The factory manufactures office furniture.",
+      "They manufacture products for international markets."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "mechanism",
+    partOfSpeech: "noun",
+    category: "Engineering",
+    definition: "a system of moving parts that performs a function",
+    examples: [
+      "The locking mechanism is very reliable.",
+      "Engineers tested the new mechanism."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "offer",
+    partOfSpeech: "verb",
+    category: "Business Operations",
+    definition: "to provide or make something available",
+    examples: [
+      "The company offers free technical support.",
+      "We offer flexible payment options."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "operate",
+    partOfSpeech: "verb",
+    category: "Business Operations",
+    definition: "to carry out business activities or function in a particular way",
+    examples: [
+      "The airline operates flights across Europe.",
+      "The company operates in over thirty countries."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "produce",
+    partOfSpeech: "verb",
+    category: "Production",
+    definition: "to make goods or products for sale",
+    examples: [
+      "The factory produces electronic devices.",
+      "Local farms produce fresh vegetables."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "product",
+    partOfSpeech: "noun",
+    category: "Products",
+    definition: "something made to be sold",
+    examples: [
+      "This product became an international success.",
+      "Customers love our newest product."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "provide services",
+    partOfSpeech: "phrase",
+    category: "Business Operations",
+    definition: "to offer services to customers or the public",
+    examples: [
+      "The company provides financial services.",
+      "We provide services to small businesses."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "recycled packaging",
+    partOfSpeech: "noun",
+    category: "Sustainability",
+    definition: "packaging made from materials that have already been used",
+    examples: [
+      "The company now uses recycled packaging.",
+      "Customers appreciate environmentally friendly packaging."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "retail",
+    partOfSpeech: "noun",
+    category: "Sales",
+    definition: "the business of selling goods directly to customers",
+    examples: [
+      "She works in retail.",
+      "Retail sales usually increase during holidays."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "sales",
+    partOfSpeech: "noun",
+    category: "Sales",
+    definition: "the number or value of products sold",
+    examples: [
+      "Sales reached a record high this quarter.",
+      "Online sales continue to grow."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "security system",
+    partOfSpeech: "noun",
+    category: "Security",
+    definition: "equipment used to protect a building or business",
+    examples: [
+      "The office has a modern security system.",
+      "The security system detected unusual activity."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "sell",
+    partOfSpeech: "verb",
+    category: "Sales",
+    definition: "to exchange goods or services for money",
+    examples: [
+      "The company sells software worldwide.",
+      "They sell directly to consumers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "signature",
+    partOfSpeech: "noun",
+    category: "Documents",
+    definition: "your written name used to approve or confirm something",
+    examples: [
+      "The contract requires your signature.",
+      "Please sign above your printed name."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "specialize in",
+    partOfSpeech: "phrase",
+    category: "Business Operations",
+    definition: "to focus on a particular area of work or expertise",
+    examples: [
+      "The company specializes in cloud security.",
+      "She specializes in digital marketing."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 1,
+    word: "subsidiary",
+    partOfSpeech: "noun",
+    category: "Companies",
+    definition: "a company owned or controlled by another company",
+    examples: [
+      "The bank has subsidiaries in five countries.",
+      "The subsidiary reports directly to headquarters."
+    ]
+  },
 
 //////////////////////////////
 //
