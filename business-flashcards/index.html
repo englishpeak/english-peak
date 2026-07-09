@@ -22,16 +22,7 @@
       --bf-panel-bg:var(--bf-surface);
       --bf-font:var(--ep-font-sans);
       --bf-heading-font:var(--ep-font-serif);
-      --bf-city-image:url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85");
-      /* Easy-to-swap cityscape options from the requested Unsplash set:
-         Default page: https://unsplash.com/photos/low-angle-photo-of-city-high-rise-buildings-during-daytime-PhYq704ffdA
-         Direct image used above is the matching Unsplash CDN asset for that business high-rise photo.
-         Alternatives to test/replace if you prefer another final hosted image:
-         https://unsplash.com/photos/architectural-photography-of-building-with-people-in-it-during-nighttime-lFv0V3_2H6s
-         https://unsplash.com/photos/group-of-people-having-a-meeting-VBLHICVh-lI
-         https://unsplash.com/photos/worm-view-photo-of-buildings-under-cloudy-sky-C2Dyr5FhGPQ
-         https://unsplash.com/photos/aerial-photography-of-buildings-XsC0GHXi-8k
-      */
+      --bf-city-image:none;
     }
     body{margin:0;font-family:var(--bf-font);background:var(--bf-page-bg);color:var(--bf-text);min-height:100vh;transition:background .28s ease,color .28s ease}
     body.theme-dark{--bf-page-bg:#24272d;--bf-text:#f8fafc;--bf-muted:#d1d5db;--bf-surface:#30343b;--bf-soft:#3a3f47;--bf-border:rgba(255,255,255,.14);--bf-heading:#fff;--bf-accent:#d8c2ff;--bf-shadow:0 16px 42px rgba(0,0,0,.24);--bf-panel-bg:#30343b;background:radial-gradient(circle at top left,rgba(74,144,217,.14),transparent 34%),#24272d}
@@ -71,8 +62,39 @@ import { businessFlashcards } from '/src/data/businessFlashcards.js';
 
 const THEME_STORAGE_KEY = 'businessFlashcardsTheme';
 const THEMES = ['default', 'dark', 'city'];
+const cityBackgrounds = [
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85',
+  'https://unsplash.com/photos/lFv0V3_2H6s/download?force=true&w=2400',
+  'https://unsplash.com/photos/VBLHICVh-lI/download?force=true&w=2400',
+  'https://unsplash.com/photos/C2Dyr5FhGPQ/download?force=true&w=2400',
+  'https://unsplash.com/photos/XsC0GHXi-8k/download?force=true&w=2400',
+];
+let lastCityBackground = '';
+let currentCityBackground = '';
+
+function getRandomCityBackground() {
+  if (cityBackgrounds.length === 0) return '';
+
+  let selectedBackground = cityBackgrounds[Math.floor(Math.random() * cityBackgrounds.length)];
+  while (selectedBackground === lastCityBackground && cityBackgrounds.length > 1) {
+    selectedBackground = cityBackgrounds[Math.floor(Math.random() * cityBackgrounds.length)];
+  }
+
+  lastCityBackground = selectedBackground;
+  return selectedBackground;
+}
+
 function applyTheme(theme) {
   const selectedTheme = THEMES.includes(theme) ? theme : 'default';
+
+  if (selectedTheme === 'city' && !currentCityBackground) {
+    currentCityBackground = getRandomCityBackground();
+    document.body.style.setProperty('--bf-city-image', `url("${currentCityBackground}")`);
+  } else if (selectedTheme !== 'city') {
+    currentCityBackground = '';
+    document.body.style.removeProperty('--bf-city-image');
+  }
+
   document.body.classList.remove('theme-default', 'theme-dark', 'theme-city');
   document.body.classList.add(`theme-${selectedTheme}`);
   document.querySelectorAll('.theme-button').forEach(button => {
