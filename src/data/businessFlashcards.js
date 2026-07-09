@@ -4021,7 +4021,342 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "access",
+    partOfSpeech: "verb",
+    category: "Technology",
+    definition: "to open or use information on a computer system",
+    examples: [
+      "Employees can access the database from home.",
+      "You need a password to access the file."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "bug",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "a problem or error in a computer program",
+    examples: [
+      "The developer fixed a bug in the app.",
+      "Users reported a serious bug in the system."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "colleague",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a person you work with",
+    examples: [
+      "I discussed the report with a colleague.",
+      "My colleague works in the finance department."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "consist of",
+    partOfSpeech: "phrase",
+    category: "Business Structure",
+    definition: "to be made of different parts",
+    examples: [
+      "The package consists of three services.",
+      "The team consists of designers and developers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "consultant",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "an expert who gives professional advice",
+    examples: [
+      "We hired a consultant to improve our process.",
+      "The consultant recommended a new strategy."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "contaminated",
+    partOfSpeech: "adjective",
+    category: "Quality & Safety",
+    definition: "dirty or unsafe because of a harmful substance",
+    examples: [
+      "The contaminated product was removed from stores.",
+      "Quality control found contaminated materials."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "cosmetics",
+    partOfSpeech: "noun",
+    category: "Industries & Products",
+    definition: "products used on the face or body for appearance",
+    examples: [
+      "The company sells cosmetics online.",
+      "Cosmetics must follow strict safety standards."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "customer",
+    partOfSpeech: "noun",
+    category: "Customers & Service",
+    definition: "a person or organization that buys something",
+    examples: [
+      "The customer requested a refund.",
+      "We called the customer to confirm the order."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "deal with",
+    partOfSpeech: "phrasal verb",
+    category: "Business Actions",
+    definition: "to handle a task, problem, or situation",
+    examples: [
+      "The support team deals with technical problems.",
+      "Managers must deal with complaints professionally."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "deny",
+    partOfSpeech: "verb",
+    category: "Business Communication",
+    definition: "to say that something is not true",
+    examples: [
+      "The company denied the report in a statement.",
+      "He denied responsibility for the mistake."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "employment agency",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "a company that helps people find jobs",
+    examples: [
+      "The employment agency sent three candidates.",
+      "We use an employment agency for temporary staff."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "initial",
+    partOfSpeech: "adjective",
+    category: "Process & Planning",
+    definition: "happening at the beginning",
+    examples: [
+      "The initial meeting was very productive.",
+      "Initial feedback from customers was positive."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "installation",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "the process of putting equipment or software in place",
+    examples: [
+      "The software installation took one hour.",
+      "Installation of the new equipment starts tomorrow."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "involve",
+    partOfSpeech: "verb",
+    category: "Process & Planning",
+    definition: "to include something as an important part",
+    examples: [
+      "The project involves several departments.",
+      "The job involves regular contact with customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "involved in",
+    partOfSpeech: "phrase",
+    category: "Business Actions",
+    definition: "taking part in an activity or project",
+    examples: [
+      "She is involved in the recruitment process.",
+      "Several teams are involved in the launch."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "journalist",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "a person who writes or reports news",
+    examples: [
+      "A journalist interviewed the CEO.",
+      "The journalist asked about the product problem."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "moisturizer",
+    partOfSpeech: "noun",
+    category: "Industries & Products",
+    definition: "a cream used to make skin less dry",
+    examples: [
+      "The company launched a new moisturizer.",
+      "Customers liked the moisturizer's natural ingredients."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "occupational psychologist",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "a specialist who studies behavior at work",
+    examples: [
+      "The occupational psychologist studied employee stress.",
+      "An occupational psychologist helped improve team communication."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "pharmaceutical",
+    partOfSpeech: "adjective",
+    category: "Industries & Products",
+    definition: "related to making or selling medicines",
+    examples: [
+      "She works for a pharmaceutical company.",
+      "Pharmaceutical products require careful testing."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "priority",
+    partOfSpeech: "noun",
+    category: "Process & Planning",
+    definition: "something more important than other things",
+    examples: [
+      "Customer safety is our top priority.",
+      "The urgent order became the team's priority."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "public relations",
+    partOfSpeech: "noun",
+    category: "Business Communication",
+    definition: "work that manages a company's public image",
+    examples: [
+      "Public relations prepared the press statement.",
+      "Good public relations can protect a brand."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "sales rep",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "a person who sells a company's products",
+    examples: [
+      "The sales rep visited three clients today.",
+      "Our sales reps know the local market well."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "software",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "computer programs used to perform tasks",
+    examples: [
+      "The company updated its accounting software.",
+      "This software helps teams manage projects."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "staff",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the people employed by an organization",
+    examples: [
+      "The staff received new training.",
+      "Our staff work with international clients."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "subcontractor",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "a person or company paid to do part of a project",
+    examples: [
+      "We hired a subcontractor for the installation.",
+      "The subcontractor completed the work on time."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "supplier",
+    partOfSpeech: "noun",
+    category: "Supply & Operations",
+    definition: "a person or company that provides goods",
+    examples: [
+      "The supplier delivered the materials early.",
+      "We need a reliable supplier for packaging."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "take part in",
+    partOfSpeech: "phrasal verb",
+    category: "Business Actions",
+    definition: "to participate in an activity",
+    examples: [
+      "Employees can take part in the workshop.",
+      "Several departments took part in the project."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 2,
+    word: "training organization",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "a company that provides professional training",
+    examples: [
+      "We contacted a training organization for support.",
+      "The training organization offers leadership courses."
+    ]
+  },
 
 //////////////////////////////
 //
