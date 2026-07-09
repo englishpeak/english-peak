@@ -1208,7 +1208,342 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 5,
+    word: "apologize",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to say you are sorry for something",
+    examples: [
+      "We apologize for the late delivery.",
+      "The manager apologized to the customer."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "apply for a job",
+    partOfSpeech: "phrasal verb",
+    category: "Jobs & Recruitment",
+    definition: "to ask formally for a job",
+    examples: [
+      "She applied for a job in marketing.",
+      "Many candidates apply for jobs online."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "appointment",
+    partOfSpeech: "noun",
+    category: "Business Meetings",
+    definition: "a planned time to meet someone",
+    examples: [
+      "I have an appointment with the director.",
+      "Please confirm your appointment by email."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "attach",
+    partOfSpeech: "verb",
+    category: "Documents & Email",
+    definition: "to include a file with an email",
+    examples: [
+      "Please attach the invoice to the email.",
+      "She attached her CV to the application."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "attachment",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "a file sent with an email",
+    examples: [
+      "The attachment contains the sales report.",
+      "I cannot open the email attachment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "bill",
+    partOfSpeech: "verb",
+    category: "Finance & Payments",
+    definition: "to send a request for payment",
+    examples: [
+      "We bill customers at the end of the month.",
+      "The supplier billed us for the service."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "branding",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "the name, design, and image of a company",
+    examples: [
+      "The company updated its branding this year.",
+      "Good branding helps customers remember a product."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "business card",
+    partOfSpeech: "noun",
+    category: "Professional Communication",
+    definition: "a small card with your work details",
+    examples: [
+      "He gave me his business card.",
+      "Her business card includes her phone number."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "correspondence",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "letters and messages sent or received",
+    examples: [
+      "Please keep all correspondence in this folder.",
+      "The assistant manages client correspondence."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "CV",
+    partOfSpeech: "noun",
+    category: "Jobs & Recruitment",
+    definition: "a document with your education and work experience",
+    examples: [
+      "Send your CV to Human Resources.",
+      "Her CV includes five years of experience."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "delivery note",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "a document signed when goods arrive",
+    examples: [
+      "The driver brought a delivery note.",
+      "Please sign the delivery note at reception."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "folder",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "a place to store documents or files",
+    examples: [
+      "Save the contract in the client folder.",
+      "The invoices are in the finance folder."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "forward",
+    partOfSpeech: "verb",
+    category: "Documents & Email",
+    definition: "to send information to another person",
+    examples: [
+      "Please forward the email to the manager.",
+      "I forwarded the report to the sales team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "hard copy",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "a printed version of a document",
+    examples: [
+      "Bring a hard copy to the meeting.",
+      "The client requested a hard copy."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "invoice",
+    partOfSpeech: "noun",
+    category: "Finance & Payments",
+    definition: "a document showing what someone must pay",
+    examples: [
+      "The invoice is due next Friday.",
+      "Please send the invoice to accounting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "item",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "one thing that can be bought or used",
+    examples: [
+      "Each item has a product code.",
+      "The customer returned one damaged item."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "meeting",
+    partOfSpeech: "noun",
+    category: "Business Meetings",
+    definition: "a time when people discuss work",
+    examples: [
+      "The meeting starts at ten.",
+      "We discussed the project in the meeting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "mistake",
+    partOfSpeech: "noun",
+    category: "Professional Communication",
+    definition: "something that is not correct",
+    examples: [
+      "There is a mistake in the invoice.",
+      "The team corrected the mistake quickly."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "order form",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "a document used to request goods",
+    examples: [
+      "Complete the order form before Friday.",
+      "The customer sent the order form by email."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "paperwork",
+    partOfSpeech: "noun",
+    category: "Documents & Email",
+    definition: "written documents needed for a task",
+    examples: [
+      "The new job requires a lot of paperwork.",
+      "She finished the paperwork after lunch."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "presentation",
+    partOfSpeech: "noun",
+    category: "Business Meetings",
+    definition: "a talk that shows information to people",
+    examples: [
+      "He gave a presentation about sales.",
+      "The presentation lasted twenty minutes."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "print",
+    partOfSpeech: "verb",
+    category: "Documents & Email",
+    definition: "to make a paper copy from a computer",
+    examples: [
+      "Please print the agenda for the meeting.",
+      "I printed the contract this morning."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "receipt",
+    partOfSpeech: "noun",
+    category: "Finance & Payments",
+    definition: "a document that proves payment",
+    examples: [
+      "Keep the receipt for your records.",
+      "The customer asked for a receipt."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "receive",
+    partOfSpeech: "verb",
+    category: "Documents & Email",
+    definition: "to get something from someone",
+    examples: [
+      "We received your application yesterday.",
+      "The office received three packages today."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "save",
+    partOfSpeech: "verb",
+    category: "Technology Actions",
+    definition: "to keep information on a computer",
+    examples: [
+      "Save the file before closing the program.",
+      "She saved the report in the folder."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "scan",
+    partOfSpeech: "verb",
+    category: "Documents & Email",
+    definition: "to copy a document as a computer file",
+    examples: [
+      "Please scan the signed contract.",
+      "The assistant scanned the receipt."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "send",
+    partOfSpeech: "verb",
+    category: "Documents & Email",
+    definition: "to make something go to another person",
+    examples: [
+      "Send the email before noon.",
+      "The supplier sent the documents yesterday."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 5,
+    word: "task",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "a piece of work someone must do",
+    examples: [
+      "This task is very important.",
+      "The manager gave each employee a task."
+    ]
+  },
 
 //////////////////////////////
 //
