@@ -2177,7 +2177,246 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 8,
+    word: "arrange a meeting",
+    partOfSpeech: "phrase",
+    category: "Business Meetings",
+    definition: "to organize a time and place to meet",
+    examples: [
+      "Can you arrange a meeting with the client?",
+      "She arranged a meeting for next Tuesday."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "busy",
+    partOfSpeech: "adjective",
+    category: "Availability & Workload",
+    definition: "having a lot of things to do",
+    examples: [
+      "The manager is busy this morning.",
+      "We are very busy before the product launch."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "careful",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "thinking seriously before doing something",
+    examples: [
+      "Be careful when you check the figures.",
+      "A careful assistant rarely makes mistakes."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "currently",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "at the present time",
+    examples: [
+      "We are currently hiring new staff.",
+      "The company is currently developing new software."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "employment",
+    partOfSpeech: "noun",
+    category: "Jobs & Recruitment",
+    definition: "paid work or having a job",
+    examples: [
+      "The program helps young people find employment.",
+      "Employment opportunities are growing in technology."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "energetic",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "having a lot of energy and enthusiasm",
+    examples: [
+      "The team leader is energetic and positive.",
+      "We need energetic people for the sales team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "experienced",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "having knowledge from doing something before",
+    examples: [
+      "She is an experienced project manager.",
+      "We hired an experienced technician."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "focused",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "giving attention to one clear goal",
+    examples: [
+      "The team stayed focused during the meeting.",
+      "A focused employee can finish tasks faster."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "free",
+    partOfSpeech: "adjective",
+    category: "Availability & Workload",
+    definition: "available and not busy",
+    examples: [
+      "Are you free after lunch?",
+      "The director is free at three o'clock."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "imaginative",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "good at thinking of new ideas",
+    examples: [
+      "The marketing team is very imaginative.",
+      "We need an imaginative designer for this project."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "invest",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to spend money to make something better",
+    examples: [
+      "The company will invest in new equipment.",
+      "We invest time in employee training."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "knowledge",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "information and understanding about something",
+    examples: [
+      "She has strong knowledge of marketing.",
+      "Technical knowledge is important for this job."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "nowadays",
+    partOfSpeech: "adverb",
+    category: "Frequency & Time",
+    definition: "at the present time",
+    examples: [
+      "Nowadays, many people work online.",
+      "Customers expect fast service nowadays."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "patient",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "able to wait without becoming upset",
+    examples: [
+      "Customer service agents must be patient.",
+      "A patient manager helps new employees learn."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "practical",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "good at dealing with real situations",
+    examples: [
+      "We need a practical solution to this problem.",
+      "He is practical and good with customers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "qualification",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "an exam or certificate showing your ability",
+    examples: [
+      "This job requires a business qualification.",
+      "She added her qualification to her CV."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "quality",
+    partOfSpeech: "noun",
+    category: "Professional Qualities",
+    definition: "a good personal characteristic or feature",
+    examples: [
+      "Patience is an important quality for teachers.",
+      "The company values quality and professionalism."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "recruit",
+    partOfSpeech: "verb",
+    category: "Jobs & Recruitment",
+    definition: "to find new people to join a company",
+    examples: [
+      "We need to recruit three new assistants.",
+      "The company recruits graduates every year."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "skill",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "an ability to do something well",
+    examples: [
+      "Communication is an important skill.",
+      "This course improves your business skills."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 8,
+    word: "training course",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "a course that teaches work-related abilities",
+    examples: [
+      "The company offers a training course for new staff.",
+      "She attended a training course in customer service."
+    ]
+  },
 
 //////////////////////////////
 //
