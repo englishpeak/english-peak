@@ -2966,7 +2966,342 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 11,
+    word: "aisle seat",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a plane seat next to the walkway",
+    examples: [
+      "I prefer an aisle seat on long flights.",
+      "The assistant booked an aisle seat for the director."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "board",
+    partOfSpeech: "verb",
+    category: "Travel & Transport",
+    definition: "to get on a plane, train, or ship",
+    examples: [
+      "Passengers can board the plane now.",
+      "We boarded the flight at gate twelve."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "boarding card",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a card or document used to get on a plane",
+    examples: [
+      "Please show your boarding card at the gate.",
+      "I saved my boarding card on my phone."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "business class",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a comfortable plane section for business travelers",
+    examples: [
+      "The CEO traveled in business class.",
+      "Business class includes more comfortable seats."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "cancel",
+    partOfSpeech: "verb",
+    category: "Travel & Transport",
+    definition: "to decide that an arrangement will not happen",
+    examples: [
+      "The airline canceled the flight.",
+      "We had to cancel the hotel reservation."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "change",
+    partOfSpeech: "noun",
+    category: "Finance & Payments",
+    definition: "money returned after paying too much",
+    examples: [
+      "The cashier gave me the correct change.",
+      "Keep the change for the taxi driver."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "check-in",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "the place or process before a flight or hotel stay",
+    examples: [
+      "Check-in opens two hours before the flight.",
+      "The hotel check-in was quick and easy."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "credit card",
+    partOfSpeech: "noun",
+    category: "Finance & Payments",
+    definition: "a card used to buy things and pay later",
+    examples: [
+      "Can I pay by credit card?",
+      "The company credit card is for business trips."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "delay",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a period of waiting because something is late",
+    examples: [
+      "There was a two-hour delay at the airport.",
+      "The delay affected our meeting schedule."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "economy class",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "the cheapest seating section on a plane",
+    examples: [
+      "Most employees travel in economy class.",
+      "Economy class tickets are cheaper than business class."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "exchange rate",
+    partOfSpeech: "noun",
+    category: "Finance & Payments",
+    definition: "the value of one currency compared with another",
+    examples: [
+      "The exchange rate changed this morning.",
+      "Check the exchange rate before your business trip."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "expiry date",
+    partOfSpeech: "noun",
+    category: "Travel Documents",
+    definition: "the date when something is no longer valid",
+    examples: [
+      "Check the expiry date on your passport.",
+      "The credit card expiry date is next month."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "gate",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "the place where passengers get on a plane",
+    examples: [
+      "The flight leaves from gate seven.",
+      "Please arrive at the gate early."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "hand luggage",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "small bags carried onto a plane",
+    examples: [
+      "I only travel with hand luggage.",
+      "Put your hand luggage in the overhead compartment."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "miss a flight",
+    partOfSpeech: "phrase",
+    category: "Travel & Transport",
+    definition: "to arrive too late to take a plane",
+    examples: [
+      "We missed our flight because of traffic.",
+      "Leave early so you do not miss the flight."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "pack",
+    partOfSpeech: "verb",
+    category: "Travel & Transport",
+    definition: "to put things into a bag for a trip",
+    examples: [
+      "I need to pack for my business trip.",
+      "She packed her laptop and documents."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "passport control",
+    partOfSpeech: "noun",
+    category: "Travel Documents",
+    definition: "the place where officials check passports",
+    examples: [
+      "There was a long line at passport control.",
+      "Please have your passport ready at passport control."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "queue",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a line of people waiting for something",
+    examples: [
+      "There was a long queue at check-in.",
+      "Please join the queue for passport control."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "reservation",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "an arrangement to keep a room, seat, or service",
+    examples: [
+      "I made a reservation at the hotel.",
+      "The restaurant confirmed our reservation."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "room service",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "hotel service that brings food to your room",
+    examples: [
+      "The hotel offers room service until midnight.",
+      "She ordered dinner from room service."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "security",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "protection against danger or problems",
+    examples: [
+      "Security checked our bags at the airport.",
+      "Airport security was very busy today."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "sightseeing",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "visiting interesting places as a tourist",
+    examples: [
+      "We did some sightseeing after the conference.",
+      "The hotel can arrange sightseeing tours."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "stressful",
+    partOfSpeech: "adjective",
+    category: "Travel & Accommodation",
+    definition: "causing worry or pressure",
+    examples: [
+      "Business travel can be stressful.",
+      "A delayed flight is stressful before a meeting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "terminal",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "an airport building for arrivals and departures",
+    examples: [
+      "Our flight leaves from terminal two.",
+      "The taxi took us to the wrong terminal."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "tour guide",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "a person who shows visitors interesting places",
+    examples: [
+      "The tour guide spoke excellent English.",
+      "We hired a tour guide after the trade fair."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "vacancy",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "an available room in a hotel",
+    examples: [
+      "The hotel has one vacancy tonight.",
+      "There were no vacancies near the conference center."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "wake-up call",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "a hotel phone call to wake someone up",
+    examples: [
+      "Please arrange a wake-up call for six.",
+      "The wake-up call helped me catch my flight."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 11,
+    word: "window seat",
+    partOfSpeech: "noun",
+    category: "Travel & Transport",
+    definition: "a plane seat next to the window",
+    examples: [
+      "She prefers a window seat on daytime flights.",
+      "I booked a window seat for the trip."
+    ]
+  },
 
 //////////////////////////////
 //
