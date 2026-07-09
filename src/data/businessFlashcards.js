@@ -3309,7 +3309,330 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 12,
+    word: "aim",
+    partOfSpeech: "noun",
+    category: "Planning & Goals",
+    definition: "something that someone wants to achieve",
+    examples: [
+      "Our main aim is to increase sales.",
+      "The aim of the project is clear."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "annual leave",
+    partOfSpeech: "noun",
+    category: "Work & Time Off",
+    definition: "paid time away from work each year",
+    examples: [
+      "She is taking annual leave next week.",
+      "Employees must request annual leave in advance."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "autumn",
+    partOfSpeech: "noun",
+    category: "Seasons & Periods",
+    definition: "the season after summer",
+    examples: [
+      "The product launch is planned for autumn.",
+      "Sales usually improve in autumn."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "busy period",
+    partOfSpeech: "noun",
+    category: "Seasons & Periods",
+    definition: "a time when there is a lot of activity",
+    examples: [
+      "December is a busy period for retailers.",
+      "We hire extra staff during busy periods."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "database",
+    partOfSpeech: "noun",
+    category: "Business Systems",
+    definition: "an organized computer record of information",
+    examples: [
+      "The customer database needs an update.",
+      "We store supplier details in the database."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "deadline",
+    partOfSpeech: "noun",
+    category: "Planning & Goals",
+    definition: "the final time when something must be finished",
+    examples: [
+      "The deadline for the report is Friday.",
+      "We must finish before the deadline."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "event",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "an important planned activity or occasion",
+    examples: [
+      "The company organized a networking event.",
+      "The product event starts at six."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "expect",
+    partOfSpeech: "verb",
+    category: "Planning & Goals",
+    definition: "to believe something will happen",
+    examples: [
+      "We expect sales to increase next month.",
+      "The manager expects the delivery today."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "launch",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "an event when a new product becomes available",
+    examples: [
+      "The product launch is next Monday.",
+      "Customers are excited about the launch."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "long weekend",
+    partOfSpeech: "noun",
+    category: "Work & Time Off",
+    definition: "a weekend with one or more extra free days",
+    examples: [
+      "Many employees travel during a long weekend.",
+      "The office closes for the long weekend."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "packaging",
+    partOfSpeech: "noun",
+    category: "Products & Materials",
+    definition: "materials used to protect or present a product",
+    examples: [
+      "The new packaging looks more professional.",
+      "Good packaging protects products during transport."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "predict",
+    partOfSpeech: "verb",
+    category: "Planning & Goals",
+    definition: "to say what will probably happen",
+    examples: [
+      "Analysts predict strong sales this year.",
+      "It is difficult to predict customer demand."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "public holiday",
+    partOfSpeech: "noun",
+    category: "Work & Time Off",
+    definition: "a day when many businesses and schools close",
+    examples: [
+      "The office is closed on the public holiday.",
+      "Deliveries may be slower after a public holiday."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "quiet period",
+    partOfSpeech: "noun",
+    category: "Seasons & Periods",
+    definition: "a time when there is little activity",
+    examples: [
+      "January is a quiet period for tourism.",
+      "We update systems during quiet periods."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "raw materials",
+    partOfSpeech: "noun",
+    category: "Products & Materials",
+    definition: "basic materials used to make products",
+    examples: [
+      "The factory needs raw materials every week.",
+      "Raw materials are more expensive this year."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "reminder",
+    partOfSpeech: "noun",
+    category: "Planning & Goals",
+    definition: "a message that helps someone remember something",
+    examples: [
+      "I set a reminder for the meeting.",
+      "The system sends payment reminders automatically."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "schedule",
+    partOfSpeech: "noun",
+    category: "Planning & Goals",
+    definition: "a plan that shows when things happen",
+    examples: [
+      "The project schedule is very tight.",
+      "Please check the meeting schedule."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "shelf",
+    partOfSpeech: "noun",
+    category: "Products & Materials",
+    definition: "a flat board used to hold things",
+    examples: [
+      "The products are on the top shelf.",
+      "We need more shelf space in the store."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "ship",
+    partOfSpeech: "verb",
+    category: "Business Operations",
+    definition: "to send goods to a person or place",
+    examples: [
+      "We ship products to Canada.",
+      "The supplier shipped the order yesterday."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "spring",
+    partOfSpeech: "noun",
+    category: "Seasons & Periods",
+    definition: "the season after winter",
+    examples: [
+      "The campaign starts in spring.",
+      "Spring is a good time to launch new products."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "summarize",
+    partOfSpeech: "verb",
+    category: "Business Communication",
+    definition: "to give the main points briefly",
+    examples: [
+      "Can you summarize the report for me?",
+      "She summarized the meeting in one email."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "summer",
+    partOfSpeech: "noun",
+    category: "Seasons & Periods",
+    definition: "the hottest season of the year",
+    examples: [
+      "Summer is a busy period for hotels.",
+      "The company plans a summer promotion."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "tight deadline",
+    partOfSpeech: "noun",
+    category: "Planning & Goals",
+    definition: "a deadline with very little time available",
+    examples: [
+      "We have a tight deadline this week.",
+      "The team worked overtime because of the tight deadline."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "time off",
+    partOfSpeech: "noun",
+    category: "Work & Time Off",
+    definition: "time when someone does not have to work",
+    examples: [
+      "She requested time off in July.",
+      "Employees need time off after busy periods."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "timetable",
+    partOfSpeech: "noun",
+    category: "Planning & Goals",
+    definition: "a list showing when things will happen",
+    examples: [
+      "The conference timetable is on the website.",
+      "Please send me the training timetable."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "update",
+    partOfSpeech: "verb",
+    category: "Business Systems",
+    definition: "to add the newest information",
+    examples: [
+      "Please update the customer database.",
+      "We update the schedule every Monday."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 12,
+    word: "winter",
+    partOfSpeech: "noun",
+    category: "Seasons & Periods",
+    definition: "the coldest season of the year",
+    examples: [
+      "Winter is a quiet period for some stores.",
+      "The winter schedule starts next month."
+    ]
+  },
 
 //////////////////////////////
 //
