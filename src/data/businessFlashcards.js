@@ -1846,7 +1846,330 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 7,
+    word: "above",
+    partOfSpeech: "preposition",
+    category: "Position & Location",
+    definition: "in a higher position than something",
+    examples: [
+      "The finance office is above reception.",
+      "The meeting room is above the cafeteria."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "be in charge of",
+    partOfSpeech: "phrase",
+    category: "Management & Responsibility",
+    definition: "to have control or responsibility for something",
+    examples: [
+      "She is in charge of the sales team.",
+      "Who is in charge of this project?"
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "be responsible for",
+    partOfSpeech: "phrase",
+    category: "Management & Responsibility",
+    definition: "to have something as your job or duty",
+    examples: [
+      "He is responsible for customer service.",
+      "The assistant is responsible for booking meetings."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "behind",
+    partOfSpeech: "preposition",
+    category: "Position & Location",
+    definition: "at the back of something",
+    examples: [
+      "The warehouse is behind the factory.",
+      "The printer is behind the reception desk."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "below",
+    partOfSpeech: "preposition",
+    category: "Position & Location",
+    definition: "in a lower position than something",
+    examples: [
+      "The cafeteria is below the offices.",
+      "Please write your name below the signature."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "between",
+    partOfSpeech: "preposition",
+    category: "Position & Location",
+    definition: "in the middle of two things",
+    examples: [
+      "The lift is between the two offices.",
+      "The reception desk is between sales and finance."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "cafeteria",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a place where people serve themselves food",
+    examples: [
+      "The cafeteria is open from noon.",
+      "Employees have lunch in the cafeteria."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "check",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to look carefully to see if something is correct",
+    examples: [
+      "Please check the invoice before sending it.",
+      "The manager checked the report this morning."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "control",
+    partOfSpeech: "verb",
+    category: "Management & Responsibility",
+    definition: "to make something work in a particular way",
+    examples: [
+      "The system controls the warehouse temperature.",
+      "Managers control the budget for each department."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "customer services",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that helps customers with questions",
+    examples: [
+      "Customer services answered the complaint quickly.",
+      "She works in customer services."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "deal with",
+    partOfSpeech: "phrasal verb",
+    category: "Business Actions",
+    definition: "to handle a task, problem, or situation",
+    examples: [
+      "We deal with customer complaints every day.",
+      "The manager dealt with the problem quickly."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "department",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "one section of a company",
+    examples: [
+      "The marketing department is very busy.",
+      "Each department has a different manager."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "Finance",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that manages company money",
+    examples: [
+      "Finance approved the new budget.",
+      "She works in the Finance department."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "HR / Human Resources",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that manages employees and hiring",
+    examples: [
+      "HR organized the training course.",
+      "Human Resources interviews new candidates."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "in front of",
+    partOfSpeech: "preposition",
+    category: "Position & Location",
+    definition: "in a position further forward than something",
+    examples: [
+      "The reception desk is in front of the lift.",
+      "Please wait in front of the meeting room."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "IT / Information Technology",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that manages computers and systems",
+    examples: [
+      "IT fixed my laptop this morning.",
+      "Information Technology supports the online platform."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "lift",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a machine that carries people between floors",
+    examples: [
+      "Take the lift to the third floor.",
+      "The lift is next to reception."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "logistics",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the planning and movement of goods and materials",
+    examples: [
+      "Logistics arranged the delivery schedule.",
+      "She works in the logistics department."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "manage",
+    partOfSpeech: "verb",
+    category: "Management & Responsibility",
+    definition: "to be responsible for people or work",
+    examples: [
+      "He manages a team of ten people.",
+      "She manages customer accounts."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "marketing",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that promotes and sells products",
+    examples: [
+      "Marketing created a new campaign.",
+      "The marketing team studies customer behavior."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "next to",
+    partOfSpeech: "preposition",
+    category: "Position & Location",
+    definition: "at the side of something",
+    examples: [
+      "The printer is next to the desk.",
+      "The sales office is next to reception."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "plan",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to decide what will happen in the future",
+    examples: [
+      "We plan the schedule every Monday.",
+      "The team is planning a new product launch."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "production",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department or process that makes goods",
+    examples: [
+      "Production starts at seven every morning.",
+      "The production team checks product quality."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "R&D / Research and Development",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that creates and tests new products",
+    examples: [
+      "R&D is developing a new model.",
+      "Research and Development tests new ideas."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "reception",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "the area where visitors first arrive",
+    examples: [
+      "Please check in at reception.",
+      "The visitor waited at reception."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "responsibility",
+    partOfSpeech: "noun",
+    category: "Management & Responsibility",
+    definition: "a duty or task that someone must handle",
+    examples: [
+      "Training new staff is her responsibility.",
+      "Each manager has a clear responsibility."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 7,
+    word: "sales",
+    partOfSpeech: "noun",
+    category: "Departments",
+    definition: "the department that sells a company’s products",
+    examples: [
+      "Sales increased this month.",
+      "The sales team contacted new customers."
+    ]
+  },
 
 //////////////////////////////
 //
