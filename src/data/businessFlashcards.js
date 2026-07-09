@@ -1551,7 +1551,294 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 6,
+    word: "boring",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "not interesting or exciting",
+    examples: [
+      "The presentation was boring and too long.",
+      "A boring menu can make customers leave."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "comfortable",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "pleasant and easy to use or enjoy",
+    examples: [
+      "The hotel room was very comfortable.",
+      "We need comfortable chairs for the meeting room."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "course",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "one part of a meal",
+    examples: [
+      "The first course was a small salad.",
+      "The restaurant offers a three-course business lunch."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "delicious",
+    partOfSpeech: "adjective",
+    category: "Food & Restaurants",
+    definition: "very good to eat",
+    examples: [
+      "The dessert was delicious.",
+      "They served delicious food at the trade fair."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "dessert",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "sweet food eaten after the main meal",
+    examples: [
+      "Would you like dessert after dinner?",
+      "The client ordered coffee and dessert."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "dinner",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "the main meal, usually in the evening",
+    examples: [
+      "We had dinner with the supplier.",
+      "The conference dinner starts at eight."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "dish",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a type of prepared food",
+    examples: [
+      "The waiter recommended a local dish.",
+      "This dish is popular with business travelers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "fine",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "good enough or acceptable",
+    examples: [
+      "The meeting room is fine for ten people.",
+      "The schedule is fine for our team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "lunch",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a meal eaten in the middle of the day",
+    examples: [
+      "We discussed the contract during lunch.",
+      "The team has lunch at one."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "manufacturer",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "a company that makes products",
+    examples: [
+      "The manufacturer produces office furniture.",
+      "We contacted the manufacturer about the problem."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "meal",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a time when people eat food",
+    examples: [
+      "The hotel includes one meal per day.",
+      "We had a quick meal before the meeting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "meet",
+    partOfSpeech: "verb",
+    category: "Business Meetings",
+    definition: "to see and talk to someone",
+    examples: [
+      "We will meet the supplier tomorrow.",
+      "The manager met the new client today."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "menu",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a list of food and drinks",
+    examples: [
+      "The menu has many vegetarian options.",
+      "Please check the menu before ordering."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "nice",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "pleasant or enjoyable",
+    examples: [
+      "The restaurant has a nice atmosphere.",
+      "It was nice to meet the new team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "soft drink",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a cold drink without alcohol",
+    examples: [
+      "She ordered a soft drink with lunch.",
+      "The cafeteria sells coffee and soft drinks."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "sparkling water",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "water with gas bubbles",
+    examples: [
+      "The client asked for sparkling water.",
+      "We ordered sparkling water for the table."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "still water",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "water without gas bubbles",
+    examples: [
+      "I prefer still water with lunch.",
+      "The waiter brought still water for everyone."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "supplier",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "a person or company that provides goods",
+    examples: [
+      "Our supplier delivers materials every week.",
+      "We need a reliable supplier for textiles."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "terrible",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "very bad or unpleasant",
+    examples: [
+      "The service was terrible yesterday.",
+      "A terrible experience can damage a brand."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "textiles",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "cloth and materials used to make products",
+    examples: [
+      "The company imports textiles from Italy.",
+      "Textiles are important for the fashion industry."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "tip",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "extra money given for good service",
+    examples: [
+      "We left a tip for the waiter.",
+      "The bill does not include the tip."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "trade fair",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "an event where companies show their products",
+    examples: [
+      "We met new suppliers at the trade fair.",
+      "The trade fair attracted international buyers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "waiter",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a man who serves food in a restaurant",
+    examples: [
+      "The waiter brought the menu.",
+      "We asked the waiter for the bill."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 6,
+    word: "waitress",
+    partOfSpeech: "noun",
+    category: "Food & Restaurants",
+    definition: "a woman who serves food in a restaurant",
+    examples: [
+      "The waitress recommended the special dish.",
+      "A friendly waitress served our table."
+    ]
+  },
 
 //////////////////////////////
 //
