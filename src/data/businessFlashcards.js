@@ -2671,7 +2671,294 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "elementary",
+    unit: 10,
+    word: "amazing",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "very surprising or very good",
+    examples: [
+      "The results were amazing this quarter.",
+      "She gave an amazing presentation to the team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "attend meetings",
+    partOfSpeech: "phrase",
+    category: "Business Meetings",
+    definition: "to go to meetings with other people",
+    examples: [
+      "Managers attend meetings every Monday.",
+      "She attends meetings with international clients."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "average",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "normal or typical",
+    examples: [
+      "The average salary is increasing.",
+      "Our average delivery time is three days."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "complain",
+    partOfSpeech: "verb",
+    category: "Customer Feedback",
+    definition: "to say that you are not happy about something",
+    examples: [
+      "Customers complained about the slow service.",
+      "Please complain politely if there is a problem."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "component",
+    partOfSpeech: "noun",
+    category: "Production & Manufacturing",
+    definition: "one part of a product or system",
+    examples: [
+      "This component is used in the new machine.",
+      "The factory needs more electronic components."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "develop ideas",
+    partOfSpeech: "phrase",
+    category: "Problem Solving",
+    definition: "to think of new ideas and improve them",
+    examples: [
+      "The team met to develop ideas for the campaign.",
+      "We develop ideas before choosing the best solution."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "disappointing",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "not as good as expected",
+    examples: [
+      "The sales figures were disappointing.",
+      "It was a disappointing result for the team."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "excellent",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "very good",
+    examples: [
+      "The hotel offers excellent service.",
+      "She did an excellent job on the report."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "face-to-face",
+    partOfSpeech: "adjective",
+    category: "Business Meetings",
+    definition: "in the same place with another person",
+    examples: [
+      "We prefer face-to-face meetings with new clients.",
+      "The training course includes face-to-face practice."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "fantastic",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "extremely good",
+    examples: [
+      "The product launch was fantastic.",
+      "They received fantastic feedback from customers."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "figures",
+    partOfSpeech: "noun",
+    category: "Performance & Results",
+    definition: "numbers that show business information",
+    examples: [
+      "The sales figures are better this month.",
+      "Please check the figures before the meeting."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "find solutions",
+    partOfSpeech: "phrase",
+    category: "Problem Solving",
+    definition: "to discover ways to solve problems",
+    examples: [
+      "We need to find solutions quickly.",
+      "Good managers help teams find solutions."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "make decisions",
+    partOfSpeech: "phrase",
+    category: "Problem Solving",
+    definition: "to choose what should be done",
+    examples: [
+      "Managers make decisions every day.",
+      "The team needs more information to make decisions."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "opinion",
+    partOfSpeech: "noun",
+    category: "Business Communication",
+    definition: "what someone thinks or feels about something",
+    examples: [
+      "What is your opinion of the new design?",
+      "The manager asked for everyone's opinion."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "overtime",
+    partOfSpeech: "noun",
+    category: "Work & Employment",
+    definition: "extra time spent working after normal hours",
+    examples: [
+      "The team worked overtime to finish the order.",
+      "Overtime is common during busy periods."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "permanent",
+    partOfSpeech: "adjective",
+    category: "Work & Employment",
+    definition: "lasting for a long time or without an end date",
+    examples: [
+      "She wants a permanent position.",
+      "The company offered him a permanent contract."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "popular",
+    partOfSpeech: "adjective",
+    category: "Customer Feedback",
+    definition: "liked by many people",
+    examples: [
+      "This product is popular with young professionals.",
+      "The new service became popular quickly."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "production line",
+    partOfSpeech: "noun",
+    category: "Production & Manufacturing",
+    definition: "workers and machines that make products in order",
+    examples: [
+      "The production line starts at six o'clock.",
+      "A problem stopped the production line."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "salary",
+    partOfSpeech: "noun",
+    category: "Work & Employment",
+    definition: "money paid regularly for doing a job",
+    examples: [
+      "The salary is paid every month.",
+      "She accepted the job because of the salary."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "solve problems",
+    partOfSpeech: "phrase",
+    category: "Problem Solving",
+    definition: "to find answers to difficult situations",
+    examples: [
+      "Engineers solve problems every day.",
+      "The team works together to solve problems."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "surprising",
+    partOfSpeech: "adjective",
+    category: "Opinions & Descriptions",
+    definition: "unexpected or not easy to predict",
+    examples: [
+      "The results were surprising.",
+      "It was surprising to see such strong sales."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "teamwork",
+    partOfSpeech: "noun",
+    category: "Work & Employment",
+    definition: "working well together as a group",
+    examples: [
+      "Good teamwork helped us finish the project.",
+      "The company values teamwork and communication."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "temporary",
+    partOfSpeech: "adjective",
+    category: "Work & Employment",
+    definition: "lasting for only a short time",
+    examples: [
+      "He has a temporary job in logistics.",
+      "The company hired temporary staff for the season."
+    ]
+  },
+  {
+    level: "elementary",
+    unit: 10,
+    word: "turnover",
+    partOfSpeech: "noun",
+    category: "Work & Employment",
+    definition: "the rate at which employees leave a company",
+    examples: [
+      "High turnover can be expensive for companies.",
+      "The manager wants to reduce staff turnover."
+    ]
+  },
 
 //////////////////////////////
 //
