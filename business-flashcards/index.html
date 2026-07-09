@@ -195,7 +195,7 @@ function createLevelFilter() {
     button.setAttribute('aria-pressed', String(checked));
     button.disabled = !hasVocabulary;
     button.setAttribute('aria-disabled', String(!available));
-    button.innerHTML = `<span class="check">${checked ? '✓' : ''}</span><span>${level.label}</span>${available ? '' : locked ? '<span class="lock">Locked</span>' : '<span class="soon">Coming Soon</span>'}`;
+    button.innerHTML = `<span class="check">${checked ? '✓' : ''}</span><span>${level.label}</span>${available ? '' : locked ? '<span class="lock">ePeak+</span>' : '<span class="soon">Coming Soon</span>'}`;
     options.appendChild(button);
   });
   return wrapper;
@@ -219,7 +219,7 @@ function updateLevelFilters() {
       button.className = `level-pill${checked ? ' active' : ''}${hasVocabulary ? '' : ' disabled'}${locked ? ' locked' : ''}`;
       button.setAttribute('aria-disabled', String(!available));
       button.setAttribute('aria-pressed', String(checked));
-      button.innerHTML = `<span class="check">${checked ? '✓' : ''}</span><span>${level.label}</span>${available ? '' : locked ? '<span class="lock">Locked</span>' : '<span class="soon">Coming Soon</span>'}`;
+      button.innerHTML = `<span class="check">${checked ? '✓' : ''}</span><span>${level.label}</span>${available ? '' : locked ? '<span class="lock">ePeak+</span>' : '<span class="soon">Coming Soon</span>'}`;
     });
   });
 }
