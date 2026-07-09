@@ -1604,7 +1604,7 @@ function openBusinessFlashcards() {
   document.getElementById('exercise-business-flashcards').classList.add('active');
   document.getElementById('topbarTitle').textContent = '💼 Business Flashcards';
   document.getElementById('topbarSub').textContent = 'Business vocabulary practice';
-  document.getElementById('frame-business-flashcards').src = '/business-flashcards';
+  document.getElementById('frame-business-flashcards').src = '/business-flashcards?tier=' + encodeURIComponent(currentTier || 'visitor');
   closeMobileSidebar();
 }
 
