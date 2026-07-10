@@ -7132,7 +7132,330 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "achieve",
+    partOfSpeech: "verb",
+    category: "Goals & Performance",
+    definition: "to successfully reach a goal or result",
+    examples: [
+      "The company achieved its annual sales target.",
+      "She worked hard to achieve her career goals."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "ambitious",
+    partOfSpeech: "adjective",
+    category: "Careers & Leadership",
+    definition: "having a strong desire to succeed",
+    examples: [
+      "She is an ambitious project manager.",
+      "The company announced an ambitious growth plan."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "appointment",
+    partOfSpeech: "noun",
+    category: "Meetings",
+    definition: "an arranged meeting at a particular time",
+    examples: [
+      "I have an appointment with the client at 3 p.m.",
+      "Please confirm your appointment by email."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "assist",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to help someone do something",
+    examples: [
+      "Our team will assist you during the installation.",
+      "She assisted the manager with the presentation."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "confident",
+    partOfSpeech: "adjective",
+    category: "Professional Skills",
+    definition: "feeling sure about your abilities",
+    examples: [
+      "He sounded confident during the interview.",
+      "Confident speakers communicate more effectively."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "develop",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to improve or build something over time",
+    examples: [
+      "Employees should develop new leadership skills.",
+      "The company developed a stronger marketing strategy."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "experience",
+    partOfSpeech: "noun",
+    category: "Careers",
+    definition: "knowledge or skill gained through doing something",
+    examples: [
+      "She has five years of management experience.",
+      "Previous experience is required for this position."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "goal",
+    partOfSpeech: "noun",
+    category: "Goals & Performance",
+    definition: "something you want to achieve",
+    examples: [
+      "Our goal is to improve customer satisfaction.",
+      "He achieved every sales goal this quarter."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "improve",
+    partOfSpeech: "verb",
+    category: "Performance & Results",
+    definition: "to become better or make something better",
+    examples: [
+      "We need to improve our delivery process.",
+      "The training improved employee performance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "independent",
+    partOfSpeech: "adjective",
+    category: "Professional Skills",
+    definition: "able to work without needing help from others",
+    examples: [
+      "She is an independent worker.",
+      "The role requires independent decision-making."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "leadership",
+    partOfSpeech: "noun",
+    category: "Management",
+    definition: "the ability to guide and motivate other people",
+    examples: [
+      "Leadership training is available for all managers.",
+      "Strong leadership helped the company grow."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "motivate",
+    partOfSpeech: "verb",
+    category: "Management",
+    definition: "to encourage someone to do something well",
+    examples: [
+      "Great managers motivate their teams.",
+      "Bonuses can motivate employees."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "objective",
+    partOfSpeech: "noun",
+    category: "Goals & Performance",
+    definition: "a specific result that you plan to achieve",
+    examples: [
+      "Our main objective is to increase market share.",
+      "Every project should have clear objectives."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "organize",
+    partOfSpeech: "verb",
+    category: "Professional Skills",
+    definition: "to arrange people or things effectively",
+    examples: [
+      "She organized the annual conference.",
+      "Good managers organize their priorities carefully."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "performance",
+    partOfSpeech: "noun",
+    category: "Performance & Results",
+    definition: "how well someone or something does a job",
+    examples: [
+      "Employee performance improved significantly.",
+      "The manager reviewed the team's performance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "positive attitude",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "an optimistic and constructive way of thinking",
+    examples: [
+      "A positive attitude helps during difficult projects.",
+      "Employers value candidates with a positive attitude."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "promotion",
+    partOfSpeech: "noun",
+    category: "Careers",
+    definition: "a move to a higher position with more responsibility",
+    examples: [
+      "She received a promotion after two years.",
+      "His promotion was announced during the meeting."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "responsibility",
+    partOfSpeech: "noun",
+    category: "Management",
+    definition: "a duty or task that someone must take care of",
+    examples: [
+      "Managing the budget is his responsibility.",
+      "The new role comes with more responsibility."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "self-employed",
+    partOfSpeech: "adjective",
+    category: "Careers",
+    definition: "working for yourself instead of an employer",
+    examples: [
+      "She became self-employed last year.",
+      "Many consultants are self-employed."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "strength",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "something that someone does especially well",
+    examples: [
+      "Communication is one of her greatest strengths.",
+      "The interview focused on the candidate's strengths."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "team player",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "someone who works well with other people",
+    examples: [
+      "We are looking for a strong team player.",
+      "She is respected because she is a team player."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "training course",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "a program designed to teach specific skills",
+    examples: [
+      "The company offers a leadership training course.",
+      "He completed a training course in project management."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "weakness",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "an area where someone is less capable",
+    examples: [
+      "She turned her biggest weakness into a strength.",
+      "Interviewers often ask candidates about a weakness."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "work under pressure",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to remain effective in stressful situations",
+    examples: [
+      "The position requires people who can work under pressure.",
+      "She works under pressure without losing focus."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "work-life balance",
+    partOfSpeech: "noun",
+    category: "Workplace Well-being",
+    definition: "a healthy balance between work and personal life",
+    examples: [
+      "Flexible schedules improve work-life balance.",
+      "Many employees value work-life balance over salary."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "workload",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "the amount of work someone is expected to do",
+    examples: [
+      "Her workload increased after the promotion.",
+      "Managers should monitor employee workloads."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 11,
+    word: "workplace",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "the place where people do their jobs",
+    examples: [
+      "Safety is important in every workplace.",
+      "The company created a more inclusive workplace."
+    ]
+  },
 
 //////////////////////////////
 //
