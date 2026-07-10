@@ -7463,7 +7463,282 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "achieve a target",
+    partOfSpeech: "phrase",
+    category: "Goals & Performance",
+    definition: "to successfully reach a planned business goal",
+    examples: [
+      "The sales team achieved its annual target.",
+      "We need more customers to achieve the target."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "approximate",
+    partOfSpeech: "adjective",
+    category: "Data & Measurement",
+    definition: "almost correct, but not completely exact",
+    examples: [
+      "The approximate cost is five thousand dollars.",
+      "Please provide an approximate delivery date."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "approximation",
+    partOfSpeech: "noun",
+    category: "Data & Measurement",
+    definition: "a number or amount that is close but not exact",
+    examples: [
+      "The figure is only an approximation.",
+      "We used an approximation to prepare the initial budget."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "disappointing",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "not as good or successful as expected",
+    examples: [
+      "The quarterly sales results were disappointing.",
+      "Customer feedback about the launch was disappointing."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "diversity",
+    partOfSpeech: "noun",
+    category: "Workplace & Society",
+    definition: "the inclusion of many different people or ideas",
+    examples: [
+      "The company promotes diversity in the workplace.",
+      "Greater diversity can lead to more creative solutions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "dramatically",
+    partOfSpeech: "adverb",
+    category: "Performance & Results",
+    definition: "by a very large and surprising amount",
+    examples: [
+      "Online sales increased dramatically last year.",
+      "Production costs fell dramatically after the update."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "durable",
+    partOfSpeech: "adjective",
+    category: "Product Quality",
+    definition: "able to last a long time without breaking",
+    examples: [
+      "Customers want durable products for daily use.",
+      "The manufacturer uses durable materials."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "encouraging",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "giving hope that something will succeed",
+    examples: [
+      "The initial sales figures are encouraging.",
+      "We received encouraging feedback from customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "environmental performance",
+    partOfSpeech: "noun",
+    category: "Sustainability",
+    definition: "how well a company reduces harm to the environment",
+    examples: [
+      "The report reviews the company's environmental performance.",
+      "Recycling improved our environmental performance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "excellent",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "extremely good or of a very high standard",
+    examples: [
+      "The company achieved excellent financial results.",
+      "Her presentation received excellent feedback."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "lay off",
+    partOfSpeech: "phrasal verb",
+    category: "Employment",
+    definition: "to stop employing someone because there is not enough work",
+    examples: [
+      "The company may lay off some temporary workers.",
+      "The factory laid off employees after demand fell."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "manage your costs",
+    partOfSpeech: "phrase",
+    category: "Finance & Budgeting",
+    definition: "to control spending and avoid unnecessary expenses",
+    examples: [
+      "Small businesses must manage their costs carefully.",
+      "Better planning helps us manage our costs."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "market share",
+    partOfSpeech: "noun",
+    category: "Markets & Competition",
+    definition: "a company's percentage of total sales in a market",
+    examples: [
+      "The company increased its market share this year.",
+      "Our competitor has the largest market share."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "perform",
+    partOfSpeech: "verb",
+    category: "Performance & Results",
+    definition: "to work or function well or badly",
+    examples: [
+      "The new product performed well in customer trials.",
+      "The sales team performed better than expected."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "poor",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "not good or below the expected standard",
+    examples: [
+      "Poor service can damage customer loyalty.",
+      "The company reported poor financial results."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "replace",
+    partOfSpeech: "verb",
+    category: "Business Operations",
+    definition: "to exchange something old or damaged for another",
+    examples: [
+      "We need to replace the damaged equipment.",
+      "The company replaced its old delivery vehicles."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "reputation",
+    partOfSpeech: "noun",
+    category: "Brand & Reputation",
+    definition: "the general opinion people have about a company",
+    examples: [
+      "The business has a reputation for excellent service.",
+      "Product defects can damage a company's reputation."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "revenues",
+    partOfSpeech: "noun",
+    category: "Finance & Results",
+    definition: "money received by a company from its business activities",
+    examples: [
+      "Company revenues increased by eight percent.",
+      "International sales provide most of our revenues."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "safety record",
+    partOfSpeech: "noun",
+    category: "Quality & Safety",
+    definition: "a company's history of keeping people and products safe",
+    examples: [
+      "The factory has an excellent safety record.",
+      "Customers asked about the airline's safety record."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "satisfactory",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "good enough for a particular purpose",
+    examples: [
+      "The inspection results were satisfactory.",
+      "Customer satisfaction remained at a satisfactory level."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "socially responsible",
+    partOfSpeech: "adjective",
+    category: "Corporate Responsibility",
+    definition: "acting with concern for society and other people",
+    examples: [
+      "Customers support socially responsible companies.",
+      "The business follows socially responsible employment practices."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "stock market",
+    partOfSpeech: "noun",
+    category: "Finance & Investment",
+    definition: "the system where shares in companies are bought and sold",
+    examples: [
+      "The company's shares rose on the stock market.",
+      "Stock market changes can affect investor confidence."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 12,
+    word: "workplace",
+    partOfSpeech: "noun",
+    category: "Workplace & Society",
+    definition: "a place where people perform their jobs",
+    examples: [
+      "The company improved safety in the workplace.",
+      "Employees want a fair and inclusive workplace."
+    ]
+  },
 
 //////////////////////////////
 //
