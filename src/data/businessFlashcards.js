@@ -3911,7 +3911,210 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "agenda",
+    partOfSpeech: "noun",
+    category: "Meetings",
+    definition: "a list of topics to be discussed during a meeting",
+    examples: [
+      "The manager emailed the meeting agenda in advance.",
+      "Let's review the agenda before we begin."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "allow time",
+    partOfSpeech: "phrase",
+    category: "Time Management",
+    definition: "to reserve enough time for a particular activity",
+    examples: [
+      "Please allow time for questions at the end.",
+      "We should allow more time for testing."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "budget figures",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "the numerical details of a budget",
+    examples: [
+      "The finance director presented the budget figures.",
+      "We need to review last quarter's budget figures."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "confirmation",
+    partOfSpeech: "noun",
+    category: "Business Communication",
+    definition: "proof or official information showing that something has been agreed",
+    examples: [
+      "We received confirmation of the reservation.",
+      "Please wait for written confirmation before traveling."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "construction site",
+    partOfSpeech: "noun",
+    category: "Construction",
+    definition: "an area where a building or other structure is being built",
+    examples: [
+      "Safety equipment is required on every construction site.",
+      "The project manager visited the construction site daily."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "meet a deadline",
+    partOfSpeech: "phrase",
+    category: "Project Management",
+    definition: "to finish work before or by the required date",
+    examples: [
+      "Everyone worked overtime to meet the deadline.",
+      "Good planning helps teams meet deadlines."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "multi-task",
+    partOfSpeech: "verb",
+    category: "Professional Skills",
+    definition: "to do several tasks at the same time",
+    examples: [
+      "Customer service representatives often multi-task.",
+      "She can multi-task without losing accuracy."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "negotiate",
+    partOfSpeech: "verb",
+    category: "Negotiation",
+    definition: "to discuss something formally in order to reach an agreement",
+    examples: [
+      "The companies negotiated a new contract.",
+      "We need to negotiate better payment terms."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "on time",
+    partOfSpeech: "phrase",
+    category: "Time Management",
+    definition: "arriving or happening at the planned time",
+    examples: [
+      "The shipment arrived on time.",
+      "Employees are expected to start meetings on time."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "participant",
+    partOfSpeech: "noun",
+    category: "Meetings",
+    definition: "a person who takes part in an activity or event",
+    examples: [
+      "Each participant received a conference badge.",
+      "The workshop included participants from six countries."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "plan a schedule",
+    partOfSpeech: "phrase",
+    category: "Project Management",
+    definition: "to organize tasks and decide when each one should happen",
+    examples: [
+      "The project manager planned a detailed schedule.",
+      "We need to plan the schedule before work begins."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "save time",
+    partOfSpeech: "phrase",
+    category: "Efficiency",
+    definition: "to reduce the amount of time needed to complete something",
+    examples: [
+      "Automation helps save time.",
+      "Using templates can save time on reports."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "spend time",
+    partOfSpeech: "phrase",
+    category: "Time Management",
+    definition: "to use time doing a particular activity",
+    examples: [
+      "Managers spend time reviewing performance reports.",
+      "We spent time discussing customer feedback."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "strike",
+    partOfSpeech: "noun",
+    category: "Employment",
+    definition: "a period when employees stop working to protest working conditions or pay",
+    examples: [
+      "The strike delayed production for two days.",
+      "The company negotiated with workers to end the strike."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "task",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a piece of work that must be completed",
+    examples: [
+      "Each employee received a different task.",
+      "Please complete your tasks before Friday."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "transport",
+    partOfSpeech: "verb",
+    category: "Logistics",
+    definition: "to move people or goods from one place to another",
+    examples: [
+      "The company transports products across Europe.",
+      "The goods were transported by rail."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 14,
+    word: "waste time",
+    partOfSpeech: "phrase",
+    category: "Efficiency",
+    definition: "to use more time than necessary",
+    examples: [
+      "Unnecessary meetings waste time.",
+      "Let's avoid wasting time on minor issues."
+    ]
+  },
 
 //////////////////////////////
 //
