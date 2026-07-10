@@ -6482,7 +6482,318 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "ad",
+    partOfSpeech: "noun",
+    category: "Advertising",
+    definition: "a short form of advertisement",
+    examples: [
+      "The company placed an ad on social media.",
+      "I saw the job ad this morning."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "advertisement",
+    partOfSpeech: "noun",
+    category: "Advertising",
+    definition: "a notice, image, or video that promotes something",
+    examples: [
+      "The advertisement appeared in a business magazine.",
+      "Their new advertisement focuses on product quality."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "advertising campaign",
+    partOfSpeech: "noun",
+    category: "Advertising",
+    definition: "a planned series of advertisements for a product or service",
+    examples: [
+      "The advertising campaign increased online sales.",
+      "We launched a new advertising campaign in June."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "attract customers",
+    partOfSpeech: "phrase",
+    category: "Marketing Strategy",
+    definition: "to make people interested in buying from a business",
+    examples: [
+      "Lower prices can attract new customers.",
+      "The store redesigned its website to attract customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "billboard",
+    partOfSpeech: "noun",
+    category: "Advertising",
+    definition: "a large outdoor board used to display advertisements",
+    examples: [
+      "The company rented a billboard near the airport.",
+      "The billboard promotes the new product range."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "boost sales",
+    partOfSpeech: "phrase",
+    category: "Sales & Growth",
+    definition: "to increase the number or value of products sold",
+    examples: [
+      "The discount helped boost sales.",
+      "Online advertising can boost sales quickly."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "click on a link",
+    partOfSpeech: "phrase",
+    category: "Digital Marketing",
+    definition: "to select an online link using a mouse or screen",
+    examples: [
+      "Click on the link to view the full offer.",
+      "Customers clicked on the link in the email."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "direct mailing",
+    partOfSpeech: "noun",
+    category: "Advertising",
+    definition: "sending advertisements directly to selected people by mail",
+    examples: [
+      "The charity uses direct mailing to contact supporters.",
+      "Direct mailing worked well for older customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "download",
+    partOfSpeech: "verb",
+    category: "Digital Marketing",
+    definition: "to copy information from the internet onto a device",
+    examples: [
+      "Customers can download the product guide.",
+      "Please download the report before the meeting."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "enter a market",
+    partOfSpeech: "phrase",
+    category: "Market Expansion",
+    definition: "to begin selling products or services in a particular market",
+    examples: [
+      "The company plans to enter the Asian market.",
+      "Small businesses often face challenges when entering a market."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "expand",
+    partOfSpeech: "verb",
+    category: "Sales & Growth",
+    definition: "to become or make something larger",
+    examples: [
+      "The company wants to expand internationally.",
+      "We expanded our product range last year."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "improve market share",
+    partOfSpeech: "phrase",
+    category: "Market Expansion",
+    definition: "to increase a company's percentage of total market sales",
+    examples: [
+      "The new campaign helped improve market share.",
+      "We need better prices to improve our market share."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "non-refundable",
+    partOfSpeech: "adjective",
+    category: "Sales Terms",
+    definition: "not eligible to be returned for a refund",
+    examples: [
+      "The promotional ticket is non-refundable.",
+      "Customers must accept the non-refundable booking conditions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "offer a discount",
+    partOfSpeech: "phrase",
+    category: "Sales & Promotion",
+    definition: "to reduce the usual price of something",
+    examples: [
+      "We offer a discount for large orders.",
+      "The store offered a discount to loyal customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "online",
+    partOfSpeech: "adjective",
+    category: "Digital Marketing",
+    definition: "available or done using the internet",
+    examples: [
+      "The company launched an online advertising campaign.",
+      "Online sales increased during the holiday period."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "outdoor",
+    partOfSpeech: "adjective",
+    category: "Advertising",
+    definition: "located or happening outside a building",
+    examples: [
+      "The agency specializes in outdoor advertising.",
+      "We organized an outdoor product exhibition."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "outdoors",
+    partOfSpeech: "adverb",
+    category: "Locations & Activities",
+    definition: "outside rather than inside a building",
+    examples: [
+      "The company event was held outdoors.",
+      "Some advertisements are displayed outdoors."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "pastime",
+    partOfSpeech: "noun",
+    category: "Customer Interests",
+    definition: "an activity someone enjoys during their free time",
+    examples: [
+      "Cycling is a popular pastime among our customers.",
+      "The campaign targets people interested in outdoor pastimes."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "preceding",
+    partOfSpeech: "adjective",
+    category: "Sequence & Time",
+    definition: "coming immediately before something else",
+    examples: [
+      "Sales were higher than in the preceding month.",
+      "The preceding campaign focused on younger customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "press ad",
+    partOfSpeech: "noun",
+    category: "Advertising",
+    definition: "an advertisement published in a newspaper or magazine",
+    examples: [
+      "The agency designed a full-page press ad.",
+      "The press ad appeared in several national newspapers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "promote a name",
+    partOfSpeech: "phrase",
+    category: "Branding",
+    definition: "to make more people recognize a company or product name",
+    examples: [
+      "The campaign helped promote the company name.",
+      "Sponsoring events can promote a brand name."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "range",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "a group of related products offered by a company",
+    examples: [
+      "The company launched a new range of cosmetics.",
+      "Our product range includes several affordable models."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "relocation",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the process of moving a company or employees to another place",
+    examples: [
+      "The company announced the relocation of its head office.",
+      "Employees received support during the relocation."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "slot",
+    partOfSpeech: "noun",
+    category: "Media Planning",
+    definition: "a particular position or period of time in a schedule",
+    examples: [
+      "The company bought a prime television advertising slot.",
+      "Our presentation has a thirty-minute slot."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "target audience",
+    partOfSpeech: "noun",
+    category: "Marketing Strategy",
+    definition: "the group of people an advertisement or product is designed for",
+    examples: [
+      "Young professionals are the campaign's target audience.",
+      "We researched the target audience before designing the ad."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 9,
+    word: "word-of-mouth",
+    partOfSpeech: "noun",
+    category: "Marketing & Promotion",
+    definition: "people sharing information or recommendations with one another",
+    examples: [
+      "Most new customers come through word-of-mouth.",
+      "Excellent service creates positive word-of-mouth."
+    ]
+  },
 
 //////////////////////////////
 //
