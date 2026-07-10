@@ -4755,7 +4755,354 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "advertise",
+    partOfSpeech: "verb",
+    category: "Marketing & Promotion",
+    definition: "to tell people about a product or service",
+    examples: [
+      "The company advertises its products online.",
+      "We plan to advertise the new service next month."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "attractive",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "pleasant or interesting to look at",
+    examples: [
+      "The new packaging is simple and attractive.",
+      "An attractive website can bring in more customers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "brand",
+    partOfSpeech: "noun",
+    category: "Marketing & Promotion",
+    definition: "a product name and identity created by a company",
+    examples: [
+      "The brand is popular with young professionals.",
+      "Customers trust brands with a strong reputation."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "brand",
+    partOfSpeech: "verb",
+    category: "Marketing & Promotion",
+    definition: "to give a product a particular name and image",
+    examples: [
+      "The company branded the product for business travelers.",
+      "They want to brand the service as modern and reliable."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "design",
+    partOfSpeech: "noun",
+    category: "Product Design",
+    definition: "the plan for how something looks and works",
+    examples: [
+      "Customers liked the product's modern design.",
+      "The design includes several useful features."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "design",
+    partOfSpeech: "verb",
+    category: "Product Design",
+    definition: "to plan how something will look or function",
+    examples: [
+      "Engineers designed a lighter version of the product.",
+      "The team is designing a new company website."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "development process",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "the stages used to create a new product",
+    examples: [
+      "Customer testing is part of the development process.",
+      "The development process took almost two years."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "economical",
+    partOfSpeech: "adjective",
+    category: "Price & Value",
+    definition: "providing good value without costing too much",
+    examples: [
+      "This model is economical to operate.",
+      "The company needs a more economical transport solution."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "entrepreneur",
+    partOfSpeech: "noun",
+    category: "Business Roles",
+    definition: "a person who starts a business and takes financial risks",
+    examples: [
+      "The entrepreneur launched her first company at twenty-five.",
+      "Successful entrepreneurs often identify new market opportunities."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "exhibition",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "an event where products or other items are displayed",
+    examples: [
+      "The company presented its new gadget at the exhibition.",
+      "Thousands of visitors attended the design exhibition."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "farmer",
+    partOfSpeech: "noun",
+    category: "Business Roles",
+    definition: "a person who owns or manages a farm",
+    examples: [
+      "Local farmers supply ingredients to the company.",
+      "The farmer invested in more efficient equipment."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "festival",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a series of public performances or activities",
+    examples: [
+      "The company sponsored a local food festival.",
+      "The festival attracted thousands of visitors."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "functional",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "practical and useful for its intended purpose",
+    examples: [
+      "The office furniture is stylish and functional.",
+      "Customers want a functional product that is easy to use."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "funding",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "money provided for a project or activity",
+    examples: [
+      "The startup received funding from private investors.",
+      "The project cannot continue without additional funding."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "gadget",
+    partOfSpeech: "noun",
+    category: "Products",
+    definition: "a small device that performs a useful task",
+    examples: [
+      "The company developed a gadget for remote workers.",
+      "This useful gadget can charge several devices."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "invest",
+    partOfSpeech: "verb",
+    category: "Finance",
+    definition: "to put money into something to make a profit",
+    examples: [
+      "The company plans to invest in new technology.",
+      "Several investors decided to invest in the startup."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "launch",
+    partOfSpeech: "verb",
+    category: "Product Development",
+    definition: "to make a new product available for the first time",
+    examples: [
+      "The company will launch the product in September.",
+      "They launched a new service for small businesses."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "maintenance",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "work done to keep something in good condition",
+    examples: [
+      "The machines require regular maintenance.",
+      "Maintenance costs are included in the contract."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "market research",
+    partOfSpeech: "noun",
+    category: "Marketing & Promotion",
+    definition: "the study of what customers buy and why",
+    examples: [
+      "Market research showed strong demand for the product.",
+      "We conducted market research before choosing the design."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "original idea",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "the first idea at the beginning of a project",
+    examples: [
+      "The final product was different from the original idea.",
+      "They improved the original idea after customer testing."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "practical",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "useful and suitable for a real situation",
+    examples: [
+      "The design is attractive but also practical.",
+      "We need a practical solution for small offices."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "resident",
+    partOfSpeech: "noun",
+    category: "Community",
+    definition: "a person who lives in a particular place",
+    examples: [
+      "Local residents supported the new community project.",
+      "The company asked residents for their opinions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "sponsor",
+    partOfSpeech: "noun",
+    category: "Marketing & Promotion",
+    definition: "a person or company that financially supports an activity",
+    examples: [
+      "The bank was the main sponsor of the festival.",
+      "Organizers are looking for a corporate sponsor."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "stage",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "one period or step in a development process",
+    examples: [
+      "The product is now at the testing stage.",
+      "Customer feedback is important at every stage."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "stylish",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "fashionable, elegant, and attractive",
+    examples: [
+      "The laptop bag is practical and stylish.",
+      "Customers preferred the more stylish design."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "tent",
+    partOfSpeech: "noun",
+    category: "Products",
+    definition: "a portable shelter made of strong fabric",
+    examples: [
+      "The company designed a lightweight camping tent.",
+      "The exhibition used a large tent for outdoor presentations."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "trials",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "tests used to check quality or performance",
+    examples: [
+      "The product passed all safety trials.",
+      "Customer trials revealed several design problems."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "user-friendly",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "easy for people to use or understand",
+    examples: [
+      "The new software is simple and user-friendly.",
+      "Customers requested a more user-friendly website."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 4,
+    word: "well-designed",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "planned so that it looks good and works effectively",
+    examples: [
+      "The well-designed product received excellent reviews.",
+      "A well-designed office can improve productivity."
+    ]
+  },
 
 //////////////////////////////
 //
