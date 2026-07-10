@@ -5832,7 +5832,354 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "bill",
+    partOfSpeech: "noun",
+    category: "Travel Payments",
+    definition: "a document showing how much you must pay",
+    examples: [
+      "The receptionist prepared the hotel bill.",
+      "Please check the bill before making the payment."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "board",
+    partOfSpeech: "verb",
+    category: "Air Travel",
+    definition: "to get on a plane, train, bus, or ship",
+    examples: [
+      "Passengers can now board the flight.",
+      "We boarded the train after the meeting."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "check-in",
+    partOfSpeech: "noun",
+    category: "Air Travel",
+    definition: "the airport or hotel area where arrivals are registered",
+    examples: [
+      "The check-in desk opens at six.",
+      "There was a long queue at check-in."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "check in",
+    partOfSpeech: "phrasal verb",
+    category: "Travel & Accommodation",
+    definition: "to register when arriving at a hotel or airport",
+    examples: [
+      "We need to check in two hours before departure.",
+      "She checked in at the hotel after the conference."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "check out",
+    partOfSpeech: "phrasal verb",
+    category: "Travel & Accommodation",
+    definition: "to pay and officially leave a hotel",
+    examples: [
+      "Guests must check out before eleven.",
+      "We checked out early to catch our flight."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "connection",
+    partOfSpeech: "noun",
+    category: "Travel Connections",
+    definition: "a second flight, train, or bus used to continue a journey",
+    examples: [
+      "We have a connection in Frankfurt.",
+      "The delay caused us to miss our connection."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "delay",
+    partOfSpeech: "noun",
+    category: "Travel Problems",
+    definition: "a period of waiting caused by a problem",
+    examples: [
+      "The flight had a three-hour delay.",
+      "The delay affected our meeting schedule."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "delay",
+    partOfSpeech: "verb",
+    category: "Travel Problems",
+    definition: "to make something happen later than planned",
+    examples: [
+      "Bad weather delayed the flight.",
+      "A technical problem delayed our departure."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "departure lounge",
+    partOfSpeech: "noun",
+    category: "Airport Facilities",
+    definition: "an airport area where passengers wait for flights",
+    examples: [
+      "We waited in the departure lounge.",
+      "The departure lounge has several cafés."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "departures",
+    partOfSpeech: "noun",
+    category: "Airport Facilities",
+    definition: "the airport area for passengers who are leaving",
+    examples: [
+      "Follow the signs to departures.",
+      "The taxi dropped us outside departures."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "double bed",
+    partOfSpeech: "noun",
+    category: "Hotel Facilities",
+    definition: "a bed designed for two people",
+    examples: [
+      "The hotel room has a double bed.",
+      "We requested a room with a double bed."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "facilities",
+    partOfSpeech: "noun",
+    category: "Hotel Facilities",
+    definition: "buildings, equipment, or services provided for a purpose",
+    examples: [
+      "The hotel has excellent conference facilities.",
+      "Guests can use the fitness facilities."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "flight",
+    partOfSpeech: "noun",
+    category: "Air Travel",
+    definition: "a journey made by air",
+    examples: [
+      "Our flight leaves at eight tomorrow.",
+      "She booked a direct flight to Madrid."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "gate",
+    partOfSpeech: "noun",
+    category: "Airport Facilities",
+    definition: "the airport area where passengers enter their plane",
+    examples: [
+      "The flight departs from gate twenty.",
+      "Please arrive at the gate before boarding."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "key card",
+    partOfSpeech: "noun",
+    category: "Hotel Facilities",
+    definition: "a plastic card used to unlock a hotel room",
+    examples: [
+      "The receptionist gave me a key card.",
+      "My key card did not open the door."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "luggage",
+    partOfSpeech: "noun",
+    category: "Travel Essentials",
+    definition: "bags and cases used when traveling",
+    examples: [
+      "The airline lost his luggage.",
+      "Please leave your luggage beside the desk."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "one-way ticket",
+    partOfSpeech: "noun",
+    category: "Travel Tickets",
+    definition: "a ticket for traveling to a place without returning",
+    examples: [
+      "She bought a one-way ticket to Paris.",
+      "A one-way ticket was cheaper than expected."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "overseas",
+    partOfSpeech: "adverb",
+    category: "International Travel",
+    definition: "in, from, or to a foreign country",
+    examples: [
+      "The director travels overseas every month.",
+      "Our company has several offices overseas."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "pack",
+    partOfSpeech: "verb",
+    category: "Travel Essentials",
+    definition: "to put clothes and other items into a travel bag",
+    examples: [
+      "I need to pack for the business trip.",
+      "She packed her laptop and presentation materials."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "receptionist",
+    partOfSpeech: "noun",
+    category: "Hotel Staff",
+    definition: "a person who assists visitors at a hotel or office",
+    examples: [
+      "The receptionist confirmed our reservation.",
+      "Ask the receptionist for the Wi-Fi password."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "reservation",
+    partOfSpeech: "noun",
+    category: "Travel & Accommodation",
+    definition: "an arrangement to keep a room or seat available",
+    examples: [
+      "The hotel could not find our reservation.",
+      "I confirmed the reservation by email."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "return ticket",
+    partOfSpeech: "noun",
+    category: "Travel Tickets",
+    definition: "a ticket for traveling somewhere and coming back",
+    examples: [
+      "I bought a return ticket to London.",
+      "The return ticket is valid for thirty days."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "safe",
+    partOfSpeech: "noun",
+    category: "Hotel Security",
+    definition: "a strong locked box used to protect valuable items",
+    examples: [
+      "Keep your passport in the hotel safe.",
+      "The room has a safe for valuables."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "security pass",
+    partOfSpeech: "noun",
+    category: "Workplace Security",
+    definition: "a card showing permission to enter a protected place",
+    examples: [
+      "Visitors must wear a security pass.",
+      "Show your security pass at the entrance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "shuttle bus",
+    partOfSpeech: "noun",
+    category: "Ground Transport",
+    definition: "a bus that travels regularly between two places",
+    examples: [
+      "The hotel provides a free airport shuttle bus.",
+      "We took the shuttle bus to the conference center."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "sign in",
+    partOfSpeech: "phrasal verb",
+    category: "Workplace Security",
+    definition: "to write your name when entering a place",
+    examples: [
+      "All visitors must sign in at reception.",
+      "Please sign in before entering the office."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "single bed",
+    partOfSpeech: "noun",
+    category: "Hotel Facilities",
+    definition: "a bed designed for one person",
+    examples: [
+      "The room contains two single beds.",
+      "He booked a small room with a single bed."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "terminal",
+    partOfSpeech: "noun",
+    category: "Airport Facilities",
+    definition: "an airport building used by arriving and departing passengers",
+    examples: [
+      "Our flight leaves from terminal three.",
+      "The airport has a new international terminal."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 7,
+    word: "valuables",
+    partOfSpeech: "noun",
+    category: "Hotel Security",
+    definition: "small personal items that are worth a lot of money",
+    examples: [
+      "Guests should keep valuables in the safe.",
+      "Do not leave valuables in the meeting room."
+    ]
+  },
 
 //////////////////////////////
 //
