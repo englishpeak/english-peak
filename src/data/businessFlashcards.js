@@ -6187,7 +6187,294 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "check",
+    partOfSpeech: "verb",
+    category: "Order Management",
+    definition: "to examine information and confirm that it is correct",
+    examples: [
+      "Please check the order details before confirming them.",
+      "The warehouse checked the quantity of each item."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "collect",
+    partOfSpeech: "verb",
+    category: "Delivery & Logistics",
+    definition: "to go somewhere and take someone or something away",
+    examples: [
+      "The carrier will collect the package this afternoon.",
+      "Customers can collect their orders from the warehouse."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "confirm",
+    partOfSpeech: "verb",
+    category: "Order Management",
+    definition: "to state that something is definite or officially agreed",
+    examples: [
+      "Please confirm the delivery address by email.",
+      "The supplier confirmed that the goods were available."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "deliver",
+    partOfSpeech: "verb",
+    category: "Delivery & Logistics",
+    definition: "to take goods or documents to their destination",
+    examples: [
+      "The company delivers orders within three working days.",
+      "The courier delivered the documents before noon."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "delivery",
+    partOfSpeech: "noun",
+    category: "Delivery & Logistics",
+    definition: "the act of taking goods to the person who ordered them",
+    examples: [
+      "The delivery arrived earlier than expected.",
+      "Customers receive a message on the day of delivery."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "disappointed",
+    partOfSpeech: "adjective",
+    category: "Customer Feedback",
+    definition: "unhappy because something was not as good as expected",
+    examples: [
+      "The customer was disappointed with the late delivery.",
+      "We were disappointed by the supplier's response."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "enquiry",
+    partOfSpeech: "noun",
+    category: "Customer Communication",
+    definition: "a request for information about something",
+    examples: [
+      "We received an enquiry about international shipping.",
+      "Customer service answered the enquiry within an hour."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "global carrier",
+    partOfSpeech: "noun",
+    category: "Delivery & Logistics",
+    definition: "a company that transports goods around the world",
+    examples: [
+      "We use a global carrier for overseas shipments.",
+      "The global carrier provides online tracking."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "goods",
+    partOfSpeech: "noun",
+    category: "Products & Inventory",
+    definition: "products or items that are made and sold",
+    examples: [
+      "The goods are ready for shipment.",
+      "Damaged goods must be reported immediately."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "in stock",
+    partOfSpeech: "phrase",
+    category: "Products & Inventory",
+    definition: "available to be bought or supplied",
+    examples: [
+      "The blue model is currently in stock.",
+      "Please check whether the item is in stock."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "initial",
+    partOfSpeech: "noun",
+    category: "Documents & Identification",
+    definition: "the first letter of a person's name",
+    examples: [
+      "Write your initials at the bottom of each page.",
+      "The package label only showed the customer's initial."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "invoice",
+    partOfSpeech: "noun",
+    category: "Payments & Documents",
+    definition: "a document showing how much a customer must pay",
+    examples: [
+      "The invoice includes delivery charges.",
+      "Please send the invoice to the finance department."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "logo",
+    partOfSpeech: "noun",
+    category: "Branding",
+    definition: "a special design or symbol used by a company",
+    examples: [
+      "The company printed its logo on every package.",
+      "The new logo is simple and easy to recognize."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "make a complaint",
+    partOfSpeech: "phrase",
+    category: "Customer Feedback",
+    definition: "to formally say that you are not satisfied",
+    examples: [
+      "The customer called to make a complaint.",
+      "You can make a complaint through the company website."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "out of stock",
+    partOfSpeech: "phrase",
+    category: "Products & Inventory",
+    definition: "not currently available to be bought",
+    examples: [
+      "The most popular model is out of stock.",
+      "We informed the customer that the item was out of stock."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "package",
+    partOfSpeech: "verb",
+    category: "Delivery & Logistics",
+    definition: "to put something into a container for sale or transport",
+    examples: [
+      "Workers package the products before shipment.",
+      "Please package the equipment carefully."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "place an order",
+    partOfSpeech: "phrase",
+    category: "Order Management",
+    definition: "to formally request goods from a company",
+    examples: [
+      "The customer placed an order for fifty units.",
+      "You can place an order through our website."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "process",
+    partOfSpeech: "verb",
+    category: "Order Management",
+    definition: "to officially handle a request, document, or transaction",
+    examples: [
+      "The finance team will process the payment today.",
+      "It takes two days to process an international order."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "purchase",
+    partOfSpeech: "verb",
+    category: "Purchasing",
+    definition: "to buy a product or service",
+    examples: [
+      "The company purchased new warehouse equipment.",
+      "Customers can purchase additional support online."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "quote",
+    partOfSpeech: "verb",
+    category: "Sales & Pricing",
+    definition: "to tell a customer the price of a product or service",
+    examples: [
+      "The supplier quoted us a lower price.",
+      "Can you quote the customer for express delivery?"
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "renegotiate",
+    partOfSpeech: "verb",
+    category: "Negotiation",
+    definition: "to discuss and change the terms of an existing agreement",
+    examples: [
+      "We need to renegotiate the delivery terms.",
+      "The client asked to renegotiate the contract."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "shipment",
+    partOfSpeech: "noun",
+    category: "Delivery & Logistics",
+    definition: "a quantity of goods sent from one place to another",
+    examples: [
+      "The shipment left the warehouse yesterday.",
+      "Customs delayed the international shipment."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "track",
+    partOfSpeech: "verb",
+    category: "Delivery & Logistics",
+    definition: "to follow the location or progress of something",
+    examples: [
+      "Customers can track their orders online.",
+      "We track every shipment from the warehouse."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 8,
+    word: "warehouse",
+    partOfSpeech: "noun",
+    category: "Products & Inventory",
+    definition: "a large building where goods are stored",
+    examples: [
+      "The goods are stored in a regional warehouse.",
+      "The warehouse processes hundreds of orders daily."
+    ]
+  },
 
 //////////////////////////////
 //
