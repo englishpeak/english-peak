@@ -8463,7 +8463,294 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "ambition",
+    partOfSpeech: "noun",
+    category: "Careers & Goals",
+    definition: "a strong desire to achieve something important",
+    examples: [
+      "Her ambition is to become a senior executive.",
+      "Professional ambition motivated him to continue studying."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "antisocial",
+    partOfSpeech: "adjective",
+    category: "Working Conditions",
+    definition: "describing work hours when most other people are not working",
+    examples: [
+      "Hospital employees often work antisocial hours.",
+      "The position includes some antisocial evening shifts."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "career path",
+    partOfSpeech: "noun",
+    category: "Careers & Goals",
+    definition: "the series of jobs through which a career develops",
+    examples: [
+      "The company offers a clear career path for graduates.",
+      "She changed her career path after working in finance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "career plan",
+    partOfSpeech: "noun",
+    category: "Careers & Goals",
+    definition: "a plan describing how someone wants their career to develop",
+    examples: [
+      "His career plan includes international work experience.",
+      "Employees discuss their career plans during appraisals."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "cause",
+    partOfSpeech: "noun",
+    category: "Society & Purpose",
+    definition: "an organization or idea that people actively support",
+    examples: [
+      "The company donated money to a local cause.",
+      "Employees volunteered for an environmental cause."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "celebrity",
+    partOfSpeech: "noun",
+    category: "Media & Public Life",
+    definition: "a famous person, especially in entertainment or media",
+    examples: [
+      "The brand hired a celebrity for its advertising campaign.",
+      "A local celebrity attended the product launch."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "challenge",
+    partOfSpeech: "noun",
+    category: "Careers & Development",
+    definition: "a difficult task that tests someone's ability",
+    examples: [
+      "Managing the new team was a major challenge.",
+      "She enjoys jobs that offer new challenges."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "change direction",
+    partOfSpeech: "phrase",
+    category: "Careers & Goals",
+    definition: "to begin doing something completely different in work or life",
+    examples: [
+      "He changed direction and started a consulting business.",
+      "The company changed direction after reviewing the market."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "civil service",
+    partOfSpeech: "noun",
+    category: "Employment Sectors",
+    definition: "government departments and the people employed by them",
+    examples: [
+      "She began her career in the civil service.",
+      "The civil service employs thousands of administrative workers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "complete",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to finish making or doing something",
+    examples: [
+      "Please complete the report by Friday.",
+      "The team completed the project ahead of schedule."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "concentrate on",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to give your full attention to something",
+    examples: [
+      "We need to concentrate on customer retention.",
+      "She concentrated on completing the urgent tasks."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "consultant",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "an expert who is paid to give professional advice",
+    examples: [
+      "The company hired a consultant to improve operations.",
+      "He works as an independent business consultant."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "extreme",
+    partOfSpeech: "adjective",
+    category: "Working Conditions",
+    definition: "very great or severe in degree",
+    examples: [
+      "Employees worked under extreme pressure before the launch.",
+      "Extreme weather delayed several deliveries."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "freelance",
+    partOfSpeech: "adjective",
+    category: "Employment Types",
+    definition: "working independently for several organizations or clients",
+    examples: [
+      "She works as a freelance graphic designer.",
+      "The agency hired several freelance writers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "give up",
+    partOfSpeech: "phrasal verb",
+    category: "Careers & Decisions",
+    definition: "to stop doing or trying to do something",
+    examples: [
+      "He gave up his office job to start a business.",
+      "The team refused to give up on the project."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "high-powered",
+    partOfSpeech: "adjective",
+    category: "Careers & Leadership",
+    definition: "important and involving a great deal of responsibility",
+    examples: [
+      "She left a high-powered job in banking.",
+      "The role attracts high-powered executives."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "hobby",
+    partOfSpeech: "noun",
+    category: "Work-Life Balance",
+    definition: "an activity done for enjoyment outside work",
+    examples: [
+      "Photography is his favorite hobby.",
+      "A relaxing hobby can improve work-life balance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "make a decision",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to choose what should be done",
+    examples: [
+      "The board will make a decision next week.",
+      "Managers need reliable data to make decisions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "poverty",
+    partOfSpeech: "noun",
+    category: "Society & Purpose",
+    definition: "the condition of not having enough money for basic needs",
+    examples: [
+      "The charity supports communities affected by poverty.",
+      "The initiative aims to reduce poverty through employment."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "qualification",
+    partOfSpeech: "noun",
+    category: "Education & Careers",
+    definition: "an exam passed or course successfully completed",
+    examples: [
+      "The position requires a professional qualification.",
+      "She earned a qualification in project management."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "run",
+    partOfSpeech: "verb",
+    category: "Management",
+    definition: "to manage or be responsible for a business",
+    examples: [
+      "She runs a successful online company.",
+      "He runs the regional sales department."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "strength",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "a quality or ability that gives someone an advantage",
+    examples: [
+      "Strategic thinking is one of her main strengths.",
+      "The interview focused on each candidate's strengths."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "trauma",
+    partOfSpeech: "noun",
+    category: "Healthcare",
+    definition: "a hospital department that treats serious injuries",
+    examples: [
+      "The hospital opened a new trauma department.",
+      "She works as a nurse in trauma care."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 16,
+    word: "weakness",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "a quality or ability that is not strong enough",
+    examples: [
+      "The appraisal identified a weakness in time management.",
+      "Understanding your weaknesses can support professional growth."
+    ]
+  },
 
 ////////////////////////////////////////////////////////////
 //
