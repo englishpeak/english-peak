@@ -3640,7 +3640,270 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "automobile",
+    partOfSpeech: "noun",
+    category: "Industry & Manufacturing",
+    definition: "a car or motor vehicle",
+    examples: [
+      "The automobile industry is investing heavily in electric vehicles.",
+      "Several automobile manufacturers announced new sustainability goals."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "component",
+    partOfSpeech: "noun",
+    category: "Manufacturing",
+    definition: "one of the individual parts that make up a larger product",
+    examples: [
+      "Every component must pass quality control before assembly.",
+      "The supplier delivered the missing components this morning."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "deteriorate",
+    partOfSpeech: "verb",
+    category: "Business Trends",
+    definition: "to become worse in quality or condition",
+    examples: [
+      "Sales began to deteriorate after the price increase.",
+      "Customer relationships can deteriorate without good communication."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "economic development",
+    partOfSpeech: "phrase",
+    category: "Economics",
+    definition: "the growth and improvement of an economy over time",
+    examples: [
+      "Tourism has contributed to the region's economic development.",
+      "Infrastructure projects support long-term economic development."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "energy crisis",
+    partOfSpeech: "noun",
+    category: "Energy & Sustainability",
+    definition: "a situation in which there is not enough energy available",
+    examples: [
+      "The energy crisis forced many factories to reduce production.",
+      "Companies looked for alternative energy sources during the crisis."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "estimate",
+    partOfSpeech: "verb",
+    category: "Planning & Forecasting",
+    definition: "to calculate or judge an amount without knowing the exact figure",
+    examples: [
+      "We estimate the project will take six months.",
+      "The finance team estimated next year's operating costs."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "flexibility",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "the ability to adapt easily to changing situations",
+    examples: [
+      "Flexibility is essential in international business.",
+      "Remote work offers employees greater flexibility."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "forecast",
+    partOfSpeech: "verb",
+    category: "Planning & Forecasting",
+    definition: "to predict what will happen in the future based on available information",
+    examples: [
+      "Analysts forecast higher demand next quarter.",
+      "The company forecasts steady revenue growth."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "global demand",
+    partOfSpeech: "phrase",
+    category: "Markets",
+    definition: "the worldwide need or desire for products or services",
+    examples: [
+      "Global demand for renewable energy continues to increase.",
+      "The company expanded production to meet global demand."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "improve",
+    partOfSpeech: "verb",
+    category: "Performance",
+    definition: "to make something better than before",
+    examples: [
+      "The company wants to improve customer satisfaction.",
+      "Continuous training helps improve employee performance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "microwave oven",
+    partOfSpeech: "noun",
+    category: "Products",
+    definition: "an oven that heats or cooks food using electromagnetic waves",
+    examples: [
+      "The company manufactures microwave ovens for export.",
+      "The new microwave oven uses less electricity."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "oil shortage",
+    partOfSpeech: "phrase",
+    category: "Energy & Sustainability",
+    definition: "a situation in which there is not enough oil available",
+    examples: [
+      "The oil shortage increased transportation costs.",
+      "Businesses prepared contingency plans during the oil shortage."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "population growth",
+    partOfSpeech: "phrase",
+    category: "Economics",
+    definition: "an increase in the number of people living in a place",
+    examples: [
+      "Population growth creates demand for more housing.",
+      "Businesses adjusted their strategies to population growth."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "predict",
+    partOfSpeech: "verb",
+    category: "Planning & Forecasting",
+    definition: "to say what is likely to happen in the future",
+    examples: [
+      "Experts predict strong economic recovery.",
+      "It is difficult to predict customer behavior accurately."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "productivity",
+    partOfSpeech: "noun",
+    category: "Performance",
+    definition: "the rate at which people or businesses produce goods or services",
+    examples: [
+      "New software improved employee productivity.",
+      "Higher productivity reduced manufacturing costs."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "renewable energy",
+    partOfSpeech: "phrase",
+    category: "Energy & Sustainability",
+    definition: "energy from natural sources that can be replaced continuously",
+    examples: [
+      "The factory now uses renewable energy.",
+      "Many investors support renewable energy projects."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "run out",
+    partOfSpeech: "phrasal verb",
+    category: "Resources",
+    definition: "to use all of something so that none remains",
+    examples: [
+      "The warehouse ran out of packaging materials.",
+      "We cannot afford to run out of essential supplies."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "scheme",
+    partOfSpeech: "noun",
+    category: "Business Planning",
+    definition: "an organized plan for achieving a particular purpose",
+    examples: [
+      "The government introduced a recycling scheme.",
+      "Employees joined the company's pension scheme."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "teleworking",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "working from home while communicating electronically with the office",
+    examples: [
+      "Teleworking became common after the pandemic.",
+      "The company supports teleworking several days each week."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "trend",
+    partOfSpeech: "noun",
+    category: "Markets",
+    definition: "a general direction in which something is developing",
+    examples: [
+      "Online shopping remains an important consumer trend.",
+      "The report identified several market trends."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "workforce",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "all the people employed by a company or organization",
+    examples: [
+      "The company invested in training its workforce.",
+      "A skilled workforce improves competitiveness."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 13,
+    word: "world supply",
+    partOfSpeech: "phrase",
+    category: "Global Markets",
+    definition: "the total amount of a product or resource available worldwide",
+    examples: [
+      "Poor harvests reduced the world supply of wheat.",
+      "Changes in the world supply affected market prices."
+    ]
+  },
 
 //////////////////////////////
 //
