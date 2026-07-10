@@ -4122,7 +4122,234 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "achieve a goal",
+    partOfSpeech: "phrase",
+    category: "Goals & Performance",
+    definition: "to succeed in doing something you planned",
+    examples: [
+      "The team achieved its goal ahead of schedule.",
+      "Regular feedback can help employees achieve their goals."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "appraisal",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "a meeting to discuss an employee's work and progress",
+    examples: [
+      "Her annual appraisal is scheduled for Friday.",
+      "The manager discussed career goals during the appraisal."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "coach",
+    partOfSpeech: "noun",
+    category: "Training & Development",
+    definition: "a person who trains, advises, or supports someone",
+    examples: [
+      "The company hired a coach for senior managers.",
+      "Her career coach helped her prepare for the interview."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "coaching",
+    partOfSpeech: "noun",
+    category: "Training & Development",
+    definition: "the activity of training or advising someone",
+    examples: [
+      "New managers receive individual coaching.",
+      "Coaching helped the team improve its communication."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "develop skills",
+    partOfSpeech: "phrase",
+    category: "Training & Development",
+    definition: "to improve abilities through learning and practice",
+    examples: [
+      "Employees attend workshops to develop new skills.",
+      "The role helped her develop strong leadership skills."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "down-payment",
+    partOfSpeech: "noun",
+    category: "Finance & Payments",
+    definition: "the first part of a larger payment",
+    examples: [
+      "The customer paid a down-payment on the equipment.",
+      "A twenty percent down-payment is required."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "enrol",
+    partOfSpeech: "verb",
+    category: "Training & Development",
+    definition: "to officially join a course or program",
+    examples: [
+      "She enrolled in a project management course.",
+      "Employees can enrol through the training portal."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "executive",
+    partOfSpeech: "noun",
+    category: "Management",
+    definition: "a senior manager with important responsibilities",
+    examples: [
+      "The executive approved the new strategy.",
+      "Senior executives attended the leadership workshop."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "feedback",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "information or advice about how well something was done",
+    examples: [
+      "The manager gave constructive feedback after the presentation.",
+      "Customer feedback helped us improve the product."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "improve performance",
+    partOfSpeech: "phrase",
+    category: "Goals & Performance",
+    definition: "to do work better than before",
+    examples: [
+      "The training program helped improve employee performance.",
+      "Clear goals can improve team performance."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "individual",
+    partOfSpeech: "adjective",
+    category: "Training & Development",
+    definition: "designed for or connected with one person",
+    examples: [
+      "Each employee receives an individual development plan.",
+      "The course includes individual coaching sessions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "interview panel",
+    partOfSpeech: "noun",
+    category: "Recruitment",
+    definition: "a group of people who interview a candidate",
+    examples: [
+      "The interview panel included three department managers.",
+      "She answered questions from the interview panel confidently."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "manufacturer",
+    partOfSpeech: "noun",
+    category: "Manufacturing",
+    definition: "a company that produces goods in large quantities",
+    examples: [
+      "The manufacturer opened a new factory.",
+      "We contacted the manufacturer about the defective component."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "motivate",
+    partOfSpeech: "verb",
+    category: "Leadership",
+    definition: "to encourage someone to work or make an effort",
+    examples: [
+      "Good managers know how to motivate their teams.",
+      "Recognition can motivate employees to perform better."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "objective",
+    partOfSpeech: "noun",
+    category: "Goals & Performance",
+    definition: "a specific result that someone wants to achieve",
+    examples: [
+      "The main objective is to increase customer satisfaction.",
+      "Each employee agreed on three clear objectives."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "promotion prospects",
+    partOfSpeech: "noun",
+    category: "Careers",
+    definition: "the chances of moving to a more senior position",
+    examples: [
+      "The job offers excellent promotion prospects.",
+      "She asked about promotion prospects during the interview."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "set goals",
+    partOfSpeech: "phrase",
+    category: "Goals & Performance",
+    definition: "to decide what you want to achieve",
+    examples: [
+      "Managers should set clear goals with their teams.",
+      "She sets professional goals at the start of each year."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "take a step back",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to consider a situation calmly and objectively",
+    examples: [
+      "Take a step back before making a final decision.",
+      "The team took a step back and reviewed the problem."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 15,
+    word: "underwear",
+    partOfSpeech: "noun",
+    category: "Products",
+    definition: "clothing worn under other clothes",
+    examples: [
+      "The manufacturer specializes in sports underwear.",
+      "The company launched a new range of sustainable underwear."
+    ]
+  },
 
 //////////////////////////////
 //
