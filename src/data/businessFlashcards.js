@@ -5477,7 +5477,354 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "balloon",
+    partOfSpeech: "noun",
+    category: "Events & Celebrations",
+    definition: "a small rubber object filled with air or gas",
+    examples: [
+      "The event team decorated the room with balloons.",
+      "Blue and white balloons matched the company colors."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "call centre",
+    partOfSpeech: "noun",
+    category: "Customer Service",
+    definition: "an office where employees answer customer calls",
+    examples: [
+      "The call centre handles hundreds of enquiries daily.",
+      "She supervises a team in the call centre."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "ceremony",
+    partOfSpeech: "noun",
+    category: "Events & Celebrations",
+    definition: "a formal public event held for a special reason",
+    examples: [
+      "The company organized an awards ceremony.",
+      "Employees attended the opening ceremony."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "conduct surveys",
+    partOfSpeech: "phrase",
+    category: "Customer Research",
+    definition: "to collect opinions by asking people questions",
+    examples: [
+      "We conduct surveys to measure customer satisfaction.",
+      "The marketing team conducted surveys online."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "consumer affairs",
+    partOfSpeech: "noun",
+    category: "Customer Service",
+    definition: "issues and activities that protect or affect customers",
+    examples: [
+      "The consumer affairs team reviewed the complaint.",
+      "New regulations changed several consumer affairs policies."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "deal with complaints",
+    partOfSpeech: "phrase",
+    category: "Customer Service",
+    definition: "to take action to solve customer problems",
+    examples: [
+      "Customer service staff deal with complaints professionally.",
+      "Managers receive training to deal with complaints."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "discount",
+    partOfSpeech: "noun",
+    category: "Sales & Loyalty",
+    definition: "an amount removed from the usual price",
+    examples: [
+      "Members receive a ten percent discount.",
+      "The store offered a discount on damaged items."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "dissatisfied",
+    partOfSpeech: "adjective",
+    category: "Customer Satisfaction",
+    definition: "not pleased or satisfied with something",
+    examples: [
+      "The dissatisfied customer requested a refund.",
+      "We contacted customers who were dissatisfied with the service."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "encourage customer loyalty",
+    partOfSpeech: "phrase",
+    category: "Sales & Loyalty",
+    definition: "to make customers want to return and buy again",
+    examples: [
+      "Reward programs encourage customer loyalty.",
+      "Reliable service can encourage customer loyalty."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "executive chair",
+    partOfSpeech: "noun",
+    category: "Office Products",
+    definition: "a high-quality office chair for senior employees",
+    examples: [
+      "The director ordered a new executive chair.",
+      "This executive chair offers excellent back support."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "helpful",
+    partOfSpeech: "adjective",
+    category: "Customer Service",
+    definition: "willing or able to give useful assistance",
+    examples: [
+      "The receptionist was friendly and helpful.",
+      "Customers found the online guide very helpful."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "impossible",
+    partOfSpeech: "adjective",
+    category: "Problem Solving",
+    definition: "not able to be done",
+    examples: [
+      "It is impossible to deliver the order today.",
+      "The request seemed impossible at first."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "keep to your delivery dates",
+    partOfSpeech: "phrase",
+    category: "Delivery & Reliability",
+    definition: "to deliver goods at the promised times",
+    examples: [
+      "Reliable suppliers keep to their delivery dates.",
+      "We must keep to our delivery dates this month."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "log on",
+    partOfSpeech: "phrasal verb",
+    category: "Technology",
+    definition: "to enter a computer system using your details",
+    examples: [
+      "Customers must log on to check their points.",
+      "I could not log on to the company portal."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "loyal",
+    partOfSpeech: "adjective",
+    category: "Sales & Loyalty",
+    definition: "continuing to support or buy from someone",
+    examples: [
+      "Loyal customers often recommend the company.",
+      "The brand has many loyal clients."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "loyalty card",
+    partOfSpeech: "noun",
+    category: "Sales & Loyalty",
+    definition: "a card that rewards customers for repeated purchases",
+    examples: [
+      "Customers collect points with a loyalty card.",
+      "The supermarket introduced a digital loyalty card."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "meet the needs of the customer",
+    partOfSpeech: "phrase",
+    category: "Customer Service",
+    definition: "to provide what a customer requires",
+    examples: [
+      "Our service must meet the needs of the customer.",
+      "Flexible options help us meet customer needs."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "nominate",
+    partOfSpeech: "verb",
+    category: "Events & Recognition",
+    definition: "to formally suggest someone for a prize or position",
+    examples: [
+      "Employees can nominate a colleague for the award.",
+      "The team nominated her for employee of the month."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "offer a personalized service",
+    partOfSpeech: "phrase",
+    category: "Customer Service",
+    definition: "to provide service adapted to one customer's needs",
+    examples: [
+      "Small companies often offer a personalized service.",
+      "We use customer data to offer personalized service."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "petrol pump",
+    partOfSpeech: "noun",
+    category: "Products & Equipment",
+    definition: "a machine used to put fuel into vehicles",
+    examples: [
+      "The petrol pump stopped working this morning.",
+      "Customers can pay directly at the petrol pump."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "receipt",
+    partOfSpeech: "noun",
+    category: "Payments & Returns",
+    definition: "a document showing that something was paid for",
+    examples: [
+      "Keep the receipt in case you return the product.",
+      "The cashier printed a receipt for the customer."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "refund",
+    partOfSpeech: "noun",
+    category: "Payments & Returns",
+    definition: "money returned after a purchase or overpayment",
+    examples: [
+      "The customer received a full refund.",
+      "Refunds usually take five working days."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "reliable",
+    partOfSpeech: "adjective",
+    category: "Delivery & Reliability",
+    definition: "able to be trusted to work well",
+    examples: [
+      "We need a reliable delivery company.",
+      "Customers value reliable technical support."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "replacement",
+    partOfSpeech: "noun",
+    category: "Payments & Returns",
+    definition: "a new item that takes the place of another",
+    examples: [
+      "The company sent a replacement immediately.",
+      "Customers can request a replacement for damaged goods."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "returns policy",
+    partOfSpeech: "noun",
+    category: "Payments & Returns",
+    definition: "the rules for returning products to a company",
+    examples: [
+      "The returns policy allows exchanges within thirty days.",
+      "Please read the returns policy before ordering."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "reward",
+    partOfSpeech: "noun",
+    category: "Sales & Loyalty",
+    definition: "something given because someone did something good",
+    examples: [
+      "Loyal customers receive a special reward.",
+      "The company gave employees a reward for excellent service."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "satisfied",
+    partOfSpeech: "adjective",
+    category: "Customer Satisfaction",
+    definition: "pleased because expectations or needs were met",
+    examples: [
+      "Most customers were satisfied with the delivery.",
+      "We want every client to feel satisfied."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "strategy",
+    partOfSpeech: "noun",
+    category: "Business Planning",
+    definition: "a plan used to achieve a particular goal",
+    examples: [
+      "The company developed a customer loyalty strategy.",
+      "Our strategy focuses on better service."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 6,
+    word: "unreliable",
+    partOfSpeech: "adjective",
+    category: "Delivery & Reliability",
+    definition: "not able to be trusted to work correctly",
+    examples: [
+      "The old delivery system was unreliable.",
+      "Customers stopped using the unreliable service."
+    ]
+  },
 
 //////////////////////////////
 //
