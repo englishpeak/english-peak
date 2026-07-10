@@ -5110,7 +5110,366 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "application form",
+    partOfSpeech: "noun",
+    category: "Recruitment Documents",
+    definition: "a document used to formally request a job or position",
+    examples: [
+      "Please complete the application form before Friday.",
+      "The candidate submitted the application form online."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "apply for",
+    partOfSpeech: "phrase",
+    category: "Recruitment Process",
+    definition: "to make a formal request for a job or opportunity",
+    examples: [
+      "She decided to apply for the management position.",
+      "More than fifty people applied for the job."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "availability",
+    partOfSpeech: "noun",
+    category: "Recruitment Process",
+    definition: "the times when someone is free or able to work",
+    examples: [
+      "Please confirm your availability for an interview.",
+      "The employer asked about her weekend availability."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "benefit",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "an advantage provided in addition to an employee's salary",
+    examples: [
+      "Private healthcare is an important employee benefit.",
+      "The job includes several additional benefits."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "bonus",
+    partOfSpeech: "noun",
+    category: "Pay & Benefits",
+    definition: "extra money given as a reward for good work",
+    examples: [
+      "Employees received a bonus for achieving the target.",
+      "The company pays an annual performance bonus."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "candidate",
+    partOfSpeech: "noun",
+    category: "Recruitment Process",
+    definition: "a person who is applying for a job",
+    examples: [
+      "The strongest candidate has five years of experience.",
+      "Each candidate completed two interviews."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "career",
+    partOfSpeech: "noun",
+    category: "Careers",
+    definition: "the area of work someone develops over many years",
+    examples: [
+      "She wants a career in financial services.",
+      "The training course helped him develop his career."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "construction",
+    partOfSpeech: "noun",
+    category: "Industries",
+    definition: "the process or business of building structures",
+    examples: [
+      "He works in the construction industry.",
+      "Construction of the new office starts next month."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "CV",
+    partOfSpeech: "noun",
+    category: "Recruitment Documents",
+    definition: "a document describing your education, skills, and work experience",
+    examples: [
+      "Please send your CV with the application.",
+      "She updated her CV before applying."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "diverse",
+    partOfSpeech: "adjective",
+    category: "Workplace & Culture",
+    definition: "including many different types of people or things",
+    examples: [
+      "The company has a diverse international workforce.",
+      "Diverse teams can produce more creative ideas."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "employer",
+    partOfSpeech: "noun",
+    category: "Employment",
+    definition: "a person or company that pays people to work",
+    examples: [
+      "The employer offers flexible working hours.",
+      "A good employer supports employee development."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "enclose",
+    partOfSpeech: "verb",
+    category: "Recruitment Documents",
+    definition: "to include something with a letter, package, or email",
+    examples: [
+      "Please enclose a copy of your qualification.",
+      "She enclosed her CV with the application letter."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "fill in a form",
+    partOfSpeech: "phrase",
+    category: "Recruitment Documents",
+    definition: "to complete a form by adding the required information",
+    examples: [
+      "Every applicant must fill in a form.",
+      "Please fill in the form using capital letters."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "flexible hours",
+    partOfSpeech: "noun",
+    category: "Working Conditions",
+    definition: "working hours that employees can change to suit their needs",
+    examples: [
+      "The company offers flexible hours to parents.",
+      "Flexible hours help employees manage their time."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "humanitarian crisis",
+    partOfSpeech: "noun",
+    category: "Society & Business",
+    definition: "a serious situation that causes widespread human suffering",
+    examples: [
+      "The organization responded to the humanitarian crisis.",
+      "Companies donated supplies during the humanitarian crisis."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "inform",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to officially tell someone about something",
+    examples: [
+      "Please inform the candidates about the delay.",
+      "Human Resources informed her of the decision."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "interview",
+    partOfSpeech: "noun",
+    category: "Recruitment Process",
+    definition: "a formal meeting used to evaluate a job candidate",
+    examples: [
+      "Her job interview lasted forty minutes.",
+      "The company invited three candidates for an interview."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "maternity leave",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "time away from work for an employee having a baby",
+    examples: [
+      "She will begin maternity leave next month.",
+      "The company provides six months of maternity leave."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "membership",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "the status of belonging to a group or organization",
+    examples: [
+      "The benefit includes gym membership.",
+      "Employees receive membership in a professional association."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "paid holiday",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "time away from work when an employee still receives pay",
+    examples: [
+      "The contract includes twenty days of paid holiday.",
+      "Employees can request paid holiday through the system."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "pension scheme",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "a system that provides employees with money after retirement",
+    examples: [
+      "The company offers a generous pension scheme.",
+      "Employees can join the pension scheme after six months."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "private healthcare",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "medical care paid for privately rather than by the state",
+    examples: [
+      "Private healthcare is included in the benefits package.",
+      "The employer provides private healthcare for all staff."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "profit",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "money remaining after a business pays all its costs",
+    examples: [
+      "The company made a higher profit this year.",
+      "Strong sales increased quarterly profits."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "recruitment",
+    partOfSpeech: "noun",
+    category: "Recruitment Process",
+    definition: "the process of finding and hiring new employees",
+    examples: [
+      "The recruitment process takes about four weeks.",
+      "Human Resources is responsible for recruitment."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "referee",
+    partOfSpeech: "noun",
+    category: "Recruitment Process",
+    definition: "a person who provides information about a job applicant",
+    examples: [
+      "The employer contacted one of her referees.",
+      "Please include two referees on your application."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "shortlisted",
+    partOfSpeech: "adjective",
+    category: "Recruitment Process",
+    definition: "selected as one of the best candidates for a position",
+    examples: [
+      "Five candidates were shortlisted for the role.",
+      "She was shortlisted after the first interview."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "subsidized childcare",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "childcare partly paid for by an employer or government",
+    examples: [
+      "The company provides subsidized childcare for employees.",
+      "Subsidized childcare helps parents return to work."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "update",
+    partOfSpeech: "verb",
+    category: "Recruitment Documents",
+    definition: "to add the newest information to something",
+    examples: [
+      "Please update your contact details.",
+      "She updated her CV with her latest position."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "vacancy",
+    partOfSpeech: "noun",
+    category: "Recruitment Process",
+    definition: "an available job or position in an organization",
+    examples: [
+      "The company advertised a vacancy in marketing.",
+      "We currently have three vacancies in customer service."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 5,
+    word: "video clip",
+    partOfSpeech: "noun",
+    category: "Recruitment Media",
+    definition: "a short recorded piece of video",
+    examples: [
+      "Applicants watched a video clip about the company.",
+      "The recruitment page includes a short video clip."
+    ]
+  },
 
 //////////////////////////////
 //
