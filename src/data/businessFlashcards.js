@@ -6801,7 +6801,330 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "affordable",
+    partOfSpeech: "adjective",
+    category: "Price & Value",
+    definition: "not costing too much for people to buy",
+    examples: [
+      "The company offers affordable transport for employees.",
+      "Customers want reliable products at affordable prices."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "carbon emissions",
+    partOfSpeech: "noun",
+    category: "Environment & Sustainability",
+    definition: "harmful carbon gases released into the air",
+    examples: [
+      "The company aims to reduce its carbon emissions.",
+      "Electric vehicles can produce fewer carbon emissions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "carpooling",
+    partOfSpeech: "noun",
+    category: "Sustainable Transport",
+    definition: "traveling together in one car and sharing the costs",
+    examples: [
+      "The company encourages carpooling among employees.",
+      "Carpooling can reduce travel costs and traffic."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "climate change",
+    partOfSpeech: "noun",
+    category: "Environment & Sustainability",
+    definition: "long-term changes in global weather caused partly by human activity",
+    examples: [
+      "Climate change affects businesses around the world.",
+      "The company created a plan to address climate change."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "commission",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to formally ask someone to create or complete something",
+    examples: [
+      "The company commissioned a report on energy use.",
+      "We commissioned a designer to create the new packaging."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "convenient",
+    partOfSpeech: "adjective",
+    category: "Customer Experience",
+    definition: "easy, useful, and suitable for someone's needs",
+    examples: [
+      "Online ordering is convenient for busy customers.",
+      "The office is in a convenient location."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "create",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to make something new happen or exist",
+    examples: [
+      "The initiative will create new jobs.",
+      "We need to create a more sustainable process."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "disposal",
+    partOfSpeech: "noun",
+    category: "Waste Management",
+    definition: "the process of getting rid of something",
+    examples: [
+      "Safe battery disposal is important.",
+      "The company reviewed its waste disposal procedures."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "ecological",
+    partOfSpeech: "adjective",
+    category: "Environment & Sustainability",
+    definition: "related to protecting the natural environment",
+    examples: [
+      "The company developed a more ecological product.",
+      "Customers are interested in ecological packaging."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "effective",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "producing the result that was intended",
+    examples: [
+      "The recycling campaign was very effective.",
+      "We need a more effective waste management system."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "environmentally-friendly",
+    partOfSpeech: "adjective",
+    category: "Environment & Sustainability",
+    definition: "designed to cause little or no harm to the environment",
+    examples: [
+      "The hotel uses environmentally-friendly cleaning products.",
+      "Customers prefer environmentally-friendly packaging."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "good value for money",
+    partOfSpeech: "phrase",
+    category: "Price & Value",
+    definition: "worth the amount of money that it costs",
+    examples: [
+      "The new service offers good value for money.",
+      "Customers said the product was good value for money."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "hybrid",
+    partOfSpeech: "noun",
+    category: "Sustainable Transport",
+    definition: "a vehicle that uses two different types of power",
+    examples: [
+      "The company replaced its cars with hybrids.",
+      "A hybrid can use less fuel than a traditional car."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "incentive",
+    partOfSpeech: "noun",
+    category: "Motivation & Policy",
+    definition: "something that encourages someone to take action",
+    examples: [
+      "Employees receive an incentive for using public transport.",
+      "Tax incentives can encourage companies to reduce emissions."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "initiative",
+    partOfSpeech: "noun",
+    category: "Business Planning",
+    definition: "a new plan created to solve a problem or reach a goal",
+    examples: [
+      "The company launched a recycling initiative.",
+      "The initiative encourages employees to save energy."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "insulated",
+    partOfSpeech: "adjective",
+    category: "Energy Efficiency",
+    definition: "protected by material that prevents heat or sound from passing",
+    examples: [
+      "The new office has insulated walls.",
+      "Insulated windows can reduce energy costs."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "original",
+    partOfSpeech: "adjective",
+    category: "Ideas & Innovation",
+    definition: "new, interesting, and different from previous ideas",
+    examples: [
+      "The team presented an original solution.",
+      "Customers liked the product's original design."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "outsource",
+    partOfSpeech: "verb",
+    category: "Business Operations",
+    definition: "to pay another company to perform work for your business",
+    examples: [
+      "The company decided to outsource technical support.",
+      "We outsource deliveries to a local carrier."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "popular",
+    partOfSpeech: "adjective",
+    category: "Customers & Markets",
+    definition: "liked or used by many people",
+    examples: [
+      "The recycling program is popular with employees.",
+      "Hybrid vehicles are becoming more popular."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "postage",
+    partOfSpeech: "noun",
+    category: "Delivery & Logistics",
+    definition: "the cost of sending letters or packages by mail",
+    examples: [
+      "The price includes packaging and postage.",
+      "International postage is more expensive."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "recycling",
+    partOfSpeech: "noun",
+    category: "Waste Management",
+    definition: "processing used materials so they can be used again",
+    examples: [
+      "The office has a recycling program.",
+      "Recycling reduces the amount of waste sent to landfills."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "renewable",
+    partOfSpeech: "adjective",
+    category: "Energy & Resources",
+    definition: "replaced naturally and able to be used repeatedly",
+    examples: [
+      "The factory uses renewable energy.",
+      "The company invests in renewable resources."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "rubbish",
+    partOfSpeech: "noun",
+    category: "Waste Management",
+    definition: "unwanted things that people throw away",
+    examples: [
+      "Employees separate recyclable rubbish from other waste.",
+      "The office produces less rubbish than last year."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "unusual",
+    partOfSpeech: "adjective",
+    category: "Ideas & Innovation",
+    definition: "different from what is normal or expected",
+    examples: [
+      "The company found an unusual solution to the problem.",
+      "The product uses an unusual type of packaging."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "useful",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "helpful for achieving a particular purpose",
+    examples: [
+      "The report contains useful information.",
+      "This app is useful for tracking energy consumption."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "vending machine",
+    partOfSpeech: "noun",
+    category: "Workplace Facilities",
+    definition: "a machine that sells products automatically",
+    examples: [
+      "The office vending machine sells drinks and snacks.",
+      "The company installed an energy-efficient vending machine."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 10,
+    word: "waste",
+    partOfSpeech: "noun",
+    category: "Waste Management",
+    definition: "unwanted material that is no longer needed",
+    examples: [
+      "The factory reduced its plastic waste.",
+      "Food waste is collected for recycling."
+    ]
+  },
 
 //////////////////////////////
 //
