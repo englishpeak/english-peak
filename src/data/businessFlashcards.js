@@ -4364,7 +4364,390 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "check",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to examine something to see if it is correct",
+    examples: [
+      "Please check the report before sending it.",
+      "The technician checked the machine this morning."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "create",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to make something new happen or exist",
+    examples: [
+      "The team created a new customer service process.",
+      "We need to create a clear project plan."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "credit",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "an arrangement to buy now and pay later",
+    examples: [
+      "The customer bought the equipment on credit.",
+      "The company offers credit to regular clients."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "customer service",
+    partOfSpeech: "noun",
+    category: "Customers & Service",
+    definition: "the way a company helps and treats customers",
+    examples: [
+      "Good customer service builds loyalty.",
+      "The customer service team answered the complaint quickly."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "defects",
+    partOfSpeech: "noun",
+    category: "Quality & Safety",
+    definition: "problems or faults in a product",
+    examples: [
+      "Quality control found several defects.",
+      "The product was returned because of defects."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "department",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "one section of a large organization",
+    examples: [
+      "The finance department approved the budget.",
+      "Each department has its own manager."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "diagram",
+    partOfSpeech: "noun",
+    category: "Data & Visuals",
+    definition: "a simple drawing that explains information",
+    examples: [
+      "The diagram explains the production process.",
+      "Please add a diagram to the presentation."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "divided into",
+    partOfSpeech: "phrase",
+    category: "Company Structure",
+    definition: "separated into different parts",
+    examples: [
+      "The company is divided into five departments.",
+      "The report is divided into three sections."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "finance",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "the management of money in a company",
+    examples: [
+      "She works in finance.",
+      "Finance is responsible for the annual budget."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "graph",
+    partOfSpeech: "noun",
+    category: "Data & Visuals",
+    definition: "a visual chart that shows numbers or changes",
+    examples: [
+      "The graph shows sales growth.",
+      "We used a graph to compare results."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "host",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a person or organization that invites guests",
+    examples: [
+      "The host welcomed everyone to the conference.",
+      "The host company organized the event."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "human resources",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "the department that manages employees and training",
+    examples: [
+      "Human resources arranged the interviews.",
+      "The human resources team updated the training plan."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "in charge of",
+    partOfSpeech: "phrase",
+    category: "Management",
+    definition: "responsible for controlling something or someone",
+    examples: [
+      "She is in charge of quality control.",
+      "Who is in charge of this department?"
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "IT",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "the department that manages computer systems",
+    examples: [
+      "IT fixed the network problem.",
+      "The IT department installed new software."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "logistics",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "the planning and movement of goods and materials",
+    examples: [
+      "Logistics arranged the delivery schedule.",
+      "The logistics team works with the warehouse."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "maintain",
+    partOfSpeech: "verb",
+    category: "Operations",
+    definition: "to keep something in good working condition",
+    examples: [
+      "Technicians maintain the machines every week.",
+      "We maintain high standards in production."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "marketing",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "the activity of promoting and selling products",
+    examples: [
+      "Marketing created a new advertising campaign.",
+      "The marketing team studied customer behavior."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "national lottery",
+    partOfSpeech: "noun",
+    category: "General Business Vocabulary",
+    definition: "a countrywide game where people buy numbered tickets",
+    examples: [
+      "The national lottery sponsored the event.",
+      "The company advertised during the national lottery program."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "operations",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "the main activities a business does to make money",
+    examples: [
+      "Operations are managed from the head office.",
+      "The new manager improved daily operations."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "organize",
+    partOfSpeech: "verb",
+    category: "Business Actions",
+    definition: "to arrange something so it happens correctly",
+    examples: [
+      "We need to organize the training session.",
+      "She organized the conference schedule."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "pie chart",
+    partOfSpeech: "noun",
+    category: "Data & Visuals",
+    definition: "a circular chart divided into sections",
+    examples: [
+      "The pie chart shows market share.",
+      "Use a pie chart to present the results."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "purchasing",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "the activity of buying things a company needs",
+    examples: [
+      "Purchasing ordered new office equipment.",
+      "The purchasing department works with suppliers."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "quality control",
+    partOfSpeech: "noun",
+    category: "Quality & Safety",
+    definition: "the process of checking product standards",
+    examples: [
+      "Quality control found a problem with the product.",
+      "The factory improved its quality control system."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "report to",
+    partOfSpeech: "phrase",
+    category: "Management",
+    definition: "to have a manager responsible for your work",
+    examples: [
+      "She reports to the operations manager.",
+      "All team leaders report to the director."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "research and development",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "work focused on creating or improving products",
+    examples: [
+      "Research and development tested the new product.",
+      "The company invests heavily in research and development."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "responsible for",
+    partOfSpeech: "phrase",
+    category: "Management",
+    definition: "having the duty to do or manage something",
+    examples: [
+      "He is responsible for technical support.",
+      "The team is responsible for customer service."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "search engine",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "a program used to find information online",
+    examples: [
+      "Customers found our website through a search engine.",
+      "The marketing team studies search engine traffic."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "security",
+    partOfSpeech: "noun",
+    category: "Quality & Safety",
+    definition: "activities that keep a place or system safe",
+    examples: [
+      "Security checked every visitor at reception.",
+      "The company improved computer security."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "technical support",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "help with machines, equipment, or computer systems",
+    examples: [
+      "Technical support solved the software problem.",
+      "Customers can call technical support anytime."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "training",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "teaching people the skills they need for work",
+    examples: [
+      "New employees receive training on Monday.",
+      "The company offers sales training every month."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "value",
+    partOfSpeech: "noun",
+    category: "Business Results",
+    definition: "the usefulness or importance of something",
+    examples: [
+      "This service offers good value to customers.",
+      "The report explains the value of training."
+    ]
+  },
+  {
+    level: "pre-intermediate",
+    unit: 3,
+    word: "visitor",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "someone who comes to a place temporarily",
+    examples: [
+      "Every visitor must sign in at reception.",
+      "The visitor received a security pass."
+    ]
+  },
 
 //////////////////////////////
 //
