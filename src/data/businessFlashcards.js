@@ -9813,7 +9813,522 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "access",
+    partOfSpeech: "noun",
+    category: "Technology & Services",
+    definition: "the opportunity or permission to use information, services, or facilities",
+    examples: [
+      "Employees have secure access to the customer database.",
+      "The new account provides access to several online services."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "account",
+    partOfSpeech: "noun",
+    category: "Banking & Finance",
+    definition: "an arrangement with a bank for keeping and managing money",
+    examples: [
+      "Customers can open a business account online.",
+      "The payment was transferred directly into the company account."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "accurate",
+    partOfSpeech: "adjective",
+    category: "Data & Information",
+    definition: "correct, precise, and true in every detail",
+    examples: [
+      "The database must contain accurate customer information.",
+      "Accurate sales forecasts support better decisions."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "allow",
+    partOfSpeech: "verb",
+    category: "Functionality & Permission",
+    definition: "to give someone permission or make an action possible",
+    examples: [
+      "The app allows customers to manage multiple accounts.",
+      "The new policy allows employees to work remotely."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "cashier",
+    partOfSpeech: "noun",
+    category: "Customer Service Roles",
+    definition: "a person whose job is to receive and pay out money",
+    examples: [
+      "The cashier processed the refund immediately.",
+      "Customers can pay the cashier by card or cash."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "categorize",
+    partOfSpeech: "verb",
+    category: "Data Management",
+    definition: "to place people or things into groups according to type",
+    examples: [
+      "The system categorizes transactions automatically.",
+      "We categorized customer enquiries by subject."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "choice",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "the range of different options available for selection",
+    examples: [
+      "Customers have a wide choice of payment methods.",
+      "The service gives users more choice and flexibility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "combine",
+    partOfSpeech: "verb",
+    category: "Products & Functionality",
+    definition: "to join two or more different things or features together",
+    examples: [
+      "The platform combines banking and budgeting tools.",
+      "We combined the two databases into one secure system."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "consumer",
+    partOfSpeech: "noun",
+    category: "Customers & Markets",
+    definition: "a person who buys goods or services for personal use",
+    examples: [
+      "Modern consumers expect immediate online service.",
+      "The promotion was designed to attract younger consumers."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "continuously",
+    partOfSpeech: "adverb",
+    category: "Operations & Performance",
+    definition: "without interruption or repeatedly over a long period",
+    examples: [
+      "The security system monitors transactions continuously.",
+      "We continuously update the database with new information."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "convenient",
+    partOfSpeech: "adjective",
+    category: "Customer Experience",
+    definition: "easy, useful, and suitable without causing problems",
+    examples: [
+      "Mobile banking is convenient for busy customers.",
+      "The new branch is in a convenient location."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "cost-effective",
+    partOfSpeech: "adjective",
+    category: "Efficiency & Value",
+    definition: "providing strong benefits compared with the money spent",
+    examples: [
+      "Online support is a cost-effective service option.",
+      "The company selected the most cost-effective system."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "customize",
+    partOfSpeech: "verb",
+    category: "Customer Experience",
+    definition: "to change something to suit one person's particular needs",
+    examples: [
+      "Users can customize the layout of their account page.",
+      "The bank customizes services for different customer groups."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "database",
+    partOfSpeech: "noun",
+    category: "Data Management",
+    definition: "an organized collection of information stored electronically",
+    examples: [
+      "Customer details are stored in a secure database.",
+      "The marketing team uses the database to analyze purchasing habits."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "deal",
+    partOfSpeech: "noun",
+    category: "Business Agreements",
+    definition: "an agreement about price and other conditions in business",
+    examples: [
+      "The company negotiated a better deal with the supplier.",
+      "Customers receive a special deal when they open an account."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "deliver",
+    partOfSpeech: "verb",
+    category: "Products & Services",
+    definition: "to provide or take something to a particular person",
+    examples: [
+      "The company delivers documents directly to customers.",
+      "Our goal is to deliver a fast and reliable service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "demand",
+    partOfSpeech: "verb",
+    category: "Customer Communication",
+    definition: "to ask firmly for something that you believe you should receive",
+    examples: [
+      "The customer demanded an immediate explanation.",
+      "Consumers increasingly demand secure online payment options."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "efficient",
+    partOfSpeech: "adjective",
+    category: "Operations & Performance",
+    definition: "working effectively without wasting time, money, or energy",
+    examples: [
+      "The new system is faster and more efficient.",
+      "Efficient customer service reduces waiting times."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "encourage",
+    partOfSpeech: "verb",
+    category: "Marketing & Behavior",
+    definition: "to persuade someone to act by making it easier or more attractive",
+    examples: [
+      "The incentive encourages customers to use online banking.",
+      "The company encourages employees to suggest improvements."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "functionality",
+    partOfSpeech: "noun",
+    category: "Technology & Products",
+    definition: "the range of tasks that a device, program, or system can perform",
+    examples: [
+      "The update added useful functionality to the app.",
+      "Customers praised the platform's simple design and functionality."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "help",
+    partOfSpeech: "verb",
+    category: "Customer Support",
+    definition: "to make it easier or possible for someone to do something",
+    examples: [
+      "The guide helps customers open an account.",
+      "Our support team can help you customize the software."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "immediate",
+    partOfSpeech: "adjective",
+    category: "Customer Experience",
+    definition: "happening or being done without delay",
+    examples: [
+      "Customers receive immediate confirmation of each transaction.",
+      "The security breach required immediate attention."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "incentive",
+    partOfSpeech: "noun",
+    category: "Marketing & Behavior",
+    definition: "a reward offered to encourage someone to take action",
+    examples: [
+      "The discount provides an incentive to register online.",
+      "Employees received a financial incentive for meeting the target."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "let",
+    partOfSpeech: "verb",
+    category: "Functionality & Permission",
+    definition: "to allow someone to do something",
+    examples: [
+      "The app lets users transfer money instantly.",
+      "The new feature lets customers store multiple addresses."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "local",
+    partOfSpeech: "adjective",
+    category: "Locations & Markets",
+    definition: "connected with a particular place or nearby area",
+    examples: [
+      "The bank supports several local businesses.",
+      "Customers can collect vouchers from their local branch."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "make it easier",
+    partOfSpeech: "phrase",
+    category: "Customer Experience",
+    definition: "to reduce the difficulty involved in doing something",
+    examples: [
+      "The redesigned screen makes it easier to find information.",
+      "Clear categories make it easier for customers to compare products."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "multiple",
+    partOfSpeech: "adjective",
+    category: "Quantity & Functionality",
+    definition: "many in number or involving several different things",
+    examples: [
+      "The system supports multiple currencies.",
+      "Customers can manage multiple accounts from one screen."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "promotion",
+    partOfSpeech: "noun",
+    category: "Marketing & Sales",
+    definition: "an activity intended to increase sales of a product or service",
+    examples: [
+      "The bank launched a promotion for new customers.",
+      "The seasonal promotion includes discount vouchers."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "queue",
+    partOfSpeech: "noun",
+    category: "Customer Service",
+    definition: "a line of people or vehicles waiting for something",
+    examples: [
+      "The automated system reduced queues at the branch.",
+      "Customers waited in a long queue for the cashier."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "relationship",
+    partOfSpeech: "noun",
+    category: "Customer Relationships",
+    definition: "the way that people or organizations communicate and deal with each other",
+    examples: [
+      "The account manager developed a strong customer relationship.",
+      "Trust is essential in a long-term business relationship."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "relevant",
+    partOfSpeech: "adjective",
+    category: "Data & Communication",
+    definition: "closely connected with the subject or situation being considered",
+    examples: [
+      "Customers only receive relevant promotional offers.",
+      "Please include all relevant information in the application."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "relocate",
+    partOfSpeech: "verb",
+    category: "Business Locations",
+    definition: "to move a person or business to a new place of operation",
+    examples: [
+      "The company plans to relocate its head office.",
+      "Several employees relocated to support the new branch."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "review",
+    partOfSpeech: "noun",
+    category: "Customer Feedback",
+    definition: "a published report in which someone gives an opinion about something",
+    examples: [
+      "The app received a positive review online.",
+      "Customers often read reviews before choosing a service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "screen",
+    partOfSpeech: "noun",
+    category: "Technology & Devices",
+    definition: "the flat surface of a device on which information is displayed",
+    examples: [
+      "The account balance appears on the main screen.",
+      "The new screen layout is more user-friendly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "secure",
+    partOfSpeech: "adjective",
+    category: "Security",
+    definition: "protected from danger, damage, or unauthorized use",
+    examples: [
+      "All payments are processed through a secure system.",
+      "Customers need a secure password for online access."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "separately",
+    partOfSpeech: "adverb",
+    category: "Processes & Organization",
+    definition: "individually rather than together or at the same time",
+    examples: [
+      "Each transaction is recorded separately.",
+      "The two services can be purchased separately."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "site",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "a place where a building or business is located",
+    examples: [
+      "The company selected a new site for its regional office.",
+      "Construction has started on the suburban site."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "store",
+    partOfSpeech: "verb",
+    category: "Data Management",
+    definition: "to keep information electronically for future use",
+    examples: [
+      "The system stores customer data securely.",
+      "Users can store electronic receipts in their accounts."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "suburb",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "a residential area outside the center of a city",
+    examples: [
+      "The new branch is located in a growing suburb.",
+      "Many employees commute from the surrounding suburbs."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "time-saving",
+    partOfSpeech: "adjective",
+    category: "Efficiency & Productivity",
+    definition: "reducing the amount of time needed to complete something",
+    examples: [
+      "The app includes several time-saving features.",
+      "Automated payments are convenient and time-saving."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "up-to-date",
+    partOfSpeech: "adjective",
+    category: "Data & Information",
+    definition: "containing the newest or most recent information",
+    examples: [
+      "Customers must keep their contact details up-to-date.",
+      "The database provides up-to-date information about every account."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "user-friendly",
+    partOfSpeech: "adjective",
+    category: "Technology & Customer Experience",
+    definition: "easy for non-experts to use and understand",
+    examples: [
+      "The redesigned website is more user-friendly.",
+      "Customers requested a secure but user-friendly payment system."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 4,
+    word: "voucher",
+    partOfSpeech: "noun",
+    category: "Marketing & Payments",
+    definition: "a document or code used instead of money or to receive a discount",
+    examples: [
+      "New customers receive a twenty-dollar voucher.",
+      "The promotional voucher is valid until the end of the month."
+    ]
+  },
 
 //////////////////////////////
 //
