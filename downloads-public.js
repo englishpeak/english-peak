@@ -37,12 +37,11 @@
       + '  </div>'
       + '  <div class="section-header"><h2>Resource Library</h2><p id="downloadsSub">Loading files...</p></div>'
       + '  <div class="cards-grid" id="downloadsGrid"></div>'
-      + '  <div id="downloadPreviewPanel" style="display:none;background:white;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(13,59,111,0.08);margin-top:8px">'
-      + '    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap">'
-      + '      <div><div id="downloadPreviewTitle" style="font-family:\'Cormorant Garamond\',serif;font-size:1.25rem;font-weight:700;color:var(--navy)">Vista previa del archivo</div><div id="downloadPreviewDesc" style="font-size:0.82rem;color:#777;margin-top:2px"></div></div>'
-      + '      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><a id="downloadFileBtn" class="upgrade-btn" href="#" download>⬇ Descargar archivo</a><button class="back-btn" onclick="closeDownloadPreview()">Cerrar vista previa</button></div>'
-      + '    </div>'
-      + '    <iframe id="downloadPreviewFrame" title="Download preview" style="width:100%;height:70vh;border:0;background:#f3f5f8" loading="lazy"></iframe>'
+      + '  <div class="download-preview-overlay" id="downloadPreviewModal" role="dialog" aria-modal="true" aria-labelledby="downloadPreviewTitle" aria-describedby="downloadPreviewDesc" hidden>'
+      + '    <div class="download-preview-modal" role="document"><div class="download-preview-header">'
+      + '      <div class="download-preview-heading"><div id="downloadPreviewTitle" class="download-preview-title">Vista previa del archivo</div><div id="downloadPreviewDesc" class="download-preview-desc">Vista previa sin salir de ePeak.</div></div>'
+      + '      <div class="download-preview-actions"><a id="downloadFileBtn" class="upgrade-btn" href="#" download>⬇ Descargar archivo</a><button type="button" class="download-preview-close" aria-label="Cerrar vista previa" onclick="closeDownloadPreview()">×</button></div>'
+      + '    </div><div class="download-preview-frame-wrap"><iframe id="downloadPreviewFrame" title="Download preview" loading="lazy"></iframe></div></div>'
       + '  </div>'
       + '</div>';
     progress.parentNode.insertBefore(section, progress);
@@ -105,10 +104,11 @@
     var uncategorized = { id: null, name: 'General Downloads', accessTier: 'free', files: [] };
     downloadFiles.forEach(function(file, index){
       var group = groups.find(function(item){ return item.id === file.category_id; }) || uncategorized;
+      file._downloadAccessTier = group.accessTier;
       group.files.push({ file: file, index: index });
     });
     if (uncategorized.files.length) groups.push(uncategorized);
-    groups.filter(function(group){ return group.files.length; }).forEach(function(group){
+    groups.filter(function(group){ return group.files.length; }).forEach(function(group, groupIndex){
       var cards = '';
       group.files.forEach(function(item){
       var file = item.file;
@@ -121,10 +121,13 @@
         + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access access-premium">' + label + '</div></div>'
         + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
         + '<div class="card-meta"><span class="meta-item">☁️ Google Drive</span><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
-        + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!user ? "showAuthModal(\'login\')" : 'showModal()') + '">🔐 Unlock access</button>')
+        + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ', this)">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!user ? "showAuthModal(\'login\')" : 'showModal()') + '">🔐 Unlock access</button>')
         + '</div></div>';
       });
-      grid.innerHTML += '<section style="margin-bottom:30px"><h3 style="font-family:\'Cormorant Garamond\',serif;font-size:1.55rem;color:var(--navy);margin:0 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--border)">' + escapeHtml(group.name) + '</h3><div class="cards-grid">' + cards + '</div></section>';
+      var categoryId = 'downloadCategory' + groupIndex;
+      var openClass = groupIndex === 0 ? ' is-open' : '';
+      var expanded = groupIndex === 0 ? 'true' : 'false';
+      grid.innerHTML += '<section class="download-category' + openClass + '"><button type="button" class="download-category-toggle" aria-expanded="' + expanded + '" aria-controls="' + categoryId + '" onclick="toggleDownloadCategory(this)"><span><span class="download-category-title">' + escapeHtml(group.name) + '</span><span class="download-category-count">· ' + group.files.length + ' recurso' + (group.files.length === 1 ? '' : 's') + '</span></span><span class="download-category-chevron" aria-hidden="true">⌄</span></button><div class="download-category-panel" id="' + categoryId + '"><div class="download-category-panel-inner"><div class="cards-grid">' + cards + '</div></div></div></section>';
     });
   }
 
@@ -133,22 +136,57 @@
     if (count) count.textContent = value;
   }
 
-  function openDownloadPreview(index){
+  function toggleDownloadCategory(button){
+    var section = button && button.closest('.download-category');
+    if (!section) return;
+    var isOpen = section.classList.toggle('is-open');
+    button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  function openDownloadPreview(index, trigger){
     var file = downloadFiles[index];
     if (!file) return;
+    window.downloadPreviewTrigger = trigger || document.activeElement;
+    var modal = document.getElementById('downloadPreviewModal');
+    var frame = document.getElementById('downloadPreviewFrame');
     document.getElementById('downloadPreviewTitle').textContent = file.title || 'File preview';
     document.getElementById('downloadPreviewDesc').textContent = file.description || 'Vista previa sin salir de ePeak.';
-    document.getElementById('downloadPreviewFrame').src = getPreviewUrl(file.drive_url);
+    frame.src = getPreviewUrl(file.drive_url);
     document.getElementById('downloadFileBtn').href = getDownloadUrl(file.drive_url);
-    document.getElementById('downloadPreviewPanel').style.display = 'block';
-    document.getElementById('downloadPreviewPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    modal.hidden = false;
+    modal.classList.add('show');
+    document.body.classList.add('download-preview-lock');
+    document.addEventListener('keydown', handleDownloadPreviewKeydown);
+    modal.addEventListener('click', handleDownloadPreviewBackdropClick);
+    setTimeout(function(){ var close = modal.querySelector('.download-preview-close'); if (close) close.focus(); }, 0);
   }
 
   function closeDownloadPreview(){
-    var panel = document.getElementById('downloadPreviewPanel');
+    var modal = document.getElementById('downloadPreviewModal');
     var frame = document.getElementById('downloadPreviewFrame');
-    if (panel) panel.style.display = 'none';
+    if (modal) { modal.classList.remove('show'); modal.hidden = true; modal.removeEventListener('click', handleDownloadPreviewBackdropClick); }
     if (frame) frame.src = 'about:blank';
+    document.body.classList.remove('download-preview-lock');
+    document.removeEventListener('keydown', handleDownloadPreviewKeydown);
+    if (window.downloadPreviewTrigger && typeof window.downloadPreviewTrigger.focus === 'function') window.downloadPreviewTrigger.focus();
+    window.downloadPreviewTrigger = null;
+  }
+
+  function handleDownloadPreviewBackdropClick(event){
+    if (event.target && event.target.id === 'downloadPreviewModal') closeDownloadPreview();
+  }
+
+  function handleDownloadPreviewKeydown(event){
+    if (event.key === 'Escape') { closeDownloadPreview(); return; }
+    if (event.key !== 'Tab') return;
+    var modal = document.getElementById('downloadPreviewModal');
+    if (!modal || modal.hidden) return;
+    var focusable = Array.prototype.slice.call(modal.querySelectorAll('a[href],button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')).filter(function(el){ return el.offsetParent !== null; });
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   }
 
   function getDriveFileId(url){
@@ -176,6 +214,7 @@
   }
 
   window.showDownloads = showDownloads;
+  window.toggleDownloadCategory = toggleDownloadCategory;
   window.openDownloadPreview = openDownloadPreview;
   window.closeDownloadPreview = closeDownloadPreview;
 })();

@@ -115,9 +115,31 @@ body.sidebar-collapsed .main{margin-left:64px}
 .download-thumb:hover img{transform:scale(1.025)}
 .download-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--navy);background:linear-gradient(135deg,#f5f7fa,#e8edf3)}
 .download-thumb-label{position:absolute;right:12px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(13,59,111,.9);color:white;font-size:.72rem;font-weight:600}
-.download-category{margin:0 0 30px}
-.download-category-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--navy);margin:0 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--border)}
-.download-category .cards-grid{margin-top:0}
+.download-category{margin:0 0 18px}
+.download-category-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 0 10px;border:0;border-bottom:1.5px solid var(--border);background:transparent;color:var(--navy);cursor:pointer;text-align:left;font-family:'Outfit',sans-serif}
+.download-category-toggle:focus-visible,.download-preview-close:focus-visible{outline:3px solid rgba(74,144,217,.35);outline-offset:3px}
+.download-category-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--navy);font-weight:700}
+.download-category-count{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;color:#777;margin-left:6px}
+.download-category-chevron{width:32px;height:32px;border-radius:999px;background:rgba(13,59,111,.08);color:var(--navy);display:inline-flex;align-items:center;justify-content:center;transition:transform .22s ease,background .22s ease;flex-shrink:0}
+.download-category.is-open .download-category-chevron{transform:rotate(180deg);background:rgba(71,0,116,.1);color:var(--purple)}
+.download-category-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.download-category.is-open .download-category-panel{grid-template-rows:1fr}
+.download-category-panel-inner{overflow:hidden}
+.download-category .cards-grid{margin-top:14px;margin-bottom:12px}
+.download-preview-overlay{position:fixed;inset:0;z-index:260;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,28px);background:rgba(13,59,111,.42);backdrop-filter:blur(3px)}
+.download-preview-overlay.show{display:flex}
+.download-preview-modal{width:min(90vw,1180px);height:min(88vh,900px);background:white;border:1.5px solid var(--border);border-radius:24px;box-shadow:0 24px 80px rgba(13,59,111,.22);display:flex;flex-direction:column;overflow:hidden;animation:modalIn .22s ease}
+.download-preview-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px 16px 22px;border-bottom:1.5px solid var(--border);background:linear-gradient(135deg,#fff,#f8faff)}
+.download-preview-heading{min-width:0}
+.download-preview-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--navy);line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.download-preview-desc{font-size:.82rem;color:#777;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.download-preview-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.download-preview-close{width:40px;height:40px;border-radius:999px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:1.55rem;line-height:1;cursor:pointer;font-family:'Outfit',sans-serif;box-shadow:0 6px 18px rgba(13,59,111,.08)}
+.download-preview-close:hover{background:var(--navy);color:white}
+.download-preview-frame-wrap{flex:1;min-height:0;overflow:auto;background:#f3f5f8;-webkit-overflow-scrolling:touch}
+.download-preview-frame-wrap iframe{width:100%;height:100%;min-height:720px;border:0;display:block;background:#f3f5f8}
+body.download-preview-lock{overflow:hidden}
+@media(max-width:768px){.download-preview-modal{width:94vw;height:88vh;border-radius:18px}.download-preview-header{align-items:flex-start;padding:14px;flex-direction:column}.download-preview-actions{width:100%;justify-content:space-between}.download-preview-actions .upgrade-btn{flex:1;text-align:center}.download-preview-title{font-size:1.18rem}.download-preview-frame-wrap iframe{min-height:640px}}
 .card-access{font-size:0.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;flex-shrink:0}
 .access-free{background:rgba(26,122,74,0.1);color:var(--green)}.access-partial{background:rgba(74,144,217,0.12);color:var(--sky)}.access-premium{background:rgba(201,168,76,0.15);color:#8a6800}.access-new{background:rgba(220,38,38,0.1);color:#DC2626}.access-locked{background:rgba(0,0,0,0.06);color:#999}
 .card-body{padding:0 22px 22px}
@@ -403,12 +425,22 @@ body.sidebar-collapsed .main{margin-left:64px}
     </div>
     <div class="section-header"><h2>Resource Library</h2><p id="downloadsSub">Loading files...</p></div>
     <div class="cards-grid" id="downloadsGrid"></div>
-    <div id="downloadPreviewPanel" style="display:none;background:white;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(13,59,111,0.08);margin-top:24px">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap">
-        <div><div id="downloadPreviewTitle" style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--navy)">Vista previa del archivo</div><div id="downloadPreviewDesc" style="font-size:0.82rem;color:#777;margin-top:2px"></div></div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><a id="downloadFileBtn" class="upgrade-btn" href="#" download>⬇ Descargar archivo</a><button class="back-btn" onclick="closeDownloadPreview()">Cerrar vista previa</button></div>
+    <div class="download-preview-overlay" id="downloadPreviewModal" role="dialog" aria-modal="true" aria-labelledby="downloadPreviewTitle" aria-describedby="downloadPreviewDesc" hidden>
+      <div class="download-preview-modal" role="document">
+        <div class="download-preview-header">
+          <div class="download-preview-heading">
+            <div id="downloadPreviewTitle" class="download-preview-title">Vista previa del archivo</div>
+            <div id="downloadPreviewDesc" class="download-preview-desc">Vista previa sin salir de ePeak.</div>
+          </div>
+          <div class="download-preview-actions">
+            <a id="downloadFileBtn" class="upgrade-btn" href="#" download>⬇ Descargar archivo</a>
+            <button type="button" class="download-preview-close" aria-label="Cerrar vista previa" onclick="closeDownloadPreview()">×</button>
+          </div>
+        </div>
+        <div class="download-preview-frame-wrap">
+          <iframe id="downloadPreviewFrame" title="Vista previa del archivo" loading="lazy" allow="autoplay"></iframe>
+        </div>
       </div>
-      <iframe id="downloadPreviewFrame" title="Vista previa del archivo" style="width:100%;height:70vh;border:0;background:#f3f5f8" loading="lazy" allow="autoplay"></iframe>
     </div>
   </div>
   </div>
@@ -1440,6 +1472,7 @@ async function loadDownloads() {
   var sub = document.getElementById('downloadsSub');
   closeDownloadPreview();
   window.downloadFiles = [];
+  window.downloadPreviewTrigger = null;
   grid.innerHTML = '<div class="ex-card"><div class="card-body" style="padding:24px"><div class="card-title">Loading...</div><div class="card-desc">Fetching the latest resources.</div></div></div>';
   var results = await Promise.all([
     sb.from('download_categories').select('*').eq('is_active', true).order('sort_order').order('created_at'),
@@ -1471,10 +1504,11 @@ async function loadDownloads() {
   var uncategorized = { id: null, name: 'General Downloads', accessTier: 'free', files: [] };
   data.forEach(function(file, index){
     var group = groups.find(function(item){ return item.id === file.category_id; }) || uncategorized;
+    file._downloadAccessTier = group.accessTier;
     group.files.push({ file: file, index: index });
   });
   if (uncategorized.files.length) groups.push(uncategorized);
-  groups.filter(function(group){ return group.files.length; }).forEach(function(group){
+  groups.filter(function(group){ return group.files.length; }).forEach(function(group, groupIndex){
     var cards = '';
     group.files.forEach(function(item){
     var file = item.file;
@@ -1485,16 +1519,19 @@ async function loadDownloads() {
     var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
     var thumbnail = getDownloadThumbnailUrl(file.drive_url);
     cards += '<div class="ex-card">'
-      + (allowed ? '<button class="download-thumb" onclick="openDownloadPreview(' + index + ')" aria-label="Vista previa de ' + escapeAttr(file.title || 'archivo') + '">'
+      + (allowed ? '<button class="download-thumb" onclick="openDownloadPreview(' + index + ', this)" aria-label="Vista previa de ' + escapeAttr(file.title || 'archivo') + '">'
         + (thumbnail ? '<img src="' + escapeAttr(thumbnail) + '" alt="" loading="lazy" onerror="showDownloadThumbnailFallback(this,\'' + escapeAttr(icon) + '\')">' : '<span class="download-thumb-fallback">' + escapeHtml(icon) + '</span>')
         + '<span class="download-thumb-label">Vista previa</span></button>' : '')
       + '<div class="card-header"><div class="card-icon gold">' + icon + '</div><div class="card-access ' + (allowed ? 'access-premium' : 'access-locked') + '">' + label + '</div></div>'
       + '<div class="card-body"><div class="card-title">' + escapeHtml(file.title || 'Untitled') + '</div><div class="card-desc">' + escapeHtml(file.description || 'Downloadable resource') + '</div>'
       + '<div class="card-meta"><span class="meta-item">' + escapeHtml(file.file_type || 'File') + '</span></div>'
-      + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ')">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
+      + (allowed ? '<button class="card-btn btn-open" onclick="openDownloadPreview(' + index + ', this)">Vista previa →</button><a class="card-btn btn-partial" style="margin-top:8px;text-decoration:none" href="' + escapeAttr(getDownloadUrl(file.drive_url)) + '" download>⬇ Descargar archivo</a>' : '<button class="card-btn btn-locked" onclick="' + (!_currentUser ? "showAuthModal('login')" : "showModal()") + '">🔐 Unlock access</button>')
       + '</div></div>';
     });
-    grid.innerHTML += '<section class="download-category"><h3 class="download-category-title">' + escapeHtml(group.name) + '</h3><div class="cards-grid">' + cards + '</div></section>';
+    var categoryId = 'downloadCategory' + groupIndex;
+    var openClass = groupIndex === 0 ? ' is-open' : '';
+    var expanded = groupIndex === 0 ? 'true' : 'false';
+    grid.innerHTML += '<section class="download-category' + openClass + '"><button type="button" class="download-category-toggle" aria-expanded="' + expanded + '" aria-controls="' + categoryId + '" onclick="toggleDownloadCategory(this)"><span><span class="download-category-title">' + escapeHtml(group.name) + '</span><span class="download-category-count">· ' + group.files.length + ' recurso' + (group.files.length === 1 ? '' : 's') + '</span></span><span class="download-category-chevron" aria-hidden="true">⌄</span></button><div class="download-category-panel" id="' + categoryId + '"><div class="download-category-panel-inner"><div class="cards-grid">' + cards + '</div></div></div></section>';
   });
 }
 
@@ -1526,22 +1563,57 @@ function showDownloadThumbnailFallback(image, label) {
   image.replaceWith(fallback);
 }
 
-function openDownloadPreview(index) {
+function toggleDownloadCategory(button) {
+  var section = button && button.closest('.download-category');
+  if (!section) return;
+  var isOpen = section.classList.toggle('is-open');
+  button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
+function openDownloadPreview(index, trigger) {
   var file = window.downloadFiles && window.downloadFiles[index];
-  if (!file || !canAccessDownload(file.access_tier || 'premium')) return;
+  if (!file || !canAccessDownload(file._downloadAccessTier || file.access_tier || 'premium')) return;
+  var modal = document.getElementById('downloadPreviewModal');
+  var frame = document.getElementById('downloadPreviewFrame');
+  window.downloadPreviewTrigger = trigger || document.activeElement;
   document.getElementById('downloadPreviewTitle').textContent = file.title || 'File preview';
   document.getElementById('downloadPreviewDesc').textContent = file.description || 'Vista previa sin salir de ePeak.';
-  document.getElementById('downloadPreviewFrame').src = getPreviewUrl(file.drive_url);
+  frame.src = getPreviewUrl(file.drive_url);
   document.getElementById('downloadFileBtn').href = getDownloadUrl(file.drive_url);
-  document.getElementById('downloadPreviewPanel').style.display = 'block';
-  document.getElementById('downloadPreviewPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  modal.hidden = false;
+  modal.classList.add('show');
+  document.body.classList.add('download-preview-lock');
+  document.addEventListener('keydown', handleDownloadPreviewKeydown);
+  modal.addEventListener('click', handleDownloadPreviewBackdropClick);
+  setTimeout(function(){ var close = modal.querySelector('.download-preview-close'); if (close) close.focus(); }, 0);
 }
 
 function closeDownloadPreview() {
-  var panel = document.getElementById('downloadPreviewPanel');
+  var modal = document.getElementById('downloadPreviewModal');
   var frame = document.getElementById('downloadPreviewFrame');
-  if (panel) panel.style.display = 'none';
+  if (modal) { modal.classList.remove('show'); modal.hidden = true; modal.removeEventListener('click', handleDownloadPreviewBackdropClick); }
   if (frame) frame.src = 'about:blank';
+  document.body.classList.remove('download-preview-lock');
+  document.removeEventListener('keydown', handleDownloadPreviewKeydown);
+  if (window.downloadPreviewTrigger && typeof window.downloadPreviewTrigger.focus === 'function') window.downloadPreviewTrigger.focus();
+  window.downloadPreviewTrigger = null;
+}
+
+function handleDownloadPreviewBackdropClick(event) {
+  if (event.target && event.target.id === 'downloadPreviewModal') closeDownloadPreview();
+}
+
+function handleDownloadPreviewKeydown(event) {
+  if (event.key === 'Escape') { closeDownloadPreview(); return; }
+  if (event.key !== 'Tab') return;
+  var modal = document.getElementById('downloadPreviewModal');
+  if (!modal || modal.hidden) return;
+  var focusable = Array.prototype.slice.call(modal.querySelectorAll('a[href],button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')).filter(function(el){ return el.offsetParent !== null; });
+  if (!focusable.length) return;
+  var first = focusable[0];
+  var last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
 }
 
 function escapeHtml(value) {
