@@ -8818,7 +8818,582 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "accomplished",
+    partOfSpeech: "adjective",
+    category: "Professional Skills",
+    definition: "highly skilled or successful at a particular activity",
+    examples: [
+      "She is an accomplished project manager.",
+      "The charity recruited an accomplished fundraiser to lead the campaign."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "advice",
+    partOfSpeech: "noun",
+    category: "Professional Communication",
+    definition: "an opinion or suggestion about what someone should do",
+    examples: [
+      "The consultant gave us practical advice about the project.",
+      "Managers should ask for advice before making major changes."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "allocate resources",
+    partOfSpeech: "phrase",
+    category: "Project Management",
+    definition: "to officially decide how money, staff, or materials will be used",
+    examples: [
+      "The project manager allocated resources to the most urgent tasks.",
+      "We need to allocate more resources to staff training."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "budget",
+    partOfSpeech: "noun",
+    category: "Finance & Budgeting",
+    definition: "an amount of money available for a particular purpose",
+    examples: [
+      "The project was completed within budget.",
+      "The committee approved a larger training budget."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "catch up",
+    partOfSpeech: "phrasal verb",
+    category: "Time & Scheduling",
+    definition: "to do extra work so that previously delayed work is completed",
+    examples: [
+      "The team worked late to catch up after the delay.",
+      "I need to catch up on several reports this week."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "catering",
+    partOfSpeech: "noun",
+    category: "Events & Services",
+    definition: "the work of providing food and drinks for events",
+    examples: [
+      "A local company will provide catering for the conference.",
+      "The event budget includes venue and catering costs."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "charity",
+    partOfSpeech: "noun",
+    category: "Community & Volunteering",
+    definition: "an organization that provides help to people in need",
+    examples: [
+      "The company raised money for a local charity.",
+      "Employees volunteered at the charity during the weekend."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "committed",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "strongly dedicated and willing to give time and energy to something",
+    examples: [
+      "The volunteers were committed to completing the project.",
+      "We need committed employees who support the organization's aims."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "community",
+    partOfSpeech: "noun",
+    category: "Community & Volunteering",
+    definition: "the people who live in a particular local area",
+    examples: [
+      "The project will provide new facilities for the community.",
+      "Local businesses supported the community initiative."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "crucial",
+    partOfSpeech: "adjective",
+    category: "Project Management",
+    definition: "extremely important to the success of something",
+    examples: [
+      "Clear communication is crucial to successful teamwork.",
+      "Meeting the deadline is crucial for the project."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "deadline",
+    partOfSpeech: "noun",
+    category: "Time & Scheduling",
+    definition: "the final time or date by which something must be completed",
+    examples: [
+      "The deadline for the funding application is Friday.",
+      "The team is working hard to meet the deadline."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "decorating",
+    partOfSpeech: "noun",
+    category: "Construction & Renovation",
+    definition: "the work of improving the appearance of a room with paint or other materials",
+    examples: [
+      "The decorating will begin after the plastering is complete.",
+      "Volunteers helped with painting and decorating."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "delegate tasks",
+    partOfSpeech: "phrase",
+    category: "Leadership & Teamwork",
+    definition: "to give particular pieces of work to other people",
+    examples: [
+      "Effective managers know how to delegate tasks.",
+      "She delegated tasks according to each volunteer's skills."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "develop",
+    partOfSpeech: "verb",
+    category: "Projects & Innovation",
+    definition: "to create an idea, product, or project and make it successful",
+    examples: [
+      "The organization developed a sustainable community project.",
+      "Our team is developing a new fundraising strategy."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "environmentally-friendly",
+    partOfSpeech: "adjective",
+    category: "Sustainability",
+    definition: "designed to cause little or no harm to the environment",
+    examples: [
+      "The builders used environmentally-friendly materials.",
+      "Customers increasingly prefer environmentally-friendly products."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "equip",
+    partOfSpeech: "verb",
+    category: "Resources & Facilities",
+    definition: "to provide a person or place with the necessary materials or equipment",
+    examples: [
+      "The grant will equip the center with new computers.",
+      "All volunteers were equipped with the necessary safety gear."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "essential",
+    partOfSpeech: "adjective",
+    category: "Project Management",
+    definition: "completely necessary for something to succeed or happen",
+    examples: [
+      "Teamwork is essential for completing the renovation.",
+      "Accurate budget figures are essential for effective planning."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "experience",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "an event or situation that affects someone and provides knowledge",
+    examples: [
+      "Volunteering gave her valuable project management experience.",
+      "The assignment was a challenging but rewarding experience."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "fall behind schedule",
+    partOfSpeech: "phrase",
+    category: "Time & Scheduling",
+    definition: "to progress too slowly to complete work at the planned time",
+    examples: [
+      "The project fell behind schedule because of supply problems.",
+      "Regular updates can help prevent teams from falling behind schedule."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "finish ahead of schedule",
+    partOfSpeech: "phrase",
+    category: "Time & Scheduling",
+    definition: "to complete something earlier than originally planned",
+    examples: [
+      "The volunteers finished the renovation ahead of schedule.",
+      "Efficient planning helped the team finish ahead of schedule."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "get on with a job",
+    partOfSpeech: "phrase",
+    category: "Work & Productivity",
+    definition: "to continue working on a task and make progress",
+    examples: [
+      "Once the materials arrived, the team got on with the job.",
+      "Let's stop discussing minor details and get on with the job."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "get updates",
+    partOfSpeech: "phrase",
+    category: "Project Communication",
+    definition: "to receive the most recent information about something",
+    examples: [
+      "The manager gets weekly updates from every team leader.",
+      "Sponsors can get updates through the project website."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "invitation",
+    partOfSpeech: "noun",
+    category: "Events & Communication",
+    definition: "a spoken or written request asking someone to attend an event",
+    examples: [
+      "The charity sent an invitation to local business leaders.",
+      "Please accept the meeting invitation before Thursday."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "issue",
+    partOfSpeech: "verb",
+    category: "Administration",
+    definition: "to officially provide or distribute something",
+    examples: [
+      "The organization issued security passes to all volunteers.",
+      "The bank issued the loan after reviewing the application."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "leaflet",
+    partOfSpeech: "noun",
+    category: "Marketing & Communication",
+    definition: "a small printed document used to advertise or provide information",
+    examples: [
+      "Volunteers distributed leaflets throughout the community.",
+      "The leaflet explains how businesses can support the project."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "loan",
+    partOfSpeech: "noun",
+    category: "Finance & Funding",
+    definition: "money borrowed from a bank or another organization",
+    examples: [
+      "The charity applied for a loan to purchase the building.",
+      "The business will repay the loan over five years."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "meet a deadline",
+    partOfSpeech: "phrase",
+    category: "Time & Scheduling",
+    definition: "to complete something by the agreed final date",
+    examples: [
+      "The team worked additional hours to meet the deadline.",
+      "Good organization makes it easier to meet deadlines."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "objectives",
+    partOfSpeech: "noun",
+    category: "Goals & Planning",
+    definition: "specific things that a person or organization is trying to achieve",
+    examples: [
+      "The project achieved all of its main objectives.",
+      "Managers should communicate the objectives clearly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "on track",
+    partOfSpeech: "adjective",
+    category: "Project Management",
+    definition: "progressing correctly and likely to achieve the planned result",
+    examples: [
+      "The renovation is on track for completion in August.",
+      "Despite the earlier delay, the project is now back on track."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "organic",
+    partOfSpeech: "adjective",
+    category: "Sustainability",
+    definition: "produced without the use of artificial chemicals",
+    examples: [
+      "The café serves locally produced organic food.",
+      "Demand for organic products has continued to rise."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "plastering",
+    partOfSpeech: "noun",
+    category: "Construction & Renovation",
+    definition: "the work of covering walls or ceilings with plaster",
+    examples: [
+      "The plastering must be completed before decorating begins.",
+      "A local contractor volunteered to do the plastering."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "plumbing",
+    partOfSpeech: "noun",
+    category: "Construction & Renovation",
+    definition: "the system of pipes that supplies and removes water from a building",
+    examples: [
+      "The building needs major plumbing repairs.",
+      "The renovation budget includes electrical work and plumbing."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "predicted",
+    partOfSpeech: "adjective",
+    category: "Planning & Forecasting",
+    definition: "expected or stated to be likely to happen",
+    examples: [
+      "The project cost more than the predicted amount.",
+      "Attendance was higher than the predicted figure."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "profitable",
+    partOfSpeech: "adjective",
+    category: "Finance & Results",
+    definition: "producing or likely to produce a financial profit",
+    examples: [
+      "The new service became profitable within one year.",
+      "Managers closed several activities that were no longer profitable."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "progress",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "the process of improving, developing, or moving toward completion",
+    examples: [
+      "The project manager reported significant progress.",
+      "Weekly meetings help us monitor progress."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "raise awareness",
+    partOfSpeech: "phrase",
+    category: "Marketing & Community",
+    definition: "to help people understand that something exists and is important",
+    examples: [
+      "The campaign aims to raise awareness of food waste.",
+      "Local events raised awareness of the charity's work."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "resources",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "money, people, materials, or other supplies available for use",
+    examples: [
+      "The organization has limited financial resources.",
+      "We must use our available resources efficiently."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "schedule",
+    partOfSpeech: "noun",
+    category: "Time & Scheduling",
+    definition: "a plan listing the work to be done and when it must happen",
+    examples: [
+      "The manager updated the construction schedule.",
+      "Several delivery delays affected the project schedule."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "skill",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "a particular ability that requires training or experience",
+    examples: [
+      "Negotiation is an essential management skill.",
+      "The volunteers contributed a wide range of practical skills."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "staff",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "all the people employed by an organization",
+    examples: [
+      "Staff received regular updates about the project.",
+      "The charity has twelve permanent members of staff."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "stationery",
+    partOfSpeech: "noun",
+    category: "Office Supplies",
+    definition: "paper, envelopes, and other materials used for writing and office work",
+    examples: [
+      "The company donated stationery to the community center.",
+      "Please order more stationery for the training event."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "sustainable",
+    partOfSpeech: "adjective",
+    category: "Sustainability",
+    definition: "using resources in a way that does not harm the environment",
+    examples: [
+      "The project uses sustainable building materials.",
+      "The organization wants to develop a sustainable business model."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "teamwork",
+    partOfSpeech: "noun",
+    category: "Leadership & Teamwork",
+    definition: "the activity of working effectively together as a group",
+    examples: [
+      "Good teamwork helped the volunteers finish early.",
+      "The assignment demonstrated the importance of teamwork."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "tiling",
+    partOfSpeech: "noun",
+    category: "Construction & Renovation",
+    definition: "the work of covering a floor or wall with tiles",
+    examples: [
+      "The kitchen tiling was completed last week.",
+      "The contractor provided an estimate for the tiling."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "update",
+    partOfSpeech: "noun",
+    category: "Project Communication",
+    definition: "the most recent information provided about something",
+    examples: [
+      "The project manager gave sponsors a detailed update.",
+      "We receive a progress update every Friday."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "volunteer",
+    partOfSpeech: "noun",
+    category: "Community & Volunteering",
+    definition: "a person who performs work without receiving payment",
+    examples: [
+      "Each volunteer received safety training.",
+      "More than fifty volunteers worked on the project."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "volunteerism",
+    partOfSpeech: "noun",
+    category: "Community & Volunteering",
+    definition: "the practice of working without payment to help other people",
+    examples: [
+      "The company encourages volunteerism among employees.",
+      "Corporate volunteerism can strengthen community relationships."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 2,
+    word: "wiring",
+    partOfSpeech: "noun",
+    category: "Construction & Renovation",
+    definition: "the system of electrical wires in a building",
+    examples: [
+      "The old wiring must be replaced before the building opens.",
+      "A qualified electrician inspected the wiring."
+    ]
+  },
 
 //////////////////////////////
 //
