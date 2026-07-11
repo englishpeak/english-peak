@@ -668,6 +668,7 @@ body.sidebar-collapsed .main{margin-left:64px}
         <div style="font-size:2.4rem;margin-bottom:10px">⭐</div>
         <div class="modal-title2" style="font-size:1.8rem">Unlock ePeak+</div>
         <div class="modal-sub2" style="margin-bottom:0">Todos los ejercicios · Contenido semanal · Sin anuncios · PDFs</div>
+        <div id="promoCountdown" style="display:none;margin:14px auto 0;padding:9px 14px;border-radius:999px;background:rgba(176,125,26,0.10);color:#8a6800;font-size:0.78rem;font-weight:700;text-align:center;max-width:max-content">Ends in <span id="promoCountdownValue">—</span></div>
       </div>
 
       <!-- Currency selector -->
@@ -693,7 +694,7 @@ body.sidebar-collapsed .main{margin-left:64px}
           <div style="text-align:right">
             <div id="priceMonthly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$99 MXN</div>
             <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceFull">$199 MXN</div>
-            <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+            <div id="promoBadgeMonthly" style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF</div>
           </div>
         </div>
       </div>
@@ -709,7 +710,7 @@ body.sidebar-collapsed .main{margin-left:64px}
           <div style="text-align:right">
             <div id="priceYearly" style="font-size:1.3rem;font-weight:700;color:var(--purple)">$955 MXN</div>
             <div style="font-size:0.72rem;color:#bbb;text-decoration:line-through" id="priceYearlyFull">$1,910 MXN</div>
-            <div style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF · hasta jun 23</div>
+            <div id="promoBadgeYearly" style="font-size:0.68rem;font-weight:600;color:#e65100;background:#fff3e0;padding:2px 8px;border-radius:10px;margin-top:3px">50% OFF</div>
           </div>
         </div>
       </div>
@@ -2074,6 +2075,7 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
 
 // ═══ MODAL ═══
 function showModal() {
+  loadPublicPricing();
   // Oculta botón "Crear cuenta gratis" si el usuario ya tiene sesión
   var btnFree = document.getElementById('btnModalFreeAccount');
   if (btnFree) btnFree.style.display = _currentUser ? 'none' : 'block';
@@ -2100,6 +2102,70 @@ var _prices = {
   mxn: { monthly: '$99 MXN', monthly_full: '$199 MXN', yearly: '$955 MXN', yearly_full: '$1,910 MXN', yearly_sub: 'Ahorra vs mensual · equivale a $79.58/mes' },
   usd: { monthly: '$6 USD',  monthly_full: '$12 USD',  yearly: '$58 USD',  yearly_full: '$116 USD', yearly_sub: 'Save vs monthly · equals $4.83/mo' },
 };
+var _pricingMode = 'half_off';
+var _pricingBadge = '50% OFF';
+var _pricingExpiresAt = null;
+var _pricingCountdownTimer = null;
+
+
+async function loadPublicPricing() {
+  try {
+    var res = await fetch('/api/pricing', { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error('Pricing unavailable');
+    var data = await res.json();
+    if (data && data.prices) {
+      _prices = data.prices;
+      _pricingMode = data.mode || 'half_off';
+      _pricingBadge = data.badge || '';
+      _pricingExpiresAt = data.expiresAt || null;
+      selectCurrency(_selectedCurrency);
+      updatePromoDisplay();
+    }
+  } catch (err) {
+    console.warn('Using fallback pricing:', err.message);
+    updatePromoDisplay();
+  }
+}
+
+function updatePromoDisplay() {
+  var monthly = document.getElementById('promoBadgeMonthly');
+  var yearly = document.getElementById('promoBadgeYearly');
+  [monthly, yearly].forEach(function(el) {
+    if (!el) return;
+    el.textContent = _pricingBadge;
+    el.style.display = _pricingBadge ? 'inline-block' : 'none';
+  });
+  startPromoCountdown();
+}
+
+function startPromoCountdown() {
+  if (_pricingCountdownTimer) clearInterval(_pricingCountdownTimer);
+  var wrap = document.getElementById('promoCountdown');
+  var value = document.getElementById('promoCountdownValue');
+  if (!wrap || !value || !_pricingExpiresAt || !_pricingBadge) {
+    if (wrap) wrap.style.display = 'none';
+    return;
+  }
+  function tick() {
+    var remaining = new Date(_pricingExpiresAt).getTime() - Date.now();
+    if (remaining <= 0) {
+      wrap.style.display = 'none';
+      if (_pricingCountdownTimer) clearInterval(_pricingCountdownTimer);
+      _pricingCountdownTimer = null;
+      loadPublicPricing();
+      return;
+    }
+    var totalSeconds = Math.floor(remaining / 1000);
+    var days = Math.floor(totalSeconds / 86400);
+    var hours = Math.floor((totalSeconds % 86400) / 3600);
+    var minutes = Math.floor((totalSeconds % 3600) / 60);
+    var seconds = totalSeconds % 60;
+    value.textContent = (days ? days + 'd ' : '') + String(hours).padStart(2, '0') + 'h ' + String(minutes).padStart(2, '0') + 'm ' + String(seconds).padStart(2, '0') + 's';
+    wrap.style.display = 'block';
+  }
+  tick();
+  _pricingCountdownTimer = setInterval(tick, 1000);
+}
 
 function selectCurrency(currency) {
   _selectedCurrency = currency;
@@ -2114,9 +2180,11 @@ function selectCurrency(currency) {
   usdBtn.style.borderColor  = currency === 'usd' ? 'var(--navy)' : 'var(--border)';
   var p = _prices[currency];
   document.getElementById('priceMonthly').textContent    = p.monthly;
-  document.getElementById('priceFull').textContent       = p.monthly_full;
+  document.getElementById('priceFull').textContent       = p.monthly_full || '';
+  document.getElementById('priceFull').style.display     = p.monthly_full ? 'block' : 'none';
   document.getElementById('priceYearly').textContent     = p.yearly;
-  document.getElementById('priceYearlyFull').textContent = p.yearly_full;
+  document.getElementById('priceYearlyFull').textContent = p.yearly_full || '';
+  document.getElementById('priceYearlyFull').style.display = p.yearly_full ? 'block' : 'none';
   var sub = document.getElementById('yearlySubtext');
   if (sub) sub.textContent = p.yearly_sub;
 }
@@ -2342,6 +2410,7 @@ function hideAudioStudioEntrypoints() {
 hideAudioStudioEntrypoints();
 document.addEventListener('DOMContentLoaded', hideAudioStudioEntrypoints);
 document.addEventListener('DOMContentLoaded', refreshListeningTotalFromIndex);
+document.addEventListener('DOMContentLoaded', loadPublicPricing);
 setTimeout(hideAudioStudioEntrypoints, 500);
 
 // ═══ SIDEBAR ═══

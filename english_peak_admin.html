@@ -209,6 +209,28 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 .uses-fill { height: 4px; background: var(--navy); border-radius: 2px; }
 .expired { opacity: .4; }
 
+
+
+/* Pricing tab */
+.pricing-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:20px; }
+.pricing-mode-card { background:white; border:1.5px solid var(--border); border-radius:18px; padding:20px; cursor:pointer; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; position:relative; }
+.pricing-mode-card:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(13,59,111,0.10); }
+.pricing-mode-card.active { border-color:var(--purple); box-shadow:0 14px 36px rgba(71,0,116,0.12); }
+.pricing-mode-card input { position:absolute; opacity:0; pointer-events:none; }
+.pricing-mode-title { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.pricing-mode-sub { font-size:0.82rem; color:var(--muted); line-height:1.45; margin-bottom:14px; }
+.pricing-mode-price { font-size:0.78rem; color:var(--ink); line-height:1.7; }
+.pricing-pill { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:0.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:var(--gold-bg); color:var(--gold); margin-bottom:12px; }
+.pricing-current { background:linear-gradient(135deg,rgba(13,59,111,0.04),rgba(71,0,116,0.06)); border:1.5px solid var(--border); border-radius:18px; padding:20px; margin-bottom:20px; display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:center; }
+.pricing-current h3 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--navy); margin-bottom:6px; }
+.pricing-current p { font-size:0.84rem; color:var(--muted); line-height:1.5; }
+.pricing-form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.pricing-preview { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.pricing-preview-card { background:white; border:1px solid var(--border); border-radius:12px; padding:13px 14px; }
+.pricing-preview-card span { display:block; font-size:.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:4px; }
+.pricing-preview-card strong { display:block; color:var(--purple); font-size:1.05rem; }
+@media(max-width: 900px) { .pricing-grid, .pricing-current, .pricing-form-row { grid-template-columns:1fr; } }
+
 /* Responsive */
 @media(max-width: 768px) {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -272,6 +294,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
     <button class="tab-btn active" onclick="switchTab('users', this)">👥 Users <span class="tab-badge" id="badge-users">—</span></button>
     <button class="tab-btn" onclick="switchTab('codes', this)">🎟 Access Codes <span class="tab-badge" id="badge-codes">—</span></button>
     <button class="tab-btn" onclick="switchTab('progress', this)">📊 Student Progress <span class="tab-badge" id="badge-progress">—</span></button>
+    <button class="tab-btn" onclick="switchTab('pricing', this)">💸 Pricing <span class="tab-badge" id="badge-pricing">—</span></button>
     <button class="tab-btn" onclick="switchTab('downloads', this)">⬇ Downloads <span class="tab-badge" id="badge-downloads">—</span></button>
     <button class="tab-btn" onclick="switchTab('log', this)">📋 Audit Log</button>
   </div>
@@ -391,6 +414,71 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <div id="psEmpty" class="empty-state" style="display:none">
           <div class="empty-icon">📊</div>
           <p>No exercise activity recorded yet. Students need to complete exercises first.</p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ═══ PRICING TAB ═══ -->
+    <div class="tab-panel" id="tab-pricing">
+      <div class="section-hdr">
+        <div><h2>Pricing & Promotions</h2><p>Choose the public ePeak+ offer and optional countdown deadline.</p></div>
+        <button class="btn btn-ghost btn-sm" onclick="loadPricingSettings()">↻ Refresh</button>
+      </div>
+
+      <div class="pricing-current">
+        <div>
+          <div class="pricing-pill" id="pricingCurrentPill">Loading</div>
+          <h3 id="pricingCurrentTitle">Loading pricing mode...</h3>
+          <p id="pricingCurrentDescription">This controls the visitor upgrade modal and the Stripe Price IDs used at checkout.</p>
+        </div>
+        <div class="pricing-preview" id="pricingPreview"></div>
+      </div>
+
+      <div class="pricing-grid" id="pricingModeGrid">
+        <label class="pricing-mode-card" data-pricing-mode="normal">
+          <input type="radio" name="pricingMode" value="normal">
+          <div class="pricing-pill">Standard</div>
+          <div class="pricing-mode-title">Normal price</div>
+          <div class="pricing-mode-sub">No promo badge or countdown. Visitors see the full ePeak+ pricing.</div>
+          <div class="pricing-mode-price">MXN: $199/mo · $1,910/yr<br>USD: $12/mo · $116/yr</div>
+        </label>
+        <label class="pricing-mode-card" data-pricing-mode="half_off">
+          <input type="radio" name="pricingMode" value="half_off">
+          <div class="pricing-pill">50% OFF</div>
+          <div class="pricing-mode-title">50% off</div>
+          <div class="pricing-mode-sub">Public promo pricing with a visible sale badge and optional countdown.</div>
+          <div class="pricing-mode-price">MXN: $99/mo · $955/yr<br>USD: $6/mo · $58/yr</div>
+        </label>
+        <label class="pricing-mode-card" data-pricing-mode="eighty_off">
+          <input type="radio" name="pricingMode" value="eighty_off">
+          <div class="pricing-pill">80% OFF</div>
+          <div class="pricing-mode-title">80% off</div>
+          <div class="pricing-mode-sub">Deep promo pricing. Use for short campaigns or special launches.</div>
+          <div class="pricing-mode-price">MXN: $39/mo · $382/yr<br>USD: $2.40/mo · $23.20/yr</div>
+        </label>
+      </div>
+
+      <div class="table-wrap" style="padding:20px">
+        <div class="pricing-form-row">
+          <div class="modal-form">
+            <div class="form-group">
+              <label>Switch back to normal on</label>
+              <input type="datetime-local" id="pricingEndsAt">
+            </div>
+          </div>
+          <div class="modal-form">
+            <div class="form-group">
+              <label>Internal note</label>
+              <input type="text" id="pricingNote" placeholder="e.g. July campaign, Instagram sale, webinar offer">
+            </div>
+          </div>
+        </div>
+        <p style="font-size:.82rem;color:var(--muted);line-height:1.5;margin-bottom:16px">If a countdown date is set, visitors will see “Ends in...” and checkout will automatically fall back to normal pricing after that exact UTC time. Leave it blank for a manual promo with no countdown.</p>
+        <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap">
+          <button class="btn btn-ghost" onclick="clearPricingCountdown()">Clear countdown</button>
+          <button class="btn btn-primary" onclick="savePricingSettings()">Save pricing mode</button>
         </div>
       </div>
     </div>
@@ -621,6 +709,7 @@ function showApp() {
   loadUsers();
   loadCodes();
   loadDownloadsAdmin();
+  loadPricingSettings();
   loadLog();
 }
 
@@ -653,6 +742,7 @@ function switchTab(name, btn) {
   btn.classList.add('active');
   if (name === 'progress' && _allProgress.length === 0) loadAdminProgress();
   if (name === 'downloads') loadDownloadsAdmin();
+  if (name === 'pricing') loadPricingSettings();
 }
 
 // ═══════════════════════════════════
@@ -794,6 +884,123 @@ async function confirmTierChange() {
   loadLog();
 }
 
+
+
+
+// ═══════════════════════════════════
+// PRICING
+// ═══════════════════════════════════
+const PRICING_OPTIONS = {
+  normal: {
+    label: 'Normal price', badge: 'Standard', description: 'Visitors are seeing regular ePeak+ pricing. No countdown is displayed.',
+    prices: { mxn: { monthly: '$199 MXN', yearly: '$1,910 MXN' }, usd: { monthly: '$12 USD', yearly: '$116 USD' } }
+  },
+  half_off: {
+    label: '50% off', badge: '50% OFF', description: 'Visitors are seeing the 50% off promotion and Stripe checkout uses the 50% off Price IDs.',
+    prices: { mxn: { monthly: '$99 MXN', yearly: '$955 MXN' }, usd: { monthly: '$6 USD', yearly: '$58 USD' } }
+  },
+  eighty_off: {
+    label: '80% off', badge: '80% OFF', description: 'Visitors are seeing the 80% off promotion and Stripe checkout uses the 80% off Price IDs.',
+    prices: { mxn: { monthly: '$39 MXN', yearly: '$382 MXN' }, usd: { monthly: '$2.40 USD', yearly: '$23.20 USD' } }
+  }
+};
+let currentPricingMode = 'half_off';
+
+function setPricingModeSelection(mode) {
+  currentPricingMode = PRICING_OPTIONS[mode] ? mode : 'half_off';
+  document.querySelectorAll('[data-pricing-mode]').forEach(card => {
+    const active = card.dataset.pricingMode === currentPricingMode;
+    card.classList.toggle('active', active);
+    const input = card.querySelector('input');
+    if (input) input.checked = active;
+  });
+  renderPricingPreview(currentPricingMode, document.getElementById('pricingEndsAt')?.value || '');
+}
+
+document.addEventListener('change', e => {
+  if (e.target && e.target.name === 'pricingMode') setPricingModeSelection(e.target.value);
+});
+document.addEventListener('input', e => {
+  if (e.target && e.target.id === 'pricingEndsAt') renderPricingPreview(currentPricingMode, e.target.value);
+});
+
+async function loadPricingSettings() {
+  const badge = document.getElementById('badge-pricing');
+  if (badge) badge.textContent = '...';
+  const { data, error } = await sb.from('site_settings').select('value, updated_at').eq('key', 'pricing').maybeSingle();
+  if (error) {
+    renderPricingSetupMissing(error);
+    if (badge) badge.textContent = 'Setup';
+    return;
+  }
+  const value = data?.value || { mode: 'half_off', expires_at: null };
+  const expiresAt = value.expires_at || null;
+  const effectiveMode = expiresAt && new Date(expiresAt) <= new Date() ? 'normal' : (value.mode || 'half_off');
+  setPricingModeSelection(effectiveMode);
+  document.getElementById('pricingEndsAt').value = expiresAt ? toDatetimeLocalValue(expiresAt) : '';
+  renderPricingPreview(effectiveMode, expiresAt);
+  if (badge) badge.textContent = PRICING_OPTIONS[effectiveMode].badge;
+}
+
+function renderPricingSetupMissing(error) {
+  setPricingModeSelection('half_off');
+  document.getElementById('pricingEndsAt').value = '';
+  document.getElementById('pricingCurrentPill').textContent = 'Setup needed';
+  document.getElementById('pricingCurrentTitle').textContent = 'Pricing database setup is missing';
+  document.getElementById('pricingCurrentDescription').innerHTML =
+    'Run <strong>supabase_pricing_setup.sql</strong> once in Supabase SQL Editor, then click Refresh here. ' +
+    'Until that is done, checkout and the public pricing endpoint will keep using the safe fallback pricing. ' +
+    (error?.message ? '<br><span style="font-size:.78rem;color:var(--red)">Supabase: ' + escapeAdmin(error.message) + '</span>' : '');
+  document.getElementById('pricingPreview').innerHTML = `
+    <div class="pricing-preview-card"><span>Setup file</span><strong>supabase_pricing_setup.sql</strong></div>
+    <div class="pricing-preview-card"><span>Fallback</span><strong>50% OFF</strong></div>`;
+}
+
+function renderPricingPreview(mode, expiresAt) {
+  const option = PRICING_OPTIONS[mode] || PRICING_OPTIONS.half_off;
+  document.getElementById('pricingCurrentPill').textContent = option.badge;
+  document.getElementById('pricingCurrentTitle').textContent = option.label;
+  const ending = expiresAt ? ` Countdown ends ${new Date(expiresAt).toLocaleString()}.` : '';
+  document.getElementById('pricingCurrentDescription').textContent = option.description + ending;
+  document.getElementById('pricingPreview').innerHTML = `
+    <div class="pricing-preview-card"><span>MXN monthly</span><strong>${option.prices.mxn.monthly}</strong></div>
+    <div class="pricing-preview-card"><span>MXN yearly</span><strong>${option.prices.mxn.yearly}</strong></div>
+    <div class="pricing-preview-card"><span>USD monthly</span><strong>${option.prices.usd.monthly}</strong></div>
+    <div class="pricing-preview-card"><span>USD yearly</span><strong>${option.prices.usd.yearly}</strong></div>`;
+}
+
+function toDatetimeLocalValue(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  const offsetMs = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - offsetMs).toISOString().slice(0, 16);
+}
+
+function clearPricingCountdown() {
+  document.getElementById('pricingEndsAt').value = '';
+  renderPricingPreview(currentPricingMode, '');
+}
+
+async function savePricingSettings() {
+  const mode = currentPricingMode;
+  const endsInput = document.getElementById('pricingEndsAt').value;
+  const note = document.getElementById('pricingNote').value.trim();
+  if (mode === 'eighty_off' && !confirm('Activate 80% off pricing for all visitors?')) return;
+  const expiresAt = endsInput ? new Date(endsInput).toISOString() : null;
+  const value = { mode, expires_at: mode === 'normal' ? null : expiresAt, note: note || null };
+  const { error } = await sb.from('site_settings').upsert({ key: 'pricing', value, updated_by: currentUser.id }, { onConflict: 'key' });
+  if (error) {
+    const missingTable = error.code === '42P01' || /site_settings|schema cache|does not exist/i.test(error.message || '');
+    showToast(missingTable ? 'Run supabase_pricing_setup.sql in Supabase SQL Editor first.' : 'Error: ' + error.message, 'error');
+    if (missingTable) renderPricingSetupMissing(error);
+    return;
+  }
+  await sb.from('admin_log').insert({ admin_id: currentUser.id, action: 'pricing_change', details: { mode, expires_at: value.expires_at, note } });
+  showToast('✅ Pricing updated', 'success');
+  document.getElementById('pricingNote').value = '';
+  loadPricingSettings();
+  loadLog();
+}
 
 // ═══════════════════════════════════
 // DOWNLOADS
@@ -1105,6 +1312,7 @@ async function loadLog() {
     tier_change: '🔄 Tier changed',
     code_created: '🎟 Code created',
     code_deleted: '🗑 Code deleted',
+    pricing_change: '💸 Pricing changed',
   };
 
   data.forEach(log => {

@@ -2,6 +2,7 @@
 // api/create-checkout-session.js
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
+import { PRICING_MODES, buildPricingPayload, DEFAULT_PRICING_MODE } from './pricing-config.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const sb = createClient(
@@ -9,12 +10,20 @@ const sb = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-const PRICE_IDS = {
-  mxn_monthly: 'price_1TCw7hF2ctV3Sh1lQXJDWYTl',
-  mxn_yearly:  'price_1TCw8LF2ctV3Sh1lqShYQgcq',
-  usd_monthly: 'price_1TCw8lF2ctV3Sh1lgO4R0oDj',
-  usd_yearly:  'price_1TCw90F2ctV3Sh1lUccMCWW3',
-};
+async function getActivePricingMode() {
+  const { data, error } = await sb
+    .from('site_settings')
+    .select('value')
+    .eq('key', 'pricing')
+    .maybeSingle();
+
+  if (error) {
+    console.error('pricing settings error:', error.message);
+    return DEFAULT_PRICING_MODE;
+  }
+
+  return buildPricingPayload(data?.value || { mode: DEFAULT_PRICING_MODE }).mode;
+}
 
 async function getAuthenticatedUser(req) {
   const authHeader = req.headers.authorization || '';
@@ -46,12 +55,13 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: 'User mismatch' });
   }
 
-  const priceId = PRICE_IDS[plan];
-  if (!priceId) {
-    return res.status(400).json({ error: 'Invalid plan' });
-  }
-
   try {
+    const activePricingMode = await getActivePricingMode();
+    const priceId = PRICING_MODES[activePricingMode]?.stripePriceIds?.[plan];
+    if (!priceId) {
+      return res.status(400).json({ error: 'Invalid plan' });
+    }
+
     let customerId;
     const { data: profile } = await sb
       .from('profiles')
@@ -76,7 +86,7 @@ export default async function handler(req, res) {
       payment_behavior: 'default_incomplete',
       payment_settings: { save_default_payment_method: 'on_subscription' },
       expand: ['latest_invoice.payment_intent'],
-      metadata: { supabase_user_id: userId },
+      metadata: { supabase_user_id: userId, pricing_mode: activePricingMode },
     });
 
     const clientSecret = subscription.latest_invoice.payment_intent.client_secret;
