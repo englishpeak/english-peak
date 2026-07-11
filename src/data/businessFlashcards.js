@@ -10775,7 +10775,498 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "admit",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to agree, sometimes unwillingly, that something is true",
+    examples: [
+      "The supplier admitted that the shipment had been delayed.",
+      "The manager admitted that the original estimate was inaccurate."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "assemble",
+    partOfSpeech: "verb",
+    category: "Manufacturing & Operations",
+    definition: "to fit the separate parts of something together",
+    examples: [
+      "Technicians assemble the equipment in a clean environment.",
+      "The factory assembles several product models on one production line."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "bunny suit",
+    partOfSpeech: "noun",
+    category: "Workplace Safety",
+    definition: "a loose one-piece protective garment worn over other clothing",
+    examples: [
+      "Employees must wear a bunny suit inside the clean room.",
+      "The visitor was given a bunny suit before entering the facility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "chamber of commerce",
+    partOfSpeech: "noun",
+    category: "Business Organizations",
+    definition: "a local organization whose members work together to support business and trade",
+    examples: [
+      "The chamber of commerce organized the international conference.",
+      "Local companies joined the chamber of commerce to expand their networks."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "check in",
+    partOfSpeech: "phrasal verb",
+    category: "Business Travel",
+    definition: "to report your arrival at an airport or hotel desk",
+    examples: [
+      "Delegates should check in at least two hours before the flight.",
+      "We checked in at the hotel after the conference."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "conference",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a large formal meeting where people with similar work or interests gather",
+    examples: [
+      "The company hosted an international technology conference.",
+      "More than three hundred delegates attended the conference."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "delay",
+    partOfSpeech: "noun",
+    category: "Travel Problems",
+    definition: "a period of waiting caused by something happening later than planned",
+    examples: [
+      "A flight delay affected the conference schedule.",
+      "The delegate contacted the host company about the delay."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "delegate",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a person chosen to represent a group at a conference or meeting",
+    examples: [
+      "Each delegate received a badge and conference program.",
+      "The delegates voted on the final proposal."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "drop off",
+    partOfSpeech: "phrasal verb",
+    category: "Transport",
+    definition: "to take someone somewhere by car and leave them there",
+    examples: [
+      "The driver dropped the delegates off at the venue.",
+      "Could you drop me off near the exhibition center?"
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "dust",
+    partOfSpeech: "noun",
+    category: "Workplace Safety",
+    definition: "fine particles of dirt that collect on surfaces or in the air",
+    examples: [
+      "The production area must remain completely free of dust.",
+      "Special clothing prevents dust from contaminating the components."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "eat out",
+    partOfSpeech: "phrasal verb",
+    category: "Hospitality & Socializing",
+    definition: "to have a meal in a restaurant instead of at home",
+    examples: [
+      "The delegates ate out after the evening session.",
+      "We often eat out when entertaining overseas clients."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "enemy",
+    partOfSpeech: "noun",
+    category: "Quality & Risk",
+    definition: "something that harms a process or prevents it from succeeding",
+    examples: [
+      "Dust is the enemy of electronic component manufacturing.",
+      "Poor communication can be the enemy of successful teamwork."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "entertainment",
+    partOfSpeech: "noun",
+    category: "Hospitality & Socializing",
+    definition: "activities that people watch or take part in for enjoyment",
+    examples: [
+      "The conference package includes evening entertainment.",
+      "The host company arranged entertainment for overseas guests."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "equivalent",
+    partOfSpeech: "noun",
+    category: "Comparison & Culture",
+    definition: "something equal in value, meaning, amount, or importance to something else",
+    examples: [
+      "The local qualification is the equivalent of a university degree.",
+      "The Japanese expression has no exact English equivalent."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "etiquette",
+    partOfSpeech: "noun",
+    category: "Business Culture",
+    definition: "the formal rules of correct and polite behavior in a social or professional situation",
+    examples: [
+      "International delegates should learn the basics of local business etiquette.",
+      "Email etiquette is important when communicating with clients."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "excursion",
+    partOfSpeech: "noun",
+    category: "Business Travel",
+    definition: "a short organized journey made for pleasure",
+    examples: [
+      "The conference included an afternoon excursion to the historic center.",
+      "Several delegates joined the optional factory excursion."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "exhibition",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a public display of products, works, or other items",
+    examples: [
+      "The company presented its latest products at the exhibition.",
+      "Delegates toured the exhibition during the lunch break."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "facilities",
+    partOfSpeech: "noun",
+    category: "Venues & Accommodation",
+    definition: "services, buildings, and equipment provided for a particular purpose",
+    examples: [
+      "The hotel has excellent conference facilities.",
+      "Delegates can use the business center and fitness facilities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "freshen up",
+    partOfSpeech: "phrasal verb",
+    category: "Business Travel",
+    definition: "to wash and make yourself look clean and tidy",
+    examples: [
+      "Guests had time to freshen up before dinner.",
+      "I need to freshen up after the long flight."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "go out",
+    partOfSpeech: "phrasal verb",
+    category: "Hospitality & Socializing",
+    definition: "to leave your accommodation to attend a social event",
+    examples: [
+      "The delegates went out for dinner after the conference.",
+      "Our hosts invited us to go out with the local team."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "guest",
+    partOfSpeech: "noun",
+    category: "Hospitality & Socializing",
+    definition: "a person invited to an event, organization, or private place",
+    examples: [
+      "Every international guest received a welcome package.",
+      "The host company arranged transport for its guests."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "hospitality",
+    partOfSpeech: "noun",
+    category: "Hospitality & Socializing",
+    definition: "friendly and generous treatment of visitors or guests",
+    examples: [
+      "The visitors appreciated the company's warm hospitality.",
+      "Business hospitality can help strengthen international relationships."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "jewellery",
+    partOfSpeech: "noun",
+    category: "Business Culture",
+    definition: "decorative objects such as rings, bracelets, and necklaces",
+    examples: [
+      "Employees must remove jewellery before entering the clean room.",
+      "The company reminded visitors not to wear jewellery in the production area."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "look around",
+    partOfSpeech: "phrasal verb",
+    category: "Visits & Tours",
+    definition: "to walk through a place in order to see what is there",
+    examples: [
+      "The delegates looked around the manufacturing facility.",
+      "Visitors had an hour to look around the exhibition."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "meet up with",
+    partOfSpeech: "phrasal verb",
+    category: "Professional Relationships",
+    definition: "to meet someone, usually by prior arrangement",
+    examples: [
+      "She met up with a former colleague at the conference.",
+      "We will meet up with the local sales team after lunch."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "nightlife",
+    partOfSpeech: "noun",
+    category: "Hospitality & Socializing",
+    definition: "entertainment available in a city during the evening and at night",
+    examples: [
+      "The host recommended several areas known for their nightlife.",
+      "Some delegates explored the city's nightlife after the event."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "off-limits",
+    partOfSpeech: "adjective",
+    category: "Safety & Access",
+    definition: "not permitted to be entered or used",
+    examples: [
+      "The research laboratory is off-limits to visitors.",
+      "Certain production areas remain off-limits without protective clothing."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "outcome",
+    partOfSpeech: "noun",
+    category: "Results & Performance",
+    definition: "the final result or effect of an action or event",
+    examples: [
+      "The conference produced several positive business outcomes.",
+      "We are satisfied with the outcome of the negotiations."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "pick up",
+    partOfSpeech: "phrasal verb",
+    category: "Transport",
+    definition: "to collect someone by car from an agreed place",
+    examples: [
+      "A driver will pick you up at the airport.",
+      "The hotel shuttle picked up the delegates at seven."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "pleasure",
+    partOfSpeech: "noun",
+    category: "Hospitality & Socializing",
+    definition: "enjoyable activity, especially in contrast with work",
+    examples: [
+      "The trip combined business with pleasure.",
+      "Some guests extended their stay for pleasure."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "prohibition",
+    partOfSpeech: "noun",
+    category: "Rules & Compliance",
+    definition: "an official rule stating that something cannot be done or used",
+    examples: [
+      "There is a strict prohibition on mobile phones in the production area.",
+      "Visitors were informed about the prohibition before the tour."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "show around",
+    partOfSpeech: "phrasal verb",
+    category: "Visits & Tours",
+    definition: "to guide someone through a place and explain what is there",
+    examples: [
+      "The production manager showed the delegates around the factory.",
+      "A member of staff will show our guests around the venue."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "sightseeing",
+    partOfSpeech: "noun",
+    category: "Business Travel",
+    definition: "the activity of visiting interesting places as a tourist",
+    examples: [
+      "The schedule allows some time for sightseeing.",
+      "Several delegates stayed an extra day for sightseeing."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "souvenir",
+    partOfSpeech: "noun",
+    category: "Business Travel",
+    definition: "an item bought to remember a place or given as a gift",
+    examples: [
+      "The guests received a small souvenir from the host company.",
+      "She bought souvenirs for her colleagues after the conference."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "speciality",
+    partOfSpeech: "noun",
+    category: "Food & Hospitality",
+    definition: "a product or type of food for which a place is especially well known",
+    examples: [
+      "The host recommended a local seafood speciality.",
+      "Guests were invited to try the restaurant's regional specialities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "subordinate",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "a person with less authority than another person in an organization",
+    examples: [
+      "The manager introduced each of her subordinates to the delegates.",
+      "Business etiquette may affect how managers communicate with subordinates."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "synthetic",
+    partOfSpeech: "adjective",
+    category: "Materials & Manufacturing",
+    definition: "artificially produced using chemical substances rather than natural materials",
+    examples: [
+      "The manufacturer uses synthetic materials in several products.",
+      "Visitors learned how synthetic components are tested."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "tour",
+    partOfSpeech: "noun",
+    category: "Visits & Tours",
+    definition: "an organized visit around a building, organization, or place",
+    examples: [
+      "The factory tour lasted approximately ninety minutes.",
+      "Delegates registered for a guided tour of the facility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "uncommon",
+    partOfSpeech: "adjective",
+    category: "Business Culture",
+    definition: "unusual or not frequently seen",
+    examples: [
+      "It is uncommon to exchange gifts during the first meeting.",
+      "The company's manufacturing process is uncommon in this industry."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "venue",
+    partOfSpeech: "noun",
+    category: "Business Events",
+    definition: "a place where an organized event is held",
+    examples: [
+      "The hotel was selected as the conference venue.",
+      "The venue can accommodate up to eight hundred guests."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 6,
+    word: "virtual",
+    partOfSpeech: "adjective",
+    category: "Technology & Events",
+    definition: "made to appear or take place through computer technology rather than physically",
+    examples: [
+      "Some delegates attended the conference through a virtual platform.",
+      "The company offers virtual tours of its production facility."
+    ]
+  }
 
 //////////////////////////////
 //
