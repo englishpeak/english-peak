@@ -10336,7 +10336,438 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "assess",
+    partOfSpeech: "verb",
+    category: "Evaluation & Quality",
+    definition: "to make a careful judgment about the quality, value, or nature of something",
+    examples: [
+      "The consultant assessed the condition of the equipment.",
+      "Managers regularly assess customer service performance."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "assist",
+    partOfSpeech: "verb",
+    category: "Customer Support",
+    definition: "to help someone complete a task or solve a problem",
+    examples: [
+      "A technician will assist you with the installation.",
+      "The support team assisted the customer immediately."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "attend",
+    partOfSpeech: "verb",
+    category: "Meetings & Events",
+    definition: "to be present at a meeting, event, or appointment",
+    examples: [
+      "All department managers attended the presentation.",
+      "Customers were invited to attend the product demonstration."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "based in",
+    partOfSpeech: "phrase",
+    category: "Companies & Locations",
+    definition: "working or operating from a particular place",
+    examples: [
+      "The external consultant is based in Madrid.",
+      "Our customer support team is based in Mexico."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "care",
+    partOfSpeech: "noun",
+    category: "Customer Experience",
+    definition: "the process of providing what someone needs and treating them well",
+    examples: [
+      "The company is known for excellent customer care.",
+      "Patient care is the hospital's highest priority."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "check",
+    partOfSpeech: "verb",
+    category: "Evaluation & Quality",
+    definition: "to examine something to confirm that it is correct, safe, or acceptable",
+    examples: [
+      "Please check the equipment before the session begins.",
+      "The technician checked that every machine was working correctly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "comment",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to express an opinion after noticing or considering something",
+    examples: [
+      "Several customers commented on the new office layout.",
+      "The manager commented positively on the team's performance."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "confirm",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to state that an arrangement or agreement is definite and official",
+    examples: [
+      "Please confirm the appointment by email.",
+      "The supplier confirmed that the equipment was available."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "current",
+    partOfSpeech: "adjective",
+    category: "Data & Information",
+    definition: "happening, existing, or being used at the present time",
+    examples: [
+      "The report describes our current customer service process.",
+      "Please review the current version of the instructions."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "customer",
+    partOfSpeech: "noun",
+    category: "Customers & Service",
+    definition: "a person or organization that buys goods or services from a business",
+    examples: [
+      "The customer requested more specific instructions.",
+      "Every customer receives support after installation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "discount",
+    partOfSpeech: "noun",
+    category: "Sales & Pricing",
+    definition: "an amount of money removed from the usual price",
+    examples: [
+      "Regular customers receive a ten percent discount.",
+      "The company offered a discount on refurbished equipment."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "ensure",
+    partOfSpeech: "verb",
+    category: "Quality & Compliance",
+    definition: "to make certain that something happens",
+    examples: [
+      "Regular inspections ensure that the equipment remains safe.",
+      "Managers must ensure that customer requirements are understood."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "equipment",
+    partOfSpeech: "noun",
+    category: "Facilities & Resources",
+    definition: "machines, tools, and materials needed for a particular activity",
+    examples: [
+      "The rehabilitation center purchased new exercise equipment.",
+      "All equipment must be checked regularly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "evaluate",
+    partOfSpeech: "verb",
+    category: "Evaluation & Quality",
+    definition: "to form an opinion about the quality, value, or effectiveness of something",
+    examples: [
+      "The company evaluated the external support service.",
+      "Customers were asked to evaluate the refurbished facilities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "expect",
+    partOfSpeech: "verb",
+    category: "Customer Experience",
+    definition: "to believe that something will happen or should be provided",
+    examples: [
+      "Customers expect a quick response to technical issues.",
+      "We expect the refurbishment to finish next month."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "expectations",
+    partOfSpeech: "noun",
+    category: "Customer Experience",
+    definition: "beliefs about how something should happen or how someone should behave",
+    examples: [
+      "The service exceeded customer expectations.",
+      "Clear communication helps manage expectations."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "external",
+    partOfSpeech: "adjective",
+    category: "Organizations & Services",
+    definition: "coming from or happening outside an organization",
+    examples: [
+      "An external consultant evaluated the facilities.",
+      "The company uses external technicians for specialized repairs."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "instructions",
+    partOfSpeech: "noun",
+    category: "Processes & Communication",
+    definition: "detailed information explaining how to do or use something",
+    examples: [
+      "The equipment includes clear operating instructions.",
+      "Please follow the safety instructions carefully."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "internal",
+    partOfSpeech: "adjective",
+    category: "Organizations & Services",
+    definition: "involving people or activities within an organization",
+    examples: [
+      "The complaint was reviewed through an internal process.",
+      "Internal support is available to all employees."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "issue",
+    partOfSpeech: "noun",
+    category: "Problems & Support",
+    definition: "a problem or concern that requires attention",
+    examples: [
+      "The customer reported an issue with the treadmill.",
+      "The support team resolved the technical issue quickly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "layout",
+    partOfSpeech: "noun",
+    category: "Facilities & Design",
+    definition: "the way that the parts of a room, building, or document are arranged",
+    examples: [
+      "Employees preferred the new office layout.",
+      "The redesigned layout provides more space for equipment."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "monitor",
+    partOfSpeech: "verb",
+    category: "Evaluation & Quality",
+    definition: "to watch and check something over time to see how it develops",
+    examples: [
+      "The system monitors equipment performance continuously.",
+      "Managers monitor customer satisfaction every month."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "provide",
+    partOfSpeech: "verb",
+    category: "Customers & Service",
+    definition: "to give something to someone or make it available for use",
+    examples: [
+      "The company provides technical support to customers.",
+      "The center provides rehabilitation services."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "receive",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to get or accept something that is sent or given",
+    examples: [
+      "Customers receive written confirmation of every appointment.",
+      "We recently received several positive comments."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "recently",
+    partOfSpeech: "adverb",
+    category: "Time & Updates",
+    definition: "not long before the present time",
+    examples: [
+      "The company recently refurbished its training center.",
+      "We recently introduced a new customer support system."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "refurbish",
+    partOfSpeech: "verb",
+    category: "Facilities & Design",
+    definition: "to clean, repair, and redecorate a building or room",
+    examples: [
+      "The company plans to refurbish the reception area.",
+      "The hotel refurbished all of its conference rooms."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "rehabilitation",
+    partOfSpeech: "noun",
+    category: "Healthcare & Services",
+    definition: "the process of helping someone return to normal life after illness or injury",
+    examples: [
+      "The hospital opened a new rehabilitation center.",
+      "Specialized equipment supports patient rehabilitation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "require",
+    partOfSpeech: "verb",
+    category: "Needs & Specifications",
+    definition: "to need something for a particular purpose",
+    examples: [
+      "The installation requires specialized equipment.",
+      "Some customers require additional technical support."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "requirements",
+    partOfSpeech: "noun",
+    category: "Needs & Specifications",
+    definition: "the specific things that someone needs or expects",
+    examples: [
+      "The service was tailored to the customer's requirements.",
+      "Please confirm the technical requirements before ordering."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "satisfaction",
+    partOfSpeech: "noun",
+    category: "Customer Experience",
+    definition: "the positive feeling produced when expectations or needs are met",
+    examples: [
+      "Customer satisfaction improved after the refurbishment.",
+      "The company conducts surveys to measure satisfaction."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "service",
+    partOfSpeech: "noun",
+    category: "Customers & Service",
+    definition: "work performed for customers rather than the production of physical goods",
+    examples: [
+      "The company provides a personalized support service.",
+      "Customers praised the speed and quality of the service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "specific",
+    partOfSpeech: "adjective",
+    category: "Needs & Specifications",
+    definition: "detailed, exact, and clearly identified",
+    examples: [
+      "The customer has several specific requirements.",
+      "Please provide specific feedback about the layout."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "support",
+    partOfSpeech: "noun",
+    category: "Customer Support",
+    definition: "help provided to someone, especially with using a product or service",
+    examples: [
+      "Technical support is available twenty-four hours a day.",
+      "Customers receive additional support during installation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "tailor",
+    partOfSpeech: "verb",
+    category: "Customer Experience",
+    definition: "to adapt something for a particular person, purpose, or situation",
+    examples: [
+      "We tailor our services to each customer's needs.",
+      "The training program was tailored to the team's requirements."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "treadmill",
+    partOfSpeech: "noun",
+    category: "Equipment & Facilities",
+    definition: "an exercise machine with a moving surface used for walking or running",
+    examples: [
+      "The rehabilitation center ordered a new treadmill.",
+      "A technician repaired the faulty treadmill."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 5,
+    word: "unique",
+    partOfSpeech: "adjective",
+    category: "Products & Services",
+    definition: "being the only one of its kind",
+    examples: [
+      "The company offers a unique rehabilitation service.",
+      "Each customer receives a unique support plan."
+    ]
+  },
 
 //////////////////////////////
 //
