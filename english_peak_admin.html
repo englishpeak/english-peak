@@ -949,35 +949,12 @@ function renderPricingSetupMissing(error) {
   document.getElementById('pricingCurrentPill').textContent = 'Setup needed';
   document.getElementById('pricingCurrentTitle').textContent = 'Pricing database setup is missing';
   document.getElementById('pricingCurrentDescription').innerHTML =
-    'This is a one-time Supabase database setup, not a Stripe problem. ' +
-    'Click <strong>Copy setup SQL</strong>, paste it into Supabase SQL Editor, run it, then click Refresh here. ' +
+    'Run <strong>supabase_pricing_setup.sql</strong> once in Supabase SQL Editor, then click Refresh here. ' +
     'Until that is done, checkout and the public pricing endpoint will keep using the safe fallback pricing. ' +
     (error?.message ? '<br><span style="font-size:.78rem;color:var(--red)">Supabase: ' + escapeAdmin(error.message) + '</span>' : '');
   document.getElementById('pricingPreview').innerHTML = `
     <div class="pricing-preview-card"><span>Setup file</span><strong>supabase_pricing_setup.sql</strong></div>
-    <div class="pricing-preview-card"><span>Fallback</span><strong>50% OFF</strong></div>
-    <div class="pricing-preview-card" style="grid-column:1/-1"><span>Next step</span><button class="btn btn-primary btn-sm" onclick="copyPricingSetupSql()">Copy setup SQL</button> <button class="btn btn-ghost btn-sm" onclick="loadPricingSettings()">Refresh after running it</button></div>`;
-}
-
-async function copyPricingSetupSql() {
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(PRICING_SETUP_SQL);
-    } else {
-      const textarea = document.createElement('textarea');
-      textarea.value = PRICING_SETUP_SQL;
-      textarea.setAttribute('readonly', '');
-      textarea.style.position = 'fixed';
-      textarea.style.left = '-9999px';
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      textarea.remove();
-    }
-    showToast('📋 Pricing setup SQL copied. Paste it into Supabase SQL Editor.', 'success');
-  } catch (err) {
-    showToast('Could not copy automatically. Open supabase_pricing_setup.sql and paste it into Supabase.', 'error');
-  }
+    <div class="pricing-preview-card"><span>Fallback</span><strong>50% OFF</strong></div>`;
 }
 
 function renderPricingPreview(mode, expiresAt) {
