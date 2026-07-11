@@ -9401,7 +9401,411 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "accommodation",
+    partOfSpeech: "noun",
+    category: "Travel & Relocation",
+    definition: "a place where someone lives or stays temporarily",
+    examples: ["The company provides accommodation for employees working abroad.", "She found temporary accommodation near the new office."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "assignment",
+    partOfSpeech: "noun",
+    category: "Work & Responsibilities",
+    definition: "a particular piece of work given to someone as part of their job",
+    examples: ["He accepted a six-month assignment in Singapore.", "The manager gave each consultant a different assignment."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "bored",
+    partOfSpeech: "adjective",
+    category: "Feelings at Work",
+    definition: "no longer interested in something because it is repetitive or unexciting",
+    examples: ["She became bored with routine administrative work.", "Employees may feel bored when their tasks offer no variety."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "boring",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "not interesting and likely to make someone feel impatient",
+    examples: ["The training session was informative but slightly boring.", "Repetitive data entry can become boring."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "contact",
+    partOfSpeech: "noun",
+    category: "Professional Relationships",
+    definition: "a person you know who may be helpful in your professional life",
+    examples: ["She has several useful contacts in the technology sector.", "A former colleague introduced me to an important business contact."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "corridor",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a long passage inside a building with rooms opening from it",
+    examples: ["The meeting rooms are located along the main corridor.", "Employees displayed project posters in the office corridor."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "department",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "a section of a large organization responsible for a particular activity",
+    examples: ["She transferred to the human resources department.", "Every department submitted its annual budget."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "do exercise",
+    partOfSpeech: "phrase",
+    category: "Health & Well-being",
+    definition: "to take part in physical activity to remain healthy or become stronger",
+    examples: ["Employees are encouraged to do exercise during their lunch break.", "He does exercise before starting work each morning."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "do overtime",
+    partOfSpeech: "phrase",
+    category: "Working Hours",
+    definition: "to work additional hours beyond the normal working schedule",
+    examples: ["The team had to do overtime before the product launch.", "Employees receive additional pay when they do overtime."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "do work",
+    partOfSpeech: "phrase",
+    category: "Work & Responsibilities",
+    definition: "to perform the tasks that form part of your job",
+    examples: ["She prefers to do focused work early in the morning.", "Employees can do some of their work from home."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "emphasis",
+    partOfSpeech: "noun",
+    category: "Professional Communication",
+    definition: "special importance or attention given to something",
+    examples: ["The company places strong emphasis on customer service.", "The presentation put particular emphasis on sustainability."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "employee",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "a person who is paid to work for an organization",
+    examples: ["Every employee receives an annual performance review.", "The company introduced new benefits for remote employees."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "enjoyable",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "giving pleasure or satisfaction",
+    examples: ["The team-building activity was productive and enjoyable.", "A supportive environment can make work more enjoyable."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "excited",
+    partOfSpeech: "adjective",
+    category: "Feelings at Work",
+    definition: "feeling enthusiastic and happy about something",
+    examples: ["The employees were excited about the new flexible-hours policy.", "She felt excited before beginning her overseas assignment."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "exciting",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "causing strong interest, enthusiasm, or happiness",
+    examples: ["The company offers exciting opportunities for graduates.", "Launching a product in a new market is an exciting challenge."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "exercise",
+    partOfSpeech: "noun",
+    category: "Health & Well-being",
+    definition: "physical activity performed to improve or maintain health",
+    examples: ["Regular exercise can reduce workplace stress.", "The wellness program includes exercise and nutrition workshops."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "exhilarated",
+    partOfSpeech: "adjective",
+    category: "Feelings at Work",
+    definition: "feeling extremely happy, energetic, and excited",
+    examples: ["The team felt exhilarated after winning the contract.", "She was exhilarated by the success of her first presentation."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "exhilarating",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "causing someone to feel extremely happy and excited",
+    examples: ["Leading the international project was an exhilarating experience.", "The rapid growth of the startup was both stressful and exhilarating."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "fascinating",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "extremely interesting and attractive",
+    examples: ["The consultant gave a fascinating presentation on consumer behavior.", "She finds international business negotiations fascinating."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "flexitime",
+    partOfSpeech: "noun",
+    category: "Flexible Working",
+    definition: "a system that allows employees to choose when they begin and finish work",
+    examples: ["Flexitime helps employees manage family responsibilities.", "The company introduced flexitime to improve work-life balance."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "frightened",
+    partOfSpeech: "adjective",
+    category: "Feelings at Work",
+    definition: "feeling afraid or worried",
+    examples: ["Some employees felt frightened about losing their jobs.", "She was frightened before speaking to such a large audience."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "frightening",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "causing fear or serious concern",
+    examples: ["The sudden decline in sales was frightening.", "A major security breach can be frightening for customers."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "hard work",
+    partOfSpeech: "noun",
+    category: "Work & Performance",
+    definition: "work that requires considerable physical or mental effort",
+    examples: ["Building a successful business requires hard work.", "The project was completed through teamwork and hard work."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "human resources",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "the department responsible for hiring, training, and supporting employees",
+    examples: ["Human resources introduced the new leave policy.", "Please send your application to the human resources department."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "interested",
+    partOfSpeech: "adjective",
+    category: "Feelings at Work",
+    definition: "wanting to learn more about or become involved in something",
+    examples: ["Several employees are interested in working abroad.", "The client was interested in our customized service."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "interesting",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "attracting attention because it is unusual, important, or enjoyable",
+    examples: ["The role offers interesting opportunities for professional development.", "She shared an interesting perspective during the meeting."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "make progress",
+    partOfSpeech: "phrase",
+    category: "Goals & Performance",
+    definition: "to improve or move closer to completing something",
+    examples: ["The team is making good progress on the assignment.", "Regular feedback helps employees make progress."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "make time",
+    partOfSpeech: "phrase",
+    category: "Time Management",
+    definition: "to arrange your schedule so that time is available for something",
+    examples: ["Managers should make time for individual employee meetings.", "She makes time for exercise despite her demanding schedule."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "make useful contacts",
+    partOfSpeech: "phrase",
+    category: "Professional Relationships",
+    definition: "to meet people who may provide professional help or opportunities",
+    examples: ["Conferences are excellent places to make useful contacts.", "She made several useful contacts during her overseas assignment."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "novel",
+    partOfSpeech: "noun",
+    category: "Leisure & Personal Development",
+    definition: "a long fictional story published as a book",
+    examples: ["He reads a novel during his commute to work.", "The office book club discusses one novel each month."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "overtime",
+    partOfSpeech: "noun",
+    category: "Working Hours",
+    definition: "additional time worked beyond normal working hours",
+    examples: ["Overtime increased significantly before the deadline.", "The company pays employees extra for weekend overtime."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "paid leave",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "authorized time away from work during which an employee continues to receive pay",
+    examples: ["The benefits package includes twenty days of paid leave.", "She used her paid leave to visit family abroad."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "plenty",
+    partOfSpeech: "pronoun",
+    category: "Quantity",
+    definition: "a large or sufficient amount of something",
+    examples: ["There is plenty of time to complete the assignment.", "The new office provides plenty of space for collaborative work."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "politely",
+    partOfSpeech: "adverb",
+    category: "Professional Communication",
+    definition: "in a respectful way that demonstrates good manners",
+    examples: ["She politely declined the additional assignment.", "Employees should respond politely to customer complaints."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "progress",
+    partOfSpeech: "noun",
+    category: "Goals & Performance",
+    definition: "the process of improving, developing, or moving toward a goal",
+    examples: ["The manager reviews each employee's progress monthly.", "We have made significant progress since the project began."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "relaxing",
+    partOfSpeech: "adjective",
+    category: "Health & Well-being",
+    definition: "helping someone rest and feel less anxious",
+    examples: ["Walking during lunch can be relaxing.", "The company created a relaxing break area for staff."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "take holiday",
+    partOfSpeech: "phrase",
+    category: "Leave & Holidays",
+    definition: "to be away from work with permission for a vacation",
+    examples: ["Many employees take holiday during August.", "She plans to take holiday after completing the assignment."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "take paid leave",
+    partOfSpeech: "phrase",
+    category: "Leave & Holidays",
+    definition: "to be absent from work with permission while continuing to receive pay",
+    examples: ["Employees can take paid leave for personal reasons.", "He took paid leave after the international project ended."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "take time off",
+    partOfSpeech: "phrase",
+    category: "Leave & Holidays",
+    definition: "to be away from work for an authorized period",
+    examples: ["She took time off to recover from a stressful assignment.", "Employees should arrange cover before taking time off."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "time off",
+    partOfSpeech: "noun",
+    category: "Leave & Holidays",
+    definition: "authorized time during which someone does not have to work",
+    examples: ["The manager approved two days of time off.", "Regular time off can help prevent employee burnout."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "tired of",
+    partOfSpeech: "adjective",
+    category: "Feelings at Work",
+    definition: "no longer interested in or willing to accept something",
+    examples: ["He became tired of working late every evening.", "Customers are tired of receiving irrelevant promotional emails."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "tiring",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "causing physical or mental tiredness",
+    examples: ["Frequent international travel can be tiring.", "The long conference was useful but tiring."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "work flexitime",
+    partOfSpeech: "phrase",
+    category: "Flexible Working",
+    definition: "to use a system that allows you to choose your daily starting and finishing times",
+    examples: ["Parents can work flexitime to manage childcare responsibilities.", "Employees who work flexitime must complete their weekly hours."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "work from home",
+    partOfSpeech: "phrase",
+    category: "Flexible Working",
+    definition: "to perform your job at home instead of traveling to an office",
+    examples: ["Employees may work from home twice a week.", "She works from home when she needs to concentrate."]
+  },
+  {
+    level: "intermediate",
+    unit: 3,
+    word: "work late",
+    partOfSpeech: "phrase",
+    category: "Working Hours",
+    definition: "to remain at work beyond your usual finishing time",
+    examples: ["The finance team worked late to complete the report.", "Managers should not expect employees to work late regularly."]
+  },
 
 //////////////////////////////
 //
