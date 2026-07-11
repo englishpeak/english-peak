@@ -929,8 +929,8 @@ async function loadPricingSettings() {
   if (badge) badge.textContent = '...';
   const { data, error } = await sb.from('site_settings').select('value, updated_at').eq('key', 'pricing').maybeSingle();
   if (error) {
-    showToast('Pricing setup missing. Run supabase_downloads_setup.sql first.', 'error');
-    if (badge) badge.textContent = '!';
+    renderPricingSetupMissing(error);
+    if (badge) badge.textContent = 'Setup';
     return;
   }
   const value = data?.value || { mode: 'half_off', expires_at: null };
@@ -940,6 +940,20 @@ async function loadPricingSettings() {
   document.getElementById('pricingEndsAt').value = expiresAt ? toDatetimeLocalValue(expiresAt) : '';
   renderPricingPreview(effectiveMode, expiresAt);
   if (badge) badge.textContent = PRICING_OPTIONS[effectiveMode].badge;
+}
+
+function renderPricingSetupMissing(error) {
+  setPricingModeSelection('half_off');
+  document.getElementById('pricingEndsAt').value = '';
+  document.getElementById('pricingCurrentPill').textContent = 'Setup needed';
+  document.getElementById('pricingCurrentTitle').textContent = 'Pricing database setup is missing';
+  document.getElementById('pricingCurrentDescription').innerHTML =
+    'Run <strong>supabase_pricing_setup.sql</strong> once in Supabase SQL Editor, then click Refresh here. ' +
+    'Until that is done, checkout and the public pricing endpoint will keep using the safe fallback pricing. ' +
+    (error?.message ? '<br><span style="font-size:.78rem;color:var(--red)">Supabase: ' + escapeAdmin(error.message) + '</span>' : '');
+  document.getElementById('pricingPreview').innerHTML = `
+    <div class="pricing-preview-card"><span>Setup file</span><strong>supabase_pricing_setup.sql</strong></div>
+    <div class="pricing-preview-card"><span>Fallback</span><strong>50% OFF</strong></div>`;
 }
 
 function renderPricingPreview(mode, expiresAt) {
@@ -975,7 +989,12 @@ async function savePricingSettings() {
   const expiresAt = endsInput ? new Date(endsInput).toISOString() : null;
   const value = { mode, expires_at: mode === 'normal' ? null : expiresAt, note: note || null };
   const { error } = await sb.from('site_settings').upsert({ key: 'pricing', value, updated_by: currentUser.id }, { onConflict: 'key' });
-  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+  if (error) {
+    const missingTable = error.code === '42P01' || /site_settings|schema cache|does not exist/i.test(error.message || '');
+    showToast(missingTable ? 'Run supabase_pricing_setup.sql in Supabase SQL Editor first.' : 'Error: ' + error.message, 'error');
+    if (missingTable) renderPricingSetupMissing(error);
+    return;
+  }
   await sb.from('admin_log').insert({ admin_id: currentUser.id, action: 'pricing_change', details: { mode, expires_at: value.expires_at, note } });
   showToast('✅ Pricing updated', 'success');
   document.getElementById('pricingNote').value = '';
