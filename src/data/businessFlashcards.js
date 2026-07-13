@@ -11621,7 +11621,7 @@ export const businessFlashcards = [
       "The firewall prevents unauthorized access to the network.",
       "The investigation found no evidence of unauthorized access."
     ]
-  }
+  },
 
 //////////////////////////////
 //
@@ -11629,7 +11629,282 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "blame",
+    partOfSpeech: "verb",
+    category: "Responsibility & Conflict",
+    definition: "to say or believe that someone or something is responsible for a problem",
+    examples: [
+      "The client blamed the supplier for the delay.",
+      "Instead of blaming individuals, the team focused on finding a solution."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "candidate",
+    partOfSpeech: "noun",
+    category: "Recruitment",
+    definition: "a person applying for a job or being considered for a position",
+    examples: [
+      "Each candidate completed a practical assessment.",
+      "The interview panel selected three strong candidates."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "chart",
+    partOfSpeech: "noun",
+    category: "Data & Presentations",
+    definition: "information presented visually through diagrams, figures, or lists",
+    examples: [
+      "The chart compares revenue across five markets.",
+      "She used a chart to explain the company's structure."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "common ground",
+    partOfSpeech: "noun",
+    category: "Collaboration & Negotiation",
+    definition: "ideas, interests, or knowledge shared by different people or groups",
+    examples: [
+      "The two companies found common ground during the negotiations.",
+      "Shared concern for quality gave the teams some common ground."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "complementary skills",
+    partOfSpeech: "noun",
+    category: "Teams & Skills",
+    definition: "different abilities that work effectively together",
+    examples: [
+      "The partners have complementary skills in finance and technology.",
+      "Successful teams combine people with complementary skills."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "conduct business",
+    partOfSpeech: "phrase",
+    category: "Business Operations",
+    definition: "to participate in buying, selling, or providing goods and services",
+    examples: [
+      "The company conducts business in more than twenty countries.",
+      "Local knowledge is valuable when conducting business abroad."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "continent",
+    partOfSpeech: "noun",
+    category: "International Business",
+    definition: "one of the world's major land areas, such as Europe, Asia, or Africa",
+    examples: [
+      "The company now operates on every continent.",
+      "Each continent presents different market opportunities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "detail",
+    partOfSpeech: "noun",
+    category: "Planning & Communication",
+    definition: "a small fact or feature that may be important but difficult to notice",
+    examples: [
+      "The contract contains an important detail about delivery costs.",
+      "Successful project managers pay attention to every detail."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "form alliances",
+    partOfSpeech: "phrase",
+    category: "Partnerships & Strategy",
+    definition: "to create agreements with other people or organizations to work toward shared aims",
+    examples: [
+      "Small companies sometimes form alliances to enter new markets.",
+      "The two organizations formed an alliance to develop the technology."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "freelancer",
+    partOfSpeech: "noun",
+    category: "Employment Types",
+    definition: "a self-employed person who provides services to several organizations",
+    examples: [
+      "The agency hired a freelancer to redesign its website.",
+      "As a freelancer, she works with clients on three continents."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "join forces",
+    partOfSpeech: "phrase",
+    category: "Partnerships & Strategy",
+    definition: "to work together with another person or organization toward a shared aim",
+    examples: [
+      "The competitors joined forces to develop a new industry standard.",
+      "Several local businesses joined forces for the advertising campaign."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "joint venture",
+    partOfSpeech: "noun",
+    category: "Partnerships & Strategy",
+    definition: "a business project owned or managed by two or more people or organizations",
+    examples: [
+      "The companies established a joint venture in Brazil.",
+      "Both partners invested equal capital in the joint venture."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "merge",
+    partOfSpeech: "verb",
+    category: "Corporate Structure",
+    definition: "to combine two or more organizations into one",
+    examples: [
+      "The two technology firms agreed to merge.",
+      "The departments merged to reduce operating costs."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "mutual benefit",
+    partOfSpeech: "noun",
+    category: "Partnerships & Strategy",
+    definition: "an advantage or positive result received by all parties involved",
+    examples: [
+      "The agreement was designed for mutual benefit.",
+      "Strong partnerships should create mutual benefits for both companies."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "prediction",
+    partOfSpeech: "noun",
+    category: "Planning & Forecasting",
+    definition: "a statement about what someone believes will happen in the future",
+    examples: [
+      "The analyst's prediction proved to be accurate.",
+      "Market predictions influenced the investment decision."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "premises",
+    partOfSpeech: "noun",
+    category: "Business Locations",
+    definition: "the buildings and land used by a business",
+    examples: [
+      "The company moved to larger premises last year.",
+      "Visitors must register before entering the premises."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "response",
+    partOfSpeech: "noun",
+    category: "Professional Communication",
+    definition: "a spoken or written answer to a question, request, or situation",
+    examples: [
+      "We are still waiting for the client's response.",
+      "The proposal received a positive response from investors."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "shared goals",
+    partOfSpeech: "noun",
+    category: "Teams & Collaboration",
+    definition: "objectives that two or more people or groups want to achieve together",
+    examples: [
+      "Shared goals helped the teams work more effectively.",
+      "The partners defined their shared goals at the first meeting."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "suspicion",
+    partOfSpeech: "noun",
+    category: "Trust & Risk",
+    definition: "a feeling that someone or something cannot be trusted",
+    examples: [
+      "The unusual transaction raised suspicion.",
+      "A lack of transparency can create suspicion between business partners."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "take responsibility",
+    partOfSpeech: "phrase",
+    category: "Responsibility & Leadership",
+    definition: "to accept the duty to deal with something and be accountable for the result",
+    examples: [
+      "The project manager took responsibility for the mistake.",
+      "Each partner must take responsibility for meeting the agreed deadlines."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "team player",
+    partOfSpeech: "noun",
+    category: "Teams & Skills",
+    definition: "a person who works effectively and cooperatively as part of a team",
+    examples: [
+      "The ideal candidate must be a strong team player.",
+      "She is independent but also an excellent team player."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "work closely",
+    partOfSpeech: "phrase",
+    category: "Teams & Collaboration",
+    definition: "to spend significant time cooperating with another person or group",
+    examples: [
+      "The design team works closely with the manufacturer.",
+      "Both companies worked closely to launch the joint venture."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 8,
+    word: "worrying",
+    partOfSpeech: "adjective",
+    category: "Risk & Performance",
+    definition: "causing concern or anxiety",
+    examples: [
+      "The decline in customer satisfaction is worrying.",
+      "The report identified several worrying market trends."
+    ]
+  }
 
 //////////////////////////////
 //
