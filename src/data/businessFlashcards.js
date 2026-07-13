@@ -11266,7 +11266,7 @@ export const businessFlashcards = [
       "Some delegates attended the conference through a virtual platform.",
       "The company offers virtual tours of its production facility."
     ]
-  }
+  },
 
 //////////////////////////////
 //
@@ -11274,7 +11274,354 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "advantage",
+    partOfSpeech: "noun",
+    category: "Benefits & Risks",
+    definition: "a quality or feature that makes something better or more useful",
+    examples: [
+      "One advantage of the new system is its improved security.",
+      "Remote access gives employees greater flexibility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "announce",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to officially tell people about a decision, plan, or event",
+    examples: [
+      "The company announced new security procedures.",
+      "Management will announce the policy change tomorrow."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "aware",
+    partOfSpeech: "adjective",
+    category: "Security Awareness",
+    definition: "knowing that something exists and understanding its importance",
+    examples: [
+      "Employees must be aware of the risks of identity theft.",
+      "Are customers aware of the new password requirements?"
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "breach",
+    partOfSpeech: "noun",
+    category: "Security & Compliance",
+    definition: "a failure to follow a rule or an action that breaks an agreement",
+    examples: [
+      "The unauthorized transaction was a serious breach of company policy.",
+      "The organization investigated the data breach immediately."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "deter",
+    partOfSpeech: "verb",
+    category: "Security & Prevention",
+    definition: "to discourage someone from doing something by showing the possible negative consequences",
+    examples: [
+      "Security cameras can deter theft.",
+      "Strong penalties are intended to deter fraudulent activity."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "disadvantage",
+    partOfSpeech: "noun",
+    category: "Benefits & Risks",
+    definition: "a feature or situation that causes problems or reduces the chance of success",
+    examples: [
+      "One disadvantage of the system is its high maintenance cost.",
+      "Complex security procedures may be a disadvantage for some users."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "fraud",
+    partOfSpeech: "noun",
+    category: "Crime & Security",
+    definition: "the crime of dishonestly obtaining money or goods",
+    examples: [
+      "The bank monitors transactions to detect fraud.",
+      "Online fraud can seriously damage customer confidence."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "gain access",
+    partOfSpeech: "phrase",
+    category: "Access Control",
+    definition: "to succeed in entering a place or using protected information",
+    examples: [
+      "Employees need a security pass to gain access to the building.",
+      "The attacker gained access to confidential customer data."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "identity theft",
+    partOfSpeech: "noun",
+    category: "Crime & Security",
+    definition: "the illegal use of another person's personal information to obtain money, credit, or goods",
+    examples: [
+      "Strong passwords help protect customers from identity theft.",
+      "The bank contacted the client after detecting possible identity theft."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "illegal",
+    partOfSpeech: "adjective",
+    category: "Law & Compliance",
+    definition: "not permitted by law",
+    examples: [
+      "It is illegal to use another person's financial information.",
+      "The company reported the illegal transaction to the authorities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "lift",
+    partOfSpeech: "noun",
+    category: "Workplace Facilities",
+    definition: "a machine that carries people or goods between different floors of a building",
+    examples: [
+      "Employees need a security pass to operate the lift.",
+      "The goods lift is monitored by a security camera."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "load",
+    partOfSpeech: "verb",
+    category: "Operations & Logistics",
+    definition: "to put a large quantity of goods or people into or onto something",
+    examples: [
+      "Warehouse staff loaded the goods onto the truck.",
+      "Only authorized employees may load equipment into the lift."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "measure",
+    partOfSpeech: "noun",
+    category: "Security & Prevention",
+    definition: "an official action taken to achieve a particular aim",
+    examples: [
+      "The company introduced additional security measures.",
+      "Password protection is an important preventive measure."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "monitor",
+    partOfSpeech: "verb",
+    category: "Security & Prevention",
+    definition: "to watch or check something over time to detect problems or changes",
+    examples: [
+      "Security staff monitor the building continuously.",
+      "The bank monitors unusual transactions automatically."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "network",
+    partOfSpeech: "noun",
+    category: "Information Technology",
+    definition: "a group of connected computers and devices that share information and equipment",
+    examples: [
+      "The company's internal network stores confidential information.",
+      "Unauthorized devices cannot connect to the network."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "notify",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to formally or officially tell someone about something",
+    examples: [
+      "Employees must notify security about a lost pass.",
+      "The bank notified the customer of the suspicious transaction."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "pass",
+    partOfSpeech: "noun",
+    category: "Access Control",
+    definition: "an official document or card that gives someone permission to enter a place",
+    examples: [
+      "Visitors receive a temporary pass at reception.",
+      "Please display your pass while inside the building."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "password",
+    partOfSpeech: "noun",
+    category: "Information Security",
+    definition: "a secret word or series of characters used to enter a protected system",
+    examples: [
+      "Employees must change their passwords regularly.",
+      "Never share your password with another person."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "procedure",
+    partOfSpeech: "noun",
+    category: "Processes & Compliance",
+    definition: "an established or correct way of performing a particular activity",
+    examples: [
+      "Follow the correct procedure when reporting a security incident.",
+      "The company reviewed its emergency procedures."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "review",
+    partOfSpeech: "verb",
+    category: "Processes & Compliance",
+    definition: "to carefully examine something again to decide whether changes are necessary",
+    examples: [
+      "Management reviews the security policy every year.",
+      "The bank reviewed all transactions connected with the account."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "safeguard",
+    partOfSpeech: "verb",
+    category: "Security & Prevention",
+    definition: "to protect someone or something from loss, harm, or damage",
+    examples: [
+      "The new procedures safeguard confidential customer information.",
+      "Regular backups help safeguard important business data."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "security breach",
+    partOfSpeech: "noun",
+    category: "Information Security",
+    definition: "an incident in which normally protected information or property is no longer secure",
+    examples: [
+      "The company notified customers about the security breach.",
+      "A stolen password caused a serious security breach."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "security camera",
+    partOfSpeech: "noun",
+    category: "Physical Security",
+    definition: "a camera used to record activity in or around a protected place",
+    examples: [
+      "A security camera recorded the unauthorized visitor.",
+      "The warehouse installed security cameras near every entrance."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "security pass",
+    partOfSpeech: "noun",
+    category: "Access Control",
+    definition: "an official card showing that someone has permission to enter a building or restricted area",
+    examples: [
+      "Every employee must swipe a security pass at the entrance.",
+      "The visitor returned her security pass before leaving."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "security procedures",
+    partOfSpeech: "noun",
+    category: "Processes & Compliance",
+    definition: "rules and methods that must be followed to protect an organization",
+    examples: [
+      "All employees receive training in security procedures.",
+      "The company updated its security procedures after the incident."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "security staff",
+    partOfSpeech: "noun",
+    category: "Physical Security",
+    definition: "employees responsible for protecting an organization, building, or property",
+    examples: [
+      "Security staff checked every visitor's identification.",
+      "Report any suspicious behavior to the security staff."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "swipe",
+    partOfSpeech: "verb",
+    category: "Access Control",
+    definition: "to pass a plastic card through or across a machine that reads its information",
+    examples: [
+      "Employees swipe their passes to enter the office.",
+      "The customer swiped her card to complete the transaction."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "transaction",
+    partOfSpeech: "noun",
+    category: "Banking & Finance",
+    definition: "a business activity, especially an act of buying, selling, or transferring money",
+    examples: [
+      "The system identified an unusual transaction.",
+      "Customers receive immediate confirmation of every transaction."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 7,
+    word: "unauthorized access",
+    partOfSpeech: "noun",
+    category: "Information Security",
+    definition: "entry into a place or use of protected information without permission",
+    examples: [
+      "The firewall prevents unauthorized access to the network.",
+      "The investigation found no evidence of unauthorized access."
+    ]
+  }
 
 //////////////////////////////
 //
