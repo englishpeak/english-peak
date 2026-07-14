@@ -11904,7 +11904,7 @@ export const businessFlashcards = [
       "The decline in customer satisfaction is worrying.",
       "The report identified several worrying market trends."
     ]
-  }
+  },
 
 //////////////////////////////
 //
@@ -11912,7 +11912,414 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "appropriate",
+    partOfSpeech: "adjective",
+    category: "Professional Decisions",
+    definition: "suitable or correct for a particular situation",
+    examples: [
+      "We need to select the most appropriate delivery method.",
+      "The manager took appropriate action after reviewing the complaint."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "average",
+    partOfSpeech: "adjective",
+    category: "Data & Performance",
+    definition: "typical, normal, or calculated from several amounts",
+    examples: [
+      "The average delivery time is three working days.",
+      "This warehouse processes an average order in fifteen minutes."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "bill",
+    partOfSpeech: "noun",
+    category: "Payments & Documents",
+    definition: "a document showing how much must be paid for goods or services",
+    examples: [
+      "The courier sent us a bill for the urgent delivery.",
+      "Please check the bill before approving payment."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "breathtaking",
+    partOfSpeech: "adjective",
+    category: "Descriptions & Impressions",
+    definition: "extremely impressive, beautiful, or exciting",
+    examples: [
+      "The new distribution center is breathtaking in size.",
+      "The client chose a venue with breathtaking views."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "challenge",
+    partOfSpeech: "noun",
+    category: "Problems & Solutions",
+    definition: "a difficult task or situation that tests someone's ability",
+    examples: [
+      "Managing global demand is a major challenge.",
+      "The logistics team found a solution to the delivery challenge."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "client",
+    partOfSpeech: "noun",
+    category: "Customers & Relationships",
+    definition: "a person or organization that purchases professional goods or services",
+    examples: [
+      "The client requested an urgent shipment.",
+      "We provide every client with regular inventory updates."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "component",
+    partOfSpeech: "noun",
+    category: "Products & Manufacturing",
+    definition: "one of the individual parts used to make something",
+    examples: [
+      "The manufacturer is waiting for an electronic component.",
+      "Every component is inspected before assembly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "container",
+    partOfSpeech: "noun",
+    category: "Shipping & Logistics",
+    definition: "a large standard box used to transport goods by ship, rail, or truck",
+    examples: [
+      "The goods were loaded into a shipping container.",
+      "Each container can be tracked throughout the supply chain."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "courier",
+    partOfSpeech: "noun",
+    category: "Shipping & Logistics",
+    definition: "a person or company that transports packages or important documents",
+    examples: [
+      "We sent the contract by courier.",
+      "The courier delivered the replacement component this morning."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "demand",
+    partOfSpeech: "noun",
+    category: "Markets & Supply",
+    definition: "the desire or need of customers for goods or services",
+    examples: [
+      "Demand for home-improvement products increased sharply.",
+      "The factory expanded production to meet customer demand."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "dispatch",
+    partOfSpeech: "verb",
+    category: "Shipping & Logistics",
+    definition: "to send a letter, package, message, or shipment somewhere",
+    examples: [
+      "The warehouse dispatched the order yesterday.",
+      "Urgent replacement parts will be dispatched by courier."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "distribute",
+    partOfSpeech: "verb",
+    category: "Distribution",
+    definition: "to send goods to retailers or businesses so they can be sold",
+    examples: [
+      "The company distributes its products throughout Europe.",
+      "Regional warehouses distribute goods to local stores."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "distributor",
+    partOfSpeech: "noun",
+    category: "Distribution",
+    definition: "a person or company that supplies manufactured goods to retailers",
+    examples: [
+      "The manufacturer appointed a new regional distributor.",
+      "Our distributor supplies products to more than two hundred stores."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "enormous",
+    partOfSpeech: "adjective",
+    category: "Quantity & Scale",
+    definition: "extremely large in size, amount, or degree",
+    examples: [
+      "The warehouse contains an enormous amount of inventory.",
+      "Global demand created enormous pressure on the supply chain."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "home improvement",
+    partOfSpeech: "noun",
+    category: "Products & Markets",
+    definition: "work done to improve a house and increase its value",
+    examples: [
+      "The retailer specializes in home-improvement products.",
+      "Demand for home improvement increased during the year."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "in stock",
+    partOfSpeech: "adjective",
+    category: "Inventory",
+    definition: "currently available to be purchased",
+    examples: [
+      "The replacement motherboard is currently in stock.",
+      "Customers can check online whether an item is in stock."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "inventory",
+    partOfSpeech: "noun",
+    category: "Inventory",
+    definition: "the goods a business has available for sale",
+    examples: [
+      "The system updates the inventory after every transaction.",
+      "The retailer keeps additional inventory during busy periods."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "keep track of",
+    partOfSpeech: "phrase",
+    category: "Inventory & Monitoring",
+    definition: "to maintain current information about something's location or progress",
+    examples: [
+      "The software helps us keep track of every shipment.",
+      "Managers use the dashboard to keep track of inventory levels."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "manufacturer",
+    partOfSpeech: "noun",
+    category: "Products & Manufacturing",
+    definition: "a company or person that produces goods in large quantities",
+    examples: [
+      "The manufacturer increased production to meet demand.",
+      "We contacted the manufacturer about the defective component."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "motherboard",
+    partOfSpeech: "noun",
+    category: "Technology & Components",
+    definition: "the main circuit board inside a computer",
+    examples: [
+      "The technician replaced the damaged motherboard.",
+      "The motherboard was out of stock at the distributor."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "out of stock",
+    partOfSpeech: "adjective",
+    category: "Inventory",
+    definition: "not currently available to be purchased",
+    examples: [
+      "The most popular model is temporarily out of stock.",
+      "The website notifies customers when an item is out of stock."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "performance",
+    partOfSpeech: "noun",
+    category: "Quality & Results",
+    definition: "how effectively or poorly something works",
+    examples: [
+      "The client was satisfied with the product's performance.",
+      "Engineers tested the motherboard's performance under pressure."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "raw material",
+    partOfSpeech: "noun",
+    category: "Products & Manufacturing",
+    definition: "a basic substance or material used to make a product",
+    examples: [
+      "The factory is running low on an essential raw material.",
+      "Higher raw-material costs affected the final product price."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "retailer",
+    partOfSpeech: "noun",
+    category: "Retail & Sales",
+    definition: "a business or person that sells goods directly to the public",
+    examples: [
+      "The retailer ordered additional inventory before the holiday season.",
+      "Online retailers need streamlined distribution systems."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "run low on",
+    partOfSpeech: "phrasal verb",
+    category: "Inventory",
+    definition: "to have nearly used all of a supply of something",
+    examples: [
+      "The warehouse is running low on packaging materials.",
+      "We automatically reorder products when inventory runs low."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "run out of",
+    partOfSpeech: "phrasal verb",
+    category: "Inventory",
+    definition: "to use all of a supply so that none remains",
+    examples: [
+      "The distributor ran out of the most popular model.",
+      "Production stopped when the factory ran out of components."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "solution",
+    partOfSpeech: "noun",
+    category: "Problems & Solutions",
+    definition: "a way of resolving a problem or difficult situation",
+    examples: [
+      "The supplier proposed a temporary solution to the shortage.",
+      "Better forecasting may provide a long-term solution."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "stock up on",
+    partOfSpeech: "phrasal verb",
+    category: "Inventory",
+    definition: "to buy or obtain a large supply of something for future use",
+    examples: [
+      "Retailers stock up on popular products before the holidays.",
+      "The factory stocked up on raw materials before prices increased."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "streamlined",
+    partOfSpeech: "adjective",
+    category: "Efficiency & Operations",
+    definition: "organized to work efficiently without wasting time, money, or effort",
+    examples: [
+      "The company introduced a more streamlined ordering process.",
+      "A streamlined supply chain reduces delivery times."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "supplier",
+    partOfSpeech: "noun",
+    category: "Supply Chain",
+    definition: "a person or company that provides goods or services to another business",
+    examples: [
+      "The supplier dispatched the components immediately.",
+      "We need a reliable supplier for raw materials."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "supply chain",
+    partOfSpeech: "noun",
+    category: "Supply Chain",
+    definition: "the complete series of processes involved in producing and delivering goods",
+    examples: [
+      "The shortage affected every stage of the supply chain.",
+      "The company invested in technology to improve supply-chain visibility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "ultimately",
+    partOfSpeech: "adverb",
+    category: "Results & Decisions",
+    definition: "finally or in the end",
+    examples: [
+      "The manufacturer is ultimately responsible for product quality.",
+      "Improved forecasting will ultimately reduce inventory costs."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "urgently",
+    partOfSpeech: "adverb",
+    category: "Priority & Communication",
+    definition: "in a way that requires immediate attention or action",
+    examples: [
+      "The client urgently needs the replacement component.",
+      "Please contact the supplier urgently about the shortage."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 9,
+    word: "warehouse",
+    partOfSpeech: "noun",
+    category: "Storage & Logistics",
+    definition: "a large building where goods are stored before distribution or sale",
+    examples: [
+      "The goods arrived at the regional warehouse overnight.",
+      "The automated warehouse can process thousands of orders daily."
+    ]
+  }
 
 //////////////////////////////
 //
