@@ -13822,7 +13822,69 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 14,
+    word: "apologize",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to say that you are sorry for causing a problem or doing something wrong",
+    examples: [
+      "The airline apologized for the unexpected delay.",
+      "We apologized to the client for providing the information at short notice."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 14,
+    word: "apply",
+    partOfSpeech: "verb",
+    category: "Applications & Employment",
+    definition: "to make a formal request, usually in writing, for something such as a job",
+    examples: [
+      "She applied for a position with the competitor.",
+      "Candidates can apply through the company website."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 14,
+    word: "attention",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "the act of carefully looking at or listening to someone or something",
+    examples: [
+      "The safety instructions require your full attention.",
+      "The issue was brought to the manager's attention."
+    ]
+  },
+  { level: "intermediate", unit: 14, word: "available", partOfSpeech: "adjective", category: "Products & Resources", definition: "able to be obtained, bought, found, or used", examples: ["The replacement parts are currently available.", "Several competitive fares are available online."] },
+  { level: "intermediate", unit: 14, word: "basic procedure", partOfSpeech: "noun", category: "Processes & Operations", definition: "the simplest established method for completing an activity", examples: ["The manual explains the basic procedure for operating the machine.", "All new employees must learn the basic emergency procedures."] },
+  { level: "intermediate", unit: 14, word: "competitive", partOfSpeech: "adjective", category: "Markets & Pricing", definition: "as good as or better than comparable alternatives", examples: ["The airline offers competitive fares for business travelers.", "Our prices must remain competitive in the international market."] },
+  { level: "intermediate", unit: 14, word: "competitor", partOfSpeech: "noun", category: "Markets & Competition", definition: "a company, product, or person competing against another", examples: ["A major competitor recently entered the market.", "The company compared its fares with those of its competitors."] },
+  { level: "intermediate", unit: 14, word: "contract", partOfSpeech: "noun", category: "Business Agreements", definition: "an official written agreement to provide work, goods, or services", examples: ["The supplier signed a three-year contract.", "The contract clearly explains the disciplinary procedures."] },
+  { level: "intermediate", unit: 14, word: "disciplinary procedures", partOfSpeech: "noun", category: "Human Resources & Compliance", definition: "official methods used to deal with employees who break organizational rules", examples: ["The handbook explains the company's disciplinary procedures.", "Managers must follow disciplinary procedures consistently."] },
+  { level: "intermediate", unit: 14, word: "essentially", partOfSpeech: "adverb", category: "Professional Communication", definition: "used to describe the basic or most important nature of something", examples: ["The system is essentially a digital booking platform.", "The two contracts are essentially the same."] },
+  { level: "intermediate", unit: 14, word: "fare", partOfSpeech: "noun", category: "Travel & Transport", definition: "the amount of money paid to travel by plane, train, bus, or another form of transport", examples: ["The airline introduced a lower business fare.", "The fare includes taxes but not additional baggage."] },
+  { level: "intermediate", unit: 14, word: "feed into", partOfSpeech: "phrasal verb", category: "Production & Machinery", definition: "to supply or put something into a machine or process", examples: ["The operator feeds the raw material into the machine.", "Customer data is fed into the forecasting system."] },
+  { level: "intermediate", unit: 14, word: "finally", partOfSpeech: "adverb", category: "Sequence & Instructions", definition: "used to introduce the last action or point in a sequence", examples: ["Finally, check that the contract has been signed.", "Finally, the finished product is placed in its packaging."] },
+  { level: "intermediate", unit: 14, word: "first of all", partOfSpeech: "phrase", category: "Sequence & Instructions", definition: "used to introduce the first action or point in a sequence", examples: ["First of all, review the basic safety procedure.", "First of all, applicants must complete the online form."] },
+  { level: "intermediate", unit: 14, word: "fuel", partOfSpeech: "noun", category: "Energy & Transport", definition: "a substance used to produce heat, power, or energy", examples: ["Higher fuel costs increased airline fares.", "The refinery produces fuel for vehicles and aircraft."] },
+  { level: "intermediate", unit: 14, word: "having", partOfSpeech: "auxiliary", category: "Sequence & Grammar", definition: "used in the structure 'having done something' to show that one action was completed before another", examples: ["Having reviewed the contract, the investor approved the deal.", "Having completed the research, the team proceeded to the next stage."] },
+  { level: "intermediate", unit: 14, word: "ink", partOfSpeech: "noun", category: "Materials & Printing", definition: "colored liquid used for writing, drawing, or printing", examples: ["The printer is running low on ink.", "The packaging is printed with environmentally friendly ink."] },
+  { level: "intermediate", unit: 14, word: "investor", partOfSpeech: "noun", category: "Finance & Investment", definition: "a person or organization that puts money into something in the hope of making a profit", examples: ["The company presented its research to potential investors.", "An international investor provided the capital for the refinery."] },
+  { level: "intermediate", unit: 14, word: "make out of", partOfSpeech: "phrasal verb", category: "Production & Materials", definition: "to create something by using or combining particular materials", examples: ["The containers are made out of recycled plastic.", "The company makes packaging out of sustainable materials."] },
+  { level: "intermediate", unit: 14, word: "once", partOfSpeech: "conjunction", category: "Sequence & Instructions", definition: "as soon as or when a particular action has been completed", examples: ["Once the contract is approved, production can begin.", "Once the fuel has been refined, it is transported to customers."] },
+  { level: "intermediate", unit: 14, word: "passenger", partOfSpeech: "noun", category: "Travel & Transport", definition: "a person traveling in a vehicle who is not operating it", examples: ["Every passenger must follow the airline's safety procedures.", "The company collected feedback from business passengers."] },
+  { level: "intermediate", unit: 14, word: "pick up", partOfSpeech: "phrasal verb", category: "Processes & Instructions", definition: "to take hold of something and lift it", examples: ["The machine picks up each container automatically.", "Pick up the printed contract before leaving the office."] },
+  { level: "intermediate", unit: 14, word: "proceed", partOfSpeech: "verb", category: "Processes & Instructions", definition: "to continue with an activity or move to the next stage", examples: ["Once approval is received, the project can proceed.", "The operator proceeded to the final stage of production."] },
+  { level: "intermediate", unit: 14, word: "put in", partOfSpeech: "phrasal verb", category: "Processes & Instructions", definition: "to move something into a place or position inside something", examples: ["Put the document in the correct tray.", "The operator puts the raw material into the machine."] },
+  { level: "intermediate", unit: 14, word: "refinery", partOfSpeech: "noun", category: "Energy & Industry", definition: "a factory where a substance such as oil is processed and made pure", examples: ["The company invested in a new oil refinery.", "Crude oil is transported to the refinery for processing."] },
+  { level: "intermediate", unit: 14, word: "research", partOfSpeech: "noun", category: "Research & Development", definition: "careful study performed to discover new facts or information", examples: ["Market research showed strong demand for lower fares.", "The investor requested additional research before approving the project."] },
+  { level: "intermediate", unit: 14, word: "revenue", partOfSpeech: "noun", category: "Finance & Results", definition: "money received by a business, usually from selling goods or services", examples: ["Passenger revenue increased during the summer.", "The new contract is expected to generate significant revenue."] },
+  { level: "intermediate", unit: 14, word: "short notice", partOfSpeech: "noun", category: "Time & Communication", definition: "a small amount of warning or preparation time before something happens", examples: ["The meeting was arranged at short notice.", "We apologize for requesting the report at such short notice."] },
+  { level: "intermediate", unit: 14, word: "stage", partOfSpeech: "noun", category: "Processes & Development", definition: "one separate part of a process", examples: ["Quality checks are completed at every stage of production.", "The project has reached the final approval stage."] },
+  { level: "intermediate", unit: 14, word: "take out", partOfSpeech: "phrasal verb", category: "Processes & Instructions", definition: "to remove something from a particular place or container", examples: ["Take the document out of the printer carefully.", "The operator takes the finished component out of the machine."] },
 
 //////////////////////////////
 //
