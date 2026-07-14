@@ -14427,7 +14427,84 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 16,
+    word: "absolute",
+    partOfSpeech: "adjective",
+    category: "Degree & Emphasis",
+    definition: "total and complete, used to strongly emphasize something",
+    examples: [
+      "The product launch was an absolute success.",
+      "Losing the research data would be an absolute disaster."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 16,
+    word: "achievement",
+    partOfSpeech: "noun",
+    category: "Success & Performance",
+    definition: "something completed successfully through effort and skill",
+    examples: [
+      "Developing the new formula was a major scientific achievement.",
+      "The company celebrated its greatest commercial achievement."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 16,
+    word: "amazing",
+    partOfSpeech: "adjective",
+    category: "Degree & Emphasis",
+    definition: "extremely good or impressive, especially in an unexpected way",
+    examples: [
+      "The new product achieved amazing sales results.",
+      "The research team made amazing progress in only six months."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 16,
+    word: "breakthrough",
+    partOfSpeech: "noun",
+    category: "Research & Innovation",
+    definition: "an important development that leads to progress, discovery, or achievement",
+    examples: [
+      "The laboratory announced a major medical breakthrough.",
+      "The negotiations finally produced a breakthrough."
+    ]
+  },
+  { level: "intermediate", unit: 16, word: "chaotic", partOfSpeech: "adjective", category: "Organization & Management", definition: "completely confused and lacking order", examples: ["The first day of production was chaotic.", "Poor planning created a chaotic working environment."] },
+  { level: "intermediate", unit: 16, word: "come across", partOfSpeech: "phrasal verb", category: "Research & Discovery", definition: "to find something unexpectedly or by chance", examples: ["The researcher came across an unusual historical document.", "We came across the supplier while searching online."] },
+  { level: "intermediate", unit: 16, word: "complete", partOfSpeech: "adjective", category: "Degree & Emphasis", definition: "total or as great as possible, used to emphasize something", examples: ["The original advertising campaign was a complete failure.", "The discovery came as a complete surprise to the team."] },
+  { level: "intermediate", unit: 16, word: "concern", partOfSpeech: "noun", category: "Risk & Responsibility", definition: "a feeling of worry about a particular issue", examples: ["Product safety is a major concern for the manufacturer.", "Shareholders expressed concern about declining revenue."] },
+  { level: "intermediate", unit: 16, word: "cosmetic", partOfSpeech: "adjective", category: "Products & Industries", definition: "relating to products applied to the face or body to improve appearance", examples: ["The company manufactures cosmetic products.", "Every cosmetic ingredient must meet strict safety standards."] },
+  { level: "intermediate", unit: 16, word: "disaster", partOfSpeech: "noun", category: "Failure & Risk", definition: "a complete and serious failure", examples: ["The first product launch was a commercial disaster.", "Poor communication turned the project into a disaster."] },
+  { level: "intermediate", unit: 16, word: "discover", partOfSpeech: "verb", category: "Research & Discovery", definition: "to find something that was previously hidden, unknown, or not understood", examples: ["Scientists discovered a new use for the material.", "The audit discovered several serious accounting errors."] },
+  { level: "intermediate", unit: 16, word: "endanger", partOfSpeech: "verb", category: "Risk & Safety", definition: "to put someone or something in a situation where harm or damage is possible", examples: ["The defective component could endanger customers.", "Illegal practices may endanger the company's reputation."] },
+  { level: "intermediate", unit: 16, word: "expertise", partOfSpeech: "noun", category: "Knowledge & Skills", definition: "expert knowledge or skill in a particular subject or activity", examples: ["The consultant has considerable expertise in international trade.", "The company gained technical expertise through the partnership."] },
+  { level: "intermediate", unit: 16, word: "find out about", partOfSpeech: "phrasal verb", category: "Research & Information", definition: "to obtain information about a person, subject, or situation", examples: ["Investors wanted to find out more about the new technology.", "Customers can visit the website to find out about current offers."] },
+  { level: "intermediate", unit: 16, word: "flop", partOfSpeech: "noun", category: "Failure & Performance", definition: "a product, project, or event that is completely unsuccessful", examples: ["The expensive advertising campaign was a flop.", "The product became a commercial flop despite positive reviews."] },
+  { level: "intermediate", unit: 16, word: "founded", partOfSpeech: "verb", category: "Companies & History", definition: "started or established, especially when referring to an organization or institution", examples: ["The company was founded by two university graduates.", "The research institute was founded in 1985."] },
+  { level: "intermediate", unit: 16, word: "gain", partOfSpeech: "verb", category: "Business Growth", definition: "to obtain something useful, necessary, or desirable", examples: ["The company gained access to several new markets.", "Employees gained valuable experience from the project."] },
+  { level: "intermediate", unit: 16, word: "great", partOfSpeech: "adjective", category: "Degree & Emphasis", definition: "much larger or more important than average", examples: ["The discovery was of great importance to the industry.", "The company achieved great success in international markets."] },
+  { level: "intermediate", unit: 16, word: "instant coffee", partOfSpeech: "noun", category: "Products & Innovation", definition: "coffee in powder form that is prepared quickly by adding hot water", examples: ["The company became famous for producing instant coffee.", "Instant coffee was an important innovation in the food industry."] },
+  { level: "intermediate", unit: 16, word: "know-how", partOfSpeech: "noun", category: "Knowledge & Skills", definition: "practical knowledge and experience of how to do something", examples: ["The partnership gave the company valuable technical know-how.", "Manufacturing this product requires specialist know-how."] },
+  { level: "intermediate", unit: 16, word: "look for", partOfSpeech: "phrasal verb", category: "Research & Recruitment", definition: "to try to find someone or something", examples: ["The company is looking for experienced researchers.", "Investors are looking for innovative business opportunities."] },
+  { level: "intermediate", unit: 16, word: "manage", partOfSpeech: "verb", category: "Success & Performance", definition: "to succeed in doing something difficult", examples: ["The team managed to solve the technical problem.", "The startup managed to gain international recognition."] },
+  { level: "intermediate", unit: 16, word: "moisturizer", partOfSpeech: "noun", category: "Products & Industries", definition: "a cream or lotion used to prevent the skin from becoming dry", examples: ["The company launched a moisturizer for sensitive skin.", "Researchers tested the new moisturizer on several customer groups."] },
+  { level: "intermediate", unit: 16, word: "potential", partOfSpeech: "adjective", category: "Opportunities & Growth", definition: "possible or capable of developing into something in the future", examples: ["The company contacted several potential investors.", "The research identified a potential new market."] },
+  { level: "intermediate", unit: 16, word: "rank", partOfSpeech: "verb", category: "Evaluation & Performance", definition: "to place someone or something in a position according to quality, importance, or success", examples: ["Customers ranked reliability as the most important feature.", "The company ranks among the largest cosmetic manufacturers."] },
+  { level: "intermediate", unit: 16, word: "real", partOfSpeech: "adjective", category: "Degree & Emphasis", definition: "genuine, true, or significant, used to emphasize something", examples: ["The new technology offers real benefits to customers.", "The security problem represents a real concern."] },
+  { level: "intermediate", unit: 16, word: "search", partOfSpeech: "verb", category: "Research & Information", definition: "to try to find something by carefully looking or examining information", examples: ["The team searched online for potential suppliers.", "Researchers searched the database for similar patents."] },
+  { level: "intermediate", unit: 16, word: "share", partOfSpeech: "verb", category: "Knowledge & Collaboration", definition: "to communicate ideas, information, experiences, or knowledge to other people", examples: ["Employees shared their expertise with the new team.", "The partners agreed to share technical knowledge."] },
+  { level: "intermediate", unit: 16, word: "shareholder", partOfSpeech: "noun", category: "Companies & Finance", definition: "a person or organization that owns shares in a company", examples: ["Every shareholder received a copy of the annual report.", "Shareholders approved the company's expansion strategy."] },
+  { level: "intermediate", unit: 16, word: "significant", partOfSpeech: "adjective", category: "Degree & Importance", definition: "large or important enough to have a noticeable effect", examples: ["The invention had a significant impact on the industry.", "The company made significant progress during the year."] },
+  { level: "intermediate", unit: 16, word: "silk", partOfSpeech: "noun", category: "Materials & Trade", definition: "a fine, smooth material made from threads produced by silkworms", examples: ["The company imports silk from several Asian suppliers.", "The designer created a premium range of silk products."] },
+  { level: "intermediate", unit: 16, word: "smuggle", partOfSpeech: "verb", category: "Crime & International Trade", definition: "to secretly and illegally take goods into or out of a country or place", examples: ["Criminal groups attempted to smuggle counterfeit products across the border.", "Customs officers discovered goods being smuggled into the country."] },
+  { level: "intermediate", unit: 16, word: "spread", partOfSpeech: "verb", category: "Growth & Communication", definition: "to become known, used, or experienced by an increasing number of people", examples: ["News of the breakthrough spread quickly through the industry.", "The technology spread to several international markets."] },
+  { level: "intermediate", unit: 16, word: "succeed in", partOfSpeech: "phrase", category: "Success & Performance", definition: "to achieve the result you wanted after making an effort", examples: ["The company succeeded in developing a safer product.", "The researchers succeeded in finding a practical solution."] },
 
 ////////////////////////////////////////////////////////////
 //
