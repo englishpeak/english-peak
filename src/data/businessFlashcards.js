@@ -8455,7 +8455,534 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "ambition",
+    partOfSpeech: "noun",
+    category: "Careers & Motivation",
+    definition: "a strong desire and determination to become successful, powerful, or wealthy",
+    examples: [
+      "Her ambition is to lead an international company.",
+      "Professional ambition encouraged him to apply for the senior role."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "ambitious",
+    partOfSpeech: "adjective",
+    category: "Careers & Motivation",
+    definition: "determined to become successful, powerful, or wealthy",
+    examples: [
+      "The company is looking for ambitious graduates.",
+      "Management announced an ambitious expansion plan."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "annoying",
+    partOfSpeech: "adjective",
+    category: "Feelings & Behavior",
+    definition: "causing someone to feel slightly angry or irritated",
+    examples: [
+      "Repeated technical problems can be extremely annoying.",
+      "The presenter had an annoying habit of interrupting questions."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "anticipate",
+    partOfSpeech: "verb",
+    category: "Planning & Forecasting",
+    definition: "to recognize what may happen in the future and prepare for it",
+    examples: [
+      "Good managers anticipate potential problems.",
+      "The company anticipated higher demand during the holiday season."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "appearance",
+    partOfSpeech: "noun",
+    category: "Professional Image",
+    definition: "the way that a person or thing looks from the outside",
+    examples: [
+      "Professional appearance can influence a client's first impression.",
+      "The redesign improved the product's appearance."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "appraisal",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "a meeting between an employee and manager to review work and plan future tasks",
+    examples: [
+      "Her annual appraisal is scheduled for next Monday.",
+      "The manager discussed career goals during the appraisal."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "assume",
+    partOfSpeech: "verb",
+    category: "Thinking & Decisions",
+    definition: "to accept that something is true without having definite proof",
+    examples: [
+      "Do not assume that every customer has the same needs.",
+      "We assumed the shipment would arrive on time."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "audience",
+    partOfSpeech: "noun",
+    category: "Presentations & Events",
+    definition: "the group of people gathered to watch or listen to something",
+    examples: [
+      "The speaker adapted the presentation for an international audience.",
+      "The audience asked several questions after the talk."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "award",
+    partOfSpeech: "noun",
+    category: "Recognition & Rewards",
+    definition: "a prize given for an achievement or excellent performance",
+    examples: [
+      "She received an award for outstanding leadership.",
+      "The company won an industry award for innovation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "bring up to speed",
+    partOfSpeech: "phrase",
+    category: "Professional Communication",
+    definition: "to give someone the most recent and accurate information they need",
+    examples: [
+      "Please bring the new manager up to speed on the project.",
+      "The team meeting brought everyone up to speed."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "caring",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "kind, helpful, and concerned about other people",
+    examples: [
+      "She is a caring manager who supports her team.",
+      "The organization promotes a caring workplace culture."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "confidence",
+    partOfSpeech: "noun",
+    category: "Professional Qualities",
+    definition: "belief in your own ability to do things successfully",
+    examples: [
+      "Public-speaking practice helped build her confidence.",
+      "Customer confidence declined after the security incident."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "confident",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "feeling sure about your ability to succeed",
+    examples: [
+      "She sounded confident during the presentation.",
+      "The team is confident that it can meet the deadline."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "confused",
+    partOfSpeech: "adjective",
+    category: "Feelings & Communication",
+    definition: "unable to clearly understand what is happening or being said",
+    examples: [
+      "Several employees were confused by the new procedure.",
+      "The customer became confused by the technical instructions."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "creative",
+    partOfSpeech: "adjective",
+    category: "Ideas & Innovation",
+    definition: "able to use imagination and skill to produce something new",
+    examples: [
+      "The campaign needs a more creative approach.",
+      "Creative employees often find unexpected solutions."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "creativity",
+    partOfSpeech: "noun",
+    category: "Ideas & Innovation",
+    definition: "the ability to use imagination and skill to produce something new",
+    examples: [
+      "The workshop was designed to encourage creativity.",
+      "Workplace diversity can increase team creativity."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "dedicated",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "working hard because something is considered very important",
+    examples: [
+      "The project succeeded because of a dedicated team.",
+      "She is dedicated to improving customer service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "dedication",
+    partOfSpeech: "noun",
+    category: "Professional Qualities",
+    definition: "the hard work and effort given to something important",
+    examples: [
+      "Her dedication to the project was recognized with an award.",
+      "The manager thanked employees for their dedication."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "dependability",
+    partOfSpeech: "noun",
+    category: "Professional Qualities",
+    definition: "the quality of being reliable and doing what is expected",
+    examples: [
+      "Dependability is essential in a project manager.",
+      "The employee was praised for her accuracy and dependability."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "dependable",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "able to be trusted to do what is needed or expected",
+    examples: [
+      "We need a dependable supplier for critical components.",
+      "He is a dependable colleague who always meets deadlines."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "enthusiasm",
+    partOfSpeech: "noun",
+    category: "Motivation & Attitude",
+    definition: "a strong feeling of excitement and interest",
+    examples: [
+      "Her enthusiasm motivated the entire team.",
+      "The audience responded positively to the speaker's enthusiasm."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "enthusiastic",
+    partOfSpeech: "adjective",
+    category: "Motivation & Attitude",
+    definition: "showing considerable excitement and interest",
+    examples: [
+      "The new employees were enthusiastic about the training.",
+      "Customers were enthusiastic about the redesigned product."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "factory",
+    partOfSpeech: "noun",
+    category: "Manufacturing",
+    definition: "a building or group of buildings where goods are produced",
+    examples: [
+      "The company opened a new factory in the region.",
+      "Factory employees received updated safety training."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "flexibility",
+    partOfSpeech: "noun",
+    category: "Professional Qualities",
+    definition: "the ability to adapt to changing conditions or situations",
+    examples: [
+      "The role requires flexibility and strong communication skills.",
+      "Remote working gives employees greater flexibility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "flexible",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "able to change or adapt to new conditions",
+    examples: [
+      "Managers must remain flexible when priorities change.",
+      "The company offers flexible working arrangements."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "hardworking",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "putting considerable effort into work and performing it well",
+    examples: [
+      "She is a hardworking and dependable employee.",
+      "The factory needs hardworking technicians with practical skills."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "health",
+    partOfSpeech: "noun",
+    category: "Workplace Well-being",
+    definition: "the physical or mental condition of a person",
+    examples: [
+      "The company provides several employee health benefits.",
+      "Long working hours can affect mental health."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "helpful",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "willing to provide assistance",
+    examples: [
+      "The receptionist was polite and helpful.",
+      "Employee feedback was helpful during the redesign."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "launch",
+    partOfSpeech: "verb",
+    category: "Projects & Products",
+    definition: "to begin an organized activity or introduce something new",
+    examples: [
+      "The company will launch the product next month.",
+      "Management launched a new employee-recognition program."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "map",
+    partOfSpeech: "noun",
+    category: "Locations & Planning",
+    definition: "a visual plan of an area showing locations, roads, or other features",
+    examples: [
+      "The presentation included a map of the factory site.",
+      "Visitors received a map showing the conference facilities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "motivated",
+    partOfSpeech: "adjective",
+    category: "Motivation & Attitude",
+    definition: "willing to work hard and make an effort",
+    examples: [
+      "Motivated employees are more likely to achieve their goals.",
+      "The candidate appeared confident and highly motivated."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "motivation",
+    partOfSpeech: "noun",
+    category: "Motivation & Attitude",
+    definition: "the willingness to make an effort and work toward something",
+    examples: [
+      "Recognition can improve employee motivation.",
+      "A lack of clear goals may reduce motivation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "nominate",
+    partOfSpeech: "verb",
+    category: "Recognition & Rewards",
+    definition: "to formally suggest someone for an important role, position, or prize",
+    examples: [
+      "Employees can nominate a colleague for the annual award.",
+      "The board nominated her to lead the subsidiary."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "patience",
+    partOfSpeech: "noun",
+    category: "Professional Qualities",
+    definition: "the ability to accept delays or difficulties without becoming angry",
+    examples: [
+      "Training new employees requires patience.",
+      "The negotiation tested everyone's patience."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "patient",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "able to wait or deal with difficulties without becoming angry",
+    examples: [
+      "Customer-service representatives must remain patient.",
+      "She was patient while explaining the procedure."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "punctual",
+    partOfSpeech: "adjective",
+    category: "Time & Reliability",
+    definition: "arriving or completing something at the agreed time",
+    examples: [
+      "The company values punctual and dependable employees.",
+      "She is always punctual for client meetings."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "punctuality",
+    partOfSpeech: "noun",
+    category: "Time & Reliability",
+    definition: "the quality of arriving or doing something at the correct time",
+    examples: [
+      "Punctuality is important in international business.",
+      "His appraisal praised his reliability and punctuality."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "raise",
+    partOfSpeech: "noun",
+    category: "Pay & Benefits",
+    definition: "an increase in the amount of money someone is paid",
+    examples: [
+      "She received a raise after her annual appraisal.",
+      "Employees requested a raise because of increased responsibilities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "serious",
+    partOfSpeech: "adjective",
+    category: "Risk & Importance",
+    definition: "important and potentially harmful or dangerous",
+    examples: [
+      "The factory reported a serious safety issue.",
+      "The decline in motivation has become a serious concern."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "shaft",
+    partOfSpeech: "noun",
+    category: "Machinery & Manufacturing",
+    definition: "a metal bar that connects machine parts and transfers movement or power",
+    examples: [
+      "The technician discovered damage to the machine shaft.",
+      "The factory replaced the defective shaft immediately."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "slide",
+    partOfSpeech: "noun",
+    category: "Presentations",
+    definition: "an individual image or page displayed during a presentation",
+    examples: [
+      "The final slide summarizes the main recommendations.",
+      "She added a chart to the presentation slide."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "submit",
+    partOfSpeech: "verb",
+    category: "Documents & Administration",
+    definition: "to formally give a document or proposal to someone in authority for consideration",
+    examples: [
+      "Employees must submit their nominations by Friday.",
+      "The team submitted its proposal to senior management."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "subsidiary",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "a company owned or controlled by another company",
+    examples: [
+      "The multinational opened a new subsidiary in Brazil.",
+      "The subsidiary reports its annual results to the parent company."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 15,
+    word: "wealth",
+    partOfSpeech: "noun",
+    category: "Finance & Society",
+    definition: "a large amount of money, property, or valuable possessions",
+    examples: [
+      "The entrepreneur created considerable wealth through technology investments.",
+      "Economic growth can generate wealth and employment."
+    ]
+  },
 
 //////////////////////////////
 //
