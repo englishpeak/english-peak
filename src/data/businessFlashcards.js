@@ -13385,7 +13385,378 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "a-ha moment",
+    partOfSpeech: "noun",
+    category: "Ideas & Innovation",
+    definition: "a moment when someone suddenly understands or realizes something",
+    examples: [
+      "The designer had an a-ha moment while testing the prototype.",
+      "The workshop produced several a-ha moments for the team."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "asset",
+    partOfSpeech: "noun",
+    category: "Business Value",
+    definition: "a person or thing that is valuable or useful to an organization",
+    examples: [
+      "Her technical knowledge makes her a valuable asset to the company.",
+      "A strong brand is an important business asset."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "badge",
+    partOfSpeech: "noun",
+    category: "Identification & Events",
+    definition: "a small item worn to show a person's name or organization",
+    examples: [
+      "Every conference participant received a name badge.",
+      "Visitors must display their badges inside the building."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "brainchild",
+    partOfSpeech: "noun",
+    category: "Ideas & Innovation",
+    definition: "an idea or invention created by one person or a small group",
+    examples: [
+      "The innovative wheelchair was the brainchild of two engineering graduates.",
+      "The new service is the brainchild of our research team."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "catalyst",
+    partOfSpeech: "noun",
+    category: "Change & Innovation",
+    definition: "a person or thing that causes or accelerates change",
+    examples: [
+      "Customer feedback was the catalyst for the product redesign.",
+      "The new CEO became a catalyst for organizational change."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "come up with",
+    partOfSpeech: "phrasal verb",
+    category: "Ideas & Problem-Solving",
+    definition: "to produce or discover an idea, answer, or solution",
+    examples: [
+      "The team came up with a simpler design.",
+      "We need to come up with a reliable solution before Friday."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "concept",
+    partOfSpeech: "noun",
+    category: "Ideas & Innovation",
+    definition: "an idea or general principle",
+    examples: [
+      "The original product concept was developed by a university graduate.",
+      "Investors responded positively to the business concept."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "convince",
+    partOfSpeech: "verb",
+    category: "Persuasion & Communication",
+    definition: "to make someone believe that something is true or worthwhile",
+    examples: [
+      "The prototype convinced investors that the idea was practical.",
+      "She convinced the board to support the innovative project."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "dynamic",
+    partOfSpeech: "adjective",
+    category: "Business & Innovation",
+    definition: "constantly changing, developing, and making progress",
+    examples: [
+      "The startup operates in a dynamic technology market.",
+      "The company is looking for dynamic graduates with original ideas."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "facilitator",
+    partOfSpeech: "noun",
+    category: "Meetings & Collaboration",
+    definition: "a person who helps a group or process succeed through discussion and guidance",
+    examples: [
+      "The facilitator helped the team develop its mission statement.",
+      "An external facilitator led the innovation workshop."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "graduate",
+    partOfSpeech: "noun",
+    category: "Education & Careers",
+    definition: "a person who has completed a university degree",
+    examples: [
+      "The company recruits engineering graduates every year.",
+      "She joined the organization as a recent graduate."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "income",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "money earned regularly by a person or organization",
+    examples: [
+      "The invention provided its creator with a steady income.",
+      "The organization receives income from product sales and donations."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "independence",
+    partOfSpeech: "noun",
+    category: "Work & Personal Development",
+    definition: "the freedom to make decisions and organize your activities without help",
+    examples: [
+      "Self-employment gave her greater financial independence.",
+      "The new wheelchair provides users with more independence."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "innovative",
+    partOfSpeech: "adjective",
+    category: "Ideas & Innovation",
+    definition: "introducing or using new and original ideas or methods",
+    examples: [
+      "The company developed an innovative mobility product.",
+      "Investors are interested in innovative business models."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "invention",
+    partOfSpeech: "noun",
+    category: "Ideas & Innovation",
+    definition: "a new product, device, or idea that did not exist before",
+    examples: [
+      "The invention won an international design award.",
+      "The graduate created an invention that improved wheelchair mobility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "joystick",
+    partOfSpeech: "noun",
+    category: "Products & Technology",
+    definition: "a control stick used to operate a machine, vehicle, or computer",
+    examples: [
+      "The wheelchair is controlled by a small joystick.",
+      "Engineers redesigned the joystick to make it more reliable."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "mission statement",
+    partOfSpeech: "noun",
+    category: "Corporate Strategy",
+    definition: "an official statement describing an organization's aims and purpose",
+    examples: [
+      "The company's mission statement emphasizes independence and innovation.",
+      "Employees helped rewrite the organization's mission statement."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "obstacle",
+    partOfSpeech: "noun",
+    category: "Problems & Challenges",
+    definition: "a situation or event that makes achieving something more difficult",
+    examples: [
+      "Limited capital was the main obstacle to production.",
+      "The design team overcame several technical obstacles."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "original",
+    partOfSpeech: "adjective",
+    category: "Ideas & Innovation",
+    definition: "new, distinctive, and different from anything that existed before",
+    examples: [
+      "The judges praised the product's original design.",
+      "She presented an original solution to the mobility problem."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "pension",
+    partOfSpeech: "noun",
+    category: "Employment & Retirement",
+    definition: "money paid regularly to someone who has retired or is unable to work",
+    examples: [
+      "Employees contribute part of their salaries to a pension.",
+      "He receives a company pension after thirty years of service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "prototype",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "the first working design of a product used for testing and further development",
+    examples: [
+      "Engineers tested the wheelchair prototype with potential users.",
+      "The company presented its first prototype to investors."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "reliable",
+    partOfSpeech: "adjective",
+    category: "Quality & Performance",
+    definition: "able to be trusted to work well and perform as expected",
+    examples: [
+      "Medical equipment must be simple and reliable.",
+      "The prototype remained reliable during extensive testing."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "represent",
+    partOfSpeech: "verb",
+    category: "Professional Roles",
+    definition: "to speak or act officially on behalf of a person or group",
+    examples: [
+      "She represented the company at the innovation conference.",
+      "The union representative speaks for employees during negotiations."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "retire",
+    partOfSpeech: "verb",
+    category: "Employment & Retirement",
+    definition: "to stop working permanently, usually after reaching a certain age",
+    examples: [
+      "The founder plans to retire next year.",
+      "Employees may choose to retire at the age of sixty-five."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "revolutionary",
+    partOfSpeech: "adjective",
+    category: "Ideas & Innovation",
+    definition: "causing or involving a major and complete change",
+    examples: [
+      "The company developed a revolutionary mobility system.",
+      "Investors believed the invention could be revolutionary."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "roll",
+    partOfSpeech: "verb",
+    category: "Movement & Products",
+    definition: "to move smoothly on wheels",
+    examples: [
+      "The wheelchair can roll easily across uneven surfaces.",
+      "Engineers tested how smoothly the prototype rolled."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "simple",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "easy to understand, operate, or perform because it is not complicated",
+    examples: [
+      "The controls are simple enough for anyone to use.",
+      "The team wanted a simple but sophisticated design."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "sophisticated",
+    partOfSpeech: "adjective",
+    category: "Products & Technology",
+    definition: "advanced, intelligent, and complicated in the way it operates",
+    examples: [
+      "The wheelchair uses sophisticated navigation technology.",
+      "The software is sophisticated but remains user-friendly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "steering wheel",
+    partOfSpeech: "noun",
+    category: "Vehicles & Controls",
+    definition: "the wheel a driver turns to control the direction of a vehicle",
+    examples: [
+      "The prototype replaces the traditional steering wheel with a joystick.",
+      "The designer developed a smaller steering wheel for the vehicle."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "traditional",
+    partOfSpeech: "adjective",
+    category: "Methods & Innovation",
+    definition: "following established or older methods rather than modern ones",
+    examples: [
+      "The new design performs better than a traditional wheelchair.",
+      "The company replaced traditional controls with digital technology."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 12,
+    word: "wheelchair",
+    partOfSpeech: "noun",
+    category: "Products & Accessibility",
+    definition: "a chair with wheels used by someone who cannot walk easily or independently",
+    examples: [
+      "The company manufactures lightweight electric wheelchairs.",
+      "Users tested the wheelchair prototype before production began."
+    ]
+  },
 
 //////////////////////////////
 //
