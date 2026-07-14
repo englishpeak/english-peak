@@ -12319,7 +12319,7 @@ export const businessFlashcards = [
       "The goods arrived at the regional warehouse overnight.",
       "The automated warehouse can process thousands of orders daily."
     ]
-  }
+  },
 
 //////////////////////////////
 //
@@ -12327,7 +12327,426 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "amount",
+    partOfSpeech: "noun",
+    category: "Finance & Quantity",
+    definition: "a particular sum of money",
+    examples: [
+      "The charity raised a significant amount of money.",
+      "Please confirm the total amount before approving the payment."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "atmosphere",
+    partOfSpeech: "noun",
+    category: "Workplace Environment",
+    definition: "the feeling or mood that exists in a particular place",
+    examples: [
+      "The redesigned office has a more positive atmosphere.",
+      "A relaxed atmosphere can encourage collaboration."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "autism",
+    partOfSpeech: "noun",
+    category: "Health & Inclusion",
+    definition: "a developmental condition that can affect communication and social interaction",
+    examples: [
+      "The organization provides employment support for people with autism.",
+      "Managers received training on creating an inclusive workplace for employees with autism."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "badly-equipped",
+    partOfSpeech: "adjective",
+    category: "Facilities & Equipment",
+    definition: "not provided with the equipment needed for a particular purpose",
+    examples: [
+      "The old training room was badly equipped.",
+      "Employees complained that the canteen was badly equipped."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "beautifully maintained",
+    partOfSpeech: "adjective",
+    category: "Facilities & Maintenance",
+    definition: "kept in excellent condition through regular care and repairs",
+    examples: [
+      "The company operates from a beautifully maintained historic building.",
+      "Clients were impressed by the beautifully maintained gardens."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "breast cancer",
+    partOfSpeech: "noun",
+    category: "Health & Charity",
+    definition: "a serious disease in which cancer cells develop in breast tissue",
+    examples: [
+      "The company organized a fundraiser for breast cancer research.",
+      "Employees took part in a campaign to raise awareness of breast cancer."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "canteen",
+    partOfSpeech: "noun",
+    category: "Workplace Facilities",
+    definition: "a place in a workplace or school where food and drinks are served",
+    examples: [
+      "The refurbished canteen offers healthier meals.",
+      "Employees requested more seating in the canteen."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "complain",
+    partOfSpeech: "verb",
+    category: "Employee Feedback",
+    definition: "to say that you are unhappy or dissatisfied with something",
+    examples: [
+      "Several employees complained about the cramped offices.",
+      "Customers can complain through the online support portal."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "complex",
+    partOfSpeech: "noun",
+    category: "Buildings & Facilities",
+    definition: "a group of similar buildings located together",
+    examples: [
+      "The company opened a new office complex outside the city.",
+      "The sports complex includes a gym and childcare facilities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "co-operation",
+    partOfSpeech: "noun",
+    category: "Teamwork & Collaboration",
+    definition: "the act of working together toward a shared objective",
+    examples: [
+      "The project succeeded because of close co-operation between departments.",
+      "International co-operation helped fund the new facility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "cramped",
+    partOfSpeech: "adjective",
+    category: "Workplace Environment",
+    definition: "not having enough space for the people or things inside",
+    examples: [
+      "The old offices were dark and cramped.",
+      "Employees found it difficult to work in the cramped meeting room."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "crèche",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "a place where babies and young children are cared for while their parents work or study",
+    examples: [
+      "The office complex includes an employee crèche.",
+      "The company opened a crèche to support working parents."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "desire",
+    partOfSpeech: "noun",
+    category: "Motivation & Goals",
+    definition: "a strong wish to have or achieve something",
+    examples: [
+      "Employees expressed a desire for more flexible working conditions.",
+      "The redesign reflects management's desire to improve productivity."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "extremely",
+    partOfSpeech: "adverb",
+    category: "Degree & Emphasis",
+    definition: "to a very high degree",
+    examples: [
+      "The new facilities are extremely spacious.",
+      "Employees were extremely satisfied with the refurbishment."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "fairly",
+    partOfSpeech: "adverb",
+    category: "Degree & Emphasis",
+    definition: "to some degree, but not very much",
+    examples: [
+      "The current office is fairly well equipped.",
+      "The initial recommendations were fairly practical."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "initial",
+    partOfSpeech: "adjective",
+    category: "Planning & Evaluation",
+    definition: "happening at the beginning of a process",
+    examples: [
+      "The initial survey identified several workplace problems.",
+      "Initial employee feedback was generally positive."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "interactive",
+    partOfSpeech: "adjective",
+    category: "Technology & Training",
+    definition: "involving communication and participation in both directions",
+    examples: [
+      "The training center uses interactive learning technology.",
+      "Employees attended an interactive workshop on workplace safety."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "interior",
+    partOfSpeech: "noun",
+    category: "Design & Facilities",
+    definition: "the design and decoration of the inside of a building, room, or vehicle",
+    examples: [
+      "The office interior was redesigned to create more space.",
+      "Natural materials give the interior a warmer atmosphere."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "lid",
+    partOfSpeech: "noun",
+    category: "Products & Equipment",
+    definition: "a removable or movable cover placed over a container",
+    examples: [
+      "The container has a secure plastic lid.",
+      "Employees reported that the lid was difficult to open."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "locker",
+    partOfSpeech: "noun",
+    category: "Workplace Facilities",
+    definition: "a small lockable cupboard used for storing personal belongings",
+    examples: [
+      "Every employee has a personal locker.",
+      "The renovated changing room includes larger lockers."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "maintained",
+    partOfSpeech: "adjective",
+    category: "Facilities & Maintenance",
+    definition: "kept in good condition through regular checks and repairs",
+    examples: [
+      "All exercise equipment is carefully maintained.",
+      "The building is clean and well maintained."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "not exactly",
+    partOfSpeech: "adverb",
+    category: "Degree & Emphasis",
+    definition: "not really or not completely, often used to express the opposite indirectly",
+    examples: [
+      "The old canteen was not exactly spacious.",
+      "The initial design was not exactly user-friendly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "old-fashioned",
+    partOfSpeech: "adjective",
+    category: "Design & Facilities",
+    definition: "not modern or no longer considered fashionable",
+    examples: [
+      "The office furniture looked old-fashioned.",
+      "Employees wanted to replace the old-fashioned computer system."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "pretty",
+    partOfSpeech: "adverb",
+    category: "Degree & Emphasis",
+    definition: "to a relatively large degree",
+    examples: [
+      "The new office is pretty spacious.",
+      "The refurbishment was pretty successful overall."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "productivity",
+    partOfSpeech: "noun",
+    category: "Performance & Results",
+    definition: "the rate at which work or goods are produced compared with the resources used",
+    examples: [
+      "Better equipment led to higher productivity.",
+      "A comfortable workplace can improve employee productivity."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "profit",
+    partOfSpeech: "noun",
+    category: "Finance & Results",
+    definition: "money earned by a business after its costs have been paid",
+    examples: [
+      "The company invested part of its profit in new facilities.",
+      "Improved productivity contributed to higher profits."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "quite",
+    partOfSpeech: "adverb",
+    category: "Degree & Emphasis",
+    definition: "to some degree or a relatively large degree",
+    examples: [
+      "The new canteen is quite spacious.",
+      "Employees found the interactive system quite useful."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "really",
+    partOfSpeech: "adverb",
+    category: "Degree & Emphasis",
+    definition: "very, used to emphasize an adjective or adverb",
+    examples: [
+      "The refurbished office looks really modern.",
+      "The state-of-the-art equipment is really impressive."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "recommendation",
+    partOfSpeech: "noun",
+    category: "Evaluation & Planning",
+    definition: "an official suggestion about the best action to take",
+    examples: [
+      "The report includes several recommendations for improving the workplace.",
+      "Management accepted the consultant's recommendation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "run down",
+    partOfSpeech: "adjective",
+    category: "Facilities & Maintenance",
+    definition: "in poor condition because it has not been properly maintained",
+    examples: [
+      "The company replaced its run-down training center.",
+      "Employees complained about the run-down office facilities."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "spacious",
+    partOfSpeech: "adjective",
+    category: "Workplace Environment",
+    definition: "large and providing plenty of room to move around",
+    examples: [
+      "The new offices are bright and spacious.",
+      "Employees now have access to a spacious canteen."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "state-of-the-art",
+    partOfSpeech: "adjective",
+    category: "Technology & Facilities",
+    definition: "using the most modern and advanced technology or methods available",
+    examples: [
+      "The hospital installed state-of-the-art rehabilitation equipment.",
+      "The company opened a state-of-the-art training facility."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "successful",
+    partOfSpeech: "adjective",
+    category: "Performance & Results",
+    definition: "achieving the intended result or becoming popular and profitable",
+    examples: [
+      "The workplace improvement program was highly successful.",
+      "The company became successful by investing in its employees."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "up-to-date",
+    partOfSpeech: "adjective",
+    category: "Technology & Facilities",
+    definition: "modern or containing the newest information or features",
+    examples: [
+      "The training rooms have up-to-date equipment.",
+      "Employees need access to up-to-date information."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 10,
+    word: "well-equipped",
+    partOfSpeech: "adjective",
+    category: "Facilities & Equipment",
+    definition: "provided with all the equipment needed for a particular activity",
+    examples: [
+      "The new fitness center is spacious and well equipped.",
+      "Staff now work in a well-equipped office."
+    ]
+  },
 
 //////////////////////////////
 //
