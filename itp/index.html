@@ -842,16 +842,67 @@ ed: [
       { q: "The architectural firm was widely praised ______ its innovative approach to sustainable urban design.", o: ["for", "by", "with", "on"], a: 0, expl: "Dependent Prepositions (B2): The verb 'praise' is idiomatically followed by the preposition 'for' when indicating the reason for the compliment." }
     ],
     ed: [
-      { s: "(A) The new fleet of (B) delivery trucks (C) are expected to arrive (D) early next week.", o: ["The new fleet of", "delivery trucks", "are expected to arrive", "early next week."], a: 2, expl: "Subject-Verb Agreement (B1): The true subject is the singular collective noun 'fleet'. The prepositional phrase 'of delivery trucks' does not change the subject, so the verb must be 'is expected'." },
-      { s: "A good manager (A) must demonstrate strong leadership, (B) communicate effectively, and (C) to motivate the team (D) during difficult times.", o: ["must demonstrate strong leadership,", "communicate effectively, and", "to motivate the team", "during difficult times."], a: 2, expl: "Parallelism (B2): Items in a series must maintain grammatical symmetry. Following the modal 'must', the verbs should be bare infinitives: demonstrate, communicate, and motivate." },
-      { s: "(A) The hotel staff (B) provided us with (C) many useful informations (D) regarding local tourist attractions.", o: ["The hotel staff", "provided us with", "many useful informations", "regarding local tourist attractions."], a: 2, expl: "Count/Uncount Nouns (A2/B1): 'Information' is strictly an uncountable noun in English. It cannot take a plural 's' or be modified by 'many'. It should be 'much useful information' or 'a lot of useful information'." },
-      { s: "(A) The regional director (B) handled the customer complaint (C) very professional, (D) preventing a potential crisis.", o: ["The regional director", "handled the customer complaint", "very professional,", "preventing a potential crisis."], a: 2, expl: "Adjectives vs. Adverbs (B1): An adverb is required to describe how an action (the verb 'handled') was performed. It must be 'professionally'." },
-      { s: "(A) The comprehensive report (B) which the committee submitted it (C) highlighted several (D) urgent environmental issues.", o: ["The comprehensive report", "which the committee submitted it", "highlighted several", "urgent environmental issues."], a: 1, expl: "Intrusive Pronouns (B2): The relative pronoun 'which' already functions as the object of the clause. Adding 'it' is ungrammatical and redundant." },
-      { s: "(A) By the time (B) the keynote speaker arrived, (C) the opening ceremony (D) already concluded.", o: ["By the time", "the keynote speaker arrived,", "the opening ceremony", "already concluded."], a: 3, expl: "Past Perfect (B2): When one past action finishes before a second past action ('arrived'), the earlier action requires the past perfect tense ('had already concluded')." },
-      { s: "The technology company (A) specializes on (B) manufacturing high-quality (C) electronic components (D) for the automotive industry.", o: ["specializes on", "manufacturing high-quality", "electronic components", "for the automotive industry."], a: 0, expl: "Dependent Prepositions (B2): The verb 'specialize' is consistently paired with the preposition 'in', never 'on'." },
-      { s: "(A) The newly appointed (B) department head (C) hasn't reviewed the budget yet, (D) hasn't she?", o: ["The newly appointed", "department head", "hasn't reviewed the budget yet,", "hasn't she?"], a: 3, expl: "Question Tags (B1): A negative main clause ('hasn't reviewed') requires a positive question tag ('has she?')." },
-      { s: "(A) Due to the severe drought, (B) the farmers harvested (C) significantly fewer wheat (D) than they did last year.", o: ["Due to the severe drought,", "the farmers harvested", "significantly fewer wheat", "than they did last year."], a: 2, expl: "Quantifiers (B1): 'Wheat' is an uncountable noun. Therefore, it requires the quantifier 'less' rather than 'fewer', which is only for plural countable nouns." },
-      { s: "(A) The sensitive financial documents (B) need to store (C) in a secure vault (D) overnight.", o: ["The sensitive financial documents", "need to store", "in a secure vault", "overnight."], a: 1, expl: "Passive Infinitive (B2): The documents receive the action (they don't store things themselves), so the passive structure 'need to be stored' is required." }
+     ed: [
+      { 
+        s: "The new fleet of delivery trucks are expected to arrive early next week.", 
+        o: ["new fleet", "delivery trucks", "are expected to arrive", "early"], 
+        a: 2, 
+        expl: "Subject-Verb Agreement (B1): The true subject is the singular collective noun 'fleet'. The prepositional phrase 'of delivery trucks' does not change the subject, so the verb must be 'is expected'." 
+      },
+      { 
+        s: "A good manager must demonstrate strong leadership, communicate effectively, and to motivate the team during difficult times.", 
+        o: ["must demonstrate", "communicate effectively", "to motivate", "during difficult times"], 
+        a: 2, 
+        expl: "Parallelism (B2): Items in a series must maintain grammatical symmetry. Following the modal 'must', the verbs should be bare infinitives: demonstrate, communicate, and motivate." 
+      },
+      { 
+        s: "The hotel staff provided us with many useful informations regarding local tourist attractions.", 
+        o: ["provided us with", "many useful informations", "regarding", "local tourist attractions"], 
+        a: 1, 
+        expl: "Count/Uncount Nouns (A2/B1): 'Information' is strictly an uncountable noun in English. It cannot take a plural 's' or be modified by 'many'. It should be 'much useful information'." 
+      },
+      { 
+        s: "The regional director handled the customer complaint very professional, preventing a potential crisis.", 
+        o: ["handled", "very professional", "preventing", "potential crisis"], 
+        a: 1, 
+        expl: "Adjectives vs. Adverbs (B1): An adverb is required to describe how an action (the verb 'handled') was performed. It must be 'professionally'." 
+      },
+      { 
+        s: "The comprehensive report which the committee submitted it highlighted several urgent environmental issues.", 
+        o: ["comprehensive", "which", "submitted it", "urgent environmental"], 
+        a: 2, 
+        expl: "Intrusive Pronouns (B2): The relative pronoun 'which' already functions as the object of the clause. Adding 'it' is ungrammatical and redundant." 
+      },
+      { 
+        s: "By the time the keynote speaker arrived, the opening ceremony already concluded.", 
+        o: ["By the time", "arrived", "already concluded", "opening"], 
+        a: 2, 
+        expl: "Past Perfect (B2): When one past action finishes before a second past action ('arrived'), the earlier action requires the past perfect tense ('had already concluded')." 
+      },
+      { 
+        s: "The technology company specializes on manufacturing high-quality electronic components for the automotive industry.", 
+        o: ["technology company", "specializes on", "high-quality", "automotive"], 
+        a: 1, 
+        expl: "Dependent Prepositions (B2): The verb 'specialize' is consistently paired with the preposition 'in', never 'on'." 
+      },
+      { 
+        s: "The newly appointed department head hasn't reviewed the budget yet, hasn't she?", 
+        o: ["newly appointed", "hasn't reviewed", "budget yet", "hasn't she"], 
+        a: 3, 
+        expl: "Question Tags (B1): A negative main clause ('hasn't reviewed') requires a positive question tag ('has she?')." 
+      },
+      { 
+        s: "Due to the severe drought, the farmers harvested significantly fewer wheat than they did last year.", 
+        o: ["Due to", "harvested", "fewer", "than they did"], 
+        a: 2, 
+        expl: "Quantifiers (B1): 'Wheat' is an uncountable noun. Therefore, it requires the quantifier 'less' rather than 'fewer', which is only for plural countable nouns." 
+      },
+      { 
+        s: "The sensitive financial documents need to store in a secure vault overnight.", 
+        o: ["sensitive", "to store", "in a secure", "overnight"], 
+        a: 1, 
+        expl: "Passive Infinitive (B2): The documents receive the action (they don't store things themselves), so the passive structure 'need to be stored' is required." 
+      }
     ]
   },
 
