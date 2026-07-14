@@ -8,6 +8,8 @@
     { "source": "/irregular-verbs/:path*", "destination": "/irregular-verbs/index.html" },
     { "source": "/unscramble-questions",        "destination": "/unscramble-questions/index.html" },
     { "source": "/unscramble-questions/:path*", "destination": "/unscramble-questions/index.html" },
+    { "source": "/translationchallenge",        "destination": "/translationchallenge/index.html" },
+    { "source": "/translationchallenge/:path*", "destination": "/translationchallenge/index.html" },
     { "source": "/itp",             "destination": "/itp_index.html" },
     { "source": "/itp/:path*",      "destination": "/itp_index.html" },
     { "source": "/ibt",             "destination": "/ibt_index.html" },
