@@ -12754,7 +12754,630 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "argument",
+    partOfSpeech: "noun",
+    category: "Conflict & Disagreement",
+    definition: "a discussion in which people strongly disagree, sometimes angrily",
+    examples: [
+      "The proposed salary changes caused an argument between managers.",
+      "A minor disagreement developed into a serious argument."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "avoid confrontation",
+    partOfSpeech: "phrase",
+    category: "Conflict Management",
+    definition: "to prevent an angry disagreement from occurring",
+    examples: [
+      "The manager used careful language to avoid confrontation.",
+      "Some employees remain silent because they prefer to avoid confrontation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "backing",
+    partOfSpeech: "noun",
+    category: "Support & Approval",
+    definition: "support or approval given to a person, plan, or proposal",
+    examples: [
+      "The proposal received the full backing of senior management.",
+      "The project cannot proceed without financial backing."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "brainstorm",
+    partOfSpeech: "verb",
+    category: "Ideas & Decision-Making",
+    definition: "to share ideas as a group in order to solve a problem or create something",
+    examples: [
+      "The team brainstormed possible solutions to the complaint.",
+      "We need to brainstorm ideas for the new campaign."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "branch",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "a local office or store belonging to a larger organization",
+    examples: [
+      "The bank opened a new branch in the city center.",
+      "Each regional branch follows the same procedures."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "carry out a decision",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to take the actions required by something that has been decided",
+    examples: [
+      "The operations team will carry out the board's decision.",
+      "Managers must explain who is responsible for carrying out each decision."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "celebrate",
+    partOfSpeech: "verb",
+    category: "Workplace Culture",
+    definition: "to mark an important or successful event by doing something special",
+    examples: [
+      "The team celebrated after winning the contract.",
+      "The company held an event to celebrate its anniversary."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "collaborative",
+    partOfSpeech: "adjective",
+    category: "Teamwork & Culture",
+    definition: "involving people or groups working together",
+    examples: [
+      "The company encourages a collaborative decision-making process.",
+      "A collaborative culture allows employees to exchange ideas freely."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "competition",
+    partOfSpeech: "noun",
+    category: "Workplace Activities",
+    definition: "an event in which people compete to determine who is best",
+    examples: [
+      "The company organized an innovation competition.",
+      "Employees submitted their ideas to the internal competition."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "complaint",
+    partOfSpeech: "noun",
+    category: "Customer & Employee Relations",
+    definition: "a statement expressing dissatisfaction with something",
+    examples: [
+      "Human resources investigated the employee's complaint.",
+      "The branch received a complaint about customer service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "compromise",
+    partOfSpeech: "noun",
+    category: "Negotiation & Conflict",
+    definition: "an agreement in which each side gives up part of what it wants",
+    examples: [
+      "Both sides accepted a compromise on working hours.",
+      "The negotiation ended with a reasonable compromise."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "consensus",
+    partOfSpeech: "noun",
+    category: "Decision-Making",
+    definition: "an opinion or decision accepted by every member of a group",
+    examples: [
+      "The committee reached a consensus on the proposal.",
+      "There was no consensus about the new dress code."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "concession",
+    partOfSpeech: "noun",
+    category: "Negotiation & Conflict",
+    definition: "something allowed or given to help end an argument or reach an agreement",
+    examples: [
+      "Management made a concession on flexible working hours.",
+      "Both parties offered concessions during the negotiation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "confrontation",
+    partOfSpeech: "noun",
+    category: "Conflict & Disagreement",
+    definition: "an angry disagreement between people or groups",
+    examples: [
+      "The meeting ended in a confrontation between the two managers.",
+      "Effective consultation can prevent unnecessary confrontation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "consultation",
+    partOfSpeech: "noun",
+    category: "Decision-Making",
+    definition: "the process of discussing something before making a decision",
+    examples: [
+      "The policy was introduced after consultation with employees.",
+      "Management began a formal consultation with the union."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "co-operative",
+    partOfSpeech: "noun",
+    category: "Business Structures",
+    definition: "an organization owned and managed by its members, who share its profits",
+    examples: [
+      "Local farmers formed a co-operative to sell their products.",
+      "Every member of the co-operative has an equal vote."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "democratic",
+    partOfSpeech: "adjective",
+    category: "Leadership & Culture",
+    definition: "giving all members an equal right to participate in decisions",
+    examples: [
+      "The organization uses a democratic management structure.",
+      "Employees described the decision-making process as open and democratic."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "dress code",
+    partOfSpeech: "noun",
+    category: "Workplace Policies",
+    definition: "rules describing what employees should wear at work",
+    examples: [
+      "The company introduced a less formal dress code.",
+      "Employees were consulted before the dress code changed."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "evaluate ideas",
+    partOfSpeech: "phrase",
+    category: "Ideas & Decision-Making",
+    definition: "to carefully judge the quality or value of proposed ideas",
+    examples: [
+      "The committee evaluated the ideas before selecting a winner.",
+      "Teams need clear criteria to evaluate ideas fairly."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "express an opinion",
+    partOfSpeech: "phrase",
+    category: "Professional Communication",
+    definition: "to communicate what you think or feel about something",
+    examples: [
+      "Every employee was invited to express an opinion.",
+      "She expressed her opinion clearly but respectfully."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "go for",
+    partOfSpeech: "phrasal verb",
+    category: "Choices & Decisions",
+    definition: "to choose a particular option",
+    examples: [
+      "The team decided to go for the less expensive option.",
+      "I would go for the proposal with the strongest financial backing."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "have a say",
+    partOfSpeech: "phrase",
+    category: "Employee Participation",
+    definition: "to have the right to influence a decision by giving an opinion",
+    examples: [
+      "Employees want to have a say in workplace decisions.",
+      "Every member has a say in how the co-operative is managed."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "hierarchy",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "a system that organizes people into different levels of authority",
+    examples: [
+      "The company has a traditional management hierarchy.",
+      "A flatter hierarchy can improve communication."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "in favour",
+    partOfSpeech: "phrase",
+    category: "Agreement & Support",
+    definition: "supporting or agreeing with a person, idea, or proposal",
+    examples: [
+      "The majority voted in favour of the proposal.",
+      "Several managers are in favour of flexible working."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "independent",
+    partOfSpeech: "adjective",
+    category: "Business Structures",
+    definition: "not belonging to or being controlled by a larger organization",
+    examples: [
+      "The company commissioned an independent investigation.",
+      "She works for an independent consulting firm."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "instinct",
+    partOfSpeech: "noun",
+    category: "Decision-Making",
+    definition: "a feeling that influences a decision without being based on facts or analysis",
+    examples: [
+      "Her instinct told her that the proposal was too risky.",
+      "Managers should balance instinct with reliable evidence."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "investigate",
+    partOfSpeech: "verb",
+    category: "Problems & Compliance",
+    definition: "to study a problem or situation carefully in order to discover the facts",
+    examples: [
+      "The company investigated the complaint immediately.",
+      "An independent team will investigate the information leak."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "leak",
+    partOfSpeech: "verb",
+    category: "Confidentiality & Media",
+    definition: "to secretly give confidential information to the public or media",
+    examples: [
+      "Someone leaked the proposal to a newspaper.",
+      "Employees must not leak confidential salary information."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "magnet",
+    partOfSpeech: "noun",
+    category: "Attraction & Recruitment",
+    definition: "a person, place, or thing that strongly attracts others",
+    examples: [
+      "The city has become a magnet for technology companies.",
+      "Flexible working can be a magnet for talented candidates."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "majority",
+    partOfSpeech: "noun",
+    category: "Voting & Decisions",
+    definition: "the largest number or part of a group",
+    examples: [
+      "The majority of employees supported the change.",
+      "A clear majority voted in favour of the proposal."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "make a suggestion",
+    partOfSpeech: "phrase",
+    category: "Professional Communication",
+    definition: "to present an idea or plan for other people to consider",
+    examples: [
+      "May I make a suggestion about the meeting format?",
+      "Several employees made suggestions during the consultation."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "make up your mind",
+    partOfSpeech: "phrase",
+    category: "Choices & Decisions",
+    definition: "to make a final decision about something",
+    examples: [
+      "The board must make up its mind before Friday.",
+      "She reviewed both options before making up her mind."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "maximum",
+    partOfSpeech: "noun",
+    category: "Limits & Quantities",
+    definition: "the greatest amount, number, size, or level that is possible or permitted",
+    examples: [
+      "The room has a maximum capacity of fifty people.",
+      "Employees may work from home for a maximum of three days."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "option",
+    partOfSpeech: "noun",
+    category: "Choices & Decisions",
+    definition: "one of the different things that can be chosen",
+    examples: [
+      "Remote work is an option for eligible employees.",
+      "The committee considered every available option."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "panic",
+    partOfSpeech: "noun",
+    category: "Risk & Reactions",
+    definition: "sudden extreme anxiety that causes people to act without thinking carefully",
+    examples: [
+      "The leaked information caused panic among employees.",
+      "Clear communication can prevent unnecessary panic."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "patriotic",
+    partOfSpeech: "adjective",
+    category: "Culture & Identity",
+    definition: "showing strong love and support for your country",
+    examples: [
+      "The advertising campaign used patriotic imagery.",
+      "The company promoted its products as a patriotic choice."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "persuasive",
+    partOfSpeech: "adjective",
+    category: "Professional Communication",
+    definition: "able to convince someone to do or believe something",
+    examples: [
+      "She gave a persuasive presentation to the board.",
+      "The proposal needs a clearer and more persuasive argument."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "praise",
+    partOfSpeech: "verb",
+    category: "Recognition & Feedback",
+    definition: "to express approval or admiration for someone or something",
+    examples: [
+      "The manager praised the team for reaching a consensus.",
+      "Customers praised the branch for its excellent service."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "proposal",
+    partOfSpeech: "noun",
+    category: "Ideas & Decision-Making",
+    definition: "a formal suggestion or plan presented for consideration",
+    examples: [
+      "The board approved the revised proposal.",
+      "Her proposal included changes to the dress code."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "put forward",
+    partOfSpeech: "phrasal verb",
+    category: "Ideas & Decision-Making",
+    definition: "to suggest an idea or proposal for discussion",
+    examples: [
+      "The union put forward an alternative proposal.",
+      "Several practical solutions were put forward at the meeting."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "reach a consensus",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to arrive at an opinion or decision accepted by everyone in a group",
+    examples: [
+      "The committee eventually reached a consensus.",
+      "It may be difficult to reach a consensus on salary changes."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "reconsider",
+    partOfSpeech: "verb",
+    category: "Choices & Decisions",
+    definition: "to think about a previous decision or opinion again",
+    examples: [
+      "Management agreed to reconsider the proposed policy.",
+      "The client reconsidered after hearing our revised offer."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "regret",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to feel sorry about something that has happened or been done",
+    examples: [
+      "The manager regretted announcing the change too early.",
+      "We regret any inconvenience caused by the decision."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "salary",
+    partOfSpeech: "noun",
+    category: "Pay & Employment",
+    definition: "money regularly paid to an employee for professional or office work",
+    examples: [
+      "The vacancy offers a competitive salary.",
+      "The union requested an increase in basic salaries."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "soda",
+    partOfSpeech: "noun",
+    category: "Food & Beverages",
+    definition: "a sweet carbonated drink",
+    examples: [
+      "The company replaced soda with healthier drinks in the canteen.",
+      "Employees can buy coffee, water, and soda from the vending machine."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "strike",
+    partOfSpeech: "noun",
+    category: "Employment Relations",
+    definition: "a period when organized employees stop working because of a disagreement",
+    examples: [
+      "The union threatened to organize a strike.",
+      "Management continued negotiations to prevent the strike."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "tabloid",
+    partOfSpeech: "adjective",
+    category: "Media & Communication",
+    definition: "describing a newspaper with short, sensational articles and many pictures",
+    examples: [
+      "The story appeared in several tabloid newspapers.",
+      "A tabloid journalist obtained the leaked document."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "union",
+    partOfSpeech: "noun",
+    category: "Employment Relations",
+    definition: "an organization that represents workers and protects their interests",
+    examples: [
+      "The union entered negotiations with management.",
+      "Employees asked the union to investigate the complaint."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "vacant",
+    partOfSpeech: "adjective",
+    category: "Recruitment",
+    definition: "describing a position that is available because nobody currently holds it",
+    examples: [
+      "The regional manager position is currently vacant.",
+      "Human resources advertised three vacant roles."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "vote",
+    partOfSpeech: "noun",
+    category: "Voting & Decisions",
+    definition: "a formal choice made at a meeting or election",
+    examples: [
+      "The proposal was approved by a majority vote.",
+      "Every member of the co-operative has one vote."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "willingly",
+    partOfSpeech: "adverb",
+    category: "Attitudes & Cooperation",
+    definition: "enthusiastically and without needing to be persuaded",
+    examples: [
+      "Employees willingly participated in the consultation.",
+      "She willingly accepted responsibility for the project."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 11,
+    word: "workforce",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "all the people employed by a company or organization",
+    examples: [
+      "The company consulted its entire workforce.",
+      "A diverse workforce can contribute a wider range of ideas."
+    ]
+  },
 
 //////////////////////////////
 //
