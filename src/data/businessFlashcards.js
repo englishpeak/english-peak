@@ -13764,7 +13764,57 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "intermediate",
+    unit: 13,
+    word: "approve",
+    partOfSpeech: "verb",
+    category: "Management & Decisions",
+    definition: "to officially agree to or accept a plan, request, or proposal",
+    examples: [
+      "The board approved the investment proposal.",
+      "Management must approve the updated quality policy."
+    ]
+  },
+  {
+    level: "intermediate",
+    unit: 13,
+    word: "benefit",
+    partOfSpeech: "verb",
+    category: "Business Results",
+    definition: "to be useful to someone or improve their situation",
+    examples: [
+      "The new system will benefit both employees and customers.",
+      "Smaller workloads may benefit the technical support team."
+    ]
+  },
+  { level: "intermediate", unit: 13, word: "break down", partOfSpeech: "phrasal verb", category: "Equipment Problems", definition: "to stop working because of a mechanical or technical fault", examples: ["The delivery vehicle broke down on the way to the client.", "Production stops whenever the main machine breaks down."] },
+  { level: "intermediate", unit: 13, word: "bug", partOfSpeech: "noun", category: "Software & Technology", definition: "a fault or error in a computer program or system", examples: ["The latest software update contains a serious bug.", "Developers fixed the bug before releasing the application."] },
+  { level: "intermediate", unit: 13, word: "capital", partOfSpeech: "noun", category: "Finance & Investment", definition: "money invested in or used to start and operate a business", examples: ["The company needs additional capital to expand production.", "Investors provided the capital required to launch the project."] },
+  { level: "intermediate", unit: 13, word: "damaged", partOfSpeech: "adjective", category: "Quality & Products", definition: "harmed, broken, or spoiled", examples: ["The customer returned the damaged appliance.", "Several components were damaged during transportation."] },
+  { level: "intermediate", unit: 13, word: "defect", partOfSpeech: "noun", category: "Quality & Products", definition: "a fault in a product or the way it was made", examples: ["Quality control discovered a defect in the electrical lead.", "The manufacturer recalled products containing the defect."] },
+  { level: "intermediate", unit: 13, word: "defective", partOfSpeech: "adjective", category: "Quality & Products", definition: "containing a fault and therefore not working correctly", examples: ["The supplier replaced the defective components.", "Customers should report defective appliances immediately."] },
+  { level: "intermediate", unit: 13, word: "domestic appliance", partOfSpeech: "noun", category: "Products & Manufacturing", definition: "a machine designed to perform a task in the home", examples: ["The company manufactures domestic appliances such as washing machines.", "Every domestic appliance includes a two-year guarantee."] },
+  { level: "intermediate", unit: 13, word: "down", partOfSpeech: "adjective", category: "Software & Technology", definition: "not working or unavailable, especially when describing a computer system", examples: ["The payment system is currently down.", "Customers could not place orders while the website was down."] },
+  { level: "intermediate", unit: 13, word: "failure", partOfSpeech: "noun", category: "Equipment Problems", definition: "an occasion when something does not work as expected", examples: ["A system failure interrupted production.", "The report identified the cause of the equipment failure."] },
+  { level: "intermediate", unit: 13, word: "faulty", partOfSpeech: "adjective", category: "Quality & Products", definition: "not working correctly because of a fault", examples: ["The technician replaced the faulty cable.", "A faulty component caused the appliance to overheat."] },
+  { level: "intermediate", unit: 13, word: "fix", partOfSpeech: "verb", category: "Technical Support", definition: "to repair or correct something", examples: ["The technician fixed the problem remotely.", "Developers are working to fix the software bug."] },
+  { level: "intermediate", unit: 13, word: "flaw", partOfSpeech: "noun", category: "Quality & Design", definition: "a mistake or weakness that prevents something from working correctly", examples: ["Testing revealed a serious flaw in the product design.", "The security flaw allowed unauthorized access."] },
+  { level: "intermediate", unit: 13, word: "go wrong", partOfSpeech: "phrase", category: "Problems & Incidents", definition: "to stop working correctly or develop unexpected problems", examples: ["The support team explained what to do if something went wrong.", "Several things went wrong during the installation."] },
+  { level: "intermediate", unit: 13, word: "incident", partOfSpeech: "noun", category: "Problems & Incidents", definition: "an event, especially one that is unusual or unpleasant", examples: ["The company investigated the safety incident.", "Every technical incident must be recorded in a report."] },
+  { level: "intermediate", unit: 13, word: "incompatible", partOfSpeech: "adjective", category: "Software & Technology", definition: "unable to be used together because two things are of different types", examples: ["The new software is incompatible with the older operating system.", "These components are incompatible with the current model."] },
+  { level: "intermediate", unit: 13, word: "lead", partOfSpeech: "noun", category: "Electrical Equipment", definition: "a covered electrical wire used to connect equipment to a power source", examples: ["The appliance was supplied with a damaged lead.", "Disconnect the electrical lead before inspecting the machine."] },
+  { level: "intermediate", unit: 13, word: "let down", partOfSpeech: "phrasal verb", category: "Customer Relationships", definition: "to fail to provide the help or support that someone expected", examples: ["The unreliable delivery service let the customer down.", "We apologized because the product had let our client down."] },
+  { level: "intermediate", unit: 13, word: "misunderstanding", partOfSpeech: "noun", category: "Professional Communication", definition: "a situation in which information or instructions are understood incorrectly", examples: ["A misunderstanding about the specifications delayed production.", "The manager clarified the issue before the misunderstanding became worse."] },
+  { level: "intermediate", unit: 13, word: "out of order", partOfSpeech: "phrase", category: "Equipment Problems", definition: "not operating or functioning correctly", examples: ["The lift is currently out of order.", "A notice informed employees that the machine was out of order."] },
+  { level: "intermediate", unit: 13, word: "policy", partOfSpeech: "noun", category: "Management & Compliance", definition: "an agreed plan of action followed by a business or organization", examples: ["The company revised its product-return policy.", "Every employee must follow the information security policy."] },
+  { level: "intermediate", unit: 13, word: "quality", partOfSpeech: "noun", category: "Quality & Products", definition: "the standard of a product or service, especially when compared with others", examples: ["Customers complained about a decline in product quality.", "The manufacturer introduced stricter quality controls."] },
+  { level: "intermediate", unit: 13, word: "reboot", partOfSpeech: "verb", category: "Software & Technology", definition: "to switch a computer or system off and start it again", examples: ["Try rebooting the system before contacting support.", "The technician rebooted the server remotely."] },
+  { level: "intermediate", unit: 13, word: "relieve", partOfSpeech: "verb", category: "Problems & Workload", definition: "to make a problem, pressure, or difficult situation less serious", examples: ["Additional staff helped relieve the support team's workload.", "The temporary solution relieved pressure on the system."] },
+  { level: "intermediate", unit: 13, word: "remotely", partOfSpeech: "adverb", category: "Technical Support", definition: "from another location through an electronic connection", examples: ["The engineer repaired the software remotely.", "Managers can monitor the system remotely."] },
+  { level: "intermediate", unit: 13, word: "report", partOfSpeech: "noun", category: "Professional Communication", definition: "a spoken or written description containing necessary information", examples: ["The technician prepared a report on the system failure.", "Please include every incident in the monthly report."] },
+  { level: "intermediate", unit: 13, word: "unreliable", partOfSpeech: "adjective", category: "Quality & Performance", definition: "not able to be trusted to work consistently or correctly", examples: ["The old server had become increasingly unreliable.", "Customers stopped using the unreliable delivery service."] },
+  { level: "intermediate", unit: 13, word: "workload", partOfSpeech: "noun", category: "Work & Productivity", definition: "the total amount of work that a person or organization must complete", examples: ["Technical failures increased the support team's workload.", "The manager hired additional staff to reduce employee workloads."] },
 
 //////////////////////////////
 //
