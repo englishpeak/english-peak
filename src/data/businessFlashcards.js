@@ -15704,7 +15704,642 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "appropriate",
+    partOfSpeech: "adjective",
+    category: "Solutions & Decisions",
+    definition: "suitable, acceptable, or correct for a particular situation",
+    examples: [
+      "The team selected the most appropriate material for the product.",
+      "We need an appropriate solution for communities in remote areas."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "bring about",
+    partOfSpeech: "phrasal verb",
+    category: "Change & Results",
+    definition: "to cause something to happen",
+    examples: [
+      "The invention could bring about major changes in rural healthcare.",
+      "New regulations brought about improvements in product safety."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "bring down",
+    partOfSpeech: "phrasal verb",
+    category: "Costs & Efficiency",
+    definition: "to reduce the amount, level, price, or cost of something",
+    examples: [
+      "Mass production should bring down the cost of the device.",
+      "The company introduced new technology to bring energy costs down."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "canvas",
+    partOfSpeech: "noun",
+    category: "Materials",
+    definition: "a strong, heavy fabric used for products such as tents, covers, and sails",
+    examples: [
+      "The temporary shelter is made from durable canvas.",
+      "Designers tested several types of canvas before selecting the final material."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "carry out",
+    partOfSpeech: "phrasal verb",
+    category: "Research & Operations",
+    definition: "to perform and complete a task, investigation, or activity",
+    examples: [
+      "The research team carried out tests in several remote villages.",
+      "Engineers must carry out a safety inspection before production begins."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "cement",
+    partOfSpeech: "noun",
+    category: "Construction Materials",
+    definition: "a grey powder mixed with water and other materials to create a hard building substance",
+    examples: [
+      "The new construction method uses less cement.",
+      "Transporting cement to remote regions can be expensive."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "come up with",
+    partOfSpeech: "phrasal verb",
+    category: "Ideas & Problem-Solving",
+    definition: "to think of or produce an idea, answer, plan, or solution",
+    examples: [
+      "The engineers came up with an innovative design.",
+      "We need to come up with a commercially viable proposition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "commercially-viable proposition",
+    partOfSpeech: "phrase",
+    category: "Business & Innovation",
+    definition: "a business idea capable of succeeding and making a profit",
+    examples: [
+      "Investors believed the invention could become a commercially viable proposition.",
+      "A good concept must be developed into a commercially viable proposition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "concrete",
+    partOfSpeech: "adjective",
+    category: "Construction Materials",
+    definition: "made from a hard building material produced by mixing cement, water, and other substances",
+    examples: [
+      "The original design required a heavy concrete foundation.",
+      "The company developed an alternative to traditional concrete buildings."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "contract",
+    partOfSpeech: "noun",
+    category: "Business Agreements",
+    definition: "an official written agreement between people or organizations",
+    examples: [
+      "The manufacturer signed a contract with a local distributor.",
+      "The contract gives the company exclusive rights to use the patent."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "cutting-edge technology",
+    partOfSpeech: "phrase",
+    category: "Technology & Innovation",
+    definition: "the newest and most advanced technological equipment, knowledge, or methods",
+    examples: [
+      "The vaccine was developed using cutting-edge technology.",
+      "The company combines simple materials with cutting-edge technology."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "delicious",
+    partOfSpeech: "adjective",
+    category: "Food & Products",
+    definition: "having a very pleasant taste",
+    examples: [
+      "The refrigeration system helps keep food fresh and delicious.",
+      "Visitors sampled several delicious products made by local businesses."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "demonstrate",
+    partOfSpeech: "verb",
+    category: "Presentations & Evidence",
+    definition: "to show something clearly through actions, examples, or proof",
+    examples: [
+      "The inventor demonstrated how the inflatable shelter worked.",
+      "The trial results demonstrate the potential benefits of the vaccine."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "dung",
+    partOfSpeech: "noun",
+    category: "Agriculture & Resources",
+    definition: "solid waste produced by animals, especially large animals",
+    examples: [
+      "The system converts animal dung into usable fuel.",
+      "Farmers use dung as a natural fertilizer."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "earthquake",
+    partOfSpeech: "noun",
+    category: "Disasters & Humanitarian Aid",
+    definition: "a sudden and violent movement of the earth's surface",
+    examples: [
+      "The shelters were designed for people displaced by an earthquake.",
+      "The earthquake damaged thousands of rigid concrete buildings."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "enable",
+    partOfSpeech: "verb",
+    category: "Benefits & Functionality",
+    definition: "to make it possible for someone to do something",
+    examples: [
+      "The device enables communities to refrigerate food without electricity.",
+      "The new process enables manufacturers to reduce production costs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "enhanced",
+    partOfSpeech: "adjective",
+    category: "Improvement & Performance",
+    definition: "improved or made better than before",
+    examples: [
+      "The updated design provides enhanced insulation.",
+      "Customers will benefit from enhanced safety features."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "fertilizer",
+    partOfSpeech: "noun",
+    category: "Agriculture",
+    definition: "a substance added to soil to help plants grow more successfully",
+    examples: [
+      "The by-product can be used as an organic fertilizer.",
+      "Farmers reduced their dependence on chemical fertilizers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "get round",
+    partOfSpeech: "phrasal verb",
+    category: "Problem-Solving",
+    definition: "to deal successfully with a difficulty or restriction",
+    examples: [
+      "The engineers found a way to get round the lack of electricity.",
+      "A flexible design helps users get round transportation problems."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "impressive",
+    partOfSpeech: "adjective",
+    category: "Performance & Evaluation",
+    definition: "causing admiration because of being very good, skillful, or effective",
+    examples: [
+      "The prototype produced impressive results during testing.",
+      "Investors were impressed by the product's low cost and simple design."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "inflatable",
+    partOfSpeech: "adjective",
+    category: "Product Design",
+    definition: "designed to be filled with air or gas before being used",
+    examples: [
+      "The company developed an inflatable emergency shelter.",
+      "Inflatable products are easier to transport than rigid structures."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "innovative concept",
+    partOfSpeech: "phrase",
+    category: "Ideas & Innovation",
+    definition: "a new and original idea that has not previously been developed",
+    examples: [
+      "The judges praised the project's innovative concept.",
+      "The innovative concept attracted interest from several investors."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "inspire",
+    partOfSpeech: "verb",
+    category: "Motivation & Innovation",
+    definition: "to give someone the confidence, enthusiasm, or desire to do something well",
+    examples: [
+      "The inventor's story inspired students to develop practical solutions.",
+      "The exhibition aims to inspire more sustainable product design."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "insulation",
+    partOfSpeech: "noun",
+    category: "Construction & Energy",
+    definition: "material used to prevent heat, sound, or electricity from passing through something",
+    examples: [
+      "The shelter contains lightweight thermal insulation.",
+      "Better insulation can significantly reduce energy consumption."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "key feature",
+    partOfSpeech: "phrase",
+    category: "Products & Benefits",
+    definition: "a particularly important, interesting, or typical part of something",
+    examples: [
+      "Portability is a key feature of the new shelter.",
+      "The product's key features include low cost and enhanced insulation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "major advantage",
+    partOfSpeech: "phrase",
+    category: "Products & Benefits",
+    definition: "an important quality that makes something better or more useful than an alternative",
+    examples: [
+      "A major advantage of the device is that it requires no electricity.",
+      "Its low weight gives the product a major advantage over rigid designs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "patent",
+    partOfSpeech: "noun",
+    category: "Intellectual Property",
+    definition: "an official legal right to be the only person or organization allowed to make, use, or sell an invention",
+    examples: [
+      "The inventor applied for a patent before approaching manufacturers.",
+      "The company owns several patents for sustainable technologies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "pay off",
+    partOfSpeech: "phrasal verb",
+    category: "Results & Success",
+    definition: "to produce successful or beneficial results after effort or investment",
+    examples: [
+      "Years of research finally paid off.",
+      "The investment in cutting-edge technology is beginning to pay off."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "pitch",
+    partOfSpeech: "noun",
+    category: "Sales & Investment",
+    definition: "a presentation or argument designed to persuade someone to buy, support, or invest in something",
+    examples: [
+      "The entrepreneur delivered a convincing pitch to investors.",
+      "Her pitch focused on the product's potential social benefits."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "policy",
+    partOfSpeech: "noun",
+    category: "Business & Government",
+    definition: "an agreed plan or course of action followed by a business, government, or organization",
+    examples: [
+      "The government introduced a policy supporting sustainable construction.",
+      "The company revised its research and development policy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "potential benefit",
+    partOfSpeech: "phrase",
+    category: "Products & Benefits",
+    definition: "a useful effect or advantage that something may provide in the future",
+    examples: [
+      "The report outlines the potential benefits of the new vaccine.",
+      "Lower operating costs are one potential benefit of the system."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "practical solution",
+    partOfSpeech: "phrase",
+    category: "Problem-Solving",
+    definition: "a sensible and realistic way of solving a problem",
+    examples: [
+      "The device offers a practical solution to food-storage problems.",
+      "The team developed a practical solution for temporary housing."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "R & D",
+    partOfSpeech: "noun",
+    category: "Research & Innovation",
+    definition: "research and development work performed to create new products or improve existing ones",
+    examples: [
+      "The company increased its R & D budget.",
+      "The vaccine was developed by the organization's R & D department."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "radical",
+    partOfSpeech: "adjective",
+    category: "Change & Innovation",
+    definition: "new, very different, and likely to have a major effect",
+    examples: [
+      "The proposal represents a radical change in construction methods.",
+      "The designers adopted a radical approach to refrigeration."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "raise awareness",
+    partOfSpeech: "phrase",
+    category: "Communication & Social Impact",
+    definition: "to help people understand that an issue exists and is important",
+    examples: [
+      "The campaign aims to raise awareness of the refugee crisis.",
+      "The exhibition raised awareness of sustainable technologies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "refrigeration",
+    partOfSpeech: "noun",
+    category: "Technology & Food",
+    definition: "the process of keeping food or other products cold so they remain fresh",
+    examples: [
+      "The device provides refrigeration without conventional electricity.",
+      "Reliable refrigeration is vital for transporting vaccines."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "refugee",
+    partOfSpeech: "noun",
+    category: "Humanitarian Issues",
+    definition: "a person forced to leave their country or home because of war, persecution, or serious danger",
+    examples: [
+      "The shelters were designed for refugee communities.",
+      "The organization provides practical support to refugees."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "remote",
+    partOfSpeech: "adjective",
+    category: "Locations & Access",
+    definition: "located far away from towns or places where many people live",
+    examples: [
+      "The refrigeration system is intended for remote communities.",
+      "Delivering equipment to remote regions presents logistical challenges."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "revolutionary idea",
+    partOfSpeech: "phrase",
+    category: "Ideas & Innovation",
+    definition: "a new idea that involves a major or complete change",
+    examples: [
+      "The portable shelter began as a revolutionary idea.",
+      "Investors believed the design could become a revolutionary idea in construction."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "rigid",
+    partOfSpeech: "adjective",
+    category: "Materials & Design",
+    definition: "stiff and difficult to bend, move, or change shape",
+    examples: [
+      "The product is lighter than a traditional rigid container.",
+      "Rigid structures are often difficult to transport."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "sealed",
+    partOfSpeech: "adjective",
+    category: "Products & Packaging",
+    definition: "closed tightly so that air, liquid, or other substances cannot enter or escape",
+    examples: [
+      "The medicine must remain in a sealed container.",
+      "The tank is completely sealed to prevent gas from escaping."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "set up",
+    partOfSpeech: "phrasal verb",
+    category: "Entrepreneurship & Operations",
+    definition: "to start or establish a business, organization, system, or project",
+    examples: [
+      "The inventor set up a company to manufacture the product.",
+      "The charity set up temporary facilities after the earthquake."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "specification",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "a detailed description of how something is or should be designed, made, or operated",
+    examples: [
+      "The manufacturer received a detailed technical specification.",
+      "Every component must meet the original design specifications."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "state-of-the-art design",
+    partOfSpeech: "phrase",
+    category: "Technology & Design",
+    definition: "a design using the most modern and advanced methods available",
+    examples: [
+      "The turbine combines a simple structure with state-of-the-art design.",
+      "The hospital selected equipment with a state-of-the-art design."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "sustainable",
+    partOfSpeech: "adjective",
+    category: "Environment & Sustainability",
+    definition: "using natural resources and energy without causing long-term environmental harm",
+    examples: [
+      "The project promotes sustainable building methods.",
+      "Investors are increasingly interested in sustainable technologies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "take forward",
+    partOfSpeech: "phrasal verb",
+    category: "Projects & Development",
+    definition: "to help an idea, project, or proposal progress toward a successful result",
+    examples: [
+      "The company agreed to take the innovative concept forward.",
+      "Additional funding is needed to take the project forward."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "take up",
+    partOfSpeech: "phrasal verb",
+    category: "Offers & Opportunities",
+    definition: "to accept an offer, opportunity, or option that is available",
+    examples: [
+      "Several manufacturers expressed interest, but only one took up the offer.",
+      "The inventor took up the opportunity to present at the exhibition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "tank",
+    partOfSpeech: "noun",
+    category: "Equipment & Storage",
+    definition: "a large container used for holding liquid or gas",
+    examples: [
+      "The system stores methane in a sealed tank.",
+      "Engineers inspected the tank for signs of damage."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "technological breakthrough",
+    partOfSpeech: "noun",
+    category: "Technology & Innovation",
+    definition: "an important technological development that creates significant new possibilities",
+    examples: [
+      "The new vaccine represents a major technological breakthrough.",
+      "The company announced a technological breakthrough in refrigeration."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "turbines",
+    partOfSpeech: "noun",
+    category: "Energy & Engineering",
+    definition: "machines powered by wheels turned by moving water, air, steam, or gas",
+    examples: [
+      "The facility generates electricity using wind turbines.",
+      "Engineers redesigned the turbines to improve efficiency."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "unique",
+    partOfSpeech: "adjective",
+    category: "Products & Innovation",
+    definition: "being the only one of its kind",
+    examples: [
+      "The product has a unique inflatable structure.",
+      "Its unique design gives the company a competitive advantage."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "vaccine",
+    partOfSpeech: "noun",
+    category: "Healthcare & Innovation",
+    definition: "a substance introduced into the body to protect it against a particular disease",
+    examples: [
+      "The laboratory is developing a vaccine for the disease.",
+      "Reliable refrigeration is required to transport the vaccine safely."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 4,
+    word: "vibration",
+    partOfSpeech: "noun",
+    category: "Engineering & Performance",
+    definition: "a continuous small shaking movement",
+    examples: [
+      "The device generates energy through vibration.",
+      "Engineers measured the vibration produced by the turbines."
+    ]
+  },
 
 //////////////////////////////
 //
