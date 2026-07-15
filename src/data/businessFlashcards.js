@@ -16347,7 +16347,618 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "accounts",
+    partOfSpeech: "noun",
+    category: "Finance & Departments",
+    definition: "the department of a company that records money owed to and paid by the business",
+    examples: [
+      "Please send the supplier's invoice to the accounts department.",
+      "Accounts confirmed that the customer had already paid."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "agitated",
+    partOfSpeech: "adjective",
+    category: "Customer Emotions",
+    definition: "showing through your behavior that you are anxious, nervous, or upset",
+    examples: [
+      "The customer became agitated when the refund was delayed.",
+      "The cashier remained calm while speaking to the agitated visitor."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "approval",
+    partOfSpeech: "noun",
+    category: "Authorization & Decisions",
+    definition: "official agreement to or permission for a plan, request, or action",
+    examples: [
+      "The refund requires approval from the branch manager.",
+      "The purchasing team is waiting for final budget approval."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "attentive",
+    partOfSpeech: "adjective",
+    category: "Customer Service",
+    definition: "helpful and careful to make sure that people receive what they need",
+    examples: [
+      "The hotel staff were attentive throughout the conference.",
+      "Attentive service can turn a dissatisfied customer into a loyal one."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "attitude",
+    partOfSpeech: "noun",
+    category: "Professional Behavior",
+    definition: "the way someone behaves toward a person or situation, showing how they think and feel",
+    examples: [
+      "A positive attitude is essential in customer service.",
+      "The employee's discourteous attitude resulted in a complaint."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "blame",
+    partOfSpeech: "verb",
+    category: "Responsibility & Complaints",
+    definition: "to say or believe that someone or something is responsible for a bad result",
+    examples: [
+      "The customer blamed the store for the incorrect charge.",
+      "Managers should solve the problem rather than blame individual employees."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "bulb",
+    partOfSpeech: "noun",
+    category: "Products & Retail",
+    definition: "the glass part of an electric lamp that produces light",
+    examples: [
+      "The customer returned a box containing a broken bulb.",
+      "The store discontinued the old range of energy-inefficient bulbs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "bulk",
+    partOfSpeech: "noun",
+    category: "Quantity & Purchasing",
+    definition: "a large amount or quantity of something",
+    examples: [
+      "The retailer buys confectionery in bulk.",
+      "Customers receive a discount when they order products in bulk."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "cashier",
+    partOfSpeech: "noun",
+    category: "Retail & Customer Service",
+    definition: "a person whose job is to receive and pay out money in a shop, bank, restaurant, or hotel",
+    examples: [
+      "The cashier gave the customer a printed receipt.",
+      "A supervisor assisted the cashier with the refund."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "confectionery",
+    partOfSpeech: "noun",
+    category: "Products & Retail",
+    definition: "sweets, chocolate, and similar food products",
+    examples: [
+      "The company produces a wide range of confectionery.",
+      "Confectionery sales increased significantly during the holiday season."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "count for",
+    partOfSpeech: "phrasal verb",
+    category: "Importance & Value",
+    definition: "to be important or to have an effect on a result",
+    examples: [
+      "Customer loyalty counts for a great deal in a competitive market.",
+      "Product quality counts for more than attractive packaging."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "courteous",
+    partOfSpeech: "adjective",
+    category: "Professional Behavior",
+    definition: "polite and showing respect toward other people",
+    examples: [
+      "Customer-service staff must remain courteous under pressure.",
+      "The manager gave a courteous response to the complaint."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "deducted",
+    partOfSpeech: "verb",
+    category: "Payments & Finance",
+    definition: "taken away from a total amount, especially an amount of money",
+    examples: [
+      "The discount was deducted from the final bill.",
+      "The incorrect fee had been deducted from the customer's account."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "discontinued",
+    partOfSpeech: "adjective",
+    category: "Products & Availability",
+    definition: "no longer being produced, supplied, or offered",
+    examples: [
+      "The customer wanted a replacement for a discontinued product.",
+      "The manufacturer discontinued the model because of low demand."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "discourteous",
+    partOfSpeech: "adjective",
+    category: "Professional Behavior",
+    definition: "impolite and failing to show respect toward other people",
+    examples: [
+      "The customer complained about a discourteous member of staff.",
+      "Discourteous service can seriously damage a company's reputation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "dissatisfied",
+    partOfSpeech: "adjective",
+    category: "Customer Satisfaction",
+    definition: "not pleased or satisfied with a person, product, or service",
+    examples: [
+      "Dissatisfied customers are offered a replacement or refund.",
+      "The survey asked why some clients were dissatisfied with the service."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "efficient",
+    partOfSpeech: "adjective",
+    category: "Customer Service & Operations",
+    definition: "working thoroughly and effectively without wasting time, money, or energy",
+    examples: [
+      "The new returns process is faster and more efficient.",
+      "Efficient service reduces queues at the tills."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "encounter",
+    partOfSpeech: "noun",
+    category: "Customer Interactions",
+    definition: "an occasion when people meet and deal with one another, especially unexpectedly",
+    examples: [
+      "Every customer encounter affects the company's reputation.",
+      "The manager described a difficult encounter with an upset client."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "exceed customers’ expectations",
+    partOfSpeech: "phrase",
+    category: "Customer Satisfaction",
+    definition: "to provide a product or service that is better than customers expected",
+    examples: [
+      "Responsive support can help exceed customers' expectations.",
+      "The hotel trains employees to exceed customers' expectations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "existing",
+    partOfSpeech: "adjective",
+    category: "Current Products & Services",
+    definition: "already happening, being used, or in place at the present time",
+    examples: [
+      "The new policy applies to existing contracts.",
+      "The company upgraded its existing customer-service system."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "existing customer",
+    partOfSpeech: "noun",
+    category: "Customers & Loyalty",
+    definition: "a person or organization that already buys from or uses a business",
+    examples: [
+      "Existing customers receive a loyalty discount.",
+      "It is often less expensive to retain an existing customer than find a new one."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "find your feet",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to become confident and able to act independently in a new situation",
+    examples: [
+      "The new cashier quickly found her feet.",
+      "It took him several weeks to find his feet in the accounts department."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "get feedback",
+    partOfSpeech: "phrase",
+    category: "Customer Research",
+    definition: "to receive advice, criticism, or information about how good or useful something is",
+    examples: [
+      "The company uses surveys to get feedback from customers.",
+      "Managers should get feedback before changing the returns policy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "high-quality",
+    partOfSpeech: "adjective",
+    category: "Products & Quality",
+    definition: "meeting a very good standard",
+    examples: [
+      "Customers are willing to pay more for high-quality products.",
+      "The company built its reputation on high-quality confectionery."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "literally",
+    partOfSpeech: "adverb",
+    category: "Communication & Emphasis",
+    definition: "used to emphasize that something is completely true, even if it sounds surprising",
+    examples: [
+      "The store literally received hundreds of complaints overnight.",
+      "The customer had literally been waiting for more than an hour."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "lose customers",
+    partOfSpeech: "phrase",
+    category: "Customer Retention",
+    definition: "to have customers stop buying from a business and move to a competitor",
+    examples: [
+      "Poor service can cause a company to lose customers.",
+      "The retailer changed its refund policy after losing several loyal customers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "loyal",
+    partOfSpeech: "adjective",
+    category: "Customer Retention",
+    definition: "remaining faithful to and continuing to support a person, company, or product",
+    examples: [
+      "Loyal customers are less likely to switch to a competitor.",
+      "The brand rewards loyal customers with special offers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "measure customer satisfaction",
+    partOfSpeech: "phrase",
+    category: "Customer Research",
+    definition: "to determine how pleased customers are with a product or service",
+    examples: [
+      "The company conducts regular surveys to measure customer satisfaction.",
+      "Online reviews can help businesses measure customer satisfaction."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "meet customers’ needs",
+    partOfSpeech: "phrase",
+    category: "Customer Satisfaction",
+    definition: "to provide customers with the products, services, or support they require",
+    examples: [
+      "The new service was designed to meet customers' needs more effectively.",
+      "Flexible refund options help meet different customers' needs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "negotiation",
+    partOfSpeech: "noun",
+    category: "Agreements & Conflict",
+    definition: "a formal discussion between people attempting to reach an agreement",
+    examples: [
+      "The complaint was resolved through negotiation.",
+      "The supplier entered negotiations with the accounts department."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "originate",
+    partOfSpeech: "verb",
+    category: "Sources & Processes",
+    definition: "to begin, happen, or appear for the first time in a particular place or situation",
+    examples: [
+      "The complaint originated at one of the regional branches.",
+      "The product range originated as a small family business."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "quibble",
+    partOfSpeech: "verb",
+    category: "Complaints & Negotiation",
+    definition: "to argue or complain about a minor or unimportant detail",
+    examples: [
+      "The customer quibbled over a very small difference in price.",
+      "We should not quibble about minor details when the main agreement is acceptable."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "reassure",
+    partOfSpeech: "verb",
+    category: "Customer Communication",
+    definition: "to say or do something that makes someone feel less worried or frightened",
+    examples: [
+      "The manager reassured the customer that a refund would be issued.",
+      "Clear information can reassure clients during a service disruption."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "receipt",
+    partOfSpeech: "noun",
+    category: "Payments & Documents",
+    definition: "a document showing that goods or services have been paid for",
+    examples: [
+      "The customer presented the original receipt.",
+      "An electronic receipt was sent immediately after payment."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "refund",
+    partOfSpeech: "verb",
+    category: "Payments & Customer Service",
+    definition: "to return money to someone because they paid too much or were dissatisfied with a purchase",
+    examples: [
+      "The store refunded the full purchase price.",
+      "Accounts will refund the fee within five working days."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "repeat",
+    partOfSpeech: "adjective",
+    category: "Customers & Behavior",
+    definition: "happening or being done again in the same way",
+    examples: [
+      "Repeat customers receive additional benefits.",
+      "The company wants to prevent repeat complaints about the same issue."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "responsive",
+    partOfSpeech: "adjective",
+    category: "Customer Service",
+    definition: "reacting quickly and positively to requests, changes, or problems",
+    examples: [
+      "Customers value a responsive support team.",
+      "The company became more responsive after reviewing customer feedback."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "rule of thumb",
+    partOfSpeech: "phrase",
+    category: "Guidelines & Experience",
+    definition: "a practical guideline based on experience rather than exact measurement",
+    examples: [
+      "As a rule of thumb, complaints should be answered within one business day.",
+      "The manager uses a simple rule of thumb when approving small refunds."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "satisfied",
+    partOfSpeech: "adjective",
+    category: "Customer Satisfaction",
+    definition: "pleased because you received what you wanted or expected",
+    examples: [
+      "The customer was satisfied with the replacement product.",
+      "Most clients are satisfied with the company's response times."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "specifically",
+    partOfSpeech: "adverb",
+    category: "Communication & Detail",
+    definition: "in a detailed, exact, and clearly identified way",
+    examples: [
+      "The customer specifically requested a cash refund.",
+      "The policy was designed specifically for existing customers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "stuff",
+    partOfSpeech: "noun",
+    category: "Informal Communication",
+    definition: "an informal word used to refer generally to a group of things or materials",
+    examples: [
+      "The customer left some personal stuff near the tills.",
+      "We need to remove the damaged stuff from the stockroom."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "sub-standard",
+    partOfSpeech: "adjective",
+    category: "Products & Quality",
+    definition: "below the normal or acceptable standard",
+    examples: [
+      "The retailer recalled a batch of sub-standard products.",
+      "Sub-standard service can quickly lead to negative reviews."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "superb",
+    partOfSpeech: "adjective",
+    category: "Products & Quality",
+    definition: "excellent or of an exceptionally high standard",
+    examples: [
+      "The company is known for its superb customer service.",
+      "The new confectionery range received superb reviews."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "sympathize",
+    partOfSpeech: "verb",
+    category: "Customer Communication",
+    definition: "to show that you understand and feel sorry about another person's problems",
+    examples: [
+      "The manager sympathized with the customer and offered a refund.",
+      "Customer-service staff should sympathize without immediately accepting blame."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "take notice",
+    partOfSpeech: "phrase",
+    category: "Attention & Improvement",
+    definition: "to pay attention to someone or something",
+    examples: [
+      "Management finally took notice of the repeated complaints.",
+      "Companies should take notice when loyal customers become dissatisfied."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "tills",
+    partOfSpeech: "noun",
+    category: "Retail & Payments",
+    definition: "machines in shops or restaurants that record sales and contain a drawer for money",
+    examples: [
+      "Long queues formed at the tills.",
+      "The retailer replaced its old tills with a faster payment system."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "tough",
+    partOfSpeech: "adjective",
+    category: "Problems & Responses",
+    definition: "unfortunate or difficult but impossible to change",
+    examples: [
+      "The policy may seem tough, but it applies to every customer.",
+      "Losing the account was tough, but the company learned from the experience."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "turn away",
+    partOfSpeech: "phrasal verb",
+    category: "Customer Access",
+    definition: "to refuse to allow someone to enter a place or receive a service",
+    examples: [
+      "The store should not turn customers away without offering assistance.",
+      "Several visitors were turned away because the event was full."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "uncaring",
+    partOfSpeech: "adjective",
+    category: "Professional Behavior",
+    definition: "not kind, helpful, or sympathetic toward other people's feelings",
+    examples: [
+      "The automated reply made the company appear uncaring.",
+      "Customers described the employee's attitude as cold and uncaring."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "unpublicized rule",
+    partOfSpeech: "noun",
+    category: "Policies & Procedures",
+    definition: "an unofficial and unwritten rule that people know about and follow",
+    examples: [
+      "The refund limit appeared to be an unpublicized rule.",
+      "New employees were confused by several unpublicized rules."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 5,
+    word: "upset",
+    partOfSpeech: "adjective",
+    category: "Customer Emotions",
+    definition: "unhappy, worried, or annoyed",
+    examples: [
+      "The customer was upset about the discontinued product.",
+      "The manager spoke privately with the upset employee."
+    ]
+  },
 
 //////////////////////////////
 //
