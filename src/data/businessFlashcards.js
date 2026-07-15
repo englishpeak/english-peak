@@ -15289,7 +15289,414 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "accurate forecast",
+    partOfSpeech: "noun",
+    category: "Planning & Forecasting",
+    definition: "a correct prediction of what will happen in the future based on currently available information",
+    examples: [
+      "An accurate forecast helps the company plan production effectively.",
+      "The finance department needs an accurate forecast of next quarter's sales."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "ahead of schedule",
+    partOfSpeech: "phrase",
+    category: "Time & Scheduling",
+    definition: "completed or achieved earlier than the planned time",
+    examples: [
+      "The construction work was completed ahead of schedule.",
+      "Efficient planning allowed the team to launch the product ahead of schedule."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "allocate resources",
+    partOfSpeech: "phrase",
+    category: "Project Management",
+    definition: "to officially decide how money, equipment, staff, or other assets should be used",
+    examples: [
+      "The project manager allocated additional resources to product testing.",
+      "We need to allocate resources according to the project's priorities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "battery",
+    partOfSpeech: "noun",
+    category: "Products & Technology",
+    definition: "a device that produces electricity and provides power to equipment such as phones, vehicles, or clocks",
+    examples: [
+      "The new handset has a longer-lasting battery.",
+      "Engineers are testing the battery before the product launch."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "behind schedule",
+    partOfSpeech: "phrase",
+    category: "Time & Scheduling",
+    definition: "progressing or being completed later than originally planned",
+    examples: [
+      "The roofing work is two weeks behind schedule.",
+      "The project fell behind schedule because several components arrived late."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "budget constraints",
+    partOfSpeech: "noun",
+    category: "Finance & Budgeting",
+    definition: "factors that limit or restrict how much money can be spent",
+    examples: [
+      "Budget constraints prevented the company from hiring more staff.",
+      "The design had to be simplified because of strict budget constraints."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "capture",
+    partOfSpeech: "verb",
+    category: "Markets & Competition",
+    definition: "to succeed in gaining control of something that other people or companies also want",
+    examples: [
+      "The company hopes to capture a larger share of the mobile-phone market.",
+      "The new tariff was designed to capture younger customers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "check progress",
+    partOfSpeech: "phrase",
+    category: "Project Management",
+    definition: "to examine whether something is developing properly or moving closer to completion",
+    examples: [
+      "The manager holds weekly meetings to check progress.",
+      "We visited the construction site to check the project's progress."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "collate",
+    partOfSpeech: "verb",
+    category: "Data & Reporting",
+    definition: "to collect and organize information from several different sources",
+    examples: [
+      "The analyst collated feedback from all regional offices.",
+      "Please collate the survey results before preparing the report."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "compile",
+    partOfSpeech: "verb",
+    category: "Data & Reporting",
+    definition: "to produce a report, list, or document by bringing together information from different sources",
+    examples: [
+      "The team compiled a detailed report on project spending.",
+      "She compiled a list of the risks that could affect the launch."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "handset",
+    partOfSpeech: "noun",
+    category: "Products & Technology",
+    definition: "the part of a telephone held near the mouth and ear, or a mobile telephone device",
+    examples: [
+      "The manufacturer plans to release the new handset in September.",
+      "Customers complained about the handset's short battery life."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "keep track of spending",
+    partOfSpeech: "phrase",
+    category: "Finance & Budgeting",
+    definition: "to maintain current information about how much money has been spent",
+    examples: [
+      "The finance team uses software to keep track of project spending.",
+      "Managers must keep track of spending to avoid going over budget."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "lack of planning",
+    partOfSpeech: "phrase",
+    category: "Project Risks",
+    definition: "a situation in which insufficient thought or preparation has been given to future actions",
+    examples: [
+      "A lack of planning caused the project to miss several deadlines.",
+      "The cost overruns resulted from poor communication and a lack of planning."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "life span",
+    partOfSpeech: "noun",
+    category: "Products & Performance",
+    definition: "the length of time that something is expected to continue operating or remain useful",
+    examples: [
+      "The new battery has an estimated life span of five years.",
+      "Regular maintenance can extend the equipment's life span."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "maintain",
+    partOfSpeech: "verb",
+    category: "Performance & Quality",
+    definition: "to make something continue at the same level, standard, or condition",
+    examples: [
+      "The company must maintain high production standards.",
+      "Additional investment is needed to maintain product quality."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "make contingency plans",
+    partOfSpeech: "phrase",
+    category: "Risk Management",
+    definition: "to prepare alternative actions for use if a possible event or problem occurs",
+    examples: [
+      "The team made contingency plans in case the supplier missed the deadline.",
+      "Companies should make contingency plans for unexpected technical failures."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "make the launch date",
+    partOfSpeech: "phrase",
+    category: "Product Launches",
+    definition: "to succeed in having a product ready for release by its planned date",
+    examples: [
+      "The development team worked overtime to make the launch date.",
+      "We may not make the launch date unless testing begins immediately."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "man-hours",
+    partOfSpeech: "noun",
+    category: "Resources & Productivity",
+    definition: "a measurement of work based on the amount one person can complete in one hour",
+    examples: [
+      "The renovation required more than two thousand man-hours.",
+      "Automation significantly reduced the number of man-hours needed for production."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "miss the deadline",
+    partOfSpeech: "phrase",
+    category: "Time & Scheduling",
+    definition: "to fail to complete something by the required final date",
+    examples: [
+      "The supplier missed the deadline for delivering the equipment.",
+      "Poor upfront planning may cause the team to miss the deadline."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "out of control",
+    partOfSpeech: "phrase",
+    category: "Project Risks",
+    definition: "impossible or extremely difficult to manage or control",
+    examples: [
+      "Project costs became completely out of control.",
+      "Without clear priorities, the workload can quickly get out of control."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "over budget",
+    partOfSpeech: "phrase",
+    category: "Finance & Budgeting",
+    definition: "costing more than the amount of money originally available or planned",
+    examples: [
+      "The construction project is already twenty percent over budget.",
+      "Unexpected plumbing repairs pushed the renovation over budget."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "plumbing",
+    partOfSpeech: "noun",
+    category: "Construction & Maintenance",
+    definition: "the work of installing and repairing pipes and systems that supply water to a building",
+    examples: [
+      "The building requires extensive plumbing repairs.",
+      "Problems with the plumbing delayed the office renovation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "press release",
+    partOfSpeech: "noun",
+    category: "Public Relations",
+    definition: "an official statement provided by an organization to journalists",
+    examples: [
+      "The company issued a press release announcing the new handset.",
+      "The public-relations team prepared a press release about the delayed launch."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "prioritize tasks",
+    partOfSpeech: "phrase",
+    category: "Time & Productivity",
+    definition: "to arrange jobs in order of importance so the most important ones are handled first",
+    examples: [
+      "The team must prioritize tasks to make the launch date.",
+      "Effective managers prioritize tasks according to urgency and impact."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "resolve conflict",
+    partOfSpeech: "phrase",
+    category: "Leadership & Teamwork",
+    definition: "to deal successfully with a disagreement or argument between people or groups",
+    examples: [
+      "The project leader intervened to resolve conflict between the departments.",
+      "Open communication can help teams resolve conflict quickly."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "roofing",
+    partOfSpeech: "noun",
+    category: "Construction & Maintenance",
+    definition: "the work of building, installing, or repairing roofs",
+    examples: [
+      "Bad weather delayed the roofing work.",
+      "The revised budget includes additional spending on roofing."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "run out of money",
+    partOfSpeech: "phrase",
+    category: "Finance & Budgeting",
+    definition: "to use all available money so that none remains",
+    examples: [
+      "The project may run out of money before construction is completed.",
+      "Careful financial monitoring prevents teams from running out of money."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "site",
+    partOfSpeech: "noun",
+    category: "Construction & Locations",
+    definition: "a place where a building is located or where one will be constructed",
+    examples: [
+      "The project manager visits the construction site every week.",
+      "The company selected a site near the main transport network."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "stay on track",
+    partOfSpeech: "phrase",
+    category: "Project Management",
+    definition: "to continue following the correct plan in order to achieve the intended result",
+    examples: [
+      "Weekly progress reports help the project stay on track.",
+      "The team revised its priorities to stay on track for the launch."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "tariff",
+    partOfSpeech: "noun",
+    category: "Pricing & Services",
+    definition: "a fixed price charged by a company for a particular service",
+    examples: [
+      "The mobile provider introduced a cheaper international tariff.",
+      "Customers can choose the tariff that best matches their usage."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "unrealistic budget",
+    partOfSpeech: "noun",
+    category: "Finance & Budgeting",
+    definition: "a planned amount of money that is insufficient because it does not reflect actual conditions or costs",
+    examples: [
+      "The project failed because management approved an unrealistic budget.",
+      "An unrealistic budget left no money for unexpected repairs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "upfront planning",
+    partOfSpeech: "noun",
+    category: "Planning & Strategy",
+    definition: "the process of preparing and organizing something carefully before work begins",
+    examples: [
+      "Thorough upfront planning reduced the risk of delays.",
+      "More upfront planning would have prevented the budget problems."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "vital",
+    partOfSpeech: "adjective",
+    category: "Importance & Priorities",
+    definition: "completely necessary or essential for something to succeed or continue",
+    examples: [
+      "Accurate forecasting is vital to effective project management.",
+      "Clear communication is vital when several contractors share a site."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 3,
+    word: "within budget",
+    partOfSpeech: "phrase",
+    category: "Finance & Budgeting",
+    definition: "costing no more than the amount of money available or originally planned",
+    examples: [
+      "The team completed the renovation within budget.",
+      "Careful resource allocation helped keep the project within budget."
+    ]
+  },
 
 //////////////////////////////
 //
