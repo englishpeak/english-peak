@@ -14622,7 +14622,666 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "absenteeism",
+    partOfSpeech: "noun",
+    category: "Attendance & Performance",
+    definition: "the practice of frequently staying away from work, especially without a good reason",
+    examples: [
+      "The attendance reward helped reduce absenteeism at the factory.",
+      "Managers investigated the reasons behind the department's high absenteeism."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "achievement",
+    partOfSpeech: "noun",
+    category: "Performance & Recognition",
+    definition: "something successfully completed through personal effort and skill",
+    examples: [
+      "Completing the international project was a significant achievement.",
+      "The award recognizes outstanding employee achievements."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "acknowledged",
+    partOfSpeech: "adjective",
+    category: "Status & Recognition",
+    definition: "publicly accepted as having achieved a particular status or level of authority",
+    examples: [
+      "She is an acknowledged expert in staff development.",
+      "The organization is an acknowledged leader in sustainable horticulture."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "alignment",
+    partOfSpeech: "noun",
+    category: "Strategy & Organization",
+    definition: "the correct relationship or agreement between different plans, activities, or objectives",
+    examples: [
+      "The compensation plan must be in alignment with the company's goals.",
+      "Better alignment between departments improved overall performance."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "annual bonus",
+    partOfSpeech: "noun",
+    category: "Pay & Rewards",
+    definition: "extra money added to an employee's wages once a year as a reward",
+    examples: [
+      "Employees receive an annual bonus based on company performance.",
+      "The remuneration package includes a generous annual bonus."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "appreciation",
+    partOfSpeech: "noun",
+    category: "Recognition & Motivation",
+    definition: "gratitude or recognition of someone's good qualities, effort, or work",
+    examples: [
+      "The manager expressed appreciation for the team's dedication.",
+      "Employees need to feel that their work receives genuine appreciation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "attendance reward",
+    partOfSpeech: "noun",
+    category: "Attendance & Rewards",
+    definition: "a benefit or payment given to an employee for attending work regularly",
+    examples: [
+      "The company introduced an attendance reward to reduce absenteeism.",
+      "Employees with perfect attendance receive an additional reward."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "autonomy",
+    partOfSpeech: "noun",
+    category: "Workplace Motivation",
+    definition: "the freedom and ability to make decisions without being controlled by someone else",
+    examples: [
+      "Greater autonomy can increase employee satisfaction.",
+      "Experienced managers are given considerable autonomy over their budgets."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "better yourself",
+    partOfSpeech: "phrase",
+    category: "Personal Development",
+    definition: "to improve your education, career, skills, or social position",
+    examples: [
+      "The training scheme gives employees opportunities to better themselves.",
+      "She studied in the evenings because she wanted to better herself."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "boost staff morale",
+    partOfSpeech: "phrase",
+    category: "Workplace Motivation",
+    definition: "to increase employees' confidence, enthusiasm, and satisfaction",
+    examples: [
+      "Public recognition can help boost staff morale.",
+      "Management organized a team event to boost staff morale."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "break the ice",
+    partOfSpeech: "phrase",
+    category: "Professional Relationships",
+    definition: "to say or do something that helps people relax and begin talking",
+    examples: [
+      "The facilitator used a short activity to break the ice.",
+      "A little informal conversation can break the ice before negotiations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "bump into",
+    partOfSpeech: "phrasal verb",
+    category: "Professional Relationships",
+    definition: "to meet someone unexpectedly or by chance",
+    examples: [
+      "I bumped into a former colleague at the conference.",
+      "She bumped into the regional manager near the exhibition hall."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "commission",
+    partOfSpeech: "noun",
+    category: "Pay & Rewards",
+    definition: "money paid to someone for selling goods, usually based on the value of their sales",
+    examples: [
+      "Sales representatives receive commission on every contract.",
+      "Her basic salary is modest, but she earns substantial commission."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "company car",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "a vehicle provided by an employer for an employee to use",
+    examples: [
+      "The remuneration package includes a company car.",
+      "Regional sales managers can use their company cars for business travel."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "compensation plan",
+    partOfSpeech: "noun",
+    category: "Pay & Benefits",
+    definition: "the complete system of pay, benefits, and rewards that an employee receives",
+    examples: [
+      "The company redesigned its compensation plan to improve staff retention.",
+      "A competitive compensation plan can help attract experienced candidates."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "dead-end job",
+    partOfSpeech: "noun",
+    category: "Careers & Development",
+    definition: "a job with low pay and little or no opportunity for advancement",
+    examples: [
+      "He left the position because it felt like a dead-end job.",
+      "Training can prevent entry-level roles from becoming dead-end jobs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "development",
+    partOfSpeech: "noun",
+    category: "Careers & Development",
+    definition: "the gradual process of improving through learning and becoming more advanced",
+    examples: [
+      "The company invests heavily in employee development.",
+      "Regular coaching supports professional development."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "discount",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "an amount removed from the usual price of something",
+    examples: [
+      "Employees receive a discount on the company's product range.",
+      "The benefits package includes travel and restaurant discounts."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "fare",
+    partOfSpeech: "noun",
+    category: "Travel & Benefits",
+    definition: "the amount of money paid to travel by bus, taxi, plane, or another form of transport",
+    examples: [
+      "The company reimburses employees for their train fares.",
+      "Staff can purchase airline fares at a discounted rate."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "feel valued",
+    partOfSpeech: "phrase",
+    category: "Recognition & Motivation",
+    definition: "to feel that you and your work are considered important by other people",
+    examples: [
+      "Positive feedback helps employees feel valued.",
+      "Staff are more loyal when they feel valued by management."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "filter through",
+    partOfSpeech: "phrasal verb",
+    category: "Workplace Communication",
+    definition: "to gradually reach or become known by more people",
+    examples: [
+      "News of the proposed bonus scheme filtered through the organization.",
+      "The manager's remarks quickly filtered through to the other subsidiaries."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "foster loyalty",
+    partOfSpeech: "phrase",
+    category: "Staff Retention",
+    definition: "to encourage people to remain faithful and supportive toward an organization",
+    examples: [
+      "Fair treatment can foster loyalty among employees.",
+      "The profit-sharing scheme was designed to foster staff loyalty."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "fulfilment",
+    partOfSpeech: "noun",
+    category: "Workplace Satisfaction",
+    definition: "a feeling of happiness and satisfaction produced by doing something meaningful",
+    examples: [
+      "Many employees seek personal fulfilment as well as financial rewards.",
+      "Helping junior colleagues gives her a strong sense of fulfilment."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "generous",
+    partOfSpeech: "adjective",
+    category: "Pay & Benefits",
+    definition: "larger or more freely given than is usual or expected",
+    examples: [
+      "The company offers a generous pension plan.",
+      "Employees received a generous annual bonus."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "gossip",
+    partOfSpeech: "noun",
+    category: "Workplace Communication",
+    definition: "informal talk about other people's private lives that may be unkind or untrue",
+    examples: [
+      "Office gossip created unnecessary anxiety about possible job losses.",
+      "Managers should respond quickly when harmful gossip begins to spread."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "hire",
+    partOfSpeech: "noun",
+    category: "Recruitment",
+    definition: "a person who has recently been employed by a company",
+    examples: [
+      "Every new hire receives a detailed orientation program.",
+      "The department introduced its latest hires during the meeting."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "horticulture",
+    partOfSpeech: "noun",
+    category: "Industries & Education",
+    definition: "the study or practice of growing flowers, fruit, and vegetables",
+    examples: [
+      "The college offers professional qualifications in horticulture.",
+      "She left her office job to pursue a career in horticulture."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "improve performance",
+    partOfSpeech: "phrase",
+    category: "Performance Management",
+    definition: "to help people work more effectively or produce better results",
+    examples: [
+      "Regular coaching can improve individual performance.",
+      "The incentive scheme was introduced to improve sales performance."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "incentive scheme",
+    partOfSpeech: "noun",
+    category: "Pay & Motivation",
+    definition: "a system that rewards people in order to encourage greater effort or particular behavior",
+    examples: [
+      "The factory introduced an incentive scheme based on productivity.",
+      "A poorly designed incentive scheme can create unhealthy competition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "intervene",
+    partOfSpeech: "verb",
+    category: "Management & Conflict",
+    definition: "to become involved in a situation in order to improve or resolve it",
+    examples: [
+      "The manager intervened when the disagreement became serious.",
+      "Human resources may need to intervene if morale continues to decline."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "make the grade",
+    partOfSpeech: "phrase",
+    category: "Performance & Standards",
+    definition: "to reach the required standard or succeed",
+    examples: [
+      "Only the strongest candidates make the grade.",
+      "The new hire struggled initially but eventually made the grade."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "misconception",
+    partOfSpeech: "noun",
+    category: "Ideas & Communication",
+    definition: "an incorrect belief or idea caused by inaccurate information",
+    examples: [
+      "There is a common misconception that money is the only source of motivation.",
+      "The presentation corrected several misconceptions about the pension plan."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "monopolize",
+    partOfSpeech: "verb",
+    category: "Professional Communication",
+    definition: "to take control of most of something and prevent other people from sharing it",
+    examples: [
+      "One participant monopolized the discussion.",
+      "Managers should not allow senior employees to monopolize every opportunity."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "motivate",
+    partOfSpeech: "verb",
+    category: "Workplace Motivation",
+    definition: "to make someone want to work hard or make a particular effort",
+    examples: [
+      "Recognition can motivate employees more effectively than money alone.",
+      "The manager uses clear objectives to motivate the sales team."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "non-cash rewards",
+    partOfSpeech: "noun",
+    category: "Pay & Rewards",
+    definition: "benefits other than money that are given to recognize good work or effort",
+    examples: [
+      "The company uses additional leave and vouchers as non-cash rewards.",
+      "Non-cash rewards can be highly motivating when tailored to employees."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "non-contributory pension plan",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "a pension plan paid for entirely by the employer rather than by the employee",
+    examples: [
+      "The remuneration package includes a non-contributory pension plan.",
+      "A generous non-contributory pension plan can improve staff retention."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "on-time bonus",
+    partOfSpeech: "noun",
+    category: "Attendance & Rewards",
+    definition: "extra money paid to employees as a reward for consistently arriving at work on time",
+    examples: [
+      "The factory introduced an on-time bonus for production staff.",
+      "Punctual employees receive an additional on-time bonus each quarter."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "perceived",
+    partOfSpeech: "adjective",
+    category: "Opinions & Motivation",
+    definition: "understood, interpreted, or regarded in a particular way",
+    examples: [
+      "The perceived fairness of the scheme affects employee motivation.",
+      "There was a gap between the actual benefits and their perceived value."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "perk",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "an additional benefit received as well as regular wages",
+    examples: [
+      "Free meals are a popular perk at the company.",
+      "The role includes several perks, such as flexible hours and a company car."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "positive feedback",
+    partOfSpeech: "noun",
+    category: "Recognition & Motivation",
+    definition: "comments showing that someone or their work is good or useful",
+    examples: [
+      "Regular positive feedback can boost staff morale.",
+      "The employee received positive feedback after the presentation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "praise",
+    partOfSpeech: "noun",
+    category: "Recognition & Motivation",
+    definition: "words that express approval or admiration for someone or something",
+    examples: [
+      "The team received praise for completing the project early.",
+      "Sincere praise can help employees feel valued."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "private medical insurance",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "an arrangement that pays for an employee's private medical treatment",
+    examples: [
+      "Private medical insurance is included in the executive package.",
+      "Many candidates consider private medical insurance an important benefit."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "profit-sharing scheme",
+    partOfSpeech: "noun",
+    category: "Pay & Rewards",
+    definition: "a system in which some of a company's profits are distributed among its employees",
+    examples: [
+      "The profit-sharing scheme rewards employees when the business performs well.",
+      "Management introduced a profit-sharing scheme to foster loyalty."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "range",
+    partOfSpeech: "noun",
+    category: "Products & Benefits",
+    definition: "a set of related products, services, or options",
+    examples: [
+      "The company offers a wide range of employee benefits.",
+      "Staff receive discounts across the entire product range."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "recognition",
+    partOfSpeech: "noun",
+    category: "Recognition & Motivation",
+    definition: "public praise or reward for someone's work, actions, or achievements",
+    examples: [
+      "Employees want recognition for their contribution to the project.",
+      "The award provides public recognition of outstanding performance."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "remark",
+    partOfSpeech: "noun",
+    category: "Workplace Communication",
+    definition: "something said or written that expresses an opinion or thought",
+    examples: [
+      "His negative remark affected the team's morale.",
+      "The director made several encouraging remarks during the meeting."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "remuneration package",
+    partOfSpeech: "noun",
+    category: "Pay & Benefits",
+    definition: "the complete combination of salary and benefits received for doing a job",
+    examples: [
+      "The senior position offers an attractive remuneration package.",
+      "Candidates compared the remuneration packages offered by both companies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "satisfaction",
+    partOfSpeech: "noun",
+    category: "Workplace Satisfaction",
+    definition: "the positive feeling produced when you achieve something or receive what you wanted",
+    examples: [
+      "Autonomy can increase job satisfaction.",
+      "The employee survey measures satisfaction with pay and development opportunities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "staff discount",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "a reduction in price offered to employees by the company they work for",
+    examples: [
+      "Employees receive a twenty percent staff discount.",
+      "The staff discount applies to the company's complete product range."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "staff retention",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the ability or practice of keeping employees within the same company",
+    examples: [
+      "Career development is essential for staff retention.",
+      "The new compensation plan significantly improved staff retention."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "subsidiary",
+    partOfSpeech: "noun",
+    category: "Company Structure",
+    definition: "a company owned or controlled by a larger company",
+    examples: [
+      "The multinational opened a new subsidiary in Singapore.",
+      "Benefit arrangements vary between the company's subsidiaries."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "time in lieu",
+    partOfSpeech: "phrase",
+    category: "Working Hours & Leave",
+    definition: "time away from work given in exchange for additional hours previously worked",
+    examples: [
+      "Employees who work weekends can take time in lieu.",
+      "She requested two days of time in lieu after the conference."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "various",
+    partOfSpeech: "adjective",
+    category: "Quantity & Variety",
+    definition: "several different",
+    examples: [
+      "The company offers various non-cash rewards.",
+      "Employees gave various reasons for leaving the organization."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "vary",
+    partOfSpeech: "verb",
+    category: "Change & Differences",
+    definition: "to change or be different depending on the situation",
+    examples: [
+      "Commission rates vary according to sales performance.",
+      "Employee preferences vary considerably between departments."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 2,
+    word: "voucher",
+    partOfSpeech: "noun",
+    category: "Employee Benefits",
+    definition: "a document or code used instead of money or to receive a price reduction",
+    examples: [
+      "Employees received restaurant vouchers as a non-cash reward.",
+      "The company gives travel vouchers to its top performers."
+    ]
+  },
 
 //////////////////////////////
 //
