@@ -18812,7 +18812,690 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "ability",
+    partOfSpeech: "noun",
+    category: "Skills & Performance",
+    definition: "someone’s level of skill or intelligence",
+    examples: [
+      "The assignment will test her ability to manage an international team.",
+      "Technical ability is important, but communication skills are equally valuable."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "abroad",
+    partOfSpeech: "adverb",
+    category: "International Careers",
+    definition: "in or to a foreign country",
+    examples: [
+      "She spent three years working abroad.",
+      "Employees posted abroad receive support with living expenses."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "acquire",
+    partOfSpeech: "verb",
+    category: "Skills & Development",
+    definition: "to gain or obtain something",
+    examples: [
+      "The secondment allowed him to acquire valuable management experience.",
+      "The company acquired a smaller competitor last year."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "appoint",
+    partOfSpeech: "verb",
+    category: "Recruitment & Leadership",
+    definition: "to officially choose someone for a job or position of responsibility",
+    examples: [
+      "The board appointed her as regional director.",
+      "An external consultant was appointed to lead the restructuring."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "bureaucracy",
+    partOfSpeech: "noun",
+    category: "Organizations & Administration",
+    definition: "official rules and procedures that appear complicated or make progress slower",
+    examples: [
+      "Excessive bureaucracy delayed the employee’s relocation.",
+      "The company simplified its procedures to reduce internal bureaucracy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "challenge",
+    partOfSpeech: "noun",
+    category: "Careers & Development",
+    definition: "a new or difficult task that tests someone’s ability and skill",
+    examples: [
+      "Managing the overseas subsidiary will be a significant challenge.",
+      "She accepted the role because she wanted a new professional challenge."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "change of direction",
+    partOfSpeech: "phrase",
+    category: "Careers & Development",
+    definition: "a change in someone’s aims or in the way their career or life is developing",
+    examples: [
+      "The temporary secondment led to a complete change of direction in his career.",
+      "After ten years in finance, she decided that she needed a change of direction."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "coincide",
+    partOfSpeech: "verb",
+    category: "Time & Events",
+    definition: "to happen at the same time as another event",
+    examples: [
+      "The relocation coincided with the launch of the new division.",
+      "His promotion coincided with a major change in corporate strategy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "commodity",
+    partOfSpeech: "noun",
+    category: "Trade & Markets",
+    definition: "a product or raw material that can be bought and sold",
+    examples: [
+      "The company trades agricultural commodities internationally.",
+      "Commodity prices have a direct impact on production costs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "compromise",
+    partOfSpeech: "noun",
+    category: "Negotiation & Decisions",
+    definition: "an agreement in which each side gives up part of what it wants",
+    examples: [
+      "Both departments accepted a compromise on the deployment schedule.",
+      "The final relocation package was a reasonable compromise."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "consultant",
+    partOfSpeech: "noun",
+    category: "Professional Roles",
+    definition: "an expert employed to provide advice about a particular subject",
+    examples: [
+      "The company hired a consultant to review its staff-development policy.",
+      "She works as an independent human-resources consultant."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "corporate culture",
+    partOfSpeech: "noun",
+    category: "Organizations & Culture",
+    definition: "the values, attitudes, and ways of thinking typical of a large business organization",
+    examples: [
+      "The new director found it difficult to adapt to the corporate culture.",
+      "A supportive corporate culture can improve staff retention."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "deployment",
+    partOfSpeech: "noun",
+    category: "Staffing & Operations",
+    definition: "the act of moving people or resources to a particular place so they can be used there",
+    examples: [
+      "The deployment of additional staff improved customer support.",
+      "Management approved her deployment to the overseas office."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "expendable",
+    partOfSpeech: "adjective",
+    category: "Employment & Ethics",
+    definition: "able to be removed or replaced when no longer considered useful or necessary",
+    examples: [
+      "Employees should never be treated as expendable resources.",
+      "Temporary staff were considered expendable during the restructuring."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "get on",
+    partOfSpeech: "phrasal verb",
+    category: "Career Progression",
+    definition: "to become successful in your career",
+    examples: [
+      "She moved abroad because she wanted to get on professionally.",
+      "Employees need development opportunities if they are going to get on."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "glass ceiling",
+    partOfSpeech: "noun",
+    category: "Equality & Careers",
+    definition: "an invisible barrier caused by attitudes that prevents women or other groups from reaching senior positions",
+    examples: [
+      "The company introduced mentoring to help break the glass ceiling.",
+      "Several talented managers felt that a glass ceiling limited their prospects."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "incompetent",
+    partOfSpeech: "adjective",
+    category: "Skills & Performance",
+    definition: "not having the skill or ability required to perform a job properly",
+    examples: [
+      "The investigation found that the supervisor was not incompetent but poorly trained.",
+      "An incompetent manager can seriously damage team morale."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "invest",
+    partOfSpeech: "verb",
+    category: "Development & Resources",
+    definition: "to spend money on something in order to improve it or make it more successful",
+    examples: [
+      "The organization invests heavily in staff development.",
+      "Companies must invest in training if employees are expected to update their skills."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "job mobility",
+    partOfSpeech: "noun",
+    category: "Careers & Employment",
+    definition: "the ability to move easily from one job to another",
+    examples: [
+      "Transferable skills improve job mobility.",
+      "Remote working has increased job mobility across international markets."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "key vacancy",
+    partOfSpeech: "noun",
+    category: "Recruitment",
+    definition: "a very important available position within a company",
+    examples: [
+      "The company appointed an external candidate to fill the key vacancy.",
+      "Leaving the key vacancy unfilled would delay the expansion."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "laid off",
+    partOfSpeech: "adjective",
+    category: "Employment & Restructuring",
+    definition: "made unemployed because an employer no longer has enough work",
+    examples: [
+      "Hundreds of factory workers were laid off.",
+      "Employees who were laid off received career-transition support."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "living expenses",
+    partOfSpeech: "noun",
+    category: "Relocation & Finance",
+    definition: "money spent on the things needed in everyday life",
+    examples: [
+      "The international assignment includes an allowance for living expenses.",
+      "Living expenses are considerably higher in the capital."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "make redundant",
+    partOfSpeech: "phrase",
+    category: "Employment & Restructuring",
+    definition: "to end someone’s employment because their position is no longer needed",
+    examples: [
+      "The company may make several administrative employees redundant.",
+      "Automation made some traditional production roles redundant."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "monotonous",
+    partOfSpeech: "adjective",
+    category: "Work Experience",
+    definition: "never changing and therefore becoming boring",
+    examples: [
+      "She left because the work had become monotonous.",
+      "Automation can reduce the amount of monotonous work employees perform."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "native",
+    partOfSpeech: "adjective",
+    category: "Countries & Identity",
+    definition: "relating to the country where someone was born and spent the first years of their life",
+    examples: [
+      "He returned to his native country after the assignment.",
+      "She speaks the local language at a near-native level."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "no-no",
+    partOfSpeech: "noun",
+    category: "Workplace Culture",
+    definition: "a behavior or action that is considered unacceptable in a particular situation",
+    examples: [
+      "Ignoring local business etiquette is a serious no-no.",
+      "Discussing confidential salaries is a workplace no-no."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "opportunity for advancement",
+    partOfSpeech: "phrase",
+    category: "Career Progression",
+    definition: "the possibility of progressing or reaching a more senior position at work",
+    examples: [
+      "The role offers excellent opportunities for advancement.",
+      "Employees may leave when they see no opportunity for advancement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "opt",
+    partOfSpeech: "verb",
+    category: "Choices & Decisions",
+    definition: "to choose a particular course of action",
+    examples: [
+      "She opted for a temporary secondment rather than permanent relocation.",
+      "Several employees opted to take early retirement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "personal development",
+    partOfSpeech: "noun",
+    category: "Careers & Skills",
+    definition: "growth and improvement in a person’s knowledge, abilities, and experience",
+    examples: [
+      "The appraisal includes a discussion of personal development.",
+      "International assignments can offer valuable personal-development opportunities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "promote",
+    partOfSpeech: "verb",
+    category: "Career Progression",
+    definition: "to move someone to a higher rank or more senior position",
+    examples: [
+      "The company prefers to promote employees internally.",
+      "She was promoted after successfully managing the deployment."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "prospects",
+    partOfSpeech: "noun",
+    category: "Careers & Success",
+    definition: "the chances of being successful in the future",
+    examples: [
+      "The qualification significantly improved his career prospects.",
+      "Her prospects of promotion are excellent."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "recurring",
+    partOfSpeech: "adjective",
+    category: "Problems & Patterns",
+    definition: "happening repeatedly",
+    examples: [
+      "High staff turnover is a recurring problem.",
+      "The consultant identified a recurring weakness in the training process."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "red tape",
+    partOfSpeech: "noun",
+    category: "Administration & Bureaucracy",
+    definition: "official procedures that seem unnecessarily complicated and delay action",
+    examples: [
+      "Red tape delayed the employee’s work permit.",
+      "The government promised to reduce red tape for international businesses."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "redeploy",
+    partOfSpeech: "verb",
+    category: "Staffing & Restructuring",
+    definition: "to move a person or resource to a new job, position, or location",
+    examples: [
+      "The company redeployed several employees instead of making them redundant.",
+      "Staff were redeployed to departments experiencing shortages."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "regret",
+    partOfSpeech: "verb",
+    category: "Feelings & Decisions",
+    definition: "to feel sorry about something you have done or a decision you have made",
+    examples: [
+      "She did not regret accepting the overseas assignment.",
+      "Management later regretted cutting the training budget."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "relocation",
+    partOfSpeech: "noun",
+    category: "International Careers",
+    definition: "the process of moving a person or business to a new place to work or operate",
+    examples: [
+      "The company paid all costs associated with the relocation.",
+      "International relocation can be stressful for employees and their families."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "resource",
+    partOfSpeech: "verb",
+    category: "Planning & Operations",
+    definition: "to provide something with the money, people, or equipment required",
+    examples: [
+      "The project must be properly resourced before it begins.",
+      "Management failed to resource the training program adequately."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "restless",
+    partOfSpeech: "adjective",
+    category: "Careers & Motivation",
+    definition: "unable to remain satisfied because you are bored or need a change",
+    examples: [
+      "She became restless after several years in the same position.",
+      "Ambitious employees may become restless without new challenges."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "retain",
+    partOfSpeech: "verb",
+    category: "Human Resources",
+    definition: "to keep someone or something and prevent them from leaving or being lost",
+    examples: [
+      "The company introduced flexible working to retain experienced staff.",
+      "Competitive benefits help organizations retain talented employees."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "retirement",
+    partOfSpeech: "noun",
+    category: "Employment & Benefits",
+    definition: "the act or period of permanently stopping work after reaching a particular age",
+    examples: [
+      "The director announced her retirement after thirty years with the company.",
+      "Employees receive financial-planning support before retirement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "repatriation",
+    partOfSpeech: "noun",
+    category: "International Assignments",
+    definition: "the process of returning someone to their own country",
+    examples: [
+      "The company provides repatriation support after overseas assignments.",
+      "Poorly managed repatriation can cause experienced employees to leave."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "roster",
+    partOfSpeech: "noun",
+    category: "Staffing & Scheduling",
+    definition: "a list showing people’s names, duties, or periods of availability",
+    examples: [
+      "The manager updated the weekend roster.",
+      "Her name was added to the roster of international consultants."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "secondment",
+    partOfSpeech: "noun",
+    category: "Careers & Development",
+    definition: "the temporary transfer of an employee to another department, office, or organization",
+    examples: [
+      "He completed a six-month secondment in the finance department.",
+      "The secondment gave her experience of international operations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "sideways move",
+    partOfSpeech: "noun",
+    category: "Career Progression",
+    definition: "a change to a different job at the same organizational level",
+    examples: [
+      "The sideways move allowed her to acquire new skills.",
+      "He accepted a sideways move into marketing rather than waiting for promotion."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "staff development",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the process of helping employees improve their skills, knowledge, and experience",
+    examples: [
+      "The organization increased its investment in staff development.",
+      "Secondments form an important part of the staff-development program."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "staff turnover",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the rate at which employees leave an organization and are replaced",
+    examples: [
+      "Staff turnover declined after salaries were increased.",
+      "Limited promotion prospects contributed to high staff turnover."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "stretch",
+    partOfSpeech: "verb",
+    category: "Resources & Pressure",
+    definition: "to use a large amount of available money, time, supplies, or capacity",
+    examples: [
+      "The relocation costs will stretch the department’s budget.",
+      "The rapid expansion has stretched existing human resources."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "suitable",
+    partOfSpeech: "adjective",
+    category: "Recruitment & Decisions",
+    definition: "appropriate or correct for a particular purpose",
+    examples: [
+      "The recruiter identified three suitable candidates.",
+      "This assignment may not be suitable for employees with limited international experience."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "take early retirement",
+    partOfSpeech: "phrase",
+    category: "Employment & Retirement",
+    definition: "to choose to stop working before the usual retirement age",
+    examples: [
+      "Several senior employees agreed to take early retirement.",
+      "The company offered financial incentives to staff who took early retirement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "team spirit",
+    partOfSpeech: "noun",
+    category: "Teamwork & Culture",
+    definition: "the willingness of people to work together and support one another as a team",
+    examples: [
+      "The overseas assignment strengthened team spirit.",
+      "Frequent staff changes can weaken team spirit."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "temporary secondment",
+    partOfSpeech: "noun",
+    category: "Careers & Development",
+    definition: "a short period spent doing a different job in another department or office",
+    examples: [
+      "She accepted a temporary secondment to the regional headquarters.",
+      "A temporary secondment can help employees develop transferable skills."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "tentative",
+    partOfSpeech: "adjective",
+    category: "Plans & Decisions",
+    definition: "not yet definite or certain",
+    examples: [
+      "The company announced a tentative relocation date.",
+      "We have reached a tentative agreement on the secondment."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "training",
+    partOfSpeech: "noun",
+    category: "Skills & Development",
+    definition: "the process of learning the skills required to perform a job",
+    examples: [
+      "Every redeployed employee will receive additional training.",
+      "The company provides cultural training before overseas assignments."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "transferable skills",
+    partOfSpeech: "noun",
+    category: "Skills & Careers",
+    definition: "abilities that can be used in different jobs or situations",
+    examples: [
+      "Project management and communication are valuable transferable skills.",
+      "The course helps unemployed workers identify their transferable skills."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "unemployed",
+    partOfSpeech: "adjective",
+    category: "Employment",
+    definition: "without a job despite wanting to work",
+    examples: [
+      "The program provides training for unemployed graduates.",
+      "Many workers became unemployed after the factory closed."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "update skills",
+    partOfSpeech: "phrase",
+    category: "Skills & Development",
+    definition: "to learn the newest methods and knowledge required for a job",
+    examples: [
+      "Employees must regularly update their digital skills.",
+      "The training program helps experienced workers update their skills."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 9,
+    word: "vast",
+    partOfSpeech: "adjective",
+    category: "Quantity & Scale",
+    definition: "extremely large",
+    examples: [
+      "The organization has a vast international workforce.",
+      "The consultant has vast experience of managing corporate change."
+    ]
+  },
 
 //////////////////////////////
 //
