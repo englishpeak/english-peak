@@ -58,6 +58,7 @@
       <button class="theme-button" type="button" data-theme="city" aria-label="Cityscape glass theme" title="Cityscape Theme">🏙️</button>
     </nav>
   </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script type="module">
 import { businessFlashcards } from '/src/data/businessFlashcards.js';
 
@@ -116,15 +117,46 @@ document.querySelectorAll('.theme-button').forEach(button => {
 
 const ACCESS_CONTROL_ENABLED = true;
 
-function getInitialUserTier() {
-  const params = new URLSearchParams(window.location.search);
-  const tier = (params.get('tier') || 'visitor').toLowerCase();
-  if (['premium', 'teacher', 'courtesy', 'epeakplus'].includes(tier)) return 'epeakPlus';
-  if (['free', 'account'].includes(tier)) return 'account';
-  return 'visitor';
+const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
+const EPEAK_PLUS_TIERS = ['premium', 'teacher', 'courtesy'];
+let currentUserTier = 'visitor';
+
+function mapProfileToUserTier(profile) {
+  if (!profile) return 'account';
+  if (profile.is_admin || EPEAK_PLUS_TIERS.includes(profile.tier)) return 'epeakPlus';
+  return 'account';
 }
 
-const currentUserTier = getInitialUserTier();
+async function resolveAuthenticatedUserTier() {
+  if (!window.supabase || !window.supabase.createClient) return 'visitor';
+
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      storageKey: 'ep-auth-token',
+    },
+  });
+
+  try {
+    const { data: sessionData } = await client.auth.getSession();
+    const user = sessionData && sessionData.session && sessionData.session.user;
+    if (!user) return 'visitor';
+
+    const { data: profile } = await client
+      .from('profiles')
+      .select('tier,is_admin')
+      .eq('id', user.id)
+      .single();
+
+    return mapProfileToUserTier(profile);
+  } catch (error) {
+    console.warn('Could not verify Business Flashcards access tier:', error);
+    return 'visitor';
+  }
+}
 const LEVELS = [
   { key: 'elementary', label: 'Elementary' },
   { key: 'pre-intermediate', label: 'Pre-intermediate' },
@@ -288,6 +320,14 @@ $('checkBlanks').onclick = () => { const ok = [...document.querySelectorAll('#bl
 mountLevelFilters();
 updateAccessCta();
 renderFlashcard();
+resolveAuthenticatedUserTier().then(tier => {
+  currentUserTier = tier;
+  selectedLevels = new Set([...selectedLevels].filter(level => levelHasAccessibleVocabulary(level)));
+  if (selectedLevels.size === 0 && levelHasAccessibleVocabulary('elementary')) selectedLevels.add('elementary');
+  updateLevelFilters();
+  updateAccessCta();
+  regenerateCurrentActivity();
+});
 </script>
 </body>
 </html>
