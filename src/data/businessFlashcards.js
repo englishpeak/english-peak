@@ -17850,6 +17850,414 @@ export const businessFlashcards = [
       "The recruitment freeze lasted six months."
     ]
   },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "get a different perspective",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to change the way you think about or understand a situation",
+    examples: [
+      "Speaking to customers helped us get a different perspective on the problem.",
+      "The consultant encouraged managers to get a different perspective before deciding."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "have confidence in your judgment",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to feel certain that you are capable of making sensible decisions",
+    examples: [
+      "Experienced managers need to have confidence in their judgment.",
+      "She reviewed the evidence and had confidence in her judgment."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "impulsive",
+    partOfSpeech: "adjective",
+    category: "Personality & Decisions",
+    definition: "acting suddenly without carefully considering the possible consequences",
+    examples: [
+      "The director made an impulsive decision to reject the offer.",
+      "Impulsive purchasing can create serious cashflow problems."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "indecisive",
+    partOfSpeech: "adjective",
+    category: "Personality & Decisions",
+    definition: "unable to make decisions quickly or confidently",
+    examples: [
+      "An indecisive manager can delay an entire project.",
+      "The committee appeared indecisive when presented with the two options."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "innate",
+    partOfSpeech: "adjective",
+    category: "Abilities & Personality",
+    definition: "being a natural quality or ability that someone is born with",
+    examples: [
+      "She has an innate ability to understand customer behavior.",
+      "Some people believe that leadership is an innate quality."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "instinctive",
+    partOfSpeech: "adjective",
+    category: "Decision-Making",
+    definition: "based on natural feelings rather than conscious thought or training",
+    examples: [
+      "His instinctive reaction was to reject the proposal.",
+      "The entrepreneur has an instinctive understanding of the market."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "introvert",
+    partOfSpeech: "noun",
+    category: "Personality",
+    definition: "a quiet person who is more interested in their own thoughts than in spending time with other people",
+    examples: [
+      "An introvert may prefer written communication to large networking events.",
+      "Being an introvert does not prevent someone from becoming an effective leader."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "intuition",
+    partOfSpeech: "noun",
+    category: "Decision-Making",
+    definition: "the ability to understand or know something through feelings rather than by considering facts",
+    examples: [
+      "Her intuition suggested that the client was not ready to sign.",
+      "Managers sometimes use intuition when reliable data is unavailable."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "judge",
+    partOfSpeech: "verb",
+    category: "Evaluation & Decisions",
+    definition: "to form an opinion about someone or something using the information available",
+    examples: [
+      "Investors judged the proposal according to its commercial potential.",
+      "It is difficult to judge performance from one quarter's results."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "lay-off",
+    partOfSpeech: "noun",
+    category: "Employment & Restructuring",
+    definition: "an act of making employees unemployed because there is insufficient work for them",
+    examples: [
+      "The fall in demand resulted in a temporary lay-off.",
+      "Management considered several alternatives to large-scale lay-offs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "make up your mind",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to make a final decision",
+    examples: [
+      "The board must make up its mind before the deadline.",
+      "She considered every option before making up her mind."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "methodical",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "performing tasks in a careful, organized, and logical way",
+    examples: [
+      "The analyst took a methodical approach to the investigation.",
+      "Methodical planning helped the team control expenditure."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "overheads",
+    partOfSpeech: "noun",
+    category: "Finance & Costs",
+    definition: "the regular costs of operating a business, such as rent, wages, and electricity",
+    examples: [
+      "The company relocated to reduce its overheads.",
+      "Higher energy prices significantly increased manufacturing overheads."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "pragmatic",
+    partOfSpeech: "adjective",
+    category: "Problem-Solving",
+    definition: "dealing with problems in a practical and sensible way rather than relying on fixed theories",
+    examples: [
+      "The manager adopted a pragmatic approach to the cashflow crisis.",
+      "We need a pragmatic solution that can be implemented immediately."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "provider",
+    partOfSpeech: "noun",
+    category: "Products & Services",
+    definition: "a person or organization that supplies something people need or want",
+    examples: [
+      "The company changed its internet-service provider.",
+      "The government selected a new healthcare provider."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "rational",
+    partOfSpeech: "adjective",
+    category: "Decision-Making",
+    definition: "based on reason and facts rather than emotions",
+    examples: [
+      "The committee made a rational decision based on the evidence.",
+      "A rational analysis showed that the project was financially viable."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "reject",
+    partOfSpeech: "verb",
+    category: "Choices & Decisions",
+    definition: "to refuse to accept, approve, or consider something",
+    examples: [
+      "The board rejected the proposed freeze on recruitment.",
+      "The customer rejected the provider's compensation offer."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "rely on feelings",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to use emotions or intuition to help determine what action to take",
+    examples: [
+      "Some entrepreneurs rely on feelings when evaluating opportunities.",
+      "Important financial decisions should not rely on feelings alone."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "self-contained",
+    partOfSpeech: "adjective",
+    category: "Personality & Independence",
+    definition: "independent and not requiring help or support from other people",
+    examples: [
+      "She is self-contained and comfortable working independently.",
+      "The remote office operates as a self-contained business unit."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "sensor",
+    partOfSpeech: "noun",
+    category: "Personality & Decisions",
+    definition: "a person who prefers to be practical and make decisions by considering facts",
+    examples: [
+      "As a sensor, he focuses on evidence and practical details.",
+      "The team included both intuitive thinkers and careful sensors."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "stick with",
+    partOfSpeech: "phrasal verb",
+    category: "Choices & Commitment",
+    definition: "to continue using, supporting, or doing something",
+    examples: [
+      "The company decided to stick with its existing provider.",
+      "We should stick with the original plan unless new evidence emerges."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "stock",
+    partOfSpeech: "noun",
+    category: "Inventory & Retail",
+    definition: "a supply of goods that a business has available for sale",
+    examples: [
+      "The retailer reduced prices to clear its remaining stock.",
+      "The system provides accurate information about current stock levels."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "subsidy",
+    partOfSpeech: "noun",
+    category: "Government & Finance",
+    definition: "money provided by a government or organization to reduce the cost of services or production",
+    examples: [
+      "The transport provider receives a government subsidy.",
+      "Without the subsidy, the service would become significantly more expensive."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "tactful",
+    partOfSpeech: "adjective",
+    category: "Professional Communication",
+    definition: "careful not to say or do anything that may annoy, offend, or upset other people",
+    examples: [
+      "The manager gave a tactful explanation of the proposed lay-offs.",
+      "A tactful response helped resolve the disagreement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "thorough",
+    partOfSpeech: "adjective",
+    category: "Professional Qualities",
+    definition: "performing work very carefully and paying close attention to every detail",
+    examples: [
+      "The consultant carried out a thorough financial review.",
+      "A thorough investigation revealed several unnecessary overheads."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "thoughtful",
+    partOfSpeech: "adjective",
+    category: "Professional Behavior",
+    definition: "showing careful consideration, especially for other people's feelings",
+    examples: [
+      "The director gave a thoughtful response to the employees' concerns.",
+      "Her thoughtful approach made the difficult conversation easier."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "trouble-shooter",
+    partOfSpeech: "noun",
+    category: "Problem-Solving",
+    definition: "a person who is skilled at identifying and resolving problems within an organization",
+    examples: [
+      "The company hired an experienced trouble-shooter to restore profitability.",
+      "She has a reputation as an effective corporate trouble-shooter."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "trust your instincts",
+    partOfSpeech: "phrase",
+    category: "Decision-Making",
+    definition: "to have confidence in your natural feelings about what action to take",
+    examples: [
+      "Experienced negotiators sometimes need to trust their instincts.",
+      "He trusted his instincts and rejected the apparently attractive offer."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "ultimately",
+    partOfSpeech: "adverb",
+    category: "Results & Conclusions",
+    definition: "finally or in the end",
+    examples: [
+      "The board is ultimately responsible for the decision.",
+      "The investment ultimately produced a substantial return."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "unconventional",
+    partOfSpeech: "adjective",
+    category: "Ideas & Behavior",
+    definition: "different from the behavior or methods generally considered normal or acceptable",
+    examples: [
+      "The company adopted an unconventional marketing strategy.",
+      "Her unconventional solution initially surprised the board."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "USP",
+    partOfSpeech: "noun",
+    category: "Marketing & Strategy",
+    definition: "unique selling point; a feature that makes a product or service different from its competitors",
+    examples: [
+      "The product's durability is its main USP.",
+      "The campaign failed to communicate the service's USP clearly."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "vertical",
+    partOfSpeech: "adjective",
+    category: "Position & Direction",
+    definition: "positioned or moving straight upward or downward from a level surface",
+    examples: [
+      "The company uses vertical storage to save warehouse space.",
+      "The chart's vertical axis represents annual expenditure."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "weigh up information",
+    partOfSpeech: "phrase",
+    category: "Analysis & Decisions",
+    definition: "to carefully consider information before forming an opinion or making a decision",
+    examples: [
+      "The board weighed up the information before approving the lay-offs.",
+      "Good managers weigh up information from several reliable sources."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "wisdom",
+    partOfSpeech: "noun",
+    category: "Knowledge & Decisions",
+    definition: "the ability to make sensible decisions and give good advice because of knowledge and experience",
+    examples: [
+      "The team benefited from the founder's experience and wisdom.",
+      "The wisdom of reducing expenditure became apparent later."
+    ]
+  },
 
 //////////////////////////////
 //
