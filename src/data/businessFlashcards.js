@@ -17550,7 +17550,306 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "abstract",
+    partOfSpeech: "adjective",
+    category: "Thinking",
+    definition: "based on ideas and concepts rather than physical reality",
+    examples: [
+      "The presentation became too abstract for the audience.",
+      "Managers should balance abstract thinking with practical action."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "actual",
+    partOfSpeech: "adjective",
+    category: "Facts",
+    definition: "real and existing in fact",
+    examples: [
+      "The actual costs were lower than expected.",
+      "We finally received the actual sales figures."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "apparent",
+    partOfSpeech: "adjective",
+    category: "Observation",
+    definition: "seeming to be true, although it may not be",
+    examples: [
+      "It soon became apparent that demand was falling.",
+      "The apparent success hid several financial problems."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "argue",
+    partOfSpeech: "verb",
+    category: "Communication",
+    definition: "to give reasons in order to persuade someone that something is true",
+    examples: [
+      "She argued that the project should continue.",
+      "The lawyer argued the case convincingly."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "associated",
+    partOfSpeech: "adjective",
+    category: "Relationships",
+    definition: "connected with another person, thing or event",
+    examples: [
+      "The brand is associated with quality.",
+      "High stress is often associated with poor decision-making."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "cashflow",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "the movement of money into and out of a business",
+    examples: [
+      "Healthy cashflow keeps a company operating smoothly.",
+      "The startup experienced cashflow problems."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "compliment",
+    partOfSpeech: "verb",
+    category: "Communication",
+    definition: "to express admiration or praise",
+    examples: [
+      "The client complimented the support team.",
+      "The manager complimented her excellent presentation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "concern",
+    partOfSpeech: "noun",
+    category: "Business",
+    definition: "a feeling of worry or interest about something",
+    examples: [
+      "Employee safety remains our main concern.",
+      "Environmental concerns influenced the decision."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "consider all the options",
+    partOfSpeech: "phrase",
+    category: "Decision Making",
+    definition: "to think carefully about every possible choice before deciding",
+    examples: [
+      "We should consider all the options before investing.",
+      "The committee considered all the options carefully."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "conventional",
+    partOfSpeech: "adjective",
+    category: "Business",
+    definition: "following the usual or traditional way",
+    examples: [
+      "They preferred conventional marketing methods.",
+      "The company avoided conventional solutions."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "courtroom",
+    partOfSpeech: "noun",
+    category: "Legal",
+    definition: "the room where legal cases are heard",
+    examples: [
+      "The CEO appeared in the courtroom.",
+      "The courtroom was full during the trial."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "creative",
+    partOfSpeech: "adjective",
+    category: "Innovation",
+    definition: "able to produce new and original ideas",
+    examples: [
+      "The agency hired creative designers.",
+      "Creative thinking solved the problem."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "decide between",
+    partOfSpeech: "verb",
+    category: "Decision Making",
+    definition: "to choose one option from two or more possibilities",
+    examples: [
+      "We had to decide between two suppliers.",
+      "She couldn't decide between the job offers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "deficit",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "the amount by which spending exceeds income",
+    examples: [
+      "The government reported a budget deficit.",
+      "The business reduced its annual deficit."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "detached",
+    partOfSpeech: "adjective",
+    category: "Personality",
+    definition: "not emotionally involved",
+    examples: [
+      "He remained detached during negotiations.",
+      "A detached opinion can improve decision-making."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "determined",
+    partOfSpeech: "adjective",
+    category: "Personality",
+    definition: "firmly decided to achieve something",
+    examples: [
+      "She was determined to expand the business.",
+      "The team remained determined despite setbacks."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "emerge",
+    partOfSpeech: "verb",
+    category: "Business",
+    definition: "to become known or appear gradually",
+    examples: [
+      "New competitors emerged quickly.",
+      "A clear trend emerged from the research."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "emotion",
+    partOfSpeech: "noun",
+    category: "Psychology",
+    definition: "a strong feeling such as happiness, fear or anger",
+    examples: [
+      "Good leaders control emotion under pressure.",
+      "Emotion sometimes influences business decisions."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "evidence",
+    partOfSpeech: "noun",
+    category: "Analysis",
+    definition: "facts or information that show something is true",
+    examples: [
+      "We need evidence before making accusations.",
+      "The report provides strong evidence."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "expenditure",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "the amount of money spent",
+    examples: [
+      "Marketing expenditure increased this year.",
+      "Government expenditure reached record levels."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "expressive",
+    partOfSpeech: "adjective",
+    category: "Communication",
+    definition: "showing thoughts and feelings clearly",
+    examples: [
+      "She gave an expressive presentation.",
+      "His expressive style kept everyone engaged."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "extrovert",
+    partOfSpeech: "noun",
+    category: "Personality",
+    definition: "someone who enjoys being with other people",
+    examples: [
+      "He is a natural extrovert.",
+      "Extroverts often enjoy networking events."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "flexible",
+    partOfSpeech: "adjective",
+    category: "Workplace",
+    definition: "able and willing to adapt to changing situations",
+    examples: [
+      "Flexible employees adjust quickly.",
+      "The schedule is flexible enough for everyone."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "focused",
+    partOfSpeech: "adjective",
+    category: "Performance",
+    definition: "giving full attention to one objective",
+    examples: [
+      "The team remained focused throughout the project.",
+      "Focused planning reduced unnecessary costs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 7,
+    word: "freeze on recruitment",
+    partOfSpeech: "phrase",
+    category: "Human Resources",
+    definition: "a temporary decision not to hire new employees",
+    examples: [
+      "The company announced a freeze on recruitment.",
+      "The recruitment freeze lasted six months."
+    ]
+  },
 
 //////////////////////////////
 //
