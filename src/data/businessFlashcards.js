@@ -18265,7 +18265,546 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "achieve lower overheads",
+    partOfSpeech: "phrase",
+    category: "Costs & Efficiency",
+    definition: "to succeed in reducing the regular costs involved in operating a business",
+    examples: [
+      "The company outsourced payroll to achieve lower overheads.",
+      "Remote working helped the organization achieve lower overheads."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "afford",
+    partOfSpeech: "verb",
+    category: "Finance & Risk",
+    definition: "to be able to do something without causing serious financial or practical problems",
+    examples: [
+      "The company cannot afford to lose another major client.",
+      "Small businesses may not be able to afford expensive legal advice."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "booming",
+    partOfSpeech: "adjective",
+    category: "Markets & Growth",
+    definition: "growing rapidly or becoming increasingly successful",
+    examples: [
+      "The country has a booming technology sector.",
+      "Demand for outsourced services is booming."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "buoyant",
+    partOfSpeech: "adjective",
+    category: "Markets & Finance",
+    definition: "remaining at a high level or increasing, especially as a sign of financial success",
+    examples: [
+      "The export market remains buoyant despite economic uncertainty.",
+      "Buoyant consumer demand encouraged the company to expand."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "business process outsourcing",
+    partOfSpeech: "noun",
+    category: "Outsourcing & Operations",
+    definition: "the practice of giving responsibility for operating a business system or service to an external provider",
+    examples: [
+      "Business process outsourcing can reduce administrative costs.",
+      "The company uses business process outsourcing for payroll and customer support."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "competitive edge",
+    partOfSpeech: "noun",
+    category: "Competition & Strategy",
+    definition: "a quality or advantage that allows a business to perform better than its competitors",
+    examples: [
+      "Lower operating costs give the company a competitive edge.",
+      "Specialist expertise can provide a valuable competitive edge."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "controversial",
+    partOfSpeech: "adjective",
+    category: "Business & Society",
+    definition: "causing considerable public disagreement or angry discussion",
+    examples: [
+      "The decision to move jobs offshore was highly controversial.",
+      "The government introduced a controversial protectionist policy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "core activity",
+    partOfSpeech: "noun",
+    category: "Strategy & Operations",
+    definition: "one of the main or most important activities performed by an organization",
+    examples: [
+      "Product development remains the company's core activity.",
+      "Outsourcing allows managers to concentrate on core activities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "cost-cutting measures",
+    partOfSpeech: "noun",
+    category: "Costs & Restructuring",
+    definition: "actions taken by a business to reduce its expenditure",
+    examples: [
+      "Management introduced cost-cutting measures after sales declined.",
+      "The measures included outsourcing and a temporary recruitment freeze."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "create jobs",
+    partOfSpeech: "phrase",
+    category: "Employment & Growth",
+    definition: "to produce new employment opportunities for people",
+    examples: [
+      "The new training center will create jobs in the local area.",
+      "Export growth has helped the manufacturing sector create jobs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "cultural affinity",
+    partOfSpeech: "noun",
+    category: "Culture & International Business",
+    definition: "a feeling of understanding, similarity, or connection with another culture",
+    examples: [
+      "Cultural affinity made communication with the offshore team easier.",
+      "The provider was chosen partly because of its cultural affinity with the client."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "develop strategies",
+    partOfSpeech: "phrase",
+    category: "Planning & Strategy",
+    definition: "to create plans intended to achieve a particular objective",
+    examples: [
+      "Managers developed strategies to improve productivity.",
+      "The company is developing strategies for entering emerging markets."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "distinguish",
+    partOfSpeech: "verb",
+    category: "Analysis & Comparison",
+    definition: "to recognize or demonstrate how one person or thing differs from another",
+    examples: [
+      "Customers sometimes struggle to distinguish between the two services.",
+      "The company's work ethic distinguishes it from its competitors."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "establishment",
+    partOfSpeech: "noun",
+    category: "Business Development",
+    definition: "the act of starting or creating something intended to continue for a long time",
+    examples: [
+      "The agreement led to the establishment of a regional training center.",
+      "The establishment of the subsidiary created hundreds of jobs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "expertise",
+    partOfSpeech: "noun",
+    category: "Knowledge & Skills",
+    definition: "expert knowledge or skill in a particular subject, activity, or profession",
+    examples: [
+      "The external provider has specialist expertise in payroll systems.",
+      "The company recruited graduates with technical expertise."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "export growth",
+    partOfSpeech: "noun",
+    category: "International Trade",
+    definition: "an increase in the quantity or value of goods sold to other countries",
+    examples: [
+      "Export growth created additional employment in manufacturing.",
+      "The government invested in infrastructure to support export growth."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "free up human resources",
+    partOfSpeech: "phrase",
+    category: "Human Resources & Efficiency",
+    definition: "to make employees available to work on other tasks or priorities",
+    examples: [
+      "Automation can free up human resources for more strategic work.",
+      "Outsourcing payroll freed up human resources within the finance department."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "fuel",
+    partOfSpeech: "verb",
+    category: "Growth & Causes",
+    definition: "to increase, strengthen, or encourage the development of something",
+    examples: [
+      "Consumer demand fueled rapid growth in the sector.",
+      "Lower labor costs have fueled the expansion of offshore services."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "get through",
+    partOfSpeech: "phrasal verb",
+    category: "Work & Productivity",
+    definition: "to succeed in completing a task or a particular amount of work",
+    examples: [
+      "The offshore team gets through a large volume of work each day.",
+      "We need additional staff to get through the backlog."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "graduate",
+    partOfSpeech: "noun",
+    category: "Education & Recruitment",
+    definition: "a person who has successfully completed a university degree",
+    examples: [
+      "The company recruits several hundred graduates each year.",
+      "Local training facilities prepare graduates for jobs in the sector."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "indirect employment",
+    partOfSpeech: "noun",
+    category: "Employment & Outsourcing",
+    definition: "employment through an independent company that provides contracted services to another organization",
+    examples: [
+      "Outsourcing created considerable indirect employment.",
+      "Many workers provide customer support through indirect employment arrangements."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "infrastructure",
+    partOfSpeech: "noun",
+    category: "Economy & Development",
+    definition: "the basic systems and services needed for a country or organization to operate effectively",
+    examples: [
+      "Reliable digital infrastructure is essential for offshore services.",
+      "The government invested in transport and energy infrastructure."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "job losses",
+    partOfSpeech: "noun",
+    category: "Employment & Restructuring",
+    definition: "situations in which employees lose their jobs",
+    examples: [
+      "The outsourcing decision resulted in significant job losses.",
+      "The union demanded protection against further job losses."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "knock-on effect",
+    partOfSpeech: "noun",
+    category: "Causes & Consequences",
+    definition: "a secondary event or result caused by an earlier event",
+    examples: [
+      "The factory closure had a knock-on effect on local suppliers.",
+      "Higher export growth produced a positive knock-on effect across the economy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "legal",
+    partOfSpeech: "adjective",
+    category: "Law & Compliance",
+    definition: "connected with or permitted by the law",
+    examples: [
+      "The company requested legal advice before outsourcing the service.",
+      "Every offshore contract must comply with local legal requirements."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "nickname",
+    partOfSpeech: "noun",
+    category: "Language & Culture",
+    definition: "an informal and sometimes humorous name given to a person or organization",
+    examples: [
+      "The rapidly growing region acquired the nickname Silicon Valley East.",
+      "Employees gave the new headquarters a humorous nickname."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "offshore",
+    partOfSpeech: "adjective",
+    category: "International Business",
+    definition: "operating or taking place in a different country",
+    examples: [
+      "The company transferred customer support to an offshore provider.",
+      "Offshore operations can reduce costs but create communication challenges."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "payroll",
+    partOfSpeech: "noun",
+    category: "Finance & Human Resources",
+    definition: "the process of managing and paying wages to an organization's employees",
+    examples: [
+      "The company outsourced its payroll to a specialist provider.",
+      "Errors in payroll can seriously affect employee morale."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "productivity",
+    partOfSpeech: "noun",
+    category: "Performance & Efficiency",
+    definition: "the amount produced compared with the time, effort, and money required",
+    examples: [
+      "New technology increased employee productivity.",
+      "The report compares productivity across several countries."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "protectionism",
+    partOfSpeech: "noun",
+    category: "International Trade",
+    definition: "the policy of protecting domestic industries by placing taxes or restrictions on foreign goods",
+    examples: [
+      "The new tariffs were criticized as a form of protectionism.",
+      "Protectionism may reduce competition and increase prices."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "pursue",
+    partOfSpeech: "verb",
+    category: "Goals & Strategy",
+    definition: "to continue trying to achieve something over a period of time",
+    examples: [
+      "The company is pursuing a strategy of international expansion.",
+      "Graduates can pursue careers in several technology sectors."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "quality of life",
+    partOfSpeech: "noun",
+    category: "Employment & Society",
+    definition: "the level of comfort, health, and happiness experienced in a person's life",
+    examples: [
+      "Higher wages have improved employees' quality of life.",
+      "Long commutes can negatively affect quality of life."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "recruit",
+    partOfSpeech: "verb",
+    category: "Human Resources",
+    definition: "to find and employ new people to join a company or organization",
+    examples: [
+      "The provider plans to recruit five hundred graduates.",
+      "Companies compete to recruit skilled workers."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "repeal",
+    partOfSpeech: "verb",
+    category: "Law & Government",
+    definition: "to officially cancel a law so that it is no longer valid",
+    examples: [
+      "Business groups asked the government to repeal the law.",
+      "The regulation was repealed after strong public opposition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "sector",
+    partOfSpeech: "noun",
+    category: "Economy & Industries",
+    definition: "a particular part of an economy or area of business activity",
+    examples: [
+      "The technology sector has created thousands of jobs.",
+      "Productivity varies considerably between sectors."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "shortfall",
+    partOfSpeech: "noun",
+    category: "Resources & Staffing",
+    definition: "an amount that is smaller than what is needed or expected",
+    examples: [
+      "The industry faces a shortfall of skilled workers.",
+      "Outsourcing helped address the temporary staffing shortfall."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "skilled worker",
+    partOfSpeech: "noun",
+    category: "Employment & Skills",
+    definition: "an employee with specialist abilities, experience, or professional training",
+    examples: [
+      "The expanding sector needs thousands of skilled workers.",
+      "Training facilities help prepare skilled workers for technical roles."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "spill",
+    partOfSpeech: "verb",
+    category: "Accidents & Operations",
+    definition: "to accidentally cause liquid to flow out of its container",
+    examples: [
+      "A worker spilled a chemical near the production line.",
+      "The company introduced procedures for dealing with spilled fuel."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "streamline",
+    partOfSpeech: "verb",
+    category: "Efficiency & Operations",
+    definition: "to make a system or organization operate more efficiently, especially by reducing costs or unnecessary work",
+    examples: [
+      "The company streamlined its payroll process.",
+      "Automation helped streamline several administrative activities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "subsequently",
+    partOfSpeech: "adverb",
+    category: "Sequence & Results",
+    definition: "afterward or after another event has occurred",
+    examples: [
+      "The service was outsourced and subsequently expanded.",
+      "The law was challenged and subsequently repealed."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "threefold",
+    partOfSpeech: "adverb",
+    category: "Growth & Quantity",
+    definition: "by three times the original amount",
+    examples: [
+      "The volume of work increased threefold.",
+      "Export revenue grew threefold in less than a decade."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "training facilities",
+    partOfSpeech: "noun",
+    category: "Education & Development",
+    definition: "buildings, equipment, and services provided for the purpose of training employees",
+    examples: [
+      "The provider invested in modern training facilities.",
+      "New training facilities will help address the skills shortfall."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "treble",
+    partOfSpeech: "verb",
+    category: "Growth & Quantity",
+    definition: "to become three times as large or numerous",
+    examples: [
+      "The company expects its workforce to treble.",
+      "Demand for outsourced services trebled within five years."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "volume of work",
+    partOfSpeech: "noun",
+    category: "Workload & Productivity",
+    definition: "the amount of work completed or requiring completion",
+    examples: [
+      "The offshore team handles a considerable volume of work.",
+      "Automation allowed the department to process a higher volume of work."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 8,
+    word: "work ethic",
+    partOfSpeech: "noun",
+    category: "Culture & Professional Values",
+    definition: "a moral belief that working hard and being productive are important",
+    examples: [
+      "Employers praised the graduates' strong work ethic.",
+      "A reliable work ethic is highly valued in the service sector."
+    ]
+  },
 
 //////////////////////////////
 //
