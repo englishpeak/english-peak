@@ -19617,7 +19617,679 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "accept",
+    partOfSpeech: "verb",
+    category: "Change Management",
+    definition: "to agree to or approve a proposal, decision, or situation",
+    examples: [
+      "Most employees accepted the revised working arrangements.",
+      "The board accepted the consultant's recommendations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "adapt",
+    partOfSpeech: "verb",
+    category: "Change Management",
+    definition: "to change your behavior or methods to succeed in a new situation",
+    examples: [
+      "Employees must adapt to the new reporting system.",
+      "The company adapted its strategy after customer demand changed."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "affect",
+    partOfSpeech: "verb",
+    category: "Impact & Results",
+    definition: "to cause a change in a person, process, or situation",
+    examples: [
+      "The restructuring will affect every department.",
+      "Rising costs have affected the company's profitability."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "against",
+    partOfSpeech: "preposition",
+    category: "Opinions & Decisions",
+    definition: "opposing or disagreeing with a proposal, policy, or person",
+    examples: [
+      "Several managers voted against the proposed merger.",
+      "The union is strongly against compulsory redundancies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "ambivalent",
+    partOfSpeech: "adjective",
+    category: "Attitudes to Change",
+    definition: "having both positive and negative feelings about something",
+    examples: [
+      "Employees were ambivalent about returning to the office full-time.",
+      "She felt ambivalent about accepting the promotion abroad."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "antagonistic",
+    partOfSpeech: "adjective",
+    category: "Conflict & Resistance",
+    definition: "showing aggressive opposition or hostility",
+    examples: [
+      "The discussion became antagonistic when job cuts were mentioned.",
+      "An antagonistic management style can increase resistance to change."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "anxious",
+    partOfSpeech: "adjective",
+    category: "Workplace Emotions",
+    definition: "feeling worried or nervous about a possible outcome",
+    examples: [
+      "Staff are anxious about the planned reorganization.",
+      "The supplier became anxious when payment was delayed."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "apathy",
+    partOfSpeech: "noun",
+    category: "Employee Engagement",
+    definition: "a lack of interest, enthusiasm, or concern",
+    examples: [
+      "Poor communication created apathy among employees.",
+      "Management introduced new incentives to address workplace apathy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "apprehensive",
+    partOfSpeech: "adjective",
+    category: "Workplace Emotions",
+    definition: "worried that something unpleasant may happen",
+    examples: [
+      "The team was apprehensive about the new performance targets.",
+      "Employees felt apprehensive before the restructuring announcement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "assure",
+    partOfSpeech: "verb",
+    category: "Leadership Communication",
+    definition: "to tell someone confidently that something is true or will happen",
+    examples: [
+      "The director assured staff that no immediate job cuts were planned.",
+      "We assured the client that the issue would be resolved quickly."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "bottom-up",
+    partOfSpeech: "adjective",
+    category: "Organizational Change",
+    definition: "starting with employees at lower levels and incorporating their ideas",
+    examples: [
+      "The company adopted a bottom-up approach to innovation.",
+      "Bottom-up change often creates stronger employee commitment."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "bring in",
+    partOfSpeech: "phrasal verb",
+    category: "Policies & Change",
+    definition: "to introduce a new policy, rule, system, or person",
+    examples: [
+      "The company brought in a flexible-working policy.",
+      "Management brought in an external consultant to lead the project."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "committed",
+    partOfSpeech: "adjective",
+    category: "Motivation & Engagement",
+    definition: "strongly supporting something and willing to give it time and effort",
+    examples: [
+      "The leadership team is committed to improving workplace culture.",
+      "Committed employees are more likely to support organizational change."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "concerned",
+    partOfSpeech: "adjective",
+    category: "Workplace Emotions",
+    definition: "worried about a particular issue or possible result",
+    examples: [
+      "Employees are concerned about the impact of automation.",
+      "The client was concerned about delays in production."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "considerably",
+    partOfSpeech: "adverb",
+    category: "Degree & Change",
+    definition: "by a large or noticeable amount",
+    examples: [
+      "Productivity improved considerably after the training.",
+      "The final cost was considerably higher than expected."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "count out",
+    partOfSpeech: "phrasal verb",
+    category: "Planning & Decisions",
+    definition: "to decide that an option is impossible or will not be considered",
+    examples: [
+      "Management has not counted out further expansion.",
+      "We can count out relocation because the costs are too high."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "critical",
+    partOfSpeech: "adjective",
+    category: "Priorities & Success",
+    definition: "extremely important because future results depend on it",
+    examples: [
+      "Clear communication is critical during organizational change.",
+      "Customer support will be critical to the product launch."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "crucial",
+    partOfSpeech: "adjective",
+    category: "Priorities & Success",
+    definition: "extremely important to the success or outcome of something",
+    examples: [
+      "Employee participation is crucial to the project's success.",
+      "The next few weeks will be crucial for the negotiations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "deal with",
+    partOfSpeech: "phrasal verb",
+    category: "Problem-Solving",
+    definition: "to take action to solve a problem or complete a responsibility",
+    examples: [
+      "Managers must deal with employee concerns promptly.",
+      "The support team is dealing with the technical issue."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "distraction",
+    partOfSpeech: "noun",
+    category: "Focus & Productivity",
+    definition: "something that takes attention away from an important task",
+    examples: [
+      "Constant notifications can become a serious distraction.",
+      "The office renovation caused several weeks of distraction."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "doubt",
+    partOfSpeech: "noun",
+    category: "Uncertainty & Decisions",
+    definition: "a feeling of uncertainty or lack of belief",
+    examples: [
+      "Employees expressed doubt about the proposed timeline.",
+      "There is little doubt that the system needs improvement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "drop out",
+    partOfSpeech: "phrasal verb",
+    category: "Participation & Training",
+    definition: "to stop participating in something before it has finished",
+    examples: [
+      "Several employees dropped out of the training program.",
+      "Participants may drop out if the course feels irrelevant."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "empowerment",
+    partOfSpeech: "noun",
+    category: "Leadership & Autonomy",
+    definition: "the process of giving people greater control and authority",
+    examples: [
+      "Employee empowerment improved decision-making at branch level.",
+      "The new structure promotes empowerment rather than close supervision."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "enthusiastic",
+    partOfSpeech: "adjective",
+    category: "Motivation & Engagement",
+    definition: "showing strong interest, excitement, and support",
+    examples: [
+      "The sales team was enthusiastic about the new product.",
+      "Employees were enthusiastic about the flexible-working trial."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "genuinely",
+    partOfSpeech: "adverb",
+    category: "Communication & Trust",
+    definition: "in a sincere, honest, and authentic way",
+    examples: [
+      "Management genuinely considered the employees' suggestions.",
+      "The client seemed genuinely pleased with the revised proposal."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "get rid of",
+    partOfSpeech: "phrasal verb",
+    category: "Processes & Efficiency",
+    definition: "to remove something that is unwanted or no longer useful",
+    examples: [
+      "The company wants to get rid of unnecessary approval stages.",
+      "Automation helped the department get rid of repetitive tasks."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "hostile",
+    partOfSpeech: "adjective",
+    category: "Conflict & Resistance",
+    definition: "very unfriendly, aggressive, or strongly opposed",
+    examples: [
+      "The proposal received a hostile reaction from the union.",
+      "A hostile workplace can damage employee morale."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "in favour",
+    partOfSpeech: "phrase",
+    category: "Opinions & Decisions",
+    definition: "supporting or agreeing with a proposal, person, or action",
+    examples: [
+      "Most employees were in favour of the new schedule.",
+      "The board voted in favour of expanding the pilot program."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "keen",
+    partOfSpeech: "adjective",
+    category: "Motivation & Engagement",
+    definition: "eager and enthusiastic about doing or supporting something",
+    examples: [
+      "The team is keen to try the new software.",
+      "Management is keen to avoid compulsory redundancies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "loose ends",
+    partOfSpeech: "phrase",
+    category: "Project Completion",
+    definition: "unfinished details or unresolved parts of a task",
+    examples: [
+      "We need to deal with a few loose ends before the launch.",
+      "The project manager stayed late to tie up the remaining loose ends."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "majority",
+    partOfSpeech: "adjective",
+    category: "Voting & Decisions",
+    definition: "supported, used, or decided by the largest part of a group",
+    examples: [
+      "The proposal received majority support from employees.",
+      "A majority decision approved the revised policy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "modify",
+    partOfSpeech: "verb",
+    category: "Improvement & Adaptation",
+    definition: "to change something slightly to make it more suitable",
+    examples: [
+      "The company modified the policy after receiving feedback.",
+      "Engineers modified the design to reduce production costs."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "natural wastage",
+    partOfSpeech: "noun",
+    category: "Workforce Planning",
+    definition: "a reduction in staff numbers achieved by not replacing employees who leave",
+    examples: [
+      "The company plans to reduce headcount through natural wastage.",
+      "Natural wastage may prevent the need for compulsory redundancies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "nervous",
+    partOfSpeech: "adjective",
+    category: "Workplace Emotions",
+    definition: "worried or afraid about what may happen",
+    examples: [
+      "Employees felt nervous before the restructuring meeting.",
+      "The presenter was nervous about addressing the board."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "nominate",
+    partOfSpeech: "verb",
+    category: "Recognition & Appointments",
+    definition: "to formally propose someone for a role, position, or award",
+    examples: [
+      "Employees can nominate colleagues for the leadership award.",
+      "The board nominated her to lead the change program."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "oppose",
+    partOfSpeech: "verb",
+    category: "Conflict & Resistance",
+    definition: "to disagree strongly with and try to prevent something",
+    examples: [
+      "The union opposed the proposed changes to working hours.",
+      "Several directors opposed closing the regional office."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "optimistic",
+    partOfSpeech: "adjective",
+    category: "Attitudes & Expectations",
+    definition: "expecting a positive result or future development",
+    examples: [
+      "Management is optimistic about the company's recovery.",
+      "The team remains optimistic despite the initial delays."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "outweigh",
+    partOfSpeech: "verb",
+    category: "Evaluation & Decisions",
+    definition: "to be more important, valuable, or influential than something else",
+    examples: [
+      "The long-term benefits outweigh the short-term costs.",
+      "For many employees, flexibility outweighs a higher salary."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "petty theft",
+    partOfSpeech: "noun",
+    category: "Workplace Security",
+    definition: "the crime of stealing items of relatively low value",
+    examples: [
+      "The company introduced new controls to reduce petty theft.",
+      "Petty theft from the stockroom had become a recurring problem."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "positive",
+    partOfSpeech: "adjective",
+    category: "Attitudes & Expectations",
+    definition: "confident and focused on favorable aspects or outcomes",
+    examples: [
+      "Employee reaction to the announcement was mostly positive.",
+      "The manager maintained a positive attitude during the transition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "put on",
+    partOfSpeech: "phrasal verb",
+    category: "Training & Events",
+    definition: "to organize and provide an event, course, or service",
+    examples: [
+      "The company put on additional training for supervisors.",
+      "Human Resources will put on a workshop about managing change."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "query",
+    partOfSpeech: "noun",
+    category: "Questions & Communication",
+    definition: "a question asking for information or expressing uncertainty",
+    examples: [
+      "Please send payroll queries to the finance department.",
+      "The manager answered every employee query during the meeting."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "react",
+    partOfSpeech: "verb",
+    category: "Behavior & Change",
+    definition: "to behave in a particular way in response to an event",
+    examples: [
+      "Employees reacted positively to the revised proposal.",
+      "Management must consider how customers may react to the price increase."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "rebellious",
+    partOfSpeech: "adjective",
+    category: "Behavior & Resistance",
+    definition: "unwilling to obey rules or accept authority",
+    examples: [
+      "A small group of employees became openly rebellious.",
+      "The new policy was designed to address rebellious behavior."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "receptive",
+    partOfSpeech: "adjective",
+    category: "Attitudes to Change",
+    definition: "willing to listen to and consider new ideas",
+    examples: [
+      "The board was receptive to the consultant's proposal.",
+      "Employees are more receptive to change when they understand its purpose."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "resentful",
+    partOfSpeech: "adjective",
+    category: "Workplace Emotions",
+    definition: "angry because you believe you have been treated unfairly",
+    examples: [
+      "Some employees felt resentful about the unequal bonuses.",
+      "Staff became resentful when decisions were made without consultation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "resist",
+    partOfSpeech: "verb",
+    category: "Change Management",
+    definition: "to oppose or refuse to accept a change or proposal",
+    examples: [
+      "Employees may resist changes they do not understand.",
+      "Several departments resisted the centralized reporting system."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "resistant",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "opposed to a change and trying to prevent it",
+    examples: [
+      "Some senior managers were resistant to flexible working.",
+      "The organization remains resistant to outside advice."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "rumoured",
+    partOfSpeech: "adjective",
+    category: "Information & Uncertainty",
+    definition: "reported informally but not confirmed as true",
+    examples: [
+      "The rumoured merger has created uncertainty among staff.",
+      "Management denied the rumoured closure of the factory."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "run into",
+    partOfSpeech: "phrasal verb",
+    category: "Problems & Risks",
+    definition: "to experience an unexpected problem or difficulty",
+    examples: [
+      "The project ran into technical difficulties.",
+      "The company may run into resistance from local employees."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "sabotage",
+    partOfSpeech: "verb",
+    category: "Conflict & Misconduct",
+    definition: "to deliberately prevent a project or plan from succeeding",
+    examples: [
+      "A dissatisfied employee attempted to sabotage the implementation.",
+      "Poor communication can unintentionally sabotage organizational change."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "sceptical",
+    partOfSpeech: "adjective",
+    category: "Attitudes & Evaluation",
+    definition: "having doubts that a claim, proposal, or prediction is true",
+    examples: [
+      "Employees were sceptical about the promised benefits.",
+      "The board remained sceptical until it saw the trial results."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "take on",
+    partOfSpeech: "phrasal verb",
+    category: "Roles & Responsibilities",
+    definition: "to agree to accept a task, responsibility, or role",
+    examples: [
+      "She agreed to take on responsibility for the transition.",
+      "The department cannot take on additional work without more staff."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "try out",
+    partOfSpeech: "phrasal verb",
+    category: "Testing & Innovation",
+    definition: "to test something to discover how useful or effective it is",
+    examples: [
+      "The company will try out the new system in two branches.",
+      "Employees were invited to try out the updated software."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "work out",
+    partOfSpeech: "phrasal verb",
+    category: "Results & Success",
+    definition: "to develop or end successfully",
+    examples: [
+      "The flexible-working trial worked out better than expected.",
+      "Management hopes the partnership will work out successfully."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 12,
+    word: "worried",
+    partOfSpeech: "adjective",
+    category: "Workplace Emotions",
+    definition: "unhappy or anxious about a current or possible problem",
+    examples: [
+      "Employees are worried about possible redundancies.",
+      "The client was worried that the project would miss its deadline."
+    ]
+  },
+
 
 //////////////////////////////
 //
