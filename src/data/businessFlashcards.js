@@ -16966,7 +16966,583 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "act responsibly",
+    partOfSpeech: "phrase",
+    category: "Ethics & Responsibility",
+    definition: "to behave in a way that aims to do what is right and avoids causing harm",
+    examples: [
+      "Companies must act responsibly when sourcing raw materials.",
+      "The organization acted responsibly by reporting the environmental damage."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "affiliated",
+    partOfSpeech: "adjective",
+    category: "Organizations & Relationships",
+    definition: "closely connected to or controlled by a larger group or organization",
+    examples: [
+      "The charity is affiliated with several international organizations.",
+      "Only affiliated suppliers may use the certification logo."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "bribery",
+    partOfSpeech: "noun",
+    category: "Ethics & Corruption",
+    definition: "the dishonest act of giving someone money or another benefit to influence their actions",
+    examples: [
+      "The company has a strict policy against bribery.",
+      "Employees receive training on identifying and reporting bribery."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "by-product",
+    partOfSpeech: "noun",
+    category: "Production & Sustainability",
+    definition: "a substance or secondary result produced during another manufacturing or industrial process",
+    examples: [
+      "Methane is a by-product of the waste-treatment process.",
+      "The factory converts an agricultural by-product into fuel."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "cheer",
+    partOfSpeech: "noun",
+    category: "Events & Reactions",
+    definition: "a loud expression of joy, praise, or support from a group of people",
+    examples: [
+      "The announcement was greeted with a loud cheer.",
+      "A cheer came from the audience when the initiative was approved."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "claim",
+    partOfSpeech: "verb",
+    category: "Communication & Evidence",
+    definition: "to state that something is true even though it has not been proven",
+    examples: [
+      "The manufacturer claims that the product is completely organic.",
+      "Critics claimed that the initiative would have little impact."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "combat",
+    partOfSpeech: "verb",
+    category: "Social & Environmental Issues",
+    definition: "to take action to stop something harmful from happening or becoming worse",
+    examples: [
+      "The organization funds projects that combat poverty.",
+      "New regulations were introduced to combat workplace discrimination."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "comply with regulations",
+    partOfSpeech: "phrase",
+    category: "Compliance & Governance",
+    definition: "to obey the official rules governing how something should be done",
+    examples: [
+      "Every supplier must comply with environmental regulations.",
+      "The factory was inspected to ensure that it complied with safety regulations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "contributor",
+    partOfSpeech: "noun",
+    category: "Causes & Impact",
+    definition: "a person, activity, or factor that helps cause a particular result",
+    examples: [
+      "Transport emissions are a major contributor to air pollution.",
+      "Poor governance was a significant contributor to the crisis."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "corroded",
+    partOfSpeech: "adjective",
+    category: "Materials & Maintenance",
+    definition: "gradually damaged or destroyed through a chemical reaction",
+    examples: [
+      "The inspection revealed several corroded pipes.",
+      "Salt water had corroded the metal components."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "corruption",
+    partOfSpeech: "noun",
+    category: "Ethics & Governance",
+    definition: "dishonest or illegal behavior, especially by people in positions of authority",
+    examples: [
+      "The investigation uncovered widespread corruption.",
+      "Transparent purchasing procedures can reduce the risk of corruption."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "counteract",
+    partOfSpeech: "verb",
+    category: "Risk & Sustainability",
+    definition: "to reduce or prevent the harmful effects of something by taking opposing action",
+    examples: [
+      "The company planted trees to counteract some of its carbon emissions.",
+      "Additional ventilation was installed to counteract the effects of methane."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "credibility",
+    partOfSpeech: "noun",
+    category: "Trust & Reputation",
+    definition: "the quality of being believable and deserving of trust",
+    examples: [
+      "The deception seriously damaged the company's credibility.",
+      "Independent certification gives the sustainability claim greater credibility."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "deception",
+    partOfSpeech: "noun",
+    category: "Ethics & Communication",
+    definition: "the act of deliberately making someone believe something that is not true",
+    examples: [
+      "The advertisement was criticized for deliberate deception.",
+      "Transparency helps prevent deception in business relationships."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "discreet",
+    partOfSpeech: "adjective",
+    category: "Professional Behavior",
+    definition: "careful about what you say or do in order to keep information private or avoid embarrassment",
+    examples: [
+      "The investigation was handled in a discreet manner.",
+      "Managers must be discreet when discussing employee complaints."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "discrimination",
+    partOfSpeech: "noun",
+    category: "Equality & Employment",
+    definition: "the unfair treatment of a person or group compared with others",
+    examples: [
+      "The company introduced measures to prevent workplace discrimination.",
+      "Employees can report discrimination through a confidential process."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "donate time",
+    partOfSpeech: "phrase",
+    category: "Community & Volunteering",
+    definition: "to spend some of your free time helping people or supporting an organization",
+    examples: [
+      "Employees are encouraged to donate time to local charities.",
+      "Several managers donated their time to the mentoring initiative."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "dye",
+    partOfSpeech: "verb",
+    category: "Manufacturing & Textiles",
+    definition: "to change the color of something by applying a special liquid or substance",
+    examples: [
+      "The fabric is dyed using natural materials.",
+      "The manufacturer developed a less harmful process for dyeing textiles."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "ethics",
+    partOfSpeech: "noun",
+    category: "Ethics & Governance",
+    definition: "moral principles that guide or influence a person's or organization's behavior",
+    examples: [
+      "Business ethics are included in the management training program.",
+      "The board considered the ethics of sourcing from that supplier."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "ethos",
+    partOfSpeech: "noun",
+    category: "Culture & Values",
+    definition: "the moral ideas, attitudes, and beliefs characteristic of a particular group or organization",
+    examples: [
+      "Sustainability is central to the company's ethos.",
+      "The charity's ethos emphasizes fairness and community participation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "exotic",
+    partOfSpeech: "adjective",
+    category: "Travel & Products",
+    definition: "unusual and exciting because of an association with distant or tropical countries",
+    examples: [
+      "The retailer sells exotic fruit sourced from tropical regions.",
+      "The itinerary includes several exotic destinations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "exploit",
+    partOfSpeech: "verb",
+    category: "Ethics & Employment",
+    definition: "to treat someone unfairly by benefiting from their work while giving them little in return",
+    examples: [
+      "Responsible companies must not exploit vulnerable workers.",
+      "The report accused several contractors of exploiting local communities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "fairness",
+    partOfSpeech: "noun",
+    category: "Equality & Ethics",
+    definition: "the quality of treating people equally and in a reasonable way",
+    examples: [
+      "Employees questioned the fairness of the promotion process.",
+      "Fairness is one of the organization's core values."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "feature",
+    partOfSpeech: "noun",
+    category: "Media & Communication",
+    definition: "a special article or program about a person, organization, or subject",
+    examples: [
+      "The newspaper published a feature on ethical tourism.",
+      "The initiative was the subject of a television feature."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "generosity",
+    partOfSpeech: "noun",
+    category: "Community & Values",
+    definition: "the willingness to give money, gifts, time, or kindness freely",
+    examples: [
+      "The charity thanked employees for their generosity.",
+      "The company's generosity funded a major reforestation project."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "greed",
+    partOfSpeech: "noun",
+    category: "Ethics & Behavior",
+    definition: "an excessive desire for more money, possessions, or power than is needed",
+    examples: [
+      "Critics blamed corporate greed for the exploitation of workers.",
+      "Short-term greed can seriously damage a company's reputation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "initiative",
+    partOfSpeech: "noun",
+    category: "Projects & Social Impact",
+    definition: "a new plan intended to solve a problem or achieve a particular purpose",
+    examples: [
+      "The company launched an initiative to combat discrimination.",
+      "The reforestation initiative involves several local communities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "itinerary",
+    partOfSpeech: "noun",
+    category: "Travel & Planning",
+    definition: "a detailed plan of a journey, including its route and the places to be visited",
+    examples: [
+      "The tour operator sent us the complete itinerary.",
+      "The itinerary includes visits to several affiliated projects."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "livelihood",
+    partOfSpeech: "noun",
+    category: "Employment & Communities",
+    definition: "a way of earning enough money to support yourself and live",
+    examples: [
+      "Sustainable tourism provides a livelihood for local families.",
+      "Pollution threatened the livelihoods of fishing communities."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "methane",
+    partOfSpeech: "noun",
+    category: "Energy & Environment",
+    definition: "a colorless and odorless gas that burns easily and can be used as fuel",
+    examples: [
+      "The facility captures methane produced by organic waste.",
+      "Methane emissions contribute significantly to climate change."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "organic",
+    partOfSpeech: "adjective",
+    category: "Agriculture & Sustainability",
+    definition: "produced without using artificial chemicals, fertilizers, or pesticides",
+    examples: [
+      "The restaurant sources organic vegetables from local farms.",
+      "Demand for certified organic products continues to grow."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "paddling",
+    partOfSpeech: "noun",
+    category: "Tourism & Recreation",
+    definition: "the activity of moving through water in a small boat or canoe using a paddle",
+    examples: [
+      "The eco-tour includes paddling through protected wetlands.",
+      "Visitors can spend the afternoon paddling with a local guide."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "pesticide",
+    partOfSpeech: "noun",
+    category: "Agriculture & Environment",
+    definition: "a chemical substance used to kill insects or other organisms that damage crops",
+    examples: [
+      "The farm reduced its use of chemical pesticides.",
+      "Improper pesticide use can contaminate local water supplies."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "poverty",
+    partOfSpeech: "noun",
+    category: "Social Issues",
+    definition: "the condition of being extremely poor and lacking basic resources",
+    examples: [
+      "The initiative aims to reduce poverty through sustainable employment.",
+      "Education can help communities escape long-term poverty."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "prejudice",
+    partOfSpeech: "noun",
+    category: "Equality & Society",
+    definition: "an unreasonable dislike of or preference for a person or group, often based on identity",
+    examples: [
+      "The training program challenges prejudice in the workplace.",
+      "Recruitment decisions must be based on ability rather than prejudice."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "pretend",
+    partOfSpeech: "verb",
+    category: "Ethics & Communication",
+    definition: "to behave as though something is true when it is not",
+    examples: [
+      "Companies should not pretend that their products are environmentally harmless.",
+      "The supplier pretended to comply with the regulations."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "rare",
+    partOfSpeech: "adjective",
+    category: "Frequency & Products",
+    definition: "not often seen, found, done, or experienced",
+    examples: [
+      "The region is home to several rare species of turtle.",
+      "Serious ethical complaints are rare within the organization."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "reduce the impact",
+    partOfSpeech: "phrase",
+    category: "Environment & Sustainability",
+    definition: "to make an effect, especially a harmful one, less powerful or serious",
+    examples: [
+      "The company redesigned its packaging to reduce its environmental impact.",
+      "Reforestation can reduce the impact of carbon emissions."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "reforestation",
+    partOfSpeech: "noun",
+    category: "Environment & Sustainability",
+    definition: "the process of planting new trees where a forest previously existed",
+    examples: [
+      "Part of the company's profits supports reforestation.",
+      "The reforestation project created jobs for local residents."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "responsibility",
+    partOfSpeech: "noun",
+    category: "Ethics & Responsibility",
+    definition: "a duty to deal with, protect, or take care of someone or something",
+    examples: [
+      "Businesses have a responsibility to treat workers fairly.",
+      "Environmental responsibility is included in the company's values."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "sample",
+    partOfSpeech: "verb",
+    category: "Food & Tourism",
+    definition: "to taste a particular food or drink, usually for the first time",
+    examples: [
+      "Visitors sampled locally produced organic chocolate.",
+      "The itinerary gives guests an opportunity to sample regional dishes."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "share a strong commitment",
+    partOfSpeech: "phrase",
+    category: "Values & Collaboration",
+    definition: "to strongly agree as a group to support or work toward something important",
+    examples: [
+      "The partners share a strong commitment to ethical sourcing.",
+      "All affiliated organizations share a strong commitment to fairness."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "source",
+    partOfSpeech: "verb",
+    category: "Procurement & Supply Chains",
+    definition: "to obtain a product, material, or service from a particular place or supplier",
+    examples: [
+      "The company sources organic ingredients from local farmers.",
+      "Retailers must confirm where their raw materials are sourced."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "spontaneous",
+    partOfSpeech: "adjective",
+    category: "Behavior & Events",
+    definition: "not planned, but done because someone suddenly wants to do it",
+    examples: [
+      "The announcement produced spontaneous applause.",
+      "Employees organized a spontaneous collection for the charity."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "stay true to your principles",
+    partOfSpeech: "phrase",
+    category: "Ethics & Values",
+    definition: "to continue behaving according to your beliefs about what is right, even when circumstances change",
+    examples: [
+      "The company stayed true to its principles despite financial pressure.",
+      "Leaders must stay true to their principles when making difficult decisions."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "take an active part in",
+    partOfSpeech: "phrase",
+    category: "Participation & Community",
+    definition: "to become involved in something by making an effort and performing actions",
+    examples: [
+      "Employees take an active part in local environmental projects.",
+      "Residents were invited to take an active part in the initiative."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "turtle",
+    partOfSpeech: "noun",
+    category: "Wildlife & Environment",
+    definition: "a large reptile with a hard shell that commonly lives in the sea",
+    examples: [
+      "The tourism project helps protect nesting sea turtles.",
+      "Plastic pollution is a serious threat to turtles."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 6,
+    word: "values",
+    partOfSpeech: "noun",
+    category: "Culture & Ethics",
+    definition: "beliefs about what is right, wrong, and important that guide behavior and decisions",
+    examples: [
+      "Fairness and responsibility are among the company's core values.",
+      "Customers increasingly choose brands that reflect their personal values."
+    ]
+  },
+
 
 //////////////////////////////
 //
