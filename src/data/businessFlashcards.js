@@ -21120,6 +21120,270 @@ export const businessFlashcards = [
     "The host organization arranged transportation for all delegates."
   ]
 },
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "individualistic",
+  partOfSpeech: "adjective",
+  category: "Intercultural Communication",
+  definition: "believing that people should make their own decisions and be responsible for themselves rather than the group",
+  examples: [
+    "Individualistic cultures often encourage employees to take personal initiative.",
+    "The company's reward system reflects a highly individualistic management philosophy."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "informed",
+  partOfSpeech: "adjective",
+  category: "Professional Knowledge",
+  definition: "having a good understanding of a subject because you have enough information",
+  examples: [
+    "Managers should make informed decisions based on reliable data.",
+    "Keeping informed about industry trends gives companies a competitive advantage."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "issue",
+  partOfSpeech: "noun",
+  category: "Business Communication",
+  definition: "an important topic, problem, or matter that needs discussion or attention",
+  examples: [
+    "The meeting focused on the issue of employee retention.",
+    "Cybersecurity has become a major issue for international businesses."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "liaise",
+  partOfSpeech: "verb",
+  category: "Workplace Communication",
+  definition: "to communicate and work closely with another person, department, or organization",
+  examples: [
+    "The project manager will liaise with the marketing department throughout the campaign.",
+    "Our local office regularly liaises with suppliers overseas."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "liberal",
+  partOfSpeech: "adjective",
+  category: "Organizational Culture",
+  definition: "allowing or supporting greater freedom in ideas, decisions, or behavior",
+  examples: [
+    "The company has a liberal policy on flexible working hours.",
+    "Employees appreciated the firm's liberal approach to remote work."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "mentor",
+  partOfSpeech: "verb",
+  category: "Leadership",
+  definition: "to advise, guide, and support someone who has less experience",
+  examples: [
+    "Senior managers mentor new employees during their first six months.",
+    "She volunteered to mentor several junior consultants."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "mortgage",
+  partOfSpeech: "noun",
+  category: "Finance",
+  definition: "a loan used to buy property that is repaid over many years, with the property serving as security",
+  examples: [
+    "After receiving a promotion, she qualified for a larger mortgage.",
+    "Many employees attended the financial workshop to learn about mortgages."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "neutrality",
+  partOfSpeech: "noun",
+  category: "Professional Ethics",
+  definition: "the condition of not supporting either side in a disagreement or conflict",
+  examples: [
+    "The mediator maintained complete neutrality during the negotiations.",
+    "Journalists are expected to demonstrate neutrality when reporting business news."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "norms",
+  partOfSpeech: "plural noun",
+  category: "Intercultural Communication",
+  definition: "the accepted standards of behavior within a particular society, culture, or organization",
+  examples: [
+    "Business norms vary significantly from one country to another.",
+    "New employees quickly learn the workplace norms through observation."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "offend",
+  partOfSpeech: "verb",
+  category: "Communication",
+  definition: "to upset or embarrass someone by saying or doing something considered rude or inappropriate",
+  examples: [
+    "Managers should avoid comments that might offend colleagues from different cultures.",
+    "A poorly chosen joke offended several clients during the meeting."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "open",
+  partOfSpeech: "adjective",
+  category: "Professional Attitude",
+  definition: "willing to consider new ideas, opinions, or ways of doing things",
+  examples: [
+    "Successful leaders remain open to constructive feedback.",
+    "The company encourages employees to be open to innovation."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "partition",
+  partOfSpeech: "noun",
+  category: "Office Environment",
+  definition: "a wall or divider that separates one area from another inside a building",
+  examples: [
+    "Glass partitions were installed to create a brighter office environment.",
+    "Each employee has a workstation separated by a low partition."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "phrase",
+  partOfSpeech: "verb",
+  category: "Business Communication",
+  definition: "to express something using particular words or wording",
+  examples: [
+    "She carefully phrased her email to avoid sounding too direct.",
+    "Managers should phrase criticism in a constructive way."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "refreshment",
+  partOfSpeech: "noun",
+  category: "Meetings & Events",
+  definition: "food or drinks provided during a meeting, event, or break",
+  examples: [
+    "Light refreshments were served during the networking session.",
+    "The conference registration fee included lunch and refreshments."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "respectful",
+  partOfSpeech: "adjective",
+  category: "Professional Conduct",
+  definition: "showing politeness and consideration toward other people",
+  examples: [
+    "Employees are expected to remain respectful during disagreements.",
+    "A respectful workplace encourages better teamwork."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "sensitive",
+  partOfSpeech: "adjective",
+  category: "Interpersonal Skills",
+  definition: "aware of other people's feelings and able to respond thoughtfully",
+  examples: [
+    "Good managers are sensitive to the concerns of their teams.",
+    "Salary discussions should be handled in a sensitive manner."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "strict",
+  partOfSpeech: "adjective",
+  category: "Management",
+  definition: "requiring rules to be followed exactly",
+  examples: [
+    "The company has strict security procedures for visitors.",
+    "Employees must follow strict confidentiality policies."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "taboo",
+  partOfSpeech: "adjective",
+  category: "Intercultural Communication",
+  definition: "considered unacceptable or inappropriate to discuss or do in a particular culture",
+  examples: [
+    "In some cultures, discussing salary is considered taboo.",
+    "Managers should understand which topics are taboo before negotiating abroad."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "tolerant",
+  partOfSpeech: "adjective",
+  category: "Professional Attitude",
+  definition: "willing to accept opinions, beliefs, or behaviors that are different from your own",
+  examples: [
+    "A tolerant workplace welcomes people from diverse backgrounds.",
+    "Effective leaders are tolerant of different working styles."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "twist",
+  partOfSpeech: "noun",
+  category: "Business Situations",
+  definition: "an unexpected change in a situation or series of events",
+  examples: [
+    "The negotiations took an unexpected twist after the new proposal.",
+    "There was an interesting twist in the merger discussions."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "tyre",
+  partOfSpeech: "noun",
+  category: "Manufacturing & Logistics",
+  definition: "the thick rubber covering fitted around the wheel of a vehicle",
+  examples: [
+    "The factory produces over one thousand tyres every day.",
+    "A damaged tyre delayed the delivery schedule."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "unwind",
+  partOfSpeech: "verb",
+  category: "Work-Life Balance",
+  definition: "to relax after working or worrying about something",
+  examples: [
+    "Many employees unwind by exercising after work.",
+    "Taking regular breaks helps professionals unwind and reduce stress."
+  ]
+},
 
 //////////////////////////////
 //
