@@ -20880,7 +20880,246 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+  level: "upper-intermediate",
+  unit: 14,
+  word: "accepting",
+  partOfSpeech: "adjective",
+  category: "Intercultural Communication",
+  definition: "willing to understand, approve of, or accept different people, ideas, or situations",
+  examples: [
+    "Successful international managers are accepting of different working styles.",
+    "The company promotes an accepting workplace where diverse opinions are valued."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "accumulation",
+  partOfSpeech: "noun",
+  category: "Business Growth",
+  definition: "the gradual increase or collection of something over time",
+  examples: [
+    "The accumulation of customer data helped improve marketing decisions.",
+    "Years of steady investment resulted in the accumulation of valuable assets."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "adjust to",
+  partOfSpeech: "phrasal verb",
+  category: "Workplace Adaptation",
+  definition: "to become familiar with a new situation by changing your behavior or way of thinking",
+  examples: [
+    "New employees usually adjust to the company culture within a few weeks.",
+    "She quickly adjusted to managing an international team."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "admit",
+  partOfSpeech: "verb",
+  category: "Communication",
+  definition: "to acknowledge that something is true, often reluctantly",
+  examples: [
+    "The manager admitted that the project had gone over budget.",
+    "He admitted making a mistake during the client presentation."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "approach",
+  partOfSpeech: "noun",
+  category: "Management",
+  definition: "a particular method or way of dealing with a task, problem, or situation",
+  examples: [
+    "Their customer-first approach has improved client retention.",
+    "We need a different approach to solving this issue."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "assertiveness",
+  partOfSpeech: "noun",
+  category: "Professional Skills",
+  definition: "the ability to express your opinions and needs confidently while respecting others",
+  examples: [
+    "Assertiveness is an important skill for effective negotiations.",
+    "Leadership training focused on improving assertiveness during meetings."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "aware",
+  partOfSpeech: "adjective",
+  category: "Professional Awareness",
+  definition: "having knowledge or understanding of a situation or fact",
+  examples: [
+    "Employees should be aware of the company's cybersecurity policies.",
+    "Managers must remain aware of changes in the market."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "caste",
+  partOfSpeech: "noun",
+  category: "Culture & Society",
+  definition: "a social class into which people are born and which traditionally determines their status",
+  examples: [
+    "The training discussed how caste systems have influenced business practices in some regions.",
+    "Understanding cultural history helps managers avoid stereotypes related to caste."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "cautious",
+  partOfSpeech: "adjective",
+  category: "Decision Making",
+  definition: "careful to avoid risks, mistakes, or problems",
+  examples: [
+    "Investors remain cautious before committing additional funding.",
+    "The company took a cautious approach to international expansion."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "collectivist",
+  partOfSpeech: "adjective",
+  category: "Intercultural Communication",
+  definition: "relating to cultures that emphasize the needs and goals of the group over those of the individual",
+  examples: [
+    "Collectivist cultures often place greater value on teamwork than individual achievement.",
+    "Managers should adapt their leadership style when working in collectivist societies."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "commence",
+  partOfSpeech: "verb",
+  category: "Business Communication",
+  definition: "to begin something; a formal alternative to 'start'",
+  examples: [
+    "The conference will commence at 9:00 a.m. sharp.",
+    "Construction is expected to commence next month."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "confront",
+  partOfSpeech: "verb",
+  category: "Conflict Management",
+  definition: "to face or deal directly with a difficult problem or situation",
+  examples: [
+    "The leadership team confronted the supply chain disruption immediately.",
+    "Managers should confront problems before they become larger issues."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "confusing",
+  partOfSpeech: "adjective",
+  category: "Communication",
+  definition: "difficult to understand because it is unclear or complicated",
+  examples: [
+    "The original instructions were confusing for new employees.",
+    "Customers complained that the pricing structure was confusing."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "deal",
+  partOfSpeech: "noun",
+  category: "Business Transactions",
+  definition: "a business agreement between two or more parties",
+  examples: [
+    "The companies finalized the deal after several weeks of negotiation.",
+    "Landing that deal doubled the firm's annual revenue."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "disappointed",
+  partOfSpeech: "adjective",
+  category: "Workplace Emotions",
+  definition: "feeling unhappy because something was not as good or successful as expected",
+  examples: [
+    "The investors were disappointed by the quarterly results.",
+    "Customers felt disappointed after the delayed product launch."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "egalitarian",
+  partOfSpeech: "adjective",
+  category: "Organizational Culture",
+  definition: "believing that everyone should have equal rights, opportunities, and treatment",
+  examples: [
+    "The startup promotes an egalitarian culture with open communication.",
+    "Its egalitarian management style encourages employees to contribute ideas freely."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "familiar with",
+  partOfSpeech: "phrase",
+  category: "Knowledge & Experience",
+  definition: "having a good knowledge or understanding of something",
+  examples: [
+    "Are you familiar with our reporting system?",
+    "Candidates should be familiar with international accounting standards."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "formal",
+  partOfSpeech: "adjective",
+  category: "Business Communication",
+  definition: "appropriate for official, professional, or serious situations",
+  examples: [
+    "Applicants should wear formal clothing to the interview.",
+    "The agreement was confirmed through a formal written contract."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "hierarchical",
+  partOfSpeech: "adjective",
+  category: "Organizational Structure",
+  definition: "organized into levels of authority from highest to lowest",
+  examples: [
+    "Large corporations often have a hierarchical management structure.",
+    "Decision-making tends to be slower in highly hierarchical organizations."
+  ]
+},
+{
+  level: "upper-intermediate",
+  unit: 14,
+  word: "host",
+  partOfSpeech: "noun",
+  category: "International Business",
+  definition: "the country, city, or organization where visitors or events are received",
+  examples: [
+    "Japan was the host country for the international trade summit.",
+    "The host organization arranged transportation for all delegates."
+  ]
+},
 
 //////////////////////////////
 //
