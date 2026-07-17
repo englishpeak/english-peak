@@ -20297,7 +20297,582 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "about",
+    partOfSpeech: "adverb",
+    category: "Approximation & Data",
+    definition: "approximately, but not as an exact figure",
+    examples: [
+      "The project will cost about two million dollars.",
+      "About thirty percent of customers selected the premium plan."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "affordable",
+    partOfSpeech: "adjective",
+    category: "Pricing & Products",
+    definition: "inexpensive enough for the intended customer to buy",
+    examples: [
+      "The company wants to make electric vehicles more affordable.",
+      "Customers are looking for reliable software at an affordable price."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "approximately",
+    partOfSpeech: "adverb",
+    category: "Approximation & Data",
+    definition: "close to a particular amount, number, or time but not exact",
+    examples: [
+      "Approximately five hundred employees completed the survey.",
+      "The installation will take approximately three weeks."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "blow up",
+    partOfSpeech: "phrasal verb",
+    category: "Risk & Safety",
+    definition: "to explode or be destroyed by an explosion",
+    examples: [
+      "A damaged battery could overheat and blow up.",
+      "The manufacturer recalled the device after one unit blew up during testing."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "childish",
+    partOfSpeech: "adjective",
+    category: "Professional Behavior",
+    definition: "behaving in an immature, unreasonable, or silly way",
+    examples: [
+      "The director described the argument as childish and unprofessional.",
+      "Refusing to cooperate because of a minor disagreement seemed childish."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "crash",
+    partOfSpeech: "verb",
+    category: "Markets & Performance",
+    definition: "to fall suddenly and severely in value",
+    examples: [
+      "The company's share price crashed after the announcement.",
+      "Demand crashed when a cheaper competitor entered the market."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "drop slightly",
+    partOfSpeech: "phrase",
+    category: "Trends & Data",
+    definition: "to decrease by a small amount",
+    examples: [
+      "Operating costs dropped slightly during the final quarter.",
+      "Customer satisfaction dropped slightly after the policy change."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "entire",
+    partOfSpeech: "adjective",
+    category: "Quantity & Scope",
+    definition: "including every part of something",
+    examples: [
+      "The outage affected the entire distribution network.",
+      "Management reviewed the entire product range."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "excuse",
+    partOfSpeech: "noun",
+    category: "Responsibility & Performance",
+    definition: "a reason offered to explain or defend a mistake or failure",
+    examples: [
+      "The supplier gave no convincing excuse for the late delivery.",
+      "A lack of preparation is not an excuse for missing the deadline."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "exposure",
+    partOfSpeech: "noun",
+    category: "Marketing & Media",
+    definition: "public attention received by a person, product, or organization",
+    examples: [
+      "The campaign gave the brand valuable international exposure.",
+      "Media exposure helped the startup attract new investors."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "fractionally",
+    partOfSpeech: "adverb",
+    category: "Trends & Data",
+    definition: "by an extremely small amount",
+    examples: [
+      "Revenue increased fractionally compared with last year.",
+      "The final price was fractionally higher than the original estimate."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "front runner",
+    partOfSpeech: "noun",
+    category: "Competition & Selection",
+    definition: "the person, company, or product most likely to succeed or win",
+    examples: [
+      "The internal candidate is the front runner for the position.",
+      "Their electric model has become the front runner in the design competition."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "a great deal",
+    partOfSpeech: "phrase",
+    category: "Quantity & Degree",
+    definition: "a large amount or to a considerable extent",
+    examples: [
+      "The company invested a great deal in product development.",
+      "Market conditions have changed a great deal since January."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "grow gradually",
+    partOfSpeech: "phrase",
+    category: "Trends & Growth",
+    definition: "to increase slowly over a period of time",
+    examples: [
+      "Online sales grew gradually during the first six months.",
+      "The company's customer base has grown gradually through referrals."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "grow rapidly",
+    partOfSpeech: "phrase",
+    category: "Trends & Growth",
+    definition: "to increase quickly over a relatively short period",
+    examples: [
+      "Demand for the new service grew rapidly after launch.",
+      "The technology sector is growing rapidly in the region."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "hepatitis",
+    partOfSpeech: "noun",
+    category: "Healthcare & Research",
+    definition: "a serious illness that causes inflammation of the liver",
+    examples: [
+      "The pharmaceutical company is developing a vaccine for hepatitis.",
+      "The awareness campaign provides information about preventing hepatitis."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "internal combustion engine",
+    partOfSpeech: "noun",
+    category: "Automotive Technology",
+    definition: "an engine that produces power by burning fuel inside it",
+    examples: [
+      "Electric motors may eventually replace the internal combustion engine.",
+      "The manufacturer improved the efficiency of its internal combustion engines."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "just over",
+    partOfSpeech: "adverb",
+    category: "Approximation & Data",
+    definition: "slightly more than a particular amount or number",
+    examples: [
+      "Annual revenue reached just over ten million dollars.",
+      "Just over half of employees supported the proposal."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "just under",
+    partOfSpeech: "adverb",
+    category: "Approximation & Data",
+    definition: "slightly less than a particular amount or number",
+    examples: [
+      "The project was completed in just under six months.",
+      "Just under forty percent of sales came from overseas markets."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "level off",
+    partOfSpeech: "phrasal verb",
+    category: "Trends & Data",
+    definition: "to stop rising or falling and remain at a steady level",
+    examples: [
+      "Sales levelled off after three months of rapid growth.",
+      "Production costs are expected to level off next quarter."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "a little more than",
+    partOfSpeech: "phrase",
+    category: "Approximation & Data",
+    definition: "slightly more than a particular amount or quantity",
+    examples: [
+      "The equipment cost a little more than originally expected.",
+      "A little more than one third of customers upgraded their accounts."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "marginally",
+    partOfSpeech: "adverb",
+    category: "Trends & Data",
+    definition: "by a very small amount",
+    examples: [
+      "Profit was marginally lower than last year.",
+      "The revised model is marginally more efficient."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "noticeable rise",
+    partOfSpeech: "noun",
+    category: "Trends & Growth",
+    definition: "an increase large enough to be clearly observed",
+    examples: [
+      "The campaign produced a noticeable rise in website traffic.",
+      "There was a noticeable rise in employee engagement after the workshop."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "overriding",
+    partOfSpeech: "adjective",
+    category: "Priorities & Decisions",
+    definition: "more important than every other consideration in a situation",
+    examples: [
+      "Customer safety is the overriding priority.",
+      "The overriding concern was protecting the company's reputation."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "P2P",
+    partOfSpeech: "noun",
+    category: "Digital Technology",
+    definition: "peer-to-peer communication in which computers connect directly to exchange information or files",
+    examples: [
+      "The platform uses P2P technology to transfer data directly between users.",
+      "The security team reviewed the risks associated with P2P file sharing."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "plummet",
+    partOfSpeech: "verb",
+    category: "Markets & Performance",
+    definition: "to fall suddenly and by a very large amount",
+    examples: [
+      "The share price plummeted after the profit warning.",
+      "Customer demand plummeted during the economic crisis."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "pop-up",
+    partOfSpeech: "noun",
+    category: "Digital Marketing",
+    definition: "a small window that appears automatically on a computer or mobile screen",
+    examples: [
+      "The website uses a pop-up to promote its newsletter.",
+      "Customers complained that the advertising pop-ups were too intrusive."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "predecessor",
+    partOfSpeech: "noun",
+    category: "Products & Development",
+    definition: "an earlier product, system, or person replaced by a newer one",
+    examples: [
+      "The new device is lighter and faster than its predecessor.",
+      "Her predecessor introduced the company's first digital strategy."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "revenue",
+    partOfSpeech: "noun",
+    category: "Finance & Performance",
+    definition: "money received by a business from its normal activities",
+    examples: [
+      "Subscription revenue increased during the second quarter.",
+      "The company expects the new service to generate additional revenue."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "ring tone",
+    partOfSpeech: "noun",
+    category: "Mobile Technology",
+    definition: "the sound or tune played by a mobile phone when a call arrives",
+    examples: [
+      "The company once generated significant revenue from downloadable ring tones.",
+      "Employees were asked to use a discreet ring tone during meetings."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "rise substantially",
+    partOfSpeech: "phrase",
+    category: "Trends & Growth",
+    definition: "to increase by a large and important amount",
+    examples: [
+      "Advertising revenue rose substantially after the redesign.",
+      "Operating costs have risen substantially since last year."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "rocket",
+    partOfSpeech: "verb",
+    category: "Trends & Growth",
+    definition: "to increase extremely quickly and suddenly",
+    examples: [
+      "Online orders rocketed during the promotional campaign.",
+      "The company's valuation rocketed after the investment announcement."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "roughly",
+    partOfSpeech: "adverb",
+    category: "Approximation & Data",
+    definition: "approximately, without being completely exact",
+    examples: [
+      "The expansion will require roughly fifty new employees.",
+      "Roughly one quarter of our revenue comes from subscriptions."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "RSS feed",
+    partOfSpeech: "noun",
+    category: "Digital Communication",
+    definition: "a service that automatically delivers updated website content to subscribers",
+    examples: [
+      "Investors can subscribe to the company's RSS feed for financial updates.",
+      "The news platform uses an RSS feed to distribute its latest articles."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "screensaver",
+    partOfSpeech: "noun",
+    category: "Computer Technology",
+    definition: "an image or animation displayed when a computer has not been used for a period",
+    examples: [
+      "The marketing team created a branded screensaver for company laptops.",
+      "Employees must lock their computers rather than rely on the screensaver."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "shoot up",
+    partOfSpeech: "phrasal verb",
+    category: "Trends & Growth",
+    definition: "to increase suddenly to a much higher level",
+    examples: [
+      "Demand shot up after the product appeared on television.",
+      "Shipping costs shot up during the supply-chain disruption."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "significant drop",
+    partOfSpeech: "noun",
+    category: "Trends & Decline",
+    definition: "a decrease large enough to have an important effect",
+    examples: [
+      "The retailer reported a significant drop in store traffic.",
+      "There was a significant drop in complaints after the system update."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "significant increase",
+    partOfSpeech: "noun",
+    category: "Trends & Growth",
+    definition: "a rise large enough to have an important effect",
+    examples: [
+      "The company recorded a significant increase in overseas sales.",
+      "Training led to a significant increase in employee productivity."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "slight fall",
+    partOfSpeech: "noun",
+    category: "Trends & Decline",
+    definition: "a small decrease in an amount, rate, or value",
+    examples: [
+      "The quarter ended with a slight fall in revenue.",
+      "There was a slight fall in customer satisfaction."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "slightly less than",
+    partOfSpeech: "phrase",
+    category: "Approximation & Data",
+    definition: "a little below a particular number or amount",
+    examples: [
+      "The project cost slightly less than five million dollars.",
+      "Slightly less than half of respondents preferred the new design."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "somewhere in the region of",
+    partOfSpeech: "phrase",
+    category: "Approximation & Data",
+    definition: "approximately a particular amount, without stating an exact figure",
+    examples: [
+      "The renovation will cost somewhere in the region of two hundred thousand dollars.",
+      "The campaign reached somewhere in the region of one million users."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "standstill",
+    partOfSpeech: "noun",
+    category: "Operations & Disruption",
+    definition: "a situation in which all activity or movement has stopped",
+    examples: [
+      "The system failure brought production to a standstill.",
+      "Negotiations reached a standstill after both sides rejected the proposal."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "stay the same",
+    partOfSpeech: "phrase",
+    category: "Trends & Stability",
+    definition: "to remain at an unchanged level or amount",
+    examples: [
+      "Employee numbers stayed the same throughout the year.",
+      "Subscription prices will stay the same until January."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "substantial drop",
+    partOfSpeech: "noun",
+    category: "Trends & Decline",
+    definition: "a large decrease in an amount, rate, or value",
+    examples: [
+      "The company experienced a substantial drop in advertising revenue.",
+      "Automation produced a substantial drop in processing time."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "threat",
+    partOfSpeech: "noun",
+    category: "Risk & Competition",
+    definition: "a person, event, or situation likely to cause harm or difficulty",
+    examples: [
+      "Cybercrime represents a growing threat to financial institutions.",
+      "The new competitor is a serious threat to our market position."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "transistor",
+    partOfSpeech: "noun",
+    category: "Electronics & Technology",
+    definition: "a small electronic component used to control or amplify an electric current",
+    examples: [
+      "The manufacturer produces millions of transistors every month.",
+      "Smaller transistors have allowed engineers to create more powerful devices."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "trends",
+    partOfSpeech: "noun",
+    category: "Markets & Analysis",
+    definition: "general patterns showing how a situation is changing or developing",
+    examples: [
+      "The report identifies the main trends in consumer behavior.",
+      "Managers use sales data to monitor long-term market trends."
+    ]
+  },
+  {
+    level: "upper-intermediate",
+    unit: 13,
+    word: "vineyard",
+    partOfSpeech: "noun",
+    category: "Agriculture & Business",
+    definition: "land where grapes are grown, especially for producing wine",
+    examples: [
+      "The company purchased a vineyard in northern Italy.",
+      "The family vineyard exports wine to more than twenty countries."
+    ]
+  },
 
 //////////////////////////////
 //
