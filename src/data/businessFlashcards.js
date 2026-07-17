@@ -21503,7 +21503,582 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 1,
+    word: "abandoned",
+    partOfSpeech: "adjective",
+    category: "Office Environment",
+    definition: "no longer used, and left empty",
+    examples: [
+      "The team considered converting an abandoned warehouse into a training centre.",
+      "Investors were cautious about buying the abandoned factory without a full inspection."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "ambience",
+    partOfSpeech: "noun",
+    category: "Office Environment",
+    definition: "the character and atmosphere of a place",
+    examples: [
+      "The hotel lobby had the right ambience for informal client meetings.",
+      "We chose the smaller venue because its ambience matched our premium brand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "appropriate",
+    partOfSpeech: "adjective",
+    category: "Business Communication",
+    definition: "suitable, acceptable, or correct for the particular circumstances",
+    examples: [
+      "Please choose an appropriate tone when replying to a dissatisfied customer.",
+      "The board asked whether the proposed bonus scheme was appropriate in the current market."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "assume",
+    partOfSpeech: "verb",
+    category: "Decision Making",
+    definition: "to think that sth is true without having been told it is true",
+    examples: [
+      "Do not assume the supplier has accepted the revised deadline until you receive confirmation.",
+      "Many managers assume remote staff are less available, but our data shows the opposite."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "attribute to",
+    partOfSpeech: "phrase",
+    category: "Problem Solving",
+    definition: "to believe that sth is the result of a particular thing",
+    examples: [
+      "The consultant attributed the delays to unclear ownership of the project.",
+      "We cannot attribute the sales increase to advertising alone."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "build relationships",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to develop friendly and successful ways of dealing with other people or companies",
+    examples: [
+      "Our account managers visit key clients regularly to build relationships.",
+      "Building relationships with local partners helped the company enter the market faster."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "build your skills",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to develop or improve your abilities at work",
+    examples: [
+      "The mentoring programme is designed to help junior analysts build their skills.",
+      "She used quieter periods at work to build her skills in data visualization."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "bustling",
+    partOfSpeech: "adjective",
+    category: "Office Environment",
+    definition: "full of people moving around in a busy way",
+    examples: [
+      "The bustling trade fair gave us many opportunities to meet distributors.",
+      "Their office is in a bustling district close to banks and transport links."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "buzzing",
+    partOfSpeech: "adjective",
+    category: "Organizational Culture",
+    definition: "full of excitement and activity",
+    examples: [
+      "The product team was buzzing after the successful launch presentation.",
+      "On conference day, the exhibition hall was buzzing with potential customers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "contender",
+    partOfSpeech: "noun",
+    category: "Competition",
+    definition: "a person or thing with a chance of winning or being chosen for sth",
+    examples: [
+      "The Milan site is now a serious contender for our European headquarters.",
+      "Three internal candidates are contenders for the regional director role."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "down-to-earth",
+    partOfSpeech: "adjective",
+    category: "Leadership",
+    definition: "sensible and practical, in a way that is helpful and friendly",
+    examples: [
+      "Her down-to-earth leadership style makes complex decisions easier to discuss.",
+      "Clients appreciate his down-to-earth advice on reducing operating costs."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "easy-going",
+    partOfSpeech: "adjective",
+    category: "Organizational Culture",
+    definition: "relaxed and happy to accept things without worrying or getting angry",
+    examples: [
+      "An easy-going manager can reduce tension during a difficult restructuring.",
+      "The team is easy-going, but they still meet demanding deadlines."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "form an opinion",
+    partOfSpeech: "phrase",
+    category: "Decision Making",
+    definition: "to decide what you think of sth/sb",
+    examples: [
+      "Meet the whole team before you form an opinion about the department.",
+      "The investors wanted more data before forming an opinion on the proposal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "gather that",
+    partOfSpeech: "phrase",
+    category: "Business Communication",
+    definition: "to understand from what you hear that sth is the case",
+    examples: [
+      "I gather that the client is unhappy with the delivery schedule.",
+      "From your comments, I gather that we need a more detailed risk plan."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "get on top of things",
+    partOfSpeech: "phrase",
+    category: "Management",
+    definition: "to manage to deal with things you have to do",
+    examples: [
+      "After hiring an assistant, the director finally got on top of things.",
+      "We need a clear action list to get on top of things before the audit."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "give an insight",
+    partOfSpeech: "phrase",
+    category: "Intercultural Communication",
+    definition: "to help you understand what sth is like",
+    examples: [
+      "The visit gave us an insight into how the partner company makes decisions.",
+      "Customer interviews can give an insight into why people cancel subscriptions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "infrastructure",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "the basic systems and services that are necessary for a country or an organization to run smoothly, for example buildings, transport, water, and power supplies",
+    examples: [
+      "Reliable digital infrastructure is essential for our remote service teams.",
+      "The city has the infrastructure needed to support a large logistics hub."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "initial",
+    partOfSpeech: "adjective",
+    category: "Business Communication",
+    definition: "first",
+    examples: [
+      "Our initial reaction to the offer was positive, but we need to check the figures.",
+      "The initial meeting focused on goals, budget, and possible risks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "intriguing",
+    partOfSpeech: "adjective",
+    category: "Innovation",
+    definition: "very interesting because of being unusual",
+    examples: [
+      "The start-up presented an intriguing solution to warehouse automation.",
+      "It is an intriguing proposal, although the revenue model is still unclear."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "jettison",
+    partOfSpeech: "verb",
+    category: "Strategy",
+    definition: "to get rid of or reject sth that is no longer needed or wanted",
+    examples: [
+      "The company jettisoned several outdated product lines to focus on software.",
+      "We may need to jettison the original timeline if testing takes longer than expected."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "keep an open mind",
+    partOfSpeech: "phrase",
+    category: "Decision Making",
+    definition: "to be willing to accept new ideas or change your opinion",
+    examples: [
+      "Keep an open mind until both suppliers have presented their solutions.",
+      "The CEO asked the board to keep an open mind about flexible working."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "keep your eyes open",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to be quick to notice things",
+    examples: [
+      "Keep your eyes open for changes in customer behaviour during the pilot.",
+      "When visiting the branch, keep your eyes open for small operational problems."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "light-hearted",
+    partOfSpeech: "adjective",
+    category: "Business Communication",
+    definition: "cheerful or amusing rather than serious",
+    examples: [
+      "The trainer used a light-hearted activity to start the negotiation workshop.",
+      "A light-hearted email can work well if the client relationship is informal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "low-key",
+    partOfSpeech: "adjective",
+    category: "Meetings & Events",
+    definition: "relaxed and calm rather than exciting and busy",
+    examples: [
+      "We planned a low-key launch for existing customers before the public campaign.",
+      "The managing director prefers low-key team meetings with open discussion."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "manage unknowns",
+    partOfSpeech: "phrase",
+    category: "Management",
+    definition: "to deal with situations when not all the facts are known",
+    examples: [
+      "Project leaders must manage unknowns when entering a new market.",
+      "Scenario planning helps teams manage unknowns during periods of rapid change."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "melting-pot",
+    partOfSpeech: "noun",
+    category: "Intercultural Communication",
+    definition: "a situation in which large numbers of different people, ideas, etc. are mixed together",
+    examples: [
+      "The international graduate scheme is a melting-pot of languages and business ideas.",
+      "Our design lab became a melting-pot where engineers and marketers shared perspectives."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "open-minded",
+    partOfSpeech: "adjective",
+    category: "Professional Skills",
+    definition: "willing to listen to, think about, or accept different ideas",
+    examples: [
+      "Open-minded managers are more likely to benefit from cross-cultural feedback.",
+      "The company wants open-minded employees who can adapt to new ways of working."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "out-of-the-way",
+    partOfSpeech: "phrase",
+    category: "Office Environment",
+    definition: "not close to other places or towns",
+    examples: [
+      "The out-of-the-way location kept rent low but made recruitment harder.",
+      "Clients rarely visit our out-of-the-way warehouse unless they need a technical tour."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "outspoken",
+    partOfSpeech: "adjective",
+    category: "Business Communication",
+    definition: "saying exactly what you think, even if this shocks or offends people",
+    examples: [
+      "The outspoken finance director challenged the sales forecast in front of everyone.",
+      "She is outspoken in meetings, but her comments are usually well informed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "pompous",
+    partOfSpeech: "adjective",
+    category: "Leadership",
+    definition: "behaving in a serious, formal way that suggests you think you are more important than other people",
+    examples: [
+      "The candidate sounded pompous when describing routine management tasks.",
+      "A pompous presentation style can distance executives from frontline staff."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "pour in",
+    partOfSpeech: "phrase",
+    category: "Sales",
+    definition: "to arrive somewhere continuously in large amounts",
+    examples: [
+      "Orders began to pour in after the product review appeared online.",
+      "Applications poured in once the company announced remote working options."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "precision",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "the quality of being exact, accurate, and careful",
+    examples: [
+      "Financial reporting requires precision, especially when margins are tight.",
+      "The engineering team checked every measurement with absolute precision."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "process information",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to deal with information so that you understand it or can use it",
+    examples: [
+      "Analysts need time to process information before making recommendations.",
+      "The dashboard helps managers process information from several departments quickly."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "ramble on",
+    partOfSpeech: "phrase",
+    category: "Business Communication",
+    definition: "to talk for a long time in a way that is not clear",
+    examples: [
+      "During the pitch, he rambled on instead of explaining the customer benefit.",
+      "Please keep the update concise and do not ramble on about minor issues."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "read a situation",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to understand what is happening and how people are really feeling, even when this is not expressed in words",
+    examples: [
+      "A good negotiator can read a situation before deciding whether to push harder.",
+      "She read the situation well and postponed the announcement until staff felt calmer."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "reluctant",
+    partOfSpeech: "adjective",
+    category: "Decision Making",
+    definition: "hesitating before you do sth because you do not want to do it or are not sure that it is right",
+    examples: [
+      "The board was reluctant to approve the acquisition without stronger evidence.",
+      "Some employees were reluctant to use the new system at first."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "run-of-the-mill",
+    partOfSpeech: "adjective",
+    category: "Products & Services",
+    definition: "ordinary, with no special or interesting features",
+    examples: [
+      "The agency promised a distinctive campaign, not a run-of-the-mill advert.",
+      "Customers will not pay premium prices for a run-of-the-mill service."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "self-assured",
+    partOfSpeech: "adjective",
+    category: "Leadership",
+    definition: "having a lot of confidence in yourself and your abilities",
+    examples: [
+      "The self-assured project manager handled the difficult questions calmly.",
+      "Her self-assured manner helped reassure investors during the presentation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "skim through",
+    partOfSpeech: "phrase",
+    category: "Business Communication",
+    definition: "to read sth quickly in order to find a particular point or the main points",
+    examples: [
+      "I skimmed through the contract to check the payment terms before the call.",
+      "Could you skim through the report and highlight any major risks?"
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "take into account",
+    partOfSpeech: "phrase",
+    category: "Decision Making",
+    definition: "to consider particular facts, circumstances, etc. when making a decision or judgement",
+    examples: [
+      "We must take into account local regulations before opening the branch.",
+      "The forecast takes into account higher energy costs and slower demand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "take your time",
+    partOfSpeech: "phrase",
+    category: "Professional Skills",
+    definition: "to take as much time as you need without hurrying",
+    examples: [
+      "Take your time reviewing the merger documents because the details are complex.",
+      "The client told us to take our time and return with a realistic proposal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "tedious",
+    partOfSpeech: "adjective",
+    category: "Office Environment",
+    definition: "not interesting and taking too long",
+    examples: [
+      "Entering old invoices into the system was tedious but necessary.",
+      "The approval process is tedious, so managers often delay small purchases."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "time-consuming",
+    partOfSpeech: "adjective",
+    category: "Operations",
+    definition: "taking a long time",
+    examples: [
+      "Manual stock checks are time-consuming and prone to errors.",
+      "Preparing customized proposals is time-consuming, but it improves our win rate."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "unexpected",
+    partOfSpeech: "adjective",
+    category: "Problem Solving",
+    definition: "surprising you because you were not expecting it",
+    examples: [
+      "An unexpected rise in shipping costs affected the project budget.",
+      "The team handled the unexpected resignation professionally."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "up-and-coming",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "new and becoming successful",
+    examples: [
+      "The firm invests in up-and-coming designers from emerging markets.",
+      "She is an up-and-coming consultant with strong experience in sustainability."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "vibrant",
+    partOfSpeech: "adjective",
+    category: "Marketing",
+    definition: "full of life, activity, and energy",
+    examples: [
+      "The company wants a vibrant brand image that appeals to younger clients.",
+      "Singapore has a vibrant business community for technology start-ups."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "weigh up the pros and cons",
+    partOfSpeech: "phrase",
+    category: "Decision Making",
+    definition: "to consider the advantages and disadvantages of sth",
+    examples: [
+      "We need to weigh up the pros and cons before outsourcing customer support.",
+      "The committee weighed up the pros and cons of moving to a smaller office."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 1,
+    word: "work both ways",
+    partOfSpeech: "phrase",
+    category: "Negotiation",
+    definition: "to be true for both of two possible situations or for both of two people",
+    examples: [
+      "Trust has to work both ways if the partnership is going to last.",
+      "Flexibility can work both ways: staff choose their hours, but managers expect results."
+    ]
+  },
 
 //////////////////////////////
 //
