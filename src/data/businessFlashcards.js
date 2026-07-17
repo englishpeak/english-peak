@@ -22086,7 +22086,486 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 2,
+    word: "ambassador",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "a person who acts as a representative for an organization, especially one who gives a good impression of it",
+    examples: [
+      "The regional director acted as an ambassador for the brand during the trade mission.",
+      "We chose a senior engineer as our sustainability ambassador because clients trust her expertise."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "apprenticeship",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "a job as an apprentice (a young person who works for an employer for a fixed period in order to learn the skills needed in a job)",
+    examples: [
+      "The company launched an apprenticeship to train school-leavers in advanced manufacturing.",
+      "Her apprenticeship combined college courses with paid experience in the finance department."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "approve",
+    partOfSpeech: "verb",
+    category: "Career Development",
+    definition: "to officially agree that sth is correct or good enough to be used",
+    examples: [
+      "The board will approve the investment only if the risk analysis is complete.",
+      "Compliance must approve the new supplier before we sign the contract."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "aspiring",
+    partOfSpeech: "adjective",
+    category: "Career Development",
+    definition: "wanting to achieve a particular position or achieve a lot of success",
+    examples: [
+      "The mentoring scheme supports aspiring managers from every department.",
+      "Aspiring entrepreneurs attended the workshop to refine their business plans."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "be sidelined",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "prevented from having an important part in sth",
+    examples: [
+      "Several experienced salespeople felt they had been sidelined during the restructuring.",
+      "The project was sidelined when the company shifted resources to cybersecurity."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "broaden your horizons",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to increase your experience and knowledge",
+    examples: [
+      "A secondment abroad can broaden your horizons and strengthen your leadership skills.",
+      "She joined the cross-functional project to broaden her horizons beyond marketing."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "cling on to",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to manage to keep sth trying very hard",
+    examples: [
+      "The retailer tried to cling on to its traditional customers while expanding online.",
+      "Some managers cling on to old reporting methods even when better tools are available."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "come up with",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to think of an idea or an answer",
+    examples: [
+      "The innovation team must come up with a cheaper packaging solution by Friday.",
+      "Can you come up with three options for improving staff engagement?"
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "conventional",
+    partOfSpeech: "adjective",
+    category: "Career Development",
+    definition: "following what is traditional or what is done most people",
+    examples: [
+      "The company rejected conventional advertising and invested in community partnerships.",
+      "His career path was conventional at first, moving from analyst to team leader."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "digression",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "a situation in which sb starts talking about sth that is not connected with the main point",
+    examples: [
+      "The chair stopped the digression and brought the discussion back to pricing.",
+      "His long digression about office design delayed the strategic review."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "emerging",
+    partOfSpeech: "adjective",
+    category: "Career Development",
+    definition: "new and still developing",
+    examples: [
+      "The fund focuses on emerging technologies with strong commercial potential.",
+      "We need local partners who understand emerging markets in Southeast Asia."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "enhance",
+    partOfSpeech: "verb",
+    category: "Career Development",
+    definition: "to increase the quality or value of sth, especially sth that is already good",
+    examples: [
+      "The new dashboard should enhance managers’ ability to track service quality.",
+      "Training in negotiation can enhance the performance of our procurement team."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "follow less conventional paths",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to have an unusual career or achieve things in an unusual way, compared to most ordinary people",
+    examples: [
+      "The company encourages graduates to follow less conventional paths across departments.",
+      "She followed less conventional paths by moving from law into product strategy."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "get on with",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to continue with sth, especially after an interruption",
+    examples: [
+      "After the brief interruption, the team got on with the budget review.",
+      "We need to get on with the implementation before the client loses confidence."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "go beyond the scope of",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to do things outside the range of things that an organization, an activity etc. includes or allows",
+    examples: [
+      "Providing legal advice would go beyond the scope of our consulting contract.",
+      "The analyst’s proposal went beyond the scope of the original research brief."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "grow into your position",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to become better at the job you do, so that you feel more confident and satisfied",
+    examples: [
+      "The new operations manager will grow into her position with coaching and clear targets.",
+      "It took him six months to grow into his position after the promotion."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "hindsight",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "the understanding of a situation that you have only after it has happened",
+    examples: [
+      "With hindsight, we should have tested the software with a smaller user group first.",
+      "Hindsight showed that the acquisition risks had been underestimated."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "hold on to",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to keep sth that is an advantage for yourself",
+    examples: [
+      "The firm wants to hold on to its best engineers during the merger.",
+      "She held on to the client relationship by responding quickly to every concern."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "in pursuit of",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "trying to get sth",
+    examples: [
+      "The sales team travelled extensively in pursuit of new international accounts.",
+      "In pursuit of higher margins, the company redesigned its supply chain."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "keep in with",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to make sure that you stay friendly with sb, because they can give you an advantage",
+    examples: [
+      "He kept in with senior stakeholders by sharing regular progress updates.",
+      "Consultants often keep in with former clients because future projects may arise."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "lateral",
+    partOfSpeech: "adjective",
+    category: "Career Development",
+    definition: "to one side on the same level, rather than up or down",
+    examples: [
+      "A lateral move into operations gave her broader experience before promotion.",
+      "The HR director suggested a lateral transfer rather than another vertical promotion."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "look out for",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to try to notice sth",
+    examples: [
+      "Look out for early signs that customers are unhappy with the new portal.",
+      "Managers should look out for talented employees who need a new challenge."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "move horizontally",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to change to another job on the same level, rather than changing to a more senior or junior job",
+    examples: [
+      "Employees can move horizontally between product teams to gain wider experience.",
+      "He decided to move horizontally into compliance instead of seeking a higher title."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "move on to",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to change or progress to another activity, subject of conversation etc.",
+    examples: [
+      "Once we agree the schedule, we can move on to the budget.",
+      "After three years in sales, she moved on to a role in customer success."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "notify",
+    partOfSpeech: "verb",
+    category: "Career Development",
+    definition: "to officially tell sb about sth",
+    examples: [
+      "Please notify the finance team when the purchase order is approved.",
+      "The system will notify managers if expenses exceed the monthly limit."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "painstakingly",
+    partOfSpeech: "adverb",
+    category: "Career Development",
+    definition: "with very great care, effort, and attention to detail",
+    examples: [
+      "The audit team painstakingly checked every invoice before issuing its report.",
+      "She painstakingly rebuilt the customer database after the migration failed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "peers",
+    partOfSpeech: "noun plural",
+    category: "Career Development",
+    definition: "people who have the same job level or status as you",
+    examples: [
+      "Compared with his peers, he has much stronger experience in digital transformation.",
+      "The workshop allows managers to exchange ideas with peers from other industries."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "prestigious",
+    partOfSpeech: "adjective",
+    category: "Career Development",
+    definition: "respected and admired as very important",
+    examples: [
+      "Winning the prestigious export award helped the firm attract new investors.",
+      "She accepted a role at a prestigious consultancy in Singapore."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "put yourself in a better position",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to improve your situation so it is easier for you to do sth",
+    examples: [
+      "Completing the certification will put yourself in a better position for promotion.",
+      "You can put yourself in a better position by building relationships before vacancies appear."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "reach a stage",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to develop so that you are in a particular state or period of your life",
+    examples: [
+      "The start-up reached a stage where it needed professional financial controls.",
+      "Many employees reach a stage in their career when they want more autonomy."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "rung",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "one in a series of positions or stages which you can make progress in an organization",
+    examples: [
+      "The graduate scheme is often the first rung on the management ladder.",
+      "She moved up another rung after leading the successful product launch."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "staff retention",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "the ability of an organization to keep staff rather than have them leave for other jobs",
+    examples: [
+      "Flexible working has improved staff retention across the customer service teams.",
+      "Poor staff retention forced the company to review salaries and career development."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "stand out from",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to be easily noticed because sth/sb is different or special",
+    examples: [
+      "A clear sustainability record helps the brand stand out from its competitors.",
+      "Her analytical skills made her stand out from other candidates."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "stand up for",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to support or defend sb/sth",
+    examples: [
+      "The manager stood up for her team when the deadline was criticized.",
+      "Employees expect leaders to stand up for ethical business practices."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "stand up to",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to be able to be treated in a particular way and still stay good or correct",
+    examples: [
+      "The prototype must stand up to heavy use in busy retail environments.",
+      "Our assumptions did not stand up to detailed financial analysis."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "stay ahead of",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to always be prepared to deal with sth/sb because you know what is likely to happen",
+    examples: [
+      "The company invests in research to stay ahead of regulatory changes.",
+      "Retailers use customer data to stay ahead of shifting buying habits."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "stick up for",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to support or defend sb who is being criticized",
+    examples: [
+      "He stuck up for a junior colleague whose idea was dismissed too quickly.",
+      "Good managers stick up for their teams when external criticism is unfair."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "struggle",
+    partOfSpeech: "verb",
+    category: "Career Development",
+    definition: "to find it difficult to do or deal with sth",
+    examples: [
+      "Small suppliers may struggle to meet the new compliance requirements.",
+      "The team struggled to deliver the project with such limited resources."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "take a step backwards",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to return to a lower level or to an activity that you did in the past",
+    examples: [
+      "Taking a step backwards into a smaller role helped her rebuild confidence after burnout.",
+      "The firm took a step backwards and returned to manual checks until the system was stable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 2,
+    word: "take the initiative",
+    partOfSpeech: "phrase",
+    category: "Career Development",
+    definition: "to act before other people do, or without waiting for sb to tell you what to do",
+    examples: [
+      "She took the initiative and contacted the client before the issue escalated.",
+      "Employees are encouraged to take the initiative when they see a process that can be improved."
+    ]
+  },
 
 //////////////////////////////
 //
