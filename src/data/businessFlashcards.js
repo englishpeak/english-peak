@@ -24095,7 +24095,618 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 6,
+    word: "ad-hoc",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "not planned or arranged in advance",
+    examples: [
+      "The CFO created an ad-hoc team to investigate the sudden rise in logistics costs.",
+      "We should avoid ad-hoc discounts because they make revenue forecasting less reliable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "blank",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "empty, with nothing written or printed on it",
+    examples: [
+      "The facilitator gave each manager a blank sheet for the first stage of the innovation workshop.",
+      "Please leave the approval field blank until legal has reviewed the draft contract."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "boost earnings",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to increase profits",
+    examples: [
+      "The new subscription model is expected to boost earnings in the second half of the year.",
+      "Management believes that reducing waste and renegotiating supplier contracts will boost earnings."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "bounce ideas around",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to discuss ideas with other people in order to find out what they think",
+    examples: [
+      "Before we brief the agency, let’s bounce ideas around with the sales team.",
+      "The product managers met informally to bounce ideas around for the next app release."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "cause a stir",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to make a number of people feel excited, angry, or shocked",
+    examples: [
+      "The CEO’s decision to remove private offices caused a stir among senior managers.",
+      "Our competitor’s unexpectedly low bid caused a stir at the procurement meeting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "come to fruition",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to have a successful result",
+    examples: [
+      "After three years of research, the partnership finally came to fruition with a joint launch.",
+      "The expansion plan will only come to fruition if the financing is approved this quarter."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "contrary to",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "different from sth or against sth",
+    examples: [
+      "Contrary to expectations, the smaller branch delivered the highest customer satisfaction scores.",
+      "The findings were contrary to the assumptions in our original market-entry plan."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "control costs",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to prevent costs from increasing beyond a certain point",
+    examples: [
+      "The operations director introduced weekly reviews to control costs during the expansion.",
+      "Digital invoicing helped the finance department control costs without reducing service quality."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "cut into the bottom line",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to reduce the amount of profit made",
+    examples: [
+      "Higher packaging prices will cut into the bottom line unless we raise our prices.",
+      "Unplanned overtime began to cut into the bottom line during the final phase of the project."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "demand precision",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to make it necessary for people to be exact, accurate, and careful",
+    examples: [
+      "Regulatory reporting demands precision, so every figure must be checked twice.",
+      "The client’s medical devices demand precision at every stage of production."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "draft",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "rough and not yet in its final form",
+    examples: [
+      "The draft proposal gives us enough detail to discuss pricing with the client.",
+      "Please mark the presentation as draft until the board has approved the final numbers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "elite",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "the group of people with the most power or influence, for example because they have the most knowledge or money",
+    examples: [
+      "The programme is designed for an elite of high-potential managers from global offices.",
+      "A small financial elite influenced the decision to relocate the headquarters."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "explore a concept",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to examine an idea carefully in order to find out more about it",
+    examples: [
+      "The innovation lab will explore a concept for subscription-based maintenance services.",
+      "We need two more weeks to explore the concept before committing development resources."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "fall by the wayside",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to fail or be unable to make progress",
+    examples: [
+      "Several promising projects fell by the wayside when the budget was reduced.",
+      "Without senior sponsorship, the customer portal may fall by the wayside again."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "figure out ways",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to think about how you can resolve something",
+    examples: [
+      "The task force must figure out ways to reduce delivery times without increasing costs.",
+      "Managers are trying to figure out ways to keep staff engaged during the merger."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "get back on track",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to start progressing in the right way again after a mistake or failure",
+    examples: [
+      "The recovery plan helped the delayed implementation get back on track.",
+      "After losing two major accounts, the sales team needs a clear strategy to get back on track."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "get off the ground",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to start happening",
+    examples: [
+      "The mentoring scheme will not get off the ground unless department heads promote it.",
+      "Once the pilot funding arrived, the analytics project quickly got off the ground."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "get the creative juices flowing",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to help new ideas to start developing in minds",
+    examples: [
+      "The design sprint used customer stories to get the creative juices flowing.",
+      "A visit to the factory helped get the creative juices flowing before the strategy workshop."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "ground-breaking",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "making new discoveries or using new methods",
+    examples: [
+      "The company won an award for its ground-breaking approach to battery recycling.",
+      "Investors are backing the start-up because its ground-breaking technology could change diagnostics."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "hard and fast",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "that cannot be changed in any circumstances",
+    examples: [
+      "There are no hard and fast rules for choosing the right innovation partner.",
+      "The director wants hard and fast deadlines for compliance training across all regions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "hit on ideas",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to think of a good idea suddenly or by chance",
+    examples: [
+      "The team hit on ideas for reducing returns while reviewing customer complaints.",
+      "During the workshop, an engineer hit on ideas that later shaped the prototype."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "impose targets",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to tell people that they must achieve certain results",
+    examples: [
+      "Head office should not impose targets without understanding local market conditions.",
+      "The new owner imposed targets that required every division to improve margins."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "incur the wrath of",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to make sb angry",
+    examples: [
+      "The supplier incurred the wrath of the purchasing director by missing a critical deadline.",
+      "Any manager who ignores the data-security policy will incur the wrath of the compliance team."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "intimidate",
+    partOfSpeech: "verb",
+    category: "Innovation and Business Performance",
+    definition: "to make sb feel frightened or threatened",
+    examples: [
+      "The negotiator tried to intimidate the start-up founders with aggressive legal language.",
+      "Senior executives must not intimidate junior staff who raise legitimate concerns."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "knock into shape",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "make sth more organized or successful",
+    examples: [
+      "The consultant was hired to knock the struggling project into shape before launch.",
+      "We have a strong concept, but the business plan still needs to be knocked into shape."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "look beyond",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to think about things that are more advanced or more unusual",
+    examples: [
+      "The board asked managers to look beyond short-term savings and consider long-term growth.",
+      "To innovate, we must look beyond our existing customer base and study adjacent markets."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "mature",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "no longer growing very quickly, and difficult for new companies to enter",
+    examples: [
+      "Telecoms is a mature market, so growth depends on service quality and retention.",
+      "The company is seeking acquisitions because its domestic market has become mature."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "metamorphose",
+    partOfSpeech: "verb",
+    category: "Innovation and Business Performance",
+    definition: "to change into sth completely different",
+    examples: [
+      "The traditional publisher metamorphosed into a digital learning platform.",
+      "Over five years, the regional distributor metamorphosed into a full-service logistics provider."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "mystique",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "a quality of being mysterious or secret that makes sb/sth seem interesting or attractive",
+    examples: [
+      "The founder’s mystique helped attract media attention to the luxury brand.",
+      "The company built a mystique around its design process by revealing very little before launch."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "niche",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "an opportunity to sell a particular product to a particular group of people",
+    examples: [
+      "The agency found a profitable niche advising family-owned manufacturers on exports.",
+      "Our software occupies a niche in compliance training for small banks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "nomadic",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "travelling around from place to place",
+    examples: [
+      "The consultancy supports nomadic employees with secure cloud systems and flexible expenses.",
+      "A nomadic sales team can reach rural clients without maintaining permanent offices."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "obsolete",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "no longer used because sth new has been invented",
+    examples: [
+      "The old payment terminals became obsolete after the retailer moved to contactless systems.",
+      "Management replaced obsolete machinery to improve safety and productivity."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "outperform the competition",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to do well in a particular job, activity, sport, etc. compared to others",
+    examples: [
+      "We can outperform the competition by offering faster delivery and clearer pricing.",
+      "The brand consistently outperforms the competition in customer loyalty surveys."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "patent",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "an official right to be the only person to make, use, or sell a product or an invention",
+    examples: [
+      "The start-up filed a patent before showing the prototype to potential investors.",
+      "A strong patent can protect our technology while we negotiate licensing deals."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "pen pushing",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "the activity of doing a lot of boring paperwork",
+    examples: [
+      "Engineers complained that pen pushing was taking time away from product testing.",
+      "The new workflow reduced pen pushing by automating routine approval forms."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "pursue ideas",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to do sth or try to achieve sth over a period of time",
+    examples: [
+      "Employees can pursue ideas for new services during the company’s monthly innovation day.",
+      "The board agreed to pursue ideas that could diversify revenue beyond consulting fees."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "roots",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "the feelings or connections that you have with a place because you have lived there or your family came from there",
+    examples: [
+      "Despite rapid growth, the company has kept strong roots in the local manufacturing community.",
+      "The brand’s roots in Scandinavian design remain central to its international identity."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "run into problems",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to experience difficulties",
+    examples: [
+      "The implementation ran into problems when the supplier changed its technical team.",
+      "We may run into problems if procurement does not approve the contract this week."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "shift the emphasis",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to change the thing that is given special importance or attention",
+    examples: [
+      "The new strategy shifts the emphasis from rapid expansion to sustainable profit.",
+      "Marketing shifted the emphasis from price promotions to customer experience."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "soul-searching",
+    partOfSpeech: "noun",
+    category: "Innovation and Business Performance",
+    definition: "the careful examination of your thoughts and feelings, for example in order to reach the correct decision or solution to sth",
+    examples: [
+      "After the failed launch, the leadership team began a period of serious soul-searching.",
+      "The merger prompted soul-searching about the company’s values and long-term purpose."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "sporadic",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "happening only occasionally or at intervals that are not regular",
+    examples: [
+      "Sporadic updates from the vendor made it difficult to plan the rollout.",
+      "The campaign produced only sporadic interest until we refined the target audience."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "stay ahead of the game",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to always be prepared to deal with sth/sb because you know what is likely to happen",
+    examples: [
+      "The retailer invests heavily in data analysis to stay ahead of the game.",
+      "Regular competitor reviews help our sales team stay ahead of the game."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "stifle creativity",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to prevent sth from happening or developing",
+    examples: [
+      "Too many approval layers can stifle creativity in product development teams.",
+      "The manager avoided strict templates because they might stifle creativity during brainstorming."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "tentative",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "not definite or certain because you may want to change it later",
+    examples: [
+      "We have made a tentative booking for the conference venue while budgets are reviewed.",
+      "The figures are tentative until the finance team completes the quarterly close."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "think outside the box",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to come up with creative/unusual ideas",
+    examples: [
+      "The client wants an agency that can think outside the box without ignoring budget limits.",
+      "We asked the interns to think outside the box about improving the onboarding process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "tolerate mistakes",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to accept or allow mistakes",
+    examples: [
+      "Innovative companies tolerate mistakes when teams learn quickly from experiments.",
+      "The production line cannot tolerate mistakes because defects could create safety risks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "try out",
+    partOfSpeech: "phrasal verb",
+    category: "Innovation and Business Performance",
+    definition: "to test or use sb/sth in order to see how good or effective they are",
+    examples: [
+      "We will try out the new scheduling tool with the customer service team first.",
+      "The retailer tried out self-checkout kiosks in three busy stores."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "undergo change",
+    partOfSpeech: "phrase",
+    category: "Innovation and Business Performance",
+    definition: "to experience a change",
+    examples: [
+      "The finance department will undergo change as routine reporting becomes automated.",
+      "Companies that undergo change need clear communication from senior leaders."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "unique",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "being the only one of its kind",
+    examples: [
+      "The firm offers a unique combination of legal advice and market analytics.",
+      "Her unique knowledge of both engineering and finance made her ideal for the role."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "vague",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "not clear in a person’s mind",
+    examples: [
+      "The project brief was too vague for the agency to prepare an accurate quote.",
+      "Investors became nervous when management gave vague answers about cash flow."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 6,
+    word: "wholesale",
+    partOfSpeech: "adjective",
+    category: "Innovation and Business Performance",
+    definition: "on a large scale",
+    examples: [
+      "The CEO rejected a wholesale restructuring and chose targeted improvements instead.",
+      "A wholesale change to the pricing model would confuse long-standing customers."
+    ]
+  },
 
 //////////////////////////////
 //
