@@ -22573,7 +22573,462 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 3,
+    word: "absenteeism",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "the fact of being frequently away from work, especially without good reasons",
+    examples: [
+      "The HR team analysed absenteeism after several production lines missed their weekly targets.",
+      "Flexible scheduling helped the call centre reduce absenteeism during the winter months."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "access",
+    partOfSpeech: "verb",
+    category: "Change Management",
+    definition: "to be able to get, see, or use sth",
+    examples: [
+      "Regional managers can access the sales dashboard from any company laptop.",
+      "Only approved finance staff may access confidential payroll records."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "accommodate needs",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to provide what a particular person or group needs",
+    examples: [
+      "The new office layout was designed to accommodate needs across sales, finance, and customer support.",
+      "Our benefits package should accommodate needs of employees at different career stages."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "achieve results",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to successfully produce or cause something good",
+    examples: [
+      "The transformation programme must achieve results within the first six months.",
+      "Clear ownership helped the project team achieve results despite a tight budget."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "amateur",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "done for enjoyment, not for money",
+    examples: [
+      "The presentation looked amateur, so the marketing director asked for a complete redesign.",
+      "Clients may question our credibility if the proposal has amateur formatting and errors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "anticipate problems",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to expect things to go wrong or be difficult",
+    examples: [
+      "Good project managers anticipate problems before they affect customers.",
+      "The operations team held a risk workshop to anticipate problems with the warehouse move."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "assess progress",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to make a judgement about how much sth has improved or developed",
+    examples: [
+      "We assess progress every Friday against the milestones in the implementation plan.",
+      "The steering committee asked for reliable data to assess progress on staff training."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "aversion to",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "a strong feeling of not liking sb/sth",
+    examples: [
+      "Some senior managers have an aversion to remote working because they prefer visible teams.",
+      "The finance department showed an aversion to risk after last year’s failed investment."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "badger someone",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to put pressure on sb repeatedly asking them questions or asking them to do sth",
+    examples: [
+      "Please do not badger someone in procurement; one clear follow-up email is enough.",
+      "The supplier badgered the project manager for a decision before the board had approved the budget."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "bare minimum",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "the least possible amount that is necessary",
+    examples: [
+      "The team did the bare minimum during the restructuring because morale was so low.",
+      "Meeting the bare minimum of compliance will not be enough to satisfy our largest clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "commuting",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "the action of travelling regularly by bus, train, car, etc. between your place of work and your home",
+    examples: [
+      "Long commuting times made it harder to recruit experienced staff for the head office.",
+      "The company introduced hybrid working to reduce commuting and improve work-life balance."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "dilemma",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "a situation which makes problems, often one in which you have to make a very difficult choice between things of equal importance",
+    examples: [
+      "The CEO faced a dilemma between cutting costs quickly and protecting employee morale.",
+      "Procurement had a dilemma when the cheapest supplier also had the weakest sustainability record."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "dynamic",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "having a lot of ideas and enthusiasm; energetic",
+    examples: [
+      "The new regional director is dynamic and has already proposed three growth initiatives.",
+      "We need a dynamic team that can adapt quickly to changes in customer demand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "effective",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "producing the result that is wanted or intended; producing a successful result",
+    examples: [
+      "The pilot showed that shorter daily meetings were more effective than weekly status calls.",
+      "An effective onboarding process helps new employees become productive faster."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "era",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "a period of time, usually in history, that is different from other periods because of particular characteristics or events",
+    examples: [
+      "The merger marked the beginning of a new era for the insurance group.",
+      "Digital platforms have created an era in which customers expect immediate service."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "exchange information",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "if you exchange information or knowledge, you tell or give it to other people and receive it from them at the same time",
+    examples: [
+      "The two departments exchange information every morning to coordinate delivery schedules.",
+      "During the audit, managers must exchange information openly with the external reviewers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "exchange knowledge",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "if you exchange information or knowledge, you tell or give it to other people and receive it from them at the same time",
+    examples: [
+      "The mentoring scheme allows senior engineers and graduates to exchange knowledge.",
+      "Branches in different countries exchange knowledge about local customer expectations."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "facilitate change",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to make it possible or easier for things to change",
+    examples: [
+      "The consultant’s role is to facilitate change rather than impose solutions on employees.",
+      "Regular communication can facilitate change during a complex systems migration."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "flip-side",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "a different aspect of a situation, especially one that is less welcome",
+    examples: [
+      "The flip-side of faster growth is that our support team is under greater pressure.",
+      "Remote working saves office costs, but the flip-side is weaker informal communication."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "fusion",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "the process of joining two or more things together to become one",
+    examples: [
+      "The new service is a fusion of financial advice, data analytics, and online training.",
+      "Our innovation lab encourages a fusion of ideas from designers, engineers, and sales staff."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "generate enthusiasm",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to make people feel enthusiastic (excited and interested in sth)",
+    examples: [
+      "The leadership team used customer success stories to generate enthusiasm for the strategy.",
+      "A clear career path can generate enthusiasm among employees affected by the reorganization."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "give rise to",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to cause sth to happen or exist",
+    examples: [
+      "Unclear reporting lines can give rise to delays and duplicated work.",
+      "The new regulations may give rise to additional costs for smaller suppliers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "go according to plan",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to happen in the way that was intended or planned",
+    examples: [
+      "If the software launch does not go according to plan, we will extend the pilot.",
+      "The relocation went according to plan because every department had a detailed checklist."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "implement",
+    partOfSpeech: "verb",
+    category: "Change Management",
+    definition: "to start to use or act according to sth that has been decided",
+    examples: [
+      "The company will implement the new expense policy at the start of the next quarter.",
+      "Managers need training before they implement changes to the performance review process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "initiatives",
+    partOfSpeech: "noun plural",
+    category: "Change Management",
+    definition: "a new plan for dealing with a particular problem or for achieving a particular purpose",
+    examples: [
+      "Several initiatives were introduced to improve morale in the factory.",
+      "The board approved initiatives focused on energy savings and supplier diversity."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "means",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "a way of achieving or doing sth",
+    examples: [
+      "Video conferencing is a practical means of keeping international teams aligned.",
+      "The grant gave the start-up the means to hire two experienced developers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "measure success",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to judge how much success has been achieved",
+    examples: [
+      "We will measure success by customer retention, not only by revenue growth.",
+      "HR needs reliable survey data to measure success after the leadership programme."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "option",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "something that you can choose to have or do",
+    examples: [
+      "Outsourcing payroll is one option, but we need to compare the risks carefully.",
+      "The sales director presented an option that would reduce costs without closing branches."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "procedure",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "the usual or correct way of doing sth",
+    examples: [
+      "Every employee must follow the safety procedure before entering the production area.",
+      "The complaints procedure is too slow and needs to be simplified."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "purpose",
+    partOfSpeech: "noun",
+    category: "Change Management",
+    definition: "a clear intention or aim that sth is supposed to achieve",
+    examples: [
+      "The purpose of the workshop is to agree priorities for the transformation project.",
+      "She asked each department to explain the purpose of its weekly report."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "put in place",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "to make sth ready to work or be used",
+    examples: [
+      "We put in place a backup supplier before launching the new product.",
+      "The bank put in place stronger controls after the internal audit."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "resistant to",
+    partOfSpeech: "phrase",
+    category: "Change Management",
+    definition: "opposing sth and trying to stop it happening",
+    examples: [
+      "Some employees were resistant to the new scheduling system at first.",
+      "The regional office remained resistant to central purchasing because it valued local suppliers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "seamless",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "with no spaces or pauses between one part and the next",
+    examples: [
+      "Customers expect a seamless experience when they move from the website to the call centre.",
+      "The IT team created a seamless link between the ordering platform and the warehouse system."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "self-perpetuating",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "continuing by itself without any outside influence",
+    examples: [
+      "Low trust created a self-perpetuating cycle of poor communication and missed deadlines.",
+      "The company wanted to break a self-perpetuating pattern of high turnover and constant retraining."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "sheer",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "used to emphasize the size, degree or amount of sth",
+    examples: [
+      "The sheer volume of customer emails forced us to hire temporary support staff.",
+      "Managers underestimated the sheer complexity of integrating three different IT systems."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "sustainable",
+    partOfSpeech: "adjective",
+    category: "Change Management",
+    definition: "that can continue or be continued for a long time",
+    examples: [
+      "The board wants a sustainable growth strategy rather than a short-term sales push.",
+      "Reducing travel costs made the consulting model more sustainable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "tensions",
+    partOfSpeech: "noun plural",
+    category: "Change Management",
+    definition: "a situation in which people do not trust each other, or feel unfriendly towards each other",
+    examples: [
+      "Tensions between sales and operations increased when delivery dates were repeatedly missed.",
+      "The HR director tried to reduce tensions after the announcement of the restructuring."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 3,
+    word: "transform",
+    partOfSpeech: "verb",
+    category: "Change Management",
+    definition: "to change the form of sth; to change completely in appearance or character",
+    examples: [
+      "The new platform could transform the way customers manage their insurance claims.",
+      "Leadership training helped transform a cautious department into a more collaborative team."
+    ]
+  },
 
 //////////////////////////////
 //
