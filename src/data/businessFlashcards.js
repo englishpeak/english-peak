@@ -25700,7 +25700,510 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 9,
+    word: "abrupt",
+    partOfSpeech: "adjective",
+    category: "Change & Operations",
+    definition: "sudden and unexpected, often in an unpleasant way",
+    examples: [
+      "The abrupt change in supplier terms forced the procurement team to renegotiate several contracts.",
+      "Clients reacted badly to the abrupt announcement because no transition plan had been shared."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "accommodate",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to provide sb with a room or place to sleep, live or sit",
+    examples: [
+      "The finance team adjusted the budget to accommodate the new compliance requirements.",
+      "We redesigned the workshop schedule to accommodate colleagues joining from three time zones."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "arise",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to happen; to start to exist",
+    examples: [
+      "If any issues arise during implementation, the project manager will escalate them immediately.",
+      "Unexpected costs may arise when we migrate customer data to the new platform."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "be up to speed",
+    partOfSpeech: "phrase",
+    category: "Change & Operations",
+    definition: "to have the latest information or knowledge about something",
+    examples: [
+      "The consultant needs to be up to speed before she joins the steering committee next week.",
+      "After reading the briefing notes, the regional managers were up to speed on the merger timetable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "break down",
+    partOfSpeech: "phrasal verb",
+    category: "Change & Operations",
+    definition: "to fail",
+    examples: [
+      "Negotiations may break down if neither side accepts the revised payment terms.",
+      "Communication started to break down when the remote teams stopped sharing weekly updates."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "burden",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "a duty, responsibility, etc. that causes worry, difficulty or hard work",
+    examples: [
+      "Manual reporting has become a serious burden for the operations department.",
+      "The new tax rules placed an additional administrative burden on small exporters."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "cap",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "a limit on the amount of money that can be charged or spent in connection with a particular activity",
+    examples: [
+      "The board approved a cap on travel expenses for the next financial year.",
+      "A cap on overtime payments helped the company control its monthly labour costs."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "chronic",
+    partOfSpeech: "adjective",
+    category: "Change & Operations",
+    definition: "lasting for a long time; difficult to cure or get rid of",
+    examples: [
+      "Chronic delays in the approval process are damaging relationships with key suppliers.",
+      "The branch has faced chronic understaffing since several experienced advisers left."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "consecutive",
+    partOfSpeech: "adjective",
+    category: "Change & Operations",
+    definition: "following one after another in a continuous series",
+    examples: [
+      "Revenue has increased for six consecutive quarters despite difficult market conditions.",
+      "The factory missed its output target for the third consecutive month."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "convert",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to change or make something change from one form, purpose, system, etc. to another",
+    examples: [
+      "The sales team hopes to convert more trial users into annual subscribers.",
+      "We plan to convert the old warehouse into a customer training centre."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "cornerstone",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "the most important part of something that the rest depends on",
+    examples: [
+      "Trust is the cornerstone of our long-term partnership with distributors.",
+      "Accurate data became the cornerstone of the company’s pricing strategy."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "disruption",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "a situation in which it is difficult for something to continue in the normal way",
+    examples: [
+      "The cyberattack caused major disruption to online orders across Europe.",
+      "Managers prepared contingency plans to reduce disruption during the office relocation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "drain",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "a thing that uses a lot of the time, money, etc. that could be used for something else",
+    examples: [
+      "Unproductive meetings are a drain on the engineering team’s time.",
+      "Maintaining the legacy database has become a drain on the IT budget."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "drastically",
+    partOfSpeech: "adverb",
+    category: "Change & Operations",
+    definition: "in a way that is likely to have a strong or far-reaching effect",
+    examples: [
+      "The new automation system drastically reduced the time needed to process invoices.",
+      "Demand fell drastically after the competitor launched a cheaper alternative."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "ease",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to become or to make something less unpleasant, painful, severe, etc.",
+    examples: [
+      "Additional support staff should ease pressure on the customer service team.",
+      "The phased rollout helped ease concerns about the new performance system."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "encounter difficulties",
+    partOfSpeech: "phrase",
+    category: "Change & Operations",
+    definition: "to experience problems or difficulties, especially when you are trying to do something",
+    examples: [
+      "The logistics team may encounter difficulties if customs checks become stricter.",
+      "Several users encountered difficulties when they tried to access the updated portal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "exceed expectations",
+    partOfSpeech: "phrase",
+    category: "Change & Operations",
+    definition: "to be greater than a number or amount, or better than expected",
+    examples: [
+      "The pilot project managed to exceed expectations in both cost savings and user satisfaction.",
+      "Our premium support package must exceed expectations if we want to retain enterprise clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "fluctuate",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to change frequently in size, amount, quality, etc., especially from one extreme to another",
+    examples: [
+      "Raw material prices fluctuate, so we review supplier contracts every quarter.",
+      "Demand for consulting services tends to fluctuate during periods of economic uncertainty."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "friction",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "disagreement or a lack of friendship among people who have different opinions about something",
+    examples: [
+      "The unclear reporting structure created friction between sales and marketing.",
+      "Regular alignment meetings reduced friction among departments working on the launch."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "hinder",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to make it difficult for somebody to do something or for something to happen",
+    examples: [
+      "Outdated software can hinder collaboration between regional offices.",
+      "A lack of reliable market data may hinder the board’s investment decision."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "implement",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to make something that has been officially decided start to happen or be used",
+    examples: [
+      "The company will implement the new expense policy from 1 September.",
+      "We need more training before we implement the customer relationship management system."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "in the long run",
+    partOfSpeech: "phrase",
+    category: "Change & Operations",
+    definition: "concerning a longer period in the future",
+    examples: [
+      "The investment is expensive now, but it will lower maintenance costs in the long run.",
+      "In the long run, stronger onboarding should reduce staff turnover."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "inevitable",
+    partOfSpeech: "adjective",
+    category: "Change & Operations",
+    definition: "that you cannot avoid or prevent",
+    examples: [
+      "Some resistance is inevitable when a company changes its operating model.",
+      "Price increases seemed inevitable after transport costs doubled."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "infrastructure",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "the basic systems and services that are necessary for a country or an organization to run smoothly",
+    examples: [
+      "The firm upgraded its digital infrastructure to support remote working.",
+      "Weak transport infrastructure made it difficult to expand distribution in rural areas."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "integrate",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to combine two or more things so that they work together",
+    examples: [
+      "The acquisition will succeed only if we integrate the two finance systems quickly.",
+      "Our goal is to integrate customer feedback into every stage of product development."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "keep pace with",
+    partOfSpeech: "phrase",
+    category: "Change & Operations",
+    definition: "to move, increase, change, etc. at the same speed as somebody/something",
+    examples: [
+      "Retailers must keep pace with changing payment technologies.",
+      "The training programme helps employees keep pace with new regulatory requirements."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "lag behind",
+    partOfSpeech: "phrasal verb",
+    category: "Change & Operations",
+    definition: "to move or develop slowly or more slowly than other people, organizations, etc.",
+    examples: [
+      "We risk lagging behind competitors if we postpone the software upgrade again.",
+      "Sales in the northern region continue to lag behind the national average."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "leverage",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to get as much advantage or profit as possible from something that you have",
+    examples: [
+      "The company can leverage its brand reputation to enter new overseas markets.",
+      "We should leverage the data from our loyalty programme to improve forecasting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "maintain momentum",
+    partOfSpeech: "phrase",
+    category: "Change & Operations",
+    definition: "to make something continue at the same level, standard, etc.",
+    examples: [
+      "Weekly milestones helped the team maintain momentum during the transformation project.",
+      "To maintain momentum, senior leaders communicated progress after each phase."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "obsolete",
+    partOfSpeech: "adjective",
+    category: "Change & Operations",
+    definition: "no longer used because something new has been invented",
+    examples: [
+      "The manufacturer stopped supporting the obsolete machines last year.",
+      "Several internal procedures became obsolete after the company moved to cloud accounting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "offset",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to use one cost, payment or situation in order to cancel or reduce the effect of another",
+    examples: [
+      "Savings from automation should offset the higher cost of specialist training.",
+      "The retailer raised online sales to offset weaker performance in physical stores."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "overhaul",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to examine every part of a machine, system, etc. and make any necessary changes or repairs",
+    examples: [
+      "The bank decided to overhaul its risk management system after the audit.",
+      "We need to overhaul the onboarding process before hiring another hundred employees."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "phase out",
+    partOfSpeech: "phrasal verb",
+    category: "Change & Operations",
+    definition: "to stop using something gradually in stages over a period of time",
+    examples: [
+      "The company will phase out paper invoices by the end of the year.",
+      "Management plans to phase out the older product line as demand declines."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "ramp up",
+    partOfSpeech: "phrasal verb",
+    category: "Change & Operations",
+    definition: "to make something increase in amount",
+    examples: [
+      "The supplier agreed to ramp up production before the holiday season.",
+      "We must ramp up recruitment if the new contract is approved."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "resilient",
+    partOfSpeech: "adjective",
+    category: "Change & Operations",
+    definition: "able to feel better quickly after something unpleasant such as shock, injury, etc.",
+    examples: [
+      "A resilient supply chain helped the company recover quickly after the port strike.",
+      "The team remained resilient despite repeated changes to the project scope."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "streamline",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to make a system, an organization, etc. work better, especially in a way that saves money",
+    examples: [
+      "The new platform will streamline approvals for purchase orders.",
+      "Consultants were hired to streamline the company’s reporting process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "sustain",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to make something continue for some time without becoming less",
+    examples: [
+      "The business needs recurring revenue to sustain growth beyond the launch period.",
+      "Managers introduced mentoring to sustain improvements in employee performance."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "threshold",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "the level at which something starts to happen or have an effect",
+    examples: [
+      "Discounts require director approval once spending passes the agreed threshold.",
+      "Customer complaints reached the threshold that triggers a formal service review."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "transition",
+    partOfSpeech: "noun",
+    category: "Change & Operations",
+    definition: "the process or a period of changing from one state or condition to another",
+    examples: [
+      "The transition to hybrid working required clear communication from managers.",
+      "A dedicated team oversaw the transition from regional systems to one global platform."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "trigger",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to make something happen suddenly",
+    examples: [
+      "A sudden rise in defects can trigger an immediate quality investigation.",
+      "The announcement may trigger renewed interest from institutional investors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "upgrade",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to make a piece of machinery, computer system, etc. more powerful and efficient",
+    examples: [
+      "The IT department will upgrade the payment system this weekend.",
+      "Several branches need to upgrade their security equipment before the audit."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 9,
+    word: "withstand",
+    partOfSpeech: "verb",
+    category: "Change & Operations",
+    definition: "to be strong enough not to be hurt or damaged by extreme conditions, the use of force, etc.",
+    examples: [
+      "The new packaging can withstand long periods in cold storage.",
+      "Our cash reserves are strong enough to withstand a short-term fall in demand."
+    ]
+  },
 
 //////////////////////////////
 //
