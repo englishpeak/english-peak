@@ -26211,7 +26211,486 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 10,
+    word: "adverse",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "negative and unpleasant; not likely to produce a good result",
+    examples: [
+      "The legal team warned that adverse publicity could weaken our position in the negotiations.",
+      "Analysts reviewed the adverse findings before recommending changes to the investment plan."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "anticipation",
+    partOfSpeech: "noun",
+    category: "Evidence & Reasoning",
+    definition: "the fact of seeing that something might happen in the future and perhaps doing something about it now",
+    examples: [
+      "In anticipation of stricter regulations, the bank upgraded its compliance reporting system.",
+      "The purchasing team increased orders in anticipation of a shortage of components."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "assess",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to make a judgement about the nature or quality of somebody/something",
+    examples: [
+      "The board asked an independent consultant to assess the risks of entering the market.",
+      "Managers assess supplier performance using delivery data and customer feedback."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "at random",
+    partOfSpeech: "phrase",
+    category: "Evidence & Reasoning",
+    definition: "without deciding in advance what is going to happen, or without any regular pattern",
+    examples: [
+      "The auditor selected invoices at random to test whether the controls were working.",
+      "Participants were assigned at random to prevent bias in the workplace study."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "cautious",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "being careful about what you say or do, especially to avoid danger or mistakes; not taking any risks",
+    examples: [
+      "The finance director was cautious about approving expansion before demand was proven.",
+      "Investors remained cautious until the company published reliable sales figures."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "coherent",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "logical and well organized; easy to understand and clear",
+    examples: [
+      "The strategy became more coherent after each department agreed on the same priorities.",
+      "Her report gave a coherent explanation of the fall in customer retention."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "compelling",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "that makes you pay attention to it because it is so interesting and exciting",
+    examples: [
+      "The sales team presented a compelling case for increasing the marketing budget.",
+      "Customer testimonials provided compelling evidence that the new service solved a real problem."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "conceal",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to hide somebody/something",
+    examples: [
+      "The supplier tried to conceal the production delay until the client requested proof of shipment.",
+      "Companies must not conceal material risks from shareholders during a takeover."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "contemplate",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to think about whether you should do something, or how you should do something",
+    examples: [
+      "The board will contemplate a merger only after reviewing the regulatory implications.",
+      "Management is contemplating a flexible pricing model for enterprise clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "contradict",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to say that something that somebody else has said is wrong, and that the opposite is true",
+    examples: [
+      "The latest survey results contradict the assumption that customers prefer longer contracts.",
+      "No one wanted to contradict the CEO without clear evidence from the pilot."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "convince",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to make somebody/yourself believe that something is true",
+    examples: [
+      "The procurement manager used cost data to convince directors that the new supplier was credible.",
+      "A successful trial should convince hesitant clients to adopt the platform."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "correspond to",
+    partOfSpeech: "phrase",
+    category: "Evidence & Reasoning",
+    definition: "to be the same as or match something",
+    examples: [
+      "The invoice totals did not correspond to the amounts approved in the purchase orders.",
+      "Each performance score must correspond to a clearly defined competency level."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "credible",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "that can be believed or trusted",
+    examples: [
+      "The forecast became credible only after the team explained its assumptions.",
+      "Investors need a credible plan for reducing debt before they provide more funding."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "deceptive",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "likely to make you believe something that is not true",
+    examples: [
+      "The headline figure was deceptive because it excluded several major operating costs.",
+      "Regulators criticized the company for using deceptive claims in its advertising."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "deduce",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to form an opinion about something based on the information or evidence that is available",
+    examples: [
+      "From the repeated stock shortages, we can deduce that demand forecasting is unreliable.",
+      "The analyst deduced from the cash-flow data that the project was behind schedule."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "disregard",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to pay no attention to something",
+    examples: [
+      "The committee should not disregard employee feedback when evaluating the new policy.",
+      "Auditors found that several managers had disregarded the approval procedure."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "distort",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to change the shape, appearance or sound of something so that it is strange or not clear",
+    examples: [
+      "Using only one quarter's results can distort the picture of long-term performance.",
+      "The consultant warned that incomplete survey responses might distort the conclusions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "eliminate",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to remove or get rid of something/somebody",
+    examples: [
+      "The operations team redesigned the workflow to eliminate unnecessary approval steps.",
+      "We need to eliminate unreliable data before presenting the analysis to the board."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "evaluate",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to form an opinion of the amount, value or quality of something after thinking about it carefully",
+    examples: [
+      "The steering group will evaluate the pilot before approving a wider rollout.",
+      "HR uses exit interviews to evaluate whether management training is effective."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "evidence",
+    partOfSpeech: "noun",
+    category: "Evidence & Reasoning",
+    definition: "the facts, signs or objects that make you believe that something is true",
+    examples: [
+      "The proposal was rejected because there was little evidence of customer demand.",
+      "The compliance team collected evidence that the controls had been followed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "explicit",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "clear and easy to understand",
+    examples: [
+      "The contract contains explicit instructions about how confidential data must be handled.",
+      "Managers asked for explicit criteria before ranking suppliers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "flawed",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "having a mistake in it or a weakness that makes it less effective",
+    examples: [
+      "The pricing model was flawed because it ignored support costs for large clients.",
+      "A flawed recruitment process can lead to inconsistent hiring decisions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "formulate",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to create or prepare something carefully, giving particular attention to the details",
+    examples: [
+      "The strategy team met to formulate a response to the competitor's price cut.",
+      "Before negotiations began, the lawyers formulated clear conditions for accepting the deal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "hypothesis",
+    partOfSpeech: "noun",
+    category: "Evidence & Reasoning",
+    definition: "an idea or explanation of something that is based on a few known facts but that has not yet been proved to be true or correct",
+    examples: [
+      "Our hypothesis is that faster onboarding will reduce customer cancellations in the first month.",
+      "The research team tested the hypothesis with data from three regional offices."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "implication",
+    partOfSpeech: "noun",
+    category: "Evidence & Reasoning",
+    definition: "a possible effect or result of an action or a decision",
+    examples: [
+      "The tax implication of the acquisition must be reviewed before we sign the agreement.",
+      "Managers discussed the wider implications of replacing local support with a central team."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "infer",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to reach an opinion or decide that something is true on the basis of information that is available",
+    examples: [
+      "From the client's questions, we inferred that they were worried about implementation costs.",
+      "Analysts should not infer strong demand from a small number of trial users."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "justify",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to show that somebody/something is right or reasonable",
+    examples: [
+      "The department must justify any spending above the approved budget.",
+      "Strong retention figures helped justify the investment in employee development."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "manipulate",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to control or influence somebody/something, often in a dishonest way so that they do not realize it",
+    examples: [
+      "The investigation found that managers had tried to manipulate the satisfaction survey results.",
+      "Transparent reporting makes it harder for teams to manipulate performance figures."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "objective",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "not influenced by personal feelings or opinions; considering only facts",
+    examples: [
+      "An objective assessment of the proposal must include both financial and operational risks.",
+      "The company hired an external reviewer to provide objective feedback on the dispute."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "perception",
+    partOfSpeech: "noun",
+    category: "Evidence & Reasoning",
+    definition: "an idea, a belief or an image you have as a result of how you see or understand something",
+    examples: [
+      "Customer perception of the brand improved after the company simplified its pricing.",
+      "There is a perception among staff that promotion decisions are not transparent."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "plausible",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "reasonable and likely to be true",
+    examples: [
+      "The sales director offered a plausible explanation for the sudden drop in renewals.",
+      "Before accepting the forecast, we need to check whether the assumptions are plausible."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "preconceived",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "formed before you have enough information or experience of something",
+    examples: [
+      "Interviewers were trained to avoid preconceived ideas about candidates from non-traditional backgrounds.",
+      "The consultant challenged our preconceived view that premium customers never use self-service tools."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "rational",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "based on reason rather than emotions",
+    examples: [
+      "The CFO asked for a rational argument rather than optimism about future sales.",
+      "A rational response to the complaint would be to verify the facts before offering compensation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "relevant",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "closely connected with the subject you are discussing or the situation you are thinking about",
+    examples: [
+      "Please include only relevant market data in the executive summary.",
+      "The judge asked whether the emails were relevant to the contract dispute."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "reliable",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "that can be trusted to do something well; that you can rely on",
+    examples: [
+      "The logistics team needs a reliable carrier for next-day deliveries.",
+      "Decisions about staffing should be based on reliable workload data."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "scrutinize",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to look at or examine somebody/something carefully",
+    examples: [
+      "Investors will scrutinize the cash-flow statement before approving the funding round.",
+      "The audit committee scrutinized every exception in the compliance report."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "subjective",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "based on your own ideas or opinions rather than facts and therefore sometimes unfair",
+    examples: [
+      "The appraisal system felt subjective because managers used different standards.",
+      "We replaced subjective comments with measurable performance indicators."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "substantiate",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to provide information or evidence to prove that something is true",
+    examples: [
+      "The supplier must substantiate its claim that the materials meet safety standards.",
+      "Finance asked the department to substantiate the savings shown in the business case."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "valid",
+    partOfSpeech: "adjective",
+    category: "Evidence & Reasoning",
+    definition: "that is based on what is logical or true",
+    examples: [
+      "The client's concern about data security is valid and should be addressed in the proposal.",
+      "A valid comparison requires figures from the same reporting period."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 10,
+    word: "verify",
+    partOfSpeech: "verb",
+    category: "Evidence & Reasoning",
+    definition: "to check that something is true or accurate",
+    examples: [
+      "Please verify the payment details before releasing the transfer.",
+      "The audit team verified the inventory records against physical stock in the warehouse."
+    ]
+  },
 
 //////////////////////////////
 //
