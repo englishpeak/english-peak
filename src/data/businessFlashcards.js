@@ -25213,7 +25213,486 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 8,
+    word: "abide by",
+    partOfSpeech: "phrasal verb",
+    category: "Business Ethics & Compliance",
+    definition: "to accept and act according to a law, an agreement, etc.",
+    examples: [
+      "All suppliers must abide by the anti-bribery policy before they can bid for new contracts.",
+      "The regional office agreed to abide by the regulator’s decision even though it affected quarterly revenue."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "acceptable",
+    partOfSpeech: "adjective",
+    category: "Business Ethics & Compliance",
+    definition: "agreed or approved of by most people in a society",
+    examples: [
+      "A facilitation payment is not acceptable under our global ethics policy.",
+      "The audit committee asked what level of hospitality would be acceptable during the tender process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "breach",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a failure to do sth that must be done by law",
+    examples: [
+      "Sharing confidential client data would be a serious breach of our code of conduct.",
+      "The company reported the breach to regulators within twenty-four hours."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "code of conduct",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a set of rules about how a person or organization should behave",
+    examples: [
+      "Every new employee signs the code of conduct during induction.",
+      "The board updated the code of conduct after several suppliers raised concerns about gifts."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "commitment",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a promise to do sth or to behave in a particular way; a promise to support sb/sth",
+    examples: [
+      "The CEO repeated her commitment to transparent reporting at the annual meeting.",
+      "Our commitment to fair purchasing practices helped rebuild trust with producers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "conduct",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a person’s behaviour in a particular place or in a particular situation",
+    examples: [
+      "The investigation focused on the conduct of two sales managers during the bidding process.",
+      "Professional conduct is expected whenever employees represent the company abroad."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "conflict of interest",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a situation in which sb has two jobs, aims, roles, etc. and cannot treat both of them equally and fairly at the same time",
+    examples: [
+      "The director declared a conflict of interest before the procurement vote.",
+      "Hiring a relative without disclosure created a clear conflict of interest."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "corruption",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "dishonest or illegal behaviour, especially of people in authority",
+    examples: [
+      "The firm introduced stronger controls to reduce the risk of corruption in overseas projects.",
+      "Corruption in the tender process damaged confidence in the public contract."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "deliberately",
+    partOfSpeech: "adverb",
+    category: "Business Ethics & Compliance",
+    definition: "done in a way that was planned, not by chance",
+    examples: [
+      "The manager deliberately withheld the risk report from the board.",
+      "A supplier was removed from the panel after deliberately submitting fake safety certificates."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "disclose",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to give sb information about sth, especially sth that was previously secret",
+    examples: [
+      "Employees must disclose any financial relationship with potential vendors.",
+      "The company chose to disclose the error before journalists contacted the communications team."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "discrimination",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the practice of treating sb or a particular group in society less fairly than others",
+    examples: [
+      "The HR director investigated complaints of discrimination in promotion decisions.",
+      "The policy aims to prevent discrimination against contractors and temporary staff."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "embody",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to express or represent an idea or a quality",
+    examples: [
+      "The new values statement should embody the company’s commitment to integrity.",
+      "Her decision to reject the kickback embodied the standards expected of senior leaders."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "encounter",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to experience sth, especially sth unpleasant or difficult, while you are trying to do sth else",
+    examples: [
+      "Teams may encounter ethical dilemmas when local customs differ from company policy.",
+      "The auditors did not encounter evidence of deliberate fraud during the review."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "establish",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to start or create an organization, a system, etc. that is meant to last for a long time",
+    examples: [
+      "The board voted to establish an independent ethics committee.",
+      "We need to establish clearer approval procedures for high-risk suppliers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "ethical",
+    partOfSpeech: "adjective",
+    category: "Business Ethics & Compliance",
+    definition: "connected with beliefs and principles about what is right and wrong",
+    examples: [
+      "The procurement team faced an ethical question about accepting hospitality from a bidder.",
+      "Investors increasingly expect ethical behaviour as well as strong financial performance."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "facilitate",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to make an action or a process possible or easier",
+    examples: [
+      "The platform was designed to facilitate anonymous reporting by employees.",
+      "Clear guidelines facilitate faster decisions when managers encounter compliance concerns."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "fake",
+    partOfSpeech: "adjective",
+    category: "Business Ethics & Compliance",
+    definition: "not genuine; appearing to be sth it is not",
+    examples: [
+      "The warehouse rejected a shipment with fake certification labels.",
+      "Using fake customer reviews would expose the brand to legal and reputational risk."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "give rise to",
+    partOfSpeech: "phrase",
+    category: "Business Ethics & Compliance",
+    definition: "to cause sth to happen or exist",
+    examples: [
+      "Undisclosed gifts can give rise to doubts about a manager’s objectivity.",
+      "Poor governance may give rise to costly investigations and shareholder criticism."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "governance",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the activity of governing a country or controlling a company or an organization; the way in which a country is governed or a company or institution is controlled",
+    examples: [
+      "Stronger governance helped the company recover after the accounting scandal.",
+      "The investors asked for evidence of effective governance before approving the merger."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "guideline",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "rules or instructions that are given by an official organization telling you how to do sth, especially sth difficult",
+    examples: [
+      "The finance team issued a guideline on acceptable client entertainment.",
+      "Managers should follow the guideline when they assess potential conflicts of interest."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "integrity",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the quality of being honest and having strong moral principles",
+    examples: [
+      "The candidate’s integrity was a key reason for appointing her as compliance officer.",
+      "A culture of integrity makes employees more willing to report misconduct."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "kickback",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a payment made to sb who has helped you to make a profit, especially when this is done secretly or illegally",
+    examples: [
+      "The purchasing manager was dismissed for accepting a kickback from a supplier.",
+      "Even a small kickback can compromise objectivity in a competitive tender."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "lead by example",
+    partOfSpeech: "phrase",
+    category: "Business Ethics & Compliance",
+    definition: "to show other people how to behave by behaving in that way yourself",
+    examples: [
+      "Executives must lead by example if they expect staff to follow the new ethics policy.",
+      "The plant manager tried to lead by example by reporting his own expense error."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "misleading",
+    partOfSpeech: "adjective",
+    category: "Business Ethics & Compliance",
+    definition: "giving the wrong idea or impression and making you believe sth that is not true",
+    examples: [
+      "The regulator said the advertising claim was misleading because key costs were omitted.",
+      "A misleading sustainability report can undermine stakeholder trust."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "negligence",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the failure to give sb/sth enough care or attention",
+    examples: [
+      "The lawsuit alleged negligence after the company ignored repeated safety warnings.",
+      "Negligence in checking supplier documents exposed the firm to sanctions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "objectivity",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the quality of considering facts without being influenced by personal feelings or opinions",
+    examples: [
+      "The committee brought in an external adviser to protect its objectivity.",
+      "Personal relationships with bidders can threaten objectivity during procurement."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "omission",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the act of not including sb/sth or not doing sth; the fact of not being included or done",
+    examples: [
+      "The omission of the consultant’s fee from the report raised questions about transparency.",
+      "An accidental omission in the disclosure form delayed approval of the deal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "principle",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a moral rule or a strong belief that influences your actions",
+    examples: [
+      "Fair treatment is a principle that guides our supplier negotiations.",
+      "The board refused the payment on principle, even though it might have secured the contract."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "prohibit",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to stop sth from being done or used especially by law",
+    examples: [
+      "Company rules prohibit employees from accepting cash gifts.",
+      "New regulations prohibit misleading claims about product safety."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "reconcile",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to find an acceptable way of dealing with two or more ideas, needs, etc. that seem to be opposed to each other",
+    examples: [
+      "The mediator helped reconcile commercial targets with the company’s ethical commitments.",
+      "Managers struggled to reconcile local business practices with global compliance rules."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "regulation",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "an official rule made by a government or some other authority",
+    examples: [
+      "The new regulation requires companies to report modern slavery risks.",
+      "Failure to follow the regulation could result in a substantial fine."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "reputation",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the opinion that people have about what sb/sth is like, based on what has happened in the past",
+    examples: [
+      "The scandal damaged the bank’s reputation with corporate clients.",
+      "Transparent communication protected the company’s reputation during the investigation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "safeguard",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to protect sth/sb from loss, harm or damage; to keep sth/sb safe",
+    examples: [
+      "The policy is designed to safeguard confidential information and customer trust.",
+      "Independent audits safeguard shareholders against inaccurate reporting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "sanction",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "an official order that limits trade, contact, etc. with a particular country, in order to make it do sth, such as obeying international law",
+    examples: [
+      "The supplier faced a sanction after repeatedly breaching labour standards.",
+      "A sanction from the regulator would prevent the firm from bidding for public contracts."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "scrutiny",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "careful and complete examination",
+    examples: [
+      "Executive expenses came under scrutiny after the whistleblower’s report.",
+      "The merger will face intense scrutiny from competition authorities."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "stakeholder",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a person or company that is involved in a particular organization, project, system, etc., especially because they have invested money in it",
+    examples: [
+      "The project team consulted every major stakeholder before changing the governance model.",
+      "Employees are an important stakeholder in decisions about workplace monitoring."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "transparency",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "the quality of sth, such as a situation or an argument, that makes it easy to understand",
+    examples: [
+      "The company published the audit findings to improve transparency.",
+      "Greater transparency in pricing helped customers compare service packages fairly."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "undermine",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to make sth, especially sb’s confidence or authority, gradually weaker or less effective",
+    examples: [
+      "Ignoring small breaches can undermine confidence in the whole compliance system.",
+      "Misleading data would undermine the credibility of the board presentation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "uphold",
+    partOfSpeech: "verb",
+    category: "Business Ethics & Compliance",
+    definition: "to support sth that you think is right and make sure that it continues to exist",
+    examples: [
+      "Managers are expected to uphold the code of conduct in difficult negotiations.",
+      "The committee voted to uphold the principle of equal treatment for all applicants."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 8,
+    word: "whistleblower",
+    partOfSpeech: "noun",
+    category: "Business Ethics & Compliance",
+    definition: "a person who informs people in authority or the public that the company they work for is doing sth wrong or illegal",
+    examples: [
+      "A whistleblower alerted the audit committee to irregular payments.",
+      "The company strengthened protection for any whistleblower who reports misconduct in good faith."
+    ]
+  },
 
 //////////////////////////////
 //
