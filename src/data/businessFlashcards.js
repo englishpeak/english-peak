@@ -27137,7 +27137,414 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 12,
+    word: "appeal to",
+    partOfSpeech: "phrasal verb",
+    category: "Marketing & Branding",
+    definition: "to attract",
+    examples: [
+      "The campaign was designed to appeal to younger professionals who value flexibility.",
+      "The new benefits package should appeal to candidates in the technology sector."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "aspirational",
+    partOfSpeech: "adjective",
+    category: "Marketing & Branding",
+    definition: "wanting very much to achieve success in your career or to improve your social status and standard of living",
+    examples: [
+      "The brand uses aspirational imagery to connect its watches with executive success.",
+      "Our housing campaign targets aspirational buyers who are moving into senior management roles."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "brutally",
+    partOfSpeech: "adverb",
+    category: "Marketing & Branding",
+    definition: "in a very direct and honest way that may upset people",
+    examples: [
+      "The consultant spoke brutally about the weaknesses in our sales process.",
+      "To be brutally clear, the merger will not succeed without stronger leadership."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "buy into",
+    partOfSpeech: "phrasal verb",
+    category: "Marketing & Branding",
+    definition: "to believe in an idea or plan and support it",
+    examples: [
+      "Employees will not buy into the restructuring unless managers explain the benefits clearly.",
+      "The board needs to buy into the sustainability strategy before we contact investors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "cash cows",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "products or parts of a business that make a lot of profit without needing much investment",
+    examples: [
+      "Our legacy software licences remain cash cows, but we still need to develop new revenue streams.",
+      "The finance director warned that relying on cash cows could hide declining demand in newer markets."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "conspicuous",
+    partOfSpeech: "adjective",
+    category: "Marketing & Branding",
+    definition: "very easy to notice",
+    examples: [
+      "The premium packaging makes the product conspicuous on crowded retail shelves.",
+      "There was a conspicuous absence of customer data in the marketing proposal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "consumer profile",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "the characteristics of consumers of a particular product in terms of their age, income, interests, etc.",
+    examples: [
+      "The agency updated the consumer profile before recommending a new media strategy.",
+      "A detailed consumer profile helped the team understand why urban professionals preferred the subscription model."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "distinguish",
+    partOfSpeech: "verb",
+    category: "Marketing & Branding",
+    definition: "to recognize and understand the difference between two or more things or people",
+    examples: [
+      "Strong service guarantees distinguish our offer from cheaper competitors.",
+      "Investors often distinguish between temporary losses and deeper problems in the business model."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "exploitative",
+    partOfSpeech: "adjective",
+    category: "Marketing & Branding",
+    definition: "treating someone unfairly in order to gain an advantage or make money",
+    examples: [
+      "The company rejected exploitative pricing practices during the supply shortage.",
+      "Several customers criticized the platform for exploitative fees charged to small retailers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "factor in",
+    partOfSpeech: "phrasal verb",
+    category: "Marketing & Branding",
+    definition: "to include a particular fact or situation when you are thinking about or planning something",
+    examples: [
+      "We need to factor in higher freight costs before finalizing the retail price.",
+      "The forecast factors in slower demand during the holiday shutdown."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "foster loyalty",
+    partOfSpeech: "phrase",
+    category: "Marketing & Branding",
+    definition: "to encourage customers to continue buying a product or using a service",
+    examples: [
+      "Personalized after-sales support can foster loyalty among corporate clients.",
+      "The airline redesigned its rewards programme to foster loyalty with frequent business travellers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "gauge",
+    partOfSpeech: "verb",
+    category: "Marketing & Branding",
+    definition: "to make a judgement about something, especially people’s feelings or attitudes",
+    examples: [
+      "The sales team used a short survey to gauge interest in the new service.",
+      "Before launching nationally, we need to gauge how distributors will respond to the revised margins."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "generic",
+    partOfSpeech: "adjective",
+    category: "Marketing & Branding",
+    definition: "typical of a whole group of similar things, rather than being special or unusual",
+    examples: [
+      "The presentation felt generic and failed to show why our solution was different.",
+      "Retailers often place generic products next to premium brands to highlight the price difference."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "give prominence to",
+    partOfSpeech: "phrase",
+    category: "Marketing & Branding",
+    definition: "to make something more important or noticeable",
+    examples: [
+      "The homepage should give prominence to the free trial during the launch period.",
+      "In the investor deck, we gave prominence to recurring revenue and customer retention."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "go mainstream",
+    partOfSpeech: "phrase",
+    category: "Marketing & Branding",
+    definition: "to become popular with ordinary people, rather than only with a small group",
+    examples: [
+      "Remote consulting went mainstream after clients became comfortable with video meetings.",
+      "The product could go mainstream if we reduce the price and simplify onboarding."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "iconic",
+    partOfSpeech: "adjective",
+    category: "Marketing & Branding",
+    definition: "very famous and well known, and believed to represent a particular idea",
+    examples: [
+      "The company’s iconic logo still appears on all its flagship products.",
+      "An iconic advertising campaign can define a brand for decades."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "impulse purchase",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "something that you buy suddenly and without planning to",
+    examples: [
+      "The retailer placed low-cost accessories near the checkout to encourage impulse purchases.",
+      "Our analytics show that limited-time discounts turn many app upgrades into impulse purchases."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "influence",
+    partOfSpeech: "verb",
+    category: "Marketing & Branding",
+    definition: "to have an effect on the way that someone behaves or thinks",
+    examples: [
+      "Online reviews strongly influence purchasing decisions in the software market.",
+      "The finance team’s analysis influenced the board’s decision to delay expansion."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "instantly recognizable",
+    partOfSpeech: "adjective phrase",
+    category: "Marketing & Branding",
+    definition: "easy to recognize immediately",
+    examples: [
+      "The packaging is instantly recognizable because it uses the same navy stripe in every market.",
+      "A clear tone of voice made the campaign instantly recognizable across social media channels."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "launch",
+    partOfSpeech: "verb",
+    category: "Marketing & Branding",
+    definition: "to start selling a new product or service to the public",
+    examples: [
+      "We plan to launch the payment platform in three European markets next quarter.",
+      "The company launched its premium subscription after six months of customer testing."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "lifestyle brand",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a brand that is designed to appeal to consumers by connecting with their way of life, interests, and attitudes",
+    examples: [
+      "The sportswear company became a lifestyle brand by linking its products to wellness and ambition.",
+      "Our client wants to build a lifestyle brand rather than compete only on technical features."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "market saturation",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a situation in which there are so many products of a particular type available that no more can be sold",
+    examples: [
+      "Market saturation forced the phone manufacturer to search for growth in emerging economies.",
+      "The team lowered its forecast because market saturation was limiting new store openings."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "niche market",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a small, specialized market for a particular product or service",
+    examples: [
+      "The firm serves a niche market of banks that need multilingual compliance training.",
+      "Instead of chasing mass adoption, the start-up focused on a profitable niche market."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "positioning",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "the way that a product or service is intended to be seen by consumers in relation to other products or services",
+    examples: [
+      "The agency recommended clearer positioning to separate the brand from budget competitors.",
+      "Premium positioning allowed the hotel group to charge higher rates in crowded city markets."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "premium brand",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a brand that is considered to be of higher quality and more expensive than others",
+    examples: [
+      "The company protected its image as a premium brand by refusing heavy discounts.",
+      "Retail partners receive special training before they can sell the premium brand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "resonate with",
+    partOfSpeech: "phrasal verb",
+    category: "Marketing & Branding",
+    definition: "to be attractive or interesting to someone, or to seem right to them",
+    examples: [
+      "The campaign will resonate with managers who are under pressure to cut energy costs.",
+      "Our message about transparency resonated with customers after the data breach."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "retail outlet",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a shop or other place where goods are sold to the public",
+    examples: [
+      "The brand opened its first retail outlet in Singapore to test demand in Asia.",
+      "Each retail outlet will display the new product range near the entrance."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "segment",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a group of customers or products that share particular characteristics",
+    examples: [
+      "The luxury segment recovered faster than the mass market after the downturn.",
+      "We created a separate pricing strategy for each customer segment."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "stand out",
+    partOfSpeech: "phrasal verb",
+    category: "Marketing & Branding",
+    definition: "to be easy to notice because of being different or better than others",
+    examples: [
+      "The proposal must stand out if we want to win the government contract.",
+      "Bright packaging helped the product stand out in supermarkets."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "target audience",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "the particular group of people that an advertisement, product, etc. is aimed at",
+    examples: [
+      "The target audience for the webinar is senior HR managers in global firms.",
+      "We changed the language of the advert because the target audience was younger than expected."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "trademark",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a name, design, or symbol that a company uses for its products and that cannot be used by anyone else",
+    examples: [
+      "The legal team registered the trademark before the product launch.",
+      "Using a competitor’s trademark in the advert created unnecessary legal risk."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "unique selling proposition",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "a feature of a product or service that makes it different from and better than all its competitors",
+    examples: [
+      "Fast installation became the software’s unique selling proposition in a crowded market.",
+      "The sales team struggled because the product lacked a clear unique selling proposition."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "value for money",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "the quality of being worth the amount of money you pay",
+    examples: [
+      "Corporate buyers expect value for money, even when they choose a premium supplier.",
+      "The procurement team compared service levels to decide which bid offered the best value for money."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 12,
+    word: "word-of-mouth",
+    partOfSpeech: "noun",
+    category: "Marketing & Branding",
+    definition: "the process of people telling each other about a product, service, etc.",
+    examples: [
+      "Positive word-of-mouth helped the consultancy win clients without a large advertising budget.",
+      "The restaurant chain relies on word-of-mouth from local business customers to build trust."
+    ]
+  },
 
 //////////////////////////////
 //
