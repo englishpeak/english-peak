@@ -23036,7 +23036,582 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 4,
+    word: "accept",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to regard sth as true",
+    examples: [
+      "The board must accept that demand may fall before the new product gains traction.",
+      "A good risk manager can accept uncertainty without delaying every strategic decision."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "adept",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "good at doing sth that is quite difficult",
+    examples: [
+      "The regional director is adept at spotting compliance risks before they become costly.",
+      "We need analysts who are adept at explaining complex scenarios to non-specialists."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "anticipate",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to expect sth",
+    examples: [
+      "Retailers must anticipate changes in consumer behaviour before ordering seasonal stock.",
+      "The finance team tried to anticipate how higher interest rates would affect cash flow."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "at a glance",
+    partOfSpeech: "phrase",
+    category: "Risk Management",
+    definition: "immediately; with only a quick look",
+    examples: [
+      "The dashboard lets executives see supplier risks at a glance.",
+      "At a glance, the chart shows which projects are most exposed to delays."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "ban",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to decide or say officially that sth is not allowed",
+    examples: [
+      "The regulator may ban advertising that makes misleading health claims.",
+      "Several offices decided to ban personal devices from secure client meetings."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "bold",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "brave and confident; not afraid to say what you feel or to take risks",
+    examples: [
+      "The CEO made a bold decision to enter the Asian market during a downturn.",
+      "A bold pricing strategy helped the company stand out from cautious competitors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "bottom out",
+    partOfSpeech: "phrasal verb",
+    category: "Risk Management",
+    definition: "to stop getting worse",
+    examples: [
+      "Sales finally bottomed out after three difficult quarters.",
+      "Analysts expect the market to bottom out before investment returns next year."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "cautious",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "being careful about what you say or do, especially to avoid danger or mistakes",
+    examples: [
+      "The legal team was cautious about approving the supplier contract without extra checks.",
+      "Investors remain cautious while exchange rates are so unstable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "chasm",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a very deep wide space or opening in the ground",
+    examples: [
+      "There is a chasm between the pilot results and full commercial success.",
+      "The merger exposed a chasm between the two companies’ risk cultures."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "concrete",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "based on facts, not on ideas or guesses",
+    examples: [
+      "The committee asked for concrete evidence before changing the safety policy.",
+      "We cannot approve the investment until we have concrete figures on expected demand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "determine",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to discover the facts about sth; to calculate sth exactly",
+    examples: [
+      "Auditors will determine whether the controls are strong enough for the new market.",
+      "The software helps managers determine which risks require immediate action."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "evaluate",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to form an opinion of the amount, value or quality of sth after thinking about it carefully",
+    examples: [
+      "The board will evaluate the potential impact of the regulation next week.",
+      "Procurement evaluated each supplier before signing the long-term agreement."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "eventualities",
+    partOfSpeech: "plural noun",
+    category: "Risk Management",
+    definition: "things that may possibly happen, especially sth unpleasant",
+    examples: [
+      "The project plan covers several eventualities, including a supplier failure.",
+      "Senior managers prepared cash reserves for unexpected eventualities in the market."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "expose sth to",
+    partOfSpeech: "phrase",
+    category: "Risk Management",
+    definition: "to put sb/sth in a place or situation where they are not protected from sth harmful or unpleasant",
+    examples: [
+      "Launching too early could expose the brand to unnecessary criticism.",
+      "Weak passwords expose the company to data theft and regulatory fines."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "foolhardy",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "taking unnecessary risks",
+    examples: [
+      "It would be foolhardy to ignore the safety report before opening the plant.",
+      "The CFO called the expansion plan foolhardy because it relied on untested demand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "gauge",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to make a judgement about sth, especially people’s feelings or attitudes",
+    examples: [
+      "The survey will gauge employee confidence after the restructuring announcement.",
+      "Sales managers used early orders to gauge demand for the premium version."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "habitual",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "usual or typical of sb/sth",
+    examples: [
+      "Risk assessment should become a habitual part of every product launch.",
+      "The company’s habitual delay in paying suppliers damaged trust."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "hash browns",
+    partOfSpeech: "plural noun",
+    category: "Risk Management",
+    definition: "potatoes that have been cut into very small pieces, mixed together, and fried",
+    examples: [
+      "The restaurant chain added hash browns to its breakfast menu after customer research.",
+      "Procurement compared frozen hash browns from three food suppliers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "hostile",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "very unfriendly or aggressive and ready to argue or fight",
+    examples: [
+      "The proposal received a hostile reaction from franchise owners.",
+      "A hostile media environment made the product recall more difficult to manage."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "identify",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to recognize sb/sth and be able to say who or what they are",
+    examples: [
+      "The workshop helped managers identify risks in the delivery process.",
+      "Customer interviews can identify weaknesses in a new service model."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "imprudent",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "not sensible or wise",
+    examples: [
+      "It would be imprudent to reduce insurance cover during rapid expansion.",
+      "The board rejected the imprudent proposal to finance growth entirely with debt."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "intuitive",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "obtained by using your feelings rather than by considering the facts",
+    examples: [
+      "The risk platform has intuitive controls that new managers can learn quickly.",
+      "Her intuitive understanding of client concerns helped prevent a dispute."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "justifiable",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "for which there is a good reason",
+    examples: [
+      "The extra security cost is justifiable because the client data is highly sensitive.",
+      "A cautious launch schedule is justifiable in such a volatile market."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "linear",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "of or in lines",
+    examples: [
+      "The presentation showed a linear process from risk identification to mitigation.",
+      "Growth is rarely linear when a company enters an unfamiliar sector."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "lobby",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to try to influence a politician or the government and, for example, persuade them to support or oppose a change in the law",
+    examples: [
+      "Industry groups plan to lobby for clearer food labelling rules.",
+      "Several airlines lobbied the government to delay the new tax."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "minimize",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to reduce sth, especially sth bad, to the lowest possible level",
+    examples: [
+      "The company redesigned the process to minimize delivery errors.",
+      "Good planning can minimize the financial impact of a supplier failure."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "modest",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "not very large, expensive, important, etc.",
+    examples: [
+      "The pilot produced a modest increase in repeat orders.",
+      "Management approved a modest budget for the first phase of the project."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "obscure",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "not well known",
+    examples: [
+      "An obscure clause in the contract created a serious compliance risk.",
+      "The consultant found an obscure but important pattern in the complaints data."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "outlet",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a shop or an organization that sells goods made by a particular company or of a particular type",
+    examples: [
+      "The manufacturer opened a new outlet near the airport.",
+      "Each retail outlet must report food safety incidents within twenty-four hours."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "over-cautious",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "too careful to avoid danger or risks",
+    examples: [
+      "An over-cautious approach could allow competitors to capture the market first.",
+      "The chair felt the investment committee had become over-cautious after one failed deal."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "pipe-dream",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a hope, belief, plan, etc. that will probably not come true",
+    examples: [
+      "Without funding, the expansion plan will remain a pipe-dream.",
+      "The founder’s idea sounded like a pipe-dream until the first major client signed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "pose risks to",
+    partOfSpeech: "phrase",
+    category: "Risk Management",
+    definition: "to create a threat, problem, etc. that has to be dealt with",
+    examples: [
+      "Poor data quality can pose risks to financial reporting.",
+      "Unapproved suppliers may pose risks to customer safety and brand reputation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "predict",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to say that sth will happen in the future",
+    examples: [
+      "Analysts cannot predict currency movements with complete accuracy.",
+      "The model attempts to predict which customers are likely to cancel."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "prudent",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "sensible and careful when you make judgements and decisions; avoiding unnecessary risks",
+    examples: [
+      "It is prudent to keep a cash reserve during uncertain trading conditions.",
+      "The directors took a prudent approach and delayed the acquisition."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "rapport",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a friendly relationship in which people understand each other very well",
+    examples: [
+      "The account manager built strong rapport with the client’s procurement team.",
+      "Good rapport between departments made the crisis meeting more productive."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "rash",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "doing sth that may not be sensible without first thinking about the possible results",
+    examples: [
+      "Approving the launch without testing would be a rash decision.",
+      "The CEO warned managers not to make rash promises to investors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "reckless",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "showing a lack of care about danger and the possible results of your actions",
+    examples: [
+      "Ignoring the audit findings would be reckless.",
+      "The bank dismissed a trader for reckless behaviour in a volatile market."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "recognize",
+    partOfSpeech: "verb",
+    category: "Risk Management",
+    definition: "to know who sb is or what sth is when you see or hear them, because you have seen or heard them or it before",
+    examples: [
+      "Experienced managers recognize early signs of supplier distress.",
+      "The software can recognize unusual payment patterns within seconds."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "risk-averse",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "not willing to do sth if it is possible that sth bad could happen as a result",
+    examples: [
+      "Risk-averse investors preferred government contracts to speculative start-ups.",
+      "The company became more risk-averse after the failed overseas launch."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "run the risk of",
+    partOfSpeech: "phrase",
+    category: "Risk Management",
+    definition: "to be or put yourself in a situation in which sth bad could happen to you",
+    examples: [
+      "If we delay the upgrade, we run the risk of losing key customers.",
+      "Companies that ignore feedback run the risk of damaging their reputation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "saturated fat",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a type of fat from meat and milk products that is thought to be less healthy than other kinds of fat",
+    examples: [
+      "The food producer reduced saturated fat in its ready meals after new health guidance.",
+      "Clear labels about saturated fat helped customers compare products."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "sensible",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "able to make good judgements based on reason and experience rather than emotion; practical",
+    examples: [
+      "A sensible manager checks the figures before committing to a new supplier.",
+      "The board agreed that a phased launch was the most sensible option."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "severity",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "the fact or condition of being extremely bad or serious",
+    examples: [
+      "The risk matrix measures both probability and severity.",
+      "Management underestimated the severity of the supply chain disruption."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "species",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a group into which animals, plants, etc. that are able to breed with each other and produce healthy young are divided",
+    examples: [
+      "The sustainability report identified species that could be affected by the factory site.",
+      "Construction suppliers must protect any endangered species near their projects."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "termite mound",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "a small hill of earth made by termites to live in",
+    examples: [
+      "The architect studied a termite mound to design a naturally cooled office building.",
+      "Engineers used the structure of a termite mound as inspiration for ventilation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "volatile",
+    partOfSpeech: "adjective",
+    category: "Risk Management",
+    definition: "likely to change suddenly; easily becoming dangerous",
+    examples: [
+      "The volatile market forced the finance team to update forecasts weekly.",
+      "Start-ups often struggle when raw material prices are volatile."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "wedges",
+    partOfSpeech: "plural noun",
+    category: "Risk Management",
+    definition: "pieces of potato in the shape of a wedge that are cooked and eaten",
+    examples: [
+      "The restaurant tested sweet potato wedges as a healthier side dish.",
+      "The supplier offered frozen wedges with lower salt content for schools."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 4,
+    word: "weigh up",
+    partOfSpeech: "phrasal verb",
+    category: "Risk Management",
+    definition: "to consider sth carefully before making a decision",
+    examples: [
+      "The directors must weigh up the risks before approving the acquisition.",
+      "She weighed up the cost savings against possible damage to service quality."
+    ]
+  },
 
 //////////////////////////////
 //
