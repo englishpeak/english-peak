@@ -24714,7 +24714,498 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 7,
+    word: "allocation",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "the act of giving something to somebody for a particular purpose; the amount of something that is given to somebody for a particular purpose",
+    examples: [
+      "The board approved the allocation of additional funds to the Asia expansion project.",
+      "Managers reviewed the allocation of staff across teams before the product launch."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "apt",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "suitable or appropriate in the circumstances",
+    examples: [
+      "Her comment about cash flow was apt because the supplier had just changed its payment terms.",
+      "The consultant chose an apt example to explain why the merger had failed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "a question of",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "used to say what the most important issue is in a particular situation",
+    examples: [
+      "Improving retention is a question of giving talented employees clearer career paths.",
+      "For the finance team, meeting the deadline is now a question of prioritizing the audit work."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "attainable",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "that you can achieve",
+    examples: [
+      "The sales target is ambitious but attainable if the new channel partners perform well.",
+      "We agreed on attainable milestones so the transformation programme would not lose momentum."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "cast your mind back",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to try to remember something",
+    examples: [
+      "Cast your mind back to the last restructuring and consider what communication mistakes we made.",
+      "Before we approve the proposal, cast your mind back to how customers reacted to the previous price rise."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "coherent",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "logical and well organized; easy to understand and clear",
+    examples: [
+      "The CEO presented a coherent plan for integrating the two businesses after the acquisition.",
+      "Your report needs a more coherent argument if it is going to persuade the investment committee."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "constrain",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to force somebody/something to behave in a particular way",
+    examples: [
+      "Limited production capacity may constrain our ability to accept large orders this quarter.",
+      "Strict compliance rules constrain how the sales team can contact prospective clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "contingency plan",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "a plan for what to do if an unexpected problem or situation happens",
+    examples: [
+      "We prepared a contingency plan in case the keynote speaker could not attend the conference.",
+      "The operations team activated its contingency plan when the main supplier missed the shipment date."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "convention",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "a way of behaving or doing things that is generally accepted and followed",
+    examples: [
+      "The company challenged the convention that senior roles must always be office-based.",
+      "In many industries, it is still a convention to confirm major agreements in writing."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "cope with stress",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to deal successfully with pressure or worry caused by difficult situations",
+    examples: [
+      "The workshop teaches managers how to cope with stress during periods of rapid change.",
+      "She learned to cope with stress by delegating more effectively and setting clearer boundaries."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "disastrous",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "very bad, harmful or unsuccessful",
+    examples: [
+      "A delayed product recall would have been disastrous for the brand's reputation.",
+      "The failed system migration had disastrous consequences for customer service levels."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "distract",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to take somebody’s attention away from what they are trying to do",
+    examples: [
+      "Constant notifications distract analysts when they are preparing sensitive financial forecasts.",
+      "The manager closed the door so the noise outside would not distract the interview panel."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "diverge",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to separate and go in different directions; to become different",
+    examples: [
+      "The partners' strategies began to diverge once the market shifted toward digital services.",
+      "Our cost estimates diverge significantly from the figures provided by the external consultants."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "draw on",
+    partOfSpeech: "phrasal verb",
+    category: "Professional Development",
+    definition: "to use a supply of something that is available to you",
+    examples: [
+      "The project leader drew on her experience in logistics to redesign the delivery process.",
+      "We can draw on customer feedback from last year when planning the new service model."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "engage in",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to take part in something",
+    examples: [
+      "The legal team refused to engage in discussions until the draft contract was updated.",
+      "Employees are encouraged to engage in continuous learning throughout their careers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "fade",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to become or to make something become paler or less bright; to disappear gradually",
+    examples: [
+      "Interest in the old product began to fade after competitors introduced cheaper alternatives.",
+      "The impact of the campaign will fade unless we follow up with targeted sales activity."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "feat",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "an action or a piece of work that needs skill, strength or courage",
+    examples: [
+      "Completing the integration in six weeks was an impressive feat for the IT department.",
+      "Securing financing during a downturn was no small feat for the start-up."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "go under",
+    partOfSpeech: "phrasal verb",
+    category: "Professional Development",
+    definition: "if a business goes under, it has to stop operating because of financial problems",
+    examples: [
+      "Several small retailers may go under if rent and energy costs continue to rise.",
+      "The manufacturer nearly went under before investors agreed to restructure its debt."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "hand down",
+    partOfSpeech: "phrasal verb",
+    category: "Professional Development",
+    definition: "to give or leave something to somebody who is younger than you",
+    examples: [
+      "The founder wanted to hand down her commitment to quality to the next generation of leaders.",
+      "Important client relationships were handed down carefully when the senior partner retired."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "incentive",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "something that encourages you to do something",
+    examples: [
+      "The bonus scheme gives sales staff a strong incentive to develop long-term accounts.",
+      "Tax incentives encouraged the company to invest in greener manufacturing equipment."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "internalize",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to make a feeling, an attitude or a belief part of the way you think and behave",
+    examples: [
+      "New managers need time to internalize the company's leadership principles.",
+      "After repeated coaching, the team began to internalize the importance of accurate reporting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "invaluable",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "extremely useful",
+    examples: [
+      "Her knowledge of regional regulations proved invaluable during the market entry review.",
+      "The mentor's advice was invaluable when I prepared for my first board presentation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "irreversible",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "that cannot be changed back to what it was before",
+    examples: [
+      "Signing the exclusive agreement would be an irreversible decision for the distribution team.",
+      "The data deletion process is irreversible, so approval from compliance is required."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "make your mark",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to become famous and successful in a particular area",
+    examples: [
+      "He made his mark by turning a struggling division into the group's fastest-growing business.",
+      "The new director hopes to make her mark through a bold sustainability strategy."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "make your mind up",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to decide something",
+    examples: [
+      "We need to make our mind up before the supplier's offer expires on Friday.",
+      "After reviewing the forecasts, the committee finally made its mind up about the investment."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "mediate",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to try to end a disagreement between two or more people or groups by talking to them and trying to find things that everyone can agree on",
+    examples: [
+      "An independent adviser was brought in to mediate between management and the union.",
+      "The HR director helped mediate a dispute between two senior team leaders."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "mental rehearsal",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "the process of imagining yourself doing something before you actually do it",
+    examples: [
+      "Mental rehearsal helped the sales director stay calm before the investor pitch.",
+      "The trainer recommended mental rehearsal as a way to prepare for difficult negotiations."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "misery",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "great suffering of the mind or body",
+    examples: [
+      "The failed implementation caused misery for support staff who had to handle angry customers.",
+      "Unclear priorities created months of misery for the project team."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "objective",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "something that you are trying to achieve",
+    examples: [
+      "Our main objective is to reduce delivery times without increasing operating costs.",
+      "Each department set one measurable objective for the next quarter."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "overwhelming",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "very great or very strong; so powerful that you cannot resist it or decide how to react",
+    examples: [
+      "The response to the new employee platform was overwhelmingly positive.",
+      "The volume of decisions during the takeover created overwhelming pressure on the leadership team."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "perform to your full potential",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to do something as well as you are capable of doing it",
+    examples: [
+      "Flexible working arrangements help employees perform to their full potential.",
+      "The coach helped the leadership team perform to their full potential under pressure."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "prevail",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to exist or be very common at a particular time or in a particular place",
+    examples: [
+      "A cautious mood prevailed after the company announced lower profits.",
+      "If supply shortages prevail, we will need to renegotiate delivery dates with clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "prior to",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "before something",
+    examples: [
+      "All invoices must be approved prior to payment.",
+      "Prior to the launch, the marketing team briefed every regional sales manager."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "push yourself",
+    partOfSpeech: "phrase",
+    category: "Professional Development",
+    definition: "to make yourself work hard in order to achieve something",
+    examples: [
+      "You need to push yourself if you want to move into a senior commercial role.",
+      "The accelerator programme encourages founders to push themselves beyond their comfort zones."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "reluctant",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "hesitating before doing something because you do not want to do it or because you are not sure that it is the right thing to do",
+    examples: [
+      "Some executives were reluctant to approve the deal without stronger due diligence.",
+      "Employees may be reluctant to use the new system until they receive proper training."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "resilience",
+    partOfSpeech: "noun",
+    category: "Professional Development",
+    definition: "the ability of people or things to recover quickly after something unpleasant, such as shock, injury, etc.",
+    examples: [
+      "The crisis revealed the resilience of the customer service team.",
+      "Building resilience is essential for companies exposed to volatile supply chains."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "set out",
+    partOfSpeech: "phrasal verb",
+    category: "Professional Development",
+    definition: "to begin a job, task, etc. with a particular aim or goal",
+    examples: [
+      "The report sets out the risks and benefits of outsourcing payroll.",
+      "We set out to build a platform that small firms could use without specialist support."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "strive for",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to try very hard to achieve something",
+    examples: [
+      "The company continues to strive for higher productivity without reducing quality.",
+      "Our procurement team strives for long-term value rather than short-term savings."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "undertake",
+    partOfSpeech: "verb",
+    category: "Professional Development",
+    definition: "to make yourself responsible for something and start doing it",
+    examples: [
+      "The consultancy will undertake a full review of our pricing model.",
+      "No supplier should undertake work until the purchase order has been approved."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "unwavering",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "not changing or becoming weaker in any way",
+    examples: [
+      "Her unwavering focus on customer trust helped the firm recover after the recall.",
+      "The board gave unwavering support to the five-year investment plan."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 7,
+    word: "vivid",
+    partOfSpeech: "adjective",
+    category: "Professional Development",
+    definition: "producing very clear pictures in your mind",
+    examples: [
+      "The presentation gave investors a vivid picture of how the new service would work.",
+      "He had a vivid memory of the failed negotiation and prepared carefully this time."
+    ]
+  },
 
 //////////////////////////////
 //
