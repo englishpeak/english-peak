@@ -26698,7 +26698,438 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 11,
+    word: "abide by",
+    partOfSpeech: "phrasal verb",
+    category: "Values & Business Ethics",
+    definition: "to accept and act according to a law or a rule",
+    examples: [
+      "Every partner must abide by the data-protection clause before accessing client records.",
+      "The board confirmed that all regional offices would abide by the new procurement policy."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "appreciably",
+    partOfSpeech: "adverb",
+    category: "Values & Business Ethics",
+    definition: "to a large enough degree to be noticed or considered important",
+    examples: [
+      "Operating margins improved appreciably after the supply chain was simplified.",
+      "Customer satisfaction rose appreciably once the support team introduced live chat."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "backlog",
+    partOfSpeech: "noun",
+    category: "Values & Business Ethics",
+    definition: "a quantity of work that should have been done already, but has not yet been done",
+    examples: [
+      "The service centre hired temporary staff to clear the backlog of warranty claims.",
+      "A backlog of invoices built up while the finance system was offline."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "be committed to",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to be willing to work hard and give your time and energy to sth; to believe strongly in sth",
+    examples: [
+      "The executive team is committed to reducing emissions across the whole logistics network.",
+      "Our consultants are committed to delivering measurable value, not just producing reports."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "comparatively",
+    partOfSpeech: "adverb",
+    category: "Values & Business Ethics",
+    definition: "as compared to sth/sb else; relatively",
+    examples: [
+      "The European launch was comparatively inexpensive because we reused existing campaign materials.",
+      "Staff turnover remains comparatively low in the division despite pressure from competitors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "conduct business with",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to organize and/or do a particular activity",
+    examples: [
+      "We only conduct business with suppliers that meet our ethical sourcing standards.",
+      "The bank refused to conduct business with companies that could not verify their ownership structure."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "considerably",
+    partOfSpeech: "adverb",
+    category: "Values & Business Ethics",
+    definition: "much; a lot",
+    examples: [
+      "The project became considerably more complex after the client changed the technical requirements.",
+      "Revenue from subscription services increased considerably in the second half of the year."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "drought",
+    partOfSpeech: "noun",
+    category: "Values & Business Ethics",
+    definition: "a long period of time when there is little or no rain",
+    examples: [
+      "The drought disrupted agricultural suppliers and forced the food manufacturer to revise its forecasts.",
+      "A prolonged drought increased raw material costs for the beverage company."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "have a passion for",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to have a very strong feeling of liking sth; a hobby, an activity, etc. that you like very much",
+    examples: [
+      "She has a passion for sustainable packaging and has led several successful redesign projects.",
+      "The founder has a passion for customer service, which is reflected in every training programme."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "hold ourselves accountable to",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to make yourself responsible for sth and able to explain your actions",
+    examples: [
+      "We hold ourselves accountable to our customers by publishing clear service-level results each quarter.",
+      "The leadership team holds itself accountable to employees through an annual culture survey and open forums."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "hostile",
+    partOfSpeech: "adjective",
+    category: "Values & Business Ethics",
+    definition: "very unfriendly or aggressive and ready to argue or fight",
+    examples: [
+      "The proposal received a hostile reaction from distributors who feared losing exclusivity.",
+      "Negotiations became hostile after the buyer accused the supplier of hiding production delays."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "hypo-allergenic",
+    partOfSpeech: "adjective",
+    category: "Values & Business Ethics",
+    definition: "designed to be less likely to cause an allergic reaction",
+    examples: [
+      "The cosmetics company promoted its hypo-allergenic cream to customers with sensitive skin.",
+      "Our hotel chain switched to hypo-allergenic cleaning products after guests reported irritation."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "increasingly difficult",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "getting harder and harder",
+    examples: [
+      "Recruiting experienced cybersecurity analysts is becoming increasingly difficult for mid-sized firms.",
+      "It is increasingly difficult to forecast demand while customers delay investment decisions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "irretrievably damaging",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "causing so much damage that the situation cannot be made right again",
+    examples: [
+      "Publishing inaccurate safety data would be irretrievably damaging to the company’s credibility.",
+      "The corruption scandal proved irretrievably damaging to the contractor’s relationship with public-sector clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "mouldy",
+    partOfSpeech: "adjective",
+    category: "Values & Business Ethics",
+    definition: "covered with mould",
+    examples: [
+      "The facilities manager replaced the mouldy carpet tiles before clients visited the office.",
+      "Several boxes of marketing brochures became mouldy after water leaked into the storage room."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "noticeably",
+    partOfSpeech: "adverb",
+    category: "Values & Business Ethics",
+    definition: "in a way that is easy to see or notice; clearly",
+    examples: [
+      "Employee engagement was noticeably higher after managers improved shift planning.",
+      "The new packaging made the premium range noticeably easier to identify on shelves."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "offsetting",
+    partOfSpeech: "noun",
+    category: "Values & Business Ethics",
+    definition: "the practice of paying money towards projects that help the environment to try to cancel out the harmful effect of carbon dioxide emissions produced by a person’s or company’s activities",
+    examples: [
+      "The airline added carbon offsetting options to its corporate travel booking platform.",
+      "Investors asked whether offsetting was being used instead of genuine emission reductions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "potentially disastrous",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "possibly having very bad consequences",
+    examples: [
+      "A missed delivery before the trade fair would be potentially disastrous for the product launch.",
+      "The finance director warned that the currency exposure was potentially disastrous without hedging."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "presumably",
+    partOfSpeech: "adverb",
+    category: "Values & Business Ethics",
+    definition: "used to say that you think that sth is probably true",
+    examples: [
+      "The contract was presumably approved by legal, but I will ask for written confirmation.",
+      "Presumably the client expects a revised timeline now that the shipment has been delayed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "pride ourselves on",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to be proud of sth",
+    examples: [
+      "We pride ourselves on responding to enterprise clients within one business day.",
+      "The firm prides itself on transparent pricing and long-term supplier relationships."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "profoundly worrying",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "extremely concerning",
+    examples: [
+      "The sudden fall in repeat orders is profoundly worrying for the sales leadership team.",
+      "A profoundly worrying audit report forced the board to review every compliance procedure."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "relatively stable",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "not changing much in comparison with sth else",
+    examples: [
+      "Demand for maintenance contracts remained relatively stable during the downturn.",
+      "Although hardware sales fell, subscription revenue was relatively stable throughout the year."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "robust",
+    partOfSpeech: "adjective",
+    category: "Values & Business Ethics",
+    definition: "strong; able to survive being used a lot and not likely to break",
+    examples: [
+      "The company needs a robust complaints process before it expands into new markets.",
+      "Auditors praised the robust controls around supplier payments."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "scruffy",
+    partOfSpeech: "adjective",
+    category: "Values & Business Ethics",
+    definition: "dirty or untidy",
+    examples: [
+      "The sales team was asked not to wear scruffy clothes when meeting corporate clients.",
+      "A scruffy reception area can create the wrong impression before negotiations even begin."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "scrutiny",
+    partOfSpeech: "noun",
+    category: "Values & Business Ethics",
+    definition: "careful and complete examination",
+    examples: [
+      "Executive pay came under scrutiny after profits fell for the third consecutive year.",
+      "The acquisition will face close scrutiny from competition regulators."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "sensitive to",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "aware of and able to understand other people and their feelings",
+    examples: [
+      "Managers must be sensitive to cultural differences when leading international teams.",
+      "The HR team was sensitive to employees’ concerns during the restructuring process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "shortfall",
+    partOfSpeech: "noun",
+    category: "Values & Business Ethics",
+    definition: "the amount by which sth is less than the amount that you need or expect",
+    examples: [
+      "The finance team identified a €2 million shortfall in the project budget.",
+      "A shortfall in skilled technicians delayed installation at three customer sites."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "significantly different",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "very different",
+    examples: [
+      "The survey showed that younger customers have significantly different expectations of digital service.",
+      "Our cost base is significantly different from that of larger competitors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "soar",
+    partOfSpeech: "verb",
+    category: "Values & Business Ethics",
+    definition: "to rise very quickly to a high level",
+    examples: [
+      "Shares in the company soared after it announced a major licensing deal.",
+      "Online orders soared when the retailer launched same-day delivery."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "strive to achieve",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to try very hard to achieve sth",
+    examples: [
+      "We strive to achieve consistent quality across every franchise location.",
+      "The procurement team strives to achieve savings without weakening supplier standards."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "surprisingly",
+    partOfSpeech: "adverb",
+    category: "Values & Business Ethics",
+    definition: "in a way that causes surprise",
+    examples: [
+      "The pilot project was surprisingly successful despite its limited marketing budget.",
+      "Demand recovered surprisingly quickly after the service outage."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "time off in lieu",
+    partOfSpeech: "noun",
+    category: "Values & Business Ethics",
+    definition: "time that an employee who has worked extra hours may take off from work instead of being paid for the extra hours",
+    examples: [
+      "The project manager approved time off in lieu for staff who worked through the weekend.",
+      "Employees must record overtime accurately if they want to claim time off in lieu."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "underpin",
+    partOfSpeech: "verb",
+    category: "Values & Business Ethics",
+    definition: "to support or form the basis of an argument, a claim, etc.",
+    examples: [
+      "Reliable customer data should underpin every decision about market expansion.",
+      "The company’s training programme underpins its reputation for technical excellence."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "unexpectedly rapid",
+    partOfSpeech: "adjective phrase",
+    category: "Values & Business Ethics",
+    definition: "much quicker than expected",
+    examples: [
+      "The unexpectedly rapid growth in demand left the warehouse short of stock.",
+      "Management had to respond to an unexpectedly rapid shift toward online purchasing."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "verify",
+    partOfSpeech: "verb",
+    category: "Values & Business Ethics",
+    definition: "to check that sth is true or accurate",
+    examples: [
+      "Please verify the supplier’s bank details before sending the deposit.",
+      "The compliance officer verified that all licences were valid before the audit."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 11,
+    word: "work cohesively with",
+    partOfSpeech: "phrase",
+    category: "Values & Business Ethics",
+    definition: "to work well together in a united way",
+    examples: [
+      "Marketing must work cohesively with product teams to keep launch messages accurate.",
+      "The regional managers learned to work cohesively with headquarters during the integration."
+    ]
+  },
 
 //////////////////////////////
 //
