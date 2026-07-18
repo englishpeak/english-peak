@@ -23619,7 +23619,475 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 5,
+    word: "absent-minded",
+    partOfSpeech: "adjective",
+    category: "Teamwork and Leadership",
+    definition: "tending to forget things, often due to being unfocused/thinking about other things",
+    examples: [
+      "The absent-minded project lead joined the client call without the revised budget figures.",
+      "After three intense workshops, even experienced managers became absent-minded and missed routine approval steps."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "availability",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "the fact that something can be bought, used, or reached",
+    examples: [
+      "Before promising a launch date, procurement checked the availability of key components with every supplier.",
+      "The consultant’s availability next quarter will determine whether we can start the restructuring project on time."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "batch",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "a number of people or things that are dealt with as a group",
+    examples: [
+      "Quality control rejected a batch of printed brochures because the company logo was the wrong colour.",
+      "HR onboarded the next batch of graduate trainees during a two-day orientation programme."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "bother someone",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to annoy, worry, or upset sb",
+    examples: [
+      "Please tell me if the repeated status requests bother someone on your team during month-end closing.",
+      "The finance director did not want to bother someone late at night unless the payment issue was urgent."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "clarity",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "the quality of being expressed clearly",
+    examples: [
+      "The board asked for greater clarity before approving the merger proposal.",
+      "Clarity in the new expenses policy reduced the number of questions sent to HR."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "communicate ideas effectively",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to exchange information or ideas with sb in a way that produces the intended result",
+    examples: [
+      "A product manager must communicate ideas effectively so engineers and marketers understand the same priorities.",
+      "The workshop helped senior analysts communicate ideas effectively when presenting complex data to non-specialists."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "conflict",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "a situation in which people, groups, or countries are involved in a serious disagreement or argument",
+    examples: [
+      "Conflict between sales and operations delayed the rollout of the new delivery schedule.",
+      "The mediator helped both departments resolve a conflict over shared budget responsibilities."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "consideration",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "the act of thinking carefully about sth",
+    examples: [
+      "After careful consideration, the leadership team postponed the overseas expansion.",
+      "The supplier’s sustainability record was an important consideration in the tender decision."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "contemplating",
+    partOfSpeech: "present participle",
+    category: "Teamwork and Leadership",
+    definition: "considering sth as a possibility",
+    examples: [
+      "The company is contemplating a subscription model for its professional training services.",
+      "Several employees are contemplating relocation because the regional office will close in December."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "controversial",
+    partOfSpeech: "adjective",
+    category: "Teamwork and Leadership",
+    definition: "causing a lot of angry discussion and disagreement",
+    examples: [
+      "The controversial bonus scheme was discussed at every employee forum for weeks.",
+      "Outsourcing customer support became controversial when service levels began to fall."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "cope with",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to deal successfully with sth difficult",
+    examples: [
+      "The warehouse hired temporary staff to cope with the seasonal rise in orders.",
+      "Managers need better systems to cope with sudden changes in customer demand."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "decent",
+    partOfSpeech: "adjective",
+    category: "Teamwork and Leadership",
+    definition: "of a good enough standard or quality",
+    examples: [
+      "The team delivered a decent proposal, but it still needs stronger financial evidence.",
+      "A decent internet connection is essential for consultants working from client sites."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "express yourself clearly",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to say, write, or communicate what you think in a way that others can understand",
+    examples: [
+      "In negotiations, you need to express yourself clearly so that neither side misunderstands the offer.",
+      "The presentation coach helped executives express themselves clearly under pressure."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "fall short of",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to fail to reach the standard that was expected or needed",
+    examples: [
+      "Quarterly revenue may fall short of the target if the largest contract is delayed.",
+      "The supplier’s safety standards fell short of our minimum requirements."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "focus on",
+    partOfSpeech: "phrasal verb",
+    category: "Teamwork and Leadership",
+    definition: "to give your attention or effort to one particular subject rather than another",
+    examples: [
+      "During the crisis meeting, we should focus on customer refunds before discussing future campaigns.",
+      "The CEO asked each department to focus on measurable productivity improvements."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "grumble",
+    partOfSpeech: "verb",
+    category: "Teamwork and Leadership",
+    definition: "to complain about sth in a bad-tempered way",
+    examples: [
+      "Employees began to grumble when the new travel policy removed hotel allowances.",
+      "Clients will grumble if the support team keeps closing tickets without solving the issue."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "inconsistencies",
+    partOfSpeech: "plural noun",
+    category: "Teamwork and Leadership",
+    definition: "differences between two statements, figures, etc. that means they cannot both be correct",
+    examples: [
+      "Auditors found inconsistencies between the inventory report and the warehouse records.",
+      "The legal team corrected inconsistencies in the two versions of the partnership agreement."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "keep to",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to talk or write only about a particular thing, and not other things that are not important or not relevant",
+    examples: [
+      "Please keep to the agenda so we can finish the strategy meeting before lunch.",
+      "The report should keep to the facts and avoid speculation about competitors."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "look at options objectively",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to judge sth considering only the facts, and not your personal feelings or opinions",
+    examples: [
+      "The committee hired an external adviser to look at options objectively.",
+      "Before choosing a supplier, we need to look at options objectively and ignore personal preferences."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "lose momentum",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to begin to have less energy or enthusiasm, so you cannot keep progressing or achieving as much",
+    examples: [
+      "The transformation programme could lose momentum if senior managers stop communicating progress.",
+      "Sales began to lose momentum after the competitor launched a cheaper alternative."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "man",
+    partOfSpeech: "verb",
+    category: "Teamwork and Leadership",
+    definition: "to be in charge of a place or a machine",
+    examples: [
+      "Two technicians will man the help desk during the software migration.",
+      "The company needs trained staff to man the reception area at the trade fair."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "meltdown",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "a very bad situation in which something fails completely in a sudden or dramatic way",
+    examples: [
+      "A server meltdown during peak sales hours cost the retailer thousands of orders.",
+      "The PR team prepared a response plan in case the product recall caused a media meltdown."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "notoriously",
+    partOfSpeech: "adverb",
+    category: "Teamwork and Leadership",
+    definition: "in a bad way that is very well known",
+    examples: [
+      "The approval process is notoriously slow in heavily regulated industries.",
+      "The client is notoriously demanding, so every milestone must be documented carefully."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "pay attention to",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to carefully watch, listen to, or concentrate on sth",
+    examples: [
+      "Managers should pay attention to early signs of burnout in high-pressure teams.",
+      "Please pay attention to the payment terms before signing the supplier contract."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "pitch in",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to join in and help with an activity",
+    examples: [
+      "Everyone had to pitch in when the exhibition materials arrived a day late.",
+      "The regional directors pitched in to help the small sales team contact priority clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "push others hard",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to make other people work hard, perhaps more than they want to",
+    examples: [
+      "The new operations head tends to push others hard when deadlines are approaching.",
+      "Good leaders can push others hard without ignoring their workload or morale."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "resignation",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "the act of giving up your job or position",
+    examples: [
+      "Her resignation surprised the board because she had just renewed the growth strategy.",
+      "The company announced the CFO’s resignation after the annual results were published."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "revenue",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "the money that an organization receives from its business",
+    examples: [
+      "Online subscriptions now generate more revenue than one-off software licences.",
+      "The finance team forecast higher revenue after the company entered three new markets."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "servant",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "a person whose job is to do things for sb else, for example cooking or cleaning",
+    examples: [
+      "The hotel group trained every servant to follow the new guest privacy procedures.",
+      "In the historical case study, the entrepreneur began his career as a servant before opening a shop."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "spur into action",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to encourage sb to do sth",
+    examples: [
+      "A sudden drop in customer satisfaction should spur the support team into action.",
+      "The competitor’s announcement spurred the product team into action before the trade show."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "steer clear of",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to avoid sth/sb",
+    examples: [
+      "The adviser told us to steer clear of markets with unclear import regulations.",
+      "During the interview, candidates should steer clear of confidential details from previous employers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "swarm",
+    partOfSpeech: "verb",
+    category: "Teamwork and Leadership",
+    definition: "to move around in large numbers, like a swarm (large group) of bees",
+    examples: [
+      "Reporters began to swarm around the CEO after news of the acquisition leaked.",
+      "Customers swarmed the website when the company offered a limited discount."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "them and us",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "a situation in which people are seen as belonging to two separate groups who do not want to be friendly or help each other",
+    examples: [
+      "A them and us culture developed after management moved to a separate floor.",
+      "The new director wants to remove the them and us attitude between headquarters and local branches."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "tread carefully with",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to be very careful about what you do or say to sb",
+    examples: [
+      "You should tread carefully with the client because they are unhappy about the delay.",
+      "HR advised managers to tread carefully with employees affected by the restructuring."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "treat employees unfairly",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to behave towards sb in a way that is not reasonable or does not treat them equally with others",
+    examples: [
+      "Companies that treat employees unfairly often struggle to retain talented staff.",
+      "The union claimed that the new scheduling system would treat employees unfairly."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "be viewed positively",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to be well regarded",
+    examples: [
+      "The mentoring scheme is likely to be viewed positively by graduates joining the firm.",
+      "A transparent apology can be viewed positively if the company also fixes the problem."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "vigorously",
+    partOfSpeech: "adverb",
+    category: "Teamwork and Leadership",
+    definition: "with a lot of energy and determination",
+    examples: [
+      "The legal department vigorously defended the company’s intellectual property rights.",
+      "Regional managers argued vigorously for a larger training budget."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "warrior",
+    partOfSpeech: "noun",
+    category: "Teamwork and Leadership",
+    definition: "a person who fights in a battle or war",
+    examples: [
+      "The CEO described the sales director as a warrior who fought for every major account.",
+      "In the leadership programme, participants discussed whether a warrior mindset helps or harms teamwork."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 5,
+    word: "work closely with",
+    partOfSpeech: "phrase",
+    category: "Teamwork and Leadership",
+    definition: "to be very involved in work, usually seeing and talking to them regularly",
+    examples: [
+      "Product designers work closely with customer support to understand recurring complaints.",
+      "The finance team will work closely with auditors during the year-end review."
+    ]
+  },
+
 
 //////////////////////////////
 //
