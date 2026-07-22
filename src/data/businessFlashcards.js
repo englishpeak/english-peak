@@ -4359,6 +4359,8 @@ export const businessFlashcards = [
 
 // Future vocabulary will be added here.
 
+
+
 ////////////////////////////////////////////////////////////
 //
 // PRE-INTERMEDIATE
@@ -27800,7 +27802,246 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 14,
+    word: "OKR",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "a goal-setting method where a team defines an objective and measurable key results to track progress",
+    examples: [
+      "The product team set an OKR to reduce checkout errors by 30% before the next release.",
+      "Each department reviewed its OKR progress during the monthly leadership meeting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "EBITDA",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "a profit measure showing earnings before interest, taxes, depreciation, and amortization are deducted",
+    examples: [
+      "Investors focused on EBITDA because the company was expanding quickly and had large financing costs.",
+      "The CFO explained that EBITDA improved after the firm renegotiated supplier contracts."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "burn rate",
+    partOfSpeech: "noun",
+    category: "Startup Finance",
+    definition: "the speed at which a company spends its cash reserves, especially before it becomes profitable",
+    examples: [
+      "The startup reduced its burn rate by delaying two nonessential hiring plans.",
+      "A high burn rate can worry investors if revenue is not growing at the same time."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "runway",
+    partOfSpeech: "noun",
+    category: "Startup Finance",
+    definition: "the amount of time a business can keep operating before it runs out of available cash",
+    examples: [
+      "After the seed round, the founders had 18 months of runway to build the platform.",
+      "Management extended the runway by cutting software subscriptions and office costs."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "pivot",
+    partOfSpeech: "verb",
+    category: "Business Strategy",
+    definition: "to change a product, market, or strategy significantly after learning that the original plan is not working well",
+    examples: [
+      "The company decided to pivot from consumer sales to enterprise contracts after analyzing customer feedback.",
+      "Several startups pivot when early data shows stronger demand in a different segment."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "product-market fit",
+    partOfSpeech: "noun",
+    category: "Product Strategy",
+    definition: "the point at which a product clearly solves a real market need and customers are willing to use or buy it",
+    examples: [
+      "The app reached product-market fit when small retailers began recommending it to each other.",
+      "Before scaling sales, the founders wanted stronger evidence of product-market fit."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "MVP",
+    partOfSpeech: "noun",
+    category: "Product Development",
+    definition: "a minimum viable product: the simplest usable version of a product built to test demand and learn from users",
+    examples: [
+      "The team launched an MVP with only three features to see whether customers would pay for the service.",
+      "Feedback from the MVP helped the designers remove a complicated onboarding step."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "unicorn",
+    partOfSpeech: "noun",
+    category: "Startup Investment",
+    definition: "a privately held startup whose market value is estimated at one billion dollars or more",
+    examples: [
+      "The payments company became a unicorn after its latest funding round doubled its valuation.",
+      "Being called a unicorn attracted media attention, but the CEO still focused on profitability."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "scale-up",
+    partOfSpeech: "noun",
+    category: "Business Growth",
+    definition: "a growing company that has moved beyond the early startup stage and is expanding its team, revenue, or operations",
+    examples: [
+      "The scale-up opened a Berlin office to support its European customers.",
+      "Hiring experienced managers helped the scale-up handle faster growth without losing quality."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "growth hacking",
+    partOfSpeech: "noun",
+    category: "Marketing",
+    definition: "the use of rapid, low-cost experiments in marketing, product, or data to increase users or revenue",
+    examples: [
+      "The marketing team used growth hacking to test referral offers before investing in paid ads.",
+      "Effective growth hacking depends on clear metrics, not just creative campaign ideas."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "customer acquisition cost",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the average amount a business spends to gain one new customer, often shortened to CAC",
+    examples: [
+      "The subscription service lowered its customer acquisition cost by improving website conversion rates.",
+      "If customer acquisition cost rises too quickly, the sales model may become unsustainable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "lifetime value",
+    partOfSpeech: "noun",
+    category: "Customer Analytics",
+    definition: "the estimated total revenue or profit a customer brings to a business during the whole relationship, often shortened to LTV",
+    examples: [
+      "The finance team compared lifetime value with acquisition cost before approving the campaign budget.",
+      "Improving retention increased lifetime value across the company's premium accounts."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "churn rate",
+    partOfSpeech: "noun",
+    category: "Customer Retention",
+    definition: "the percentage of customers or subscribers who stop using a service during a specific period",
+    examples: [
+      "The SaaS company reduced its churn rate by offering better training to new users.",
+      "A rising churn rate suggested that customers were not seeing enough value after the trial."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "benchmark",
+    partOfSpeech: "noun",
+    category: "Performance Measurement",
+    definition: "a standard or point of comparison used to judge performance, quality, cost, or progress",
+    examples: [
+      "The agency used industry benchmarks to evaluate the campaign's click-through rate.",
+      "Our delivery time is now faster than the benchmark set by the leading competitor."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "stakeholder alignment",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "agreement among the people or groups affected by a decision about goals, priorities, and next steps",
+    examples: [
+      "The project manager scheduled a workshop to improve stakeholder alignment before development began.",
+      "Without stakeholder alignment, the product roadmap changed every time a senior leader gave feedback."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "value proposition",
+    partOfSpeech: "noun",
+    category: "Marketing Strategy",
+    definition: "a clear statement of the main benefit a product or service offers to its target customers",
+    examples: [
+      "The sales deck needed a stronger value proposition for finance directors, not just technical users.",
+      "Their value proposition focused on saving managers time through automated reporting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "onboarding",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the process of helping a new employee, customer, or user understand how to begin successfully",
+    examples: [
+      "The HR team redesigned onboarding so remote employees could meet key colleagues in their first week.",
+      "Better customer onboarding reduced support tickets during the first month of use."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "offboarding",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the process of managing an employee's, customer's, or user's departure from a company, service, or system",
+    examples: [
+      "Secure offboarding included removing the consultant's access to internal tools on the final day.",
+      "The customer success team created an offboarding survey to understand why clients cancelled."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "thought leadership",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "content or communication that builds trust by sharing useful expert views on important industry topics",
+    examples: [
+      "The consultancy published research reports to strengthen its thought leadership in climate risk.",
+      "Good thought leadership offers practical insight rather than simply promoting a product."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 14,
+    word: "proof of concept",
+    partOfSpeech: "noun",
+    category: "Innovation",
+    definition: "a small test or early version used to show that an idea, technology, or approach can work in practice",
+    examples: [
+      "The bank funded a proof of concept before committing to a full blockchain integration.",
+      "Engineers built a proof of concept to demonstrate that the sensor data could predict equipment failures."
+    ]
+  },
 
 //////////////////////////////
 //
