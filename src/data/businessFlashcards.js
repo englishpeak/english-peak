@@ -14421,7 +14421,246 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 15,
+    word: "agentic AI",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "AI that can plan actions, use tools, and pursue a goal with limited human direction",
+    examples: [
+      "The startup used agentic AI to compare suppliers, draft purchase orders, and flag unusual prices for review.",
+      "Leaders approved agentic AI only for low-risk tasks until the governance team could monitor its decisions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "AI agent",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "a software system that uses AI to complete tasks by making choices, calling tools, or responding to changes",
+    examples: [
+      "An AI agent scheduled sales meetings after checking calendars, lead scores, and customer time zones.",
+      "The finance team tested an AI agent that could explain budget variances and request missing invoices."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "copilot",
+    partOfSpeech: "noun",
+    category: "Workplace Technology",
+    definition: "an AI assistant that helps a person work faster by suggesting, drafting, or analyzing content under human control",
+    examples: [
+      "The legal team used a copilot to summarize contracts, but a lawyer approved every final clause.",
+      "A sales copilot suggested follow-up messages based on the client's industry and recent questions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "multimodal",
+    partOfSpeech: "adjective",
+    category: "Artificial Intelligence",
+    definition: "able to work with more than one type of input or output, such as text, images, audio, or video",
+    examples: [
+      "The insurer chose a multimodal model because claims included photos, written reports, and phone recordings.",
+      "A multimodal search tool helped consultants find evidence across slides, spreadsheets, and meeting transcripts."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "inference",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "the stage when a trained model uses new information to produce an answer, prediction, or decision",
+    examples: [
+      "The bank moved inference closer to customers so fraud alerts could be generated in seconds.",
+      "High inference costs became a concern when thousands of employees started using the chatbot daily."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "fine-tuning",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "the process of further training a model on selected data so it performs better for a specific task or style",
+    examples: [
+      "Fine-tuning improved the support bot's tone and helped it follow the company's refund policy.",
+      "The consulting firm used fine-tuning to teach the model how to classify industry-specific risks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "retrieval-augmented generation (RAG)",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "an AI method that retrieves relevant information from approved sources before generating a response",
+    examples: [
+      "The help desk adopted retrieval-augmented generation (RAG) so answers were based on current policy documents.",
+      "RAG reduced incorrect responses because the assistant checked product manuals before drafting advice."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "vector database",
+    partOfSpeech: "noun",
+    category: "Data Infrastructure",
+    definition: "a database that stores numerical representations of content so systems can find items with similar meaning",
+    examples: [
+      "The product team used a vector database to match customer questions with the most relevant help articles.",
+      "A vector database made it easier to search research notes by concept rather than by exact keywords."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "digital twin",
+    partOfSpeech: "noun",
+    category: "Digital Transformation",
+    definition: "a virtual model of a real asset, process, or system that is updated with data to support analysis and decisions",
+    examples: [
+      "The manufacturer built a digital twin of its factory to test layout changes before moving equipment.",
+      "A digital twin of the supply chain helped executives compare delivery scenarios during a port strike."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "synthetic data",
+    partOfSpeech: "noun",
+    category: "Data Strategy",
+    definition: "artificially created data that imitates real patterns without directly using real customer or business records",
+    examples: [
+      "The analytics team used synthetic data to test the credit model without exposing personal information.",
+      "Synthetic data helped the startup train its demo system before it had enough real users."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "deepfake",
+    partOfSpeech: "noun",
+    category: "Cybersecurity",
+    definition: "AI-generated or AI-altered audio, video, or images that make someone appear to say or do something they did not",
+    examples: [
+      "The company added voice verification after a deepfake was used to request an urgent payment.",
+      "Executives received training on how a deepfake could damage trust during a public crisis."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "no-code",
+    partOfSpeech: "adjective",
+    category: "Software Development",
+    definition: "describing tools that let users build apps, websites, or workflows without writing programming code",
+    examples: [
+      "The marketing team launched a no-code landing page to test demand before hiring developers.",
+      "No-code platforms helped operations managers automate simple approvals without waiting for IT."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "low-code",
+    partOfSpeech: "adjective",
+    category: "Software Development",
+    definition: "describing development tools that use visual building blocks but still allow some custom code when needed",
+    examples: [
+      "The bank chose a low-code platform because compliance features required a few custom integrations.",
+      "Low-code development allowed the team to prototype the portal quickly and refine it with engineers later."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "workflow automation",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "the use of software to move routine tasks, approvals, or information between people and systems automatically",
+    examples: [
+      "Workflow automation sent expense claims to the right manager and reminded employees about missing receipts.",
+      "The consultancy recommended workflow automation to reduce manual copying between the CRM and billing system."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "orchestration",
+    partOfSpeech: "noun",
+    category: "Technology Management",
+    definition: "the coordination of multiple systems, services, or tasks so they work together in the right order",
+    examples: [
+      "Better orchestration allowed the e-commerce platform to update stock, payments, and delivery notifications together.",
+      "The CIO wanted orchestration across AI tools so employees did not need to switch between five separate apps."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "API",
+    partOfSpeech: "noun",
+    category: "Software Integration",
+    definition: "a defined way for software systems to request data or services from each other",
+    examples: [
+      "The payroll API connected the HR platform with the finance system and reduced duplicate data entry.",
+      "Before signing the vendor contract, the CTO checked whether the API supported real-time reporting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "webhook",
+    partOfSpeech: "noun",
+    category: "Software Integration",
+    definition: "an automatic message sent from one application to another when a specific event happens",
+    examples: [
+      "A webhook notified the warehouse system as soon as a customer paid for an order.",
+      "The team created a webhook so Slack posted an alert whenever a high-value lead booked a demo."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "latency",
+    partOfSpeech: "noun",
+    category: "System Performance",
+    definition: "the delay between a request and a system's response, especially in software, networks, or online services",
+    examples: [
+      "Low latency was essential because traders needed price updates almost immediately.",
+      "Customers abandoned the video platform when high latency made live events feel slow and unreliable."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "scalability",
+    partOfSpeech: "noun",
+    category: "Business Growth",
+    definition: "the ability of a product, process, or organization to handle growth without losing quality or efficiency",
+    examples: [
+      "Investors questioned the startup's scalability because each new client required weeks of manual setup.",
+      "The cloud architecture improved scalability before the retailer's peak holiday traffic arrived."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 15,
+    word: "observability",
+    partOfSpeech: "noun",
+    category: "System Reliability",
+    definition: "the ability to understand a system's health and behavior by collecting and analyzing signals such as logs, metrics, and traces",
+    examples: [
+      "Improved observability helped engineers find the payment error before it affected many customers.",
+      "The CTO invested in observability tools so product teams could see why AI requests sometimes failed."
+    ]
+  },
 
 //////////////////////////////
 //
