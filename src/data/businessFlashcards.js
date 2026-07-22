@@ -27552,7 +27552,247 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 13,
+    word: "ROI",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "return on investment; a measure of how much financial value an activity creates compared with its cost",
+    examples: [
+      "The marketing team tracked ROI before increasing the budget for paid search.",
+      "A short pilot helped the board see the likely ROI of the new training platform."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "KPI",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "key performance indicator; a specific measure used to judge progress toward an important business goal",
+    examples: [
+      "Customer retention became the main KPI for the subscription team this quarter.",
+      "Managers should choose a KPI that employees can understand and influence."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "AI",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "artificial intelligence; computer technology that performs tasks normally requiring human thinking, such as learning, writing, or recognizing patterns",
+    examples: [
+      "The bank uses AI to identify unusual payment activity more quickly.",
+      "Our legal team reviews every contract summary produced by AI before it reaches a client."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "slop",
+    partOfSpeech: "noun",
+    category: "Digital Content",
+    definition: "informal low-quality, repetitive, or carelessly produced content, especially material generated quickly with AI",
+    examples: [
+      "The brand manager rejected the campaign draft because it read like generic AI slop.",
+      "Search results became less useful when several sites filled their pages with recycled slop."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "generative AI",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "AI technology that creates new text, images, code, audio, or other content from patterns learned in data",
+    examples: [
+      "The design team used generative AI to explore packaging ideas before commissioning final artwork.",
+      "Employees received guidance on when generative AI could be used for customer emails."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "prompt",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "an instruction, question, or input given to an AI system to guide the response it produces",
+    examples: [
+      "A clearer prompt produced a more useful summary of the sales report.",
+      "The support team saved successful prompt templates for common customer scenarios."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "hallucination",
+    partOfSpeech: "noun",
+    category: "Artificial Intelligence",
+    definition: "an incorrect or invented answer produced by an AI system that may sound confident or realistic",
+    examples: [
+      "The analyst spotted a hallucination when the tool cited a supplier that did not exist.",
+      "To reduce the risk of hallucination, the company requires staff to check AI outputs against source documents."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "automation",
+    partOfSpeech: "noun",
+    category: "Business Operations",
+    definition: "the use of technology to complete repeated tasks with little or no direct human effort",
+    examples: [
+      "Invoice automation reduced manual data entry for the finance department.",
+      "The operations director introduced automation so staff could focus on complex customer issues."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "algorithm",
+    partOfSpeech: "noun",
+    category: "Technology",
+    definition: "a set of rules or steps that a computer follows to solve a problem, rank information, or make a calculation",
+    examples: [
+      "The pricing algorithm adjusts hotel rates when demand changes.",
+      "Recruiters checked whether the screening algorithm was unfairly filtering out qualified candidates."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "data-driven",
+    partOfSpeech: "adjective",
+    category: "Decision-Making",
+    definition: "guided by evidence from data rather than mainly by opinion, habit, or guesswork",
+    examples: [
+      "The retailer made a data-driven decision to close stores with consistently low foot traffic.",
+      "A data-driven sales strategy helped the team focus on the most profitable customer segments."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "digital transformation",
+    partOfSpeech: "noun",
+    category: "Strategy",
+    definition: "a major change in how an organization uses digital technology to improve services, processes, or business models",
+    examples: [
+      "The insurer's digital transformation included online claims, automated checks, and new analytics tools.",
+      "Digital transformation failed at first because managers changed the software but not the workflow."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "cloud computing",
+    partOfSpeech: "noun",
+    category: "Technology Infrastructure",
+    definition: "the use of internet-based servers and services to store data, run software, and provide computing power",
+    examples: [
+      "Cloud computing allowed the start-up to launch without buying its own servers.",
+      "The IT department moved archived files to cloud computing services to improve access across offices."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "SaaS",
+    partOfSpeech: "noun",
+    category: "Software",
+    definition: "software as a service; software delivered online by subscription instead of installed and owned on each user's computer",
+    examples: [
+      "The company chose a SaaS accounting tool because remote employees could log in from anywhere.",
+      "Before renewing the SaaS contract, procurement compared usage levels with the monthly fee."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "cybersecurity",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "the protection of computer systems, networks, and digital information from attack, theft, or unauthorized access",
+    examples: [
+      "Cybersecurity training helped employees recognize suspicious links in emails.",
+      "The board increased cybersecurity spending after several suppliers reported attacks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "data breach",
+    partOfSpeech: "noun",
+    category: "Risk Management",
+    definition: "an incident in which private or sensitive data is accessed, exposed, or stolen by someone who should not have it",
+    examples: [
+      "The company notified customers within 24 hours of discovering the data breach.",
+      "A weak password led to a data breach involving employee payroll records."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "remote work",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a work arrangement in which employees do their jobs away from a central office, often from home",
+    examples: [
+      "Remote work helped the agency hire specialists outside its local area.",
+      "The policy requires remote work employees to attend a weekly video meeting."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "hybrid work",
+    partOfSpeech: "noun",
+    category: "Workplace",
+    definition: "a work arrangement that combines time in a company workplace with time working remotely",
+    examples: [
+      "Hybrid work reduced commuting time while keeping two office days for team planning.",
+      "Managers redesigned meeting rules so hybrid work would not disadvantage remote colleagues."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "gig economy",
+    partOfSpeech: "noun",
+    category: "Employment",
+    definition: "a labor market based on short-term jobs, freelance projects, or app-based tasks rather than traditional long-term employment",
+    examples: [
+      "Many designers use the gig economy to build a portfolio while choosing their own clients.",
+      "The HR report examined how the gig economy affects benefits, training, and worker loyalty."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "upskill",
+    partOfSpeech: "verb",
+    category: "Learning and Development",
+    definition: "to improve or add skills so someone can perform better in their current role or field",
+    examples: [
+      "The company offered courses to upskill customer service agents in data analysis.",
+      "Employees who upskill regularly are better prepared for changes in software and processes."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 13,
+    word: "reskill",
+    partOfSpeech: "verb",
+    category: "Learning and Development",
+    definition: "to learn new skills so someone can move into a different role, task, or career area",
+    examples: [
+      "The manufacturer helped warehouse workers reskill for technician roles as automation expanded.",
+      "After the restructuring, several employees chose to reskill rather than leave the company."
+    ]
+  },
+
 
 //////////////////////////////
 //
