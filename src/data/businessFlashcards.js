@@ -28296,6 +28296,245 @@ export const businessFlashcards = [
 //
 //////////////////////////////
 
-// Future vocabulary will be added here.
+  {
+    level: "advanced",
+    unit: 16,
+    word: "inbound marketing",
+    partOfSpeech: "noun",
+    category: "Digital Marketing",
+    definition: "a marketing approach that attracts potential customers through useful content, search visibility, and helpful digital experiences",
+    examples: [
+      "The software company used inbound marketing to bring prospects to its blog before offering a free product demo.",
+      "Strong inbound marketing depends on answering customer questions before the sales team makes direct contact."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "outbound marketing",
+    partOfSpeech: "noun",
+    category: "Marketing Communications",
+    definition: "a marketing approach that sends promotional messages directly to an audience, often before people have shown interest",
+    examples: [
+      "The agency combined outbound marketing emails with a retargeting campaign for enterprise buyers.",
+      "Outbound marketing can create fast visibility, but the message must be relevant to avoid annoying prospects."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "ATL (Above the Line)",
+    partOfSpeech: "noun",
+    category: "Advertising Channels",
+    definition: "mass-market advertising, such as television, radio, outdoor, or broad digital media, designed to reach a wide audience",
+    examples: [
+      "The beverage brand invested in ATL (Above the Line) advertising to make the launch visible across the country.",
+      "ATL (Above the Line) activity helped the campaign build awareness before the sales promotion began."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "BTL (Below the Line)",
+    partOfSpeech: "noun",
+    category: "Advertising Channels",
+    definition: "targeted marketing activity, such as direct mail, events, promotions, or email, aimed at specific customer groups",
+    examples: [
+      "The cosmetics company used BTL (Below the Line) sampling events to reach beauty influencers in key cities.",
+      "BTL (Below the Line) tactics gave the agency more control over which customers received the offer."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "TTL (Through the Line)",
+    partOfSpeech: "noun",
+    category: "Integrated Marketing",
+    definition: "a combined marketing approach that uses both broad advertising and targeted activity in one connected campaign",
+    examples: [
+      "The retailer chose a TTL (Through the Line) campaign with national video ads and personalized discount emails.",
+      "TTL (Through the Line) planning helped the team keep the same brand message across mass media and direct channels."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "brand awareness",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "the extent to which customers recognize or remember a brand in a particular market",
+    examples: [
+      "The start-up measured brand awareness by asking target customers which delivery apps they could name.",
+      "Podcast sponsorships increased brand awareness among small-business owners who had never seen the product before."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "brand equity",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "the commercial value a brand gains from customer trust, recognition, loyalty, and positive associations",
+    examples: [
+      "Years of reliable service gave the airline strong brand equity, even when cheaper competitors entered the market.",
+      "The merger team protected brand equity by keeping the familiar name and customer service standards."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "brand positioning",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "the deliberate way a company presents a brand so customers see it as different from competitors",
+    examples: [
+      "The agency revised the brand positioning to make the hotel chain feel more premium and less corporate.",
+      "Clear brand positioning helped the team decide which messages belonged in the new advertising campaign."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "brand identity",
+    partOfSpeech: "noun",
+    category: "Brand Design",
+    definition: "the visible and verbal elements that express a brand, including its name, logo, colors, tone, and style",
+    examples: [
+      "The design studio refreshed the brand identity with a simpler logo and a warmer tone of voice.",
+      "A consistent brand identity made the company's website, packaging, and social posts feel connected."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "buyer persona",
+    partOfSpeech: "noun",
+    category: "Customer Research",
+    definition: "a research-based profile that represents a typical target customer and describes their goals, needs, and buying behavior",
+    examples: [
+      "The content team created a buyer persona for finance directors who needed easier reporting tools.",
+      "Using a buyer persona helped the agency choose topics that matched the customer's real decision process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "customer journey",
+    partOfSpeech: "noun",
+    category: "Customer Experience",
+    definition: "the series of steps and experiences a customer has before, during, and after buying from a company",
+    examples: [
+      "Mapping the customer journey showed that many users abandoned the app during account setup.",
+      "The marketing team improved the customer journey by adding clearer product videos and faster support replies."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "touchpoint",
+    partOfSpeech: "noun",
+    category: "Customer Experience",
+    definition: "any moment or channel where a customer interacts with a brand, product, service, or message",
+    examples: [
+      "The checkout email became an important touchpoint because it encouraged customers to review their purchase.",
+      "Every touchpoint, from the landing page to the support chat, needed the same friendly brand voice."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "lead generation",
+    partOfSpeech: "noun",
+    category: "Sales & Marketing",
+    definition: "the process of attracting and collecting contact details from people or companies that may become customers",
+    examples: [
+      "The webinar was designed for lead generation, so participants were invited to request a consultation afterwards.",
+      "Paid search improved lead generation by bringing high-intent visitors to the campaign landing page."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "lead nurturing",
+    partOfSpeech: "noun",
+    category: "Sales & Marketing",
+    definition: "the process of building relationships with potential customers through timely information until they are ready to buy",
+    examples: [
+      "The agency built a lead nurturing sequence with case studies, comparison guides, and invitation emails.",
+      "Effective lead nurturing kept prospects engaged during the three-month software purchasing cycle."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "conversion rate",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the percentage of people who complete a desired action, such as buying, registering, subscribing, or requesting information",
+    examples: [
+      "Changing the headline increased the landing page conversion rate from visitors to demo requests.",
+      "The team tracked conversion rate separately for mobile ads, email campaigns, and organic search traffic."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "call to action (CTA)",
+    partOfSpeech: "noun",
+    category: "Content Marketing",
+    definition: "a prompt in marketing content that tells the audience what action to take next, often shown as a button or short phrase",
+    examples: [
+      "The call to action (CTA) at the end of the video invited viewers to download the full pricing guide.",
+      "A clear call to action (CTA) can turn an interested reader into a qualified lead."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "click-through rate (CTR)",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the percentage of people who click a link or ad after seeing it",
+    examples: [
+      "The social media ad had a higher click-through rate (CTR) after the designer added a stronger product image.",
+      "Marketers compare click-through rate (CTR) across subject lines to learn which email message attracts more interest."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "cost per click (CPC)",
+    partOfSpeech: "noun",
+    category: "Paid Advertising",
+    definition: "the amount an advertiser pays each time someone clicks on a digital ad",
+    examples: [
+      "The campaign's cost per click (CPC) fell after the team improved the ad relevance score.",
+      "A high cost per click (CPC) can still be acceptable if the leads usually become valuable customers."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "return on ad spend (ROAS)",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "a measure of advertising efficiency that compares revenue generated by ads with the amount spent on those ads",
+    examples: [
+      "The e-commerce team calculated return on ad spend (ROAS) before increasing the campaign budget.",
+      "Return on ad spend (ROAS) improved when the brand stopped advertising products with low profit margins."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 16,
+    word: "marketing funnel",
+    partOfSpeech: "noun",
+    category: "Marketing Strategy",
+    definition: "a model that shows how potential customers move from first awareness of a brand toward interest, evaluation, purchase, and loyalty",
+    examples: [
+      "The marketing funnel revealed that many prospects watched the demo but did not request a sales call.",
+      "Content for the top of the marketing funnel focused on problems, while later emails compared solutions."
+    ]
+  },
 
 ];
