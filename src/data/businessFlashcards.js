@@ -28537,4 +28537,245 @@ export const businessFlashcards = [
     ]
   },
 
+  {
+    level: "advanced",
+    unit: 17,
+    word: "chairman",
+    partOfSpeech: "noun",
+    category: "Corporate Governance",
+    definition: "the person who leads a company's board and guides its discussions and formal decisions",
+    examples: [
+      "The chairman opened the annual meeting by explaining the board's priorities for the next three years.",
+      "After the acquisition failed, investors asked whether the chairman had challenged the CEO strongly enough."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "the board",
+    partOfSpeech: "noun",
+    category: "Corporate Governance",
+    definition: "the group of directors responsible for overseeing a company and protecting shareholders' long-term interests",
+    examples: [
+      "The board approved the new sustainability strategy after reviewing its financial risks.",
+      "Senior managers prepare concise reports so the board can make informed decisions quickly."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "board member",
+    partOfSpeech: "noun",
+    category: "Corporate Governance",
+    definition: "one person who serves on a company's board and takes part in oversight and major decisions",
+    examples: [
+      "A new board member with digital advertising experience joined the governance committee.",
+      "Each board member received a briefing on the brand reputation issues before the vote."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "board meeting",
+    partOfSpeech: "noun",
+    category: "Executive Communication",
+    definition: "a formal meeting where company directors discuss performance, risks, strategy, and important approvals",
+    examples: [
+      "The marketing director presented the rebranding plan at the quarterly board meeting.",
+      "During the board meeting, directors questioned whether the campaign targets were realistic."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "targeted ads",
+    partOfSpeech: "noun",
+    category: "Digital Advertising",
+    definition: "advertisements shown to selected groups of people based on data such as interests, behavior, location, or profile",
+    examples: [
+      "The retailer used targeted ads to promote premium products to customers who had viewed similar items.",
+      "Targeted ads can reduce wasted budget when the audience data is reliable and ethically collected."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "CTR (Click-Through Rate)",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the percentage of ad viewers who click an ad or link, used to judge how effectively it attracts interest",
+    examples: [
+      "The CTR (Click-Through Rate) rose after the agency rewrote the headline and added a clearer offer.",
+      "A strong CTR (Click-Through Rate) does not always mean the campaign will generate profitable sales."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "impressions",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the number of times an ad, post, or piece of content is displayed, including repeated views by the same person",
+    examples: [
+      "The launch video gained two million impressions during the first week of the campaign.",
+      "Impressions increased sharply, but the team still needed to check whether unique customers were being reached."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "reach",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the number of different people or accounts exposed to a campaign, message, or piece of content",
+    examples: [
+      "The brand chose influencer partnerships because they offered greater reach among younger professionals.",
+      "Reach was lower than impressions because many users saw the same sponsored post several times."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "engagement rate",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "the share of an audience that interacts with content through actions such as clicks, comments, shares, or reactions",
+    examples: [
+      "The engagement rate improved when the company posted practical advice instead of generic announcements.",
+      "Executives reviewed the engagement rate to see whether the thought leadership articles were starting conversations."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "audience segmentation",
+    partOfSpeech: "noun",
+    category: "Marketing Strategy",
+    definition: "the practice of dividing a market or audience into smaller groups with shared needs, behaviors, or characteristics",
+    examples: [
+      "Audience segmentation helped the bank create separate messages for entrepreneurs and corporate finance teams.",
+      "Without audience segmentation, the campaign sounded too general to persuade any specific group."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "remarketing",
+    partOfSpeech: "noun",
+    category: "Digital Advertising",
+    definition: "marketing to people who have already interacted with a company, often through follow-up emails, offers, or tailored content",
+    examples: [
+      "The software company used remarketing emails to re-engage trial users who had not scheduled a demo.",
+      "Remarketing worked best when the message reflected what the customer had already shown interest in."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "retargeting",
+    partOfSpeech: "noun",
+    category: "Digital Advertising",
+    definition: "serving online ads again to people who previously visited a site, used an app, or viewed specific content",
+    examples: [
+      "Retargeting ads reminded visitors about the webinar after they left the registration page.",
+      "The agency limited retargeting frequency so potential buyers would not feel followed around the internet."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "lookalike audience",
+    partOfSpeech: "noun",
+    category: "Digital Advertising",
+    definition: "a group of potential customers selected because their data patterns resemble those of an existing valuable audience",
+    examples: [
+      "The media team built a lookalike audience from the company's highest-value subscribers.",
+      "A lookalike audience can expand a campaign while keeping the targeting close to proven customer profiles."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "personal branding",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "the deliberate process of shaping how others perceive a person's professional expertise, values, and public image",
+    examples: [
+      "The CEO used personal branding to communicate her leadership style before the global expansion.",
+      "Personal branding requires consistent messages across interviews, conference talks, and social media posts."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "personal brand",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "the professional image and reputation that people associate with an individual in a market or organization",
+    examples: [
+      "His personal brand became linked with clear executive communication and responsible innovation.",
+      "A strong personal brand helped the consultant win speaking invitations and attract senior clients."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "brand ambassador",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "a person who publicly represents and promotes a brand, either as an employee, partner, influencer, or customer advocate",
+    examples: [
+      "The company trained each brand ambassador to explain the product benefits without sounding scripted.",
+      "A respected engineer became an effective brand ambassador at industry events and online forums."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "employer branding",
+    partOfSpeech: "noun",
+    category: "Talent Marketing",
+    definition: "the effort to shape how current and potential employees view an organization as a place to work",
+    examples: [
+      "Employer branding became a priority after exit interviews showed concern about career development.",
+      "The HR and communications teams aligned employer branding with the company's public values."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "thought leader",
+    partOfSpeech: "noun",
+    category: "Executive Communication",
+    definition: "a person recognized for influential ideas and insight in a particular professional field",
+    examples: [
+      "The founder became a thought leader by publishing practical analysis of artificial intelligence in retail.",
+      "Executives invited a thought leader to challenge their assumptions about customer loyalty."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "brand reputation",
+    partOfSpeech: "noun",
+    category: "Brand Strategy",
+    definition: "the overall opinion customers, employees, investors, and the public have about a brand's trustworthiness and behavior",
+    examples: [
+      "The delayed apology damaged the airline's brand reputation more than the original service failure.",
+      "Transparent reporting helped rebuild brand reputation after concerns about supplier conditions."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 17,
+    word: "share of voice",
+    partOfSpeech: "noun",
+    category: "Marketing Analytics",
+    definition: "a measure of how much visibility or conversation a brand has compared with competitors in a market or channel",
+    examples: [
+      "The campaign increased the company's share of voice during the product launch month.",
+      "Marketing leaders tracked share of voice to understand whether competitors were dominating industry discussions."
+    ]
+  },
+
 ];
