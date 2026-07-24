@@ -28778,4 +28778,245 @@ export const businessFlashcards = [
     ]
   },
 
+  {
+    level: "advanced",
+    unit: 18,
+    word: "crowdsource",
+    partOfSpeech: "verb",
+    category: "Innovation",
+    definition: "to collect ideas, feedback, or services from a large group of people, often online, instead of relying only on internal experts",
+    examples: [
+      "The product team decided to crowdsource feature ideas from power users before planning the next release.",
+      "A retailer can crowdsource store-design feedback from customers to understand what makes shopping easier."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "crowdfund",
+    partOfSpeech: "verb",
+    category: "Startup Finance",
+    definition: "to raise money for a project or business from many individual contributors, usually through an online platform",
+    examples: [
+      "The hardware startup plans to crowdfund its first production run before approaching larger investors.",
+      "They used a short video to crowdfund the new eco-friendly packaging concept."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "QBR (Quarterly Business Review)",
+    partOfSpeech: "noun",
+    category: "Account Management",
+    definition: "a formal meeting held every three months to review performance, goals, risks, and next steps with a customer or business team",
+    examples: [
+      "During the QBR, the account manager showed how the software reduced support costs in the last quarter.",
+      "The leadership team uses each Quarterly Business Review to check progress against annual revenue targets."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "POS (Point of Sale)",
+    partOfSpeech: "noun",
+    category: "Retail Operations",
+    definition: "the place or system where a customer completes a purchase, such as a checkout counter, card terminal, or retail software platform",
+    examples: [
+      "The store upgraded its POS system so managers could track inventory in real time.",
+      "A slow Point of Sale process can create long queues and reduce customer satisfaction."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "micromanagement",
+    partOfSpeech: "noun",
+    category: "Leadership",
+    definition: "a management style in which a leader controls small details too closely and gives employees little independence",
+    examples: [
+      "Micromanagement slowed the design team because every minor decision needed director approval.",
+      "The new COO reduced micromanagement by giving team leads clearer decision rights."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "micromanage",
+    partOfSpeech: "verb",
+    category: "Leadership",
+    definition: "to control an employee's work in excessive detail instead of trusting them to complete tasks independently",
+    examples: [
+      "If managers micromanage experienced staff, they may lose motivation and creativity.",
+      "The founder learned not to micromanage the sales team once regional targets were agreed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "stakeholder",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "a person or group that can affect a project, decision, or organization, or is affected by its results",
+    examples: [
+      "Before changing the delivery process, the project manager interviewed every key stakeholder.",
+      "Investors, employees, suppliers, and customers were all stakeholders in the restructuring plan."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "decision-maker",
+    partOfSpeech: "noun",
+    category: "Sales Process",
+    definition: "the person with authority to approve, reject, or choose an option in a business decision",
+    examples: [
+      "The sales team needed to identify the decision-maker before preparing the final proposal.",
+      "Although several managers joined the demo, the finance director was the main decision-maker."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "key account",
+    partOfSpeech: "noun",
+    category: "Account Management",
+    definition: "a customer or client that is especially important because of its revenue, strategic value, or growth potential",
+    examples: [
+      "The logistics company assigned extra support to a key account after several urgent delivery issues.",
+      "Losing one key account would affect the agency's annual revenue forecast."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "account manager",
+    partOfSpeech: "noun",
+    category: "Sales Roles",
+    definition: "a person responsible for maintaining a company's relationship with specific customers and helping them receive value from its products or services",
+    examples: [
+      "The account manager scheduled monthly check-ins to discuss usage data and renewal plans.",
+      "A strong account manager can spot expansion opportunities without ignoring customer problems."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "business case",
+    partOfSpeech: "noun",
+    category: "Business Planning",
+    definition: "a reasoned argument that explains why a project or investment is worth doing, including costs, benefits, risks, and expected results",
+    examples: [
+      "The team built a business case for automating invoice processing across three regions.",
+      "Without a clear business case, the board refused to fund the new warehouse."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "proof of value (POV)",
+    partOfSpeech: "noun",
+    category: "Sales Process",
+    definition: "a limited test designed to show that a product or solution can deliver measurable business benefits for a specific customer",
+    examples: [
+      "The vendor proposed a proof of value to demonstrate faster reporting before signing a full contract.",
+      "In the POV, the client measured whether the platform could reduce onboarding time by 20 percent."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "procurement",
+    partOfSpeech: "noun",
+    category: "Purchasing",
+    definition: "the organized process of selecting suppliers and buying the goods or services an organization needs",
+    examples: [
+      "Procurement reviewed three suppliers before approving the new laptop contract.",
+      "A clear procurement policy helps teams control costs and reduce compliance risks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "request for proposal (RFP)",
+    partOfSpeech: "noun",
+    category: "Procurement",
+    definition: "a document asking suppliers to propose a solution, approach, timeline, and price for a business need",
+    examples: [
+      "The city issued an RFP for a new payment platform that could serve multiple departments.",
+      "Vendors responded to the request for proposal with implementation plans and support models."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "request for quotation (RFQ)",
+    partOfSpeech: "noun",
+    category: "Procurement",
+    definition: "a document asking suppliers to provide prices for clearly specified products or services",
+    examples: [
+      "The purchasing team sent an RFQ for 500 office chairs with the same technical requirements.",
+      "Because the specifications were already fixed, a request for quotation was more suitable than a full proposal process."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "service-level agreement (SLA)",
+    partOfSpeech: "noun",
+    category: "Service Management",
+    definition: "a contract or agreement that defines the expected level of service, including measures such as response time, availability, or support quality",
+    examples: [
+      "The cloud provider's SLA promised 99.9 percent system availability each month.",
+      "Customer support missed the service-level agreement when urgent tickets waited more than four hours."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "escalation",
+    partOfSpeech: "noun",
+    category: "Issue Management",
+    definition: "the act of moving a problem to a higher level of authority or urgency so it can be resolved faster",
+    examples: [
+      "The delayed shipment required escalation to the operations director before the client meeting.",
+      "A clear escalation path prevents support agents from guessing who should handle critical incidents."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "bottleneck",
+    partOfSpeech: "noun",
+    category: "Operations",
+    definition: "a point in a process where limited capacity slows down the overall flow of work",
+    examples: [
+      "Manual quality checks became a bottleneck as online orders increased.",
+      "The project manager hired another reviewer to remove the approval bottleneck."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "turnaround time (TAT)",
+    partOfSpeech: "noun",
+    category: "Operations Metrics",
+    definition: "the amount of time needed to complete a task or process from request to delivery",
+    examples: [
+      "The finance team reduced invoice turnaround time from five days to two days.",
+      "Managers tracked TAT to see whether the new workflow improved customer onboarding."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 18,
+    word: "best practice",
+    partOfSpeech: "noun",
+    category: "Process Improvement",
+    definition: "a proven method or standard approach that usually produces strong results in a particular business situation",
+    examples: [
+      "Documenting customer calls is a best practice for teams that manage complex accounts.",
+      "The company shared cybersecurity best practices after introducing remote work across all offices."
+    ]
+  },
+
 ];
