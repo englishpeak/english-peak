@@ -370,11 +370,17 @@ body.download-preview-lock{overflow:hidden}
       </div>
     </div>
 
-    <div class="section-header"><h2>Business</h2><p>Business English tools</p></div>
+    <div class="section-header"><h2>TOEFL Practice</h2><p>Timed mock tests · updated weekly</p></div>
     <div class="cards-grid">
-      <div class="ex-card" onclick="openBusinessFlashcards()">
-        <div class="card-header"><div class="card-icon purple">💼</div><div class="card-access access-free">+1,000 words</div></div>
-        <div class="card-body"><div class="card-title">Business Flashcards</div><div class="card-desc">Business vocabulary with flashcards, matching, Jeopardy-style questions, and fill-in-the-blanks practice.</div><div class="card-meta"><span class="meta-item">💼 Vocabulary levels</span><span class="meta-item">🧩 4 activities</span></div><button class="card-btn btn-open">Start Practice →</button></div>
+      <div class="ex-card" onclick="openITPTests()">
+        <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 9</div></div>
+        <div class="card-body"><div class="card-title">TOEFL ITP Mock Tests</div><div class="card-desc">Full timed ITP sessions with multiple choice and error detection. <strong>Immediate feedback</strong> included after every test!</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">📅 Weekly updates</span><span class="meta-item" id="meta-itp-tests">9 tests · 3 unlocked</span></div><button class="card-btn btn-partial" id="btn-itp-tests">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get ePeak+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
+      </div>
+      <div class="ex-card" onclick="openIBT()">
+        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 9</div></div>
+        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">9 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
+        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 9.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
       </div>
     </div>
 
@@ -403,17 +409,11 @@ body.download-preview-lock{overflow:hidden}
       </div>
     </div>
 
-    <div class="section-header"><h2>TOEFL Practice</h2><p>Timed mock tests · updated weekly</p></div>
+    <div class="section-header"><h2>Business</h2><p>Business English tools</p></div>
     <div class="cards-grid">
-      <div class="ex-card" onclick="openITPTests()">
-        <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 9</div></div>
-        <div class="card-body"><div class="card-title">TOEFL ITP Mock Tests</div><div class="card-desc">Full timed ITP sessions with multiple choice and error detection. <strong>Immediate feedback</strong> included after every test!</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">📅 Weekly updates</span><span class="meta-item" id="meta-itp-tests">9 tests · 3 unlocked</span></div><button class="card-btn btn-partial" id="btn-itp-tests">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-itp-tests"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more mock tests</div><div class="lock-sub2">Create a free account for tests 1–6, or get ePeak+ for all 8.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('itp-tests');event.stopPropagation()">Maybe later</button></div>
-      </div>
-      <div class="ex-card" onclick="openIBT()">
-        <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 9</div></div>
-        <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">9 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
-        <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 9.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
+      <div class="ex-card" onclick="openBusinessFlashcards()">
+        <div class="card-header"><div class="card-icon purple">💼</div><div class="card-access access-free">+1,000 words</div></div>
+        <div class="card-body"><div class="card-title">Business Flashcards</div><div class="card-desc">Business vocabulary with flashcards, matching, Jeopardy-style questions, and fill-in-the-blanks practice.</div><div class="card-meta"><span class="meta-item">💼 Vocabulary levels</span><span class="meta-item">🧩 4 activities</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
     </div>
 
