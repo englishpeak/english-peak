@@ -395,7 +395,7 @@ body.download-preview-lock{overflow:hidden}
       </div>
       <div class="ex-card" onclick="openReading()">
         <div class="card-header"><div class="card-icon red">📖</div><div class="card-access access-new" id="access-reading">New</div></div>
-        <div class="card-body"><div class="card-title">Reading Practice</div><div class="card-desc">Eight modular reading tests with business, science, pop culture and biography passages. Each test includes feedback for every answer and saves scores to My Progress.</div><div class="card-meta"><span class="meta-item">📖 8 tests</span><span class="meta-item">🧠 3 passages each</span><span class="meta-item" id="meta-reading">Loading access...</span></div><button class="card-btn btn-partial" id="btn-reading">Start Practice →</button></div>
+        <div class="card-body"><div class="card-title">Reading Practice</div><div class="card-desc">Twelve modular reading tests with business, science, pop culture and biography passages. Each test includes feedback for every answer and saves scores to My Progress.</div><div class="card-meta"><span class="meta-item">📖 12 tests</span><span class="meta-item">🧠 3 passages each</span><span class="meta-item" id="meta-reading">Loading access...</span></div><button class="card-btn btn-partial" id="btn-reading">Start Practice →</button></div>
       </div>
       <div class="ex-card" id="card-listening" style="display:none" onclick="openListening()">
         <div class="card-header"><div class="card-icon red">🎧</div><div class="card-access access-new" id="access-listening">New</div></div>
@@ -1327,7 +1327,7 @@ function loadFrame(frameId, b64, replacements) {
 var ITP_TOTAL = 25;   // Total de tests ITP que existen
 var IBT_TOTAL = 24;   // Total de tests iBT que existen
 var GEN_TOTAL = 8;   // ← Cambia este número al agregar nuevos General English tests
-var READING_TOTAL = 8; // Total de Reading tests that exist
+var READING_TOTAL = 12; // Total de Reading tests that exist
 var LISTENING_TOTAL = 8; // Auto-synced from listening/index.html; fallback if fetch is unavailable
 
 // Acceso por tier — se calcula automáticamente desde los totales de arriba
