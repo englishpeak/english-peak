@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Academic Management · English Peak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/brand-tokens.css"><link rel="stylesheet" href="/teachers/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="ep-brand-scope">
+  <div id="loading" class="center"><div class="spinner"></div><p>Opening Academic Management…</p></div>
+  <section id="denied" class="center hidden"><div class="ep-card message"><h1 class="ep-heading">Academic Management</h1><p>Please sign in with an Admin or Teacher account.</p><a class="ep-btn-primary link" href="/">Return to ePeak</a></div></section>
+  <div id="app" class="hidden">
+    <header><a href="/" class="brand">English Peak</a><span>Academic Management</span><div class="user"><span id="identity"></span><button class="ghost" id="signOut">Sign out</button></div></header>
+    <div class="shell"><aside><nav id="nav"></nav></aside><main><div id="notice" aria-live="polite"></div><div id="view"></div></main></div>
+  </div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-x" data-close>×</button><div id="modalBody"></div></div></div>
+  <script type="module" src="/teachers/app.js"></script>
+</body></html>

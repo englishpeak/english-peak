@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/teachers",        "destination": "/teachers/index.html" },
+    { "source": "/teachers/:path*", "destination": "/teachers/index.html" },
     { "source": "/itp-mc",          "destination": "/itp-mc/index.html" },
     { "source": "/itp-mc/:path*",   "destination": "/itp-mc/index.html" },
     { "source": "/emoji",           "destination": "/emoji/index.html" },
