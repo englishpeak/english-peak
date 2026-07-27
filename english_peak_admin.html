@@ -635,7 +635,15 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
 const { createClient } = supabase;
-const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+// Keep the admin, learner, and academic-management pages on the same browser
+// session. Without an explicit shared key, signing in here uses Supabase's
+// project-specific default key and /teachers cannot see the admin session.
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: {
+    storageKey: 'ep-auth-token',
+    persistSession: true
+  }
+});
 
 let currentUser = null;
 let allUsers = [];
