@@ -7,7 +7,7 @@ export function getWeekRange(value = new Date()) {
 }
 
 export function isBillable(session) {
-  return session.status === 'Completed' || session.status === 'Make-up class' ||
+  return session.is_billable === true || session.status === 'Completed' || session.status === 'Make-up class' ||
     (session.status === 'No-show' && session.billing_status === 'Billable no-show');
 }
 
