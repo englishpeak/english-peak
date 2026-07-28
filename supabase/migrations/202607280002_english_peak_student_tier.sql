@@ -1,6 +1,11 @@
 -- Keep English Peak Student accounts in the academic-management student roster.
 -- The auth profile remains the source of truth; the roster row stores its user id
 -- so repeated tier changes cannot create duplicate students.
+alter table public.profiles drop constraint if exists profiles_tier_check;
+alter table public.profiles
+  add constraint profiles_tier_check
+  check (tier in ('free', 'premium', 'teacher', 'student', 'courtesy'));
+
 alter table public.ep_students
   add column if not exists user_id uuid references auth.users(id) on delete set null;
 

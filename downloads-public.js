@@ -114,7 +114,7 @@
       var file = item.file;
       var index = item.index;
       var accessTier = group.accessTier;
-      var allowed = accessTier === 'public' || (accessTier === 'free' && !!user) || (accessTier === 'premium' && !!profile && (profile.is_admin || ['premium','teacher','courtesy'].indexOf(profile.tier) > -1));
+      var allowed = accessTier === 'public' || (accessTier === 'free' && !!user) || (accessTier === 'premium' && !!profile && (profile.is_admin || ['premium','teacher','student','courtesy'].indexOf(profile.tier) > -1));
       var label = accessTier === 'public' ? '✓ Public' : accessTier === 'free' ? 'Free Account' : 'ePeak+';
       var icon = (file.file_type || 'PDF').toUpperCase().slice(0, 3);
       cards += '<div class="ex-card">'

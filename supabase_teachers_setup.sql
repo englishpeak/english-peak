@@ -4,6 +4,11 @@
 -- Reuses auth.users and public.profiles; it does not create another identity/role system.
 create extension if not exists pgcrypto;
 
+-- The student tier must be accepted before the roster-sync trigger can use it.
+alter table public.profiles drop constraint if exists profiles_tier_check;
+alter table public.profiles add constraint profiles_tier_check
+ check (tier in ('free','premium','teacher','student','courtesy'));
+
 create or replace function public.ep_is_admin() returns boolean language sql stable security definer set search_path=public
 as $$ select coalesce((select is_admin from public.profiles where id=auth.uid()),false) $$;
 create or replace function public.ep_is_teacher() returns boolean language sql stable security definer set search_path=public
