@@ -89,7 +89,7 @@ using (
             and exists (
               select 1 from public.profiles p
               where p.id = auth.uid()
-                and (p.is_admin = true or p.tier in ('premium', 'teacher', 'courtesy'))
+                and (p.is_admin = true or p.tier in ('premium', 'teacher', 'student', 'courtesy'))
             )
           )
         )

@@ -160,6 +160,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 .tier-premium { background: var(--gold-bg); color: var(--gold); }
 .tier-admin { background: rgba(71,0,116,0.1); color: var(--purple); }
 .tier-teacher { background: rgba(13,59,111,0.1); color: var(--navy); }
+.tier-student { background: rgba(74,144,217,0.14); color: var(--navy); }
 .tier-courtesy { background: rgba(255,152,0,0.1); color: #e65100; }
 .stat-card[data-user-filter] { cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, outline-color .18s ease; outline: 2px solid transparent; outline-offset: 2px; }
 .stat-card[data-user-filter]:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13,59,111,0.1); }
@@ -309,6 +310,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <div class="stat-card gold" data-user-filter="premium" role="button" tabindex="0" onclick="filterUsersByTier('premium')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('premium')}"><div class="stat-label">Practice+</div><div class="stat-num" id="stat-premium">—</div><div class="stat-sub">premium members</div></div>
         <div class="stat-card purple" data-user-filter="admin" role="button" tabindex="0" onclick="filterUsersByTier('admin')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('admin')}"><div class="stat-label">Admins</div><div class="stat-num" id="stat-admins">—</div><div class="stat-sub">staff members</div></div>
         <div class="stat-card" data-user-filter="teacher" role="button" tabindex="0" onclick="filterUsersByTier('teacher')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('teacher')}" style="border-top:3px solid var(--navy)"><div class="stat-label">Teachers</div><div class="stat-num" id="stat-teachers">—</div><div class="stat-sub">school staff</div></div>
+        <div class="stat-card" data-user-filter="student" role="button" tabindex="0" onclick="filterUsersByTier('student')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('student')}" style="border-top:3px solid var(--sky)"><div class="stat-label">English Peak Students</div><div class="stat-num" id="stat-students">—</div><div class="stat-sub">enrolled learners</div></div>
         <div class="stat-card" data-user-filter="courtesy" role="button" tabindex="0" onclick="filterUsersByTier('courtesy')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();filterUsersByTier('courtesy')}" style="border-top:3px solid #e65100"><div class="stat-label">Courtesy</div><div class="stat-num" id="stat-courtesy">—</div><div class="stat-sub">complimentary access</div></div>
       </div>
       <div class="section-hdr">
@@ -570,6 +572,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
           <option value="free">Free</option>
           <option value="premium">⭐ Practice+</option>
           <option value="teacher">🎓 Teacher</option>
+          <option value="student">📘 English Peak Student</option>
           <option value="courtesy">🎁 Courtesy</option>
         </select>
       </div>
@@ -602,6 +605,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
           <option value="premium">⭐ Practice+</option>
           <option value="free">Free Account</option>
           <option value="teacher">🎓 Teacher</option>
+          <option value="student">📘 English Peak Student</option>
           <option value="courtesy">🎁 Courtesy</option>
         </select>
       </div>
@@ -794,6 +798,7 @@ function updateStats(data) {
   document.getElementById('stat-premium').textContent = data.filter(u => u.tier === 'premium').length;
   document.getElementById('stat-admins').textContent = data.filter(u => u.is_admin).length;
   document.getElementById('stat-teachers').textContent = data.filter(u => u.tier === 'teacher').length;
+  document.getElementById('stat-students').textContent = data.filter(u => u.tier === 'student').length;
   document.getElementById('stat-courtesy').textContent = data.filter(u => u.tier === 'courtesy').length;
   document.getElementById('badge-users').textContent = data.length;
 }
@@ -819,6 +824,8 @@ function renderUsers(data) {
         ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
         : user.tier === 'teacher'
           ? '<span class="tier-badge tier-teacher">🎓 Teacher</span>'
+          : user.tier === 'student'
+            ? '<span class="tier-badge tier-student">📘 English Peak Student</span>'
           : user.tier === 'courtesy'
             ? '<span class="tier-badge tier-courtesy">🎁 Courtesy</span>'
             : '<span class="tier-badge tier-free">Free</span>';
@@ -898,7 +905,7 @@ async function confirmTierChange() {
   });
 
   closeModal('tierModal');
-  const tierNames = {premium:'⭐ Practice+', free:'Free', teacher:'🎓 Teacher', courtesy:'🎁 Courtesy'};
+  const tierNames = {premium:'⭐ Practice+', free:'Free', teacher:'🎓 Teacher', student:'📘 English Peak Student', courtesy:'🎁 Courtesy'};
   showToast(`✅ Tier updated to ${tierNames[newTier] || newTier}`, 'success');
   loadUsers();
   loadLog();
@@ -1225,6 +1232,8 @@ async function loadCodes() {
       ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
       : c.tier === 'teacher'
         ? '<span class="tier-badge tier-teacher">🎓 Teacher</span>'
+        : c.tier === 'student'
+          ? '<span class="tier-badge tier-student">📘 English Peak Student</span>'
         : c.tier === 'courtesy'
           ? '<span class="tier-badge tier-courtesy">🎁 Courtesy</span>'
           : '<span class="tier-badge tier-free">Free</span>';
