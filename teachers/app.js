@@ -1,8 +1,17 @@
 import { calculateReport, getWeekRange } from './academic-core.js';
+import { AUTH_STORAGE_KEY, canUseAcademicManagement, migrateLegacyAdminSession } from './auth.js';
 
 const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: 'ep-auth-token', persistSession: true } });
+// Older versions of the admin panel used Supabase's default project-specific
+// key. Migrate that session here as well as in the admin panel so a direct visit
+// to /teachers works without requiring the user to revisit the admin page first.
+try {
+  migrateLegacyAdminSession(localStorage);
+} catch (error) {
+  console.warn('Unable to migrate the previous admin session.', error);
+}
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: AUTH_STORAGE_KEY, persistSession: true } });
 const state = { user: null, profile: null, isAdmin: false, teachers: [], students: [], assignments: [], sessions: [], reports: [], tasks: [] };
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '—').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
@@ -84,4 +93,56 @@ function filterStudents(){const text=$('#studentSearch').value.toLowerCase(),sta
 document.addEventListener('submit',async e=>{e.preventDefault();const f=e.target,d=Object.fromEntries(new FormData(f));try{if(f.id==='studentForm')await mutate(sb.from('students').insert({...d,classes_per_week:Number(d.classes_per_week)||null,default_class_duration:Number(d.default_class_duration)}),'Student created.');if(f.id==='assignForm'){await sb.from('student_teacher_assignments').update({status:'Ended',end_date:d.start_date}).eq('student_id',d.student_id).eq('status','Active');await mutate(sb.from('student_teacher_assignments').insert({...d,status:'Active'}),'Student assigned.')}if(f.id==='taskForm')await mutate(sb.from('teacher_tasks').insert({...d,assigned_by_user_id:state.user.id,status:'Not Started'}),'Task created.');if(f.id==='commentForm')await mutate(sb.from('task_comments').insert({task_id:f.dataset.id,author_user_id:state.user.id,comment:d.comment}),'Comment preserved.');if(f.id==='reportForm'){if(!confirm('Submit this weekly report? You will not be able to edit it unless an admin requests changes.'))return;const week=getWeekRange(),sessions=state.sessions.filter(s=>s.teacher_user_id===state.user.id),t=calculateReport(sessions);await mutate(sb.from('weekly_reports').upsert({teacher_user_id:state.user.id,week_start:week.start,week_end:week.end,total_completed_minutes:t.totalCompletedMinutes,total_billable_minutes:t.totalBillableMinutes,total_completed_classes:t.totalCompletedClasses,total_no_shows:t.totalNoShows,status:'Submitted',teacher_comments:d.teacher_comments,submitted_at:new Date().toISOString()},{onConflict:'teacher_user_id,week_start'}),'Weekly report submitted.')}}catch(err){alert(err.message)}});
 document.addEventListener('click',e=>{if(e.target.matches('[data-close]')||e.target.id==='modal')closeModal()});$('#signOut').onclick=async()=>{await sb.auth.signOut();location.href='/'};
 
-async function init(){try{const {data:{session}}=await sb.auth.getSession();if(!session)throw new Error('denied');state.user=session.user;const {data:profile,error}=await sb.from('profiles').select('id,email,full_name,tier,is_admin').eq('id',session.user.id).single();if(error||(!profile?.is_admin&&String(profile?.tier).toLowerCase()!=='teacher'))throw new Error('denied');state.profile=profile;state.isAdmin=Boolean(profile.is_admin);await loadData();$('#identity').textContent=`${profile.full_name||session.user.email} · ${state.isAdmin?'Master Admin':'Teacher'}`;$('#loading').classList.add('hidden');$('#app').classList.remove('hidden');render()}catch(err){console.error(err);$('#loading').classList.add('hidden');$('#denied').classList.remove('hidden')}}init();
+function showDenied(){
+  $('#loading').classList.add('hidden');
+  $('#denied').classList.remove('hidden');
+}
+
+async function init(){
+  let session;
+  try{
+    const {data,error}=await sb.auth.getSession();
+    if(error)throw error;
+    session=data.session;
+  }catch(error){
+    console.error(error);
+    showDenied();
+    return;
+  }
+  if(!session){
+    showDenied();
+    return;
+  }
+
+  state.user=session.user;
+  let profile;
+  let profileError;
+  try{
+    const result=await sb.from('profiles').select('id,email,full_name,tier,is_admin').eq('id',session.user.id).single();
+    profile=result.data;
+    profileError=result.error;
+  }catch(error){
+    profileError=error;
+  }
+  if(profileError||!canUseAcademicManagement(profile)){
+    if(profileError)console.error(profileError);
+    showDenied();
+    return;
+  }
+
+  state.profile=profile;
+  state.isAdmin=Boolean(profile.is_admin);
+  $('#identity').textContent=`${profile.full_name||session.user.email} · ${state.isAdmin?'Master Admin':'Teacher'}`;
+  $('#loading').classList.add('hidden');
+  $('#app').classList.remove('hidden');
+
+  try{
+    await loadData();
+    render();
+  }catch(error){
+    console.error(error);
+    $('#notice').textContent=`Academic data could not be loaded: ${error.message}`;
+    $('#notice').classList.add('show');
+    $('#view').innerHTML=title('Academic Management unavailable','Your account is authorized, but the academic data could not be loaded. Please try again or contact support.');
+  }
+}init();
