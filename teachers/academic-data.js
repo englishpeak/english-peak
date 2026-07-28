@@ -46,7 +46,12 @@ export async function loadAcademicData(client, { isAdmin, week }) {
     reports: () => selectRows(client, ACADEMIC_TABLES.reports, '*', q => q.order('week_start', { ascending: false })),
     tasks: () => selectRows(client, ACADEMIC_TABLES.tasks, '*', q => q.order('created_at', { ascending: false }))
   };
-  const settled = await Promise.all(OPTIONAL_RESOURCES.map(async name => {
+  if (isAdmin) {
+    loaders.teacherProfiles = () => selectRows(client, ACADEMIC_TABLES.teacherProfiles, 'id,user_id,status,timezone,hourly_rate,internal_notes,created_at,updated_at');
+    loaders.notes = () => selectRows(client, ACADEMIC_TABLES.notes, '*', q => q.eq('visibility', 'Admin only').order('created_at', { ascending: false }));
+  }
+  const resources = [...OPTIONAL_RESOURCES, ...(isAdmin ? ['teacherProfiles', 'notes'] : [])];
+  const settled = await Promise.all(resources.map(async name => {
     try { return [name, await loaders[name](), null]; }
     catch (error) { return [name, [], { type: classifySupabaseError(error), error }]; }
   }));
