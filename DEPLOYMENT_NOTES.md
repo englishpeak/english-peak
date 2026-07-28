@@ -14,3 +14,7 @@ En **Admin → Users**, haz clic en cualquier tarjeta de estadísticas para filt
 
 
 En **Admin → Pricing**, si ves “Pricing setup missing”, ejecuta `supabase_pricing_setup.sql` en Supabase SQL Editor y vuelve a presionar **Refresh**.
+
+## Academic Management Phase 1
+
+Before deploying `/teachers`, apply `supabase/migrations/202607280001_phase1_academic_management.sql` to the production Supabase project (with `supabase db push` when the project is linked, or by pasting the file into the Supabase SQL Editor). The migration creates the canonical `ep_*` tables, RLS policies, helper functions, triggers, and initial teacher profile rows, then asks PostgREST to reload its schema cache. Deploy the static application files after the migration. No new environment variables or authentication changes are required.

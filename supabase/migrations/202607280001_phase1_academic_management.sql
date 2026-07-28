@@ -1,5 +1,3 @@
--- Canonical setup script. The timestamped migration is the deployment source of truth:
--- supabase/migrations/202607280001_phase1_academic_management.sql
 -- Phase 1 Academic Management. Apply with Supabase CLI or SQL Editor.
 -- Reuses auth.users and public.profiles; it does not create another identity/role system.
 create extension if not exists pgcrypto;
