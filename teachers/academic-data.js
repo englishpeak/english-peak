@@ -1,10 +1,11 @@
 export const ACADEMIC_TABLES = Object.freeze({
   teacherProfiles: 'ep_teacher_profiles', students: 'ep_students',
   assignments: 'ep_student_teacher_assignments', sessions: 'ep_class_sessions',
+  classes: 'ep_classes', classStudents: 'ep_class_students', classTeachers: 'ep_class_teachers',
   reports: 'ep_weekly_reports', tasks: 'ep_tasks', comments: 'ep_task_comments', notes: 'ep_notes'
 });
 
-const OPTIONAL_RESOURCES = ['students', 'assignments', 'sessions', 'reports', 'tasks'];
+const OPTIONAL_RESOURCES = ['students', 'assignments', 'classes', 'classStudents', 'classTeachers', 'sessions', 'reports', 'tasks'];
 
 export function classifySupabaseError(error) {
   const message = String(error?.message || 'Unknown academic data error');
@@ -34,10 +35,13 @@ export async function ensureTeacherProfile(client, userId, isAdmin) {
 
 export async function loadAcademicData(client, { isAdmin, week }) {
   const studentColumns = isAdmin ? '*' : 'id,full_name,email,phone,company,level,status,start_date,class_type,classes_per_week,default_class_duration,timezone,academic_notes,created_at,updated_at';
-  const sessionColumns = isAdmin ? '*' : 'id,student_id,teacher_user_id,class_date,start_time,end_time,duration_minutes,status,is_billable,notes,created_at,updated_at';
+  const sessionColumns = isAdmin ? '*' : 'id,class_id,student_id,teacher_user_id,class_date,start_time,end_time,duration_minutes,status,is_billable,notes,created_at,updated_at';
   const loaders = {
     students: () => selectRows(client, ACADEMIC_TABLES.students, studentColumns),
     assignments: () => selectRows(client, ACADEMIC_TABLES.assignments, '*'),
+    classes: () => selectRows(client, ACADEMIC_TABLES.classes, '*', q => q.order('name')),
+    classStudents: () => selectRows(client, ACADEMIC_TABLES.classStudents, '*'),
+    classTeachers: () => selectRows(client, ACADEMIC_TABLES.classTeachers, '*'),
     sessions: () => selectRows(client, ACADEMIC_TABLES.sessions, sessionColumns, q => q.gte('class_date', week.start).lte('class_date', week.end)),
     reports: () => selectRows(client, ACADEMIC_TABLES.reports, '*', q => q.order('week_start', { ascending: false })),
     tasks: () => selectRows(client, ACADEMIC_TABLES.tasks, '*', q => q.order('created_at', { ascending: false }))

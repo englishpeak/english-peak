@@ -30,3 +30,14 @@ export function canAccessStudent({ isAdmin, userId }, assignments, studentId) {
   return Boolean(isAdmin || assignments.some(a => a.student_id === studentId && a.teacher_user_id === userId && a.status === 'Active'));
 }
 
+export function getCurrentlyAssignedClassIds(classes, classTeachers, userId) {
+  const activeClasses = new Set(classes.filter(item => item.status === 'Active').map(item => item.id));
+  return new Set(classTeachers
+    .filter(item => item.teacher_user_id === userId && item.status === 'Active' && activeClasses.has(item.class_id))
+    .map(item => item.class_id));
+}
+
+export function getReportableSessions(sessions, classes, classTeachers, userId) {
+  const classIds = getCurrentlyAssignedClassIds(classes, classTeachers, userId);
+  return sessions.filter(session => session.teacher_user_id === userId && classIds.has(session.class_id));
+}
