@@ -30,3 +30,17 @@ test('database policies limit teacher edits to assigned records and protect acco
   assert.match(migrationSource, /new\.account_matched_by/);
   assert.doesNotMatch(migrationSource, /ep_class_(students|teachers)_teacher_(insert|update|delete)/);
 });
+
+test('student scheduling preferences use an optional date and left-side steppers', () => {
+  assert.match(appSource, /data-start-date-toggle/);
+  assert.match(appSource, /input\.disabled=!enabled/);
+  assert.match(appSource, /start_date:d\.start_date\|\|null/);
+  assert.match(appSource, /class="number-stepper"/);
+  assert.doesNotMatch(appSource, /Default duration/);
+  assert.doesNotMatch(appSource, /default_class_duration:Number/);
+});
+
+test('Test Prep and Other are rendered as separate class categories', () => {
+  assert.match(appSource, /'Test Prep','Other'/);
+  assert.doesNotMatch(appSource, /'Test Prep & Other'\]/);
+});
