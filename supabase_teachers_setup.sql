@@ -134,3 +134,6 @@ notify pgrst,'reload schema';
 
 -- Account matching is deployed by supabase/migrations/202607280004_match_student_account.sql.
 -- Apply that migration to let Master Admins merge manual roster records with registered accounts.
+
+-- Classes and teaching teams are deployed by supabase/migrations/202607280005_classes_and_teaching_teams.sql.
+-- Apply that migration after this baseline to enable multi-class rosters and class-scoped reports.

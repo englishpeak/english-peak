@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { calculateReport, canAccessStudent, getWeekRange } from './academic-core.js';
+import { calculateReport, canAccessStudent, getCurrentlyAssignedClassIds, getReportableSessions, getWeekRange } from './academic-core.js';
 
 test('billable no-show is payable but not completed', () => {
   const totals = calculateReport([{ status: 'No-show', billing_status: 'Billable no-show', duration_minutes: 60, student_name: 'Ana' }]);
@@ -25,3 +25,19 @@ test('teacher access is restricted to active assignments', () => {
 });
 
 test('week range runs Monday through Sunday', () => assert.deepEqual(getWeekRange('2026-07-24T12:00:00Z'), { start: '2026-07-20', end: '2026-07-26' }));
+
+test('weekly reports only include sessions from the teacher current classes', () => {
+  const classes = [{ id: 'active', status: 'Active' }, { id: 'paused', status: 'Paused' }];
+  const teachers = [
+    { class_id: 'active', teacher_user_id: 'teacher-1', status: 'Active' },
+    { class_id: 'paused', teacher_user_id: 'teacher-1', status: 'Active' },
+    { class_id: 'other', teacher_user_id: 'teacher-1', status: 'Ended' }
+  ];
+  assert.deepEqual([...getCurrentlyAssignedClassIds(classes, teachers, 'teacher-1')], ['active']);
+  assert.deepEqual(getReportableSessions([
+    { id: 'included', class_id: 'active', teacher_user_id: 'teacher-1' },
+    { id: 'old-class', class_id: 'paused', teacher_user_id: 'teacher-1' },
+    { id: 'other-teacher', class_id: 'active', teacher_user_id: 'teacher-2' },
+    { id: 'legacy', class_id: null, teacher_user_id: 'teacher-1' }
+  ], classes, teachers, 'teacher-1').map(item => item.id), ['included']);
+});

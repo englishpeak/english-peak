@@ -11,7 +11,11 @@ test('academic resources are table selects and never RPC calls', async () => {
   const calls=[];
   const client={ from(table){ calls.push(['from',table]); return query({data:[],error:null},calls,table); }, rpc(){ throw new Error('RPC must not be used'); } };
   const result=await loadAcademicData(client,{isAdmin:false,week:{start:'2026-07-20',end:'2026-07-26'}});
-  assert.deepEqual(Object.values(ACADEMIC_TABLES).slice(1,6), calls.filter(c=>c[0]==='from').map(c=>c[1]));
+  assert.deepEqual([
+    ACADEMIC_TABLES.students, ACADEMIC_TABLES.assignments, ACADEMIC_TABLES.classes,
+    ACADEMIC_TABLES.classStudents, ACADEMIC_TABLES.classTeachers, ACADEMIC_TABLES.sessions,
+    ACADEMIC_TABLES.reports, ACADEMIC_TABLES.tasks
+  ], calls.filter(c=>c[0]==='from').map(c=>c[1]));
   assert.deepEqual(result.errors, {});
 });
 
