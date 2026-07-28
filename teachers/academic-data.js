@@ -52,3 +52,12 @@ export async function loadAcademicData(client, { isAdmin, week }) {
     return result;
   }, { data: {}, errors: {} });
 }
+
+export async function matchStudentAccount(client, studentId, userId) {
+  const { data, error } = await client.rpc('ep_match_student_account', {
+    p_roster_student_id: studentId,
+    p_account_user_id: userId
+  });
+  if (error) throw error;
+  return data;
+}

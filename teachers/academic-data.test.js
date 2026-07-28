@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ACADEMIC_TABLES, classifySupabaseError, ensureTeacherProfile, loadAcademicData } from './academic-data.js';
+import { ACADEMIC_TABLES, classifySupabaseError, ensureTeacherProfile, loadAcademicData, matchStudentAccount } from './academic-data.js';
 
 function query(result, calls, table) {
   const chain = { select(columns) { calls.push(['select', table, columns]); return chain; }, eq() { return chain; }, gte() { return chain; }, lte() { return chain; }, order() { return chain; }, maybeSingle() { return Promise.resolve(result); }, single() { return Promise.resolve(result); }, then(resolve) { return Promise.resolve(result).then(resolve); } };
@@ -35,4 +35,17 @@ test('a missing teacher profile is initialized with the authenticated user id', 
   }; } };
   const profile=await ensureTeacherProfile(client,'teacher-1',false);
   assert.deepEqual(inserted,[{user_id:'teacher-1'}]); assert.equal(profile.status,'Active');
+});
+
+test('student matching uses the protected atomic RPC', async () => {
+  const calls=[];
+  const client={rpc:async(name,args)=>{calls.push([name,args]);return {data:{student_id:'roster-1'},error:null};}};
+  const result=await matchStudentAccount(client,'roster-1','account-1');
+  assert.deepEqual(calls,[['ep_match_student_account',{p_roster_student_id:'roster-1',p_account_user_id:'account-1'}]]);
+  assert.equal(result.student_id,'roster-1');
+});
+
+test('student matching surfaces RPC errors', async () => {
+  const client={rpc:async()=>({data:null,error:new Error('Already matched')})};
+  await assert.rejects(()=>matchStudentAccount(client,'roster-1','account-1'),/Already matched/);
 });

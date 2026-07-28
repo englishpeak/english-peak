@@ -131,3 +131,6 @@ insert into public.ep_students(user_id,full_name,email,status,start_date)
 select id,coalesce(nullif(trim(full_name),''),split_part(email,'@',1),'English Peak Student'),email,'Active',current_date from public.profiles where lower(coalesce(tier,''))='student'
 on conflict(user_id) where user_id is not null do update set full_name=excluded.full_name,email=excluded.email;
 notify pgrst,'reload schema';
+
+-- Account matching is deployed by supabase/migrations/202607280004_match_student_account.sql.
+-- Apply that migration to let Master Admins merge manual roster records with registered accounts.

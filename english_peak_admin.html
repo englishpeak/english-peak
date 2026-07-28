@@ -589,6 +589,20 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 </div>
 
 <!-- CREATE CODE MODAL -->
+<div class="modal-overlay" id="studentMatchModal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('studentMatchModal')">✕</button>
+    <h3>Match Student Account</h3>
+    <p id="studentMatchSub">Merge a registered account with a manually created academic record.</p>
+    <div class="modal-form">
+      <div class="form-group"><label>Manual student record</label><select id="studentMatchRecord"><option value="">Loading…</option></select></div>
+      <p style="margin:0;font-size:.78rem;color:var(--muted)">Academic details, teacher assignments, classes, tasks, and notes stay together. The registered account email becomes the profile email.</p>
+    </div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('studentMatchModal')">Cancel</button><button class="btn btn-primary" id="studentMatchBtn" onclick="confirmStudentMatch()">Review and merge</button></div>
+  </div>
+</div>
+
+<!-- CREATE CODE MODAL -->
 <div class="modal-overlay" id="codeModal">
   <div class="modal" style="position:relative">
     <button class="modal-close" onclick="closeModal('codeModal')">✕</button>
@@ -664,7 +678,9 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
 let currentUser = null;
 let allUsers = [];
 let selectedUserId = null;
+let selectedStudentAccount = null;
 let activeUserFilter = 'all';
+const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 
 // ═══════════════════════════════════
 // AUTH
@@ -835,7 +851,7 @@ function renderUsers(data) {
       : '<span style="font-size:0.75rem;color:var(--muted)">—</span>';
 
     const actions = user.is_admin ? '<span style="font-size:0.75rem;color:var(--muted)">Master account · full access</span>' :
-      `<button class="btn btn-ghost btn-sm" onclick="openTierModal('${user.id}','${user.email}','${user.tier}')">Change tier</button>`;
+      `<div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="openTierModal('${user.id}','${user.email}','${user.tier}')">Change tier</button>${user.tier === 'student' ? `<button class="btn btn-primary btn-sm" onclick="openStudentMatchModal('${user.id}')">Match student</button>` : ''}</div>`;
 
     tbody.innerHTML += `
       <tr>
@@ -870,6 +886,31 @@ function filterUsersByTier(tier) {
     card.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
   filterUsers();
+}
+
+async function openStudentMatchModal(userId) {
+  selectedStudentAccount = allUsers.find(user => user.id === userId);
+  document.getElementById('studentMatchSub').textContent = `Match ${selectedStudentAccount?.email || 'this account'} to an existing manual student record.`;
+  const select = document.getElementById('studentMatchRecord');
+  select.innerHTML = '<option value="">Loading manual records…</option>';
+  document.getElementById('studentMatchModal').classList.add('show');
+  const { data, error } = await sb.from('ep_students').select('id,full_name,email,user_id,account_matched_at').is('user_id', null).order('full_name');
+  if (error) { select.innerHTML = '<option value="">Unable to load student records</option>'; showToast('Error: ' + error.message, 'error'); return; }
+  select.innerHTML = '<option value="">Select a manual student…</option>' + (data || []).map(student =>
+    `<option value="${student.id}">${escapeHtml(student.full_name)}${student.email ? ` · ${escapeHtml(student.email)}` : ''}</option>`
+  ).join('');
+  document.getElementById('studentMatchBtn').disabled = !data?.length;
+}
+
+async function confirmStudentMatch() {
+  const studentId = document.getElementById('studentMatchRecord').value;
+  if (!studentId || !selectedStudentAccount) { showToast('Select a manual student record.', 'error'); return; }
+  if (!confirm(`Merge the selected student record with ${selectedStudentAccount.email}? This cannot be automatically undone.`)) return;
+  const button = document.getElementById('studentMatchBtn'); button.disabled = true; button.textContent = 'Merging…';
+  const { error } = await sb.rpc('ep_match_student_account', { p_roster_student_id: studentId, p_account_user_id: selectedStudentAccount.id });
+  button.disabled = false; button.textContent = 'Review and merge';
+  if (error) { showToast('Error: ' + error.message, 'error'); return; }
+  closeModal('studentMatchModal'); showToast('✅ Student account matched and records merged.', 'success'); loadUsers(); loadLog();
 }
 
 // ═══════════════════════════════════
