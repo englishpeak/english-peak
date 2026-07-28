@@ -634,8 +634,28 @@ tr:hover td { background: rgba(13,59,111,0.02); }
 // ═══════════════════════════════════
 const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
+const AUTH_STORAGE_KEY = 'ep-auth-token';
+const LEGACY_ADMIN_AUTH_STORAGE_KEY = 'sb-jnqekougzmihjqffhuva-auth-token';
 const { createClient } = supabase;
-const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+// Keep the admin, learner, and academic-management pages on the same browser
+// session. Preserve an existing login from downloaded copies of the previous
+// admin panel by copying Supabase's old default entry before creating the client.
+// The legacy entry remains in place so older downloaded copies keep working.
+try {
+  const sharedSession = localStorage.getItem(AUTH_STORAGE_KEY);
+  const legacyAdminSession = localStorage.getItem(LEGACY_ADMIN_AUTH_STORAGE_KEY);
+  if (!sharedSession && legacyAdminSession) {
+    localStorage.setItem(AUTH_STORAGE_KEY, legacyAdminSession);
+  }
+} catch (error) {
+  console.warn('Unable to migrate the previous admin session.', error);
+}
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: {
+    storageKey: AUTH_STORAGE_KEY,
+    persistSession: true
+  }
+});
 
 let currentUser = null;
 let allUsers = [];
@@ -794,7 +814,7 @@ function renderUsers(data) {
   data.forEach(user => {
     const date = new Date(user.created_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
     const tierBadge = user.is_admin
-      ? '<span class="tier-badge tier-admin">🛡 Admin</span>'
+      ? '<span class="tier-badge tier-admin">🛡 Master Admin</span>'
       : user.tier === 'premium'
         ? '<span class="tier-badge tier-premium">⭐ Practice+</span>'
         : user.tier === 'teacher'
@@ -807,7 +827,7 @@ function renderUsers(data) {
       ? `<span style="font-size:0.75rem;color:var(--muted)">${user.tier_granted_by}</span>`
       : '<span style="font-size:0.75rem;color:var(--muted)">—</span>';
 
-    const actions = user.is_admin ? '<span style="font-size:0.75rem;color:var(--muted)">Admin account</span>' :
+    const actions = user.is_admin ? '<span style="font-size:0.75rem;color:var(--muted)">Master account · full access</span>' :
       `<button class="btn btn-ghost btn-sm" onclick="openTierModal('${user.id}','${user.email}','${user.tier}')">Change tier</button>`;
 
     tbody.innerHTML += `

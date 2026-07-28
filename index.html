@@ -1025,7 +1025,7 @@ async function loadProfile() {
       if (el) el.textContent = logData.length;
       var streak = calcStreak(logData);
       if (streak > 1) {
-        var tier = (_currentProfile && _currentProfile.tier) || 'free';
+        var tier = getEffectiveTier(_currentProfile);
         var c = TIERS[tier] || TIERS['free'];
         var sub = document.getElementById('progSub');
         if (sub) sub.textContent = (c.psub || '') + '  🔥 ' + streak + '-day streak!';
@@ -1036,15 +1036,14 @@ async function loadProfile() {
 
 function updateUIForUser() {
   if (!_currentProfile) return;
-  // Admins always get full access regardless of their stored tier value
-  var tier = (_currentProfile.is_admin) ? 'premium' : (_currentProfile.tier || 'free');
+  var tier = getEffectiveTier(_currentProfile);
   var name = _currentProfile.full_name || _currentUser.email.split('@')[0];
   var initial = name ? name[0].toUpperCase() : '?';
 
   // Update sidebar
   document.getElementById('sidebarName').textContent = name;
   document.getElementById('sidebarAvatar').textContent = initial;
-  var tierLabels = {premium:'⭐ ePeak+', teacher:'🎓 Teacher', courtesy:'🎁 Courtesy', free:'Free Account'};
+  var tierLabels = {admin:'🛡 Master Admin', premium:'⭐ ePeak+', teacher:'🎓 Teacher', courtesy:'🎁 Courtesy', free:'Free Account'};
   document.getElementById('sidebarTier').textContent = tierLabels[tier] || 'Free Account';
 
   // Hide tier switcher
@@ -1062,7 +1061,7 @@ function updateUIForUser() {
   var signinBtn = document.getElementById('signinTopBtn');
   if (signinBtn) signinBtn.style.display = 'none';
   if (upgradeBtn) {
-    if (tier === 'premium' || tier === 'teacher' || tier === 'courtesy') {
+    if (hasFullAccessTier(tier)) {
       upgradeBtn.style.display = 'none';
     } else {
       upgradeBtn.style.display = 'block';
@@ -1073,7 +1072,7 @@ function updateUIForUser() {
 
   // Update progress card
   var c = TIERS[tier] || TIERS['free'];
-  var fullAccess = ['premium','teacher','courtesy'].indexOf(tier) > -1;
+  var fullAccess = hasFullAccessTier(tier);
   document.getElementById('progTitle').textContent = fullAccess ? c.ptitle : 'Keep it up, ' + name + '!';
   document.getElementById('progSub').textContent = c.psub;
 
@@ -1105,7 +1104,7 @@ function updateUIForVisitor() {
 
 function applyTier(tier) {
   // Map tier to TIERS config
-  var tierKey = (tier === 'premium' || tier === 'teacher' || tier === 'courtesy') ? tier : tier === 'free' ? 'free' : 'visitor';
+  var tierKey = hasFullAccessTier(tier) ? tier : tier === 'free' ? 'free' : 'visitor';
   if (!TIERS[tierKey]) tierKey = 'free';
   var c = TIERS[tierKey];
   if (!c) return;
@@ -1115,25 +1114,25 @@ function applyTier(tier) {
   document.getElementById('progAvailable').textContent = c.available;
 
   var ic = c.itpTests.length;
-  document.getElementById('access-itp-tests').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+ITP_TOTAL : '🔓 ' + ic + ' of ' + ITP_TOTAL;
-  document.getElementById('access-itp-tests').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
+  document.getElementById('access-itp-tests').textContent = hasFullAccessTier(tierKey) ? '✓ All '+ITP_TOTAL : '🔓 ' + ic + ' of ' + ITP_TOTAL;
+  document.getElementById('access-itp-tests').className = 'card-access ' + (hasFullAccessTier(tierKey) ? 'access-premium' : 'access-partial');
   document.getElementById('meta-itp-tests').textContent = ITP_TOTAL + ' tests · ' + ic + ' unlocked';
-  document.getElementById('btn-itp-tests').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('itp-tests-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+ITP_TOTAL : '🔓 ' + ic + ' of ' + ITP_TOTAL;
+  document.getElementById('btn-itp-tests').className = 'card-btn ' + (hasFullAccessTier(tierKey) ? 'btn-open' : 'btn-partial');
+  document.getElementById('itp-tests-badge').textContent = hasFullAccessTier(tierKey) ? '✓ All '+ITP_TOTAL : '🔓 ' + ic + ' of ' + ITP_TOTAL;
 
   var bc = c.ibtTests.length;
-  document.getElementById('access-ibt').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+IBT_TOTAL : '🔓 ' + bc + ' of ' + IBT_TOTAL;
-  document.getElementById('access-ibt').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-partial');
+  document.getElementById('access-ibt').textContent = hasFullAccessTier(tierKey) ? '✓ All '+IBT_TOTAL : '🔓 ' + bc + ' of ' + IBT_TOTAL;
+  document.getElementById('access-ibt').className = 'card-access ' + (hasFullAccessTier(tierKey) ? 'access-premium' : 'access-partial');
   document.getElementById('meta-ibt').textContent = IBT_TOTAL + ' tests · ' + bc + ' unlocked';
-  document.getElementById('btn-ibt').className = 'card-btn ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'btn-open' : 'btn-partial');
-  document.getElementById('ibt-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ All '+IBT_TOTAL : '🔓 ' + bc + ' of ' + IBT_TOTAL;
+  document.getElementById('btn-ibt').className = 'card-btn ' + (hasFullAccessTier(tierKey) ? 'btn-open' : 'btn-partial');
+  document.getElementById('ibt-badge').textContent = hasFullAccessTier(tierKey) ? '✓ All '+IBT_TOTAL : '🔓 ' + bc + ' of ' + IBT_TOTAL;
 
   if (c.conv) {
-    document.getElementById('access-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : '✓ Free';
-    document.getElementById('access-conv').className = 'card-access ' + ((tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? 'access-premium' : 'access-free');
+    document.getElementById('access-conv').textContent = hasFullAccessTier(tierKey) ? '✓ Full' : '✓ Free';
+    document.getElementById('access-conv').className = 'card-access ' + (hasFullAccessTier(tierKey) ? 'access-premium' : 'access-free');
     document.getElementById('btn-conv').className = 'card-btn btn-open';
     document.getElementById('btn-conv').textContent = 'View Topics →';
-    document.getElementById('meta-conv').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '💼 Business: Included' : '💼 Business: ePeak+ only';
+    document.getElementById('meta-conv').textContent = hasFullAccessTier(tierKey) ? '💼 Business: Included' : '💼 Business: ePeak+ only';
   } else {
     document.getElementById('access-conv').textContent = '🔐 Sign in';
     document.getElementById('access-conv').className = 'card-access access-locked';
@@ -1141,10 +1140,10 @@ function applyTier(tier) {
     document.getElementById('btn-conv').textContent = '🔐 Sign in to access';
     document.getElementById('meta-conv').textContent = '💼 Business: ePeak+';
   }
-  document.getElementById('conv-badge').textContent = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy') ? '✓ Full' : tierKey === 'free' ? '✓ Free' : '🔐 Required';
+  document.getElementById('conv-badge').textContent = hasFullAccessTier(tierKey) ? '✓ Full' : tierKey === 'free' ? '✓ Free' : '🔐 Required';
 
   // General English badge
-  var isFullAccess = (tierKey === 'premium' || tierKey === 'teacher' || tierKey === 'courtesy');
+  var isFullAccess = hasFullAccessTier(tierKey);
   var isFreeUser   = tierKey === 'free';
   var gc = c.generalTests.length;
   if (isFullAccess) {
@@ -1350,6 +1349,7 @@ function _buildTiers() {
   return {
     visitor:  {name:'Guest',label:'Visitor',avatar:'👤',itpTests:itpVisitor(ITP_TOTAL),ibtTests:ibtVisitor(IBT_TOTAL),conv:false,convBiz:false,generalTests:genVisitor(GEN_TOTAL),readingTests:readingVisitor(READING_TOTAL),listeningTests:listeningVisitor(LISTENING_TOTAL),completed:0,available:9,ptitle:'Welcome to ePeak',psub:'Create a free account to track your progress and unlock even more exercises.'},
     free:     {name:'',label:'Free Account',avatar:'',itpTests:itpFree(ITP_TOTAL),ibtTests:ibtFree(IBT_TOTAL),conv:true,convBiz:false,generalTests:genFree(GEN_TOTAL),readingTests:readingFree(READING_TOTAL),listeningTests:listeningFree(LISTENING_TOTAL),completed:0,available:14,ptitle:'Keep it up!',psub:'Upgrade to ePeak+ to unlock all tests, weekly content and PDFs.'},
+    admin:    {name:'',label:'🛡 Master Admin',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:17,ptitle:'Master access enabled',psub:'Full platform access, including all exercises, resources and administration tools.'},
     premium:  {name:'',label:'⭐ ePeak+',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:17,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'},
     teacher:  {name:'',label:'🎓 Teacher',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:17,ptitle:'Welcome, Teacher!',psub:'Full access enabled. All exercises and tests are unlocked.'},
     courtesy: {name:'',label:'🎁 Courtesy',avatar:'',itpTests:itpAll(ITP_TOTAL),ibtTests:ibtAll(IBT_TOTAL),conv:true,convBiz:true,generalTests:genAll(GEN_TOTAL),readingTests:readingAll(READING_TOTAL),listeningTests:listeningAll(LISTENING_TOTAL),completed:0,available:17,ptitle:'You have full access!',psub:'All exercises unlocked. New content every week.'}
@@ -1357,6 +1357,15 @@ function _buildTiers() {
 }
 var TIERS = _buildTiers();
 var currentTier = 'visitor';
+
+function getEffectiveTier(profile) {
+  if (profile && profile.is_admin) return 'admin';
+  return (profile && profile.tier) || 'free';
+}
+
+function hasFullAccessTier(tier) {
+  return ['admin', 'premium', 'teacher', 'courtesy'].indexOf(tier) > -1;
+}
 
 function countListeningTestsFromHtml(html) {
   var start = html.indexOf('var LISTENING_TESTS = [');
@@ -1395,29 +1404,29 @@ function setTier(tier,btn) {
   document.getElementById('sidebarName').textContent=c.name;
   document.getElementById('sidebarTier').textContent=c.label;
   document.getElementById('sidebarAvatar').textContent=c.avatar;
-  var _upgBtn=document.getElementById('upgradeTopBtn'); if(_upgBtn) _upgBtn.style.display=tier==='premium'||tier==='teacher'||tier==='courtesy'?'none':'block';
+  var _upgBtn=document.getElementById('upgradeTopBtn'); if(_upgBtn) _upgBtn.style.display=hasFullAccessTier(tier)?'none':'block';
   document.getElementById('progTitle').textContent=c.ptitle;
   document.getElementById('progSub').textContent=c.psub;
   document.getElementById('progCompleted').textContent = _currentUser ? (document.getElementById('progCompleted').textContent || '0') : c.completed;
   document.getElementById('progAvailable').textContent=c.available;
   var ic=c.itpTests.length;
-  document.getElementById('access-itp-tests').textContent=tier==='premium'?'✓ All '+ITP_TOTAL:'🔓 '+ic+' of '+ITP_TOTAL;
-  document.getElementById('access-itp-tests').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
+  document.getElementById('access-itp-tests').textContent=hasFullAccessTier(tier)?'✓ All '+ITP_TOTAL:'🔓 '+ic+' of '+ITP_TOTAL;
+  document.getElementById('access-itp-tests').className='card-access '+(hasFullAccessTier(tier)?'access-premium':'access-partial');
   document.getElementById('meta-itp-tests').textContent=ITP_TOTAL+' tests · '+ic+' unlocked';
-  document.getElementById('btn-itp-tests').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('itp-tests-badge').textContent=tier==='premium'?'✓ All '+ITP_TOTAL:'🔓 '+ic+' of '+ITP_TOTAL;
+  document.getElementById('btn-itp-tests').className='card-btn '+(hasFullAccessTier(tier)?'btn-open':'btn-partial');
+  document.getElementById('itp-tests-badge').textContent=hasFullAccessTier(tier)?'✓ All '+ITP_TOTAL:'🔓 '+ic+' of '+ITP_TOTAL;
   var bc=c.ibtTests.length;
-  document.getElementById('access-ibt').textContent=tier==='premium'?'✓ All '+IBT_TOTAL:'🔓 '+bc+' of '+IBT_TOTAL;
-  document.getElementById('access-ibt').className='card-access '+(tier==='premium'?'access-premium':'access-partial');
+  document.getElementById('access-ibt').textContent=hasFullAccessTier(tier)?'✓ All '+IBT_TOTAL:'🔓 '+bc+' of '+IBT_TOTAL;
+  document.getElementById('access-ibt').className='card-access '+(hasFullAccessTier(tier)?'access-premium':'access-partial');
   document.getElementById('meta-ibt').textContent=IBT_TOTAL+' tests · '+bc+' unlocked';
-  document.getElementById('btn-ibt').className='card-btn '+(tier==='premium'?'btn-open':'btn-partial');
-  document.getElementById('ibt-badge').textContent=tier==='premium'?'✓ All '+IBT_TOTAL:'🔓 '+bc+' of '+IBT_TOTAL;
+  document.getElementById('btn-ibt').className='card-btn '+(hasFullAccessTier(tier)?'btn-open':'btn-partial');
+  document.getElementById('ibt-badge').textContent=hasFullAccessTier(tier)?'✓ All '+IBT_TOTAL:'🔓 '+bc+' of '+IBT_TOTAL;
   if(c.conv){
-    document.getElementById('access-conv').textContent=tier==='premium'?'✓ Full':'✓ Free';
-    document.getElementById('access-conv').className='card-access '+(tier==='premium'?'access-premium':'access-free');
+    document.getElementById('access-conv').textContent=hasFullAccessTier(tier)?'✓ Full':'✓ Free';
+    document.getElementById('access-conv').className='card-access '+(hasFullAccessTier(tier)?'access-premium':'access-free');
     document.getElementById('btn-conv').className='card-btn btn-open';
     document.getElementById('btn-conv').textContent='View Topics →';
-    document.getElementById('meta-conv').textContent=tier==='premium'?'💼 Business: Included':'💼 Business: ePeak+ only';
+    document.getElementById('meta-conv').textContent=hasFullAccessTier(tier)?'💼 Business: Included':'💼 Business: ePeak+ only';
   } else {
     document.getElementById('access-conv').textContent='🔐 Sign in';
     document.getElementById('access-conv').className='card-access access-locked';
@@ -1425,10 +1434,10 @@ function setTier(tier,btn) {
     document.getElementById('btn-conv').textContent='🔐 Sign in to access';
     document.getElementById('meta-conv').textContent='💼 Business: ePeak+';
   }
-  document.getElementById('conv-badge').textContent=tier==='premium'?'✓ Full':tier==='free'?'✓ Free':'🔐 Required';
+  document.getElementById('conv-badge').textContent=hasFullAccessTier(tier)?'✓ Full':tier==='free'?'✓ Free':'🔐 Required';
 
   var gc=c.generalTests.length;
-  var hasGeneralFullAccess=tier==='premium'||tier==='teacher'||tier==='courtesy';
+  var hasGeneralFullAccess=hasFullAccessTier(tier);
   document.getElementById('access-general').textContent=hasGeneralFullAccess?'✓ All '+GEN_TOTAL:'🔓 '+gc+' of '+GEN_TOTAL;
   document.getElementById('access-general').className='card-access '+(hasGeneralFullAccess?'access-premium':'access-partial');
   document.getElementById('meta-general').textContent=GEN_TOTAL+' tests · '+(hasGeneralFullAccess?'All':gc)+' unlocked';
@@ -1500,7 +1509,7 @@ function canAccessDownload(accessTier) {
   if (accessTier === 'public') return true;
   if (!_currentUser) return false;
   if (accessTier === 'free') return true;
-  return currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
+  return hasFullAccessTier(currentTier);
 }
 
 async function loadDownloads() {
@@ -1695,7 +1704,7 @@ function openITPTests() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-itp-tests').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'TOEFL ITP Mock Tests';
-  document.getElementById('itp-tests-badge').textContent = currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy' ? '✓ All '+ITP_TOTAL : '🔓 '+allowed.length+' of '+ITP_TOTAL;
+  document.getElementById('itp-tests-badge').textContent = hasFullAccessTier(currentTier) ? '✓ All '+ITP_TOTAL : '🔓 '+allowed.length+' of '+ITP_TOTAL;
   var frame = document.getElementById('frame-itp-tests');
   frame.src = '/itp?allowed=' + allowed.join(',');
   closeMobileSidebar();
@@ -1726,7 +1735,7 @@ function openTranslationChallenge() {
   document.getElementById('exercise-translationchallenge').classList.add('active');
   document.getElementById('topbarTitle').textContent = '🌎 Translation Challenge';
   document.getElementById('topbarSub').textContent = 'Spanish-to-English practice for signed-in learners';
-  document.getElementById('translationchallenge-badge').textContent = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy' ? 'ePeak+' : 'Free Account';
+  document.getElementById('translationchallenge-badge').textContent = hasFullAccessTier(currentTier) ? 'ePeak+' : 'Free Account';
   document.getElementById('frame-translationchallenge').src = '/translationchallenge';
   closeMobileSidebar();
 }
@@ -1736,7 +1745,7 @@ function openIBT() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-ibt').classList.add('active');
   document.getElementById('topbarTitle').textContent='TOEFL iBT Practice';
-  document.getElementById('ibt-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ All '+IBT_TOTAL:'🔓 '+allowed.length+' of '+IBT_TOTAL;
+  document.getElementById('ibt-badge').textContent=hasFullAccessTier(currentTier)?'✓ All '+IBT_TOTAL:'🔓 '+allowed.length+' of '+IBT_TOTAL;
   var frame = document.getElementById('frame-ibt');
   frame.src = '/ibt?allowed=' + allowed.join(',');
   closeMobileSidebar();
@@ -1746,7 +1755,7 @@ function openGeneral() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-general').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'General English Practice';
-  var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
+  var isFullAccess = hasFullAccessTier(currentTier);
   document.getElementById('general-badge').textContent = isFullAccess ? '✓ All '+GEN_TOTAL : '🔓 '+allowed.length+' of '+GEN_TOTAL;
   var frame = document.getElementById('frame-general');
   frame.src = '/general?allowed=' + allowed.join(',');
@@ -1759,7 +1768,7 @@ function openReading() {
   document.getElementById('exercise-reading').classList.add('active');
   document.getElementById('topbarTitle').textContent = '📖 Reading Practice';
   document.getElementById('topbarSub').textContent = 'Business, science, pop culture and biography passages';
-  var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
+  var isFullAccess = hasFullAccessTier(currentTier);
   document.getElementById('reading-badge').textContent = isFullAccess ? '✓ All '+READING_TOTAL : '🔓 '+allowed.length+' of '+READING_TOTAL;
   var frame = document.getElementById('frame-reading');
   frame.src = '/reading?allowed=' + allowed.join(',');
@@ -1773,7 +1782,7 @@ function openListening() {
   document.getElementById('exercise-listening').classList.add('active');
   document.getElementById('topbarTitle').textContent = '🎧 Listening Practice';
   document.getElementById('topbarSub').textContent = 'Monologues, conversations and challenging comprehension questions';
-  var isFullAccess = currentTier === 'premium' || currentTier === 'teacher' || currentTier === 'courtesy';
+  var isFullAccess = hasFullAccessTier(currentTier);
   document.getElementById('listening-badge').textContent = isFullAccess ? '✓ All '+LISTENING_TOTAL : '🔓 '+allowed.length+' of '+LISTENING_TOTAL;
   var frame = document.getElementById('frame-listening');
   frame.src = '/listening?allowed=' + allowed.join(',');
@@ -1789,7 +1798,7 @@ function openConv() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-conv').classList.add('active');
   document.getElementById('topbarTitle').textContent='Conversation Topics';
-  document.getElementById('conv-badge').textContent=currentTier==='premium'||currentTier==='teacher'||currentTier==='courtesy'?'✓ Full':currentTier==='free'?'✓ Free':'🔐 Required';
+  document.getElementById('conv-badge').textContent=hasFullAccessTier(currentTier)?'✓ Full':currentTier==='free'?'✓ Free':'🔐 Required';
   var frame = document.getElementById('frame-conv');
   var biz = (cfg.convBiz) ? '1' : '0';
   frame.src = '/conversations?business=' + biz;
@@ -1835,7 +1844,7 @@ async function showProfile() {
 function renderProfilePage() {
   if (!_currentUser) return;
   var profile = _currentProfile || {};
-  var tier    = profile.tier || 'free';
+  var tier    = getEffectiveTier(profile);
   var name    = profile.full_name || _currentUser.email.split('@')[0];
   var email   = _currentUser.email || '—';
   var initial = name ? name[0].toUpperCase() : '?';
@@ -1852,6 +1861,7 @@ function renderProfilePage() {
   document.getElementById('profileMemberSince').textContent = created;
 
   var tierLabels = {
+    admin:    '🛡 Master Admin',
     premium:  '⭐ ePeak+ Member',
     teacher:  '🎓 Teacher Account',
     courtesy: '🎁 Courtesy Access',
@@ -1863,13 +1873,19 @@ function renderProfilePage() {
   document.getElementById('newNameInput').value = name;
 
   // Subscription section
-  var isPremium = (tier === 'premium' || tier === 'teacher' || tier === 'courtesy');
+  var isPremium = hasFullAccessTier(tier);
   var subStatus = document.getElementById('profileSubStatus');
   var subDetail = document.getElementById('profileSubDetail');
   var subActions = document.getElementById('profileSubActions');
   var cancelZone = document.getElementById('profileCancelZone');
 
-  if (tier === 'premium') {
+  if (tier === 'admin') {
+    subStatus.textContent = '🛡 Master Admin';
+    subStatus.style.color = 'var(--purple)';
+    subDetail.textContent = 'Permanent full access to every ePeak section. No subscription required.';
+    subActions.innerHTML  = '';
+    cancelZone.style.display = 'none';
+  } else if (tier === 'premium') {
     subStatus.textContent = '⭐ ePeak+ Active';
     subStatus.style.color = '#1a7a4a';
     subDetail.textContent = 'You have full access to all exercises and content.';
