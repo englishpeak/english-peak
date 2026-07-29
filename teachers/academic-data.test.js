@@ -14,7 +14,7 @@ test('academic resources are table selects and never RPC calls', async () => {
   assert.deepEqual([
     ACADEMIC_TABLES.students, ACADEMIC_TABLES.assignments, ACADEMIC_TABLES.classes,
     ACADEMIC_TABLES.classStudents, ACADEMIC_TABLES.classTeachers, ACADEMIC_TABLES.sessions,
-    ACADEMIC_TABLES.reports, ACADEMIC_TABLES.tasks
+    ACADEMIC_TABLES.reports, ACADEMIC_TABLES.reportLines, ACADEMIC_TABLES.payDays, ACADEMIC_TABLES.tasks
   ], calls.filter(c=>c[0]==='from').map(c=>c[1]));
   assert.deepEqual(result.errors, {});
 });
