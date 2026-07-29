@@ -44,3 +44,15 @@ test('Test Prep and Other are rendered as separate class categories', () => {
   assert.match(appSource, /'Test Prep','Other'/);
   assert.doesNotMatch(appSource, /'Test Prep & Other'\]/);
 });
+
+test('class creation keeps roster checkboxes and provides student search', () => {
+  assert.match(appSource, /id="classStudentSearch"/);
+  assert.match(appSource, /data-class-student data-search/);
+  assert.match(appSource, /student\.hidden=!visible/);
+  assert.match(appSource, /name="student_ids"/);
+});
+
+test('modal controls bind after modal content is rendered', () => {
+  assert.match(appSource, /classList\.remove\('hidden'\);bindModalControls\(\)/);
+  assert.match(appSource, /input\.showPicker\?\.\(\)/);
+});
