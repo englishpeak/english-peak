@@ -2,10 +2,12 @@ export const ACADEMIC_TABLES = Object.freeze({
   teacherProfiles: 'ep_teacher_profiles', students: 'ep_students',
   assignments: 'ep_student_teacher_assignments', sessions: 'ep_class_sessions',
   classes: 'ep_classes', classStudents: 'ep_class_students', classTeachers: 'ep_class_teachers',
-  reports: 'ep_weekly_reports', tasks: 'ep_tasks', comments: 'ep_task_comments', notes: 'ep_notes'
+  reports: 'ep_weekly_reports', reportLines: 'ep_pay_report_lines', payDays: 'ep_pay_days',
+  classRates: 'ep_class_payment_rates', paymentAdjustments: 'ep_payment_adjustments',
+  tasks: 'ep_tasks', comments: 'ep_task_comments', notes: 'ep_notes'
 });
 
-const OPTIONAL_RESOURCES = ['students', 'assignments', 'classes', 'classStudents', 'classTeachers', 'sessions', 'reports', 'tasks'];
+const OPTIONAL_RESOURCES = ['students', 'assignments', 'classes', 'classStudents', 'classTeachers', 'sessions', 'reports', 'reportLines', 'payDays', 'tasks'];
 
 export function classifySupabaseError(error) {
   const message = String(error?.message || 'Unknown academic data error');
@@ -44,13 +46,17 @@ export async function loadAcademicData(client, { isAdmin, week }) {
     classTeachers: () => selectRows(client, ACADEMIC_TABLES.classTeachers, '*'),
     sessions: () => selectRows(client, ACADEMIC_TABLES.sessions, sessionColumns, q => q.gte('class_date', week.start).lte('class_date', week.end)),
     reports: () => selectRows(client, ACADEMIC_TABLES.reports, '*', q => q.order('week_start', { ascending: false })),
+    reportLines: () => selectRows(client, ACADEMIC_TABLES.reportLines, '*'),
+    payDays: () => selectRows(client, ACADEMIC_TABLES.payDays, '*', q => q.order('pay_date', { ascending: false })),
     tasks: () => selectRows(client, ACADEMIC_TABLES.tasks, '*', q => q.order('created_at', { ascending: false }))
   };
   if (isAdmin) {
     loaders.teacherProfiles = () => selectRows(client, ACADEMIC_TABLES.teacherProfiles, 'id,user_id,status,timezone,hourly_rate,internal_notes,created_at,updated_at');
     loaders.notes = () => selectRows(client, ACADEMIC_TABLES.notes, '*', q => q.eq('visibility', 'Admin only').order('created_at', { ascending: false }));
+    loaders.classRates = () => selectRows(client, ACADEMIC_TABLES.classRates, '*');
+    loaders.paymentAdjustments = () => selectRows(client, ACADEMIC_TABLES.paymentAdjustments, '*');
   }
-  const resources = [...OPTIONAL_RESOURCES, ...(isAdmin ? ['teacherProfiles', 'notes'] : [])];
+  const resources = [...OPTIONAL_RESOURCES, ...(isAdmin ? ['teacherProfiles', 'notes', 'classRates', 'paymentAdjustments'] : [])];
   const settled = await Promise.all(resources.map(async name => {
     try { return [name, await loaders[name](), null]; }
     catch (error) { return [name, [], { type: classifySupabaseError(error), error }]; }
