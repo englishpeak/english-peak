@@ -18,3 +18,7 @@ En **Admin → Pricing**, si ves “Pricing setup missing”, ejecuta `supabase_
 ## Academic Management Phase 1
 
 Before deploying `/teachers`, apply `supabase/migrations/202607280001_phase1_academic_management.sql` to the production Supabase project (with `supabase db push` when the project is linked, or by pasting the file into the Supabase SQL Editor). The migration creates the canonical `ep_*` tables, RLS policies, helper functions, triggers, and initial teacher profile rows, then asks PostgREST to reload its schema cache. Deploy the static application files after the migration. No new environment variables or authentication changes are required.
+
+## Account closure
+
+Apply `supabase/migrations/202607300001_account_closure.sql` before deploying the profile account-closure UI and `/api/close-account`. The endpoint uses the existing `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and `STRIPE_SECRET_KEY` environment variables. Keep the service-role key server-side: the migration only grants its cleanup function to `service_role`.

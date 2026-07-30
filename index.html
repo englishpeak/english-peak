@@ -709,6 +709,14 @@ body.download-preview-lock{overflow:hidden}
         </div>
         <button onclick="doSignOut()" style="padding:9px 20px;background:rgba(192,57,43,0.08);color:#c0392b;border:1.5px solid rgba(192,57,43,0.2);border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">Sign out</button>
       </div>
+      <div style="padding:20px 24px;border-top:1px solid rgba(192,57,43,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div style="max-width:440px">
+          <div style="font-size:0.92rem;font-weight:600;color:var(--ink)">Close account</div>
+          <div style="font-size:0.8rem;color:#888;margin-top:2px;line-height:1.5">Permanently remove your profile and sign-in access. Any active subscription will end immediately. This cannot be undone.</div>
+          <div id="closeAccountMsg" role="status" style="font-size:0.78rem;margin-top:8px;display:none"></div>
+        </div>
+        <button onclick="confirmCloseAccount()" id="btnCloseAccount" style="padding:9px 20px;background:var(--ep-danger,#dc2626);color:white;border:1.5px solid var(--ep-danger,#dc2626);border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif">Close account</button>
+      </div>
     </div>
 
   </div>
@@ -1965,6 +1973,45 @@ async function confirmCancelSubscription() {
     msg.style.display = 'block';
     btn.disabled = false;
     btn.textContent = 'Cancel subscription';
+  }
+}
+
+async function confirmCloseAccount() {
+  var btn = document.getElementById('btnCloseAccount');
+  var msg = document.getElementById('closeAccountMsg');
+  if (!confirm('Close your English Peak account permanently?\n\nYour profile, sign-in access, and active subscription will be removed immediately. This cannot be undone.')) return;
+  var confirmation = prompt('To confirm, type CLOSE in capital letters:');
+  if (confirmation !== 'CLOSE') {
+    msg.style.color = 'var(--ep-error,#c62828)';
+    msg.textContent = 'Account closure canceled. Type CLOSE exactly to confirm.';
+    msg.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Closing account…';
+  msg.style.display = 'none';
+  try {
+    var authHeaders = await getAuthHeaders();
+    var res = await fetch('/api/close-account', {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({ confirmation: confirmation })
+    });
+    var data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Could not close account');
+
+    await sb.auth.signOut({ scope: 'local' });
+    _currentUser = null;
+    _currentProfile = null;
+    alert('Your English Peak account has been closed.');
+    updateUIForVisitor();
+  } catch (error) {
+    msg.style.color = 'var(--ep-error,#c62828)';
+    msg.textContent = '❌ ' + error.message;
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Close account';
   }
 }
 
