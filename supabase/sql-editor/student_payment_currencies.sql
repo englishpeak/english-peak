@@ -1,3 +1,7 @@
+-- English Peak: student payment currencies and USD/MXN payment ledger.
+-- Paste this file's SQL contents into Supabase SQL Editor. Do not paste a Git diff.
+-- This script is safe to run again after a complete or partially completed run.
+
 alter table public.ep_students
   add column if not exists payment_currency text not null default 'MXN';
 

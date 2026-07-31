@@ -12,7 +12,7 @@ export function convertUsdToMxn(amount, exchangeRate) {
 export function paymentDisplay(payment) {
   const currency = payment.payment_currency === 'USD' ? 'USD' : 'MXN';
   const primary = money(payment.payment_amount, currency);
-  if (currency !== 'USD' || !payment.payment_amount_mxn) return { primary, equivalent: null };
+  if (currency !== 'USD' || payment.payment_amount_mxn == null) return { primary, equivalent: null };
   return { primary, equivalent: money(payment.payment_amount_mxn, 'MXN') };
 }
 

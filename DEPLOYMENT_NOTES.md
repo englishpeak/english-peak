@@ -19,6 +19,18 @@ En **Admin → Pricing**, si ves “Pricing setup missing”, ejecuta `supabase_
 
 Before deploying `/teachers`, apply `supabase/migrations/202607280001_phase1_academic_management.sql` to the production Supabase project (with `supabase db push` when the project is linked, or by pasting the file into the Supabase SQL Editor). The migration creates the canonical `ep_*` tables, RLS policies, helper functions, triggers, and initial teacher profile rows, then asks PostgREST to reload its schema cache. Deploy the static application files after the migration. No new environment variables or authentication changes are required.
 
+### Student payments in Supabase SQL Editor
+
+Apply all timestamped academic migrations in order. If the student-payment
+migration was interrupted, run
+`supabase/sql-editor/student_payment_currencies.sql`. Copy the contents of that
+`.sql` file only: `diff --git`, `---`, `+++`, and leading patch `+` characters are
+Git review syntax, not SQL.
+
+The SQL Editor script is safe to resume because it uses `ADD COLUMN IF NOT
+EXISTS`, `DROP CONSTRAINT IF EXISTS`, and `CREATE INDEX IF NOT EXISTS` before
+reloading the PostgREST schema cache.
+
 ## Account closure
 
 Apply `supabase/migrations/202607300001_account_closure.sql` before deploying the profile account-closure UI and `/api/close-account`. The endpoint uses the existing `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and `STRIPE_SECRET_KEY` environment variables. Keep the service-role key server-side: the migration only grants its cleanup function to `service_role`.
