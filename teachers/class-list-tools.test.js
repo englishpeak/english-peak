@@ -1,6 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { classMatchesTeacherFilter, compareClassRows } from './class-list-tools.js';
+import { classMatchesSearch, classMatchesTeacherFilter, compareClassRows } from './class-list-tools.js';
+
+test('class search matches names and related class details case-insensitively', () => {
+  const searchableText = 'Business Advanced Acme Corp Jane Smith Active';
+  assert.equal(classMatchesSearch(searchableText, 'business advanced'), true);
+  assert.equal(classMatchesSearch(searchableText, 'JANE SMITH'), true);
+  assert.equal(classMatchesSearch(searchableText, '  acme corp  '), true);
+  assert.equal(classMatchesSearch(searchableText, 'beginner'), false);
+  assert.equal(classMatchesSearch(searchableText, ''), true);
+});
 
 test('teacher filter includes classes taught by any selected teacher', () => {
   assert.equal(classMatchesTeacherFilter(['alex', 'sam'], ['sam'], 'include'), true);
