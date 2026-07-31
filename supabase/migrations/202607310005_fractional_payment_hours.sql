@@ -1,8 +1,11 @@
 -- Store purchased balances as hours, including fractional hour packages.
+-- PostgreSQL will not alter quantity while the balance view depends on it, so
+-- remove the view first and recreate it immediately after the type change.
+drop view if exists public.ep_class_credit_balances;
+
 alter table public.ep_class_credit_transactions
   alter column quantity type numeric(10,2) using quantity::numeric;
 
-drop view if exists public.ep_class_credit_balances;
 create view public.ep_class_credit_balances
 with (security_invoker = true) as
 select c.id as class_id,
