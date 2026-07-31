@@ -75,6 +75,8 @@ test('payment rate editor stores explicit shared currency and uses the atomic sa
 
 test('payment rates expose accessible balance states and do not clamp negative balances', () => {
   assert.match(appSource, /aria-label="\$\{balance\} classes remaining, \$\{status\.label\}"/);
+  assert.match(appSource, /title="\$\{status\.label\}"/);
+  assert.doesNotMatch(appSource, /<small>\$\{status\.label\}<\/small>/);
   assert.match(appSource, /rateBalanceStatus\(balance\)/);
   assert.match(appSource, /Negative balances remain visible/);
 });
