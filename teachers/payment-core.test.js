@@ -73,8 +73,8 @@ test('rate save payload uses the selected shared currency without converting amo
   assert.throws(() => buildRateSave({ chargeRate: 10, manual: false, currencyCode: 'EUR' }), /MXN or USD/);
 });
 
-test('class balance traffic lights preserve critical negative values', () => {
-  assert.deepEqual(rateBalanceStatus(6), { key: 'healthy', label: 'Healthy balance' });
-  for (const balance of [3, 4, 5]) assert.equal(rateBalanceStatus(balance).key, 'low');
-  for (const balance of [2, 1, 0, -4]) assert.equal(rateBalanceStatus(balance).key, 'critical');
+test('class balance traffic lights use green above five, orange from one to five, and red at zero or below', () => {
+  for (const balance of [6, 7, 10]) assert.equal(rateBalanceStatus(balance).key, 'healthy');
+  for (const balance of [1, 2, 3, 4, 5]) assert.equal(rateBalanceStatus(balance).key, 'low');
+  for (const balance of [0, -1, -4]) assert.equal(rateBalanceStatus(balance).key, 'critical');
 });

@@ -19,7 +19,7 @@ export function formatRateAmount(value, currencyCode) {
 export function rateBalanceStatus(value) {
   const balance = Number(value);
   if (balance > 5) return { key: 'healthy', label: 'Healthy balance' };
-  if (balance >= 3) return { key: 'low', label: 'Low balance' };
+  if (balance >= 1) return { key: 'low', label: 'Low balance' };
   return { key: 'critical', label: 'Critical balance' };
 }
 export function buildRateSave({ chargeRate, teacherRate, manual, currencyCode }) {
