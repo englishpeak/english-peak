@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { clearExchangeSnapshot, convertUsdToMxn, defaultTeacherRate, filterPayments, money, monthlyPaymentSummary, paymentDisplay, paymentTotals, validatePayment } from './payment-core.js';
+import { buildRateSave, clearExchangeSnapshot, convertUsdToMxn, defaultTeacherRate, filterPayments, formatRateAmount, money, monthlyPaymentSummary, paymentDisplay, paymentTotals, rateBalanceStatus, rateCurrency, validatePayment } from './payment-core.js';
 
 test('calculates the automatic teacher rate as 80% of the class charge', () => {
   assert.equal(defaultTeacherRate(140), 112);
@@ -57,4 +57,24 @@ test('summaries use payment month and preserve original USD totals',()=>{
 test('historical null currency displays safely as MXN only with an amount',()=>{
  assert.equal(paymentDisplay({payment_currency:null,payment_amount:20}).primary,'$20.00 MXN');
  assert.equal(paymentDisplay({payment_currency:null,payment_amount:null}).primary,'Currency unavailable');
+});
+
+test('class rates default missing and null currencies to MXN but retain explicit USD', () => {
+  assert.equal(rateCurrency(), 'MXN');
+  assert.equal(rateCurrency(null), 'MXN');
+  assert.equal(rateCurrency('USD'), 'USD');
+  assert.equal(formatRateAmount(140, null), '$140.00 MXN');
+  assert.equal(formatRateAmount(18, 'USD'), '$18.00 USD');
+});
+
+test('rate save payload uses the selected shared currency without converting amounts', () => {
+  assert.deepEqual(buildRateSave({ chargeRate: '18', teacherRate: '14.40', manual: true, currencyCode: 'USD' }), { charge_rate: 18, teacher_rate: 14.4, currency_code: 'USD' });
+  assert.deepEqual(buildRateSave({ chargeRate: '18', teacherRate: '14.40', manual: false, currencyCode: 'MXN' }), { charge_rate: 18, teacher_rate: null, currency_code: 'MXN' });
+  assert.throws(() => buildRateSave({ chargeRate: 10, manual: false, currencyCode: 'EUR' }), /MXN or USD/);
+});
+
+test('class balance traffic lights preserve critical negative values', () => {
+  assert.deepEqual(rateBalanceStatus(6), { key: 'healthy', label: 'Healthy balance' });
+  for (const balance of [3, 4, 5]) assert.equal(rateBalanceStatus(balance).key, 'low');
+  for (const balance of [2, 1, 0, -4]) assert.equal(rateBalanceStatus(balance).key, 'critical');
 });
