@@ -32,6 +32,10 @@ export function buildRateSave({ chargeRate, teacherRate, manual, currencyCode })
   return { charge_rate: charge, teacher_rate: teacher, currency_code: currency };
 }
 export function roundMoney(value) { return Math.round((Number(value) + Number.EPSILON) * 100) / 100; }
+export function suggestedPaymentAmount(hours, hourlyRate) {
+  const quantity = Number(hours), rate = Number(hourlyRate);
+  return Number.isFinite(quantity) && quantity > 0 && Number.isFinite(rate) && rate >= 0 ? roundMoney(quantity * rate) : null;
+}
 export function convertUsdToMxn(amount, exchangeRate) {
   const value = Number(amount), rate = Number(exchangeRate);
   return Number.isFinite(value) && value >= 0 && Number.isFinite(rate) && rate > 0 ? roundMoney(value * rate) : null;
@@ -42,7 +46,7 @@ export function validatePayment(input) {
   if (!input.studentId || !input.classId) return { valid: false, error: 'Student and class are required.' };
   if (!currency) return { valid: false, error: 'Unsupported currency.' };
   if (!Number.isFinite(amount) || amount <= 0) return { valid: false, error: 'Amount must be greater than zero.' };
-  if (!Number.isInteger(quantity) || quantity <= 0) return { valid: false, error: 'Classes must be a positive whole number.' };
+  if (!Number.isFinite(quantity) || quantity <= 0) return { valid: false, error: 'Hours covered must be greater than zero.' };
   if (currency === 'USD' && (!Number.isFinite(rate) || rate <= 0 || !input.source || !input.fetchedAt)) return { valid: false, error: 'USD payments require a captured exchange rate.' };
   return { valid: true };
 }

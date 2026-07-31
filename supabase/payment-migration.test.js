@@ -51,3 +51,12 @@ test('class-rate currency migration defaults legacy rows to MXN and constrains s
   assert.match(source, /security definer[\s\S]*set search_path = pg_catalog, public/);
   assert.match(source, /notify pgrst, 'reload schema'/);
 });
+
+test('fractional payment migration stores covered hours and accepts decimal RPC quantities', async () => {
+  const source = await sql(new URL('./migrations/202607310005_fractional_payment_hours.sql', import.meta.url));
+  assert.match(source, /alter column quantity type numeric\(10,2\)/);
+  assert.match(source, /p_quantity numeric/);
+  assert.match(source, /Hours covered must be greater than zero/);
+  assert.match(source, /round\(p_quantity,2\)/);
+  assert.match(source, /numeric\(10,2\) as classes_remaining/);
+});
