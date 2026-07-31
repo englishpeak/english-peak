@@ -109,6 +109,60 @@ const sets=[{id:1,title:"Set 1",description:"30 sentences · Mixed levels · Mix
 {id:29,spanish:"Apenas había cerrado los ojos cuando sonó el teléfono.",primaryAnswer:"I had barely closed my eyes when the phone rang.",acceptedAnswers:["I had hardly closed my eyes when the phone rang.","No sooner had I closed my eyes than the phone rang.","The phone rang just as I had closed my eyes.","I had just closed my eyes when the phone rang."],mediumPrompt:"I had",note:"“Barely...when” expresses two events happening almost immediately."},
 {id:30,spanish:"Preferiría haberlo hablado en persona.",primaryAnswer:"I would rather have discussed it in person.",acceptedAnswers:["I'd rather have talked about it in person.","I would have preferred to discuss it face to face.","I wish we had discussed it in person.","I would rather have talked it over in person."],mediumPrompt:"I would",note:"“Would rather have” plus a past participle expresses a past preference or regret."}
 ]}];
+
+// Build out common, fully equivalent forms instead of making learners guess the
+// exact contraction, dialect, or everyday synonym used by the primary answer.
+const alternativeRules=[
+[/\bI['’]m\b/g,"I am"],[/\bI['’]ve\b/g,"I have"],[/\bI['’]ll\b/g,"I will"],
+[/\byou['’]re\b/g,"you are"],[/\byou['’]ve\b/g,"you have"],[/\byou['’]ll\b/g,"you will"],
+[/\bwe['’]re\b/g,"we are"],[/\bwe['’]ve\b/g,"we have"],[/\bwe['’]ll\b/g,"we will"],
+[/\bthey['’]re\b/g,"they are"],[/\bthey['’]ve\b/g,"they have"],[/\bthey['’]ll\b/g,"they will"],
+[/\bthere['’]s\b/g,"there is"],[/\bwhat['’]s\b/g,"what is"],
+[/\bisn['’]t\b/g,"is not"],[/\baren['’]t\b/g,"are not"],[/\bwasn['’]t\b/g,"was not"],[/\bweren['’]t\b/g,"were not"],[/\bhaven['’]t\b/g,"have not"],[/\bhasn['’]t\b/g,"has not"],[/\bhadn['’]t\b/g,"had not"],
+[/\bdon['’]t\b/g,"do not"],[/\bdoesn['’]t\b/g,"does not"],[/\bdidn['’]t\b/g,"did not"],[/\bcan['’]t\b/g,"cannot"],[/\bcouldn['’]t\b/g,"could not"],[/\bwouldn['’]t\b/g,"would not"],[/\bshouldn['’]t\b/g,"should not"],[/\bwon['’]t\b/g,"will not"],
+[/\bwould['’]ve\b/g,"would have"],[/\bcould['’]ve\b/g,"could have"],[/\bshould['’]ve\b/g,"should have"],[/\bmust['’]ve\b/g,"must have"],
+[/\bI am\b/g,"I'm"],[/\bI have\b/g,"I've"],[/\bI had\b/g,"I'd"],[/\bI would\b/g,"I'd"],[/\bI will\b/g,"I'll"],
+[/\byou are\b/g,"you're"],[/\byou have\b/g,"you've"],[/\byou had\b/g,"you'd"],[/\byou would\b/g,"you'd"],[/\byou will\b/g,"you'll"],
+[/\bhe is\b/g,"he's"],[/\bhe has\b/g,"he's"],[/\bhe had\b/g,"he'd"],[/\bhe would\b/g,"he'd"],[/\bhe will\b/g,"he'll"],
+[/\bshe is\b/g,"she's"],[/\bshe has\b/g,"she's"],[/\bshe had\b/g,"she'd"],[/\bshe would\b/g,"she'd"],[/\bshe will\b/g,"she'll"],
+[/\bit is\b/g,"it's"],[/\bit has\b/g,"it's"],[/\bwe are\b/g,"we're"],[/\bwe have\b/g,"we've"],[/\bwe had\b/g,"we'd"],[/\bwe would\b/g,"we'd"],[/\bwe will\b/g,"we'll"],
+[/\bthey are\b/g,"they're"],[/\bthey have\b/g,"they've"],[/\bthey had\b/g,"they'd"],[/\bthey would\b/g,"they'd"],[/\bthey will\b/g,"they'll"],
+[/\bthat is\b/g,"that's"],[/\bthere is\b/g,"there's"],[/\bwhat is\b/g,"what's"],[/\bwho is\b/g,"who's"],
+[/\bis not\b/g,"isn't"],[/\bare not\b/g,"aren't"],[/\bwas not\b/g,"wasn't"],[/\bwere not\b/g,"weren't"],[/\bhave not\b/g,"haven't"],[/\bhas not\b/g,"hasn't"],[/\bhad not\b/g,"hadn't"],
+[/\bdo not\b/g,"don't"],[/\bdoes not\b/g,"doesn't"],[/\bdid not\b/g,"didn't"],[/\bcannot\b/g,"can't"],[/\bcould not\b/g,"couldn't"],[/\bwould not\b/g,"wouldn't"],[/\bshould not\b/g,"shouldn't"],[/\bwill not\b/g,"won't"],
+[/\bwould have\b/g,"would've"],[/\bcould have\b/g,"could've"],[/\bshould have\b/g,"should've"],[/\bmust have\b/g,"must've"],
+[/\bmovie\b/g,"film"],[/\bmovies\b/g,"films"],[/\brealize\b/g,"realise"],[/\brealized\b/g,"realised"],[/\bpractice\b/g,"practise"],
+[/\bstart\b/g,"begin"],[/\bstarted\b/g,"began"],[/\bstarting\b/g,"beginning"],[/\bfinished\b/g,"completed"],[/\bvery\b/g,"really"],
+[/\ba little\b/g,"a bit"],[/\ba lot of\b/g,"many"],[/\bfrom home\b/g,"remotely"],[/\bthe nearest\b/g,"the closest"],
+[/\bas soon as\b/g,"once"],[/\bthe subject\b/g,"the topic"],[/\bair conditioning\b/g,"AC"],[/\ba while\b/g,"some time"],
+[/\bget used to\b/g,"adjust to"],[/\bsupposed to\b/g,"meant to"],[/\bstay quiet\b/g,"keep quiet"],[/\bthe truth\b/g,"what really happened"],
+[/\bIf it rains tomorrow\b/g,"Should it rain tomorrow"],[/\bWould you mind closing the window\b/g,"Could you please close the window"],
+[/\bwaiting for more than an hour\b/g,"waiting for upwards of an hour"],[/\bovercome my fear\b/g,"conquer my fear"],
+[/\breduce waiting times\b/g,"cut waiting times"],[/\bthought about changing jobs\b/g,"contemplated changing jobs"],
+[/\bforgot to bring the documents\b/g,"failed to bring the documents"],[/\btalked to her\b/g,"had a conversation with her"],
+[/\bsomething was wrong\b/g,"something wasn't right"],[/\blost his luggage\b/g,"misplaced his luggage"],
+[/\bserves the best pizza\b/g,"offers the best pizza"],[/\bWould you mind waiting for me five more minutes\b/g,"Could you please wait for me five more minutes"],
+[/\bHow much longer do you think\b/g,"How much longer do you expect"],[/\bI think it was worth it\b/g,"I think it was worthwhile"],
+[/\bThe more I think about it\b/g,"The more I consider it"],[/\bresults are expected to be released\b/g,"results are expected to be announced"],
+[/\btried Thai food\b/g,"sampled Thai food"],[/\bend up working together\b/g,"eventually work together"],[/\btake that opportunity\b/g,"seize that opportunity"]
+];
+function addAlternativeVariants(sentence){
+  const originals=[sentence.primaryAnswer,...sentence.acceptedAnswers];
+  const variants=new Map(originals.map(answer=>[normalizeAlternative(answer),answer]));
+  for(const answer of originals){
+    for(const [pattern,replacement] of alternativeRules){
+      pattern.lastIndex=0;
+      if(!pattern.test(answer))continue;
+      pattern.lastIndex=0;
+      const variant=answer.replace(pattern,replacement);
+      const key=normalizeAlternative(variant);
+      if(!variants.has(key))variants.set(key,variant);
+    }
+  }
+  sentence.acceptedAnswers=[...variants.values()].filter(answer=>normalizeAlternative(answer)!==normalizeAlternative(sentence.primaryAnswer));
+}
+function normalizeAlternative(value){return value.toLowerCase().replace(/[’‘`´]/g,"'").replace(/[.,;:!?¿¡]/g," ").replace(/\s+/g," ").trim()}
+sets.forEach(set=>set.sentences.forEach(addAlternativeVariants));
 const app=document.getElementById("app"),modalRoot=document.getElementById("modalRoot");const state={screen:"home",difficulty:null,setId:null,index:0,progress:{},review:false,magicMode:false,feedbackNonce:0};
 const magicColors=["#DCE6F0","#E5DEEC","#DDE7DF","#EADDDD","#E9E2D5","#EEE8CF"];
 let correctFlashTimer=null;
@@ -147,4 +201,3 @@ render();
 </script>
 </body>
 </html>
-
