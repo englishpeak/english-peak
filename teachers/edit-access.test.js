@@ -56,3 +56,11 @@ test('modal controls bind after modal content is rendered', () => {
   assert.match(appSource, /classList\.remove\('hidden'\);bindModalControls\(\)/);
   assert.match(appSource, /input\.showPicker\?\.\(\)/);
 });
+
+test('payment rate editing supports automatic teacher pay and remaining-class adjustments', () => {
+  assert.match(appSource, /name="manual_teacher_rate"/);
+  assert.match(appSource, /defaultTeacherRate\(charge\?\.value\)/);
+  assert.match(appSource, /Classes remaining/);
+  assert.match(appSource, /balanceDelta/);
+  assert.match(appSource, /transaction_type:'Manual adjustment'/);
+});
