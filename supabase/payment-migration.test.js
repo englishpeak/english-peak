@@ -31,3 +31,12 @@ test('SQL Editor script is plain resumable SQL rather than a Git patch', async (
   assert.match(source, /drop constraint if exists ep_credit_exchange_snapshot_check/);
   assert.match(source, /notify pgrst, 'reload schema';/);
 });
+
+test('atomic payment RPC validates enrollment and calculates MXN server-side', async () => {
+  const source=await sql(new URL('./migrations/202607310003_atomic_student_payments.sql',import.meta.url));
+  assert.match(source,/security definer set search_path = pg_catalog, public/);
+  assert.match(source,/status='Active'/);
+  assert.match(source,/round\(p_payment_amount\*p_exchange_rate_usd_mxn,2\)/);
+  assert.doesNotMatch(source,/p_payment_amount_mxn/);
+  assert.match(source,/revoke all on function/);
+});

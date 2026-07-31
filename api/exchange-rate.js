@@ -1,24 +1,9 @@
-const GOOGLE_FINANCE_URL = 'https://www.google.com/finance/quote/USD-MXN?hl=en';
-
-export function parseGoogleFinanceRate(html) {
-  const match = String(html).match(/data-last-price="([0-9]+(?:\.[0-9]+)?)"/);
-  const rate = Number(match?.[1]);
-  return Number.isFinite(rate) && rate > 0 ? rate : null;
-}
-
-export default async function handler(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
-  if ((req.query?.from || 'USD') !== 'USD' || (req.query?.to || 'MXN') !== 'MXN') {
-    return res.status(400).json({ error: 'Only USD to MXN is supported' });
-  }
-  try {
-    const response = await fetch(GOOGLE_FINANCE_URL, { headers: { 'User-Agent': 'Mozilla/5.0 EnglishPeak/1.0' } });
-    if (!response.ok) throw new Error(`Google Finance returned ${response.status}`);
-    const rate = parseGoogleFinanceRate(await response.text());
-    if (!rate) throw new Error('The Google Finance rate could not be read');
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
-    return res.status(200).json({ base: 'USD', quote: 'MXN', rate, source: 'Google Finance', fetched_at: new Date().toISOString() });
-  } catch (error) {
-    return res.status(502).json({ error: 'Exchange rate is temporarily unavailable', detail: error.message });
-  }
-}
+const PROVIDERS = [
+  { name:'Frankfurter', url:'https://api.frankfurter.app/latest?from=USD&to=MXN', parse: body=>JSON.parse(body).rates?.MXN },
+  { name:'Google Finance', url:'https://www.google.com/finance/quote/USD-MXN?hl=en', parse: body=>parseGoogleFinanceRate(body) }
+];
+let cache;
+export function parseGoogleFinanceRate(html) { const n=Number(String(html).match(/data-last-price="([0-9]+(?:\.[0-9]+)?)"/)?.[1]); return Number.isFinite(n)&&n>0?n:null; }
+async function fetchProvider(provider, fetcher=fetch) { const controller=new AbortController(), timer=setTimeout(()=>controller.abort(),4500); try { const response=await fetcher(provider.url,{signal:controller.signal,headers:{'User-Agent':'EnglishPeak/1.0'}}); if(!response.ok) throw new Error(`HTTP ${response.status}`); const rate=Number(provider.parse(await response.text())); if(!Number.isFinite(rate)||rate<=0) throw new Error('invalid rate'); return rate; } finally { clearTimeout(timer); } }
+export async function getExchangeRate(fetcher=fetch, now=Date.now()) { if(cache&&now-cache.cachedAt<300000)return cache.value; const failures=[]; for(const provider of PROVIDERS) try { const value={base:'USD',quote:'MXN',rate:await fetchProvider(provider,fetcher),source:provider.name,fetched_at:new Date(now).toISOString()}; cache={cachedAt:now,value}; return value; } catch(e){ failures.push(`${provider.name}: ${e.message}`); } console.error('USD/MXN providers failed',failures); throw new Error('Live exchange rate unavailable'); }
+export default async function handler(req,res){if(req.method!=='GET')return res.status(405).json({error:'Method not allowed'});if((req.query?.from||'USD')!=='USD'||(req.query?.to||'MXN')!=='MXN')return res.status(400).json({error:'Only USD to MXN is supported'});try{res.setHeader('Cache-Control','s-maxage=300, stale-while-revalidate=300');return res.status(200).json(await getExchangeRate())}catch{return res.status(503).json({error:'Live exchange rate unavailable; enter a manual rate.'})}}
