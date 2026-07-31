@@ -64,3 +64,11 @@ test('payment rate editing supports automatic teacher pay and remaining-class ad
   assert.match(appSource, /balanceDelta/);
   assert.match(appSource, /transaction_type:'Manual adjustment'/);
 });
+
+test('payments expose MXN-default USD toggles in rate editing and new payment flows', () => {
+  assert.match(appSource, /data-action="payment">New payment/);
+  assert.match(appSource, /data-rate-currency/);
+  assert.match(appSource, /data-payment-currency/);
+  assert.match(appSource, /paymentCurrency=formData\.has\('payment_currency_usd'\)\?'USD':'MXN'/);
+  assert.match(appSource, /defaultCurrency=rate\?\.payment_currency\|\|'MXN'/);
+});
