@@ -61,6 +61,20 @@ test('payment rate editing supports automatic teacher pay and remaining-class ad
   assert.match(appSource, /name="manual_teacher_rate"/);
   assert.match(appSource, /defaultTeacherRate\(charge\?\.value\)/);
   assert.match(appSource, /Classes remaining/);
-  assert.match(appSource, /balanceDelta/);
-  assert.match(appSource, /transaction_type:'Manual adjustment'/);
+  assert.match(appSource, /p_classes_remaining:nextBalance/);
+  assert.match(appSource, /ep_save_class_payment_rate/);
+});
+
+test('payment rate editor stores explicit shared currency and uses the atomic save RPC', () => {
+  assert.match(appSource, /name="charge_in_usd"/);
+  assert.match(appSource, /currencyCode=new FormData\(f\)\.has\('charge_in_usd'\)\?'USD':'MXN'/);
+  assert.match(appSource, /ep_save_class_payment_rate/);
+  assert.match(appSource, /formatRateAmount\(rate\?\.charge_rate,currency\)/);
+  assert.doesNotMatch(appSource, /money\(rate\?\.charge_rate,\s*OPERATING_CURRENCY\)/);
+});
+
+test('payment rates expose accessible balance states and do not clamp negative balances', () => {
+  assert.match(appSource, /aria-label="\$\{balance\} classes remaining, \$\{status\.label\}"/);
+  assert.match(appSource, /rateBalanceStatus\(balance\)/);
+  assert.match(appSource, /Negative balances remain visible/);
 });

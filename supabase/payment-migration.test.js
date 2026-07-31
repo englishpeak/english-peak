@@ -40,3 +40,14 @@ test('atomic payment RPC validates enrollment and calculates MXN server-side', a
   assert.doesNotMatch(source,/p_payment_amount_mxn/);
   assert.match(source,/revoke all on function/);
 });
+
+test('class-rate currency migration defaults legacy rows to MXN and constrains supported codes', async () => {
+  const source = await sql(new URL('./migrations/202607310004_class_rate_currencies.sql', import.meta.url));
+  assert.match(source, /add column if not exists currency_code text/);
+  assert.match(source, /set currency_code = 'MXN'[\s\S]*where currency_code is null/);
+  assert.match(source, /alter column currency_code set default 'MXN'/);
+  assert.match(source, /check \(currency_code in \('MXN', 'USD'\)\)/);
+  assert.match(source, /create or replace function public\.ep_save_class_payment_rate/);
+  assert.match(source, /security definer[\s\S]*set search_path = pg_catalog, public/);
+  assert.match(source, /notify pgrst, 'reload schema'/);
+});

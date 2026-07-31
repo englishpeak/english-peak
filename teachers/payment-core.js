@@ -1,4 +1,5 @@
-export const OPERATING_CURRENCY = 'USD'; // Existing class and teacher rates are USD until rate currency is persisted.
+export const OPERATING_CURRENCY = 'USD';
+export const DEFAULT_RATE_CURRENCY = 'MXN';
 
 export function normalizeCurrency(value, fallback = null) {
   const code = String(value || '').toUpperCase();
@@ -8,6 +9,27 @@ export function money(value, currency) {
   const code = normalizeCurrency(currency);
   if (!code) throw new TypeError('An explicit ISO currency is required');
   return `${new Intl.NumberFormat(code === 'MXN' ? 'es-MX' : 'en-US', { style: 'currency', currency: code }).format(Number(value) || 0)} ${code}`;
+}
+export function rateCurrency(value) {
+  return normalizeCurrency(value, DEFAULT_RATE_CURRENCY);
+}
+export function formatRateAmount(value, currencyCode) {
+  return money(value, rateCurrency(currencyCode));
+}
+export function rateBalanceStatus(value) {
+  const balance = Number(value);
+  if (balance > 5) return { key: 'healthy', label: 'Healthy balance' };
+  if (balance >= 3) return { key: 'low', label: 'Low balance' };
+  return { key: 'critical', label: 'Critical balance' };
+}
+export function buildRateSave({ chargeRate, teacherRate, manual, currencyCode }) {
+  const currency = normalizeCurrency(currencyCode);
+  const charge = Number(chargeRate), teacher = manual ? Number(teacherRate) : null;
+  if (!currency) throw new TypeError('Choose MXN or USD for the class rate.');
+  if (!Number.isFinite(charge) || charge < 0 || (manual && (!Number.isFinite(teacher) || teacher < 0))) {
+    throw new TypeError('Enter valid non-negative class and teacher rates.');
+  }
+  return { charge_rate: charge, teacher_rate: teacher, currency_code: currency };
 }
 export function roundMoney(value) { return Math.round((Number(value) + Number.EPSILON) * 100) / 100; }
 export function convertUsdToMxn(amount, exchangeRate) {
