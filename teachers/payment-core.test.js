@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildRateSave, clearExchangeSnapshot, convertUsdToMxn, defaultTeacherRate, filterPayments, formatRateAmount, money, monthlyPaymentSummary, paymentDisplay, paymentTotals, rateBalanceStatus, rateCurrency, validatePayment } from './payment-core.js';
+import { buildRateSave, clearExchangeSnapshot, convertUsdToMxn, defaultTeacherRate, filterPayments, formatRateAmount, money, monthlyPaymentSummary, paymentDisplay, paymentTotals, rateBalanceStatus, rateCurrency, suggestedPaymentAmount, validatePayment } from './payment-core.js';
 
 test('calculates the automatic teacher rate as 80% of the class charge', () => {
   assert.equal(defaultTeacherRate(140), 112);
@@ -43,7 +43,12 @@ test('requires explicit currencies and validates MXN/USD snapshots', () => {
   assert.equal(validatePayment({...base,currency:'MXN'}).valid,true);
   assert.equal(validatePayment({...base,currency:'USD'}).valid,false);
   assert.equal(validatePayment({...base,currency:'USD',rate:18.8,source:'Manual',fetchedAt:'2026-01-01T00:00:00Z'}).valid,true);
-  assert.equal(validatePayment({...base,currency:'MXN',quantity:1.5}).valid,false);
+  assert.equal(validatePayment({...base,currency:'MXN',quantity:1.5}).valid,true);
+});
+test('suggests a payment total from covered hours while preserving money precision',()=>{
+  assert.equal(suggestedPaymentAmount(2.5,140),350);
+  assert.equal(suggestedPaymentAmount(.75,18.99),14.24);
+  assert.equal(suggestedPaymentAmount('',140),null);
 });
 test('clears stale snapshots and rounds decimal conversion',()=>{
   assert.deepEqual(clearExchangeSnapshot('MXN',{rate:18}),{rate:null,source:null,fetchedAt:null});
