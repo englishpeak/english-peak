@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { defaultTeacherRate, paymentTotals } from './payment-core.js';
+import { convertUsdToMxn, defaultTeacherRate, paymentDisplay, paymentTotals } from './payment-core.js';
 
 test('calculates the automatic teacher rate as 80% of the class charge', () => {
   assert.equal(defaultTeacherRate(140), 112);
@@ -22,4 +22,11 @@ test('applies the 80% class split per line while retaining the profile rate for 
   const lines = [{ class_id: 'a', hours: 2 }, { class_id: 'b', hours: 1 }, { class_id: null, hours: .5 }];
   const rates = [{ class_id: 'a', charge_rate: 100 }, { class_id: 'b', charge_rate: 50, teacher_rate: 45 }];
   assert.equal(paymentTotals(lines, rates, 20).teacherPay, 215);
+});
+
+test('converts and displays USD payment snapshots in both currencies', () => {
+  assert.equal(convertUsdToMxn(100, 18.7654), 1876.54);
+  assert.equal(convertUsdToMxn(100, 0), null);
+  assert.deepEqual(paymentDisplay({ payment_currency: 'USD', payment_amount: 100, payment_amount_mxn: 1876.54 }), { primary: '$100.00', equivalent: '$1,876.54' });
+  assert.deepEqual(paymentDisplay({ payment_currency: 'MXN', payment_amount: 1876.54 }), { primary: '$1,876.54', equivalent: null });
 });

@@ -1,5 +1,19 @@
 export function money(value, currency = 'USD') {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(Number(value) || 0);
+  return new Intl.NumberFormat(currency === 'MXN' ? 'es-MX' : 'en-US', { style: 'currency', currency }).format(Number(value) || 0);
+}
+
+export function convertUsdToMxn(amount, exchangeRate) {
+  const value = Number(amount);
+  const rate = Number(exchangeRate);
+  if (!Number.isFinite(value) || value < 0 || !Number.isFinite(rate) || rate <= 0) return null;
+  return Math.round(value * rate * 100) / 100;
+}
+
+export function paymentDisplay(payment) {
+  const currency = payment.payment_currency === 'USD' ? 'USD' : 'MXN';
+  const primary = money(payment.payment_amount, currency);
+  if (currency !== 'USD' || !payment.payment_amount_mxn) return { primary, equivalent: null };
+  return { primary, equivalent: money(payment.payment_amount_mxn, 'MXN') };
 }
 
 export function defaultTeacherRate(chargeRate) {
