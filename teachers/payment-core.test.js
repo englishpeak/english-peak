@@ -30,3 +30,9 @@ test('converts and displays USD payment snapshots in both currencies', () => {
   assert.deepEqual(paymentDisplay({ payment_currency: 'USD', payment_amount: 100, payment_amount_mxn: 1876.54 }), { primary: '$100.00', equivalent: '$1,876.54' });
   assert.deepEqual(paymentDisplay({ payment_currency: 'MXN', payment_amount: 1876.54 }), { primary: '$1,876.54', equivalent: null });
 });
+
+test('displays a captured zero-value USD equivalent instead of hiding it', () => {
+  assert.deepEqual(paymentDisplay({ payment_currency: 'USD', payment_amount: 0, payment_amount_mxn: 0 }), {
+    primary: '$0.00', equivalent: '$0.00'
+  });
+});
