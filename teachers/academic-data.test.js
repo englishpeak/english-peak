@@ -26,6 +26,14 @@ test('one unavailable optional resource does not discard successful empty resour
   assert.equal(result.errors.tasks.type, 'authorization');
 });
 
+test('admins load class credit transactions and lifetime balances', async () => {
+  const calls=[];
+  const client={from(table){calls.push(table);return query({data:[],error:null},[],table);}};
+  await loadAcademicData(client,{isAdmin:true,week:{start:'2026-07-20',end:'2026-07-26'}});
+  assert.ok(calls.includes(ACADEMIC_TABLES.classCredits));
+  assert.ok(calls.includes(ACADEMIC_TABLES.classBalances));
+});
+
 test('missing schema and RLS errors are distinguished', () => {
   assert.equal(classifySupabaseError({code:'PGRST205',message:'table missing from schema cache'}),'missing');
   assert.equal(classifySupabaseError({code:'42501',message:'permission denied'}),'authorization');
