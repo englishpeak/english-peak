@@ -383,8 +383,11 @@ updateAccessCta();
 renderFlashcard();
 resolveAuthenticatedUserTier().then(tier => {
   currentUserTier = tier;
-  selectedLevels = new Set([...selectedLevels].filter(level => levelHasAccessibleVocabulary(level)));
-  if (selectedLevels.size === 0 && levelHasAccessibleVocabulary('elementary')) selectedLevels.add('elementary');
+  if (currentUserTier === 'epeakPlus') {
+    selectedLevels = new Set(LEVELS.filter(level => levelHasAccessibleVocabulary(level.key)).map(level => level.key));
+  } else {
+    selectedLevels = new Set(['elementary'].filter(level => levelHasAccessibleVocabulary(level)));
+  }
   updateLevelFilters();
   updateAccessCta();
   regenerateCurrentActivity();
