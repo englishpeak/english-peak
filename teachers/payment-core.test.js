@@ -41,6 +41,7 @@ test('requires explicit currencies and validates MXN/USD snapshots', () => {
   assert.throws(() => money(2));
   const base={studentId:'s',classId:'c',amount:'100.01',quantity:2};
   assert.equal(validatePayment({...base,currency:'MXN'}).valid,true);
+  assert.equal(validatePayment({...base,studentId:null,currency:'MXN'}).valid,true);
   assert.equal(validatePayment({...base,currency:'USD'}).valid,false);
   assert.equal(validatePayment({...base,currency:'USD',rate:18.8,source:'Manual',fetchedAt:'2026-01-01T00:00:00Z'}).valid,true);
   assert.equal(validatePayment({...base,currency:'MXN',quantity:1.5}).valid,true);

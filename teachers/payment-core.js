@@ -43,7 +43,7 @@ export function convertUsdToMxn(amount, exchangeRate) {
 export function clearExchangeSnapshot(currency, snapshot = {}) { return normalizeCurrency(currency) === 'USD' ? snapshot : { rate: null, source: null, fetchedAt: null }; }
 export function validatePayment(input) {
   const currency = normalizeCurrency(input.currency), amount = Number(input.amount), quantity = Number(input.quantity), rate = Number(input.rate);
-  if (!input.studentId || !input.classId) return { valid: false, error: 'Student and class are required.' };
+  if (!input.classId) return { valid: false, error: 'Class is required.' };
   if (!currency) return { valid: false, error: 'Unsupported currency.' };
   if (!Number.isFinite(amount) || amount <= 0) return { valid: false, error: 'Amount must be greater than zero.' };
   if (!Number.isFinite(quantity) || quantity <= 0) return { valid: false, error: 'Hours covered must be greater than zero.' };
