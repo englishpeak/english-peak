@@ -4,6 +4,7 @@ import { ACADEMIC_TABLES, ensureTeacherProfile, loadAcademicData, matchStudentAc
 import { AUTH_STORAGE_KEY, canUseAcademicManagement, migrateLegacyAdminSession } from './auth.js';
 import { activeTeacherClasses, canLoadTeacherDetail, currentTeacherReport, profileStatus, teacherRoleCounts, teacherScopedData, uniqueTeacherStudentIds, weeklyTeacherHours } from './teacher-metrics.js';
 import { classMatchesSearch, classMatchesTeacherFilter, compareClassRows } from './class-list-tools.js';
+import { withTimeout } from './startup.js';
 
 const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
@@ -15,7 +16,9 @@ try {
 } catch (error) {
   console.warn('Unable to migrate the previous admin session.', error);
 }
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: AUTH_STORAGE_KEY, persistSession: true } });
+const sb = globalThis.supabase?.createClient
+  ? globalThis.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: AUTH_STORAGE_KEY, persistSession: true } })
+  : null;
 const state = { user: null, profile: null, isAdmin: false, teachers: [], teacherProfiles: [], notes: [], studentAccounts: [], students: [], assignments: [], classes: [], classStudents: [], classTeachers: [], classCredits: [], classBalances: [], sessions: [], reports: [], reportLines: [], payDays: [], classRates: [], paymentAdjustments: [], tasks: [] };
 const $ = s => document.querySelector(s);
 const esc = value => String(value ?? '—').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
@@ -250,15 +253,30 @@ function showDenied(){
   $('#denied').classList.remove('hidden');
 }
 
+function showStartupError(error){
+  console.error(error);
+  $('#loading').classList.add('hidden');
+  $('#startupErrorMessage').textContent=error?.message||'The page could not finish connecting. Check your connection and try again.';
+  $('#startupError').classList.remove('hidden');
+}
+
+async function authorize(){
+  if(!sb)throw new Error('The secure connection library did not load. Check your connection and try again.');
+  const {data,error}=await sb.auth.getSession();
+  if(error)throw error;
+  const session=data.session;
+  if(!session)return {session:null,profile:null};
+  const result=await sb.from('profiles').select('id,email,full_name,tier,is_admin').eq('id',session.user.id).single();
+  if(result.error)throw result.error;
+  return {session,profile:result.data};
+}
+
 async function init(){
-  let session;
+  let session,profile;
   try{
-    const {data,error}=await sb.auth.getSession();
-    if(error)throw error;
-    session=data.session;
+    ({session,profile}=await withTimeout(authorize(),undefined,'The secure sign-in check took too long. Check your connection and try again.'));
   }catch(error){
-    console.error(error);
-    showDenied();
+    showStartupError(error);
     return;
   }
   if(!session){
@@ -267,24 +285,14 @@ async function init(){
   }
 
   state.user=session.user;
-  let profile;
-  let profileError;
-  try{
-    const result=await sb.from('profiles').select('id,email,full_name,tier,is_admin').eq('id',session.user.id).single();
-    profile=result.data;
-    profileError=result.error;
-  }catch(error){
-    profileError=error;
-  }
-  if(profileError||!canUseAcademicManagement(profile)){
-    if(profileError)console.error(profileError);
+  if(!canUseAcademicManagement(profile)){
     showDenied();
     return;
   }
 
   state.profile=profile;
   state.isAdmin=Boolean(profile.is_admin);
-  try { state.teacherProfile = await ensureTeacherProfile(sb, state.user.id, state.isAdmin); }
+  try { state.teacherProfile = await withTimeout(ensureTeacherProfile(sb, state.user.id, state.isAdmin),undefined,'The teacher profile check took too long.'); }
   catch (error) { console.warn('Teacher profile could not be initialized.', error); state.profileInitializationError = error; }
   $('#identity').textContent=`${profile.full_name||session.user.email} · ${state.isAdmin?'Master Admin':'Teacher'}`;
   $('#loading').classList.add('hidden');
@@ -306,4 +314,6 @@ async function init(){
     $('#notice').classList.add('show');
     $('#view').innerHTML=title('Academic Management unavailable','Your account is authorized, but the academic data could not be loaded. Please try again or contact support.');
   }
-}init();
+}
+$('#retryStartup').onclick=()=>location.reload();
+init().catch(showStartupError);
