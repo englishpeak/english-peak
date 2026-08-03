@@ -7,6 +7,10 @@ const migrationSource = await readFile(
   new URL('../supabase/migrations/202607280007_teacher_edit_students_and_classes.sql', import.meta.url),
   'utf8'
 );
+const classCreationMigration = await readFile(
+  new URL('../supabase/migrations/202608030001_atomic_class_creation.sql', import.meta.url),
+  'utf8'
+);
 
 test('student and class edit controls are available in the teacher panel', () => {
   assert.match(appSource, /data-edit-student/);
