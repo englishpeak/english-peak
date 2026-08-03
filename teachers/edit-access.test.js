@@ -50,6 +50,9 @@ test('class creation keeps roster checkboxes and provides student search', () =>
   assert.match(appSource, /data-class-student data-search/);
   assert.match(appSource, /student\.hidden=!visible/);
   assert.match(appSource, /name="student_ids"/);
+  assert.match(appSource, /Students can be added now or later/);
+  assert.doesNotMatch(appSource, /Select at least one student for this class/);
+  assert.match(appSource, /if\(studentRows\.length\)writes\.push/);
 });
 
 test('modal controls bind after modal content is rendered', () => {
