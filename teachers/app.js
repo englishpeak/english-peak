@@ -1,6 +1,6 @@
 import { calculateReport, getReportableSessions, getWeekRange } from './academic-core.js';
 import { buildRateSave, convertUsdToMxn, defaultTeacherRate, formatRateAmount, money, OPERATING_CURRENCY, paymentDisplay, paymentTotals, rateBalanceStatus, rateCurrency, suggestedPaymentAmount } from './payment-core.js';
-import { ACADEMIC_TABLES, ensureTeacherProfile, loadAcademicData, matchStudentAccount } from './academic-data.js';
+import { ACADEMIC_TABLES, ensureTeacherProfile, loadAcademicData, loadTeacherAccounts, matchStudentAccount } from './academic-data.js';
 import { AUTH_STORAGE_KEY, canUseAcademicManagement, migrateLegacyAdminSession } from './auth.js';
 import { activeTeacherClasses, canLoadTeacherDetail, currentTeacherReport, profileStatus, teacherRoleCounts, teacherScopedData, uniqueTeacherStudentIds, weeklyTeacherHours } from './teacher-metrics.js';
 import { classMatchesSearch, classMatchesTeacherFilter, compareClassRows } from './class-list-tools.js';
@@ -37,7 +37,7 @@ async function loadData() {
   state.dataErrors = result.errors;
   if (state.isAdmin) {
     [state.teachers,state.studentAccounts] = await Promise.all([
-      query('profiles','id,email,full_name,tier,is_admin,created_at',q=>q.eq('tier','teacher')),
+      loadTeacherAccounts(sb),
       query('profiles','id,email,full_name,tier,is_admin,created_at',q=>q.eq('tier','student').order('created_at',{ascending:false}))
     ]);
     state.teachers=state.teachers.map(account=>({...account,teacherProfile:state.teacherProfiles.find(profile=>profile.user_id===account.id)||null}));
@@ -299,7 +299,7 @@ async function init(){
   $('#app').classList.remove('hidden');
 
   try{
-    await loadData();
+    await withTimeout(loadData(),undefined,'Academic data took too long to load. Please try again.');
     render();
     const failures=Object.entries(state.dataErrors||{});
     if(failures.length){

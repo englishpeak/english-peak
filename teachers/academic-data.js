@@ -80,3 +80,25 @@ export async function matchStudentAccount(client, studentId, userId) {
   if (error) throw error;
   return data;
 }
+
+// Keep the admin directory behind a database function. Some deployments restrict
+// direct reads from profiles (correctly), while the academic admin still needs a
+// small, explicit set of teacher account fields. Fall back to the legacy select
+// until the repair migration has been applied so deployments can be rolled out
+// without taking the whole dashboard down.
+export async function loadTeacherAccounts(client) {
+  const rpcResult = await client.rpc('ep_admin_teacher_directory');
+  if (!rpcResult.error) return rpcResult.data || [];
+
+  if (!['42883', 'PGRST202'].includes(String(rpcResult.error.code || '')) &&
+      !/could not find.*function|does not exist|schema cache/i.test(String(rpcResult.error.message || ''))) {
+    throw rpcResult.error;
+  }
+
+  return selectRows(
+    client,
+    'profiles',
+    'id,email,full_name,tier,is_admin,created_at',
+    query => query.eq('tier', 'teacher').order('created_at', { ascending: false })
+  );
+}
