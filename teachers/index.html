@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,5 +18,19 @@
     <div class="shell"><aside><nav id="nav"></nav></aside><main><div id="notice" aria-live="polite"></div><div id="view"></div></main></div>
   </div>
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-x" data-close>×</button><div id="modalBody"></div></div></div>
+  <script>
+    (() => {
+      const revealStartupFailure = message => {
+        const loading = document.getElementById('loading');
+        if (!loading || loading.classList.contains('hidden')) return;
+        loading.classList.add('hidden');
+        document.getElementById('startupErrorMessage').textContent = message;
+        document.getElementById('startupError').classList.remove('hidden');
+      };
+      window.addEventListener('error', () => revealStartupFailure('Academic Management could not start. Reload the page or return to ePeak and try again.'));
+      window.addEventListener('unhandledrejection', () => revealStartupFailure('Academic Management could not finish starting. Reload the page or return to ePeak and try again.'));
+      setTimeout(() => revealStartupFailure('Academic Management took too long to start. Check your connection and try again.'), 13000);
+    })();
+  </script>
   <script type="module" src="/teachers/app.js"></script>
 </body></html>
