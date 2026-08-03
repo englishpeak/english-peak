@@ -52,7 +52,7 @@ test('class creation keeps roster checkboxes and provides student search', () =>
   assert.match(appSource, /name="student_ids"/);
   assert.match(appSource, /Students can be added now or later/);
   assert.doesNotMatch(appSource, /Select at least one student for this class/);
-  assert.match(appSource, /if\(studentRows\.length\)writes\.push/);
+  assert.match(appSource, /ep_create_class_with_team/);
 });
 
 test('modal controls bind after modal content is rendered', () => {
@@ -82,4 +82,16 @@ test('payment rates expose accessible balance states and do not clamp negative b
   assert.doesNotMatch(appSource, /<small>\$\{status\.label\}<\/small>/);
   assert.match(appSource, /rateBalanceStatus\(balance\)/);
   assert.match(appSource, /Negative balances remain visible/);
+});
+
+test('class creation and payments support records without students atomically', async () => {
+  const source = await readFile(
+    new URL('../supabase/migrations/202608030001_optional_class_students_and_payment_payers.sql', import.meta.url),
+    'utf8'
+  );
+  assert.match(source, /ep_create_class_with_team/);
+  assert.match(source, /unnest\(coalesce\(p_student_ids,'\{\}'\)\)/);
+  assert.match(source, /p_student_id is not null and not exists/);
+  assert.match(appSource, /p_student_id:d\.student_id\|\|null/);
+  assert.doesNotMatch(appSource, /select name="student_id" required/);
 });
