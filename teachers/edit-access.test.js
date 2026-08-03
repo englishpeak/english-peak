@@ -52,7 +52,14 @@ test('class creation keeps roster checkboxes and provides student search', () =>
   assert.match(appSource, /name="student_ids"/);
   assert.match(appSource, /Students can be added now or later/);
   assert.doesNotMatch(appSource, /Select at least one student for this class/);
-  assert.match(appSource, /if\(studentRows\.length\)writes\.push/);
+  assert.match(appSource, /studentIds\.length\?await sb\.from/);
+});
+
+test('quick actions use delegated click handling that survives page renders', () => {
+  assert.match(appSource, /const actionHandlers=\{student:studentForm/);
+  assert.match(appSource, /e\.target\.closest\('\[data-action\]'\)/);
+  assert.match(appSource, /actionHandlers\[actionButton\.dataset\.action\]/);
+  assert.match(appSource, /\},true\)/);
 });
 
 test('modal controls bind after modal content is rendered', () => {
