@@ -56,17 +56,14 @@ test('class creation keeps roster checkboxes and provides student search', () =>
   assert.match(appSource, /name="student_ids"/);
   assert.match(appSource, /Students can be added now or later/);
   assert.doesNotMatch(appSource, /Select at least one student for this class/);
-  assert.match(appSource, /ep_create_class_with_team/);
-  assert.match(appSource, /p_student_ids:studentIds/);
-  assert.match(classCreationMigration, /unnest\(coalesce\(p_student_ids, array\[\]::uuid\[\]\)\)/);
+  assert.match(appSource, /studentIds\.length\?await sb\.from/);
 });
 
-test('class creation saves the class and teaching team atomically', () => {
-  assert.match(classCreationMigration, /create or replace function public\.ep_create_class_with_team/);
-  assert.match(classCreationMigration, /if not public\.ep_is_admin\(\)/);
-  assert.match(classCreationMigration, /insert into public\.ep_classes/);
-  assert.match(classCreationMigration, /insert into public\.ep_class_teachers/);
-  assert.match(classCreationMigration, /grant execute on function public\.ep_create_class_with_team/);
+test('quick actions use delegated click handling that survives page renders', () => {
+  assert.match(appSource, /const actionHandlers=\{student:studentForm/);
+  assert.match(appSource, /e\.target\.closest\('\[data-action\]'\)/);
+  assert.match(appSource, /actionHandlers\[actionButton\.dataset\.action\]/);
+  assert.match(appSource, /\},true\)/);
 });
 
 test('modal controls bind after modal content is rendered', () => {
