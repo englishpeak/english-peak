@@ -7,6 +7,10 @@ const migrationSource = await readFile(
   new URL('../supabase/migrations/202607280007_teacher_edit_students_and_classes.sql', import.meta.url),
   'utf8'
 );
+const classCreationMigration = await readFile(
+  new URL('../supabase/migrations/202608030001_atomic_class_creation.sql', import.meta.url),
+  'utf8'
+);
 
 test('student and class edit controls are available in the teacher panel', () => {
   assert.match(appSource, /data-edit-student/);
@@ -52,7 +56,17 @@ test('class creation keeps roster checkboxes and provides student search', () =>
   assert.match(appSource, /name="student_ids"/);
   assert.match(appSource, /Students can be added now or later/);
   assert.doesNotMatch(appSource, /Select at least one student for this class/);
-  assert.match(appSource, /if\(studentRows\.length\)writes\.push/);
+  assert.match(appSource, /ep_create_class_with_team/);
+  assert.match(appSource, /p_student_ids:studentIds/);
+  assert.match(classCreationMigration, /unnest\(coalesce\(p_student_ids, array\[\]::uuid\[\]\)\)/);
+});
+
+test('class creation saves the class and teaching team atomically', () => {
+  assert.match(classCreationMigration, /create or replace function public\.ep_create_class_with_team/);
+  assert.match(classCreationMigration, /if not public\.ep_is_admin\(\)/);
+  assert.match(classCreationMigration, /insert into public\.ep_classes/);
+  assert.match(classCreationMigration, /insert into public\.ep_class_teachers/);
+  assert.match(classCreationMigration, /grant execute on function public\.ep_create_class_with_team/);
 });
 
 test('modal controls bind after modal content is rendered', () => {

@@ -195,17 +195,11 @@ async function createClass(form,data){
   const selectedClassTypes=formData.getAll('class_types');
   const secondaryTeacherIds=formData.getAll('secondary_teacher_ids').filter(id=>id!==data.main_teacher_id);
   if(!selectedClassTypes.length)throw new Error('Select at least one type of class.');
-  const result=await sb.from(ACADEMIC_TABLES.classes).insert({name:data.name,class_type:selectedClassTypes,classes_per_week:Number(data.classes_per_week),status:'Active',created_by_user_id:state.user.id}).select('id').single();
-  if(result.error)throw result.error;
-  const classId=result.data.id;
-  const studentRows=studentIds.map(student_id=>({class_id:classId,student_id,status:'Active'}));
-  const teacherRows=[{class_id:classId,teacher_user_id:data.main_teacher_id,role:'Main teacher',status:'Active'},...secondaryTeacherIds.map(teacher_user_id=>({class_id:classId,teacher_user_id,role:'Secondary teacher',status:'Active'}))];
-  const writes=[sb.from(ACADEMIC_TABLES.classTeachers).insert(teacherRows)];
-  if(studentRows.length)writes.push(sb.from(ACADEMIC_TABLES.classStudents).insert(studentRows));
-  const writeResults=await Promise.all(writes);
-  const writeError=writeResults.find(write=>write.error)?.error;
-  if(writeError)throw writeError;
-  show(studentRows.length?'Class added with its students and teaching team.':'Class added. Students can be added later.');closeModal();await loadData();render();
+  const submit=form.querySelector('button[type="submit"],button:not([type])');
+  submit.disabled=true;submit.textContent='Adding…';
+  const result=await sb.rpc('ep_create_class_with_team',{p_name:data.name.trim(),p_class_types:selectedClassTypes,p_classes_per_week:Number(data.classes_per_week),p_student_ids:studentIds,p_main_teacher_id:data.main_teacher_id,p_secondary_teacher_ids:secondaryTeacherIds});
+  if(result.error){submit.disabled=false;submit.textContent='Add Class';throw result.error;}
+  show(studentIds.length?'Class added with its students and teaching team.':'Class added. Students can be added later.');closeModal();await loadData();render();
 }
 
 async function comments(id){const rows=await query(ACADEMIC_TABLES.comments,'*',q=>q.eq('task_id',id).order('created_at'));openModal(`<h2 class="ep-heading">Task comments</h2>${rows.map(c=>`<div class="ep-card card"><p>${esc(c.comment)}</p><small>${new Date(c.created_at).toLocaleString()}</small></div>`).join('')||'<p>No comments yet.</p>'}<form id="commentForm" data-id="${id}"><textarea name="comment" required placeholder="Add a comment"></textarea><button class="ep-btn-primary">Add comment</button></form>`)}
