@@ -26,5 +26,7 @@
     { "source": "/listening/:path*", "destination": "/listening/index.html" },
     { "source": "/audio-studio",       "destination": "/audio-studio/index.html" },
     { "source": "/audio-studio/:path*", "destination": "/audio-studio/index.html" }
+    ,{ "source": "/businesscases",        "destination": "/businesscases/index.html" }
+    ,{ "source": "/businesscases/:path*", "destination": "/businesscases/index.html" }
   ]
 }
