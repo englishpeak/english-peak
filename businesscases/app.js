@@ -33,8 +33,8 @@ async function catalogue() {
 const sectionIcons = {
   background: '▤', meeting: '◉', decision: '✓', discussion: '◌', recommendation: '✎', takeaway: '◆'
 };
-function section(id, title, skill, content, openByDefault = false) {
-  return `<section class="section"><button class="section-toggle" data-section="${id}" data-default-open="${openByDefault}" aria-expanded="${openByDefault}" aria-controls="panel-${id}"><span class="section-icon" aria-hidden="true">${sectionIcons[id]}</span><span class="section-title">${esc(title)}</span><span class="skill">${esc(skill)}</span><span class="chevron" aria-hidden="true"></span></button><div class="section-content${openByDefault ? '' : ' closed'}" id="panel-${id}" aria-hidden="${!openByDefault}"${openByDefault ? '' : ' inert'}><div class="section-inner"><div class="section-pad">${content}</div></div></div></section>`;
+function section(id, title, skill, content) {
+  return `<section class="section"><button class="section-toggle" data-section="${id}" aria-expanded="false" aria-controls="panel-${id}"><span class="section-icon" aria-hidden="true">${sectionIcons[id]}</span><span class="section-title">${esc(title)}</span><span class="skill">${esc(skill)}</span><span class="chevron" aria-hidden="true"></span></button><div class="section-content closed" id="panel-${id}" aria-hidden="true" inert><div class="section-inner"><div class="section-pad">${content}</div></div></div></section>`;
 }
 function readingMarkup(c) {
   return `${c.reading.paragraphs.map(p => `<p>${esc(p)}</p>`).join('')}<details class="vocabulary"><summary>Useful vocabulary</summary><dl>${c.reading.vocabulary.map(([term, definition]) => `<div><dt>${esc(term)}</dt><dd>${esc(definition)}</dd></div>`).join('')}</dl></details>`;
@@ -54,7 +54,7 @@ function writingMarkup(c) {
 }
 function renderCase(c) {
   const takeaway = `<span class="eyebrow">Final reflection</span><p>${esc(c.takeaway.text)}</p><small>${esc(c.takeaway.reminder)}</small>`;
-  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge('Open to everyone','access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('background','Background Brief','Reading',readingMarkup(c),true)}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
+  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge('Open to everyone','access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('background','Background Brief','Reading',readingMarkup(c))}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
   wireImages(); wireCase(c);
 }
 
@@ -62,17 +62,13 @@ const formatTime = seconds => Number.isFinite(seconds) ? `${Math.floor(seconds /
 function wireCase(c) {
   document.querySelectorAll('.section-toggle').forEach(button => {
     const panel = document.querySelector(`#panel-${button.dataset.section}`);
-    const key = `businessCase:${c.slug}:section:${button.dataset.section}`;
-    const savedState = sessionStorage.getItem(key);
-    const open = savedState ? savedState === 'open' : button.dataset.defaultOpen === 'true';
     const setOpen = next => {
       button.setAttribute('aria-expanded', String(next));
       panel.classList.toggle('closed', !next);
       panel.setAttribute('aria-hidden', String(!next));
       panel.inert = !next;
     };
-    setOpen(open);
-    button.onclick = () => { const next = button.getAttribute('aria-expanded') !== 'true'; setOpen(next); sessionStorage.setItem(key, next ? 'open' : 'closed'); };
+    button.onclick = () => setOpen(button.getAttribute('aria-expanded') !== 'true');
   });
   wireAudio(c); wireQuiz(c); wireDiscussion(c); wireWriting(c);
 }
