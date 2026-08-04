@@ -7,7 +7,7 @@ initialiseBusinessCasesTheme();
 const app = document.querySelector('#app');
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const badge = (value, className = '') => `<span class="badge ${className}">${esc(value)}</span>`;
-const caseImage = (item, className = '') => `<div class="image-frame ${className}"><img src="${esc(getDropboxDirectUrl(item.imageSharingUrl))}" alt="${esc(item.imageAlt || '')}"><div class="image-placeholder" hidden aria-hidden="true"><span>BC</span><small>Image unavailable</small></div></div>`;
+const caseImage = (item, className = '', loading = 'lazy') => `<div class="image-frame ${className}"><img src="${esc(getDropboxDirectUrl(item.imageSharingUrl))}" alt="${esc(item.imageAlt || '')}" loading="${esc(loading)}" decoding="async"><div class="image-placeholder" hidden aria-hidden="true"><span>BC</span><small>Image unavailable</small></div></div>`;
 function wireImages(root = document) {
   root.querySelectorAll('.image-frame img').forEach(image => {
     const fail = () => { image.hidden = true; const fallback = image.nextElementSibling; fallback.hidden = false; fallback.removeAttribute('aria-hidden'); };
@@ -25,7 +25,7 @@ async function catalogue() {
     const accessible = canAccessBusinessCase(item, tier);
     const available = accessible && !item.placeholder;
     const status = accessLabel(item, tier);
-    return `<article class="case-card ${!available ? 'locked' : ''}">${caseImage(item, 'catalogue-image')}<div class="card-body"><div class="card-top">${badge(`Case ${item.caseNumber}`, 'case-number')}${badge(status, accessible ? 'access-open' : 'access-locked')}</div><h2>${esc(item.title)}</h2><p>${esc(item.teaser)}</p><div class="card-footer"><div class="meta">${badge(`Suggested ${item.level}`)}${badge(item.estimatedTime)}</div>${available ? `<a class="btn primary" href="/businesscases/${encodeURIComponent(item.slug)}">Explore case <span aria-hidden="true">→</span></a>` : `<span class="locked-message">${item.placeholder ? 'Coming soon' : '🔒 Locked'}</span>`}</div></div></article>`;
+    return `<article class="case-card ${!available ? 'locked' : ''}">${caseImage(item, 'catalogue-image', 'lazy')}<div class="card-body"><div class="card-top">${badge(`Case ${item.caseNumber}`, 'case-number')}${badge(status, accessible ? 'access-open' : 'access-locked')}</div><h2>${esc(item.title)}</h2><p>${esc(item.teaser)}</p><div class="card-footer"><div class="meta">${badge(`Suggested ${item.level}`)}${badge(item.estimatedTime)}</div>${available ? `<a class="btn primary" href="/businesscases/${encodeURIComponent(item.slug)}">Explore case <span aria-hidden="true">→</span></a>` : `<span class="locked-message">${item.placeholder ? 'Coming soon' : '🔒 Locked'}</span>`}</div></div></article>`;
   }).join('');
   wireImages(list);
 }
@@ -42,8 +42,13 @@ function vocabularyMarkup(c) {
 function readingMarkup(c) {
   return c.reading.paragraphs.map(p => `<p>${esc(p)}</p>`).join('');
 }
+function transcriptLineMarkup(line) {
+  if (line.stageDirection) return `<div class="script-line stage-direction"><p><em>${esc(line.text)}</em></p></div>`;
+  return `<div class="script-line"><strong>${esc(line.speaker)}:</strong><p>${esc(line.text)}</p></div>`;
+}
 function audioMarkup(c) {
-  return `<div class="audio-player"><audio preload="metadata" src="${esc(dropboxAudioUrl(c.listening.audioSharingUrl))}"></audio><div class="audio-controls"><button class="icon-btn play" aria-label="Play audio">▶</button><button class="icon-btn rewind" aria-label="Rewind 10 seconds">↶ 10</button><button class="icon-btn forward" aria-label="Fast forward 10 seconds">10 ↷</button><span class="time">0:00 / 0:00</span><label>Volume <input class="volume" type="range" min="0" max="1" step=".05" value="1"></label><label>Speed <select class="speed"><option>.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select>×</label></div><input class="progress" aria-label="Audio progress" type="range" min="0" max="100" value="0"><p class="audio-error" hidden>The audio could not be loaded. Please check your connection and try again.</p></div><button class="btn script-toggle" type="button" aria-expanded="false">Show Script</button><div class="script-wrap closed"><div class="script-panel"><h3>Executive Meeting</h3>${c.listening.transcript.map(line => `<div class="script-line"><strong>${esc(line.speaker)}:</strong><p>${esc(line.text)}</p></div>`).join('')}</div></div>`;
+  const context = c.listening.context ? `<p class="listening-context">${esc(c.listening.context)}</p>` : '';
+  return `${context}<div class="audio-player"><audio preload="metadata" src="${esc(dropboxAudioUrl(c.listening.audioSharingUrl))}"></audio><div class="audio-controls"><button class="icon-btn play" aria-label="Play audio">▶</button><button class="icon-btn rewind" aria-label="Rewind 10 seconds">↶ 10</button><button class="icon-btn forward" aria-label="Fast forward 10 seconds">10 ↷</button><span class="time">0:00 / 0:00</span><label>Volume <input class="volume" type="range" min="0" max="1" step=".05" value="1"></label><label>Speed <select class="speed"><option>.75</option><option selected>1</option><option>1.25</option><option>1.5</option></select>×</label></div><input class="progress" aria-label="Audio progress" type="range" min="0" max="100" value="0"><p class="audio-error" hidden>The audio could not be loaded. Please check your connection and try again.</p></div><button class="btn script-toggle" type="button" aria-expanded="false">Show Script</button><div class="script-wrap closed"><div class="script-panel"><h3>Executive Meeting</h3>${c.listening.transcript.map(transcriptLineMarkup).join('')}</div></div>`;
 }
 function quizMarkup(c) {
   return `<form class="quiz" novalidate>${c.quizQuestions.map((q, index) => `<div class="quiz-question" data-id="${q.id}"><fieldset><legend><span class="question-source">${esc(q.source)}</span>${index + 1}. ${esc(q.question)}</legend>${q.options.map(o => `<label class="option" data-option="${o.id}"><input type="radio" name="${q.id}" value="${o.id}"><span><b>${o.id}.</b> ${esc(o.text)}</span></label>`).join('')}<p class="explanation" hidden></p></fieldset></div>`).join('')}<p class="form-error" role="alert" hidden>Please answer all five questions before checking.</p><p class="result" aria-live="polite" hidden></p><button class="btn primary check" type="submit">Check answers</button> <button class="btn retry" type="button" hidden>Try again</button></form>`;
@@ -57,7 +62,7 @@ function writingMarkup(c) {
 }
 function renderCase(c) {
   const takeaway = `<span class="eyebrow">Final reflection</span><p>${esc(c.takeaway.text)}</p><small>${esc(c.takeaway.reminder)}</small>`;
-  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge('Open to everyone','access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('vocabulary','Useful Vocabulary','Vocabulary',vocabularyMarkup(c))}${section('background','Background Brief','Reading',readingMarkup(c))}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
+  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge(accessLabel(c, 'free'),'access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo', 'eager')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('vocabulary','Useful Vocabulary','Vocabulary',vocabularyMarkup(c))}${section('background','Background Brief','Reading',readingMarkup(c))}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
   wireImages(); wireCase(c);
 }
 
@@ -106,5 +111,25 @@ function wireWriting(c) {
   document.querySelector('.clear-writing').onclick = () => { area.value = ''; update(); area.focus(); }; document.querySelector('.copy-writing').onclick = async event => { await navigator.clipboard.writeText(area.value); event.currentTarget.textContent = 'Copied!'; setTimeout(() => event.currentTarget.textContent = 'Copy response', 1200); };
 }
 
+function lockedCaseMarkup(c) {
+  return `<div class="hero access-prompt"><span class="eyebrow">${esc(accessLabel(c, 'visitor'))}</span><h1>${esc(c.title)}</h1><p>${esc(c.teaser)}</p><p><a href="/" class="hero-link">Sign in or create a free account to continue</a></p></div>`;
+}
+
 const slug = decodeURIComponent(location.pathname.replace(/^\/businesscases\/?/,'').split('/')[0]);
-if (!slug) catalogue(); else { const current = getBusinessCase(slug); if (current && !current.placeholder) renderCase(current); else app.innerHTML = '<div class="hero"><h1>Case not available</h1><p><a href="/businesscases" class="hero-link">Return to Business Cases</a></p></div>'; }
+if (!slug) {
+  catalogue();
+} else {
+  const current = getBusinessCase(slug);
+  if (current && !current.placeholder) {
+    app.innerHTML = '<div class="hero"><h1>Checking your access…</h1></div>';
+    resolveExistingUserTier().then(tier => {
+      if (canAccessBusinessCase(current, tier)) renderCase(current);
+      else app.innerHTML = lockedCaseMarkup(current);
+    }).catch(() => {
+      app.innerHTML = canAccessBusinessCase(current, 'visitor') ? '' : lockedCaseMarkup(current);
+      if (canAccessBusinessCase(current, 'visitor')) renderCase(current);
+    });
+  } else {
+    app.innerHTML = '<div class="hero"><h1>Case not available</h1><p><a href="/businesscases" class="hero-link">Return to Business Cases</a></p></div>';
+  }
+}
