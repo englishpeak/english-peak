@@ -40,7 +40,8 @@ test('Case 1 has the complete reusable lesson data', () => {
     'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&raw=1'
   );
   assert.equal(item.reading.paragraphs.length, 6);
-  assert.equal(item.reading.vocabulary.length, 8);
+  assert.equal(item.vocabulary.length, 8);
+  assert.equal(item.reading.vocabulary, undefined);
   assert.equal(item.listening.transcript.length, 3);
   assert.equal(item.quizQuestions.length, 5);
   assert.ok(item.quizQuestions.every(question => question.options.length === 4));
@@ -61,4 +62,14 @@ test('all lesson accordions render closed and do not persist expanded state', as
   assert.match(app, /section-content closed/);
   assert.doesNotMatch(app, /data-default-open|businessCase:\$\{c\.slug\}:section/);
   assert.doesNotMatch(app, /readingMarkup\(c\),true/);
+});
+
+test('vocabulary is a top-level lesson accordion before the background brief', async () => {
+  const app = await readFile(new URL('./app.js', import.meta.url), 'utf8');
+  const vocabularySection = "section('vocabulary','Useful Vocabulary','Vocabulary',vocabularyMarkup(c))";
+  const backgroundSection = "section('background','Background Brief','Reading',readingMarkup(c))";
+  assert.ok(app.includes(vocabularySection));
+  assert.ok(app.indexOf(vocabularySection) < app.indexOf(backgroundSection));
+  assert.doesNotMatch(app, /<details class="vocabulary"/);
+  assert.doesNotMatch(app, /reading\.vocabulary/);
 });

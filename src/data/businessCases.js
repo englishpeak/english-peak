@@ -13,6 +13,12 @@ export const businessCases = [
     imageSharingUrl: 'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&dl=0',
     imageAlt: 'The CEO and HR Director of Northbridge Solutions discussing reports in a New York office.',
     introduction: 'Northbridge Solutions has secured the largest contract in its history with Global Retail Group, marking an important moment in the company’s growth.',
+    vocabulary: [
+      ['secure a contract', 'to successfully obtain a business agreement'], ['workload', 'the amount of work that a person or team must complete'],
+      ['permanent employee', 'an employee hired without a planned end date'], ['contractor', 'an independent professional hired for a limited period or project'],
+      ['long-term commitment', 'an obligation that continues for a significant period'], ['allocate a budget', 'to decide how available money will be distributed'],
+      ['renew a contract', 'to extend an agreement for another period'], ['financial risk', 'the possibility of losing money or creating costly obligations']
+    ],
     reading: {
       title: 'Background Brief',
       paragraphs: [
@@ -22,12 +28,6 @@ export const businessCases = [
         'Northbridge has responded by carefully expanding its expertise and investing in employee development instead of growing too quickly. During the past three years, the company has successfully completed several high-profile projects, earning an excellent reputation for meeting deadlines and maintaining strong communication with clients. As a result, industry analysts have begun to describe Northbridge as one of the fastest-growing consulting firms in its market.',
         'Despite this success, the leadership team understands that reputation can disappear quickly. Winning new business is important, but maintaining high service quality has always been considered the company\'s greatest competitive advantage. Every major opportunity therefore represents both a chance to grow and a responsibility to protect the trust the company has built over the years.',
         'The company has now secured the largest contract in its history. Global Retail Group, an international business with operations in 18 countries, has selected Northbridge to lead a major digital-transformation project. The contract is expected to generate almost twice as much revenue as Northbridge\'s largest previous project.'
-      ],
-      vocabulary: [
-        ['secure a contract', 'to successfully obtain a business agreement'], ['workload', 'the amount of work that a person or team must complete'],
-        ['permanent employee', 'an employee hired without a planned end date'], ['contractor', 'an independent professional hired for a limited period or project'],
-        ['long-term commitment', 'an obligation that continues for a significant period'], ['allocate a budget', 'to decide how available money will be distributed'],
-        ['renew a contract', 'to extend an agreement for another period'], ['financial risk', 'the possibility of losing money or creating costly obligations']
       ]
     },
     listening: {
