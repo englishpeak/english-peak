@@ -30,8 +30,11 @@ async function catalogue() {
   wireImages(list);
 }
 
-function section(id, title, skill, content) {
-  return `<section class="section"><button class="section-toggle" data-section="${id}" aria-expanded="true" aria-controls="panel-${id}"><span>${esc(title)}</span><span class="skill">${esc(skill)}</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="section-content" id="panel-${id}"><div class="section-inner"><div class="section-pad">${content}</div></div></div></section>`;
+const sectionIcons = {
+  background: '▤', meeting: '◉', decision: '✓', discussion: '◌', recommendation: '✎', takeaway: '◆'
+};
+function section(id, title, skill, content, openByDefault = false) {
+  return `<section class="section"><button class="section-toggle" data-section="${id}" data-default-open="${openByDefault}" aria-expanded="${openByDefault}" aria-controls="panel-${id}"><span class="section-icon" aria-hidden="true">${sectionIcons[id]}</span><span class="section-title">${esc(title)}</span><span class="skill">${esc(skill)}</span><span class="chevron" aria-hidden="true"></span></button><div class="section-content${openByDefault ? '' : ' closed'}" id="panel-${id}" aria-hidden="${!openByDefault}"${openByDefault ? '' : ' inert'}><div class="section-inner"><div class="section-pad">${content}</div></div></div></section>`;
 }
 function readingMarkup(c) {
   return `${c.reading.paragraphs.map(p => `<p>${esc(p)}</p>`).join('')}<details class="vocabulary"><summary>Useful vocabulary</summary><dl>${c.reading.vocabulary.map(([term, definition]) => `<div><dt>${esc(term)}</dt><dd>${esc(definition)}</dd></div>`).join('')}</dl></details>`;
@@ -50,7 +53,8 @@ function writingMarkup(c) {
   return `<h3>${esc(w.title)}</h3><p>${esc(w.instructions)}</p><div class="writing-meta"><div class="task-facts"><span><strong>Format</strong>${esc(w.format)}</span><span><strong>Audience</strong>${esc(w.audience)}</span><span><strong>Suggested range</strong>${esc(w.wordRange)}</span></div><div class="columns"><div><h4>Planning questions</h4><ul>${w.planningQuestions.map(x => `<li>${esc(x)}</li>`).join('')}</ul><h4>Tips</h4><ul>${w.tips.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div><div><h4>Useful phrases</h4><ul>${w.usefulPhrases.map(x => `<li><code>${esc(x)}</code></li>`).join('')}</ul></div></div></div><label for="response"><strong>Your response</strong></label><textarea id="response" class="response" placeholder="Start writing here…"></textarea><p class="word-count" aria-live="polite">0 words</p><div class="writing-actions"><button class="btn clear-writing" type="button">Clear response</button><button class="btn primary copy-writing" type="button">Copy response</button></div>`;
 }
 function renderCase(c) {
-  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge('Open to everyone','access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('background','Background Brief','Reading',readingMarkup(c))}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}</div><aside class="takeaway"><span class="eyebrow">Final reflection</span><h2>Case Takeaway</h2><p>${esc(c.takeaway.text)}</p><small>${esc(c.takeaway.reminder)}</small></aside></div>`;
+  const takeaway = `<span class="eyebrow">Final reflection</span><p>${esc(c.takeaway.text)}</p><small>${esc(c.takeaway.reminder)}</small>`;
+  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge('Open to everyone','access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('background','Background Brief','Reading',readingMarkup(c),true)}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
   wireImages(); wireCase(c);
 }
 
@@ -59,9 +63,16 @@ function wireCase(c) {
   document.querySelectorAll('.section-toggle').forEach(button => {
     const panel = document.querySelector(`#panel-${button.dataset.section}`);
     const key = `businessCase:${c.slug}:section:${button.dataset.section}`;
-    const open = sessionStorage.getItem(key) !== 'closed';
-    button.setAttribute('aria-expanded', String(open)); panel.classList.toggle('closed', !open);
-    button.onclick = () => { const next = button.getAttribute('aria-expanded') !== 'true'; button.setAttribute('aria-expanded', String(next)); panel.classList.toggle('closed', !next); sessionStorage.setItem(key, next ? 'open' : 'closed'); };
+    const savedState = sessionStorage.getItem(key);
+    const open = savedState ? savedState === 'open' : button.dataset.defaultOpen === 'true';
+    const setOpen = next => {
+      button.setAttribute('aria-expanded', String(next));
+      panel.classList.toggle('closed', !next);
+      panel.setAttribute('aria-hidden', String(!next));
+      panel.inert = !next;
+    };
+    setOpen(open);
+    button.onclick = () => { const next = button.getAttribute('aria-expanded') !== 'true'; setOpen(next); sessionStorage.setItem(key, next ? 'open' : 'closed'); };
   });
   wireAudio(c); wireQuiz(c); wireDiscussion(c); wireWriting(c);
 }
