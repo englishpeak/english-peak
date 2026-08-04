@@ -49,6 +49,37 @@ test('Case 1 has the complete reusable lesson data', () => {
   assert.equal(item.writingTask.audience, 'Marcus Bennett, CEO');
 });
 
+
+test('Case 2 contains the complete published lesson data and free-account access', () => {
+  const item = businessCases[1];
+  assert.equal(item.slug, 'case-2');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'How Late Is Too Late?');
+  assert.equal(item.accessTier, 'free');
+  assert.equal(accessLabel(item, 'visitor'), 'Free account required');
+  assert.equal(accessLabel(item, 'free'), 'Included with your account');
+  assert.equal(
+    getDropboxDirectUrl(item.imageSharingUrl),
+    'https://www.dropbox.com/scl/fi/b9qw4znm145yqbdxon06b/case-2.png?rlkey=iez97dknev1up0mopb8e3cum6&st=38fpl416&raw=1'
+  );
+  assert.equal(
+    dropboxAudioUrl(item.listening.audioSharingUrl),
+    'https://www.dropbox.com/scl/fi/gv4d49y8k2e6c14gufpui/case-2.mp3?rlkey=0y764lzexww42ijet51a9nnlh&st=2ptu9h7c&raw=1'
+  );
+  assert.equal(item.vocabulary.length, 10);
+  assert.equal(item.reading.paragraphs.length, 6);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.context, 'Listen to Ryan and Michael having an informal conversation at their desks after most of the office has gone home.');
+  assert.equal(item.listening.transcript.length, 8);
+  assert.equal(item.listening.transcript[5].stageDirection, true);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'c', 'b', 'c', 'c']);
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Set Professional Boundaries for the Team');
+  assert.equal(item.takeaway.reminder, 'There is no universal rule for every deadline. The objective is to balance excellent work, responsible decision-making, and respect for life outside the office.');
+});
+
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
   const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
   assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);
@@ -62,6 +93,15 @@ test('all lesson accordions render closed and do not persist expanded state', as
   assert.match(app, /section-content closed/);
   assert.doesNotMatch(app, /data-default-open|businessCase:\$\{c\.slug\}:section/);
   assert.doesNotMatch(app, /readingMarkup\(c\),true/);
+});
+
+
+test('case route enforces business-case access before rendering lessons', async () => {
+  const app = await readFile(new URL('./app.js', import.meta.url), 'utf8');
+  assert.match(app, /resolveExistingUserTier\(\)\.then\(tier => \{/);
+  assert.match(app, /if \(canAccessBusinessCase\(current, tier\)\) renderCase\(current\);/);
+  assert.match(app, /else app\.innerHTML = lockedCaseMarkup\(current\);/);
+  assert.match(app, /Sign in or create a free account to continue/);
 });
 
 test('vocabulary is a top-level lesson accordion before the background brief', async () => {
