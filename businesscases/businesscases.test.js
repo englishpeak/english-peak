@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { googleDriveImageUrl, getDropboxDirectUrl, dropboxAudioUrl } from './media-urls.js';
 import { canAccessBusinessCase, accessLabel } from './access.js';
 import { businessCases } from '../src/data/businessCases.js';
@@ -45,4 +46,19 @@ test('Case 1 has the complete reusable lesson data', () => {
   assert.ok(item.quizQuestions.every(question => question.options.length === 4));
   assert.equal(item.speaking.questions.length, 5);
   assert.equal(item.writingTask.audience, 'Marcus Bennett, CEO');
+});
+
+test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
+  const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
+  assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);
+  assert.match(styles, /\.case-photo img\{[^}]*width:100%[^}]*height:100%[^}]*display:block[^}]*object-fit:cover[^}]*object-position:center[^}]*margin:0/);
+  assert.doesNotMatch(styles, /\.case-photo img\{[^}]*object-fit:contain/);
+});
+
+test('all lesson accordions render closed and do not persist expanded state', async () => {
+  const app = await readFile(new URL('./app.js', import.meta.url), 'utf8');
+  assert.match(app, /aria-expanded="false"/);
+  assert.match(app, /section-content closed/);
+  assert.doesNotMatch(app, /data-default-open|businessCase:\$\{c\.slug\}:section/);
+  assert.doesNotMatch(app, /readingMarkup\(c\),true/);
 });
