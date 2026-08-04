@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { googleDriveImageUrl, dropboxAudioUrl } from './media-urls.js';
+import { googleDriveImageUrl, getDropboxDirectUrl, dropboxAudioUrl } from './media-urls.js';
 import { canAccessBusinessCase, accessLabel } from './access.js';
 import { businessCases } from '../src/data/businessCases.js';
 
@@ -10,10 +10,15 @@ test('Google Drive sharing URLs become direct image URLs', () => {
 });
 
 test('Dropbox links request raw media while preserving share keys', () => {
-  const result = new URL(dropboxAudioUrl('https://www.dropbox.com/scl/fi/id/audio.mp3?rlkey=secret&dl=0'));
+  const sharingUrl = 'https://www.dropbox.com/scl/fi/id/image.png?rlkey=secret&st=token&dl=0';
+  const result = new URL(getDropboxDirectUrl(sharingUrl));
   assert.equal(result.searchParams.get('raw'), '1');
   assert.equal(result.searchParams.get('dl'), null);
   assert.equal(result.searchParams.get('rlkey'), 'secret');
+  assert.equal(result.searchParams.get('st'), 'token');
+  assert.equal(getDropboxDirectUrl('https://example.com/image.png?dl=0'), 'https://example.com/image.png?dl=0');
+  assert.equal(getDropboxDirectUrl('not a url'), 'not a url');
+  assert.equal(dropboxAudioUrl(sharingUrl), getDropboxDirectUrl(sharingUrl));
 });
 
 test('business-case access follows existing platform tiers', () => {
@@ -29,6 +34,10 @@ test('business-case access follows existing platform tiers', () => {
 
 test('Case 1 has the complete reusable lesson data', () => {
   const item = businessCases[0];
+  assert.equal(
+    getDropboxDirectUrl(item.imageSharingUrl),
+    'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&raw=1'
+  );
   assert.equal(item.reading.paragraphs.length, 7);
   assert.equal(item.reading.vocabulary.length, 8);
   assert.equal(item.listening.transcript.length, 3);
