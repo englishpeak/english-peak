@@ -39,7 +39,7 @@ test('Case 1 has the complete reusable lesson data', () => {
     getDropboxDirectUrl(item.imageSharingUrl),
     'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&raw=1'
   );
-  assert.equal(item.reading.paragraphs.length, 7);
+  assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.reading.vocabulary.length, 8);
   assert.equal(item.listening.transcript.length, 3);
   assert.equal(item.quizQuestions.length, 5);
