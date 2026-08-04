@@ -11,6 +11,10 @@ const classCreationMigration = await readFile(
   new URL('../supabase/migrations/202608030001_atomic_class_creation.sql', import.meta.url),
   'utf8'
 );
+const editablePaymentsMigration = await readFile(
+  new URL('../supabase/migrations/202608040001_edit_optional_class_payments.sql', import.meta.url),
+  'utf8'
+);
 
 test('student and class edit controls are available in the teacher panel', () => {
   assert.match(appSource, /data-edit-student/);
@@ -93,4 +97,16 @@ test('payment rates expose accessible balance states and do not clamp negative b
   assert.doesNotMatch(appSource, /<small>\$\{status\.label\}<\/small>/);
   assert.match(appSource, /rateBalanceStatus\(balance\)/);
   assert.match(appSource, /Negative balances remain visible/);
+});
+
+
+test('student payments can be edited and paid-by is optional', () => {
+  assert.match(appSource, /data-edit-payment/);
+  assert.match(appSource, /data-payment-id/);
+  assert.match(appSource, /ep_update_class_payment/);
+  assert.match(appSource, /p_student_id:d\.student_id\|\|null/);
+  assert.match(appSource, /Paid by <span class="rate-source">optional<\/span>/);
+  assert.doesNotMatch(appSource, /name="student_id" required/);
+  assert.match(editablePaymentsMigration, /create or replace function public\.ep_update_class_payment/);
+  assert.match(editablePaymentsMigration, /p_student_id is not null and not exists/);
 });
