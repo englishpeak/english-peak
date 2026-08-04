@@ -10,7 +10,7 @@ export const businessCases = [
       { name: 'Marcus Bennett', role: 'Chief Executive Officer' },
       { name: 'Emma Carter', role: 'Human Resources Director' }
     ],
-    imageSharingUrl: 'https://drive.google.com/file/d/1TRrLS8qamrEshV0zUXo5l7rG2oEhCJin/view?usp=drive_link',
+    imageSharingUrl: 'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&dl=0',
     imageAlt: 'The CEO and HR Director of Northbridge Solutions discussing reports in a New York office.',
     introduction: 'Northbridge Solutions has landed its largest contract ever. The company must expand quickly, but Marcus and Emma disagree about the safest way to build the new team.',
     reading: {

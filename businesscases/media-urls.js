@@ -8,13 +8,16 @@ export function googleDriveImageUrl(sharingUrl) {
   } catch { return ''; }
 }
 
-export function dropboxAudioUrl(sharingUrl) {
-  if (!sharingUrl) return '';
+export function getDropboxDirectUrl(url) {
+  if (!url) return '';
   try {
-    const url = new URL(sharingUrl);
-    if (!/(^|\.)dropbox\.com$/.test(url.hostname)) return sharingUrl;
-    url.searchParams.delete('dl');
-    url.searchParams.set('raw', '1');
-    return url.toString();
-  } catch { return ''; }
+    const parsedUrl = new URL(url);
+    const isDropboxHost = parsedUrl.hostname === 'www.dropbox.com' || parsedUrl.hostname === 'dropbox.com';
+    if (!isDropboxHost) return url;
+    parsedUrl.searchParams.delete('dl');
+    parsedUrl.searchParams.set('raw', '1');
+    return parsedUrl.toString();
+  } catch { return url; }
 }
+
+export const dropboxAudioUrl = getDropboxDirectUrl;

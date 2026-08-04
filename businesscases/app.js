@@ -1,5 +1,5 @@
 import { businessCases, getBusinessCase } from '/src/data/businessCases.js';
-import { googleDriveImageUrl, dropboxAudioUrl } from '/businesscases/media-urls.js';
+import { getDropboxDirectUrl, dropboxAudioUrl } from '/businesscases/media-urls.js';
 import { accessLabel, canAccessBusinessCase, resolveExistingUserTier } from '/businesscases/access.js';
 import { initialiseBusinessCasesTheme } from '/businesscases/theme.js';
 
@@ -7,7 +7,7 @@ initialiseBusinessCasesTheme();
 const app = document.querySelector('#app');
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const badge = (value, className = '') => `<span class="badge ${className}">${esc(value)}</span>`;
-const caseImage = (item, className = '') => `<div class="image-frame ${className}"><img src="${esc(googleDriveImageUrl(item.imageSharingUrl))}" alt="${esc(item.imageAlt || '')}"><div class="image-placeholder" hidden aria-hidden="true"><span>BC</span><small>Image unavailable</small></div></div>`;
+const caseImage = (item, className = '') => `<div class="image-frame ${className}"><img src="${esc(getDropboxDirectUrl(item.imageSharingUrl))}" alt="${esc(item.imageAlt || '')}"><div class="image-placeholder" hidden aria-hidden="true"><span>BC</span><small>Image unavailable</small></div></div>`;
 function wireImages(root = document) {
   root.querySelectorAll('.image-frame img').forEach(image => {
     const fail = () => { image.hidden = true; const fallback = image.nextElementSibling; fallback.hidden = false; fallback.removeAttribute('aria-hidden'); };
