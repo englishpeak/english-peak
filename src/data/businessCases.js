@@ -127,7 +127,73 @@ export const businessCases = [
     },
     takeaway: { text:'Professional commitment is not measured only by the number of hours someone remains at work. Additional effort may be justified when a genuinely important deadline requires it, but fatigue can reduce judgement, accuracy, and creativity. Healthy professional boundaries depend on recognising when extra work will create real value and when rest, planning, or clearer priorities would produce a better result.', reminder:'There is no universal rule for every deadline. The objective is to balance excellent work, responsible decision-making, and respect for life outside the office.' }
   },
-  { id:'case-3', caseNumber:3, slug:'case-3', title:'Coming soon', teaser:'Another decision-led case will soon join the Business Cases catalogue.', level:'B1–B2', estimatedTime:'20–25 minutes', accessTier:'free', placeholder:true },
+  {
+    id: 'case-3', caseNumber: 3, slug: 'case-3', title: 'Big Fish or Safer Bets?',
+    teaser: 'A sales department has a limited travel budget and several promising opportunities. The team must decide how ambitious its next month should be.',
+    level: 'B2', levelGuidance: '',
+    estimatedTime: '40–60 minutes', accessTier: 'free', company: 'Apex Business Systems', industry: 'Business Technology Solutions', location: 'Chicago, USA',
+    characters: [
+      { name: 'Victoria Chen', role: 'Sales Director' },
+      { name: 'Laura Bennett', role: 'Sales Coordinator' },
+      { name: 'Priya Shah', role: 'Regional Sales Manager' },
+      { name: 'Danielle Brooks', role: 'Key Accounts Manager' }
+    ],
+    imageSharingUrl: 'https://www.dropbox.com/scl/fi/pghekk6h6cxiaj8ko8lzb/case-3.png?rlkey=eiua4p29n9hzfcaca6obqhx25&st=jvs3cso0&dl=0',
+    imageAlt: 'Four senior sales professionals discussing reports and travel plans in a modern office.',
+    introduction: 'Apex Business Systems is planning its sales activity for the coming month. With several promising prospects and a limited travel budget, the leadership team must decide where the department should concentrate its time and resources.',
+    vocabulary: [
+      ['prospect', 'a potential customer or client'], ['sales cycle', 'the complete process from first contact with a prospect to closing a sale'],
+      ['key account', 'an especially important customer that may generate significant revenue'], ['lead', 'a person or company that may become a customer'],
+      ['qualify a lead', 'to evaluate whether a potential customer is likely to buy'], ['allocate resources', 'to decide how money, time, or staff will be distributed'],
+      ['return on investment', 'the financial benefit produced by an investment compared with its cost'], ['follow up', 'to contact someone again after an initial conversation or meeting'],
+      ['personalized proposal', 'a commercial offer designed specifically for one potential client'], ['spread the risk', 'to reduce exposure by dividing resources across several opportunities']
+    ],
+    reading: {
+      title: 'Background Brief',
+      paragraphs: [
+        'Apex Business Systems is a Chicago-based company that provides workflow software, data-management tools, and digital consulting services to organisations across the United States. Its clients include manufacturers, retail chains, logistics companies, healthcare providers, and professional-services firms.',
+        'The company began by serving small local businesses, but over the last eight years it has expanded into the medium-sized corporate market. This growth has been driven by a practical sales approach: understanding each client’s daily operations, identifying inefficient processes, and proposing technology that can produce measurable results.',
+        'Apex has a team of account executives and regional sales managers who regularly travel to meet potential clients. Although video calls are now common, the company has found that face-to-face meetings remain especially valuable when a sale involves several departments, a customized implementation, or a long-term service agreement. Business trips may include flights, hotels, client dinners, product demonstrations, and follow-up visits.',
+        'The market has become increasingly competitive. Larger technology providers can offer broad international coverage and strong brand recognition, while smaller specialists often compete through lower prices and faster implementation. Apex has positioned itself between these two groups by offering sophisticated solutions with more personal service than many large competitors.',
+        'During the last financial year, medium-sized clients provided most of the sales department’s reliable revenue. Their contracts were not individually enormous, but they were generally completed within a reasonable period and often led to referrals or additional projects. At the same time, the company’s leadership has become increasingly interested in securing larger national accounts that could accelerate growth and raise Apex’s profile in the industry.',
+        'The sales department is now planning its travel schedule and commercial activity for the coming month. Several opportunities are available in different cities, but the budget cannot support every trip, dinner, presentation, and follow-up visit currently being considered. The department’s four senior leaders are meeting to decide how those resources should be used.'
+      ]
+    },
+    listening: {
+      title: 'Executive Meeting', context: 'Listen to four members of the sales leadership team discussing how to allocate next month’s travel and client-development budget.', audioSharingUrl: 'https://www.dropbox.com/scl/fi/snb42o4k9jrr20lf14b41/case-3.mp3?rlkey=qrw397mg31t1r75iy1bjtpqqi&st=thnttoac&dl=0',
+      transcript: [
+        { speaker: 'Victoria Chen', text: 'We need to finalize next month’s travel plan today. We have enough budget for several domestic trips and two international visits, but we can’t pursue every opportunity at the same level. The main question is whether we concentrate our resources on a few major companies or spread the budget across a larger number of medium-sized prospects.' },
+        { speaker: 'Danielle Brooks', text: 'I’d focus on the major accounts. One successful contract with a national retailer or a multinational manufacturer could generate more revenue than ten smaller deals combined. Those clients expect face-to-face meetings, dinners, detailed proposals, and regular follow-ups. If we want to compete for them, we have to show that we’re willing to invest in the relationship.' },
+        { speaker: 'Priya Shah', text: 'That’s true, but those sales cycles can take months, and there’s no guarantee we’ll win. We could spend thousands on travel and entertainment, only to discover that they chose a larger competitor. Medium-sized companies usually make decisions faster, and we already have a strong reputation in that market. The individual contracts are smaller, but the success rate is much higher.' },
+        { speaker: 'Laura Bennett', text: 'There’s also a workload issue. If the team focuses on five major prospects, they can prepare highly personalized presentations. If we target thirty smaller companies, we’ll create more opportunities, but the sales managers may spend most of their time travelling between short meetings and following up on leads that aren’t properly qualified.' },
+        { speaker: 'Danielle', text: 'But if we keep focusing on the same type of client, we may never move into the next stage of growth. At some point, we have to take a bigger risk.' },
+        { speaker: 'Priya', text: 'Agreed, but we shouldn’t confuse ambition with putting too much money into a small number of uncertain opportunities.' },
+        { speaker: 'Victoria', text: 'Then perhaps the real decision isn’t simply big clients or smaller clients. It’s how much of the budget we’re prepared to risk on long-term opportunities while still protecting the reliable business that keeps the department performing month after month.' }
+      ]
+    },
+    quizQuestions: [
+      { id:'q1', source:'Reading', question:'What helped Apex Business Systems expand into the medium-sized corporate market?', options:options('Offering only the cheapest software available','Understanding clients’ operations and proposing practical solutions','Eliminating all face-to-face sales meetings','Focusing exclusively on international corporations'), correctAnswer:'b', explanation:'The Background Brief explains that Apex grew by understanding clients’ daily operations, identifying inefficient processes, and recommending technology with measurable benefits.' },
+      { id:'q2', source:'Reading', question:'Why does Apex still consider business travel valuable?', options:options('Clients refuse to use video calls under any circumstances.','Travel is required for every software sale.','Complex or customized sales often benefit from face-to-face communication.','The company has no regional offices.'), correctAnswer:'c', explanation:'The reading states that in-person meetings are especially useful when a sale involves several departments, customized implementation, or a long-term agreement.' },
+      { id:'q3', source:'Listening', question:'Why does Danielle want the team to prioritize major accounts?', options:options('Large companies always make purchasing decisions quickly.','One major contract could generate more revenue than many smaller deals.','Medium-sized companies have stopped buying Apex products.','Major accounts require fewer meetings and less preparation.'), correctAnswer:'b', explanation:'Danielle argues that one successful contract with a major company could produce more revenue than ten smaller agreements combined.' },
+      { id:'q4', source:'Listening', question:'What is Priya’s main concern about pursuing larger companies?', options:options('Large companies never meet sales representatives in person.','Apex does not have any products suitable for them.','The sales cycles are long, expensive, and may still end without a contract.','The company’s sales managers are unwilling to travel internationally.'), correctAnswer:'c', explanation:'Priya points out that major-account sales may take months and require substantial spending without any guarantee of success.' },
+      { id:'q5', source:'Combined', question:'What is the central strategic decision facing the sales department?', options:options('Whether to stop all business travel permanently','Whether to invest heavily in a few high-value prospects or spread resources across more reliable opportunities','Whether to replace the sales team with external consultants','Whether to sell only to companies in Chicago'), correctAnswer:'b', explanation:'The reading introduces the limited budget and range of potential clients, while the conversation presents the choice between a small number of ambitious opportunities and a broader group of more predictable prospects.' }
+    ],
+    speaking: { questions: [
+      'What would you do if you were Victoria: prioritize a few major accounts or distribute the budget across more medium-sized prospects?',
+      'Do you agree with Danielle that a company must eventually take bigger risks in order to reach a new stage of growth?',
+      'Which is more important for a sales department: the possible value of a deal or the probability of actually closing it?',
+      'How would you divide the travel and entertainment budget between large accounts and medium-sized prospects?',
+      'What information should the team collect before deciding whether a major prospect deserves significant time and money?'
+    ], tip: 'Consider potential revenue, probability of success, sales-cycle length, workload, travel costs, and long-term growth. Support your strategy with clear reasons.' },
+    writingTask: {
+      title:'Propose Next Month’s Sales Strategy', instructions:'Write a short sales-strategy proposal for Victoria Chen. Recommend how Apex Business Systems should allocate its travel, client-entertainment, and follow-up budget during the coming month. You may prioritize major accounts, medium-sized prospects, or propose a balanced strategy.',
+      format:'Internal sales proposal', audience:'Victoria Chen, Sales Director', wordRange:'180–220 words',
+      planningQuestions:['Which type of client should receive the largest share of the budget?','How many major prospects should the team actively pursue?','What criteria should be used to qualify opportunities?','How can the company protect reliable monthly revenue?','How should the team measure whether the strategy was successful?'],
+      tips:['State your main recommendation clearly.','Refer to both opportunity and risk.','Explain how you would divide the available resources.','Include at least one criterion for selecting high-priority prospects.','Consider both short-term sales and long-term growth.','Use a confident but realistic professional tone.','Finish by suggesting a concrete next step or review point.'],
+      usefulPhrases:['I recommend allocating the majority of the budget to...','A balanced approach would allow the team to...','The strongest opportunities should be selected based on...','Although major accounts offer greater potential, they also...','Medium-sized prospects provide a more reliable source of...','To reduce the risk, the department could...','The sales team should prioritize companies that...','This strategy would protect short-term performance while...','Results should be reviewed at the end of...','The next step should be to identify...']
+    },
+    takeaway: { text:'Sales growth often requires a balance between ambition and predictability. Large accounts can transform a company’s revenue and reputation, but they may require long sales cycles, significant expenses, and repeated follow-up without any guarantee of success. Medium-sized clients usually offer smaller individual contracts, but a broader pipeline can spread risk and produce more consistent results.', reminder:'The strongest sales strategy is not necessarily the most aggressive one. It is the strategy that uses limited resources where they are most likely to create sustainable value.' }
+  },
   { id:'case-4', caseNumber:4, slug:'case-4', title:'Coming soon', teaser:'More advanced workplace situations are on the way for ePeak+ members.', level:'B2–C1', estimatedTime:'20–25 minutes', accessTier:'premium', placeholder:true }
 ];
 
