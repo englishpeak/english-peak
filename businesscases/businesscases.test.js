@@ -23,10 +23,13 @@ test('Dropbox links request raw media while preserving share keys', () => {
 });
 
 test('business-case access follows existing platform tiers', () => {
-  const [case1, case2,, case4] = businessCases;
+  const [case1, case2, case3, case4] = businessCases;
   assert.equal(canAccessBusinessCase(case1, 'visitor'), true);
   assert.equal(canAccessBusinessCase(case2, 'visitor'), false);
   assert.equal(canAccessBusinessCase(case2, 'free'), true);
+  assert.equal(canAccessBusinessCase(case3, 'visitor'), false);
+  assert.equal(canAccessBusinessCase(case3, 'free'), true);
+  assert.equal(canAccessBusinessCase(case3, 'premium'), true);
   assert.equal(canAccessBusinessCase(case4, 'free'), false);
   assert.equal(canAccessBusinessCase(case4, 'premium'), true);
   assert.equal(canAccessBusinessCase(case4, 'teacher'), true);
@@ -78,6 +81,38 @@ test('Case 2 contains the complete published lesson data and free-account access
   assert.equal(item.speaking.questions.length, 5);
   assert.equal(item.writingTask.title, 'Set Professional Boundaries for the Team');
   assert.equal(item.takeaway.reminder, 'There is no universal rule for every deadline. The objective is to balance excellent work, responsible decision-making, and respect for life outside the office.');
+});
+
+
+test('Case 3 contains the complete published lesson data and free-account access', () => {
+  const item = businessCases[2];
+  assert.equal(item.slug, 'case-3');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'Big Fish or Safer Bets?');
+  assert.equal(item.accessTier, 'free');
+  assert.equal(accessLabel(item, 'visitor'), 'Free account required');
+  assert.equal(accessLabel(item, 'free'), 'Included with your account');
+  assert.equal(accessLabel(item, 'premium'), 'Included with your account');
+  assert.equal(
+    getDropboxDirectUrl(item.imageSharingUrl),
+    'https://www.dropbox.com/scl/fi/pghekk6h6cxiaj8ko8lzb/case-3.png?rlkey=eiua4p29n9hzfcaca6obqhx25&st=jvs3cso0&raw=1'
+  );
+  assert.equal(
+    dropboxAudioUrl(item.listening.audioSharingUrl),
+    'https://www.dropbox.com/scl/fi/snb42o4k9jrr20lf14b41/case-3.mp3?rlkey=qrw397mg31t1r75iy1bjtpqqi&st=thnttoac&raw=1'
+  );
+  assert.equal(item.vocabulary.length, 10);
+  assert.equal(item.reading.paragraphs.length, 6);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.context, 'Listen to four members of the sales leadership team discussing how to allocate next month’s travel and client-development budget.');
+  assert.deepEqual(item.listening.transcript.map(line => line.speaker), ['Victoria Chen', 'Danielle Brooks', 'Priya Shah', 'Laura Bennett', 'Danielle', 'Priya', 'Victoria']);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'c', 'b', 'c', 'b']);
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Propose Next Month’s Sales Strategy');
+  assert.equal(item.writingTask.audience, 'Victoria Chen, Sales Director');
+  assert.equal(item.takeaway.reminder, 'The strongest sales strategy is not necessarily the most aggressive one. It is the strategy that uses limited resources where they are most likely to create sustainable value.');
 });
 
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
