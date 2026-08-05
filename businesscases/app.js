@@ -25,7 +25,7 @@ async function catalogue() {
     const accessible = canAccessBusinessCase(item, tier);
     const available = accessible && !item.placeholder;
     const status = accessLabel(item, tier);
-    return `<article class="case-card ${!available ? 'locked' : ''}">${caseImage(item, 'catalogue-image', 'lazy')}<div class="card-body"><div class="card-top">${badge(`Case ${item.caseNumber}`, 'case-number')}${badge(status, accessible ? 'access-open' : 'access-locked')}</div><h2>${esc(item.title)}</h2><p>${esc(item.teaser)}</p><div class="card-footer"><div class="meta">${badge(`Suggested ${item.level}`)}${badge(item.estimatedTime)}</div>${available ? `<a class="btn primary" href="/businesscases/${encodeURIComponent(item.slug)}">Explore case <span aria-hidden="true">→</span></a>` : `<span class="locked-message">${item.placeholder ? 'Coming soon' : '🔒 Locked'}</span>`}</div></div></article>`;
+    return `<article class="case-card ${!available ? 'locked' : ''}">${caseImage(item, 'catalogue-image', 'lazy')}<div class="card-body"><div class="card-top">${badge(`Case ${item.caseNumber}`, 'case-number')}${badge(status, accessible ? 'access-open' : 'access-locked')}</div><h2>${esc(item.title)}</h2><p>${esc(item.teaser)}</p><div class="card-footer"><div class="meta">${badge(`Suggested ${item.level}`)}${badge(item.estimatedTime)}</div>${available ? `<a class="btn primary" href="/businesscases/${encodeURIComponent(item.slug)}">Explore case <span aria-hidden="true">→</span></a>` : item.placeholder ? '<span class="locked-message">Coming soon</span>' : `<a class="btn" href="/businesscases/${encodeURIComponent(item.slug)}">🔒 View access</a>`}</div></div></article>`;
   }).join('');
   wireImages(list);
 }
@@ -62,7 +62,7 @@ function writingMarkup(c) {
 }
 function renderCase(c) {
   const takeaway = `<span class="eyebrow">Final reflection</span><p>${esc(c.takeaway.text)}</p><small>${esc(c.takeaway.reminder)}</small>`;
-  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge(accessLabel(c, 'free'),'access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo', 'eager')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('vocabulary','Useful Vocabulary','Vocabulary',vocabularyMarkup(c))}${section('background','Background Brief','Reading',readingMarkup(c))}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
+  app.innerHTML = `<div class="lesson"><a class="back" href="/businesscases">← All business cases</a><header class="case-head"><span class="eyebrow">Case ${c.caseNumber}</span><h1 class="case-title">${esc(c.title)}</h1><div class="meta">${badge(`Suggested ${c.level}`)}${badge(c.estimatedTime)}${badge(accessLabel(c, c.accessTier === 'premium' ? 'premium' : 'free'),'access-open')}</div><p class="introduction">${esc(c.introduction)}</p><p class="level-guidance">${esc(c.levelGuidance)}</p></header>${caseImage(c, 'case-photo', 'eager')}<div class="case-information"><div><span>Company</span><strong>${esc(c.company)}</strong></div><div><span>Industry</span><strong>${esc(c.industry)}</strong></div><div><span>Location</span><strong>${esc(c.location)}</strong></div><div><span>Key people</span>${c.characters.map(person => `<strong>${esc(person.name)} <small>— ${esc(person.role)}</small></strong>`).join('')}</div></div><div class="lesson-sections">${section('vocabulary','Useful Vocabulary','Vocabulary',vocabularyMarkup(c))}${section('background','Background Brief','Reading',readingMarkup(c))}${section('meeting','Executive Meeting','Listening',audioMarkup(c))}${section('decision','Decision Check','Comprehension',quizMarkup(c))}${section('discussion','Boardroom Discussion','Speaking',discussionMarkup(c))}${section('recommendation','Your Recommendation','Writing',writingMarkup(c))}${section('takeaway','Case Takeaway','Reflection',takeaway)}</div></div>`;
   wireImages(); wireCase(c);
 }
 
@@ -111,8 +111,9 @@ function wireWriting(c) {
   document.querySelector('.clear-writing').onclick = () => { area.value = ''; update(); area.focus(); }; document.querySelector('.copy-writing').onclick = async event => { await navigator.clipboard.writeText(area.value); event.currentTarget.textContent = 'Copied!'; setTimeout(() => event.currentTarget.textContent = 'Copy response', 1200); };
 }
 
-function lockedCaseMarkup(c) {
-  return `<div class="hero access-prompt"><span class="eyebrow">${esc(accessLabel(c, 'visitor'))}</span><h1>${esc(c.title)}</h1><p>${esc(c.teaser)}</p><p><a href="/" class="hero-link">Sign in or create a free account to continue</a></p></div>`;
+function lockedCaseMarkup(c, tier = 'visitor') {
+  const action = c.accessTier === 'premium' && tier !== 'visitor' ? 'Get ePeak+ to unlock this case' : 'Sign in or create an account to continue';
+  return `<div class="hero access-prompt"><span class="eyebrow">${esc(accessLabel(c, tier))}</span><h1>${esc(c.title)}</h1><p>${esc(c.teaser)}</p><p><a href="/" class="hero-link">${action}</a></p></div>`;
 }
 
 const slug = decodeURIComponent(location.pathname.replace(/^\/businesscases\/?/,'').split('/')[0]);
@@ -124,7 +125,7 @@ if (!slug) {
     app.innerHTML = '<div class="hero"><h1>Checking your access…</h1></div>';
     resolveExistingUserTier().then(tier => {
       if (canAccessBusinessCase(current, tier)) renderCase(current);
-      else app.innerHTML = lockedCaseMarkup(current);
+      else app.innerHTML = lockedCaseMarkup(current, tier);
     }).catch(() => {
       app.innerHTML = canAccessBusinessCase(current, 'visitor') ? '' : lockedCaseMarkup(current);
       if (canAccessBusinessCase(current, 'visitor')) renderCase(current);

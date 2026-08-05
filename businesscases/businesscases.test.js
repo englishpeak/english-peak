@@ -115,6 +115,31 @@ test('Case 3 contains the complete published lesson data and free-account access
   assert.equal(item.takeaway.reminder, 'The strongest sales strategy is not necessarily the most aggressive one. It is the strategy that uses limited resources where they are most likely to create sustainable value.');
 });
 
+test('Case 4 contains the complete ePeak+ lesson data', () => {
+  const item = businessCases[3];
+  assert.equal(item.slug, 'case-4');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'The Opportunity of a Lifetime');
+  assert.equal(item.accessTier, 'premium');
+  assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
+  assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
+  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/38l76qci1o7qw2baoa3cc/case-4.png?rlkey=4zee2tw3h32ynpd1lfjarkcab&st=5hu8dtvs&raw=1');
+  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/zgx1rrggocitgszxa0c9y/case-4.mp3?rlkey=2s0mcjwb9ri741qhjms43vgga&st=uu71172g&raw=1');
+  assert.equal(item.vocabulary.length, 10);
+  assert.equal(item.reading.paragraphs.length, 6);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.transcript.length, 1);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.deepEqual(item.quizQuestions.map(question => question.source), ['Reading', 'Reading', 'Listening', 'Listening', 'Combined']);
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'b', 'c', 'd', 'b']);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Advise Eva');
+  assert.equal(item.takeaway.reminder, 'Sometimes the hardest career decision is choosing between two excellent opportunities rather than between a good one and a bad one.');
+  const brief = item.reading.paragraphs.join(' ');
+  for (const spoiler of ['Meridian Global', 'Chief Marketing Officer', 'stock options', 'relocation package', 'executive committee']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
+});
+
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
   const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
   assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);
@@ -135,8 +160,9 @@ test('case route enforces business-case access before rendering lessons', async 
   const app = await readFile(new URL('./app.js', import.meta.url), 'utf8');
   assert.match(app, /resolveExistingUserTier\(\)\.then\(tier => \{/);
   assert.match(app, /if \(canAccessBusinessCase\(current, tier\)\) renderCase\(current\);/);
-  assert.match(app, /else app\.innerHTML = lockedCaseMarkup\(current\);/);
-  assert.match(app, /Sign in or create a free account to continue/);
+  assert.match(app, /else app\.innerHTML = lockedCaseMarkup\(current, tier\);/);
+  assert.match(app, /Sign in or create an account to continue/);
+  assert.match(app, /Get ePeak\+ to unlock this case/);
 });
 
 test('vocabulary is a top-level lesson accordion before the background brief', async () => {
