@@ -302,6 +302,63 @@ export const businessCases = [
       planningQuestions:[], tips:[], usefulPhrases:['Based on the available information...','One important consideration is...','Selling the company would...','Remaining independent would...','The long-term implications include...','From a strategic perspective...','My recommendation is...','Ultimately, the decision should...']
     },
     takeaway:{ text:'Some of the most difficult business decisions happen after success has already been achieved. Selling a company may provide extraordinary financial security, while continuing independently may offer purpose, creativity, and the opportunity to build an even greater legacy. The right decision depends not only on financial value, but also on personal values, long-term vision, and the kind of life the founders hope to create.', reminder:'Business success is not always measured by the highest price someone is willing to pay. Sometimes it is measured by the future you choose to build.' }
+  },
+  {
+    id:'case-6', caseNumber:6, slug:'case-6', title:'The First Quarter Strategy',
+    teaser:'The marketing department has budget for only one major initiative next quarter. Should it invest in attracting new customers or strengthening relationships with existing ones?',
+    level:'B2', levelGuidance:'', estimatedTime:'40–60 minutes', accessTier:'premium',
+    company:'BrightPath Digital', industry:'Marketing & Digital Services', location:'Austin, Texas, USA',
+    characters:[
+      { name:'Daniel Foster', role:'Marketing Director' },
+      { name:'Sophia Reed', role:'Brand Manager' },
+      { name:'Jason Miller', role:'Digital Marketing Manager' }
+    ],
+    imageSharingUrl:'https://www.dropbox.com/scl/fi/s8hfmn9iwval2ywin0dj3/case-6.png?rlkey=64bp0q988nt4tfyecl82io6q6&st=op8983p6&dl=0',
+    imageAlt:'Three marketing leaders discussing strategic priorities in front of a planning whiteboard.',
+    introduction:"As the year comes to an end, BrightPath Digital's marketing leadership team meets to define its priorities for the first quarter. Limited resources mean difficult choices, and the department must decide which investment will create the greatest long-term value.",
+    vocabulary:[
+      ['customer retention','keeping existing customers over time'], ['customer acquisition','gaining new customers'],
+      ['onboarding','the process of helping new customers begin using a product or service'], ['loyalty programme','a system that rewards repeat customers'],
+      ['brand awareness',"how familiar people are with a company's brand"], ['lead generation','attracting potential customers'],
+      ['return on investment (ROI)','the value generated compared with the money invested'], ['marketing initiative','a planned marketing project or campaign'],
+      ['lifetime value','the total revenue a customer is expected to generate over time'], ['competitive advantage','a factor that gives a company an advantage over competitors']
+    ],
+    reading:{ title:'Background Brief', paragraphs:[
+      'BrightPath Digital is a fast-growing marketing agency that helps technology companies, software businesses, and online retailers develop digital marketing strategies, branding campaigns, and customer-engagement programmes. Over the past several years, the company has built a reputation for combining creative ideas with measurable business results.',
+      'The agency has enjoyed another successful year, adding several important clients while expanding its internal marketing capabilities. Revenue has grown steadily, and management has approved a healthy budget for strategic initiatives during the coming year. However, even with additional investment available, the department cannot pursue every opportunity at the same time.',
+      'Marketing leaders often face difficult decisions when resources are limited. Some strategies focus on attracting new customers and increasing market visibility, while others concentrate on strengthening relationships with existing customers through better experiences, improved communication, and long-term loyalty.',
+      "The first quarter is particularly important because it establishes priorities for the rest of the year. Decisions made during this planning period influence budget allocation, staffing, campaign development, and the department's overall objectives.",
+      'The leadership team has gathered for its annual planning meeting to determine which strategic direction should receive the greatest investment during the coming quarter.'
+    ]},
+    listening:{ title:'Executive Meeting', context:"Listen to three members of the marketing leadership team as they debate the department's biggest strategic decision for the first quarter.", audioSharingUrl:'https://www.dropbox.com/scl/fi/18w56hysgxp9weilo3alf/case-6.mp3?rlkey=qgue52c4f42m68axqwmlkrp8c&st=xny4703m&dl=0', transcript:[
+      { speaker:'Daniel Foster', text:"Thanks, everyone. Before we leave for the holidays, I'd like us to agree on the department's priorities for the first quarter. We have enough budget to do one major initiative really well, but probably not two. The question is whether we invest in launching a completely new product line or focus on improving the experience for the customers we already have." },
+      { speaker:'Sophia Reed', text:"My vote is to strengthen what we've already built. Customer retention has improved this year, but we still receive feedback about onboarding, email communication, and loyalty rewards. If we make existing customers happier, they'll buy more often and recommend us to others. That's usually less expensive than constantly trying to acquire new customers." },
+      { speaker:'Jason Miller', text:"I agree that retention matters, but standing still isn't really an option anymore. Our competitors are launching new products every few months, and that's what generates attention. A successful product launch would create media coverage, social media engagement, and thousands of new leads. We can't rely on the same customer base forever." },
+      { speaker:'Daniel Foster', text:"Both ideas make sense, but the budget won't allow us to do both at the level we'd like. If we divide the money equally, we risk ending up with two average projects instead of one excellent one." },
+      { speaker:'Sophia Reed', text:'Maybe we should think beyond next quarter. Better customer retention creates predictable revenue, and predictable revenue gives us more freedom to invest in innovation later.' },
+      { speaker:'Jason Miller', text:"That's true, but innovation is also what keeps a brand relevant. If customers stop seeing anything new from us, they'll eventually start paying attention to someone else." },
+      { speaker:'Daniel Foster', text:"Perhaps the real challenge isn't choosing between growth and loyalty. It's deciding which investment is more likely to strengthen the business twelve months from now, not just next quarter." }
+    ]},
+    quizQuestions:[
+      { id:'q1', source:'Reading', question:"Why can't BrightPath Digital pursue every marketing initiative?", options:options('The company is losing money.','The department has limited resources despite having a healthy budget.','Most employees are leaving the company.','Clients have cancelled their contracts.'), correctAnswer:'b', explanation:'The Background Brief explains that although the budget has increased, the department still cannot fund every initiative at the same time.' },
+      { id:'q2', source:'Reading', question:'According to the Background Brief, why is the first quarter especially important?', options:options('It is when most employees take holidays.','It determines priorities and resource allocation for the rest of the year.',"It is the company's busiest sales season.",'It is when annual salaries are negotiated.'), correctAnswer:'b', explanation:'The reading states that first-quarter planning influences budgets, staffing, campaigns, and strategic objectives throughout the year.' },
+      { id:'q3', source:'Listening', question:"What does Sophia believe should be the department's priority?", options:options('Launching a completely new product line.','Expanding internationally.','Improving the experience of existing customers.','Increasing television advertising.'), correctAnswer:'c', explanation:'Sophia argues that customer retention creates stronger long-term value and encourages repeat business.' },
+      { id:'q4', source:'Listening', question:'Why does Jason support launching something new?', options:options('Existing customers are leaving the company.','Innovation attracts attention and helps keep the brand competitive.','The company has already cancelled its loyalty programme.','Product launches require less investment.'), correctAnswer:'b', explanation:'Jason believes innovation creates publicity, generates new leads, and keeps the company relevant.' },
+      { id:'q5', source:'Combined', question:'What is the central strategic dilemma?', options:options('Whether to increase employee salaries.','Whether to prioritise customer acquisition or customer retention.','Whether to relocate the marketing department.','Whether to outsource marketing activities.'), correctAnswer:'b', explanation:'Both the reading and the meeting focus on deciding how limited marketing resources should be invested for the greatest long-term benefit.' }
+    ],
+    speaking:{ questions:[
+      'If you were Daniel Foster, which strategy would you choose for the first quarter? Why?',
+      'Is it generally more expensive to acquire new customers than to retain existing ones?',
+      'How would you divide a marketing budget between innovation and customer loyalty?',
+      'Can a company remain competitive without regularly launching new products or services?',
+      'Which metric would you use to determine whether the chosen strategy was successful after one year?'
+    ], tip:'Think about customer lifetime value, acquisition costs, return on investment, brand awareness, competitive advantage, and sustainable growth. Support your answers with practical examples whenever possible.' },
+    writingTask:{
+      title:'Develop the Q1 Marketing Strategy', instructions:'Imagine you are an external marketing consultant hired by BrightPath Digital. Write a strategic recommendation explaining how the department should invest its first-quarter budget. Decide whether to prioritise customer acquisition, customer retention, or a balanced approach, and justify your recommendation with clear business arguments.',
+      format:'Strategic marketing recommendation', audience:'Daniel Foster, Marketing Director', wordRange:'180–220 words',
+      planningQuestions:[], tips:[], usefulPhrases:['I recommend prioritising...','A balanced strategy would...','The available budget should...','Customer retention provides...','Customer acquisition can...','A successful first quarter should...','This investment is likely to...','Performance should be measured by...']
+    },
+    takeaway:{ text:'Successful marketing is rarely about choosing between two good ideas. It is about deciding which investment will create the greatest long-term value when resources are limited. The strongest organisations understand that attracting new customers and retaining existing ones are both essential—but not always equally urgent.', reminder:'Great marketing strategy is not about doing everything. It is about choosing the right priorities at the right time.' }
   }
 ];
 
