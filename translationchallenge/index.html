@@ -143,6 +143,41 @@ const sets=[{id:1,title:"Set 1",description:"30 sentences · Mixed levels · Mix
 
 // Build out common, fully equivalent forms instead of making learners guess the
 // exact contraction, dialect, or everyday synonym used by the primary answer.
+const set4AdditionalAlternatives={
+1:["For how long have you known your best friend?","How long have you been friends with your best friend?"],
+2:["I didn't imagine you would take it so seriously.","I didn't think you would take it that seriously."],
+3:["By the time you're done reading this, I'll already be gone.","I'll be gone already by the time you finish reading this."],
+4:["What persuaded you to change your mind?","What was it that made you change your mind?"],
+5:["I find it difficult to concentrate with so much noise.","Concentrating is hard for me when there's so much noise."],
+6:["We would have had better seats if we had booked earlier.","Had we reserved sooner, we would have gotten better seats."],
+7:["I have no memory of promising him anything.","I can't remember promising her anything."],
+8:["From what I hear, they canceled the event at the last minute.","Apparently, they called off the event at the last minute."],
+9:["I'd prefer it if you didn't mention this during the meeting.","I would rather you not bring this up at the meeting."],
+10:["He has been working here since well before I arrived.","She'd already been working here for a long time when I arrived."],
+11:["How did you ever come up with an idea like that?","What gave you an idea like that?"],
+12:["Whatever they may say, I'm convinced we did the right thing.","No matter what people say, I'm certain we did the right thing."],
+13:["We had just enough money to pay the bill.","Our money barely stretched to cover the bill."],
+14:["Maybe we ought to have waited a bit longer.","It might have been better to wait a little longer."],
+15:["I was taken aback when they rejected our proposal.","Their rejection of our proposal took me by surprise."],
+16:["I'm not a fan of horror films, but tell me about this one.","Horror films don't appeal to me, but tell me about this one."],
+17:["If things go on like this, we'll have to seek another solution.","We'll need to look for a different solution if this continues."],
+18:["Have people ever mistaken you for somebody else?","Have you ever been taken for someone else?"],
+19:["The parcel should have arrived two days ago.","The package was expected to arrive two days ago."],
+20:["The less sleep I get, the more difficult I find it to make decisions.","Making decisions gets harder for me the less I sleep."],
+21:["I would have declined the invitation had I known who was going to be there.","If I had known who would be there, I wouldn't have accepted the invitation."],
+22:["I've wished to visit that place for years.","For years, I've been wanting to go to that place."],
+23:["I didn't expect at all to bump into her there.","Seeing her there was the very last thing I expected."],
+24:["In spite of being warned several times, he continued making the same mistake.","She kept making the same mistake despite receiving several warnings."],
+25:["I don't know if taking the risk is worthwhile.","I'm uncertain whether it's worth taking that chance."],
+26:["What would you have been up to had I not called you?","Had I not phoned you, what would you have been doing?"],
+27:["As it happened, we had been talking about entirely different people.","It turned out we'd been referring to completely different people."],
+28:["Don't allow your fear to keep you from trying.","Don't let fear prevent you from giving it a try."],
+29:["We will have finished the hardest part of the project by next month.","By next month, we'll have completed the project's most complicated part."],
+30:["Though it looked like a poor decision initially, everything worked out better than expected.","It seemed like a bad decision at first, but it all ended up better than expected."]
+};
+const set4=sets.find(set=>set.id===4);
+set4.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set4AdditionalAlternatives[sentence.id]));
+
 const alternativeRules=[
 [/\bI['’]m\b/g,"I am"],[/\bI['’]ve\b/g,"I have"],[/\bI['’]ll\b/g,"I will"],
 [/\byou['’]re\b/g,"you are"],[/\byou['’]ve\b/g,"you have"],[/\byou['’]ll\b/g,"you will"],
