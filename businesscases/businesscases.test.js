@@ -140,6 +140,35 @@ test('Case 4 contains the complete ePeak+ lesson data', () => {
   for (const spoiler of ['Meridian Global', 'Chief Marketing Officer', 'stock options', 'relocation package', 'executive committee']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
 });
 
+test('Case 5 contains the complete ePeak+ lesson data', () => {
+  const item = businessCases[4];
+  assert.equal(item.slug, 'case-5');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'The Billion-Dollar Decision');
+  assert.equal(item.level, 'C1');
+  assert.equal(item.accessTier, 'premium');
+  assert.equal(canAccessBusinessCase(item, 'visitor'), false);
+  assert.equal(canAccessBusinessCase(item, 'free'), false);
+  assert.equal(canAccessBusinessCase(item, 'premium'), true);
+  assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
+  assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
+  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/2efd7llzhq0318yhbo5kq/case-5.png?rlkey=keb4fqjc1fkcghglaa3amggc1&st=nyg4ho5j&raw=1');
+  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/scupev9i5ic6vkkr1gvab/case-5.mp3?rlkey=qruyj9w0f0i3gspqab3sod16i&st=7tjch78z&raw=1');
+  assert.equal(item.vocabulary.length, 10);
+  assert.equal(item.reading.paragraphs.length, 6);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.transcript.length, 10);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.deepEqual(item.quizQuestions.map(question => question.source), ['Reading', 'Reading', 'Listening', 'Listening', 'Combined']);
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'b', 'b', 'b', 'b']);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Advise the Founders');
+  assert.equal(item.takeaway.reminder, 'Business success is not always measured by the highest price someone is willing to pay. Sometimes it is measured by the future you choose to build.');
+  const brief = item.reading.paragraphs.join(' ');
+  for (const spoiler of ['billionaire', 'acquisition price', 'executive offer', 'generational wealth']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
+});
+
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
   const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
   assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);

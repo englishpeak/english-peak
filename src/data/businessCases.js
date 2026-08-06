@@ -242,6 +242,66 @@ export const businessCases = [
       tips:[], usefulPhrases:['In your position, I would...','One important factor to consider is...','This opportunity could allow you to...','On the other hand...','Professional loyalty is valuable, but...','Whatever decision you make...','In the long term...','My recommendation would be...']
     },
     takeaway:{ text:'Career decisions are rarely based only on salary or job titles. Professional growth, loyalty, personal values, leadership opportunities, and long-term goals often compete with one another. The most successful careers are built by making thoughtful decisions that balance gratitude for the past with ambition for the future.', reminder:'Sometimes the hardest career decision is choosing between two excellent opportunities rather than between a good one and a bad one.' }
+  },
+  {
+    id:'case-5', caseNumber:5, slug:'case-5', title:'The Billion-Dollar Decision',
+    teaser:'A global retailer wants to acquire an extremely successful wellness company, but its founders are unsure whether selling the business would actually be the right decision.',
+    level:'C1', levelGuidance:'', estimatedTime:'40–60 minutes', accessTier:'premium',
+    company:'Pure Origins Wellness', industry:'E-commerce & Wellness Products', location:'New York, USA',
+    characters:[
+      { name:'David Carter', role:'Co-Founder & CEO' },
+      { name:'Ethan Park', role:'Co-Founder & Chief Product Officer' }
+    ],
+    imageSharingUrl:'https://www.dropbox.com/scl/fi/2efd7llzhq0318yhbo5kq/case-5.png?rlkey=keb4fqjc1fkcghglaa3amggc1&st=nyg4ho5j&dl=0',
+    imageAlt:'Two company founders discussing the possible sale of their business while waiting in an airport VIP lounge.',
+    introduction:"David and Ethan founded Pure Origins Wellness from scratch. Years later, after building one of the fastest-growing wellness brands in the country, they are flying to Seattle to meet executives from one of the world's largest retailers, who want to acquire the entire company.",
+    vocabulary:[
+      ['acquisition','the purchase of one company by another'], ['valuation','the estimated financial value of a company'],
+      ['shareholder','a person who owns part of a company'], ['equity','ownership in a business'],
+      ['exit strategy','a plan for leaving or selling a business'], ['take a company public','to list a company on the stock market'],
+      ['legacy','the long-term impact someone leaves behind'], ['generational wealth','wealth that can benefit future generations'],
+      ['founder','a person who creates a company'], ['long-term vision','plans and objectives extending many years into the future']
+    ],
+    reading:{ title:'Background Brief', paragraphs:[
+      'Pure Origins Wellness is an online retailer specializing in premium wellness products, nutritional supplements, and sustainable lifestyle goods. Founded less than a decade ago, the company has grown from a small start-up into one of the fastest-growing brands in its market through direct-to-consumer sales and a strong online community.',
+      'Rather than relying on traditional retail stores, the founders invested heavily in digital marketing, customer education, subscription services, and product quality. Their strategy helped the company build an exceptionally loyal customer base while maintaining steady year-over-year growth.',
+      'The wellness industry has become increasingly competitive as major retailers and global consumer brands continue investing in health-related products. Independent companies often face an important strategic question: continue growing independently or accept acquisition offers from larger organisations that can accelerate international expansion.',
+      'Pure Origins Wellness has reached a point where it is financially successful, highly profitable, and recognised throughout the industry. The company now employs hundreds of people, ships products internationally, and continues expanding into new markets.',
+      'For David Carter and Ethan Park, however, success has created a new challenge. Decisions that once focused on survival now involve long-term vision, leadership, and the future of a business that has become much larger than either of them originally imagined.',
+      'The founders are travelling to Seattle for a meeting that could shape the future of both the company and their personal lives.'
+    ]},
+    listening:{ title:'Executive Meeting', context:'Listen to David and Ethan as they discuss the biggest decision they have ever faced while waiting for their flight to Seattle.', audioSharingUrl:'https://www.dropbox.com/scl/fi/scupev9i5ic6vkkr1gvab/case-5.mp3?rlkey=qruyj9w0f0i3gspqab3sod16i&st=7tjch78z&dl=0', transcript:[
+      { speaker:'David Carter', text:"It's strange, isn't it? Five years ago we were packing orders ourselves in that tiny warehouse, wondering if we'd make enough sales to pay the rent. Now we're flying to Seattle because one of the biggest retailers in the world wants to buy everything we've built." },
+      { speaker:'Ethan Park', text:"I still can't quite believe the number. Every time I look at it, it feels unreal. If we accept the offer, our families will never have to worry about money again. Not our children... probably not even our grandchildren." },
+      { speaker:'David Carter', text:"Financially, it's almost impossible to say no. But every time I think about signing those papers, I keep asking myself something else. If we sell the company, what are we going to wake up excited about next Monday?" },
+      { speaker:'Ethan Park', text:"That's exactly what's been bothering me. We've spent years talking about becoming the leading wellness brand in the world. Now someone is offering us the finish line before we've actually run the whole race." },
+      { speaker:'David Carter', text:"On the other hand, maybe we're looking at it the wrong way. Building the company was never supposed to be about owning it forever. Maybe success means knowing when to let someone else take it to the next level." },
+      { speaker:'Ethan Park', text:"Maybe... but they're not just buying a business. They're buying our culture, our team, our products... everything we've poured ourselves into. I can't help wondering whether the company would still feel like ours six months after the acquisition." },
+      { speaker:'David Carter', text:"There's also the risk of waiting. Today the business is worth an incredible amount, but markets change. Consumer trends change. Competitors appear. We could spend another five years trying to double the valuation... or we could lose half of it." },
+      { speaker:'Ethan Park', text:"True... but imagine where we could be if everything goes right. International expansion, new product lines, maybe even taking the company public one day. We'd probably work harder than ever, but we'd still be writing our own story." },
+      { speaker:'David Carter', text:"Funny, isn't it? We started this company because we wanted freedom. Now we're trying to decide whether freedom means finally letting go... or having the chance to keep building." },
+      { speaker:'Ethan Park', text:"Whatever we decide, tomorrow's meeting is probably going to be one of the most important conversations of our lives." }
+    ]},
+    quizQuestions:[
+      { id:'q1', source:'Reading', question:'Why has Pure Origins Wellness grown so quickly?', options:options('It operates hundreds of physical stores.','It focused on digital marketing, subscriptions, product quality, and customer education.','It manufactures products for other retailers.','It offers the lowest prices in the industry.'), correctAnswer:'b', explanation:'The Background Brief explains that the founders invested in digital marketing, customer education, subscription services, and product quality.' },
+      { id:'q2', source:'Reading', question:'According to the Background Brief, why do many successful independent companies receive acquisition offers?', options:options('Because they are required by law.','Because larger companies often want to accelerate expansion through acquisitions.','Because founders are forced to sell after ten years.','Because banks require ownership changes.'), correctAnswer:'b', explanation:'Larger organisations can use acquisitions to accelerate expansion, creating a strategic choice for successful independent companies.' },
+      { id:'q3', source:'Listening', question:'What concerns David the most about selling?', options:options('Paying taxes.','Losing motivation and purpose after the sale.','Finding another office.','Relocating to Seattle.'), correctAnswer:'b', explanation:'David wonders what would excite and motivate the founders after they sold the company.' },
+      { id:'q4', source:'Listening', question:'Why is Ethan hesitant about accepting the offer?', options:options('He believes the price is too low.','He worries the company could lose its culture and identity.','He dislikes travelling.','He wants to retire immediately.'), correctAnswer:'b', explanation:'Ethan worries that an acquisition could change the culture, team, products, and the company’s sense of identity.' },
+      { id:'q5', source:'Combined', question:'What is the central dilemma?', options:options('Whether to expand internationally.','Whether to sell an already successful company for extraordinary wealth or continue building it independently.','Whether to hire more employees.','Whether to launch a new product.'), correctAnswer:'b', explanation:'The reading establishes the successful independent company, while the listening presents the choice between extraordinary financial security and continuing to build it.' }
+    ],
+    speaking:{ questions:[
+      'If you were David or Ethan, would you sell the company? Why?',
+      "Is there a point where additional wealth no longer changes someone's quality of life?",
+      'Would you rather own an independent company or become extremely wealthy by selling it?',
+      'How important should employees and company culture be when founders consider selling a business?',
+      'Which would matter more to you: financial security for future generations or the opportunity to continue building something meaningful?'
+    ], tip:'Consider financial security, personal purpose, leadership, company culture, employee responsibility, long-term vision, and business risk. Support your ideas with examples.' },
+    writingTask:{
+      title:'Advise the Founders', instructions:'Imagine you have been hired as an independent business consultant. Prepare a recommendation for David and Ethan explaining whether they should sell Pure Origins Wellness or continue operating independently. Consider financial, strategic, personal, and cultural factors before reaching your conclusion.',
+      format:'Business recommendation', audience:'David Carter and Ethan Park', wordRange:'180–220 words',
+      planningQuestions:[], tips:[], usefulPhrases:['Based on the available information...','One important consideration is...','Selling the company would...','Remaining independent would...','The long-term implications include...','From a strategic perspective...','My recommendation is...','Ultimately, the decision should...']
+    },
+    takeaway:{ text:'Some of the most difficult business decisions happen after success has already been achieved. Selling a company may provide extraordinary financial security, while continuing independently may offer purpose, creativity, and the opportunity to build an even greater legacy. The right decision depends not only on financial value, but also on personal values, long-term vision, and the kind of life the founders hope to create.', reminder:'Business success is not always measured by the highest price someone is willing to pay. Sometimes it is measured by the future you choose to build.' }
   }
 ];
 
