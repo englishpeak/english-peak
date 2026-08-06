@@ -73,14 +73,26 @@ test("Set 4 has the required prompts and complete challenge data", () => {
   assert.deepEqual(Array.from(set4.sentences, sentence => sentence.spanish), expectedPrompts);
   assert.deepEqual(Array.from(set4.sentences, sentence => sentence.id), Array.from({ length: 30 }, (_, index) => index + 1));
   originalSet4.sentences.forEach(sentence => assert.ok(sentence.acceptedAnswers.length >= 3 && sentence.acceptedAnswers.length <= 6));
-  set4.sentences.forEach(sentence => {
+  set4.sentences.forEach((sentence, index) => {
     assert.deepEqual(Object.keys(sentence).sort(), ["acceptedAnswers", "id", "mediumPrompt", "note", "primaryAnswer", "spanish"]);
     assert.ok(sentence.primaryAnswer);
     assert.ok(sentence.acceptedAnswers.length >= 3);
+    assert.ok(sentence.acceptedAnswers.length >= originalSet4.sentences[index].acceptedAnswers.length + 2);
     assert.ok(sentence.mediumPrompt.split(/\s+/).length >= 2 && sentence.mediumPrompt.split(/\s+/).length <= 3);
     assert.ok(sentence.note);
     assert.ok(sentence.primaryAnswer.startsWith(sentence.mediumPrompt));
   });
+});
+
+test("Set 4 adds curated translation options to every prompt", () => {
+  const sets = evaluateSets(html.slice(dataStart, appStart));
+  const set4 = sets.find(set => set.id === 4);
+
+  assert.ok(set4.sentences[0].acceptedAnswers.includes("For how long have you known your best friend?"));
+  assert.ok(set4.sentences[3].acceptedAnswers.includes("What persuaded you to change your mind?"));
+  assert.ok(set4.sentences[17].acceptedAnswers.includes("Have people ever mistaken you for somebody else?"));
+  assert.ok(set4.sentences[25].acceptedAnswers.includes("Had I not phoned you, what would you have been doing?"));
+  assert.ok(set4.sentences[29].acceptedAnswers.includes("Though it looked like a poor decision initially, everything worked out better than expected."));
 });
 
 test("Set 4 answers support Easy reconstruction and strict Medium/Hard validation", () => {
