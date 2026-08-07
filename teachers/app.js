@@ -54,11 +54,11 @@ function nav() {
 }
 
 function overview() {
-  const week=getWeekRange(), ownReport=state.reports.find(r=>r.teacher_user_id===state.user.id&&r.week_start===week.start);
+  const week=getWeekRange(),day=activePayDay(),ownReport=state.reports.find(r=>r.teacher_user_id===state.user.id&&(day?r.pay_day_id===day.id:r.week_start===week.start));
   if(!state.isAdmin){
-    const pending=state.tasks.filter(t=>t.status!=='Completed').length,day=activePayDay();
+    const pending=state.tasks.filter(t=>t.status!=='Completed').length;
     return title('My Overview','Your students, schedule and pay day reporting at a glance.')+
-      `<section class="report-cta"><h2>${day?'Pay day '+esc(day.pay_date):'Pay day reporting'}</h2><p>${day?'Enter the hours taught for each assigned class.':'Your administrator has not opened a pay day yet.'}</p>${day?(ownReport?.status==='Submitted'?badge('Submitted'):`<button class="ep-btn-primary" data-action="report">Report hours</button>`):''}${ownReport?.status==='Needs Changes'?`<p><strong>Changes requested:</strong> ${esc(ownReport.admin_comments)}</p>`:''}</section>`+
+      `<section class="report-cta"><h2>${day?'Pay day '+esc(day.pay_date):'Pay day reporting'}</h2><p>${day?'Enter the hours taught for each assigned class. You can edit them while reporting remains open.':'Your administrator has not opened a pay day yet.'}</p>${day?`${ownReport?.status==='Submitted'?badge('Submitted'):''}<button class="ep-btn-primary" data-action="report">${ownReport?'Edit hours':'Report hours'}</button>`:''}${ownReport?.status==='Needs Changes'?`<p><strong>Changes requested:</strong> ${esc(ownReport.admin_comments)}</p>`:''}</section>`+
       stats([['Assigned students',state.students.length],['Classes this week',state.sessions.length],['Pending tasks',pending],['Report status',ownReport?.status||'Not started']]);
   }
   const activeTeachers=state.teachers.length, activeStudents=state.students.filter(s=>s.status==='Active').length;
@@ -114,7 +114,8 @@ function reportLines(reportId){return state.reportLines.filter(line=>line.report
 function reportDetails(report){const lines=reportLines(report.id);return `<details><summary>${lines.length} reported item${lines.length===1?'':'s'}</summary><ul class="line-list">${lines.map(line=>`<li><strong>${esc(line.is_extra?'Extra hours':className(line.class_id))}</strong> · ${Number(line.hours).toFixed(2)}h${line.comment?` — ${esc(line.comment)}`:''}</li>`).join('')}</ul></details>`}
 function reports(){
   const day=activePayDay();
-  if(!state.isAdmin) return title('My Pay Day Reports',day?`The next pay day is ${day.pay_date}. Report every assigned class, including zero hours.`:'There is no open pay day yet.',day?'<button class="ep-btn-primary" data-action="report">Report hours</button>':'')+
+  const openReport=day&&state.reports.find(report=>report.teacher_user_id===state.user.id&&report.pay_day_id===day.id);
+  if(!state.isAdmin) return title('My Pay Day Reports',day?`The next pay day is ${day.pay_date}. Report every assigned class, including zero hours. Submitted hours remain editable until reporting closes.`:'There is no open pay day yet.',day?`<button class="ep-btn-primary" data-action="report">${openReport?'Edit hours':'Report hours'}</button>`:'')+
     table(['Pay day','Hours','Reported details','Status'],state.reports.map(r=>`<tr><td>${esc(state.payDays.find(d=>d.id===r.pay_day_id)?.pay_date||r.week_end)}</td><td>${(reportLines(r.id).reduce((n,l)=>n+Number(l.hours),0)).toFixed(2)}h</td><td>${reportDetails(r)}</td><td>${badge(r.status)}</td></tr>`).join(''),'Your submitted pay day reports will appear here.');
   return title('Teacher Pay Reports','Review every submitted hour and the private payment totals.')+`<div class="table-scroll">${table(['Pay day','Teacher','Hours & details','Charged','Teacher pay','School share','Status','Actions'],state.reports.map(r=>{const lines=reportLines(r.id),profile=state.teacherProfiles.find(p=>p.user_id===r.teacher_user_id),adjustment=state.paymentAdjustments.find(a=>a.report_id===r.id),totals=paymentTotals(lines,state.classRates,profile?.hourly_rate,adjustment);return `<tr><td>${esc(state.payDays.find(d=>d.id===r.pay_day_id)?.pay_date||r.week_end)}</td><td><strong>${esc(teacherName(r.teacher_user_id))}</strong></td><td>${totals.hours.toFixed(2)}h${reportDetails(r)}</td><td>${money(totals.charged, OPERATING_CURRENCY)}</td><td><strong>${money(totals.teacherPay, OPERATING_CURRENCY)}</strong></td><td>${money(totals.schoolShare, OPERATING_CURRENCY)}</td><td>${badge(r.status)}</td><td><div class="row-actions"><button class="btn compact" data-adjust-payment="${r.id}">Adjust totals</button>${r.status==='Submitted'?`<button class="btn compact" data-approve="${r.id}">Approve</button><button class="btn compact" data-changes="${r.id}">Needs changes</button>`:''}</div></td></tr>`}).join(''),'No teachers have submitted hours yet.') }</div>`;
 }
