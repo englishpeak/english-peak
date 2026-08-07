@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildRateSave, clearExchangeSnapshot, convertUsdToMxn, defaultTeacherRate, filterPayments, formatRateAmount, money, monthlyPaymentSummary, paymentDisplay, paymentTotals, rateBalanceStatus, rateCurrency, suggestedPaymentAmount, validatePayment } from './payment-core.js';
+import { buildRateSave, clearExchangeSnapshot, convertUsdToMxn, defaultTeacherRate, filterPayments, formatRateAmount, money, monthlyPaymentSummary, OPERATING_CURRENCY, paymentDisplay, paymentTotals, rateBalanceStatus, rateCurrency, suggestedPaymentAmount, validatePayment } from './payment-core.js';
+
+test('admin pay reports use the MXN currency configured for class rates', () => {
+  assert.equal(OPERATING_CURRENCY, 'MXN');
+});
 
 test('calculates the automatic teacher rate as 80% of the class charge', () => {
   assert.equal(defaultTeacherRate(140), 112);

@@ -1,4 +1,4 @@
-export const OPERATING_CURRENCY = 'USD';
+export const OPERATING_CURRENCY = 'MXN';
 export const DEFAULT_RATE_CURRENCY = 'MXN';
 
 export function normalizeCurrency(value, fallback = null) {
