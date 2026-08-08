@@ -8,7 +8,8 @@
   <title>ePeak Irregular Verbs Practice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/brand-tokens.css">
   <style>
     :root {
       --navy: #0D3B6F;
@@ -64,7 +65,8 @@
       font-size: 32px;
       line-height: 1.1;
       color: var(--navy);
-      font-weight: 800;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 700;
     }
 
     .subtitle {
@@ -114,6 +116,39 @@
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
       overflow: hidden;
     }
+
+    .filter-card {
+      max-width: 980px;
+      margin-bottom: 18px;
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid rgba(13, 59, 111, 0.12);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(13, 59, 111, 0.06);
+    }
+
+    .filter-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .filter-heading h2 { margin: 0; color: var(--navy); font-size: 16px; }
+    .filter-heading span { color: var(--muted); font-size: 13px; }
+    .level-filters { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
+    .level-toggle { position: relative; }
+    .level-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+    .level-toggle label {
+      margin: 0; padding: 8px 13px; border: 1px solid rgba(13, 59, 111, 0.2);
+      border-radius: 999px; color: var(--navy); background: #fff; cursor: pointer;
+      font-size: 13px; text-transform: none;
+    }
+    .level-toggle label::before { content: "○"; margin-right: 6px; }
+    .level-toggle input:checked + label::before { content: "✓"; }
+    .level-toggle input:checked + label { color: #fff; background: var(--navy); border-color: var(--navy); }
+    .level-toggle input:focus-visible + label { outline: 3px solid rgba(74, 144, 217, 0.35); outline-offset: 2px; }
+    .level-tag { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; }
 
     .card-header {
       display: flex;
@@ -294,6 +329,22 @@
       font-weight: 700;
     }
 
+    .learning-tools { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(13, 59, 111, 0.1); }
+    .learning-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .details-panel { margin-top: 14px; padding: 18px; border-radius: 12px; background: var(--soft-blue-2); border: 1px solid rgba(13, 59, 111, 0.12); }
+    .details-panel h3 { margin: 0 0 8px; color: var(--navy); font-family: "Cormorant Garamond", Georgia, serif; font-size: 23px; }
+    .details-panel p { margin: 0 0 10px; line-height: 1.5; }
+    .details-panel ul { margin: 0; padding-left: 21px; color: var(--muted); line-height: 1.6; }
+    .report { max-width: 980px; margin-top: 18px; padding: 22px; background: #fff; border: 1px solid rgba(13, 59, 111, 0.14); border-radius: 14px; }
+    .report h2 { margin: 0 0 5px; color: var(--navy); font-family: "Cormorant Garamond", Georgia, serif; font-size: 27px; }
+    .report-summary { color: var(--muted); margin: 0 0 16px; }
+    .report-list { display: grid; gap: 8px; margin-bottom: 16px; }
+    .report-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--bg); }
+    .report-row.correct { border-left: 4px solid var(--green); }
+    .report-row.incorrect { border-left: 4px solid var(--red); }
+    .report-row span:last-child { font-weight: 700; }
+    .empty-filter { margin: 18px 0 0; color: var(--red); font-weight: 600; }
+
     @media (max-width: 860px) {
       main {
         padding: 22px 16px;
@@ -359,10 +410,19 @@
         </div>
       </section>
 
+      <section class="filter-card" aria-labelledby="level-filter-title">
+        <div class="filter-heading">
+          <h2 id="level-filter-title">Choose levels</h2>
+          <span id="availableCount"></span>
+        </div>
+        <fieldset class="level-filters" id="levelFilters" aria-label="Verb level filters"></fieldset>
+        <p class="empty-filter" id="emptyFilter" hidden>Select at least one level to continue practicing.</p>
+      </section>
+
       <section class="practice-card" aria-live="polite">
         <div class="card-header">
           <h2 class="card-title">Current verb</h2>
-          <span class="mode-badge" id="shownMode">Shuffled form</span>
+          <div><span class="level-tag" id="levelTag"></span> <span class="mode-badge" id="shownMode">Shuffled form</span></div>
         </div>
         <div class="question">
           <div class="verb-grid" id="verbGrid"></div>
@@ -372,7 +432,21 @@
           </div>
           <div class="feedback" id="feedback">Type the missing forms, then check your answers.</div>
           <div class="answer-key" id="answerKey" hidden></div>
+          <div class="learning-tools">
+            <div class="learning-actions">
+              <button class="btn-secondary" id="detailsButton" type="button" aria-expanded="false">See definition and examples</button>
+              <button class="btn-secondary" id="endButton" type="button">End practice and show report</button>
+            </div>
+            <div class="details-panel" id="detailsPanel" hidden></div>
+          </div>
         </div>
+      </section>
+      <section class="report" id="report" aria-labelledby="reportTitle" hidden>
+        <h2 id="reportTitle">Practice report</h2>
+        <p class="report-summary" id="reportSummary"></p>
+        <div class="report-list" id="reportList"></div>
+        <button class="btn-primary" id="mistakesButton" type="button" hidden>Practice mistakes</button>
+        <button class="btn-secondary" id="newSessionButton" type="button">Start a new session</button>
       </section>
     </main>
   </div>
@@ -498,6 +572,27 @@
       { base: ["write"], past: ["wrote"], participle: ["written"] }
     ];
 
+    const levelGroups = {
+      A1: "be become begin break bring build buy come cost cut do drink drive eat fall feel find get give go have hear know leave lose make meet pay put read run say see sit sleep speak spend stand take tell think understand wear win write".split(" "),
+      A2: "beat bend bet bite blow catch choose deal dig draw feed fight fly forget forgive freeze grow hang hide hit hold hurt keep learn lend let lie light mean ride ring rise sell send set shake shoot show shut sing sink teach throw wake".split(" "),
+      B1: "broadcast burst kneel lay lead sew shine slide split spread steal stick sweep swim tear".split(" "),
+      B2: "creep flee forbid seek shrink spring swing weep".split(" "),
+      C1: "spit sting stink strike swear".split(" ")
+    };
+    const levels = ["A1", "A2", "B1", "B2", "C1"];
+    const definitions = {
+      be: "to exist or describe a state", beat: "to hit repeatedly or defeat", become: "to begin to be", begin: "to start", bend: "to curve something", bet: "to risk money on a result", bite: "to cut with the teeth", blow: "to move air", break: "to separate into pieces", bring: "to carry something toward a place", broadcast: "to transmit a programme", build: "to make by joining parts", burst: "to break open suddenly", buy: "to get something by paying", catch: "to take hold of something moving", choose: "to select", come: "to move toward a place", cost: "to have a particular price", creep: "to move slowly and quietly", cut: "to divide with a sharp tool", deal: "to handle a situation", dig: "to make a hole", do: "to perform an action", draw: "to make a picture", drink: "to take liquid into the mouth", drive: "to control a vehicle", eat: "to consume food", fall: "to move downward", feed: "to give food to", feel: "to experience an emotion or sensation", fight: "to use force against someone", find: "to discover or locate", flee: "to escape from danger", fly: "to move through the air", forbid: "to refuse to allow", forget: "to fail to remember", forgive: "to stop blaming someone", freeze: "to become ice or very cold", get: "to receive or obtain", give: "to hand something to someone", go: "to move to another place", grow: "to increase in size", hang: "to suspend from above", have: "to own or experience", hear: "to notice sound", hide: "to put out of sight", hit: "to strike", hold: "to keep in the hands", hurt: "to cause pain", keep: "to continue to have", kneel: "to rest on the knees", know: "to have information", lay: "to put something down", lead: "to guide", learn: "to gain knowledge or skill", leave: "to go away from", lend: "to give temporarily", let: "to allow", lie: "to rest in a flat position", light: "to make something start burning", lose: "to no longer have", make: "to create or produce", mean: "to express or signify", meet: "to come together", pay: "to give money for something", put: "to move something into a position", read: "to understand written words", ride: "to travel on an animal or vehicle", ring: "to make a bell sound", rise: "to move upward", run: "to move quickly on foot", say: "to speak words", see: "to notice with the eyes", seek: "to try to find", sell: "to exchange for money", send: "to arrange for something to go", set: "to put in a particular position", sew: "to join with needle and thread", shake: "to move quickly back and forth", shine: "to produce or reflect light", shoot: "to fire a weapon", show: "to let someone see", shrink: "to become smaller", shut: "to close", sing: "to make music with the voice", sink: "to go below a surface", sit: "to rest on a seat", sleep: "to rest with the eyes closed", slide: "to move smoothly along a surface", speak: "to talk", spend: "to use time or money", spit: "to force liquid from the mouth", split: "to divide into parts", spread: "to extend over an area", spring: "to jump suddenly", stand: "to be upright on the feet", steal: "to take without permission", stick: "to attach or become fixed", sting: "to injure with a sharp point", stink: "to smell very unpleasant", strike: "to hit", swear: "to make a serious promise or use rude words", sweep: "to clean with a brush", swim: "to move through water", swing: "to move backward and forward", take: "to move or carry something", teach: "to help someone learn", tear: "to pull apart", tell: "to give information", think: "to use the mind", throw: "to send through the air", understand: "to know the meaning", wake: "to stop sleeping", wear: "to have clothing on the body", weep: "to cry", win: "to be successful", write: "to form words on a surface"
+    };
+
+    verbs.forEach((verb) => {
+      const base = verb.base[0];
+      verb.level = levels.find((level) => levelGroups[level].includes(base)) || "B2";
+      verb.definition = definitions[base];
+      verb.examples = base === "be"
+        ? ["I want to be ready on time.", "They were at home yesterday."]
+        : [`We need to ${base} today.`, `Yesterday, we ${verb.past[0]}.`];
+    });
+
     const labels = {
       base: "Base form",
       past: "Simple past",
@@ -512,11 +607,25 @@
     const correctCount = document.querySelector("#correctCount");
     const checkButton = document.querySelector("#checkButton");
     const nextButton = document.querySelector("#nextButton");
+    const levelFilters = document.querySelector("#levelFilters");
+    const levelTag = document.querySelector("#levelTag");
+    const availableCount = document.querySelector("#availableCount");
+    const emptyFilter = document.querySelector("#emptyFilter");
+    const detailsButton = document.querySelector("#detailsButton");
+    const detailsPanel = document.querySelector("#detailsPanel");
+    const endButton = document.querySelector("#endButton");
+    const report = document.querySelector("#report");
+    const reportSummary = document.querySelector("#reportSummary");
+    const reportList = document.querySelector("#reportList");
+    const mistakesButton = document.querySelector("#mistakesButton");
+    const newSessionButton = document.querySelector("#newSessionButton");
 
     let current = null;
     let attempted = 0;
     let correct = 0;
     let checkedThisRound = false;
+    let sessionResults = [];
+    let mistakePool = null;
 
     function normalize(value) {
       return value
@@ -549,14 +658,30 @@
       return items[Math.floor(Math.random() * items.length)];
     }
 
+    function activeLevels() {
+      return Array.from(levelFilters.querySelectorAll("input:checked"), (input) => input.value);
+    }
+
+    function filteredVerbs() {
+      const selected = activeLevels();
+      const pool = mistakePool || verbs;
+      return pool.filter((verb) => selected.includes(verb.level));
+    }
+
     function makePrompt() {
-      const verb = sample(verbs);
+      const verb = sample(filteredVerbs());
       const shownForm = sample(forms);
       const shownValue = sample(verb[shownForm]);
       return { verb, shownForm, shownValue };
     }
 
     function renderPrompt() {
+      const available = filteredVerbs();
+      availableCount.textContent = `${available.length} verb${available.length === 1 ? "" : "s"} available`;
+      emptyFilter.hidden = available.length > 0;
+      checkButton.disabled = available.length === 0;
+      nextButton.disabled = available.length === 0;
+      if (!available.length) return;
       current = makePrompt();
       checkedThisRound = false;
       feedback.className = "feedback";
@@ -564,6 +689,10 @@
       answerKey.hidden = true;
       answerKey.innerHTML = "";
       shownMode.textContent = `${labels[current.shownForm]} shown`;
+      levelTag.textContent = current.verb.level;
+      detailsPanel.hidden = true;
+      detailsButton.setAttribute("aria-expanded", "false");
+      detailsButton.textContent = "See definition and examples";
 
       verbGrid.innerHTML = forms.map((form) => {
         if (form === current.shownForm) {
@@ -612,6 +741,7 @@
         checkedThisRound = true;
         attemptedCount.textContent = attempted;
         correctCount.textContent = correct;
+        sessionResults.push({ verb: current.verb, correct: allCorrect });
       }
 
       if (allCorrect) {
@@ -623,10 +753,55 @@
         feedback.textContent = "Check the highlighted answer. Accepted forms are shown below.";
         showAnswerKey();
       }
+
+      if (attempted === 10 && sessionResults.length === 10) showReport();
     }
+
+    function toggleDetails() {
+      const opening = detailsPanel.hidden;
+      detailsPanel.hidden = !opening;
+      detailsButton.setAttribute("aria-expanded", String(opening));
+      detailsButton.textContent = opening ? "Hide definition and examples" : "See definition and examples";
+      if (opening) {
+        detailsPanel.innerHTML = `<h3>${current.verb.base[0]}</h3><p><strong>Definition:</strong> ${current.verb.definition}.</p><ul>${current.verb.examples.map((example) => `<li>${example}</li>`).join("")}</ul>`;
+      }
+    }
+
+    function showReport() {
+      report.hidden = false;
+      reportSummary.textContent = `${correct} correct out of ${attempted} verb${attempted === 1 ? "" : "s"} practiced.`;
+      reportList.innerHTML = sessionResults.length ? sessionResults.map((result) => `
+        <div class="report-row ${result.correct ? "correct" : "incorrect"}">
+          <span>${result.verb.base[0]} · ${result.verb.past[0]} · ${result.verb.participle[0]}</span>
+          <span>${result.correct ? "✓ Right" : "✗ Needs practice"}</span>
+        </div>`).join("") : "<p>No verbs have been checked yet.</p>";
+      mistakesButton.hidden = !sessionResults.some((result) => !result.correct);
+      report.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetSession(pool = null) {
+      mistakePool = pool;
+      attempted = 0;
+      correct = 0;
+      sessionResults = [];
+      attemptedCount.textContent = "0";
+      correctCount.textContent = "0";
+      report.hidden = true;
+      renderPrompt();
+    }
+
+    levelFilters.innerHTML = levels.map((level) => `<div class="level-toggle"><input type="checkbox" id="level-${level}" value="${level}" checked><label for="level-${level}">${level}</label></div>`).join("");
+    levelFilters.addEventListener("change", () => { mistakePool = null; renderPrompt(); });
 
     checkButton.addEventListener("click", checkAnswers);
     nextButton.addEventListener("click", renderPrompt);
+    detailsButton.addEventListener("click", toggleDetails);
+    endButton.addEventListener("click", showReport);
+    newSessionButton.addEventListener("click", () => resetSession());
+    mistakesButton.addEventListener("click", () => {
+      const mistakes = sessionResults.filter((result) => !result.correct).map((result) => result.verb);
+      resetSession(mistakes);
+    });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && document.activeElement && document.activeElement.tagName === "INPUT") {
         checkAnswers();
