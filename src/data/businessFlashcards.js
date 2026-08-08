@@ -29018,5 +29018,245 @@ export const businessFlashcards = [
       "The company shared cybersecurity best practices after introducing remote work across all offices."
     ]
   },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "automate",
+    partOfSpeech: "verb",
+    category: "Technology",
+    definition: "to use technology to perform a task or process with little or no human effort",
+    examples: [
+      "The retailer plans to automate stock updates across all its online sales channels.",
+      "We automated the weekly report so analysts could focus on interpreting the results."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "trade-off",
+    partOfSpeech: "noun",
+    category: "Decision-Making",
+    definition: "a decision that accepts a disadvantage or gives up one benefit in order to gain another",
+    examples: [
+      "Choosing the cheaper supplier involved a trade-off between lower costs and faster delivery.",
+      "The team accepted reduced customization as a trade-off for launching the platform on schedule."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "scope creep",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "the gradual addition of unplanned work or requirements that expands a project beyond its agreed boundaries",
+    examples: [
+      "Repeated requests for extra dashboard features caused scope creep and delayed the release.",
+      "The project manager required formal approval for new tasks to prevent scope creep."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "crypto",
+    partOfSpeech: "noun",
+    category: "Digital Finance",
+    definition: "an informal shortened term for cryptocurrency, especially when discussing the market or industry",
+    examples: [
+      "The payment company created a compliance team before offering crypto services to customers.",
+      "Investors reduced their exposure to crypto after prices became more volatile."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "cryptocurrency",
+    partOfSpeech: "noun",
+    category: "Digital Finance",
+    definition: "a category of digital assets that uses blockchain or similar technology to record and secure transactions",
+    examples: [
+      "The exchange allows customers to buy several types of cryptocurrency, including Bitcoin and Ether.",
+      "Before accepting cryptocurrency, the retailer reviewed the tax and payment risks involved."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "Bitcoin",
+    partOfSpeech: "proper noun",
+    category: "Digital Finance",
+    definition: "a specific decentralized cryptocurrency whose transactions are verified by a distributed network rather than a central authority",
+    examples: [
+      "The company converted the Bitcoin payment into local currency as soon as it arrived.",
+      "The investment fund treats Bitcoin as one asset within the wider cryptocurrency market."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "vibe coding",
+    partOfSpeech: "noun",
+    category: "Software Development",
+    definition: "an AI-led way of creating software by describing the desired result and relying heavily on generated code instead of manually writing and fully understanding each part",
+    examples: [
+      "The founder used vibe coding to build a quick prototype but asked an engineer to review it before launch.",
+      "Vibe coding helped the team test the idea rapidly, although the generated code still needed security checks."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "SKU (Stock Keeping Unit)",
+    partOfSpeech: "noun",
+    category: "Inventory Management",
+    definition: "an abbreviation for Stock Keeping Unit: a unique identifier assigned to a particular product or product variation for inventory tracking",
+    examples: [
+      "Each color and size of the jacket has a separate SKU in the retailer's inventory system.",
+      "The warehouse worker scanned the Stock Keeping Unit to confirm that the correct product was packed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "unfair competition",
+    partOfSpeech: "noun",
+    category: "Business Law",
+    definition: "dishonest, deceptive, or improper commercial behavior that gives a business an unjust advantage over its competitors",
+    examples: [
+      "The regulator investigated the company for unfair competition after it published misleading claims about a rival.",
+      "Using a competitor's branding to confuse customers may be treated as unfair competition."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "outstanding",
+    partOfSpeech: "adjective",
+    category: "Accounting",
+    definition: "not yet paid or settled when referring to an invoice, debt, or payment",
+    examples: [
+      "The finance team contacted clients whose invoices had been outstanding for more than 60 days.",
+      "Please settle the outstanding balance before placing another wholesale order."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "accounts receivable",
+    partOfSpeech: "noun",
+    category: "Accounting",
+    definition: "money that customers owe to a business for goods or services already provided on credit",
+    examples: [
+      "Late customer payments increased accounts receivable and placed pressure on the agency's cash position.",
+      "The accountant reviewed accounts receivable to identify clients who needed a payment reminder."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "accounts payable",
+    partOfSpeech: "noun",
+    category: "Accounting",
+    definition: "money that a business owes to suppliers, vendors, or other creditors for purchases made on credit",
+    examples: [
+      "The accounts payable balance rose after the manufacturer ordered materials from several suppliers.",
+      "Our finance team schedules accounts payable carefully so vendors receive their money on time."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "cash flow",
+    partOfSpeech: "noun",
+    category: "Finance",
+    definition: "the movement of money into and out of a business during a particular period",
+    examples: [
+      "The subscription model improved cash flow by bringing in predictable monthly payments.",
+      "Although sales were strong, slow invoice collection created a cash flow problem."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "break-even point",
+    partOfSpeech: "noun",
+    category: "Financial Planning",
+    definition: "the level of sales at which total revenue equals total costs, resulting in neither profit nor loss",
+    examples: [
+      "The café must sell 300 lunches a week to reach its break-even point.",
+      "Higher software licensing costs moved the product's break-even point into the next quarter."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "overhead",
+    partOfSpeech: "noun",
+    category: "Cost Management",
+    definition: "ongoing operating costs that cannot be linked directly to producing a particular product or service",
+    examples: [
+      "Moving to a smaller office reduced overhead without affecting production capacity.",
+      "The consultancy includes rent, insurance, and administrative salaries in its overhead."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "deliverable",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "a specific output, result, or piece of work that a project team must complete and provide",
+    examples: [
+      "The first project deliverable is a tested prototype for the mobile checkout process.",
+      "The client rejected the deliverable because the final report did not include the agreed sales forecast."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "project scope",
+    partOfSpeech: "noun",
+    category: "Project Management",
+    definition: "the agreed boundaries of a project, including its objectives, tasks, and deliverables",
+    examples: [
+      "Employee training was included in the project scope, but long-term technical support was not.",
+      "The team clarified the project scope before estimating the budget and completion date."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "technical debt",
+    partOfSpeech: "noun",
+    category: "Software Development",
+    definition: "future cost or extra work caused by choosing a quick or easy technical solution instead of a more reliable one",
+    examples: [
+      "Skipping automated tests helped the startup launch sooner but created technical debt for the engineering team.",
+      "The company reserved one sprint for reducing technical debt in the payment platform."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "legacy system",
+    partOfSpeech: "noun",
+    category: "Information Technology",
+    definition: "an older system or technology that an organization still uses, often because replacement would be costly or disruptive",
+    examples: [
+      "The bank's legacy system cannot easily connect to modern mobile applications.",
+      "Staff will run both platforms during the gradual replacement of the legacy system."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 19,
+    word: "vendor lock-in",
+    partOfSpeech: "noun",
+    category: "Technology Strategy",
+    definition: "a situation in which dependence on one provider's technology, products, data formats, or services makes switching providers difficult or expensive",
+    examples: [
+      "The engineering team chose open data formats to reduce the risk of vendor lock-in.",
+      "High migration fees created vendor lock-in and prevented the company from moving to a cheaper cloud service."
+    ]
+  },
 
 ];
