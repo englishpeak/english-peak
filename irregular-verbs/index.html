@@ -744,6 +744,7 @@
     let checkedThisRound = false;
     let sessionResults = [];
     let mistakePool = null;
+    let progressReported = false;
 
     function normalize(value) {
       return value
@@ -872,7 +873,23 @@
         showAnswerKey();
       }
 
-      if (attempted === 10 && sessionResults.length === 10) showReport();
+      if (attempted === 10 && sessionResults.length === 10) reportProgress();
+    }
+
+    function reportProgress() {
+      if (progressReported || !window.parent || window.parent === window) return;
+
+      try {
+        window.parent.postMessage({
+          type: "exerciseComplete",
+          exerciseType: "Irregular Verbs",
+          exerciseName: "Irregular Verbs Practice",
+          score: correct,
+          maxScore: 10,
+          details: { verbsPracticed: 10 }
+        }, window.location.origin);
+        progressReported = true;
+      } catch (error) {}
     }
 
     function toggleDetails() {
@@ -902,6 +919,7 @@
       attempted = 0;
       correct = 0;
       sessionResults = [];
+      progressReported = false;
       attemptedCount.textContent = "0";
       correctCount.textContent = "0";
       report.hidden = true;
