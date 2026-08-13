@@ -20,13 +20,83 @@ test("every translation challenge sentence gains accepted alternatives", () => {
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 
-  assert.equal(expandedSets.length, 4);
-  assert.equal(expandedSentences.length, 120);
+  assert.equal(expandedSets.length, 5);
+  assert.equal(expandedSentences.length, 150);
   expandedSentences.slice(0, 90).forEach((sentence, index) => {
     assert.ok(
       sentence.acceptedAnswers.length > originalCounts[index],
       `Set ${Math.floor(index / 30) + 1}, sentence ${(index % 30) + 1} should gain an alternative`
     );
+  });
+});
+
+test("Set 5 has all required prompts and complete challenge data", () => {
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
+  const sets = evaluateSets(html.slice(dataStart, appStart));
+  const set5 = sets.find(set => set.id === 5);
+  const originalSet5 = originalSets.find(set => set.id === 5);
+  const expectedPrompts = [
+    "No sabía que llevabas tanto tiempo viviendo aquí.",
+    "¿Qué harías si de repente te quedaras sin trabajo?",
+    "Todavía me estoy acostumbrando a trabajar desde casa.",
+    "Para cuando nos dimos cuenta del error, ya era demasiado tarde.",
+    "No tiene caso fingir que no pasó nada.",
+    "¿Por qué no me dijiste que necesitabas ayuda?",
+    "Llevo intentando comunicarme con él desde ayer.",
+    "Si hubiera prestado más atención, no habría cometido ese error.",
+    "Parece que alguien dejó la puerta abierta toda la noche.",
+    "No estoy seguro de cuánto tiempo nos vaya a tomar terminar esto.",
+    "Por mucho que se lo expliques, nunca escucha.",
+    "Me gustaría saber por qué cambiaron de opinión tan rápido.",
+    "¿Cómo habría sido tu vida si hubieras crecido en otro país?",
+    "Se rumorea que la compañía está considerando vender el edificio.",
+    "Apenas podía escuchar lo que decía por todo el ruido.",
+    "Nunca se me había ocurrido verlo de esa manera.",
+    "Si vas a llegar tarde, por lo menos avísame.",
+    "No puedo creer que hayamos tardado tanto en encontrar una solución.",
+    "¿Cuándo fue la última vez que hiciste algo por primera vez?",
+    "Deberías haberme preguntado antes de tomar una decisión.",
+    "A medida que pasaban los días, empezó a sentirse más cómodo.",
+    "No habría forma de terminar a tiempo sin su ayuda.",
+    "¿Qué tan diferente crees que habría sido el resultado?",
+    "Me arrepiento de no haber aprovechado esa oportunidad.",
+    "Resulta que ninguno de nosotros tenía razón.",
+    "Llevo tanto tiempo haciendo esto que ya ni siquiera tengo que pensarlo.",
+    "No fue sino hasta después de hablar con ella que entendí lo que quería decir.",
+    "Por más difícil que parezca ahora, eventualmente encontrarás la manera.",
+    "Para finales de este año, habré estado trabajando aquí durante diez años.",
+    "Si algo he aprendido de todo esto, es que nunca debes dar nada por sentado."
+  ];
+
+  assert.ok(set5);
+  assert.equal(set5.title, "Set 5");
+  assert.equal(set5.description, "30 sentences · Mixed levels · Mixed grammar");
+  assert.deepEqual(Array.from(set5.sentences, sentence => sentence.spanish), expectedPrompts);
+  assert.deepEqual(Array.from(set5.sentences, sentence => sentence.id), Array.from({ length: 30 }, (_, index) => index + 1));
+  originalSet5.sentences.forEach(sentence => {
+    assert.deepEqual(Object.keys(sentence).sort(), ["acceptedAnswers", "id", "mediumPrompt", "note", "primaryAnswer", "spanish"]);
+    assert.ok(sentence.primaryAnswer);
+    assert.ok(sentence.acceptedAnswers.length >= 3 && sentence.acceptedAnswers.length <= 6);
+    assert.ok(sentence.mediumPrompt.split(/\s+/).length >= 2 && sentence.mediumPrompt.split(/\s+/).length <= 3);
+    assert.ok(sentence.primaryAnswer.startsWith(sentence.mediumPrompt));
+    assert.ok(sentence.note);
+  });
+});
+
+test("Set 5 supports Easy reconstruction and strict Medium/Hard validation", () => {
+  const sets = evaluateSets(html.slice(dataStart, appStart));
+  const set5 = sets.find(set => set.id === 5);
+  const normalize = value => String(value).toLowerCase().replace(/[’‘`´]/g, "'").replace(/[¿?¡!]/g, " ").replace(/[.,;]/g, " ").replace(/\s+/g, " ").trim();
+  const easyWords = value => value.replace(/[’‘`´]/g, "'").replace(/[.,;:!?¿¡]/g, "").split(/\s+/).filter(Boolean);
+
+  set5.sentences.forEach(sentence => {
+    assert.equal(normalize(easyWords(sentence.primaryAnswer).join(" ")), normalize(sentence.primaryAnswer));
+    assert.equal(normalize(`${sentence.mediumPrompt} ${sentence.primaryAnswer.slice(sentence.mediumPrompt.length).trim()}`), normalize(sentence.primaryAnswer));
+    for (const answer of [sentence.primaryAnswer, ...sentence.acceptedAnswers]) {
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(answer)));
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(`  ${answer.toUpperCase().replaceAll("'", "’")}!!!  `)));
+    }
+    assert.equal([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(answer => normalize(answer) === normalize("This is not a valid translation.")), false);
   });
 });
 
