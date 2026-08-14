@@ -209,6 +209,41 @@ const set4AdditionalAlternatives={
 const set4=sets.find(set=>set.id===4);
 set4.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set4AdditionalAlternatives[sentence.id]));
 
+const set5AdditionalAlternatives={
+1:["I wasn't aware that you'd been living here for so long.","I didn't know you had lived here for such a long time."],
+2:["What would you do if you suddenly became unemployed?","If you suddenly lost your job, what would you do?"],
+3:["I'm still learning to adjust to working from home.","I'm still becoming accustomed to working remotely."],
+4:["It was too late by the time we noticed the error.","When we finally realized our mistake, it was already too late."],
+5:["There's no point acting as if nothing happened.","It's no use pretending that nothing happened."],
+6:["Why didn't you let me know that you needed help?","Why didn't you mention that you needed help?"],
+7:["Since yesterday, I've been trying to reach him.","I've been attempting to contact him since yesterday."],
+8:["I wouldn't have made that error if I'd paid closer attention.","Had I been more attentive, I wouldn't have made that mistake."],
+9:["Someone seems to have left the door open all night.","Apparently, someone left the door open throughout the night."],
+10:["I don't know how much time we'll need to finish this.","I'm uncertain how long finishing this is going to take us."],
+11:["Regardless of how much you explain it to him, he never listens.","You can explain it to her as much as you like, but she never listens."],
+12:["I'd be interested to know why they changed their minds so quickly.","I wonder what made them change their minds so fast."],
+13:["How might your life have turned out if you'd grown up in a different country?","Had you grown up in another country, what would your life have been like?"],
+14:["The company is reportedly considering selling the building.","According to rumors, the company is thinking about selling the building."],
+15:["All the noise made it almost impossible to hear what he was saying.","With all that noise, I could hardly hear what she was saying."],
+16:["I had never considered looking at it that way.","Seeing it from that perspective had never occurred to me."],
+17:["Let me know, at least, if you're going to be late.","If you expect to be late, at least give me a heads-up."],
+18:["I can't believe finding a solution took us so long.","It's hard to believe we needed so much time to find a solution."],
+19:["What is the most recent thing you did for the first time?","When did you most recently try something for the first time?"],
+20:["Before deciding, you should have asked me.","You should have consulted me before you made a decision."],
+21:["He grew more comfortable as the days went by.","She started feeling more at ease as time passed."],
+22:["Finishing on time would be impossible without their help.","We couldn't finish on time without their help."],
+23:["How much do you think the result would have differed?","What difference do you think there would have been in the outcome?"],
+24:["I regret not making the most of that opportunity.","I wish I hadn't passed up that opportunity."],
+25:["We were both mistaken, as it turned out.","In the end, it turned out that neither of us was right."],
+26:["I've done this for such a long time that I no longer need to think about it.","I've been doing this so long that I don't even think about it anymore."],
+27:["I only understood what she meant after speaking to her.","Not until I had talked to her did I understand what she meant."],
+28:["However hard it may seem right now, you'll find a way eventually.","You'll eventually figure out a way, no matter how difficult it seems now."],
+29:["At the end of this year, I'll have been working here for a decade.","I will have worked here for ten years by the end of this year."],
+30:["If all this has taught me anything, it's never to take anything for granted.","The one thing I've learned from all of this is that nothing should ever be taken for granted."]
+};
+const set5=sets.find(set=>set.id===5);
+set5.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set5AdditionalAlternatives[sentence.id]));
+
 const alternativeRules=[
 [/\bI['’]m\b/g,"I am"],[/\bI['’]ve\b/g,"I have"],[/\bI['’]ll\b/g,"I will"],
 [/\byou['’]re\b/g,"you are"],[/\byou['’]ve\b/g,"you have"],[/\byou['’]ll\b/g,"you will"],
