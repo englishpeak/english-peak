@@ -81,6 +81,20 @@ test("Set 5 has all required prompts and complete challenge data", () => {
     assert.ok(sentence.primaryAnswer.startsWith(sentence.mediumPrompt));
     assert.ok(sentence.note);
   });
+  set5.sentences.forEach((sentence, index) => {
+    assert.ok(sentence.acceptedAnswers.length >= originalSet5.sentences[index].acceptedAnswers.length + 2);
+  });
+});
+
+test("Set 5 adds curated translation options to every prompt", () => {
+  const sets = evaluateSets(html.slice(dataStart, appStart));
+  const set5 = sets.find(set => set.id === 5);
+
+  assert.ok(set5.sentences[0].acceptedAnswers.includes("I wasn't aware that you'd been living here for so long."));
+  assert.ok(set5.sentences[8].acceptedAnswers.includes("Someone seems to have left the door open all night."));
+  assert.ok(set5.sentences[14].acceptedAnswers.includes("With all that noise, I could hardly hear what she was saying."));
+  assert.ok(set5.sentences[22].acceptedAnswers.includes("How much do you think the result would have differed?"));
+  assert.ok(set5.sentences[29].acceptedAnswers.includes("If all this has taught me anything, it's never to take anything for granted."));
 });
 
 test("Set 5 supports Easy reconstruction and strict Medium/Hard validation", () => {
