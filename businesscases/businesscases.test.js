@@ -231,6 +231,37 @@ test('Case 7 contains the complete ePeak+ lesson data', () => {
   for (const spoiler of ['six percent', 'twelve percent', 'delayed', 'West Coast', 'logistics costs', 'spending reductions', 'revise the annual forecast', 'targeted measures']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
 });
 
+test('Case 8 contains the complete ePeak+ Dubai lesson data', () => {
+  const item = businessCases[7];
+  assert.equal(item.slug, 'case-8');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'The Dubai Decision');
+  assert.equal(item.level, 'C1');
+  assert.equal(item.estimatedTime, '40–60 minutes');
+  assert.equal(item.accessTier, 'premium');
+  assert.equal(canAccessBusinessCase(item, 'visitor'), false);
+  assert.equal(canAccessBusinessCase(item, 'free'), false);
+  assert.equal(canAccessBusinessCase(item, 'premium'), true);
+  assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
+  assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
+  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/029pr7dq07sg0zha9wayn/case-8.png?rlkey=h5kf1k8dipx4r0afh640rg2h5&st=xw3smma0&raw=1');
+  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/exjr8y78mkuvasobdc6nc/case-8.mp3?rlkey=s80mdwz4gt0zm954n6r1pogxy&st=pijvj94o&raw=1');
+  assert.equal(item.vocabulary.length, 12);
+  assert.equal(item.reading.paragraphs.length, 7);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.transcript.length, 10);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.deepEqual(item.quizQuestions.map(question => question.source), ['Reading', 'Reading', 'Listening', 'Listening', 'Combined']);
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'c', 'b', 'c', 'b']);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Recommend the Dubai Entry Strategy');
+  assert.equal(item.writingTask.audience, 'Nexora Consulting Group Board of Directors');
+  assert.equal(item.takeaway.reminder, 'Successful international expansion is not simply about entering a market quickly. It is about building an operation that can succeed there for years.');
+  const brief = item.reading.paragraphs.join(' ');
+  for (const spoiler of ['free zone', 'mainland', 'six-week delay', 'three of the companies', 'commercial launch to February']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
+});
+
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
   const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
   assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);

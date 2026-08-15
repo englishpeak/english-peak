@@ -420,6 +420,75 @@ export const businessCases = [
       tips:[], usefulPhrases:['Although Q2 performance improved...','The results remain below forecast because...','Management should consider...','Rather than implementing broad cuts...','A more targeted approach would...','The full-year forecast should...','This would allow the company to...','If performance does not improve by Q3...','From a long-term perspective...','Our recommendation is to...']
     },
     takeaway:{ text:'Strong financial leadership requires more than reporting whether results are good or bad. Executives must understand why performance differs from expectations, distinguish temporary problems from deeper weaknesses, and decide how aggressively the company should respond.\n\nReducing costs can protect short-term profitability, but excessive cuts may weaken future growth. At the same time, unrealistic forecasts can damage management’s credibility with the board.', reminder:'A strong financial strategy does not simply make the numbers look better. It helps the company make better decisions because of what the numbers reveal.' }
+  },
+  {
+    id:'case-8', caseNumber:8, slug:'case-8', title:'The Dubai Decision',
+    teaser:'A European technology consultancy is preparing to open its Middle East operation in Dubai, but getting the structure right may be more important than meeting the original launch date.',
+    level:'C1', levelGuidance:'', estimatedTime:'40–60 minutes', accessTier:'premium',
+    company:'Nexora Consulting Group', industry:'Technology Consulting & Professional Services', location:'Dubai, United Arab Emirates',
+    characters:[
+      { name:'Thomas Keller', role:'Chief Operating Officer' },
+      { name:'Omar Haddad', role:'Regional Expansion Director' }
+    ],
+    imageSharingUrl:'https://www.dropbox.com/scl/fi/029pr7dq07sg0zha9wayn/case-8.png?rlkey=h5kf1k8dipx4r0afh640rg2h5&st=xw3smma0&dl=0',
+    imageAlt:'Two senior executives reviewing documents while discussing the launch of a new business operation in Dubai.',
+    introduction:'Nexora Consulting Group has chosen Dubai as the location for its new Middle East hub. After months of planning, the company is approaching the final stages of its expansion—but several legal, operational, and strategic decisions still need to be made before the new office can begin commercial operations.',
+    vocabulary:[
+      ['business setup','the process of legally establishing a new company or operation'],
+      ['trade licence','official authorisation allowing a company to conduct specified business activities'],
+      ['mainland company','a company licensed to operate from Dubai mainland'],
+      ['free zone','a designated business area with its own setup framework and regulations'],
+      ['business activity','the specific commercial or professional activity a company is licensed to perform'],
+      ['corporate tax','tax applied to the taxable income or profits of businesses'],
+      ['VAT registration','the process of registering a qualifying business for Value Added Tax'],
+      ['commercial launch','the point at which a company officially begins selling or providing services'],
+      ['relocate','to move employees or operations to another location'],
+      ['regulatory compliance','following the laws, regulations, and official requirements that apply to a business'],
+      ['legal structure','the formal legal organisation under which a business operates'],
+      ['regional hub','an office or operation used to manage business activities across a particular geographic region']
+    ],
+    reading:{ title:'Background Brief', paragraphs:[
+      'Nexora Consulting Group is a European technology and business-consulting company that works primarily with large corporations. Its services include digital transformation, data strategy, technology implementation, and operational consulting.',
+      'Over the past several years, demand from clients in the Middle East has increased significantly. Until now, Nexora has managed most projects in the region from its European offices, with consultants travelling internationally whenever clients required on-site support.',
+      "Management believes this model is no longer sufficient. The Middle East now represents one of the company's fastest-growing markets, and several important clients have asked Nexora to establish a permanent regional presence.",
+      'After evaluating several cities, the company selected Dubai as the location for its Middle East hub. Management believes the city offers access to regional clients, international talent, strong transportation connections, and a highly developed business environment.',
+      'Establishing a permanent operation, however, requires considerably more planning than simply opening an office. The company must determine the appropriate legal structure, obtain the necessary business licence, establish banking arrangements, complete relevant tax registrations, arrange office facilities, and prepare employment and residency documentation for employees relocating to the UAE.',
+      "Nexora originally planned to begin commercial operations in January. The board has already communicated the Dubai expansion as an important part of the company's international growth strategy.",
+      "Thomas Keller, the company's Chief Operating Officer, and Omar Haddad, its Regional Expansion Director, have spent the week in Dubai meeting advisers, potential clients, and local business representatives. Before returning to Europe, they need to decide what they will recommend to the board."
+    ]},
+    listening:{ title:'Executive Meeting', context:'Listen to Thomas and Omar as they discuss how Nexora should structure its new Dubai operation and whether the company should reconsider its original launch schedule.', audioSharingUrl:'https://www.dropbox.com/scl/fi/exjr8y78mkuvasobdc6nc/case-8.mp3?rlkey=s80mdwz4gt0zm954n6r1pogxy&st=pijvj94o&dl=0', transcript:[
+      { speaker:'Thomas Keller', text:"So, we're flying home tomorrow, and I still don't think we've answered the most important question. Do we establish the Dubai operation in a free zone, or do we go directly with a mainland company?" },
+      { speaker:'Omar Haddad', text:"Six months ago, I would have said free zone immediately. It's attractive for an international company like ours, and several of them are designed specifically for technology and professional services. But after this week's meetings, I'm leaning toward mainland." },
+      { speaker:'Thomas Keller', text:'Because of the potential clients?' },
+      { speaker:'Omar Haddad', text:"Exactly. Three of the companies we've spoken to want us working directly with their UAE operations. If Dubai is going to become a real regional office rather than just a base for international projects, we need to structure it properly from the beginning." },
+      { speaker:'Thomas Keller', text:"Which also means more decisions. We need the right trade licence, office arrangements, corporate tax registration, potentially VAT registration, employment documentation... and we're planning to relocate at least eight people in the first year." },
+      { speaker:'Omar Haddad', text:"That's why I'm against rushing the launch just to meet the January target. We should use local legal and tax advisers, confirm exactly which activities need to appear on the licence, and make sure the structure works with our contracts." },
+      { speaker:'Thomas Keller', text:"The board won't love a delay. They've already announced Dubai as our Middle East hub." },
+      { speaker:'Omar Haddad', text:'A six-week delay is easier to explain than discovering six months from now that we chose the wrong structure and have to reorganize everything.' },
+      { speaker:'Thomas Keller', text:'Fair. What if we keep January as the internal target but move the commercial launch to February? That gives us time to finish the licensing, tax registrations, banking, visas, and office setup properly.' },
+      { speaker:'Omar Haddad', text:"I'd support that. Dubai is supposed to be a long-term investment. I'd rather enter the market six weeks late with the right structure than six weeks early with the wrong one." }
+    ]},
+    quizQuestions:[
+      { id:'q1', source:'Reading', question:'Why has Nexora decided to establish a permanent presence in the Middle East?', options:options('European operations have become unprofitable.','Demand from Middle Eastern clients has increased and the existing travel-based model is becoming insufficient.','The company has been ordered to relocate by its largest client.','Dubai offered the company free office space.'), correctAnswer:'b', explanation:'The Background Brief explains that regional demand has grown significantly and several important clients now expect a more permanent presence.' },
+      { id:'q2', source:'Reading', question:"Which of the following is part of establishing Nexora's Dubai operation?", options:options('Only renting office space',"Changing the company's European headquarters",'Managing legal, licensing, tax, banking, employment, and office requirements','Closing its existing international operations'), correctAnswer:'c', explanation:'The reading makes clear that international expansion involves several legal and operational requirements beyond simply obtaining an office.' },
+      { id:'q3', source:'Listening', question:'Why has Omar become more interested in a mainland structure?', options:options('The company wants to abandon its international clients.','Several potential clients want Nexora working directly with their UAE operations.','Mainland companies do not require business licences.','The board specifically ordered him to choose mainland.'), correctAnswer:'b', explanation:'Omar explains that conversations with potential clients changed his view of how the Dubai operation may need to function.' },
+      { id:'q4', source:'Listening', question:'Why does Omar oppose rushing the January launch?', options:options('He does not believe Dubai is a good market.','He wants to cancel the expansion completely.','He believes choosing the wrong structure could create larger problems later.','He wants all employees to remain in Europe.'), correctAnswer:'c', explanation:'Omar argues that a short delay is preferable to discovering later that the company selected an unsuitable legal and operational structure.' },
+      { id:'q5', source:'Combined', question:'What is the central management dilemma in this case?', options:options('Whether Nexora should abandon its Middle East expansion.','Whether the company should prioritise meeting its original launch schedule or take additional time to establish the Dubai operation correctly.','Whether Thomas or Omar should become CEO.','Whether the company should stop working with UAE clients.'), correctAnswer:'b', explanation:"The reading establishes the company's expansion plans and January target, while the listening reveals the executives' concern that rushing the process could create long-term structural and regulatory problems." }
+    ],
+    speaking:{ questions:[
+      'If you were Thomas or Omar, would you accept a six-week delay to make sure the new operation was established correctly? Why?',
+      'When entering a foreign market, should companies prioritise speed or regulatory certainty?',
+      'What factors should an international company consider when choosing between different legal structures in a new country?',
+      'Do you think companies sometimes announce expansion plans too early, before the operational details have been resolved?',
+      'Imagine the board insists on maintaining the January launch date. What alternative strategy would you propose?'
+    ], tip:'Consider legal compliance, client access, taxation, licensing, reputation, operational flexibility, employee relocation, cost, speed, and long-term strategy. There may not be one perfect solution, so explain the trade-offs behind your recommendation.' },
+    writingTask:{
+      title:'Recommend the Dubai Entry Strategy', instructions:'Imagine you are an international business consultant advising Nexora Consulting Group.\n\nWrite a recommendation explaining how the company should approach the launch of its Dubai operation.\n\nConsider the choice of business structure, regulatory compliance, access to clients, the January deadline, employee relocation, and the long-term purpose of the Dubai office.\n\nYou do not need to provide detailed legal advice. Your task is to make a strategic business recommendation based on the information presented in the case.',
+      format:'International expansion recommendation', audience:'Nexora Consulting Group Board of Directors', wordRange:'180–220 words',
+      planningQuestions:["What should be Nexora's main priority?",'Is meeting the January deadline essential?','What are the risks of rushing the setup?','What are the risks of delaying?','What professional advice should the company obtain?','How should management explain its decision to the board?'],
+      tips:[], usefulPhrases:['Before entering the market...','The company should prioritise...','From a regulatory perspective...','One potential risk is...','A short delay would allow...','Rather than rushing the process...','Management should ensure that...','The long-term benefits would...','I would recommend...','The proposed strategy would allow Nexora to...']
+    },
+    takeaway:{ text:'International expansion involves much more than identifying an attractive market. Companies must also choose an appropriate legal structure, understand local regulations, prepare their workforce, establish financial and administrative systems, and ensure that the new operation supports their long-term commercial strategy.\n\nDeadlines matter, but entering a new market with the wrong structure can create significantly greater problems later.', reminder:'Successful international expansion is not simply about entering a market quickly. It is about building an operation that can succeed there for years.' }
   }
 ];
 
