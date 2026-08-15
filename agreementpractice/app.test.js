@@ -4,8 +4,32 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const source = fs.readFileSync(new URL('./app.js', import.meta.url), 'utf8');
+const html = fs.readFileSync(new URL('./index.html', import.meta.url), 'utf8');
 const questionsSource = source.match(/const QUESTIONS = (\[[\s\S]*?\n\]);/)[1];
 const questions = vm.runInNewContext(questionsSource);
+
+test('practice assets resolve correctly when the page URL has no trailing slash', () => {
+  const assetPaths = [...html.matchAll(/(?:href|src)="(\/(?:styles|agreementpractice)\/[^\"]+)"/g)]
+    .map(([, path]) => path);
+
+  assert.deepEqual(assetPaths, [
+    '/styles/brand-tokens.css',
+    '/agreementpractice/styles.css',
+    '/agreementpractice/app.js'
+  ]);
+  for (const path of assetPaths) {
+    assert.equal(new URL(path, 'https://example.com/agreementpractice').pathname, path);
+  }
+});
+
+test('deployment routing leaves practice assets available to the browser', () => {
+  const vercelConfig = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  const practiceRewrites = vercelConfig.rewrites.filter(({ source }) => source.startsWith('/agreementpractice'));
+
+  assert.deepEqual(practiceRewrites, [
+    { source: '/agreementpractice', destination: '/agreementpractice/index.html' }
+  ]);
+});
 
 test('contains exactly 50 locally stored questions with the requested distribution', () => {
   assert.equal(questions.length, 50);
