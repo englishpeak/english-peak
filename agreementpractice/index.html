@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Subject–Verb Agreement Practice | ePeak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/brand-tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ep-brand-scope">
+  <main class="page-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Focused practice · B2</p>
+        <h1 class="ep-heading">Subject–Verb Agreement Practice</h1>
+        <p class="intro">Build accuracy with Simple Present forms in realistic everyday and professional contexts.</p>
+      </div>
+      <div class="score-chip" aria-live="polite">Score <strong id="score">0</strong></div>
+    </header>
+
+    <section id="practice" class="practice-card ep-card" aria-labelledby="progress-text">
+      <div class="progress-row">
+        <strong id="progress-text">Question 1 of 50</strong>
+        <span id="progress-percent">2% complete</span>
+      </div>
+      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+      <div class="question-area">
+        <p id="sentence" class="sentence"></p>
+        <div id="options" class="options" aria-label="Answer choices"></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite" hidden>
+          <p id="feedback-title" class="feedback-title"></p>
+          <p id="completed-sentence" class="completed-sentence"></p>
+          <p id="explanation" class="explanation"></p>
+        </div>
+        <div class="next-row"><button id="next" class="ep-btn-primary next-button" type="button" hidden>Next</button></div>
+      </div>
+    </section>
+
+    <section id="results" class="results ep-card" hidden aria-labelledby="results-title">
+      <p class="eyebrow">Practice complete</p>
+      <h2 id="results-title" class="ep-heading">Subject–Verb Agreement Practice</h2>
+      <p id="final-score" class="final-score"></p>
+      <p id="performance" class="performance"></p>
+      <div class="review">
+        <h3 class="ep-heading">Review your mistakes</h3>
+        <div id="mistakes"></div>
+      </div>
+      <button id="restart" class="ep-btn-primary restart-button" type="button">Practice again</button>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
