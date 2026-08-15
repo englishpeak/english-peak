@@ -7,6 +7,15 @@ const source = fs.readFileSync(new URL('./app.js', import.meta.url), 'utf8');
 const questionsSource = source.match(/const QUESTIONS = (\[[\s\S]*?\n\]);/)[1];
 const questions = vm.runInNewContext(questionsSource);
 
+test('deployment routing leaves practice assets available to the browser', () => {
+  const vercelConfig = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  const practiceRewrites = vercelConfig.rewrites.filter(({ source }) => source.startsWith('/agreementpractice'));
+
+  assert.deepEqual(practiceRewrites, [
+    { source: '/agreementpractice', destination: '/agreementpractice/index.html' }
+  ]);
+});
+
 test('contains exactly 50 locally stored questions with the requested distribution', () => {
   assert.equal(questions.length, 50);
   assert.deepEqual(Object.fromEntries(['affirmative','negative','question'].map(type => [type, questions.filter(q => q.type === type).length])), { affirmative: 20, negative: 15, question: 15 });
