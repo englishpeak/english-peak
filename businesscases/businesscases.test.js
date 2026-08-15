@@ -200,6 +200,37 @@ test('Case 6 contains the complete ePeak+ lesson data', () => {
   for (const spoiler of ['Sophia', 'Jason', 'new product line', 'predictable revenue']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
 });
 
+test('Case 7 contains the complete ePeak+ lesson data', () => {
+  const item = businessCases[6];
+  assert.equal(item.slug, 'case-7');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'Behind the Numbers');
+  assert.equal(item.level, 'C1');
+  assert.equal(item.estimatedTime, '40–60 minutes');
+  assert.equal(item.accessTier, 'premium');
+  assert.equal(canAccessBusinessCase(item, 'visitor'), false);
+  assert.equal(canAccessBusinessCase(item, 'free'), false);
+  assert.equal(canAccessBusinessCase(item, 'premium'), true);
+  assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
+  assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
+  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/q2lmny8p33593e0wk1r01/case-7.png?rlkey=g11gb4wvew5po532p48wtrfmq&st=ddi8ihp2&raw=1');
+  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/47adbcaatunpwsvkcaisx/case-7.mp3?rlkey=f2gizg6tfzsqpmh0jb5vo6g2y&st=tijjf49g&raw=1');
+  assert.equal(item.vocabulary.length, 10);
+  assert.equal(item.reading.paragraphs.length, 6);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.transcript.length, 10);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.deepEqual(item.quizQuestions.map(question => question.source), ['Reading', 'Reading', 'Listening', 'Listening', 'Combined']);
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'c', 'a', 'b', 'c']);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Prepare the Board Recommendation');
+  assert.equal(item.writingTask.audience, 'Sterling Industrial Group Board of Directors');
+  assert.equal(item.takeaway.reminder, 'A strong financial strategy does not simply make the numbers look better. It helps the company make better decisions because of what the numbers reveal.');
+  const brief = item.reading.paragraphs.join(' ');
+  for (const spoiler of ['six percent', 'twelve percent', 'delayed', 'West Coast', 'logistics costs', 'spending reductions', 'revise the annual forecast', 'targeted measures']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
+});
+
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
   const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
   assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);
