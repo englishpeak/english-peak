@@ -425,7 +425,7 @@ body.download-preview-lock{overflow:hidden}
       </div>
     </div>
 
-    <div class="section-header"><h2>Conversation Practice</h2><p>Free account required</p></div>
+    <div class="section-header"><h2>Conversation Practice</h2><p>Activities for speaking practice</p></div>
     <div class="cards-grid">
       <div class="ex-card" onclick="openConv()">
         <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-locked" id="access-conv">🔐 Sign in</div></div>
@@ -433,9 +433,8 @@ body.download-preview-lock{overflow:hidden}
         <div class="lock-overlay" id="lock-conv"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access all conversation topics. No payment needed.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('conv');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openThisOrThat()">
-        <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-locked" id="access-thisorthat">🔐 Sign in</div></div>
-        <div class="card-body"><div class="card-title">This or That?</div><div class="card-desc">100 quick-choice questions designed to spark conversation and encourage students to explain their opinions.</div><div class="card-meta"><span class="meta-item">💬 All levels</span><span class="meta-item">🎲 100 questions</span></div><button class="card-btn btn-locked" id="btn-thisorthat">🔐 Sign in to access</button></div>
-        <div class="lock-overlay" id="lock-thisorthat"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account to access This or That? No payment needed.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('thisorthat');event.stopPropagation()">Maybe later</button></div>
+        <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-free" id="access-thisorthat">✓ Public</div></div>
+        <div class="card-body"><div class="card-title">This or That?</div><div class="card-desc">100 quick-choice questions designed to spark conversation and encourage students to explain their opinions.</div><div class="card-meta"><span class="meta-item">💬 All levels</span><span class="meta-item">🎲 100 questions</span></div><button class="card-btn btn-open" id="btn-thisorthat">Start Practice →</button></div>
       </div>
     </div>
 
@@ -628,7 +627,7 @@ body.download-preview-lock{overflow:hidden}
   </div>
 
   <div class="exercise-screen" id="exercise-thisorthat">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">This or That?</div><div class="exercise-badge" id="thisorthat-badge">✓ Free</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">This or That?</div><div class="exercise-badge" id="thisorthat-badge">✓ Public</div></div>
     <iframe class="exercise-frame" id="frame-thisorthat" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -1180,10 +1179,10 @@ function applyTier(tier) {
   var thisOrThatAccess = document.getElementById('access-thisorthat');
   var thisOrThatButton = document.getElementById('btn-thisorthat');
   if (thisOrThatAccess && thisOrThatButton) {
-    thisOrThatAccess.textContent = c.conv ? (hasFullAccessTier(typeof tierKey !== 'undefined' ? tierKey : tier) ? '✓ Full' : '✓ Free') : '🔐 Sign in';
-    thisOrThatAccess.className = 'card-access ' + (c.conv ? (hasFullAccessTier(typeof tierKey !== 'undefined' ? tierKey : tier) ? 'access-premium' : 'access-free') : 'access-locked');
-    thisOrThatButton.className = 'card-btn ' + (c.conv ? 'btn-open' : 'btn-locked');
-    thisOrThatButton.textContent = c.conv ? 'Start Practice →' : '🔐 Sign in to access';
+    thisOrThatAccess.textContent = '✓ Public';
+    thisOrThatAccess.className = 'card-access access-free';
+    thisOrThatButton.className = 'card-btn btn-open';
+    thisOrThatButton.textContent = 'Start Practice →';
   }
 
   if (c.conv) {
@@ -1518,10 +1517,10 @@ function setTier(tier,btn) {
   var thisOrThatAccess = document.getElementById('access-thisorthat');
   var thisOrThatButton = document.getElementById('btn-thisorthat');
   if (thisOrThatAccess && thisOrThatButton) {
-    thisOrThatAccess.textContent = c.conv ? (hasFullAccessTier(typeof tierKey !== 'undefined' ? tierKey : tier) ? '✓ Full' : '✓ Free') : '🔐 Sign in';
-    thisOrThatAccess.className = 'card-access ' + (c.conv ? (hasFullAccessTier(typeof tierKey !== 'undefined' ? tierKey : tier) ? 'access-premium' : 'access-free') : 'access-locked');
-    thisOrThatButton.className = 'card-btn ' + (c.conv ? 'btn-open' : 'btn-locked');
-    thisOrThatButton.textContent = c.conv ? 'Start Practice →' : '🔐 Sign in to access';
+    thisOrThatAccess.textContent = '✓ Public';
+    thisOrThatAccess.className = 'card-access access-free';
+    thisOrThatButton.className = 'card-btn btn-open';
+    thisOrThatButton.textContent = 'Start Practice →';
   }
 
   if(c.conv){
@@ -1918,17 +1917,13 @@ function openConv() {
   closeMobileSidebar();
 }
 function openThisOrThat() {
-  var cfg = TIERS[currentTier];
-  if (!cfg.conv) {
-    if (!_currentUser) { showAuthModal('register'); return; }
-    document.getElementById('lock-thisorthat').classList.add('show'); return;
-  }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-thisorthat').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'This or That?';
   document.getElementById('topbarSub').textContent = 'Choose one and explain why';
-  document.getElementById('thisorthat-badge').textContent = hasFullAccessTier(currentTier) ? '✓ Full' : '✓ Free';
-  document.getElementById('frame-thisorthat').src = '/thisorthat';
+  document.getElementById('thisorthat-badge').textContent = '✓ Public';
+  // Use a unique URL on every entry so the iframe reloads and creates a fresh shuffle.
+  document.getElementById('frame-thisorthat').src = '/thisorthat?shuffle=' + Date.now() + '-' + Math.random().toString(36).slice(2);
   if (window.location.pathname !== '/thisorthat') history.pushState({exercise:'thisorthat'}, '', '/thisorthat');
   closeMobileSidebar();
 }

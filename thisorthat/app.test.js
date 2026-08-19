@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const html = fs.readFileSync(new URL('./index.html', import.meta.url), 'utf8');
+const dashboardHtml = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const match = html.match(/const QUESTIONS = (\[[\s\S]*?\]);/);
 const questions = vm.runInNewContext(match[1]);
 
@@ -34,4 +35,18 @@ test('uses a complete shuffled sequence and supports backward navigation', () =>
   } finally {
     Math.random = originalRandom;
   }
+});
+
+test('does not render or update a question tally', () => {
+  assert.doesNotMatch(html, /id=["']progress["']/);
+  assert.doesNotMatch(html, /progress\.textContent/);
+});
+
+test('is public and reloads with a fresh shuffle every time it is opened', () => {
+  const openFunction = dashboardHtml.match(/function openThisOrThat\(\) \{[\s\S]*?\n\}/)?.[0] || '';
+  assert.match(openFunction, /thisorthat-badge'\)\.textContent = '✓ Public'/);
+  assert.match(openFunction, /src = '\/thisorthat\?shuffle=' \+ Date\.now\(\) \+ '-' \+ Math\.random\(\)/);
+  assert.doesNotMatch(openFunction, /showAuthModal|_currentUser|cfg\.conv|lock-thisorthat/);
+  assert.match(dashboardHtml, /id="access-thisorthat">✓ Public</);
+  assert.doesNotMatch(dashboardHtml, /id="lock-thisorthat"/);
 });
