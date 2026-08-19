@@ -736,6 +736,22 @@ body.download-preview-lock{overflow:hidden}
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
   <div class="modal" style="max-width:500px;text-align:left;padding:36px">
 
+    <!-- Existing ePeak+ access -->
+    <div id="stepIncludedAccess" style="display:none">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:2.4rem;margin-bottom:10px">⭐</div>
+        <div class="modal-title2" id="includedAccessTitle" style="font-size:1.8rem"></div>
+        <div class="modal-sub2" id="includedAccessMessage" style="margin-bottom:0"></div>
+      </div>
+      <button onclick="closeModal()"
+        style="width:100%;padding:16px;background:linear-gradient(135deg,var(--navy),var(--purple));color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;margin-bottom:12px">
+        Continue exploring ePeak+
+      </button>
+      <div style="text-align:center">
+        <button class="modal-close-btn" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
     <!-- Step 1: Plan selector -->
     <div id="stepPlan">
       <div style="text-align:center;margin-bottom:24px">
@@ -1390,6 +1406,40 @@ function getEffectiveTier(profile) {
 
 function hasFullAccessTier(tier) {
   return ['admin', 'premium', 'teacher', 'student', 'courtesy'].indexOf(tier) > -1;
+}
+
+// Popup presentation only. Access continues to be governed by getEffectiveTier
+// and hasFullAccessTier; keeping copy here makes future entitlement messages easy to add.
+function getEpeakPlusPopupContent(profile) {
+  var profileTier = (profile && profile.tier) || 'free';
+  if (profileTier === 'teacher') {
+    return {
+      title: 'ePeak+ is included with your teacher account',
+      message: 'As an English Peak teacher, you have unlimited access to ePeak+ and all of its learning resources.'
+    };
+  }
+  if (profileTier === 'student') {
+    return {
+      title: 'ePeak+ is included with your classes',
+      message: 'As an English Peak student, you already have unlimited access to ePeak+. Keep learning in class and explore everything available here anytime.'
+    };
+  }
+  if (profileTier === 'premium') {
+    return {
+      title: 'You’re already on ePeak+',
+      message: 'Enjoy unlimited access to everything included with your ePeak+ membership.'
+    };
+  }
+
+  // Admin and courtesy tiers also have existing full access and must never see
+  // an upgrade CTA, even though they do not need account-specific wording yet.
+  if (hasFullAccessTier(getEffectiveTier(profile))) {
+    return {
+      title: 'You’re already on ePeak+',
+      message: 'Enjoy unlimited access to everything included with your ePeak+ access.'
+    };
+  }
+  return null;
 }
 
 function countListeningTestsFromHtml(html) {
@@ -2293,13 +2343,27 @@ async function logActivity(exerciseType, exerciseName, score, maxScore, details)
 
 // ═══ MODAL ═══
 function showModal() {
+  var includedContent = _currentUser ? getEpeakPlusPopupContent(_currentProfile) : null;
+  var includedStep = document.getElementById('stepIncludedAccess');
+  var sp = document.getElementById('stepPlan');
+  var sy = document.getElementById('stepPayment');
+
+  if (includedContent) {
+    document.getElementById('includedAccessTitle').textContent = includedContent.title;
+    document.getElementById('includedAccessMessage').textContent = includedContent.message;
+    if (includedStep) includedStep.style.display = 'block';
+    if (sp) sp.style.display = 'none';
+    if (sy) sy.style.display = 'none';
+    document.getElementById('modalOverlay').classList.add('show');
+    return;
+  }
+
   loadPublicPricing();
   // Oculta botón "Crear cuenta gratis" si el usuario ya tiene sesión
   var btnFree = document.getElementById('btnModalFreeAccount');
   if (btnFree) btnFree.style.display = _currentUser ? 'none' : 'block';
   // Resetea al step 1 siempre
-  var sp = document.getElementById('stepPlan');
-  var sy = document.getElementById('stepPayment');
+  if (includedStep) includedStep.style.display = 'none';
   if (sp) sp.style.display = 'block';
   if (sy) sy.style.display = 'none';
   document.getElementById('modalOverlay').classList.add('show');
