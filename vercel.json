@@ -18,6 +18,8 @@
     { "source": "/ibt/:path*",      "destination": "/ibt_index.html" },
     { "source": "/conversations",        "destination": "/conversations/index.html" },
     { "source": "/conversations/:path*", "destination": "/conversations/index.html" },
+    { "source": "/thisorthat",          "destination": "/thisorthat/index.html" },
+    { "source": "/thisorthat/:path*",   "destination": "/thisorthat/index.html" },
     { "source": "/general",         "destination": "/general/index.html" },
     { "source": "/general/:path*",  "destination": "/general/index.html" },
     { "source": "/reading",         "destination": "/reading/index.html" },
