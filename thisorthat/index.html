@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This or That? | English Peak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/brand-tokens.css">
+  <style>
+    html,body{min-height:100%;margin:0}body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--ep-bg);color:var(--ep-ink);font-family:var(--ep-font-sans);transition:background-color 1.2s ease-out}
+    .activity{width:min(1000px,90vw);min-height:min(620px,82vh);box-sizing:border-box;padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--ep-surface);border:1.5px solid var(--ep-border);border-radius:24px;box-shadow:0 12px 36px rgba(13,59,111,.1)}
+    .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ep-sky);margin-bottom:18px}.progress{font-size:.8rem;font-weight:500;color:var(--ep-muted-light);margin-bottom:clamp(24px,4vh,38px)}
+    .question{max-width:820px;margin:0;font-family:var(--ep-font-serif);font-size:clamp(2rem,5vw,3.8rem);font-weight:700;line-height:1.14;color:var(--ep-navy);text-wrap:balance;opacity:1;transition:opacity .2s ease,transform .2s ease}
+    .question.changing{opacity:0;transform:translateY(5px)}.instruction{margin:24px 0 5px;font-size:1rem;font-weight:500;color:var(--ep-muted)}.helper{margin:0;color:var(--ep-muted-light);font-size:.8rem}
+    .controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:clamp(30px,5vh,48px)}button{font-family:var(--ep-font-sans);font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s,background .2s}.next{padding:11px 22px;background:var(--ep-gradient-brand);color:#fff;border:0;border-radius:10px;font-size:.88rem;box-shadow:0 3px 12px rgba(13,59,111,.2)}.next:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(71,0,116,.24)}.previous{padding:10px 18px;background:#fff;color:var(--ep-navy);border:1.5px solid var(--ep-border);border-radius:10px;font-size:.88rem}.previous:hover:not(:disabled){background:var(--ep-card-soft);transform:translateY(-1px)}.previous:disabled{opacity:.4;cursor:not-allowed}
+    @media(max-width:768px){body{align-items:stretch}.activity{width:100%;min-height:100vh;border:0;border-radius:0;padding:28px 20px}.question{font-size:clamp(2rem,10vw,3rem)}.controls{width:100%;flex-direction:column-reverse}.controls button{width:100%;max-width:320px}.helper{max-width:300px}}
+    @media(prefers-reduced-motion:reduce){body,.question,button{transition:none}}
+  </style>
+</head>
+<body>
+  <main class="activity" aria-labelledby="question-display">
+    <div class="eyebrow">This or That?</div>
+    <div class="progress" id="progress" aria-live="polite">Question 1 of 100</div>
+    <h1 class="question" id="question-display">...</h1>
+    <p class="instruction">Choose one and explain why.</p>
+    <p class="helper">Give a reason, an example, or one disadvantage of your choice.</p>
+    <div class="controls">
+      <button class="previous" id="previous" type="button">Previous</button>
+      <button class="next" id="next" type="button">Next Question →</button>
+    </div>
+  </main>
+  <script>
+    if (window.self === window.top) window.location.replace('/?exercise=thisorthat');
+
+    const QUESTIONS = [
+      "Early bird or night owl?",
+      "Coffee or tea?",
+      "Shower in the morning or at night?",
+      "Cook at home or eat out?",
+      "City life or country life?",
+      "Hot weather or cold weather?",
+      "Summer or winter?",
+      "Sunrise or sunset?",
+      "Rainy days or sunny days?",
+      "Stay home or go out?",
+      "Plan everything or be spontaneous?",
+      "Save money or spend money?",
+      "Call or text?",
+      "Cash or card?",
+      "Online shopping or shopping in stores?",
+      "Clean as you go or clean everything later?",
+      "Live alone or with other people?",
+      "Apartment or house?",
+      "Minimalist home or lots of decorations?",
+      "Quiet neighborhood or lively neighborhood?",
+      "Sweet or savory?",
+      "Pizza or burgers?",
+      "Breakfast or dinner?",
+      "Beer or wine?",
+      "Chocolate or vanilla?",
+      "Spicy food or mild food?",
+      "Street food or fine dining?",
+      "Mexican food or Italian food?",
+      "Meat or seafood?",
+      "Cake or ice cream?",
+      "Cooking or baking?",
+      "Big breakfast or big dinner?",
+      "Try something new or order your favorite?",
+      "Restaurant or food delivery?",
+      "Coffee with milk or black coffee?",
+      "Beach or mountains?",
+      "Hotel or Airbnb?",
+      "Road trip or flight?",
+      "Travel alone or with friends?",
+      "Relaxing vacation or adventure vacation?",
+      "Visit famous attractions or hidden places?",
+      "Travel with a detailed itinerary or decide as you go?",
+      "One long vacation or several short trips?",
+      "Window seat or aisle seat?",
+      "Backpack or suitcase?",
+      "Explore a city on foot or by car?",
+      "Visit somewhere new or return to a favorite place?",
+      "Museums or outdoor attractions?",
+      "Tropical island or snowy cabin?",
+      "Live abroad for a year or travel frequently?",
+      "Movies or TV series?",
+      "Books or movies?",
+      "Cinema or watching movies at home?",
+      "Comedy or drama?",
+      "Horror or science fiction?",
+      "Action movies or romantic movies?",
+      "Live music or recorded music?",
+      "Concert or music festival?",
+      "Video games or board games?",
+      "Podcasts or YouTube?",
+      "Fiction or documentaries?",
+      "Watch one episode at a time or binge-watch?",
+      "Rewatch a favorite movie or watch something new?",
+      "Physical books or e-books?",
+      "Famous blockbuster or independent film?",
+      "iPhone or Android?",
+      "Laptop or tablet?",
+      "Social media or no social media?",
+      "Work from home or work at the office?",
+      "Online classes or in-person classes?",
+      "Paper notebook or notes app?",
+      "Smartwatch or traditional watch?",
+      "Streaming services or traditional TV?",
+      "AI assistant or traditional search engine?",
+      "Voice messages or text messages?",
+      "Introvert or extrovert?",
+      "Leader or follower?",
+      "Routine or variety?",
+      "Take risks or play it safe?",
+      "Big group of friends or a few close friends?",
+      "Ask for help or figure it out yourself?",
+      "Forgive easily or hold people accountable?",
+      "Competitive or cooperative?",
+      "Talk about a problem or think about it alone?",
+      "Be very busy or have lots of free time?",
+      "High salary or enjoyable job?",
+      "Work for a big company or a small company?",
+      "Be an employee or own a business?",
+      "Flexible schedule or higher salary?",
+      "Interesting job or stable job?",
+      "Work alone or work in a team?",
+      "Retire early or keep working at something you love?",
+      "Spend money on experiences or possessions?",
+      "Own a home or have the freedom to move?",
+      "Fame or wealth?",
+      "Live in the past or the future?",
+      "Know what happens in the future or be surprised?",
+      "Have more money or more free time?",
+      "Be extremely talented or extremely disciplined?",
+      "Have a comfortable predictable life or an exciting unpredictable one?"
+    ];
+
+    function shuffle(items) {
+      const result = items.slice();
+      for (let i = result.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    let sequence = shuffle(QUESTIONS);
+    let position = 0;
+    const questionDisplay = document.getElementById('question-display');
+    const progress = document.getElementById('progress');
+    const previousButton = document.getElementById('previous');
+
+    function render(animate) {
+      const update = function() {
+        questionDisplay.textContent = sequence[position];
+        progress.textContent = `Question ${position + 1} of ${QUESTIONS.length}`;
+        previousButton.disabled = position === 0;
+        questionDisplay.classList.remove('changing');
+      };
+      if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        questionDisplay.classList.add('changing');
+        window.setTimeout(update, 200);
+      } else update();
+    }
+
+    function nextQuestion() {
+      if (position < sequence.length - 1) position += 1;
+      else { sequence = shuffle(QUESTIONS); position = 0; }
+      render(true);
+    }
+
+    function previousQuestion() {
+      if (position === 0) return;
+      position -= 1;
+      render(true);
+    }
+
+    document.getElementById('next').addEventListener('click', nextQuestion);
+    previousButton.addEventListener('click', previousQuestion);
+    render(false);
+  </script>
+</body>
+</html>
