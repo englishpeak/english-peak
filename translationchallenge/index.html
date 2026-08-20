@@ -275,6 +275,41 @@ const set5AdditionalAlternatives={
 const set5=sets.find(set=>set.id===5);
 set5.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set5AdditionalAlternatives[sentence.id]));
 
+const set6AdditionalAlternatives={
+1:["I've been searching for my headphones all morning, and they were in my backpack.","All morning, I've been looking for my headphones, and they were in my backpack."],
+2:["At what time does the coffee shop open?","When does the café open?"],
+3:["While the proposal appears workable, several obstacles still need to be overcome.","The proposal may seem viable, but there are still several hurdles to overcome."],
+4:["I've never had Indian food, but I'd like to.","I haven't eaten Indian food before, but I would like to."],
+5:["I wouldn't have made that error if I'd reviewed the figures more carefully.","Had I examined the figures more carefully, I wouldn't have made that mistake."],
+6:["Convincing as his argument may seem, it remains based on a hard-to-justify assumption.","However persuasive her argument may appear, it is nonetheless based on an assumption that is difficult to justify."],
+7:["Sundays are days off for my brother.","My brother is off work on Sundays."],
+8:["Would you look after my dog while I'm away?","Could you watch my dog while I'm out of town?"],
+9:["We'll need to set off earlier if we want to be there on time.","If we want to arrive on time, we're going to have to leave earlier."],
+10:["I'm worried they may be missing a detail that could completely alter the outcome.","It concerns me that they're overlooking a detail that might change the result entirely."],
+11:["We haven't finalized a date for the meeting yet.","A final date for the meeting still hasn't been confirmed."],
+12:["Which store did you buy that shirt from?","Where was it that you bought that shirt?"],
+13:["Were it not for a seemingly minor discrepancy, the fraud might never have been uncovered.","But for an apparently minor discrepancy, the fraud might never have come to light."],
+14:["This hotel costs less than the one we reserved last year.","Compared with the one we booked last year, this hotel is cheaper."],
+15:["My phone's battery died right when I was about to call you.","I ran out of battery just as I was going to call you."],
+16:["I'm not prepared to sacrifice quality merely to meet an unrealistic deadline.","I refuse to compromise quality just to hit an unrealistic deadline."],
+17:["As much as he tries to hide it, it's obvious that he's disappointed.","However much she tries to conceal it, you can see that she's disappointed."],
+18:["There is a drugstore beside the bank.","A pharmacy is located right next to the bank."],
+19:["Little did he imagine then that the seemingly insignificant decision would ultimately alter the course of his career.","At the time, she had no idea that such an apparently trivial decision would end up changing the direction of her career."],
+20:["How long have you been at the bus stop waiting?","How long is it since you started waiting for the bus?"],
+21:["I wasn't able to return the item because I'd misplaced the receipt.","Since I had lost the receipt, I couldn't take the item back."],
+22:["From the team's reaction, it was clear that the news had caught them completely off guard.","Going by the team's response, the news came as a complete surprise to them."],
+23:["If you continue postponing the decision, you may miss out on a good opportunity.","You might lose a good opportunity if you keep delaying the decision."],
+24:["My keys are nowhere to be found.","I can't seem to find my keys."],
+25:["Barely had things settled down when another, even harder problem emerged.","The situation had only just calmed down when another problem arose that was even more difficult to solve."],
+26:["Would you like a hand with the bags?","Shall I help you carry the bags?"],
+27:["Eventually, we discovered that the problem was far easier than we'd thought.","As it turned out, the problem was much less complicated than we had imagined."],
+28:["The report questions several assertions that we had, until now, accepted without question.","Several claims we had previously taken as given are called into question by the report."],
+29:["I would have appreciated a little more advance notice.","I wish you had told me a bit sooner."],
+30:["However thorough the investigation may have been, its findings remain open to more than one interpretation.","No matter how carefully the research has been conducted, its conclusions can still be interpreted in different ways."]
+};
+const set6=sets.find(set=>set.id===6);
+set6.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set6AdditionalAlternatives[sentence.id]));
+
 const alternativeRules=[
 [/\bI['’]m\b/g,"I am"],[/\bI['’]ve\b/g,"I have"],[/\bI['’]ll\b/g,"I will"],
 [/\byou['’]re\b/g,"you are"],[/\byou['’]ve\b/g,"you have"],[/\byou['’]ll\b/g,"you will"],
