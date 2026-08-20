@@ -98,6 +98,22 @@ test("Set 6 has the exact mixed CEFR content and supports every exercise mode", 
   });
 });
 
+test("Set 6 adds curated alternatives for every prompt", () => {
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
+  const sets = evaluateSets(html.slice(dataStart, appStart));
+  const originalSet6 = originalSets.find(set => set.id === 6);
+  const set6 = sets.find(set => set.id === 6);
+
+  set6.sentences.forEach((sentence, index) => {
+    assert.ok(sentence.acceptedAnswers.length >= originalSet6.sentences[index].acceptedAnswers.length + 2);
+  });
+  assert.ok(set6.sentences[3].acceptedAnswers.includes("I've never had Indian food, but I'd like to."));
+  assert.ok(set6.sentences[10].acceptedAnswers.includes("We haven't finalized a date for the meeting yet."));
+  assert.ok(set6.sentences[25].acceptedAnswers.includes("Would you like a hand with the bags?"));
+  assert.ok(set6.sentences[28].acceptedAnswers.includes("I would have appreciated a little more advance notice."));
+  assert.ok(set6.sentences[29].acceptedAnswers.includes("However thorough the investigation may have been, its findings remain open to more than one interpretation."));
+});
+
 test("Set 5 has all required prompts and complete challenge data", () => {
   const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
   const sets = evaluateSets(html.slice(dataStart, appStart));
