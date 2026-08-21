@@ -4,6 +4,22 @@ import { readFile } from 'node:fs/promises';
 import { googleDriveImageUrl, getDropboxDirectUrl, dropboxAudioUrl } from './media-urls.js';
 import { canAccessBusinessCase, accessLabel } from './access.js';
 import { businessCases } from '../src/data/businessCases.js';
+import { BUSINESS_CASES_BACKGROUNDS, selectBusinessCasesBackground } from './theme.js';
+
+test('transparent theme shares all Business Flashcards backgrounds and avoids the previous page background', async () => {
+  const flashcards = await readFile(new URL('../business-flashcards/index.html', import.meta.url), 'utf8');
+  assert.equal(BUSINESS_CASES_BACKGROUNDS.length, 5);
+  BUSINESS_CASES_BACKGROUNDS.forEach(background => assert.ok(flashcards.includes(background)));
+  assert.equal(selectBusinessCasesBackground('', () => 0), BUSINESS_CASES_BACKGROUNDS[0]);
+  assert.equal(selectBusinessCasesBackground(BUSINESS_CASES_BACKGROUNDS[0], () => 0), BUSINESS_CASES_BACKGROUNDS[1]);
+});
+
+test('transparent background is retained for the lifetime of the Business Cases page', async () => {
+  const theme = await readFile(new URL('./theme.js', import.meta.url), 'utf8');
+  assert.match(theme, /let currentBackground = ''/);
+  assert.match(theme, /if \(!currentBackground\)/);
+  assert.doesNotMatch(theme, /else currentBackground = ''/);
+});
 
 test('Google Drive sharing URLs become direct image URLs', () => {
   assert.equal(googleDriveImageUrl('https://drive.google.com/file/d/abc_123/view?usp=sharing'), 'https://drive.google.com/uc?export=view&id=abc_123');
