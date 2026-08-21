@@ -45,6 +45,15 @@ test('every question has two distinct choices and a valid answer', () => {
   }
 });
 
-test('questions and negatives always use the base lexical verb', () => {
-  for (const q of questions.filter(q => q.type !== 'affirmative')) assert.equal(q.answer, q.base, q.sentence);
+test('questions always use the base lexical verb', () => {
+  for (const q of questions.filter(q => q.type === 'question')) assert.equal(q.answer, q.base, q.sentence);
+});
+
+test("negative choices assess both don't/doesn't and the base lexical verb", () => {
+  for (const q of questions.filter(q => q.type === 'negative')) {
+    assert.ok(q.base.startsWith("don't "), q.sentence);
+    assert.ok(q.third.startsWith("doesn't "), q.sentence);
+    assert.equal(q.base.slice(6), q.third.slice(8), q.sentence);
+    assert.doesNotMatch(q.sentence, /\b(?:don't|doesn't)\b/, q.sentence);
+  }
 });
