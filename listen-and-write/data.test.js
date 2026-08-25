@@ -15,6 +15,11 @@ test('complete-sentence validation ignores spacing, capitalization, and final pu
     'Have you ever considered moving to a different country',
     'Have you ever considered moving to a different country?'
   ));
+
+  assert.ok(isCorrect(
+    "I would have called you if I'd known you were still awake",
+    'I would have called you if I’d known you were still awake.'
+  ));
 });
 test('validation remains strict about sentence content and non-final punctuation',()=>{
   const expected='I haven’t seen her since we graduated from college.';
