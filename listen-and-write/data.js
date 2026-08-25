@@ -2,6 +2,21 @@ export const ACCESS = Object.freeze({ PUBLIC: 'public', REGISTERED: 'registered'
 
 // Sets are deliberately data-driven: future sets only need one object with ten items.
 const SET_ITEMS = [];
+function mediumPrompt(answer) {
+  const blanks = [];
+  const medium = answer.split(/\s+/u).map((token, index) => {
+    // Keep the first word as an anchor, then hide every second word. For
+    // odd-length sentences this rounds down to the nearest whole word.
+    if (index % 2 === 0) return token;
+
+    const match = token.match(/^(.*?)([,.?!;:]*)$/u);
+    blanks.push(match[1]);
+    return `[blank]${match[2]}`;
+  }).join(' ');
+
+  return { medium, blanks };
+}
+
 const rows = [
   ['hujp37zv3myj3aw5hjgb5','bhteeg03b43vzgh1uoe3h0rvr','x6yw8gqf','I haven’t seen her since we graduated from college.','I haven’t [blank] her since we [blank] from college.',['seen','graduated'],[5,1,8,3,0,7,2,6,4]],
   ['3s67bfgbtsaqc8l3ryhth','hcbx0naa6oywug16bmyserycf','lxaomiaq','How long does it usually take you to get ready in the morning?','How long does it [blank] take you to get [blank] in the morning?',['usually','ready'],[8,2,11,4,0,12,7,1,10,5,3,9,6]],
@@ -16,7 +31,7 @@ const rows = [
 ];
 
 rows.forEach((r, index) => SET_ITEMS.push({
-  answer:r[3], medium:r[4], blanks:r[5],
+  answer:r[3], ...mediumPrompt(r[3]),
   audio:`https://dl.dropboxusercontent.com/scl/fi/${r[0]}/sentence-${index+1}.mp3?rlkey=${r[1]}&st=${r[2]}&raw=1`,
   scramble:r[6]
 }));
@@ -38,7 +53,7 @@ const TEST_2_ITEMS = TEST_2_ROWS.map((r, index) => {
   const tokenCount = words(r[3]).length;
   const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
   return {
-    answer:r[3], medium:r[4], blanks:r[5], scramble,
+    answer:r[3], ...mediumPrompt(r[3]), scramble,
     audio:`https://dl.dropboxusercontent.com/scl/fi/${r[0]}/sentence-${index+1}.mp3?rlkey=${r[1]}&st=${r[2]}&raw=1`
   };
 });
