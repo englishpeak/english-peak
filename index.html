@@ -403,6 +403,10 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon green">📚</div><div class="card-access access-free">✓ Free</div></div>
         <div class="card-body"><div class="card-title">Irregular Verbs Practice</div><div class="card-desc">Complete the missing verb forms: base form, simple past, and past participle. Shuffled prompts with instant feedback.</div><div class="card-meta"><span class="meta-item">⚡ Quick practice</span><span class="meta-item">📚 100+ verbs</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
+      <div class="ex-card" onclick="openListenAndWrite()">
+        <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
+        <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
+      </div>
       <div class="ex-card" onclick="openUnscrambleQuestions()">
         <div class="card-header"><div class="card-icon purple">❓</div><div class="card-access access-free">Free Account</div></div>
         <div class="card-body"><div class="card-title">Unscramble the Questions</div><div class="card-desc">Put question words in the correct order. Filter by level from A1 to C1 and build stronger speaking patterns.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item">🔐 Free account</span></div><button class="card-btn btn-partial">Start Practice →</button></div>
@@ -616,6 +620,10 @@ body.download-preview-lock{overflow:hidden}
   </div>
 
   <!-- ═══ LISTENING PRACTICE (hidden until content exists) ═══ -->
+  <div class="exercise-screen" id="exercise-listen-and-write">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">🎙️ Listen and Write</div><div class="exercise-badge">Set 1 Free</div></div>
+    <iframe class="exercise-frame" id="frame-listen-and-write" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;" title="Listen and Write"></iframe>
+  </div>
   <div class="exercise-screen" id="exercise-listening">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">🎧 Listening Practice</div><div class="exercise-badge" id="listening-badge">Hidden</div></div>
     <iframe class="exercise-frame" id="frame-listening" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
@@ -1898,6 +1906,15 @@ function openListening() {
   document.getElementById('listening-badge').textContent = isFullAccess ? '✓ All '+LISTENING_TOTAL : '🔓 '+allowed.length+' of '+LISTENING_TOTAL;
   var frame = document.getElementById('frame-listening');
   frame.src = '/listening?allowed=' + allowed.join(',');
+  closeMobileSidebar();
+}
+
+function openListenAndWrite() {
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-listen-and-write').classList.add('active');
+  document.getElementById('topbarTitle').textContent = '🎙️ Listen and Write';
+  document.getElementById('topbarSub').textContent = 'Focused audio dictation in three difficulty modes';
+  document.getElementById('frame-listen-and-write').src = '/listen-and-write';
   closeMobileSidebar();
 }
 

@@ -1,0 +1,5 @@
+import test from 'node:test'; import assert from 'node:assert/strict';
+import { LISTEN_WRITE_SETS, isCorrect, normalizeAnswer, scorePercent, words } from './data.js';
+test('Set 1 is complete and streams direct Dropbox audio',()=>{const set=LISTEN_WRITE_SETS[0];assert.equal(set.items.length,10);set.items.forEach((item,i)=>{const count=words(item.answer).length;assert.match(item.audio,/^https:\/\/dl\.dropboxusercontent\.com\//);assert.match(item.audio,/raw=1$/);assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:count},(_,n)=>n));assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${i+1} is scrambled`)})});
+test('validation ignores only permitted formatting',()=>{assert.equal(normalizeAnswer('  I  HAVEN’T seen her. '),'i haven’t seen her');assert.ok(isCorrect('how long does it usually take you to get ready in the morning','How long does it usually take you to get ready in the morning?'));assert.ok(!isCorrect('I haven’t saw her since we graduated from college.','I haven’t seen her since we graduated from college.'))});
+test('scores are percentages',()=>{assert.equal(scorePercent(10,10),100);assert.equal(scorePercent(7,10),70)});
