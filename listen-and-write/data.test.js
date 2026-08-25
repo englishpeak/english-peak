@@ -1,6 +1,14 @@
 import test from 'node:test'; import assert from 'node:assert/strict';
 import { ACCESS, LISTEN_WRITE_SETS, isCorrect, normalizeAnswer, scorePercent, words } from './data.js';
 test('Set 1 is complete and streams direct Dropbox audio',()=>{const set=LISTEN_WRITE_SETS[0];assert.equal(set.items.length,10);set.items.forEach((item,i)=>{const count=words(item.answer).length;assert.match(item.audio,/^https:\/\/dl\.dropboxusercontent\.com\//);assert.match(item.audio,/raw=1$/);assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:count},(_,n)=>n));assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${i+1} is scrambled`)})});
+test('Medium difficulty hides every second word in Tests 1 and 2',()=>{
+  LISTEN_WRITE_SETS.slice(0,2).forEach(set=>set.items.forEach(item=>{
+    const sentenceWords=words(item.answer);
+    assert.equal(item.blanks.length,Math.floor(sentenceWords.length/2));
+    assert.equal((item.medium.match(/\[blank\]/g)||[]).length,item.blanks.length);
+    assert.deepEqual(item.blanks,sentenceWords.filter((_,index)=>index%2===1).map(word=>word.replace(/[,.?!;:]+$/u,'')));
+  }));
+});
 test('complete-sentence validation ignores spacing, capitalization, and final punctuation',()=>{
   const expected='I haven’t seen her since we graduated from college.';
   [
@@ -43,14 +51,12 @@ test('Test 2 has the requested access, order, blanks, and direct audio',()=>{
     'There’s no point in arguing about something we can’t change.',
     'Although the proposal initially seemed unreasonable, it turned out to be surprisingly effective.'
   ];
-  const blanks=[['arrived','left'],['mind','minutes'],['reluctantly','responsibility'],['managed','own'],['known','reconsidered'],['out','decision'],['trouble','car'],['expected','weeks'],['point','change'],['initially','effective']];
   assert.equal(set.title,'Test 2');
   assert.equal(set.access,ACCESS.REGISTERED);
   assert.equal(set.items.length,10);
   assert.deepEqual(set.items.map(item=>item.answer),answers);
-  assert.deepEqual(set.items.map(item=>item.blanks),blanks);
   set.items.forEach(item=>{
-    assert.equal((item.medium.match(/\[blank\]/g)||[]).length,2);
+    assert.equal((item.medium.match(/\[blank\]/g)||[]).length,Math.floor(words(item.answer).length/2));
     assert.match(item.audio,/^https:\/\/dl\.dropboxusercontent\.com\//);
     assert.match(item.audio,/raw=1$/);
     assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:words(item.answer).length},(_,i)=>i));
