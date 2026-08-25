@@ -24,7 +24,12 @@ rows.forEach((r, index) => SET_ITEMS.push({
 export const LISTEN_WRITE_SETS = Object.freeze([{ number:1, title:'Set 1', access:ACCESS.PUBLIC, items:SET_ITEMS }]);
 
 export function normalizeAnswer(value) {
-  return String(value ?? '').trim().toLocaleLowerCase().replace(/\s+/g, ' ').replace(/[.?!]+$/u, '').trim();
+  return String(value ?? '')
+    .trim()
+    .replace(/\s+/gu, ' ')
+    .toLowerCase()
+    .replace(/[.?!]+$/u, '')
+    .trim();
 }
 export function isCorrect(actual, expected) { return normalizeAnswer(actual) === normalizeAnswer(expected); }
 export function words(sentence) { return sentence.replace(/[.?!]+$/u, '').split(/\s+/); }
