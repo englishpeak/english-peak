@@ -351,14 +351,9 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
-      <div class="ex-card" onclick="openBusinessCases()">
-        <div class="card-header"><div class="card-icon gold">🧳</div><div class="card-access access-new">New</div></div>
-        <div class="card-body"><div class="card-title">Business Cases</div><div class="card-desc">Realistic business scenarios with integrated reading, listening, vocabulary, and decision-making practice.</div><div class="card-meta"><span class="meta-item">🧳 8 cases</span><span class="meta-item">🎯 Integrated skills</span></div><button class="card-btn btn-open">Start Practice →</button></div>
-      </div>
-      <div class="ex-card" onclick="openTranslationChallenge()">
-        <div class="card-header"><div class="card-icon red">🌎</div><div class="card-access access-locked" id="access-translationchallenge">🔐 Sign in</div></div>
-        <div class="card-body"><div class="card-title">Translation Challenge</div><div class="card-desc">Practice Spanish-to-English translation with Easy, Medium, and Hard modes. All sets are free for signed-in learners and ePeak+ members.</div><div class="card-meta"><span class="meta-item">🌎 Translation sets</span><span class="meta-item" id="meta-translationchallenge">Free account required</span></div><button class="card-btn btn-locked" id="btn-translationchallenge">🔐 Sign in to access</button></div>
-        <div class="lock-overlay" id="lock-translationchallenge"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account or sign in with ePeak+ to access Translation Challenge sets.</div><button class="lock-cta" onclick="showAuthModal('register');event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('translationchallenge');event.stopPropagation()">Maybe later</button></div>
+      <div class="ex-card" onclick="openListenAndWrite()">
+        <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
+        <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
       </div>
     </div>
 
@@ -403,9 +398,10 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon green">📚</div><div class="card-access access-free">✓ Free</div></div>
         <div class="card-body"><div class="card-title">Irregular Verbs Practice</div><div class="card-desc">Complete the missing verb forms: base form, simple past, and past participle. Shuffled prompts with instant feedback.</div><div class="card-meta"><span class="meta-item">⚡ Quick practice</span><span class="meta-item">📚 100+ verbs</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
-      <div class="ex-card" onclick="openListenAndWrite()">
-        <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
-        <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
+      <div class="ex-card" onclick="openTranslationChallenge()">
+        <div class="card-header"><div class="card-icon red">🌎</div><div class="card-access access-locked" id="access-translationchallenge">🔐 Sign in</div></div>
+        <div class="card-body"><div class="card-title">Translation Challenge</div><div class="card-desc">Practice Spanish-to-English translation with Easy, Medium, and Hard modes. All sets are free for signed-in learners and ePeak+ members.</div><div class="card-meta"><span class="meta-item">🌎 Translation sets</span><span class="meta-item" id="meta-translationchallenge">Free account required</span></div><button class="card-btn btn-locked" id="btn-translationchallenge">🔐 Sign in to access</button></div>
+        <div class="lock-overlay" id="lock-translationchallenge"><div class="lock-icon-big">🔐</div><div class="lock-title2">Free account required</div><div class="lock-sub2">Create a free account or sign in with ePeak+ to access Translation Challenge sets.</div><button class="lock-cta" onclick="showAuthModal('register');event.stopPropagation()">Create free account →</button><button class="lock-dismiss" onclick="hideLock('translationchallenge');event.stopPropagation()">Maybe later</button></div>
       </div>
       <div class="ex-card" onclick="openUnscrambleQuestions()">
         <div class="card-header"><div class="card-icon purple">❓</div><div class="card-access access-free">Free Account</div></div>
@@ -423,6 +419,10 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header"><h2>Business</h2><p>Business English tools</p></div>
     <div class="cards-grid">
+      <div class="ex-card" onclick="openBusinessCases()">
+        <div class="card-header"><div class="card-icon gold">🧳</div><div class="card-access access-new">New</div></div>
+        <div class="card-body"><div class="card-title">Business Cases</div><div class="card-desc">Realistic business scenarios with integrated reading, listening, vocabulary, and decision-making practice.</div><div class="card-meta"><span class="meta-item">🧳 8 cases</span><span class="meta-item">🎯 Integrated skills</span></div><button class="card-btn btn-open">Start Practice →</button></div>
+      </div>
       <div class="ex-card" onclick="openBusinessFlashcards()">
         <div class="card-header"><div class="card-icon purple">💼</div><div class="card-access access-free">+1,000 words</div></div>
         <div class="card-body"><div class="card-title">Business Flashcards</div><div class="card-desc">Business vocabulary with flashcards, matching, Jeopardy-style questions, and fill-in-the-blanks practice.</div><div class="card-meta"><span class="meta-item">💼 Vocabulary levels</span><span class="meta-item">🧩 4 activities</span></div><button class="card-btn btn-open">Start Practice →</button></div>
