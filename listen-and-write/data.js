@@ -28,6 +28,8 @@ export function normalizeAnswer(value) {
     .trim()
     .replace(/\s+/gu, ' ')
     .toLowerCase()
+    // Mobile and desktop keyboards can produce different apostrophe glyphs.
+    .replace(/[\u2018\u2019\u02bc\uff07]/gu, "'")
     .replace(/[.?!]+$/u, '')
     .trim();
 }
