@@ -987,6 +987,11 @@ function isTrustedExerciseMessage(e) {
 // Listen for messages from iframes (tier restriction + score logging)
 window.addEventListener('message', async function(e) {
   if (!isTrustedExerciseMessage(e)) return;
+  if (e.data && e.data.type === 'listenWriteAccessRequest') {
+    if (e.source && typeof e.source.postMessage === 'function') {
+      e.source.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser) }, e.origin);
+    }
+  }
   if (e.data === 'showModal' || (e.data && e.data.type === 'showModal')) {
     if (!_currentUser) {
       showAuthModal('register');
@@ -1089,6 +1094,7 @@ async function loadProfile() {
 
 function updateUIForUser() {
   if (!_currentProfile) return;
+  notifyListenWriteAccess();
   var tier = getEffectiveTier(_currentProfile);
   var name = _currentProfile.full_name || _currentUser.email.split('@')[0];
   var initial = name ? name[0].toUpperCase() : '?';
@@ -1140,6 +1146,7 @@ function updateUIForUser() {
 }
 
 function updateUIForVisitor() {
+  notifyListenWriteAccess();
   document.getElementById('sidebarName').textContent = 'Guest';
   document.getElementById('sidebarAvatar').textContent = '👤';
   document.getElementById('sidebarTier').textContent = 'Visitor';
@@ -1157,6 +1164,13 @@ function updateUIForVisitor() {
   var switcher = document.querySelector('.tier-switcher');
   if (switcher) switcher.style.display = 'none';
   applyTier('visitor');
+}
+
+function notifyListenWriteAccess() {
+  var frame = document.getElementById('frame-listen-and-write');
+  if (frame && frame.contentWindow) {
+    frame.contentWindow.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser) }, window.location.origin);
+  }
 }
 
 function applyTier(tier) {
