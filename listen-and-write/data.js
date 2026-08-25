@@ -21,7 +21,32 @@ rows.forEach((r, index) => SET_ITEMS.push({
   scramble:r[6]
 }));
 
-export const LISTEN_WRITE_SETS = Object.freeze([{ number:1, title:'Set 1', access:ACCESS.PUBLIC, items:SET_ITEMS }]);
+const TEST_2_ROWS = [
+  ['utjfqv4dddq2e9g36bra1','a64gg7ap1wifznys9hyyamds6','991lei6y','By the time we arrived, most of the guests had already left.','By the time we [blank], most of the guests had already [blank].',['arrived','left']],
+  ['0kdatzwuts6mhq8ic92ab','kag1tgye7kil6few27061x9qx','62egjwc1','Do you mind if I open the window for a few minutes?','Do you [blank] if I open the window for a few [blank]?',['mind','minutes']],
+  ['po0d3bjghid7gjk1mwtra','zo52rl4tuxvlext5dcgufcye2','3do9nncw','She reluctantly agreed to take responsibility for what had happened.','She [blank] agreed to take [blank] for what had happened.',['reluctantly','responsibility']],
+  ['27gqrkowcs65kecykesuo','pz4zaln09jwuj3gwpibjtv9th','h3w5wofb','I can’t believe you managed to finish everything on your own.','I can’t believe you [blank] to finish everything on your [blank].',['managed','own']],
+  ['le3ccjztbl897bw3mysi2','s8h3kxxiptbmcnexhbvr4dkgg','9z1qzfmm','Had I known how expensive it would be, I might have reconsidered my decision.','Had I [blank] how expensive it would be, I might have [blank] my decision.',['known','reconsidered']],
+  ['5xffsbpdhkp6z63n3sq2d','n6mcy9mbx38821mhhfi6r4i65','c7naeldb','We’re running out of time, so we’d better make a decision soon.','We’re running [blank] of time, so we’d better make a [blank] soon.',['out','decision']],
+  ['ovgderyfcmr7a1or8hlr5','8cji8x8i3esaeu3g893e5ivym','pl27br9b','Why didn’t you tell me that you were having trouble with your car?','Why didn’t you tell me that you were having [blank] with your [blank]?',['trouble','car']],
+  ['12vf4e62xdzdkcrnzqzav','rmjr5evbeqc7s73r4a1plgv7f','vy4704ak','The company is expected to announce significant changes within the next few weeks.','The company is [blank] to announce significant changes within the next few [blank].',['expected','weeks']],
+  ['8sh6ksbwsaf2w7a1a984n','wacvwjik41qnkszdzdg3idvwq','ul49uw2n','There’s no point in arguing about something we can’t change.','There’s no [blank] in arguing about something we can’t [blank].',['point','change']],
+  ['hgm148s6u4de7gtkvgcuc','581q7dng475x64lh1709j2fjp','c5f3j8u7','Although the proposal initially seemed unreasonable, it turned out to be surprisingly effective.','Although the proposal [blank] seemed unreasonable, it turned out to be surprisingly [blank].',['initially','effective']]
+];
+
+const TEST_2_ITEMS = TEST_2_ROWS.map((r, index) => {
+  const tokenCount = words(r[3]).length;
+  const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
+  return {
+    answer:r[3], medium:r[4], blanks:r[5], scramble,
+    audio:`https://dl.dropboxusercontent.com/scl/fi/${r[0]}/sentence-${index+1}.mp3?rlkey=${r[1]}&st=${r[2]}&raw=1`
+  };
+});
+
+export const LISTEN_WRITE_SETS = Object.freeze([
+  { number:1, title:'Test 1', access:ACCESS.PUBLIC, items:SET_ITEMS },
+  { number:2, title:'Test 2', access:ACCESS.REGISTERED, items:TEST_2_ITEMS }
+]);
 
 export function normalizeAnswer(value) {
   return String(value ?? '')
