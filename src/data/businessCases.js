@@ -10,7 +10,7 @@ export const businessCases = [
       { name: 'Marcus Bennett', role: 'Chief Executive Officer' },
       { name: 'Emma Carter', role: 'Human Resources Director' }
     ],
-    imageSharingUrl: 'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&dl=0',
+    imageUrl: '/audio/businesscases/case-1.png',
     imageAlt: 'The CEO and HR Director of Northbridge Solutions discussing reports in a New York office.',
     introduction: 'Northbridge Solutions has secured the largest contract in its history with Global Retail Group, marking an important moment in the company’s growth.',
     vocabulary: [
@@ -31,7 +31,7 @@ export const businessCases = [
       ]
     },
     listening: {
-      title: 'Executive Meeting', audioSharingUrl: 'https://www.dropbox.com/scl/fi/9wlnv3wr24m7ejw9kft99/case-1.mp3?rlkey=m7i1q0see503m7glp984g6z3p&st=ltql1ai1&dl=0',
+      title: 'Executive Meeting', audioUrl: '/audio/businesscases/case-1.mp3',
       transcript: [
         { speaker: 'Marcus Bennett, CEO', text: 'Emma, this contract changes everything for us. It’s worth nearly twice as much as any project we’ve handled before, and the client expects us to begin in just six weeks. My biggest concern is capacity. I don’t think we can deliver this with our current team. I’m leaning toward hiring around twenty-five full-time employees immediately. It’ll be expensive, but I want the client to see that we’re fully committed from day one.' },
         { speaker: 'Emma Carter, HR Director', text: 'I understand the urgency, Marcus, and I agree that we need more people. My concern is what happens after the first year. If the client’s workload decreases or they decide not to renew the contract, we’ll still have salaries, benefits, and long-term commitments. Instead of hiring everyone permanently, I’d suggest building a smaller core team and bringing in experienced contractors for the initial phase. It’s more flexible and lowers our financial risk.' },
@@ -70,7 +70,7 @@ export const businessCases = [
       { name: 'Ryan Mitchell', role: 'Senior Financial Analyst' },
       { name: 'Michael Hayes', role: 'Senior Financial Analyst' }
     ],
-    imageSharingUrl: 'https://www.dropbox.com/scl/fi/b9qw4znm145yqbdxon06b/case-2.png?rlkey=iez97dknev1up0mopb8e3cum6&st=38fpl416&dl=0',
+    imageUrl: '/audio/businesscases/case-2.png',
     imageAlt: 'Two senior financial analysts reviewing market data late at night in a New York office.',
     introduction: 'Ryan and Michael have spent the day preparing an investment strategy for an important client. At 8:30 p.m., with most of the office already empty, they must decide whether to continue working or call it a night.',
     vocabulary: [
@@ -92,7 +92,7 @@ export const businessCases = [
       ]
     },
     listening: {
-      title: 'Executive Meeting', context: 'Listen to Ryan and Michael having an informal conversation at their desks after most of the office has gone home.', audioSharingUrl: 'https://www.dropbox.com/scl/fi/gv4d49y8k2e6c14gufpui/case-2.mp3?rlkey=0y764lzexww42ijet51a9nnlh&st=2ptu9h7c&dl=0',
+      title: 'Executive Meeting', context: 'Listen to Ryan and Michael having an informal conversation at their desks after most of the office has gone home.', audioUrl: '/audio/businesscases/case-2.mp3',
       transcript: [
         { speaker: 'Ryan Mitchell', text: 'It’s already eight-thirty. I can’t believe we’ve been here all day. Honestly, I think I’m going to call it a night. I promised my wife we’d finally have dinner together, and I don’t want to cancel on her again.' },
         { speaker: 'Michael Hayes', text: 'You’re really leaving? We’re so close to finishing the strategy. If we stay another couple of hours, we can polish the presentation and walk into tomorrow’s meeting knowing we’ve covered every detail.' },
@@ -138,7 +138,7 @@ export const businessCases = [
       { name: 'Priya Shah', role: 'Regional Sales Manager' },
       { name: 'Danielle Brooks', role: 'Key Accounts Manager' }
     ],
-    imageSharingUrl: 'https://www.dropbox.com/scl/fi/pghekk6h6cxiaj8ko8lzb/case-3.png?rlkey=eiua4p29n9hzfcaca6obqhx25&st=jvs3cso0&dl=0',
+    imageUrl: '/audio/businesscases/case-3.png',
     imageAlt: 'Four senior sales professionals discussing reports and travel plans in a modern office.',
     introduction: 'Apex Business Systems is planning its sales activity for the coming month. With several promising prospects and a limited travel budget, the leadership team must decide where the department should concentrate its time and resources.',
     vocabulary: [
@@ -160,7 +160,7 @@ export const businessCases = [
       ]
     },
     listening: {
-      title: 'Executive Meeting', context: 'Listen to four members of the sales leadership team discussing how to allocate next month’s travel and client-development budget.', audioSharingUrl: 'https://www.dropbox.com/scl/fi/snb42o4k9jrr20lf14b41/case-3.mp3?rlkey=qrw397mg31t1r75iy1bjtpqqi&st=thnttoac&dl=0',
+      title: 'Executive Meeting', context: 'Listen to four members of the sales leadership team discussing how to allocate next month’s travel and client-development budget.', audioUrl: '/audio/businesscases/case-3.mp3',
       transcript: [
         { speaker: 'Victoria Chen', text: 'We need to finalize next month’s travel plan today. We have enough budget for several domestic trips and two international visits, but we can’t pursue every opportunity at the same level. The main question is whether we concentrate our resources on a few major companies or spread the budget across a larger number of medium-sized prospects.' },
         { speaker: 'Danielle Brooks', text: 'I’d focus on the major accounts. One successful contract with a national retailer or a multinational manufacturer could generate more revenue than ten smaller deals combined. Those clients expect face-to-face meetings, dinners, detailed proposals, and regular follow-ups. If we want to compete for them, we have to show that we’re willing to invest in the relationship.' },
@@ -200,7 +200,7 @@ export const businessCases = [
     level:'B2', levelGuidance:'', estimatedTime:'40–60 minutes', accessTier:'premium',
     company:'Hartwell Consumer Brands', industry:'Consumer Goods & Marketing', location:'New York, USA',
     characters:[{ name:'Eva Morales', role:'Marketing Manager' }],
-    imageSharingUrl:'https://www.dropbox.com/scl/fi/38l76qci1o7qw2baoa3cc/case-4.png?rlkey=4zee2tw3h32ynpd1lfjarkcab&st=5hu8dtvs&dl=0',
+    imageUrl: '/audio/businesscases/case-4.png',
     imageAlt:'A young marketing manager looking over the New York skyline while reflecting on an important career decision.',
     introduction:"Eva Morales has spent her entire professional career at Hartwell Consumer Brands. Just as she begins leading the company's biggest marketing campaign yet, she receives an offer that could change both her career and her life.",
     vocabulary:[
@@ -218,7 +218,7 @@ export const businessCases = [
       "Eva Morales represents one of Hartwell's internal success stories. After joining the company as an intern while finishing university, she accepted a junior marketing position and gradually earned several promotions through consistently strong performance and growing leadership responsibilities.",
       'Today, Eva manages an important marketing team and is respected by both senior management and her colleagues. However, an unexpected opportunity has forced her to consider whether her future should remain with the company that developed her career or take a completely different direction.'
     ]},
-    listening:{ title:'Executive Meeting', context:'Listen to Eva as she reflects on an unexpected career opportunity and the difficult decision she now faces.', audioSharingUrl:'https://www.dropbox.com/scl/fi/zgx1rrggocitgszxa0c9y/case-4.mp3?rlkey=2s0mcjwb9ri741qhjms43vgga&st=uu71172g&dl=0', transcript:[
+    listening:{ title:'Executive Meeting', context:'Listen to Eva as she reflects on an unexpected career opportunity and the difficult decision she now faces.', audioUrl: '/audio/businesscases/case-4.mp3', transcript:[
       { speaker:'Eva Morales', text:'I joined Hartwell Consumer Brands when I was twenty-one, as a marketing intern during my final year of college. At the time, I was just grateful that someone had given me a chance. I stayed after graduation, accepted a junior position, and gradually worked my way up. Every promotion I’ve received has happened here.\n\nThis company taught me how to lead campaigns, manage budgets, present to executives, and recover when an idea failed. Several people here supported me before I had enough experience to prove myself. Now, at twenty-nine, I manage a team of twelve and oversee marketing for three of our most important product lines.\n\nYesterday, I received an offer from Meridian Global, one of the largest companies in the industry. They want me to become their Chief Marketing Officer.\n\nThe salary is almost double what I earn now. The position includes an annual performance bonus, stock options, private health insurance, a company car allowance, executive travel, and a relocation package. I’d have my own office in their headquarters, lead an international department of more than eighty people, and report directly to the CEO. They’re also offering me a place on the executive committee and the chance to shape the company’s global brand strategy.\n\nProfessionally, it’s the kind of opportunity that may never come again—especially at my age.\n\nBut leaving doesn’t feel like a simple career decision. Hartwell invested in me when I had very little to offer. My team trusts me, my director has supported every stage of my development, and we’re currently preparing the largest campaign in the company’s history. If I leave now, I know it will create a serious gap.\n\nPart of me believes loyalty means staying and continuing to build something with the people who helped me grow. Another part believes that everything I learned here was preparing me for an opportunity exactly like this.\n\nI have one week to decide whether I owe this company more of my future—or whether I owe it to myself to move forward.' }
     ]},
     quizQuestions:[
@@ -252,7 +252,7 @@ export const businessCases = [
       { name:'David Carter', role:'Co-Founder & CEO' },
       { name:'Ethan Park', role:'Co-Founder & Chief Product Officer' }
     ],
-    imageSharingUrl:'https://www.dropbox.com/scl/fi/2efd7llzhq0318yhbo5kq/case-5.png?rlkey=keb4fqjc1fkcghglaa3amggc1&st=nyg4ho5j&dl=0',
+    imageUrl: '/audio/businesscases/case-5.png',
     imageAlt:'Two company founders discussing the possible sale of their business while waiting in an airport VIP lounge.',
     introduction:"David and Ethan founded Pure Origins Wellness from scratch. Years later, after building one of the fastest-growing wellness brands in the country, they are flying to Seattle to meet executives from one of the world's largest retailers, who want to acquire the entire company.",
     vocabulary:[
@@ -270,7 +270,7 @@ export const businessCases = [
       'For David Carter and Ethan Park, however, success has created a new challenge. Decisions that once focused on survival now involve long-term vision, leadership, and the future of a business that has become much larger than either of them originally imagined.',
       'The founders are travelling to Seattle for a meeting that could shape the future of both the company and their personal lives.'
     ]},
-    listening:{ title:'Executive Meeting', context:'Listen to David and Ethan as they discuss the biggest decision they have ever faced while waiting for their flight to Seattle.', audioSharingUrl:'https://www.dropbox.com/scl/fi/scupev9i5ic6vkkr1gvab/case-5.mp3?rlkey=qruyj9w0f0i3gspqab3sod16i&st=7tjch78z&dl=0', transcript:[
+    listening:{ title:'Executive Meeting', context:'Listen to David and Ethan as they discuss the biggest decision they have ever faced while waiting for their flight to Seattle.', audioUrl: '/audio/businesscases/case-5.mp3', transcript:[
       { speaker:'David Carter', text:"It's strange, isn't it? Five years ago we were packing orders ourselves in that tiny warehouse, wondering if we'd make enough sales to pay the rent. Now we're flying to Seattle because one of the biggest retailers in the world wants to buy everything we've built." },
       { speaker:'Ethan Park', text:"I still can't quite believe the number. Every time I look at it, it feels unreal. If we accept the offer, our families will never have to worry about money again. Not our children... probably not even our grandchildren." },
       { speaker:'David Carter', text:"Financially, it's almost impossible to say no. But every time I think about signing those papers, I keep asking myself something else. If we sell the company, what are we going to wake up excited about next Monday?" },
@@ -313,7 +313,7 @@ export const businessCases = [
       { name:'Sophia Reed', role:'Brand Manager' },
       { name:'Jason Miller', role:'Digital Marketing Manager' }
     ],
-    imageSharingUrl:'https://www.dropbox.com/scl/fi/s8hfmn9iwval2ywin0dj3/case-6.png?rlkey=64bp0q988nt4tfyecl82io6q6&st=op8983p6&dl=0',
+    imageUrl: '/audio/businesscases/case-6.png',
     imageAlt:'Three marketing leaders discussing strategic priorities in front of a planning whiteboard.',
     introduction:"As the year comes to an end, BrightPath Digital's marketing leadership team meets to define its priorities for the first quarter. Limited resources mean difficult choices, and the department must decide which investment will create the greatest long-term value.",
     vocabulary:[
@@ -330,7 +330,7 @@ export const businessCases = [
       "The first quarter is particularly important because it establishes priorities for the rest of the year. Decisions made during this planning period influence budget allocation, staffing, campaign development, and the department's overall objectives.",
       'The leadership team has gathered for its annual planning meeting to determine which strategic direction should receive the greatest investment during the coming quarter.'
     ]},
-    listening:{ title:'Executive Meeting', context:"Listen to three members of the marketing leadership team as they debate the department's biggest strategic decision for the first quarter.", audioSharingUrl:'https://www.dropbox.com/scl/fi/18w56hysgxp9weilo3alf/case-6.mp3?rlkey=qgue52c4f42m68axqwmlkrp8c&st=xny4703m&dl=0', transcript:[
+    listening:{ title:'Executive Meeting', context:"Listen to three members of the marketing leadership team as they debate the department's biggest strategic decision for the first quarter.", audioUrl: '/audio/businesscases/case-6.mp3', transcript:[
       { speaker:'Daniel Foster', text:"Thanks, everyone. Before we leave for the holidays, I'd like us to agree on the department's priorities for the first quarter. We have enough budget to do one major initiative really well, but probably not two. The question is whether we invest in launching a completely new product line or focus on improving the experience for the customers we already have." },
       { speaker:'Sophia Reed', text:"My vote is to strengthen what we've already built. Customer retention has improved this year, but we still receive feedback about onboarding, email communication, and loyalty rewards. If we make existing customers happier, they'll buy more often and recommend us to others. That's usually less expensive than constantly trying to acquire new customers." },
       { speaker:'Jason Miller', text:"I agree that retention matters, but standing still isn't really an option anymore. Our competitors are launching new products every few months, and that's what generates attention. A successful product launch would create media coverage, social media engagement, and thousands of new leads. We can't rely on the same customer base forever." },
@@ -369,7 +369,7 @@ export const businessCases = [
       { name:'Richard Whitmore', role:'Chief Financial Officer' },
       { name:'Alex Navarro', role:'Senior VP of Financial Planning & Analysis' }
     ],
-    imageSharingUrl:'https://www.dropbox.com/scl/fi/q2lmny8p33593e0wk1r01/case-7.png?rlkey=g11gb4wvew5po532p48wtrfmq&st=ddi8ihp2&dl=0',
+    imageUrl: '/audio/businesscases/case-7.png',
     imageAlt:'Two senior finance executives reviewing quarterly results in a corporate boardroom before a board presentation.',
     introduction:'Sterling Industrial Group has completed its second quarter. Performance improved compared with Q1, but several important financial targets were missed. Before presenting the results to the board, two senior finance executives must determine what corrective measures they are prepared to recommend.',
     vocabulary:[
@@ -387,7 +387,7 @@ export const businessCases = [
       'Sterling has now completed its second quarter. The finance department is preparing the company’s financial presentation for the upcoming board meeting, where directors will review performance and question management about the outlook for the remainder of the year.',
       'Before that meeting takes place, the company’s CFO and one of his senior financial executives are reviewing the numbers and discussing what management should recommend next.'
     ]},
-    listening:{ title:'Executive Meeting', context:'Listen to two senior finance executives as they review the Q2 results and decide what they should recommend to the board.', audioSharingUrl:'https://www.dropbox.com/scl/fi/47adbcaatunpwsvkcaisx/case-7.mp3?rlkey=f2gizg6tfzsqpmh0jb5vo6g2y&st=tijjf49g&dl=0', transcript:[
+    listening:{ title:'Executive Meeting', context:'Listen to two senior finance executives as they review the Q2 results and decide what they should recommend to the board.', audioUrl: '/audio/businesscases/case-7.mp3', transcript:[
       { speaker:'Richard Whitmore', text:'Q2 was definitely better than Q1. Revenue increased eleven percent and cash flow improved. The problem is that we’re still six percent below our revenue forecast and twelve percent below our operating profit target.' },
       { speaker:'Alex Navarro', text:'And that’s what the board will focus on. We need to explain the gap, but more importantly, show them what we’re going to do about it.' },
       { speaker:'Richard Whitmore', text:'Part of it is timing. Three major contracts we expected in June have moved into Q3. But logistics costs were also higher than expected, and the West Coast division underperformed again.' },
@@ -430,7 +430,7 @@ export const businessCases = [
       { name:'Thomas Keller', role:'Chief Operating Officer' },
       { name:'Omar Haddad', role:'Regional Expansion Director' }
     ],
-    imageSharingUrl:'https://www.dropbox.com/scl/fi/029pr7dq07sg0zha9wayn/case-8.png?rlkey=h5kf1k8dipx4r0afh640rg2h5&st=xw3smma0&dl=0',
+    imageUrl: '/audio/businesscases/case-8.png',
     imageAlt:'Two senior executives reviewing documents while discussing the launch of a new business operation in Dubai.',
     introduction:'Nexora Consulting Group has chosen Dubai as the location for its new Middle East hub. After months of planning, the company is approaching the final stages of its expansion—but several legal, operational, and strategic decisions still need to be made before the new office can begin commercial operations.',
     vocabulary:[
@@ -456,7 +456,7 @@ export const businessCases = [
       "Nexora originally planned to begin commercial operations in January. The board has already communicated the Dubai expansion as an important part of the company's international growth strategy.",
       "Thomas Keller, the company's Chief Operating Officer, and Omar Haddad, its Regional Expansion Director, have spent the week in Dubai meeting advisers, potential clients, and local business representatives. Before returning to Europe, they need to decide what they will recommend to the board."
     ]},
-    listening:{ title:'Executive Meeting', context:'Listen to Thomas and Omar as they discuss how Nexora should structure its new Dubai operation and whether the company should reconsider its original launch schedule.', audioSharingUrl:'https://www.dropbox.com/scl/fi/exjr8y78mkuvasobdc6nc/case-8.mp3?rlkey=s80mdwz4gt0zm954n6r1pogxy&st=pijvj94o&dl=0', transcript:[
+    listening:{ title:'Executive Meeting', context:'Listen to Thomas and Omar as they discuss how Nexora should structure its new Dubai operation and whether the company should reconsider its original launch schedule.', audioUrl: '/audio/businesscases/case-8.mp3', transcript:[
       { speaker:'Thomas Keller', text:"So, we're flying home tomorrow, and I still don't think we've answered the most important question. Do we establish the Dubai operation in a free zone, or do we go directly with a mainland company?" },
       { speaker:'Omar Haddad', text:"Six months ago, I would have said free zone immediately. It's attractive for an international company like ours, and several of them are designed specifically for technology and professional services. But after this week's meetings, I'm leaning toward mainland." },
       { speaker:'Thomas Keller', text:'Because of the potential clients?' },
