@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { googleDriveImageUrl, getDropboxDirectUrl, dropboxAudioUrl } from './media-urls.js';
+import { access, readFile } from 'node:fs/promises';
 import { canAccessBusinessCase, accessLabel } from './access.js';
 import { businessCases } from '../src/data/businessCases.js';
 import { BUSINESS_CASES_BACKGROUNDS, selectBusinessCasesBackground } from './theme.js';
@@ -21,21 +20,15 @@ test('transparent background is retained for the lifetime of the Business Cases 
   assert.doesNotMatch(theme, /else currentBackground = ''/);
 });
 
-test('Google Drive sharing URLs become direct image URLs', () => {
-  assert.equal(googleDriveImageUrl('https://drive.google.com/file/d/abc_123/view?usp=sharing'), 'https://drive.google.com/uc?export=view&id=abc_123');
-  assert.equal(googleDriveImageUrl('not a url'), '');
-});
-
-test('Dropbox links request raw media while preserving share keys', () => {
-  const sharingUrl = 'https://www.dropbox.com/scl/fi/id/image.png?rlkey=secret&st=token&dl=0';
-  const result = new URL(getDropboxDirectUrl(sharingUrl));
-  assert.equal(result.searchParams.get('raw'), '1');
-  assert.equal(result.searchParams.get('dl'), null);
-  assert.equal(result.searchParams.get('rlkey'), 'secret');
-  assert.equal(result.searchParams.get('st'), 'token');
-  assert.equal(getDropboxDirectUrl('https://example.com/image.png?dl=0'), 'https://example.com/image.png?dl=0');
-  assert.equal(getDropboxDirectUrl('not a url'), 'not a url');
-  assert.equal(dropboxAudioUrl(sharingUrl), getDropboxDirectUrl(sharingUrl));
+test('every business case uses repository-hosted media files', async () => {
+  await Promise.all(businessCases.flatMap(async item => {
+    assert.equal(item.imageUrl, `/audio/businesscases/${item.slug}.png`);
+    assert.equal(item.listening.audioUrl, `/audio/businesscases/${item.slug}.mp3`);
+    await Promise.all([
+      access(new URL(`../audio/businesscases/${item.slug}.png`, import.meta.url)),
+      access(new URL(`../audio/businesscases/${item.slug}.mp3`, import.meta.url))
+    ]);
+  }));
 });
 
 test('business-case access follows existing platform tiers', () => {
@@ -54,10 +47,7 @@ test('business-case access follows existing platform tiers', () => {
 
 test('Case 1 has the complete reusable lesson data', () => {
   const item = businessCases[0];
-  assert.equal(
-    getDropboxDirectUrl(item.imageSharingUrl),
-    'https://www.dropbox.com/scl/fi/tzqyklndjwksy1o57zjak/case-1.png?rlkey=4szm8ecgrqwdh1geoz5pyft62&st=ky8ii7ql&raw=1'
-  );
+  assert.equal(item.imageUrl, '/audio/businesscases/case-1.png');
   assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.vocabulary.length, 8);
   assert.equal(item.reading.vocabulary, undefined);
@@ -77,14 +67,8 @@ test('Case 2 contains the complete published lesson data and free-account access
   assert.equal(item.accessTier, 'free');
   assert.equal(accessLabel(item, 'visitor'), 'Free account required');
   assert.equal(accessLabel(item, 'free'), 'Included with your account');
-  assert.equal(
-    getDropboxDirectUrl(item.imageSharingUrl),
-    'https://www.dropbox.com/scl/fi/b9qw4znm145yqbdxon06b/case-2.png?rlkey=iez97dknev1up0mopb8e3cum6&st=38fpl416&raw=1'
-  );
-  assert.equal(
-    dropboxAudioUrl(item.listening.audioSharingUrl),
-    'https://www.dropbox.com/scl/fi/gv4d49y8k2e6c14gufpui/case-2.mp3?rlkey=0y764lzexww42ijet51a9nnlh&st=2ptu9h7c&raw=1'
-  );
+  assert.equal(item.imageUrl, '/audio/businesscases/case-2.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-2.mp3');
   assert.equal(item.vocabulary.length, 10);
   assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.reading.vocabulary, undefined);
@@ -109,14 +93,8 @@ test('Case 3 contains the complete published lesson data and free-account access
   assert.equal(accessLabel(item, 'visitor'), 'Free account required');
   assert.equal(accessLabel(item, 'free'), 'Included with your account');
   assert.equal(accessLabel(item, 'premium'), 'Included with your account');
-  assert.equal(
-    getDropboxDirectUrl(item.imageSharingUrl),
-    'https://www.dropbox.com/scl/fi/pghekk6h6cxiaj8ko8lzb/case-3.png?rlkey=eiua4p29n9hzfcaca6obqhx25&st=jvs3cso0&raw=1'
-  );
-  assert.equal(
-    dropboxAudioUrl(item.listening.audioSharingUrl),
-    'https://www.dropbox.com/scl/fi/snb42o4k9jrr20lf14b41/case-3.mp3?rlkey=qrw397mg31t1r75iy1bjtpqqi&st=thnttoac&raw=1'
-  );
+  assert.equal(item.imageUrl, '/audio/businesscases/case-3.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-3.mp3');
   assert.equal(item.vocabulary.length, 10);
   assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.reading.vocabulary, undefined);
@@ -139,8 +117,8 @@ test('Case 4 contains the complete ePeak+ lesson data', () => {
   assert.equal(item.accessTier, 'premium');
   assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
   assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
-  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/38l76qci1o7qw2baoa3cc/case-4.png?rlkey=4zee2tw3h32ynpd1lfjarkcab&st=5hu8dtvs&raw=1');
-  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/zgx1rrggocitgszxa0c9y/case-4.mp3?rlkey=2s0mcjwb9ri741qhjms43vgga&st=uu71172g&raw=1');
+  assert.equal(item.imageUrl, '/audio/businesscases/case-4.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-4.mp3');
   assert.equal(item.vocabulary.length, 10);
   assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.reading.vocabulary, undefined);
@@ -168,8 +146,8 @@ test('Case 5 contains the complete ePeak+ lesson data', () => {
   assert.equal(canAccessBusinessCase(item, 'premium'), true);
   assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
   assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
-  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/2efd7llzhq0318yhbo5kq/case-5.png?rlkey=keb4fqjc1fkcghglaa3amggc1&st=nyg4ho5j&raw=1');
-  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/scupev9i5ic6vkkr1gvab/case-5.mp3?rlkey=qruyj9w0f0i3gspqab3sod16i&st=7tjch78z&raw=1');
+  assert.equal(item.imageUrl, '/audio/businesscases/case-5.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-5.mp3');
   assert.equal(item.vocabulary.length, 10);
   assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.reading.vocabulary, undefined);
@@ -198,8 +176,8 @@ test('Case 6 contains the complete ePeak+ lesson data', () => {
   assert.equal(canAccessBusinessCase(item, 'premium'), true);
   assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
   assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
-  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/s8hfmn9iwval2ywin0dj3/case-6.png?rlkey=64bp0q988nt4tfyecl82io6q6&st=op8983p6&raw=1');
-  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/18w56hysgxp9weilo3alf/case-6.mp3?rlkey=qgue52c4f42m68axqwmlkrp8c&st=xny4703m&raw=1');
+  assert.equal(item.imageUrl, '/audio/businesscases/case-6.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-6.mp3');
   assert.equal(item.vocabulary.length, 10);
   assert.equal(item.reading.paragraphs.length, 5);
   assert.equal(item.reading.vocabulary, undefined);
@@ -229,8 +207,8 @@ test('Case 7 contains the complete ePeak+ lesson data', () => {
   assert.equal(canAccessBusinessCase(item, 'premium'), true);
   assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
   assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
-  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/q2lmny8p33593e0wk1r01/case-7.png?rlkey=g11gb4wvew5po532p48wtrfmq&st=ddi8ihp2&raw=1');
-  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/47adbcaatunpwsvkcaisx/case-7.mp3?rlkey=f2gizg6tfzsqpmh0jb5vo6g2y&st=tijjf49g&raw=1');
+  assert.equal(item.imageUrl, '/audio/businesscases/case-7.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-7.mp3');
   assert.equal(item.vocabulary.length, 10);
   assert.equal(item.reading.paragraphs.length, 6);
   assert.equal(item.reading.vocabulary, undefined);
@@ -260,8 +238,8 @@ test('Case 8 contains the complete ePeak+ Dubai lesson data', () => {
   assert.equal(canAccessBusinessCase(item, 'premium'), true);
   assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
   assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
-  assert.equal(getDropboxDirectUrl(item.imageSharingUrl), 'https://www.dropbox.com/scl/fi/029pr7dq07sg0zha9wayn/case-8.png?rlkey=h5kf1k8dipx4r0afh640rg2h5&st=xw3smma0&raw=1');
-  assert.equal(dropboxAudioUrl(item.listening.audioSharingUrl), 'https://www.dropbox.com/scl/fi/exjr8y78mkuvasobdc6nc/case-8.mp3?rlkey=s80mdwz4gt0zm954n6r1pogxy&st=pijvj94o&raw=1');
+  assert.equal(item.imageUrl, '/audio/businesscases/case-8.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-8.mp3');
   assert.equal(item.vocabulary.length, 12);
   assert.equal(item.reading.paragraphs.length, 7);
   assert.equal(item.reading.vocabulary, undefined);
