@@ -1,6 +1,27 @@
 import test from 'node:test'; import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
-import { ACCESS, LISTEN_WRITE_SETS, isCorrect, listenWriteAudio, normalizeAnswer, scorePercent, words } from './data.js';
+import { ACCESS, LISTEN_WRITE_SETS, isCorrect, listenWriteAudio, normalizeAnswer, scorePercent, scrambleWords, words } from './data.js';
+
+function assertGenuinelyScrambled(item, label) {
+  const tokens = words(item.answer);
+  const original = Array.from({ length: tokens.length }, (_, index) => index);
+  const reversed = [...original].reverse();
+  const oddThenEven = original.filter(index => index % 2 === 0).concat(original.filter(index => index % 2 === 1));
+  const half = Math.ceil(tokens.length / 2);
+  const swappedHalves = original.slice(half).concat(original.slice(0, half));
+  const alphabetical = [...original].sort((a, b) => tokens[a].localeCompare(tokens[b]));
+
+  assert.deepEqual([...item.scramble].sort((a, b) => a - b), original, `${label} contains every token exactly once`);
+  assert.ok(item.scramble.every((value, index) => value !== index), `${label} moves every token from its original position`);
+  assert.notDeepEqual(item.scramble.map(index => tokens[index]), tokens, `${label} is not the displayed sentence order`);
+  assert.notDeepEqual(item.scramble.map(index => tokens[index]), [...tokens].reverse(), `${label} is not the displayed reverse order`);
+  [original, reversed, oddThenEven, swappedHalves, alphabetical, [...alphabetical].reverse()].forEach(pattern => {
+    assert.notDeepEqual(item.scramble, pattern, `${label} does not use a trivial ordering`);
+  });
+  original.slice(1).forEach(offset => {
+    assert.notDeepEqual(item.scramble, original.map((_, index) => (index + offset) % original.length), `${label} is not a rotation`);
+  });
+}
 
 test('Listen and Write generates local audio paths for current and future tests',()=>{
   assert.equal(listenWriteAudio(3,6),'/audio/listen-and-write/test-3/sentence-6.mp3');
@@ -28,7 +49,18 @@ test('all local Listen and Write MP3 files exist, are non-empty, and contain MP3
   }
 });
 
-test('Set 1 remains complete and scrambled',()=>{const set=LISTEN_WRITE_SETS[0];assert.equal(set.items.length,10);set.items.forEach((item,i)=>{const count=words(item.answer).length;assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:count},(_,n)=>n));assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${i+1} is scrambled`)})});
+test('every Easy word bank uses a genuine shuffle, including all Test 3 and Test 4 items',()=>{
+  LISTEN_WRITE_SETS.forEach(set=>set.items.forEach((item,index)=>assertGenuinelyScrambled(item,`Test ${set.number} item ${index+1}`)));
+});
+
+test('scrambling preserves contractions as complete tokens',()=>{
+  const answer="I didn't recognize him because he'd changed.";
+  const shuffled=scrambleWords(answer);
+  const tokens=words(answer);
+  assert.deepEqual(shuffled.map(index=>tokens[index]).sort(),tokens.sort());
+  assert.ok(tokens.includes("didn't"));
+  assert.ok(tokens.includes("he'd"));
+});
 test('Medium difficulty hides every second word in Tests 1 and 2',()=>{
   LISTEN_WRITE_SETS.slice(0,2).forEach(set=>set.items.forEach(item=>{
     const sentenceWords=words(item.answer);
