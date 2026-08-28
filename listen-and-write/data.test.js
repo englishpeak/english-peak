@@ -89,3 +89,32 @@ test('Test 2 has the requested access, order, blanks, and local audio',()=>{
     assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:words(item.answer).length},(_,i)=>i));
   });
 });
+
+test('Test 3 has the requested access, order, distributed blanks, and local audio',()=>{
+  const set=LISTEN_WRITE_SETS[2];
+  const answers=[
+    'I forgot to bring my umbrella, so I got completely soaked on the way home.',
+    'Could you please turn the music down a little bit?',
+    'The new policy is unlikely to have a significant impact on most employees.',
+    "We've been trying to solve this problem since early this morning.",
+    'What time are you planning to leave tomorrow?',
+    'She denied having shared the confidential information with anyone outside the company.',
+    "I wish I'd paid more attention when she explained how the system worked.",
+    'Apparently, the restaurant we wanted to try has been fully booked for weeks.',
+    'Were it not for their financial support, the project would probably have been abandoned.',
+    'He ended up taking the train because his flight had been canceled at the last minute.'
+  ];
+  assert.equal(set.title,'Test 3');
+  assert.equal(set.access,ACCESS.REGISTERED);
+  assert.equal(set.items.length,10);
+  assert.deepEqual(set.items.map(item=>item.answer),answers);
+  set.items.forEach((item,index)=>{
+    const sentenceWords=words(item.answer);
+    assert.equal(item.blanks.length,Math.floor(sentenceWords.length/2));
+    assert.equal((item.medium.match(/\[blank\]/g)||[]).length,item.blanks.length);
+    assert.deepEqual(item.blanks,sentenceWords.filter((_,wordIndex)=>wordIndex%2===1).map(word=>word.replace(/[,.?!;:]+$/u,'')));
+    assert.equal(item.audio,`/audio/listen-and-write/test-3/sentence-${index+1}.mp3`);
+    assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:sentenceWords.length},(_,i)=>i));
+    assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${index+1} is scrambled`);
+  });
+});

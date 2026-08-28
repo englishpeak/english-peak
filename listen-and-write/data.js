@@ -61,9 +61,32 @@ const TEST_2_ITEMS = TEST_2_ROWS.map((answer, index) => {
   };
 });
 
+const TEST_3_ROWS = [
+  'I forgot to bring my umbrella, so I got completely soaked on the way home.',
+  'Could you please turn the music down a little bit?',
+  'The new policy is unlikely to have a significant impact on most employees.',
+  "We've been trying to solve this problem since early this morning.",
+  'What time are you planning to leave tomorrow?',
+  'She denied having shared the confidential information with anyone outside the company.',
+  "I wish I'd paid more attention when she explained how the system worked.",
+  'Apparently, the restaurant we wanted to try has been fully booked for weeks.',
+  'Were it not for their financial support, the project would probably have been abandoned.',
+  'He ended up taking the train because his flight had been canceled at the last minute.'
+];
+
+const TEST_3_ITEMS = TEST_3_ROWS.map((answer, index) => {
+  const tokenCount = words(answer).length;
+  const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
+  return {
+    answer, ...mediumPrompt(answer), scramble,
+    audio:listenWriteAudio(3, index + 1)
+  };
+});
+
 export const LISTEN_WRITE_SETS = Object.freeze([
   { number:1, title:'Test 1', access:ACCESS.PUBLIC, items:TEST_1_ITEMS },
-  { number:2, title:'Test 2', access:ACCESS.REGISTERED, items:TEST_2_ITEMS }
+  { number:2, title:'Test 2', access:ACCESS.REGISTERED, items:TEST_2_ITEMS },
+  { number:3, title:'Test 3', access:ACCESS.REGISTERED, items:TEST_3_ITEMS }
 ]);
 
 export function normalizeAnswer(value) {
