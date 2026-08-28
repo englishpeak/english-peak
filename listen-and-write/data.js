@@ -20,23 +20,61 @@ function mediumPrompt(answer) {
   return { medium, blanks };
 }
 
+function isRotation(order) {
+  return order.length >= 4 && order.some((_, offset) => offset > 0 && order.every((value, index) => value === (index + offset) % order.length));
+}
+
+function isTrivialScramble(order, tokens) {
+  const count = order.length;
+  const original = Array.from({ length: count }, (_, index) => index);
+  const reversed = [...original].reverse();
+  const oddThenEven = original.filter(index => index % 2 === 0).concat(original.filter(index => index % 2 === 1));
+  const half = Math.ceil(count / 2);
+  const swappedHalves = original.slice(half).concat(original.slice(0, half));
+  const alphabetical = [...original].sort((a, b) => tokens[a].localeCompare(tokens[b]));
+  const shuffledTokens = order.map(index => tokens[index]);
+  const matchesTokenOrder = candidate => shuffledTokens.every((token, index) => token === candidate[index]);
+
+  return [original, reversed, oddThenEven, swappedHalves, alphabetical, [...alphabetical].reverse()]
+    .some(pattern => order.every((value, index) => value === pattern[index])) ||
+    matchesTokenOrder(tokens) || matchesTokenOrder([...tokens].reverse()) ||
+    (count >= 4 && order.some((value, index) => value === index)) || isRotation(order);
+}
+
+// Fisher-Yates gives every permutation an equal chance. Reject recognizable
+// shortcuts so Easy mode always requires reconstructing the sentence itself.
+export function scrambleWords(answer, random = Math.random) {
+  const tokens = words(answer);
+  if (tokens.length < 3) throw new RangeError('Easy Listen and Write sentences need at least three tokens to be genuinely scrambled.');
+  const original = Array.from({ length: tokens.length }, (_, index) => index);
+
+  while (true) {
+    const shuffled = [...original];
+    for (let index = shuffled.length - 1; index > 0; index--) {
+      const swapIndex = Math.floor(random() * (index + 1));
+      [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+    }
+    if (!isTrivialScramble(shuffled, tokens)) return shuffled;
+  }
+}
+
 const TEST_1_ROWS = [
-  ['I haven’t seen her since we graduated from college.',[5,1,8,3,0,7,2,6,4]],
-  ['How long does it usually take you to get ready in the morning?',[8,2,11,4,0,12,7,1,10,5,3,9,6]],
-  ['We were supposed to meet at the restaurant around seven.',[6,1,9,3,0,8,5,2,7,4]],
-  ['Have you ever considered moving to a different country?',[6,2,8,0,5,3,1,7,4]],
-  ['I would have called you if I’d known you were still awake.',[8,2,11,5,0,9,3,7,1,10,4,6]],
-  ['The meeting was postponed because several people couldn’t make it.',[6,1,9,4,0,7,2,8,5,3]],
-  ['What would you have done if they hadn’t offered you the job?',[9,2,11,5,0,8,3,10,6,1,7,4]],
-  ['She eventually realized that the problem was more complicated than she’d initially thought.',[8,1,11,4,0,9,3,12,6,2,10,5,7]],
-  ['Despite being warned several times, he kept making the same mistake.',[8,2,10,4,0,7,1,9,5,3,6]],
-  ['It’s becoming increasingly difficult to distinguish reliable information from misleading content online.',[8,2,11,4,0,9,6,1,10,5,3,7]]
+  'I haven’t seen her since we graduated from college.',
+  'How long does it usually take you to get ready in the morning?',
+  'We were supposed to meet at the restaurant around seven.',
+  'Have you ever considered moving to a different country?',
+  'I would have called you if I’d known you were still awake.',
+  'The meeting was postponed because several people couldn’t make it.',
+  'What would you have done if they hadn’t offered you the job?',
+  'She eventually realized that the problem was more complicated than she’d initially thought.',
+  'Despite being warned several times, he kept making the same mistake.',
+  'It’s becoming increasingly difficult to distinguish reliable information from misleading content online.'
 ];
 
-const TEST_1_ITEMS = TEST_1_ROWS.map(([answer, scramble], index) => ({
+const TEST_1_ITEMS = TEST_1_ROWS.map((answer, index) => ({
   answer, ...mediumPrompt(answer),
   audio:listenWriteAudio(1, index + 1),
-  scramble
+  scramble:scrambleWords(answer)
 }));
 
 const TEST_2_ROWS = [
@@ -53,10 +91,8 @@ const TEST_2_ROWS = [
 ];
 
 const TEST_2_ITEMS = TEST_2_ROWS.map((answer, index) => {
-  const tokenCount = words(answer).length;
-  const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
   return {
-    answer, ...mediumPrompt(answer), scramble,
+    answer, ...mediumPrompt(answer), scramble:scrambleWords(answer),
     audio:listenWriteAudio(2, index + 1)
   };
 });
@@ -75,10 +111,8 @@ const TEST_3_ROWS = [
 ];
 
 const TEST_3_ITEMS = TEST_3_ROWS.map((answer, index) => {
-  const tokenCount = words(answer).length;
-  const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
   return {
-    answer, ...mediumPrompt(answer), scramble,
+    answer, ...mediumPrompt(answer), scramble:scrambleWords(answer),
     audio:listenWriteAudio(3, index + 1)
   };
 });
@@ -97,10 +131,8 @@ const TEST_4_ROWS = [
 ];
 
 const TEST_4_ITEMS = TEST_4_ROWS.map((answer, index) => {
-  const tokenCount = words(answer).length;
-  const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
   return {
-    answer, ...mediumPrompt(answer), scramble,
+    answer, ...mediumPrompt(answer), scramble:scrambleWords(answer),
     audio:listenWriteAudio(4, index + 1)
   };
 });
