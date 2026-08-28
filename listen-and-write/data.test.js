@@ -116,9 +116,15 @@ test('Test 2 has the requested access, order, blanks, and local audio',()=>{
   assert.equal(set.items.length,10);
   assert.deepEqual(set.items.map(item=>item.answer),answers);
   set.items.forEach((item,index)=>{
+    assertGenuinelyScrambled(item,`Test 2 item ${index+1}`);
     assert.equal((item.medium.match(/\[blank\]/g)||[]).length,Math.floor(words(item.answer).length/2));
     assert.equal(item.audio,`/audio/listen-and-write/test-2/sentence-${index+1}.mp3`);
     assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:words(item.answer).length},(_,i)=>i));
+  });
+
+  const contractionTokens=set.items.flatMap(item=>words(item.answer));
+  ['can’t','We’re','we’d','didn’t','There’s'].forEach(contraction=>{
+    assert.ok(contractionTokens.includes(contraction),`${contraction} remains one Test 2 token`);
   });
 });
 
