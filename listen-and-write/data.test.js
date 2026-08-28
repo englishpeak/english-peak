@@ -118,3 +118,30 @@ test('Test 3 has the requested access, order, distributed blanks, and local audi
     assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${index+1} is scrambled`);
   });
 });
+
+test('Test 4 is ePeak+ and has the requested order, modes, and local audio',()=>{
+  const set=LISTEN_WRITE_SETS[3];
+  const answers=[
+    'Have you seen my keys anywhere?',
+    'She would rather work from home than spend two hours commuting every day.',
+    "I didn't recognize him at first because he'd grown a beard.",
+    'What would happen if everyone simply refused to follow the new regulations?',
+    'We need to buy some groceries before the stores close.',
+    'Not until I started working abroad did I realize how much I took for granted.',
+    "They've been looking for a larger apartment, but they haven't found anything affordable yet.",
+    "I'd appreciate it if you could keep me informed of any further developments.",
+    "There's a good chance the concert will be canceled if the weather gets any worse.",
+    'Having spent several years developing the technology, the researchers were reluctant to abandon the project.'
+  ];
+  assert.equal(set.title,'Test 4');
+  assert.equal(set.access,ACCESS.PLUS);
+  assert.deepEqual(set.items.map(item=>item.answer),answers);
+  set.items.forEach((item,index)=>{
+    const sentenceWords=words(item.answer);
+    assert.equal(item.blanks.length,Math.floor(sentenceWords.length/2));
+    assert.equal((item.medium.match(/\[blank\]/g)||[]).length,item.blanks.length);
+    assert.equal(item.audio,`/audio/listen-and-write/test-4/sentence-${index+1}.mp3`);
+    assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:sentenceWords.length},(_,i)=>i));
+    assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${index+1} is scrambled`);
+  });
+});
