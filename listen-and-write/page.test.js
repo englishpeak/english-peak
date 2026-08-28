@@ -18,3 +18,14 @@ test('the play label resets for each sentence', async () => {
   assert.match(html, /id="play"[^>]*>▶ Play<\/button>/);
   assert.match(app, /function renderItem\(\).*\$\('play'\)\.textContent='▶ Play'/);
 });
+
+test('Test 4 requires the existing parent-provided ePeak+ entitlement', async () => {
+  const [app, parent] = await Promise.all([
+    readFile(new URL('./app.js', import.meta.url), 'utf8'),
+    readFile(new URL('../index.html', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(app, /selected\.access===ACCESS\.REGISTERED&&!authenticated\|\|selected\.access===ACCESS\.PLUS&&!plusAccess/);
+  assert.match(app, /plusAccess=Boolean\(e\.data\.plusAccess\)/);
+  assert.match(parent, /plusAccess: hasFullAccessTier\(getEffectiveTier\(_currentProfile\)\)/);
+});

@@ -83,10 +83,33 @@ const TEST_3_ITEMS = TEST_3_ROWS.map((answer, index) => {
   };
 });
 
+const TEST_4_ROWS = [
+  'Have you seen my keys anywhere?',
+  'She would rather work from home than spend two hours commuting every day.',
+  "I didn't recognize him at first because he'd grown a beard.",
+  'What would happen if everyone simply refused to follow the new regulations?',
+  'We need to buy some groceries before the stores close.',
+  'Not until I started working abroad did I realize how much I took for granted.',
+  "They've been looking for a larger apartment, but they haven't found anything affordable yet.",
+  "I'd appreciate it if you could keep me informed of any further developments.",
+  "There's a good chance the concert will be canceled if the weather gets any worse.",
+  'Having spent several years developing the technology, the researchers were reluctant to abandon the project.'
+];
+
+const TEST_4_ITEMS = TEST_4_ROWS.map((answer, index) => {
+  const tokenCount = words(answer).length;
+  const scramble = Array.from({length:tokenCount}, (_, i) => tokenCount - i - 1);
+  return {
+    answer, ...mediumPrompt(answer), scramble,
+    audio:listenWriteAudio(4, index + 1)
+  };
+});
+
 export const LISTEN_WRITE_SETS = Object.freeze([
   { number:1, title:'Test 1', access:ACCESS.PUBLIC, items:TEST_1_ITEMS },
   { number:2, title:'Test 2', access:ACCESS.REGISTERED, items:TEST_2_ITEMS },
-  { number:3, title:'Test 3', access:ACCESS.REGISTERED, items:TEST_3_ITEMS }
+  { number:3, title:'Test 3', access:ACCESS.REGISTERED, items:TEST_3_ITEMS },
+  { number:4, title:'Test 4', access:ACCESS.PLUS, items:TEST_4_ITEMS }
 ]);
 
 export function normalizeAnswer(value) {

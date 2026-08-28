@@ -989,7 +989,7 @@ window.addEventListener('message', async function(e) {
   if (!isTrustedExerciseMessage(e)) return;
   if (e.data && e.data.type === 'listenWriteAccessRequest') {
     if (e.source && typeof e.source.postMessage === 'function') {
-      e.source.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser) }, e.origin);
+      e.source.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, e.origin);
     }
   }
   if (e.data === 'showModal' || (e.data && e.data.type === 'showModal')) {
@@ -1169,7 +1169,7 @@ function updateUIForVisitor() {
 function notifyListenWriteAccess() {
   var frame = document.getElementById('frame-listen-and-write');
   if (frame && frame.contentWindow) {
-    frame.contentWindow.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser) }, window.location.origin);
+    frame.contentWindow.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, window.location.origin);
   }
 }
 
