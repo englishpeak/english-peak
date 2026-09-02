@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { classMatchesSearch, classMatchesTeacherFilter, compareClassRows } from './class-list-tools.js';
+
+const stylesSource = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
 
 test('class search matches names and related class details case-insensitively', () => {
   const searchableText = 'Business Advanced Acme Corp Jane Smith Active';
@@ -26,4 +29,10 @@ test('class rows sort case-insensitively in both directions', () => {
   const rows = [{ class: 'Zulu 10' }, { class: 'alpha 2' }, { class: 'Alpha 11' }];
   assert.deepEqual([...rows].sort((a, b) => compareClassRows(a, b, 'class')).map(row => row.class), ['alpha 2', 'Alpha 11', 'Zulu 10']);
   assert.deepEqual([...rows].sort((a, b) => compareClassRows(a, b, 'class', 'desc')).map(row => row.class), ['Zulu 10', 'Alpha 11', 'alpha 2']);
+});
+
+test('class status badges distinguish active, paused, and ended classes', () => {
+  assert.match(stylesSource, /\.badge\{[^}]*background:#eaf0f8;color:var\(--ep-navy\)/);
+  assert.match(stylesSource, /\.badge\.Paused[^}]*\{background:#fff4d6;color:#765400\}/);
+  assert.match(stylesSource, /\.badge\.Ended\{background:#fdeaea;color:var\(--ep-error\)\}/);
 });
