@@ -20,14 +20,86 @@ test("every translation challenge sentence gains accepted alternatives", () => {
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 
-  assert.equal(expandedSets.length, 6);
-  assert.equal(expandedSentences.length, 180);
+  assert.equal(expandedSets.length, 7);
+  assert.equal(expandedSentences.length, 210);
   expandedSentences.slice(0, 90).forEach((sentence, index) => {
     assert.ok(
       sentence.acceptedAnswers.length > originalCounts[index],
       `Set ${Math.floor(index / 30) + 1}, sentence ${(index % 30) + 1} should gain an alternative`
     );
   });
+});
+
+test("Set 7 has the exact mixed CEFR content and supports every exercise mode", () => {
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
+  const sets = evaluateSets(html.slice(dataStart, appStart));
+  const set7 = sets.find(set => set.id === 7);
+  const originalSet7 = originalSets.find(set => set.id === 7);
+  const expectedPrompts = [
+    "¿Sabes dónde está el baño?",
+    "Llevo semanas tratando de reducir mis gastos.",
+    "Aunque la explicación parecía razonable, algo no terminaba de cuadrar.",
+    "Mi hermana cocina muy bien.",
+    "Si hubiera sabido que la carretera estaba cerrada, habría tomado otra ruta.",
+    "Apenas se había difundido la noticia cuando comenzaron a surgir versiones contradictorias.",
+    "¿Quieres sentarte junto a la ventana?",
+    "Me quedé atrapado en el tráfico y llegué veinte minutos tarde.",
+    "No me había dado cuenta de cuánto dependía de esa aplicación hasta que dejó de funcionar.",
+    "La propuesta podría funcionar, siempre y cuando todos estén dispuestos a ceder un poco.",
+    "No hemos logrado ponernos de acuerdo sobre dónde pasar las vacaciones.",
+    "¿Cuánto cuesta este libro?",
+    "De haber seguido ignorando las señales de advertencia, las consecuencias podrían haber sido mucho peores.",
+    "Voy a llamar al médico mañana.",
+    "Por alguna razón, no pude dejar de pensar en lo que había dicho.",
+    "Me parece poco probable que acepten las condiciones sin pedir cambios.",
+    "Lleva años ahorrando para comprar una casa.",
+    "El supermercado está enfrente de la estación.",
+    "Lo que más me preocupa no es el error en sí, sino la facilidad con la que pasó desapercibido.",
+    "¿Ya comiste?",
+    "Tuve que devolverme porque había olvidado mi cartera.",
+    "A primera vista, todo parecía estar en orden.",
+    "Si seguimos gastando a este ritmo, nos vamos a quedar sin dinero antes de fin de mes.",
+    "No entiendo esta palabra.",
+    "Pocas veces se había enfrentado la empresa a una situación tan delicada.",
+    "¿Podrías recogerme en el aeropuerto?",
+    "Terminamos cancelando el viaje porque el clima empeoró.",
+    "Sus comentarios dieron pie a una discusión mucho más amplia sobre el futuro del proyecto.",
+    "Preferiría que me lo dijeras directamente en lugar de enterarme por otra persona.",
+    "Por más exhaustiva que haya sido la revisión, no puede descartarse por completo la posibilidad de que se haya pasado algo por alto."
+  ];
+  const expectedLevels = ["A1","B1","C1","A1","B2","C2","A2","B1","C1","C1","B2","A1","C2","A2","B1","B2","A2","A1","C2","A2","B1","C1","B2","A1","C2","A2","B1","C1","B2","C2"];
+  const normalize = value => String(value).toLowerCase().replace(/[’‘`´]/g, "'").replace(/[¿?¡!]/g, " ").replace(/[.,;]/g, " ").replace(/\s+/g, " ").trim();
+  const easyWords = value => value.replace(/[’‘`´]/g, "'").replace(/[.,;:!?¿¡]/g, "").split(/\s+/).filter(Boolean);
+
+  assert.ok(set7);
+  assert.equal(set7.title, "Set 7");
+  assert.equal(set7.description, "30 sentences · Mixed levels · Mixed grammar and vocabulary");
+  assert.equal(set7.sentences.length, 30);
+  assert.deepEqual(Array.from(set7.sentences, sentence => sentence.spanish), expectedPrompts);
+  assert.deepEqual(Array.from(set7.sentences, sentence => sentence.level), expectedLevels);
+  assert.deepEqual(Array.from(set7.sentences, sentence => sentence.id), Array.from({ length: 30 }, (_, index) => index + 1));
+  assert.deepEqual(Object.fromEntries(["A1","A2","B1","B2","C1","C2"].map(level => [level, set7.sentences.filter(sentence => sentence.level === level).length])), { A1:5, A2:5, B1:5, B2:5, C1:5, C2:5 });
+
+  originalSet7.sentences.forEach(sentence => {
+    assert.deepEqual(Object.keys(sentence).sort(), ["acceptedAnswers", "id", "level", "mediumPrompt", "note", "primaryAnswer", "spanish"]);
+    assert.ok(sentence.acceptedAnswers.length >= 3 && sentence.acceptedAnswers.length <= 6);
+    assert.ok(sentence.mediumPrompt.split(/\s+/).length >= 2 && sentence.mediumPrompt.split(/\s+/).length <= 3);
+    assert.ok(sentence.primaryAnswer.startsWith(sentence.mediumPrompt));
+    assert.ok(sentence.note);
+  });
+  set7.sentences.forEach(sentence => {
+    assert.equal(normalize(easyWords(sentence.primaryAnswer).join(" ")), normalize(sentence.primaryAnswer));
+    assert.equal(normalize(`${sentence.mediumPrompt} ${sentence.primaryAnswer.slice(sentence.mediumPrompt.length).trim()}`), normalize(sentence.primaryAnswer));
+    for (const answer of [sentence.primaryAnswer, ...sentence.acceptedAnswers]) {
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(answer)));
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(`  ${answer.toUpperCase().replaceAll("'", "’")}!!!  `)));
+    }
+    assert.equal([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(answer => normalize(answer) === normalize("This is not a valid translation.")), false);
+  });
+  assert.ok(set7.sentences[14].acceptedAnswers.some(answer => answer.includes("she had said")));
+  assert.ok(set7.sentences[16].acceptedAnswers.some(answer => answer.startsWith("He's")));
+  assert.ok(set7.sentences[24].acceptedAnswers.includes("The company had rarely faced such a delicate situation."));
+  assert.ok(set7.sentences[29].acceptedAnswers.includes("No matter how thorough the review was, we still can't completely rule out the possibility that something was overlooked."));
 });
 
 test("Set 6 has the exact mixed CEFR content and supports every exercise mode", () => {
