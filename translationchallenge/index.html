@@ -341,6 +341,41 @@ const set6AdditionalAlternatives={
 const set6=sets.find(set=>set.id===6);
 set6.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set6AdditionalAlternatives[sentence.id]));
 
+const set7AdditionalAlternatives={
+1:["Could you tell me where the bathroom is?","Do you happen to know where the restroom is?"],
+2:["For weeks, I've been trying to cut down on my spending.","I've spent weeks trying to reduce my expenses."],
+3:["While the explanation appeared reasonable, something didn't quite make sense.","Reasonable as the explanation seemed, something was not quite right."],
+4:["My sister is an excellent cook.","My sister is very good at cooking."],
+5:["I would have chosen a different route if I'd known the road was closed.","Had I known about the road closure, I would have gone another way."],
+6:["Barely had the news spread when contradictory reports started to surface.","The news had only just circulated when conflicting versions began to appear."],
+7:["Would you like to sit next to the window?","Do you want a seat by the window?"],
+8:["Traffic held me up, and I arrived twenty minutes late.","I was caught in traffic and got there twenty minutes late."],
+9:["I hadn't noticed how much I depended on that application until it quit working.","Only when the app stopped working did I realize how reliant I was on it."],
+10:["The proposal might work, so long as everyone is prepared to give a little.","Provided everyone is willing to make some concessions, the proposal could work."],
+11:["We haven't succeeded in agreeing where to spend our vacation.","We can't agree on where to go for our vacation."],
+12:["How much does this book sell for?","What is the price of this book?"],
+13:["If we had kept disregarding the warning signs, the consequences might have been far worse.","The consequences could have been considerably worse had we continued to ignore the warning signs."],
+14:["I plan to call the doctor tomorrow.","I intend to phone the doctor tomorrow."],
+15:["For some reason, I couldn't get what they had said out of my mind.","I kept thinking about what she had said for some reason."],
+16:["It seems unlikely to me that they will agree to the terms without asking for changes.","I doubt they'll accept the conditions without requesting changes."],
+17:["They've spent years saving to buy a house.","She has been putting money aside for years to purchase a house."],
+18:["The grocery store is opposite the station.","The supermarket is facing the station."],
+19:["It isn't the error itself that concerns me most, but how readily it escaped notice.","My greatest concern is not the mistake itself, but the ease with which it went unnoticed."],
+20:["Have you had anything to eat yet?","Did you eat already?"],
+21:["I had to return because I had left my wallet behind.","Having forgotten my wallet, I had to turn around."],
+22:["On the face of it, everything seemed to be in order.","Everything appeared fine at first sight."],
+23:["We're going to be out of money before month's end if we carry on spending at this rate.","If we go on spending like this, we'll run out of money before the month is over."],
+24:["I don't know the meaning of this word.","This word doesn't make sense to me."],
+25:["The company had seldom found itself in such a sensitive situation.","Only rarely had the company encountered a situation this delicate."],
+26:["Would you be able to pick me up from the airport?","Can you collect me at the airport?"],
+27:["We ultimately called off the trip because the weather deteriorated.","The worsening weather led us to cancel the trip in the end."],
+28:["Their remarks opened up a far broader discussion about the project's future.","His comments gave rise to a much wider debate about the future of the project."],
+29:["I would prefer you to tell me directly rather than find out from somebody else.","I'd rather you said it to me directly than have me hear it from another person."],
+30:["No matter how exhaustive the review may have been, we cannot entirely rule out the possibility that something was missed.","Even the most thorough review cannot completely exclude the possibility that something may have been overlooked."]
+};
+const set7=sets.find(set=>set.id===7);
+set7.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set7AdditionalAlternatives[sentence.id]));
+
 const alternativeRules=[
 [/\bI['’]m\b/g,"I am"],[/\bI['’]ve\b/g,"I have"],[/\bI['’]ll\b/g,"I will"],
 [/\byou['’]re\b/g,"you are"],[/\byou['’]ve\b/g,"you have"],[/\byou['’]ll\b/g,"you will"],
