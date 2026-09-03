@@ -102,6 +102,23 @@ test("Set 7 has the exact mixed CEFR content and supports every exercise mode", 
   assert.ok(set7.sentences[29].acceptedAnswers.includes("No matter how thorough the review was, we still can't completely rule out the possibility that something was overlooked."));
 });
 
+test("Set 7 adds two to five curated alternatives for every prompt", () => {
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
+  const sets = evaluateSets(html.slice(dataStart, html.indexOf("const alternativeRules=")));
+  const originalSet7 = originalSets.find(set => set.id === 7);
+  const set7 = sets.find(set => set.id === 7);
+
+  set7.sentences.forEach((sentence, index) => {
+    const originalAnswers = new Set(originalSet7.sentences[index].acceptedAnswers.map(answer => answer.toLowerCase()));
+    const addedCount = new Set(sentence.acceptedAnswers.map(answer => answer.toLowerCase()).filter(answer => !originalAnswers.has(answer))).size;
+    assert.ok(addedCount >= 2 && addedCount <= 5, `Sentence ${index + 1} should gain two to five accepted alternatives`);
+  });
+  assert.ok(set7.sentences[0].acceptedAnswers.includes("Could you tell me where the bathroom is?"));
+  assert.ok(set7.sentences[8].acceptedAnswers.includes("Only when the app stopped working did I realize how reliant I was on it."));
+  assert.ok(set7.sentences[19].acceptedAnswers.includes("Have you had anything to eat yet?"));
+  assert.ok(set7.sentences[29].acceptedAnswers.includes("Even the most thorough review cannot completely exclude the possibility that something may have been overlooked."));
+});
+
 test("Set 6 has the exact mixed CEFR content and supports every exercise mode", () => {
   const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
   const sets = evaluateSets(html.slice(dataStart, appStart));
