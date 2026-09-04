@@ -1115,19 +1115,19 @@ function escapeHTML(value) {
 // Test 22 onward: place the four selectable error segments inside the sentence.
 // Earlier tests continue to use the original multiple-choice presentation.
 function renderInlineErrorSentence(q) {
-  const matches = [];
-  let searchFrom = 0;
-
-  q.o.forEach((option, optionIndex) => {
-    const start = q.s.indexOf(option, searchFrom);
-    if (start === -1) return;
-    matches.push({ start, end: start + option.length, option, optionIndex });
-    searchFrom = start + option.length;
+  const matches = q.o.map((option, optionIndex) => {
+    const start = q.s.indexOf(option);
+    return { start, end: start + option.length, option, optionIndex };
   });
 
-  // Fall back to the existing layout if a future item does not contain all
-  // four marked phrases verbatim in its sentence.
-  if (matches.length !== q.o.length) return null;
+  // Options identify sentence segments, but their A–D order does not have to
+  // match their reading order. Sort by position so every valid item can still
+  // be rendered as one selectable sentence.
+  if (matches.some(match => match.start === -1)) return null;
+  matches.sort((a, b) => a.start - b.start);
+
+  // Fall back if malformed options overlap, which would duplicate sentence text.
+  if (matches.some((match, index) => index > 0 && match.start < matches[index - 1].end)) return null;
 
   let cursor = 0;
   let html = "";
