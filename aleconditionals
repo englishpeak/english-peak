@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Conditionals Review</title>
+  <style>
+    :root {
+      --blue: #0D3B6F;
+      --purple: #470074;
+      --ink: #172033;
+      --muted: #667085;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --line: #e5e9f0;
+      --good: #137a4b;
+      --good-bg: #eaf8f0;
+      --bad: #a62d2d;
+      --bad-bg: #fff0f0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(145deg, #f8fafc 0%, #eef3f9 100%);
+      color: var(--ink);
+      padding: 28px 16px;
+    }
+
+    .app {
+      width: min(860px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .progress-wrap {
+      flex: 1;
+      max-width: 390px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .progress {
+      height: 8px;
+      background: #dde4ee;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > div {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      transition: width .25s ease;
+    }
+
+    .card {
+      background: rgba(255,255,255,.96);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: 0 18px 50px rgba(36, 52, 71, .08);
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.06;
+      margin: 0 0 12px;
+      letter-spacing: -.035em;
+    }
+
+    .lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 24px 0 30px;
+    }
+
+    .legend div {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      background: #fbfcfe;
+    }
+
+    .legend strong { display: block; color: var(--blue); margin-bottom: 3px; }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .12s ease, opacity .12s ease;
+      font-family: inherit;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { cursor: default; opacity: .55; transform: none; }
+
+    .primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .secondary {
+      background: #edf2f8;
+      color: var(--ink);
+    }
+
+    .question-number {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--purple);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .question {
+      font-size: clamp(22px, 4vw, 31px);
+      line-height: 1.35;
+      letter-spacing: -.018em;
+      margin: 0 0 28px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      padding: 16px 18px;
+      background: white;
+      color: var(--ink);
+      border: 1.5px solid var(--line);
+      font-weight: 650;
+    }
+
+    .option:hover { border-color: #aab7c8; }
+    .option.correct { border-color: #74c99f; background: var(--good-bg); color: var(--good); }
+    .option.wrong { border-color: #e0a0a0; background: var(--bad-bg); color: var(--bad); }
+
+    .feedback {
+      margin-top: 20px;
+      padding: 15px 17px;
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .feedback.good { display:block; background: var(--good-bg); color: var(--good); }
+    .feedback.bad { display:block; background: var(--bad-bg); color: var(--bad); }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      background: #eef3f8;
+      color: var(--blue);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 24px 0 28px;
+    }
+
+    .result-box {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fbfcfe;
+    }
+
+    .result-box span { font-size: 12px; color: var(--muted); display:block; margin-bottom: 5px; }
+    .result-box strong { font-size: 22px; }
+
+    .score {
+      font-size: 54px;
+      font-weight: 850;
+      letter-spacing: -.04em;
+      color: var(--blue);
+      margin: 8px 0;
+    }
+
+    .small { color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .progress-wrap { width: 100%; max-width: none; }
+      .card { padding: 24px 20px; border-radius: 16px; }
+      .legend, .results-grid { grid-template-columns: 1fr 1fr; }
+      .actions { flex-direction: column-reverse; }
+      .actions button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="topbar">
+      <div class="brand">Conditionals Review</div>
+      <div class="progress-wrap" id="progressWrap" style="display:none;">
+        <div class="progress-meta">
+          <span id="progressText">Question 1 of 30</span>
+          <span id="scoreText">Score: 0</span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+      </div>
+    </div>
+
+    <section class="card" id="screen"></section>
+  </main>
+
+<script>
+const questions = [
+  {type:'Zero', q:'If you heat ice, it ___.', options:['melts','will melt','would melt','melted'], answer:0, exp:'Zero conditional: present simple + present simple for facts and general truths.'},
+  {type:'First', q:'If it rains tomorrow, we ___ at home.', options:['stay','will stay','would stay','stayed'], answer:1, exp:'First conditional: present simple in the if-clause + will for a real future possibility.'},
+  {type:'Second', q:'If I had more free time, I ___ French.', options:['learn','will learn','would learn','learned'], answer:2, exp:'Second conditional: past simple + would for hypothetical or unlikely situations now or in the future.'},
+  {type:'Third', q:'If she had left earlier, she ___ the bus.', options:['would catch','will have caught','would have caught','caught'], answer:2, exp:'Third conditional: had + past participle + would have + past participle for unreal past situations.'},
+  {type:'Zero', q:'If people don’t drink enough water, they ___ thirsty.', options:['get','will get','would get','got'], answer:0, exp:'This describes a general result, so use the zero conditional.'},
+  {type:'First', q:'If you study tonight, you ___ more confident tomorrow.', options:['feel','will feel','would feel','felt'], answer:1, exp:'This is a realistic future result, so use will + base verb.'},
+  {type:'Second', q:'If I were you, I ___ to the teacher.', options:['talk','will talk','would talk','talked'], answer:2, exp:'“If I were you” is a common second conditional structure for advice.'},
+  {type:'Third', q:'If they had checked the map, they ___ lost.', options:['wouldn’t get','won’t get','wouldn’t have gotten','didn’t get'], answer:2, exp:'The situation is finished in the past, so use would have + past participle.'},
+  {type:'First', q:'If my sister finishes work early, she ___ us for dinner.', options:['joins','will join','would join','joined'], answer:1, exp:'A possible future event takes the first conditional.'},
+  {type:'Zero', q:'If you mix blue and yellow, you ___ green.', options:['get','will get','would get','got'], answer:0, exp:'This is a general fact, so both clauses use the present simple.'},
+  {type:'Second', q:'If we lived near the beach, we ___ there every weekend.', options:['go','will go','would go','went'], answer:2, exp:'The speaker imagines a different present situation.'},
+  {type:'Third', q:'If I had known about the meeting, I ___ there.', options:['would be','will be','would have been','was'], answer:2, exp:'The meeting is in the past and the condition did not happen.'},
+  {type:'First', q:'If you don’t hurry, you ___ the train.', options:['miss','will miss','would miss','missed'], answer:1, exp:'This is a real warning about a future consequence.'},
+  {type:'Second', q:'What ___ you do if you found a wallet on the street?', options:['do','will','would','did'], answer:2, exp:'A hypothetical question uses would in the main clause.'},
+  {type:'Zero', q:'Plants die if they ___ enough sunlight.', options:['don’t get','won’t get','wouldn’t get','didn’t get'], answer:0, exp:'The sentence expresses a general truth, so use present simple.'},
+  {type:'Third', q:'If he had studied more, he ___ the exam.', options:['would pass','would have passed','will pass','passed'], answer:1, exp:'Use would have passed because the past cannot now be changed.'},
+  {type:'First', q:'If I see Daniel later, I ___ him your message.', options:['give','will give','would give','gave'], answer:1, exp:'Seeing Daniel later is a possible future situation.'},
+  {type:'Second', q:'If she spoke English better, she ___ for that job.', options:['applies','will apply','would apply','applied'], answer:2, exp:'This imagines a different present ability and its possible result.'},
+  {type:'Third', q:'They would have arrived on time if the traffic ___ so bad.', options:['isn’t','wasn’t','hadn’t been','wouldn’t be'], answer:2, exp:'In the if-clause of the third conditional, use had + past participle.'},
+  {type:'Zero', q:'If I drink coffee late at night, I ___ trouble sleeping.', options:['have','will have','would have','had'], answer:0, exp:'This describes a usual or repeated result.'},
+  {type:'First', q:'If the weather is nice this weekend, we ___ a picnic.', options:['have','will have','would have','had'], answer:1, exp:'The weekend is in the future and the situation is possible.'},
+  {type:'Second', q:'If you could live anywhere, where ___ you live?', options:['do','will','would','did'], answer:2, exp:'This is an imaginary situation, so use would.'},
+  {type:'Third', q:'If we had booked earlier, the tickets ___ cheaper.', options:['are','will be','would be','would have been'], answer:3, exp:'The booking opportunity is over, so use would have been.'},
+  {type:'Zero', q:'If you press this button, the machine ___.', options:['starts','will start','would start','started'], answer:0, exp:'For instructions and predictable results, zero conditional is common.'},
+  {type:'First', q:'You’ll feel better if you ___ a short break.', options:['take','will take','would take','took'], answer:0, exp:'In the if-clause of the first conditional, use present simple, not will.'},
+  {type:'Second', q:'I ___ a bigger apartment if I earned more money.', options:['rent','will rent','would rent','rented'], answer:2, exp:'This is a hypothetical present situation.'},
+  {type:'Third', q:'If Marta hadn’t forgotten her keys, she ___ locked outside.', options:['wouldn’t be','won’t be','wouldn’t have been','wasn’t'], answer:2, exp:'This imagines a different result in the past.'},
+  {type:'First', q:'If your parents call, ___ you tell them I’m busy?', options:['do','will','would','did'], answer:1, exp:'The request refers to a possible future event.'},
+  {type:'Second', q:'If I ___ a car, I would drive to work.', options:['have','will have','had','had had'], answer:2, exp:'Second conditional uses past simple in the if-clause.'},
+  {type:'Third', q:'If you had told me the truth, I ___ angry.', options:['wouldn’t be','won’t be','wouldn’t have been','wasn’t'], answer:2, exp:'The condition and result are both about an unreal past.'}
+];
+
+let order = [];
+let current = 0;
+let score = 0;
+let answered = false;
+let byType = {};
+let mistakes = [];
+const screen = document.getElementById('screen');
+const progressWrap = document.getElementById('progressWrap');
+const progressText = document.getElementById('progressText');
+const scoreText = document.getElementById('scoreText');
+const progressBar = document.getElementById('progressBar');
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function start() {
+  order = shuffle(questions.map((_, i) => i));
+  current = 0;
+  score = 0;
+  answered = false;
+  mistakes = [];
+  byType = {Zero:{ok:0,total:0}, First:{ok:0,total:0}, Second:{ok:0,total:0}, Third:{ok:0,total:0}};
+  progressWrap.style.display = 'block';
+  renderQuestion();
+}
+
+function renderIntro() {
+  progressWrap.style.display = 'none';
+  screen.innerHTML = `
+    <div class="tag">A2 → B1 Practice</div>
+    <h1>Review the 4 English Conditionals</h1>
+    <p class="lead">Complete 30 multiple-choice questions. The questions are mixed, and you’ll get a short explanation after each answer.</p>
+    <div class="legend">
+      <div><strong>Zero</strong>facts & routines</div>
+      <div><strong>First</strong>real future possibilities</div>
+      <div><strong>Second</strong>hypothetical present/future</div>
+      <div><strong>Third</strong>unreal past situations</div>
+    </div>
+    <button class="primary" onclick="start()">Start practice</button>
+  `;
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[order[current]];
+  const optionOrder = shuffle(q.options.map((_, i) => i));
+  const pct = (current / questions.length) * 100;
+  progressBar.style.width = pct + '%';
+  progressText.textContent = `Question ${current + 1} of ${questions.length}`;
+  scoreText.textContent = `Score: ${score}`;
+
+  screen.innerHTML = `
+    <div class="question-number">Choose the best answer</div>
+    <p class="question">${q.q}</p>
+    <div class="options" id="options">
+      ${optionOrder.map(i => `<button class="option" data-index="${i}" onclick="answer(${i}, this)">${q.options[i]}</button>`).join('')}
+    </div>
+    <div id="feedback" class="feedback"></div>
+    <div class="actions">
+      <button class="secondary" onclick="restart()">Restart</button>
+      <button class="primary" id="nextBtn" onclick="nextQuestion()" disabled>${current === questions.length - 1 ? 'See results' : 'Next'}</button>
+    </div>
+  `;
+}
+
+function answer(index, btn) {
+  if (answered) return;
+  answered = true;
+  const q = questions[order[current]];
+  byType[q.type].total++;
+  const buttons = [...document.querySelectorAll('.option')];
+  buttons.forEach(b => b.disabled = true);
+  const feedback = document.getElementById('feedback');
+
+  if (index === q.answer) {
+    score++;
+    byType[q.type].ok++;
+    btn.classList.add('correct');
+    feedback.className = 'feedback good';
+    feedback.innerHTML = `<strong>Correct.</strong> ${q.exp}`;
+  } else {
+    btn.classList.add('wrong');
+    const correctBtn = buttons.find(b => Number(b.dataset.index) === q.answer);
+    if (correctBtn) correctBtn.classList.add('correct');
+    mistakes.push({q:q.q, correct:q.options[q.answer], type:q.type});
+    feedback.className = 'feedback bad';
+    feedback.innerHTML = `<strong>Not quite.</strong> The correct answer is <strong>${q.options[q.answer]}</strong>. ${q.exp}`;
+  }
+
+  scoreText.textContent = `Score: ${score}`;
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (!answered) return;
+  current++;
+  if (current >= questions.length) renderResults();
+  else renderQuestion();
+}
+
+function renderResults() {
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Completed';
+  scoreText.textContent = `Score: ${score}/${questions.length}`;
+  const percent = Math.round((score / questions.length) * 100);
+  let message = 'Good start. Review the explanations and try again.';
+  if (percent >= 90) message = 'Excellent work. Your control of the four conditionals is very strong.';
+  else if (percent >= 75) message = 'Very good. You are close to a solid B1-level review of conditionals.';
+  else if (percent >= 60) message = 'Good progress. Review the conditionals with the lowest score and try again.';
+
+  const weak = Object.entries(byType)
+    .map(([type, data]) => ({type, pct: data.total ? data.ok/data.total : 0}))
+    .sort((a,b) => a.pct-b.pct)[0];
+
+  screen.innerHTML = `
+    <div class="tag">Practice complete</div>
+    <h1>Your result</h1>
+    <div class="score">${score}/30</div>
+    <p class="lead">${message}</p>
+    <div class="results-grid">
+      ${['Zero','First','Second','Third'].map(type => {
+        const d = byType[type];
+        return `<div class="result-box"><span>${type} conditional</span><strong>${d.ok}/${d.total}</strong></div>`;
+      }).join('')}
+    </div>
+    <p class="small"><strong>Focus next:</strong> ${weak.type} conditional.${mistakes.length ? ` You made ${mistakes.length} mistake${mistakes.length === 1 ? '' : 's'} in total.` : ' You answered every question correctly.'}</p>
+    <div class="actions">
+      <button class="secondary" onclick="renderIntro()">Back to intro</button>
+      <button class="primary" onclick="start()">Practice again</button>
+    </div>
+  `;
+}
+
+function restart() {
+  if (confirm('Restart the exercise from the beginning?')) start();
+}
+
+renderIntro();
+</script>
+</body>
+</html>
