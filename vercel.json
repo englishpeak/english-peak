@@ -32,5 +32,7 @@
     ,{ "source": "/agreementpractice",        "destination": "/agreementpractice/index.html" }
     ,{ "source": "/businesscases",        "destination": "/businesscases/index.html" }
     ,{ "source": "/businesscases/:path*", "destination": "/businesscases/index.html" }
+    ,{ "source": "/aleconditionals",        "destination": "/aleconditionals/index.html" }
+    ,{ "source": "/aleconditionals/:path*", "destination": "/aleconditionals/index.html" }
   ]
 }
