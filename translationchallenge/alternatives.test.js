@@ -120,6 +120,27 @@ test("Set 8 adds plenty of curated alternatives, with extra range at higher leve
   assert.ok(set8.sentences[29].acceptedAnswers.includes("That a seemingly trivial measure would prompt a reaction of such proportions could hardly have been predicted."));
 });
 
+test("Set 8 includes a further paraphrase layer weighted toward advanced prompts", () => {
+  const expandedSets = evaluateSets(html.slice(dataStart, appStart));
+  const set8 = expandedSets.find(set => set.id === 8);
+  const extendedStart = html.indexOf("const set8ExtendedAlternatives=");
+  const extendedEnd = html.indexOf("const alternativeRules=");
+  const extendedSets = evaluateSets(`${html.slice(dataStart, expansionStart)}\n${html.slice(extendedStart, extendedEnd)}`.replace(
+    "set8.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set8ExtendedAlternatives[sentence.id]));",
+    "const set8=sets.find(set=>set.id===8);set8.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set8ExtendedAlternatives[sentence.id]));"
+  ));
+  const extendedSet8 = extendedSets.find(set => set.id === 8);
+  const minimumByLevel = { A1: 2, A2: 2, B1: 2, B2: 4, C1: 5, C2: 5 };
+
+  extendedSet8.sentences.forEach(sentence => {
+    assert.ok(sentence.acceptedAnswers.length >= 3 + minimumByLevel[sentence.level]);
+  });
+  assert.ok(set8.sentences[7].acceptedAnswers.includes("We should withhold judgment until all the information is available."));
+  assert.ok(set8.sentences[20].acceptedAnswers.includes("At the risk of speaking prematurely, all the signs point to their accepting the proposal."));
+  assert.ok(set8.sentences[25].acceptedAnswers.includes("Rationalize the decision though we may, we cannot disregard its consequences in the long run."));
+  assert.ok(set8.sentences[29].acceptedAnswers.includes("That an ostensibly minor measure might precipitate a reaction of this magnitude was all but impossible to anticipate."));
+});
+
 test("Set 7 has the exact mixed CEFR content and supports every exercise mode", () => {
   const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
   const sets = evaluateSets(html.slice(dataStart, appStart));

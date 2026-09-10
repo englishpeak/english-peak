@@ -442,6 +442,43 @@ const set8AdditionalAlternatives={
 const set8=sets.find(set=>set.id===8);
 set8.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set8AdditionalAlternatives[sentence.id]));
 
+// Set 8 deliberately has a second layer of paraphrases. The later prompts can
+// be expressed in especially varied ways, so their lists cover changes in
+// register and sentence structure rather than just contractions or spelling.
+const set8ExtendedAlternatives={
+1:["Where did you set your phone down?","Where did you leave your mobile phone?"],
+2:["I've had a change of job on my mind for the last few days.","For several days, I've been considering switching jobs."],
+3:["Had you told me sooner, I could have secured a ticket for you.","I might have been able to get you a ticket if you had given me earlier notice.","With more warning, I could have found you a ticket.","If I had known sooner, I could have arranged a ticket for you."],
+4:["The store shuts at nine o'clock.","Closing time at the shop is nine."],
+5:["As far as I understood, all the options remain under consideration.","It was my understanding that none of the options had yet been discounted.","To my understanding, no option has been taken off the table yet.","What I gathered was that they were keeping every option open.","As I understood matters, they had not eliminated a single option yet."],
+6:["I was hesitant to interrupt them, so I stayed outside.","I waited outside because interrupting them felt awkward."],
+7:["How often do you take exercise?","How regularly do you work out?"],
+8:["We should withhold judgment until all the information is available.","Until we know the whole story, we ought not to draw any conclusions.","Any conclusion would be premature before we have the complete picture.","We need all the relevant facts before reaching a conclusion.","Let's wait until we are fully informed before drawing conclusions."],
+9:["We later learned that the flight had been called off hours before we got to the airport.","The flight had, as it turned out, been cancelled hours ahead of our arrival at the airport.","It became apparent that the flight had been canceled several hours before we reached the airport.","By the time we arrived at the airport, the flight had already been canceled for hours."],
+10:["Can you loan me a pen?","Could you let me borrow a pen?"],
+11:["I'm not at all certain how best to address this problem.","I'm unsure of the best way to go about tackling this issue.","I haven't quite worked out how to approach this problem.","I'm uncertain as to how this issue should be handled.","I can't quite decide how to tackle this problem."],
+12:["I've been trying to connect with customer service for the past half hour.","My attempts to reach customer support have been going on for half an hour."],
+13:["No matter how hard you press the point, I will not change my mind.","Your insistence isn't going to make me reconsider.","However much pressure you put on me, my decision will not change.","Even if you keep insisting, I have no intention of changing my mind."],
+14:["This place has too many people in it.","There are altogether too many people here."],
+15:["The new policy is scheduled to enter into effect early next month.","The new policy will be operative from the beginning of next month.","The policy is slated to come into force at the start of next month.","The beginning of next month will see the new policy take effect.","The new policy will apply as of early next month."],
+16:["What makes you reluctant to ask them for help?","Is anything preventing you from asking him for help?"],
+17:["Provided you're not in a hurry, we can walk.","We can walk there if you aren't rushed."],
+18:["Some sort of reply should have reached us by now.","We would have expected to receive an answer by this point.","At this point, we ought to have gotten some response.","By now, there should have been some kind of response."],
+19:["The speed with which he managed to settle into the new role surprised me.","I was taken aback by how fast she adapted to her new position."],
+20:["I need to pick up some food for dinner.","I have to buy something to have for dinner."],
+21:["I don't wish to anticipate the outcome, but every indication is that they will accept the proposal.","At the risk of speaking prematurely, all the signs point to their accepting the proposal.","I hesitate to get ahead of events, but the proposal appears likely to be accepted.","Without wanting to prejudge the outcome, everything points toward acceptance of the proposal.","I don't want to make predictions too early, but they seem set to accept the proposal."],
+22:["I had completely forgotten that today was their birthday.","Their birthday being today had totally slipped my mind."],
+23:["How would you have acted had you been in my position?","If you had found yourself in my situation, what would you have done?","What course of action would you have taken in my place?","How would you have responded in my place?"],
+24:["The project suffered delays because several suppliers did not honor the agreed deadlines.","Several suppliers' failure to deliver by the agreed dates put the project behind schedule.","Because a number of vendors failed to deliver on schedule, the project was held up.","The project fell behind after several suppliers missed the deadlines that had been agreed."],
+25:["Would you mind talking a little slower?","Could you slow your speech down a little?"],
+26:["However compelling our justifications may seem, the decision's long-term consequences are hard to overlook.","Rationalize the decision though we may, we cannot disregard its consequences in the long run.","Any attempt to justify the decision still leaves its long-term implications impossible to ignore.","Whatever reasons we devise for the decision, its lasting repercussions cannot be overlooked.","The long-term ramifications remain hard to dismiss, no matter how we rationalize the decision."],
+27:["I eventually discarded several things for which I no longer had any use.","I wound up clearing out a number of items I no longer used."],
+28:["It seems to me that the central issue is getting lost.","I fear we are allowing the core problem to recede from view.","My impression is that our attention is shifting away from the principal issue.","I would say we are overlooking the crux of the problem.","It appears we've become distracted from the matter at the heart of this."],
+29:["You will be unable to make any alterations after submitting the application.","The application can no longer be edited once you have sent it in."],
+30:["It was scarcely foreseeable that so apparently inconsequential a measure would produce a response on such a scale.","A measure that seemed so trivial could hardly have been expected to give rise to so momentous a reaction.","That an ostensibly minor measure might precipitate a reaction of this magnitude was all but impossible to anticipate.","One could hardly have anticipated so disproportionate a response to an apparently insignificant measure.","The scale of the reaction set off by such a seemingly negligible measure could scarcely have been foreseen."]
+};
+set8.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set8ExtendedAlternatives[sentence.id]));
+
 const alternativeRules=[
 [/\bI['’]m\b/g,"I am"],[/\bI['’]ve\b/g,"I have"],[/\bI['’]ll\b/g,"I will"],
 [/\byou['’]re\b/g,"you are"],[/\byou['’]ve\b/g,"you have"],[/\byou['’]ll\b/g,"you will"],
