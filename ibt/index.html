@@ -75,7 +75,7 @@
             font-weight: bold;
             color: var(--accent-blue);
             padding: 0;
-            margin: 0 4px;
+            margin: 0;
             text-align: left;
             vertical-align: baseline;
             background-image: linear-gradient(to right, #aaa 70%, rgba(255, 255, 255, 0) 0%);
@@ -85,11 +85,19 @@
         }
 
         .exercise-paragraph { font-size: 1.5rem; line-height: 3.5; text-align: justify; margin-bottom: 20px; }
+        .incomplete-word { display: inline-flex; align-items: baseline; white-space: nowrap; }
 
         .context-box { background: #e7f3ff; padding: 25px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #b6d4fe; font-size: 1.2rem; font-style: italic; }
         .word-bank { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0; justify-content: center; }
         .draggable-word { padding: 12px 20px; background: white; border: 2px solid #ced4da; border-radius: 8px; cursor: pointer; font-weight: 700; }
         .drop-area { min-height: 90px; border: 2.5px dashed var(--primary-blue); padding: 20px; display: flex; flex-wrap: wrap; gap: 10px; border-radius: 12px; background: #fafafa; }
+        .sentence-construction { font-size: 1.3rem; line-height: 2.5; color: var(--primary-blue); margin: 18px 0; }
+        .sentence-construction .drop-area { display: inline; min-height: 0; border: 0; padding: 0; background: transparent; }
+        .sentence-construction .draggable-word { display: inline-block; padding: 5px 10px; margin: 3px 2px; line-height: 1.35; }
+        .extra-chunk-note, .practice-helper { color: var(--ep-muted, #666); font-size: .82rem; }
+        .practice-control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 12px 0; }
+        .practice-control-row .btn { min-width: 0; width: auto; margin: 0; padding: 10px 16px; font-size: .9rem; }
+        .practice-transcript { white-space: pre-wrap; background: var(--ep-card-soft, #F4F6FB); padding: 20px; margin: 10px 0 22px; border-left: 4px solid var(--primary-blue); border-radius: 8px; line-height: 1.6; }
         
         .academic-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; margin-bottom: 20px; }
         .reading-text-box { font-size: 1.1rem; line-height: 1.8; padding-right: 20px; border-right: 1px solid #eee; height: 520px; overflow-y: auto; text-align: justify; }
@@ -2515,10 +2523,11 @@ Got it. I'll head there after my class.`, questions:[
 
         if (ex.audioUrl) {
             cont.innerHTML += `<div class="audio-container"><p>▶️ Play Audio Material</p><audio controls preload="metadata" crossorigin="anonymous"><source src="${ex.audioUrl}" type="audio/mpeg"></audio></div>`;
+            if (isUpdatedPractice() && ex.script) cont.innerHTML += renderScriptControl(ex.script);
         }
 
         if (ex.type === 'complete-words') {
-            let h = ex.text.replace(/\[(\d+)\]/g, (m, p) => `<input type="text" class="fill-blank" maxlength="${p}" style="width: ${p}ch">`);
+            let h = renderCompleteWordsText(ex.text);
             cont.innerHTML += `<div class="exercise-paragraph">${h}</div>`;
         } else if (ex.type === 'listen-repeat') {
             cont.innerHTML += `<div style="display:grid; gap:15px;">` + ex.sentences.map((s,i)=>`<div style="display:flex; align-items:center; gap:15px;"><button class="btn-audio-minimal" onclick="new Audio('${s.audio}').play().catch(e=>console.error(e))">▶️</button><button class="btn btn-outline" style="flex:1; margin:0;" onclick="this.parentElement.nextElementSibling.style.display='block'">Reveal Sentence ${i+1}</button></div><div style="background:#f8f9fa; padding:20px; border-left:5px solid var(--primary-blue); display:none; margin-bottom:10px;">${s.text}</div>`).join('') + `</div>`;
@@ -2530,7 +2539,13 @@ Got it. I'll head there after my class.`, questions:[
             cont.innerHTML += `<div id="timer-box">00:${ex.time}</div><button class="btn" style="background:var(--success-green);" id="t-btn" onclick="runTimer(${ex.time}, 'timer-box')">Start Timer</button>`;
         } else if (ex.type === 'build-sentence') {
             let s = [...ex.words].sort(()=>Math.random()-0.5);
-            cont.innerHTML += `<div class="context-box">${ex.context}</div>${ex.scaffold ? `<div class="reply-scaffold">${ex.scaffold}</div>` : ''}<div class="word-bank" id="w-bank">${s.map(w=>`<div class="draggable-word" onclick="toD(this)">${w}</div>`).join('')}</div><div id="d-area" class="drop-area" onclick="fromD(event)" aria-label="Constructed reply"></div>`;
+            if (isUpdatedPractice() && ex.scaffold) {
+                const fixedText = ex.scaffold.replace(/(?:\s*_+)+/g, '').replace(/\s+([.!?])$/, '$1').replace(/[.!?]$/, '').trimEnd();
+                const punctuation = (ex.completedSentence.match(/[.!?]$/) || [''])[0];
+                cont.innerHTML += `<div class="context-box">${ex.context}</div><div class="sentence-construction"><span class="reply-scaffold">${fixedText}</span> <span id="d-area" class="drop-area" onclick="fromD(event)" aria-label="Constructed reply"></span><span aria-hidden="true">${punctuation}</span></div><p class="extra-chunk-note">There is one extra word or phrase you do not need.</p><div class="word-bank" id="w-bank">${s.map(w=>`<button type="button" class="draggable-word" onclick="toD(this)">${w}</button>`).join('')}</div>`;
+            } else {
+                cont.innerHTML += `<div class="context-box">${ex.context}</div>${ex.scaffold ? `<div class="reply-scaffold">${ex.scaffold}</div>` : ''}<div class="word-bank" id="w-bank">${s.map(w=>`<div class="draggable-word" onclick="toD(this)">${w}</div>`).join('')}</div><div id="d-area" class="drop-area" onclick="fromD(event)" aria-label="Constructed reply"></div>`;
+            }
         } else if (['academic-reading', 'read-daily', 'listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)) {
             let qh = ex.questions.map((q,qi)=>`<div style="margin-bottom:30px;"><strong>${qi+1}. ${q.q}</strong>${q.options.map((o,oi)=>`<div class="option q${qi}" onclick="mSel(${qi},${oi})">${o}</div>`).join('')}</div>`).join('');
             const source = ex.type === 'academic-reading' ? `<div class="reading-text-box">${ex.text}</div>` : '';
@@ -2549,17 +2564,34 @@ Got it. I'll head there after my class.`, questions:[
         }
     }
 
+    function isUpdatedPractice() { return /^Test (?:3[1-9]|[4-9]\d|\d{3,})$/.test(_currentTestKey); }
+
+    function renderCompleteWordsText(text) {
+        return text.replace(/([\p{L}\p{N}'’-]+)\[(\d+)\]/gu, (match, fragment, size) =>
+            `<span class="incomplete-word">${fragment}<input type="text" class="fill-blank" maxlength="${size}" style="width: ${size}ch" aria-label="Complete the word beginning ${fragment}"></span>`
+        );
+    }
+
+    function renderScriptControl(script) {
+        return `<div class="practice-control-row"><button type="button" class="btn btn-outline" aria-expanded="false" onclick="togglePracticeReveal(this, this.parentElement.nextElementSibling, 'Show Script', 'Hide Script')">Show Script</button><span class="practice-helper">Use only as a last resource :)</span></div><div class="practice-transcript" hidden>${script}</div>`;
+    }
+
+    function togglePracticeReveal(button, content, showLabel, hideLabel) {
+        content.hidden = !content.hidden;
+        button.setAttribute('aria-expanded', String(!content.hidden));
+        button.textContent = content.hidden ? showLabel : hideLabel;
+    }
+
     function renderRepeatSentence(ex) {
         const sentence = ex.sentences[repeatSentenceIndex];
         const isLast = repeatSentenceIndex === ex.sentences.length - 1;
-        document.getElementById('exercise-content').innerHTML += `${repeatSentenceIndex === 0 ? `<div class="context-box">${ex.scenario}</div>` : ''}<p>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</p><div class="interview-prompt">Listen, then repeat the sentence aloud. The sentence text is intentionally hidden.</div><div id="repeat-timer" class="small-timer">00:${String(sentence.responseTime).padStart(2,'0')}</div><button class="btn" id="repeat-play" onclick="playRepeatSentence('${sentence.audio}', ${sentence.responseTime})">▶ Play sentence</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
+        document.getElementById('exercise-content').innerHTML += `${repeatSentenceIndex === 0 ? `<div class="context-box">${ex.scenario}</div>` : ''}<p>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</p><div class="interview-prompt">Listen, then repeat the sentence aloud at your own pace.</div><div class="practice-control-row"><button type="button" class="btn" id="repeat-play" onclick="playRepeatSentence('${sentence.audio}')">▶ Play audio</button><span class="practice-helper">Use only as a last resource :)</span></div><div class="practice-control-row"><button type="button" class="btn btn-outline" aria-expanded="false" onclick="togglePracticeReveal(this, document.getElementById('repeat-text'), 'Show Text', 'Hide Text')">Show Text</button></div><div id="repeat-text" class="practice-transcript" hidden>${sentence.text}</div>${isLast ? '' : '<button type="button" class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
     }
 
-    function playRepeatSentence(audio, seconds) {
+    function playRepeatSentence(audio) {
         const button = document.getElementById('repeat-play');
-        button.disabled = true; button.textContent = 'Audio played — repeat aloud';
+        button.textContent = '↻ Replay audio';
         new Audio(audio).play().catch(e=>console.error(e));
-        runTimer(seconds, 'repeat-timer', true);
     }
 
     function nextRepeatSentence() {
@@ -2571,7 +2603,7 @@ Got it. I'll head there after my class.`, questions:[
 
     function renderInterviewPrompt(ex) {
         const isLast = interviewQuestionIndex === ex.questions.length - 1;
-        document.getElementById('exercise-content').innerHTML += `${interviewQuestionIndex === 0 ? `<p class="task-instructions">${ex.adaptationNote}</p><div class="context-box">${ex.introduction}</div>` : ''}<p>Question ${interviewQuestionIndex + 1} of ${ex.questions.length}</p><div class="interview-prompt">${ex.questions[interviewQuestionIndex]}</div><div id="interview-timer" class="small-timer">${formatTime(ex.responseTime || 45)}</div><button class="btn" id="t-btn" onclick="runTimer(${ex.responseTime || 45}, 'interview-timer')">Start response time</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextInterviewPrompt()">Next interview question</button>'}`;
+        document.getElementById('exercise-content').innerHTML += `${interviewQuestionIndex === 0 ? `<p class="task-instructions">${ex.adaptationNote}</p><div class="context-box">${ex.introduction}</div>` : ''}<p>Question ${interviewQuestionIndex + 1} of ${ex.questions.length}</p><div class="practice-control-row"><button type="button" class="btn btn-outline" aria-expanded="false" onclick="togglePracticeReveal(this, document.getElementById('interview-question'), 'Show Question', 'Hide Question')">Show Question</button></div><div id="interview-question" class="interview-prompt" hidden>${ex.questions[interviewQuestionIndex]}</div><div id="interview-timer" class="small-timer">${formatTime(ex.responseTime || 45)}</div><button class="btn" id="t-btn" onclick="runTimer(${ex.responseTime || 45}, 'interview-timer')">Start response time</button>${isLast ? '' : '<button type="button" class="btn btn-outline" onclick="nextInterviewPrompt()">Next interview question</button>'}`;
     }
 
     function nextInterviewPrompt() {
@@ -2604,7 +2636,7 @@ Got it. I'll head there after my class.`, questions:[
     function mSel(qi,oi) { document.querySelectorAll(`.q${qi}`).forEach(e=>e.classList.remove('selected')); const t=document.querySelectorAll(`.q${qi}`)[oi]; t.classList.add('selected'); t.dataset.choice=oi; }
     function select(e,i) { document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); e.classList.add('selected'); e.dataset.idx=i; }
     function toD(e) { document.getElementById('d-area').appendChild(e); }
-    function fromD(e) { if(e.target.className==='draggable-word') document.getElementById('w-bank').appendChild(e.target); }
+    function fromD(e) { if(e.target.classList.contains('draggable-word')) document.getElementById('w-bank').appendChild(e.target); }
 
     function submitAnswer() {
         const ex=curSet[idx]; let r={title:ex.title, type:ex.type, isCorrect:false};
