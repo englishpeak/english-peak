@@ -12,7 +12,7 @@ const sandbox = {
   window: { location: { search: '' } },
   document: { getElementById: () => null },
 };
-vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"];`, sandbox);
+vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"]; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
 const test31 = sandbox.test31;
 const test30Source = html.match(/"Test 30": \[([\s\S]*?)\n\s*\],/);
 
@@ -72,6 +72,13 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
   assert.match(html, /tests: \['Test 31'\]/);
+});
+
+test('Test 31 uses a native deep link that the page opens on load', () => {
+  assert.equal(sandbox.testHref, '?test=Test+31');
+  assert.match(html, /document\.createElement\(hasContent && !isLocked \? 'a' : 'button'\)/);
+  assert.match(html, /btn\.href = buildTestHref\(key\)/);
+  assert.match(html, /start\(_requestedTest\)/);
 });
 
 test('the app requests the Test 31 catalog release instead of a stale cached menu', () => {
