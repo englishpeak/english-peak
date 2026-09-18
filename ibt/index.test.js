@@ -53,3 +53,42 @@ test('Test 30 answers reconstruct the intended full words and paragraphs', () =>
     assert.equal(completedParagraph, expectedParagraphs[taskIndex], task.title);
   });
 });
+
+test('the catalog separates the existing and updated TOEFL collections', () => {
+  assert.match(html, /title: 'GENERAL PRACTICE'/);
+  assert.match(html, /Build familiarity with TOEFL-style English skills and question types\./);
+  assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
+  assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
+  assert.match(html, /tests: Array\.from\(\{length: 30\}/);
+  assert.match(html, /tests: \['Test 31'\]/);
+});
+
+test('Test 31 is a content-safe placeholder rather than invented test data', () => {
+  assert.doesNotMatch(html, /"Test 31": \[/);
+  assert.match(html, /btn\.disabled = true/);
+  assert.match(html, /Content coming soon/);
+});
+
+test('updated-test architecture defines each required task family and audio contract', () => {
+  for (const taskType of [
+    'complete-words', 'read-daily', 'academic-reading',
+    'listen-response', 'listen-conversation', 'listen-announcement-updated', 'listen-academic-talk',
+    'build-sentence', 'writing-email', 'academic-discussion',
+    'listen-repeat-updated', 'take-interview',
+  ]) {
+    assert.match(html, new RegExp(`'${taskType}'`), `${taskType} should be represented`);
+  }
+
+  assert.match(html, /repeatFiles: \['sentence-1\.mp3'[\s\S]*'sentence-7\.mp3'\]/);
+  assert.match(html, /targetFilesPerTest: 17/);
+  assert.match(html, /maximumFilesPerTest: 19/);
+});
+
+test('results use item-level Practice Accuracy instead of an unofficial TOEFL score', () => {
+  assert.match(html, /Practice Accuracy/);
+  assert.match(html, /r\.qs\.filter\(q => q\.isC\)\.length/);
+  assert.match(html, /r\.ui\.filter\(\(value, i\) => value === r\.ans\[i\]\.toLowerCase\(\)\)\.length/);
+  assert.match(html, /if\(r\.skipped \|\| unscoredTypes\.includes\(r\.type\)\) return/);
+  assert.doesNotMatch(html, /TOEFL Band Score/);
+  assert.doesNotMatch(html, /Approximate iBT Total/);
+});
