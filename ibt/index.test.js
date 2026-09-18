@@ -74,15 +74,116 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /tests: \['Test 31'\]/);
 });
 
-test('Test 31 uses a native deep link that the page opens on load', () => {
+test('Test 31 deep links remain supported as an optional entry path', () => {
   assert.equal(sandbox.testHref, '?test=Test+31');
-  assert.match(html, /document\.createElement\(hasContent && !isLocked \? 'a' : 'button'\)/);
-  assert.match(html, /btn\.href = buildTestHref\(key\)/);
   assert.match(html, /start\(_requestedTest\)/);
 });
 
-test('the app requests the Test 31 catalog release instead of a stale cached menu', () => {
-  assert.match(appHtml, /frame\.src = '\/ibt\?release=test-31&allowed=' \+ allowed\.join\(','\)/);
+test('the parent serializes the complete allowed-test array into the iframe URL', () => {
+  assert.match(appHtml, /params\.set\('allowed', allowed\.join\(','\)\)/);
+  assert.match(appHtml, /frame\.src = '\/ibt\?' \+ params\.toString\(\)/);
+});
+
+function parentIBTAccess(tier) {
+  const tierSource = appHtml.slice(appHtml.indexOf('var ITP_TOTAL ='), appHtml.indexOf('function getEffectiveTier'));
+  const openIBTSource = appHtml.slice(appHtml.indexOf('function openIBT()'), appHtml.indexOf('function openGeneral()'));
+  const elements = new Map();
+  const element = (id) => {
+    if (!elements.has(id)) elements.set(id, { classList: { add() {}, remove() {} }, textContent: '', src: '' });
+    return elements.get(id);
+  };
+  const parentSandbox = {
+    URLSearchParams,
+    hasFullAccessTier: (tierKey) => ['admin', 'premium', 'teacher', 'student', 'courtesy'].includes(tierKey),
+    document: { querySelectorAll: () => [], getElementById: element },
+    closeMobileSidebar() {},
+  };
+  vm.runInNewContext(`${tierSource}\n${openIBTSource}\ncurrentTier = '${tier}'; openIBT(); globalThis.allowed = TIERS[currentTier].ibtTests;`, parentSandbox);
+  return { allowed: [...parentSandbox.allowed], frameSrc: element('frame-ibt').src };
+}
+
+test('every full-access tier sends Test 31 in the iframe allowed parameter', () => {
+  for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
+    const access = parentIBTAccess(tier);
+    assert.equal(access.allowed.length, 31, tier);
+    assert.equal(access.allowed.at(-1), 'Test 31', tier);
+    assert.equal(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').at(-1), 'Test 31', tier);
+  }
+});
+
+test('guest and free iframe access remains restricted', () => {
+  assert.deepEqual(parentIBTAccess('visitor').allowed, ['Test 1', 'Test 2']);
+  assert.deepEqual(parentIBTAccess('free').allowed, ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5']);
+});
+
+function catalogControl({ allowedTests, populatedTests, key }) {
+  class FakeElement {
+    constructor(tagName) {
+      this.tagName = tagName.toUpperCase();
+      this.children = [];
+      this.disabled = false;
+      this.className = '';
+      this.textContent = '';
+      this.style = {};
+      this._testsGrid = null;
+    }
+    appendChild(child) { this.children.push(child); return child; }
+    setAttribute() {}
+    set innerHTML(value) {
+      this._innerHTML = value;
+      if (this.tagName === 'SECTION') this._testsGrid = new FakeElement('div');
+    }
+    get innerHTML() { return this._innerHTML || ''; }
+    querySelector(selector) { return selector === '.collection-tests' ? this._testsGrid : null; }
+    click() { if (!this.disabled && this.onclick) this.onclick({ preventDefault() {} }); }
+  }
+
+  const menuGrid = new FakeElement('div');
+  const started = [];
+  const upgrades = [];
+  const behaviorSandbox = {
+    Array,
+    document: {
+      createElement: (tagName) => new FakeElement(tagName),
+      getElementById: (id) => id === 'menu-grid' ? menuGrid : null,
+    },
+    testData: Object.fromEntries(populatedTests.map((testKey) => [testKey, [{}]])),
+    _allowedTests: allowedTests,
+    start: (testKey) => started.push(testKey),
+    notifyUpgrade: () => upgrades.push(key),
+  };
+  const catalogSource = html.slice(html.indexOf('var testCollections ='), html.indexOf('function buildTestHref'));
+  const futureCollection = key === 'Test 31' ? '' : `testCollections.push({ id: 'future', title: 'FUTURE', description: '', tests: ['${key}'] });`;
+  vm.runInNewContext(`${catalogSource}\n${futureCollection}\n_buildIBTMenu();`, behaviorSandbox);
+  const controls = menuGrid.children.flatMap((section) => section._testsGrid.children);
+  const control = controls.find((entry) => entry.textContent.replace('🔒 ', '') === key || entry.innerHTML.startsWith(key));
+  return { control, started, upgrades };
+}
+
+test('Test 31 catalog control starts its populated test for a full-access user', () => {
+  const result = catalogControl({ allowedTests: ['Test 31'], populatedTests: ['Test 31'], key: 'Test 31' });
+  assert.equal(result.control.tagName, 'BUTTON');
+  assert.equal(result.control.disabled, false);
+  result.control.click();
+  assert.deepEqual(result.started, ['Test 31']);
+  assert.deepEqual(result.upgrades, []);
+});
+
+test('Test 31 catalog control stays locked and requests an upgrade without access', () => {
+  const result = catalogControl({ allowedTests: [], populatedTests: ['Test 31'], key: 'Test 31' });
+  assert.match(result.control.textContent, /^🔒 Test 31$/);
+  result.control.click();
+  assert.deepEqual(result.started, []);
+  assert.deepEqual(result.upgrades, ['Test 31']);
+});
+
+test('a future catalog test without testData remains disabled as coming soon', () => {
+  const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: [], key: 'Test 32' });
+  assert.equal(result.control.disabled, true);
+  assert.match(result.control.innerHTML, /Content coming soon/);
+  result.control.click();
+  assert.deepEqual(result.started, []);
+  assert.deepEqual(result.upgrades, []);
 });
 
 test('Test 31 contains the complete updated TOEFL practice sequence', () => {
