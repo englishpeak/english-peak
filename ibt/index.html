@@ -100,7 +100,7 @@
         .small-timer { float: right; font-size: 1.5rem; font-weight: bold; color: var(--timer-dark); background: #f4f4f4; padding: 8px 15px; border-radius: 5px; margin: 10px 0; border: 1px solid #ddd; }
 
         #nav-controls { padding-top: 50px; border-top: 1px solid #eee; margin-top: 20px; text-align: center; }
-        .btn { background: var(--primary-blue); color: white; border: none; padding: 18px 45px; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 700; margin: 10px auto; min-width: 280px; display: block; }
+        .btn { background: var(--primary-blue); color: white; border: none; padding: 18px 45px; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 700; margin: 10px auto; min-width: 280px; display: block; box-sizing: border-box; text-align: center; text-decoration: none; }
         .btn-skip { background: #6c757d; font-size: 14px; margin-top: 25px; }
         .btn-outline { background: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); margin-bottom: 15px; }
         .btn-audio-minimal { background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; margin: 0; display: flex; align-items: center; justify-content: center; }
@@ -179,10 +179,14 @@ function _buildIBTMenu() {
       '<div class="collection-tests"></div>';
     var testsGrid = section.querySelector('.collection-tests');
     collection.tests.forEach(function(key) {
-      var btn = document.createElement('button');
-      btn.className = 'btn';
       var hasContent = Array.isArray(testData[key]) && testData[key].length > 0;
       var isLocked = _allowedTests.indexOf(key) === -1;
+      // Available tests use a real URL instead of relying solely on an inline
+      // click callback. Besides supporting normal link behavior, this gives
+      // Test 31 a reliable navigation path even if the catalog is embedded or
+      // restored from the browser's back/forward cache.
+      var btn = document.createElement(hasContent && !isLocked ? 'a' : 'button');
+      btn.className = 'btn';
       if (!hasContent) {
         btn.className += ' btn-coming-soon';
         btn.disabled = true;
@@ -193,12 +197,18 @@ function _buildIBTMenu() {
         btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
       } else {
         btn.textContent = key;
-        btn.onclick = (function(k){ return function(){ start(k); }; })(key);
+        btn.href = buildTestHref(key);
       }
       testsGrid.appendChild(btn);
     });
     menuGrid.appendChild(section);
   });
+}
+
+function buildTestHref(key) {
+  var params = new URLSearchParams(window.location.search);
+  params.set('test', key);
+  return '?' + params.toString();
 }
 </script>
 </head>
@@ -2694,6 +2704,10 @@ Got it. I'll head there after my class.`, questions:[
     function skip() { results.push({title:curSet[idx].title, skipped:true}); idx++; idx<curSet.length?render():finish(); }
 
 _buildIBTMenu();
+var _requestedTest = new URLSearchParams(window.location.search).get('test');
+if (_requestedTest && _allowedTests.indexOf(_requestedTest) !== -1 && Array.isArray(testData[_requestedTest])) {
+    start(_requestedTest);
+}
 </script>
 </body>
 </html>
