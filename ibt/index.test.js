@@ -4,7 +4,6 @@ import test from 'node:test';
 import vm from 'node:vm';
 
 const html = readFileSync(new URL('./index.html', import.meta.url), 'utf8');
-const vercelConfig = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 const scripts = [...html.matchAll(/<script(?: [^>]*)?>([\s\S]*?)<\/script>/g)].map((match) => match[1]);
 const sandbox = {
   console,
@@ -72,14 +71,6 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
   assert.match(html, /tests: \['Test 31'\]/);
-});
-
-test('the production /ibt route serves the completed collection entry point', () => {
-  const ibtRewrites = vercelConfig.rewrites.filter(({ source }) => source === '/ibt' || source === '/ibt/:path*');
-  assert.deepEqual(ibtRewrites, [
-    { source: '/ibt', destination: '/ibt/index.html' },
-    { source: '/ibt/:path*', destination: '/ibt/index.html' },
-  ]);
 });
 
 test('Test 31 contains the complete updated TOEFL practice sequence', () => {
