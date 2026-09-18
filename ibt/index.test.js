@@ -244,6 +244,12 @@ test('complete-word rendering keeps each visible fragment and blank in one unspa
   assert.match(rendered, /maxlength="7"/);
 });
 
+test('Test 31 necessarily blank requests only the six missing characters', () => {
+  const task = test31.find((entry) => entry.title === 'Task 2: Borrowed Words');
+  assert.match(task.text, /neces\[6\]/);
+  assert.doesNotMatch(task.text, /neces\[7\]/);
+});
+
 test('practice reveal controls begin closed and toggle accessibly', () => {
   const markup = sandbox.renderScriptControl('Woman: Hello.\n\nMan: Hi.');
   assert.match(markup, />Show Script<\/button>/);
@@ -271,8 +277,22 @@ test('Listen and Repeat hides current text, supports unlimited replay, and has n
   assert.match(markup, />Show Text<\/button>/);
   assert.match(markup, /id="repeat-text"[^>]* hidden/);
   assert.match(markup, /Play audio/);
+  assert.match(markup, /role="progressbar"/);
+  assert.match(markup, /Sentence 1 of 7/);
+  assert.match(markup, /width:14\.2857/);
   assert.doesNotMatch(markup, /repeat-timer|00:0[89]|00:1[012]/);
   assert.doesNotMatch(sandbox.playRepeatSentence.toString(), /disabled|runTimer/);
+});
+
+test('Listen and Repeat exposes Submit & Next only on the final sentence', () => {
+  const submit = { style: {} };
+  const content = { innerHTML: '' };
+  sandbox.document.getElementById = (id) => id === 'exercise-content' ? content : id === 'submit-btn' ? submit : null;
+  vm.runInContext(`repeatSentenceIndex = 0; renderRepeatSentence(testData['Test 31'].find(task => task.type === 'listen-repeat-updated'))`, sandbox);
+  assert.equal(submit.style.display, 'none');
+  vm.runInContext(`repeatSentenceIndex = 6; renderRepeatSentence(testData['Test 31'].find(task => task.type === 'listen-repeat-updated'))`, sandbox);
+  assert.equal(submit.style.display, 'block');
+  assert.match(content.innerHTML, /Sentence 7 of 7/);
 });
 
 test('Build a Sentence renders selected chunks inline with its scaffold and identifies the extra chunk', () => {
