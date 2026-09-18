@@ -95,14 +95,19 @@
         .sentence-construction .drop-area { display: inline; min-height: 0; border: 0; padding: 0; background: transparent; }
         .sentence-construction .draggable-word { display: inline-block; padding: 5px 10px; margin: 3px 2px; line-height: 1.35; }
         .extra-chunk-note, .practice-helper { color: var(--ep-muted, #666); font-size: .82rem; }
-        .practice-control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 12px 0; }
+        .practice-control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 16px 0 20px; }
         .practice-control-row .btn { min-width: 0; width: auto; margin: 0; padding: 10px 16px; font-size: .9rem; }
         .practice-transcript { white-space: pre-wrap; background: var(--ep-card-soft, #F4F6FB); padding: 20px; margin: 10px 0 22px; border-left: 4px solid var(--primary-blue); border-radius: 8px; line-height: 1.6; }
+        .question-list { margin-top: 24px; }
+        .repeat-progress { margin: 4px 0 24px; }
+        .repeat-progress-label { display: flex; justify-content: space-between; gap: 16px; color: var(--primary-blue); font-size: .9rem; font-weight: 600; margin-bottom: 8px; }
+        .repeat-progress-track { height: 9px; overflow: hidden; background: var(--ep-card-soft, #F4F6FB); border: 1px solid var(--ep-border, rgba(13,59,111,.12)); border-radius: 999px; }
+        .repeat-progress-fill { height: 100%; background: var(--ep-gradient-brand, linear-gradient(135deg, var(--primary-blue), var(--accent-blue))); border-radius: inherit; transition: width .25s ease; }
         
         .academic-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; margin-bottom: 20px; }
         .reading-text-box { font-size: 1.1rem; line-height: 1.8; padding-right: 20px; border-right: 1px solid #eee; height: 520px; overflow-y: auto; text-align: justify; }
 
-        .audio-container { margin: 20px 0; background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #dee2e6; text-align: center; }
+        .audio-container { margin: 20px 0 24px; background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #dee2e6; text-align: center; }
         audio { width: 100%; height: 35px; }
         #timer-box { font-size: 5.5rem; font-weight: bold; color: var(--timer-dark); text-align: center; margin: 60px 0; font-family: monospace; }
         .small-timer { float: right; font-size: 1.5rem; font-weight: bold; color: var(--timer-dark); background: #f4f4f4; padding: 8px 15px; border-radius: 5px; margin: 10px 0; border: 1px solid #ddd; }
@@ -232,7 +237,7 @@ function buildTestHref(key) {
     <div id="screen-exercise" class="screen">
         <div id="exercise-content"></div>
         <div id="nav-controls">
-            <button class="btn" onclick="submitAnswer()">Submit & Next</button>
+            <button class="btn" id="submit-btn" onclick="submitAnswer()">Submit & Next</button>
             <button class="btn btn-skip" id="skip-btn" onclick="skip()">Skip for Live Stream</button>
         </div>
     </div>
@@ -2384,7 +2389,7 @@ function buildTestHref(key) {
 
     testData["Test 31"] = [
       { section:'Reading', type:'complete-words', taskFamily:'Complete the Words', title:'Task 1: Tree Rings and Past Climate', instruction:'Complete the words in the passage.', text:'Trees can preserve surprisingly detailed evidence about past climate. As a tree gr[3], it produces a new ri[2] beneath its ba[2] each ye[2]. The width of a ri[2] often refl[4] the conditions in wh[3] the tree gr[2]. During favo[5] years, when wa[3] and sunlight are plentiful, growth may be relatively rapid. In colder or drier years, the resulting ring may be narrower. Scientists compare patterns from living trees with those found in old timber to construct records extending far into the past.', answers:['ows','ng','rk','ar','ng','ects','ich','ew','rable','ter'] },
-      { section:'Reading', type:'complete-words', taskFamily:'Complete the Words', title:'Task 2: Borrowed Words', instruction:'Complete the words in the passage.', text:'Languages have always borrowed words from one another. When communities inte[4] through tr[3], migration, conq[4], science, or pop[4] culture, use[3] expressions can cr[3] linguistic bound[5]. A borr[4] word do[2] not neces[7] remain unchanged after entering a new language. Speakers may alter its pronunciation, spelling, or even its meaning so that it fits more naturally into local patterns. Over generations, people may stop recognizing the word as foreign at all. Borrowing therefore provides linguists with valuable evidence of historical contact between different communities.', answers:['ract','ade','uest','ular','ful','oss','aries','owed','es','sarily'] },
+      { section:'Reading', type:'complete-words', taskFamily:'Complete the Words', title:'Task 2: Borrowed Words', instruction:'Complete the words in the passage.', text:'Languages have always borrowed words from one another. When communities inte[4] through tr[3], migration, conq[4], science, or pop[4] culture, use[3] expressions can cr[3] linguistic bound[5]. A borr[4] word do[2] not neces[6] remain unchanged after entering a new language. Speakers may alter its pronunciation, spelling, or even its meaning so that it fits more naturally into local patterns. Over generations, people may stop recognizing the word as foreign at all. Borrowing therefore provides linguists with valuable evidence of historical contact between different communities.', answers:['ract','ade','uest','ular','ful','oss','aries','owed','es','sarily'] },
       { section:'Reading', type:'read-daily', taskFamily:'Read in Daily Life', title:'Task 3: Restaurant Menu', instruction:'Read a menu.', text:`RIVER STREET KITCHEN
 LUNCH — 11:30 a.m.–3:00 p.m.
 
@@ -2518,6 +2523,7 @@ Got it. I'll head there after my class.`, questions:[
         const ex = curSet[idx]; const cont = document.getElementById('exercise-content');
         repeatSentenceIndex = 0; interviewQuestionIndex = 0;
         document.getElementById('skip-btn').style.display = ex.canSkip ? 'block' : 'none';
+        updateSubmitButtonVisibility(ex.type !== 'listen-repeat-updated');
         const previousSection = idx > 0 ? curSet[idx - 1].section : null;
         cont.innerHTML = `${ex.section && ex.section !== previousSection ? `<div class="section-marker">${ex.section} section</div>` : ''}<h2>${ex.title}</h2>${ex.instruction ? `<p class="task-instructions">${ex.instruction}</p>` : ''}`;
 
@@ -2549,9 +2555,9 @@ Got it. I'll head there after my class.`, questions:[
         } else if (['academic-reading', 'read-daily', 'listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)) {
             let qh = ex.questions.map((q,qi)=>`<div style="margin-bottom:30px;"><strong>${qi+1}. ${q.q}</strong>${q.options.map((o,oi)=>`<div class="option q${qi}" onclick="mSel(${qi},${oi})">${o}</div>`).join('')}</div>`).join('');
             const source = ex.type === 'academic-reading' ? `<div class="reading-text-box">${ex.text}</div>` : '';
-            cont.innerHTML += ex.type === 'academic-reading' ? `<div class="academic-grid">${source}<div>${qh}</div></div>` : ex.type === 'read-daily' ? `<div class="document-box">${ex.text}</div>${qh}` : qh;
+            cont.innerHTML += ex.type === 'academic-reading' ? `<div class="academic-grid">${source}<div>${qh}</div></div>` : ex.type === 'read-daily' ? `<div class="document-box">${ex.text}</div>${qh}` : `<div class="question-list">${qh}</div>`;
         } else if (ex.type === 'listen-response') {
-            cont.innerHTML += `<p><strong>${ex.question || 'Choose the most appropriate response.'}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
+            cont.innerHTML += `<div class="question-list"><p><strong>${ex.question || 'Choose the most appropriate response.'}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('') + `</div>`;
         } else if (ex.options) {
             let t = ex.script ? `<button class="btn btn-outline" onclick="this.nextElementSibling.style.display='block'">Show Script</button><div style="background:#f8f9fa; padding:20px; display:none; margin-bottom:20px; border-left: 4px solid var(--primary-blue);">${ex.script}</div>` : `<p>${ex.text || ""}</p>`;
             cont.innerHTML += t + `<p><strong>${ex.question}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
@@ -2585,7 +2591,14 @@ Got it. I'll head there after my class.`, questions:[
     function renderRepeatSentence(ex) {
         const sentence = ex.sentences[repeatSentenceIndex];
         const isLast = repeatSentenceIndex === ex.sentences.length - 1;
-        document.getElementById('exercise-content').innerHTML += `${repeatSentenceIndex === 0 ? `<div class="context-box">${ex.scenario}</div>` : ''}<p>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</p><div class="interview-prompt">Listen, then repeat the sentence aloud at your own pace.</div><div class="practice-control-row"><button type="button" class="btn" id="repeat-play" onclick="playRepeatSentence('${sentence.audio}')">▶ Play audio</button><span class="practice-helper">Use only as a last resource :)</span></div><div class="practice-control-row"><button type="button" class="btn btn-outline" aria-expanded="false" onclick="togglePracticeReveal(this, document.getElementById('repeat-text'), 'Show Text', 'Hide Text')">Show Text</button></div><div id="repeat-text" class="practice-transcript" hidden>${sentence.text}</div>${isLast ? '' : '<button type="button" class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
+        const progress = ((repeatSentenceIndex + 1) / ex.sentences.length) * 100;
+        updateSubmitButtonVisibility(isLast);
+        document.getElementById('exercise-content').innerHTML += `<div class="repeat-progress"><div class="repeat-progress-label"><span>Listen and Repeat progress</span><span>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</span></div><div class="repeat-progress-track" role="progressbar" aria-label="Listen and Repeat progress" aria-valuemin="1" aria-valuemax="${ex.sentences.length}" aria-valuenow="${repeatSentenceIndex + 1}"><div class="repeat-progress-fill" style="width:${progress}%"></div></div></div>${repeatSentenceIndex === 0 ? `<div class="context-box">${ex.scenario}</div>` : ''}<div class="interview-prompt">Listen, then repeat the sentence aloud at your own pace.</div><div class="practice-control-row"><button type="button" class="btn" id="repeat-play" onclick="playRepeatSentence('${sentence.audio}')">▶ Play audio</button><span class="practice-helper">Use only as a last resource :)</span></div><div class="practice-control-row"><button type="button" class="btn btn-outline" aria-expanded="false" onclick="togglePracticeReveal(this, document.getElementById('repeat-text'), 'Show Text', 'Hide Text')">Show Text</button></div><div id="repeat-text" class="practice-transcript" hidden>${sentence.text}</div>${isLast ? '' : '<button type="button" class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
+    }
+
+    function updateSubmitButtonVisibility(show) {
+        const button = document.getElementById('submit-btn');
+        if (button) button.style.display = show ? 'block' : 'none';
     }
 
     function playRepeatSentence(audio) {
