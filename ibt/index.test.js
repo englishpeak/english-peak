@@ -9,6 +9,9 @@ const scripts = [...html.matchAll(/<script(?: [^>]*)?>([\s\S]*?)<\/script>/g)].m
 const sandbox = {
   console,
   URLSearchParams,
+  clearInterval,
+  setInterval,
+  setTimeout,
   window: { location: { search: '' } },
   document: { getElementById: () => null },
 };
@@ -232,6 +235,90 @@ test('Test 31 complete-word passages reconstruct exactly with ten blanks each', 
     let answer = 0;
     assert.equal(task.text.replace(/\[\d+\]/g, () => task.answers[answer++]), expected[index]);
   });
+});
+
+test('complete-word rendering keeps each visible fragment and blank in one unspaced word unit', () => {
+  const rendered = sandbox.renderCompleteWordsText('It is not neces[7] true.');
+  assert.match(rendered, /<span class="incomplete-word">neces<input/);
+  assert.doesNotMatch(rendered, /neces\s+<input/);
+  assert.match(rendered, /maxlength="7"/);
+});
+
+test('practice reveal controls begin closed and toggle accessibly', () => {
+  const markup = sandbox.renderScriptControl('Woman: Hello.\n\nMan: Hi.');
+  assert.match(markup, />Show Script<\/button>/);
+  assert.match(markup, /Use only as a last resource :\)/);
+  assert.match(markup, /class="practice-transcript" hidden/);
+  assert.match(markup, /Woman: Hello\.\n\nMan: Hi\./);
+
+  const button = { textContent: '', expanded: '', setAttribute(name, value) { if (name === 'aria-expanded') this.expanded = value; } };
+  const content = { hidden: true };
+  sandbox.togglePracticeReveal(button, content, 'Show Script', 'Hide Script');
+  assert.equal(content.hidden, false);
+  assert.equal(button.textContent, 'Hide Script');
+  assert.equal(button.expanded, 'true');
+});
+
+function renderPracticeComponent(expression) {
+  const content = { innerHTML: '' };
+  sandbox.document.getElementById = (id) => id === 'exercise-content' ? content : null;
+  vm.runInContext(expression, sandbox);
+  return content.innerHTML;
+}
+
+test('Listen and Repeat hides current text, supports unlimited replay, and has no countdown', () => {
+  const markup = renderPracticeComponent(`repeatSentenceIndex = 0; renderRepeatSentence(testData['Test 31'].find(task => task.type === 'listen-repeat-updated'))`);
+  assert.match(markup, />Show Text<\/button>/);
+  assert.match(markup, /id="repeat-text"[^>]* hidden/);
+  assert.match(markup, /Play audio/);
+  assert.doesNotMatch(markup, /repeat-timer|00:0[89]|00:1[012]/);
+  assert.doesNotMatch(sandbox.playRepeatSentence.toString(), /disabled|runTimer/);
+});
+
+test('Build a Sentence renders selected chunks inline with its scaffold and identifies the extra chunk', () => {
+  const elements = new Map([
+    ['exercise-content', { innerHTML: '' }],
+    ['skip-btn', { style: {} }],
+  ]);
+  sandbox.document.getElementById = (id) => elements.get(id) || null;
+  vm.runInContext(`_currentTestKey = 'Test 31'; curSet = [testData['Test 31'].find(task => task.type === 'build-sentence')]; idx = 0; render();`, sandbox);
+  const markup = elements.get('exercise-content').innerHTML;
+  assert.match(markup, /sentence-construction/);
+  assert.match(markup, /reply-scaffold[^>]*>She/);
+  assert.match(markup, /reply-scaffold[\s\S]*id="d-area"/);
+  assert.match(markup, /There is one extra word or phrase you do not need\./);
+  assert.doesNotMatch(markup, /class="drop-area"[^>]*><\/div>/);
+  const task = test31.find((entry) => entry.type === 'build-sentence');
+  assert.equal(task.words.length, task.correctOrder.length + 1);
+
+  const bank = { children: [], appendChild(node) { this.children.push(node); } };
+  const inlineArea = { children: [], appendChild(node) { this.children.push(node); } };
+  sandbox.document.getElementById = (id) => id === 'd-area' ? inlineArea : bank;
+  const chunk = { innerText: 'said' };
+  sandbox.toD(chunk);
+  assert.deepEqual(inlineArea.children, [chunk]);
+});
+
+test('Interview questions start hidden, reveal on request, reset hidden, and retain 45 seconds', () => {
+  let markup = renderPracticeComponent(`interviewQuestionIndex = 0; renderInterviewPrompt(testData['Test 31'].find(task => task.type === 'take-interview'))`);
+  assert.match(markup, />Show Question<\/button>/);
+  assert.match(markup, /id="interview-question"[^>]* hidden/);
+  assert.match(markup, /id="interview-timer"[^>]*>00:45/);
+
+  markup = renderPracticeComponent(`interviewQuestionIndex = 1; renderInterviewPrompt(testData['Test 31'].find(task => task.type === 'take-interview'))`);
+  assert.match(markup, /Question 2 of 4/);
+  assert.match(markup, /id="interview-question"[^>]* hidden/);
+  assert.match(markup, />Show Question<\/button>/);
+});
+
+test('all ten Test 31 listening tasks expose scripts through the closed reusable control', () => {
+  const listening = test31.filter((task) => task.section === 'Listening');
+  assert.equal(listening.length, 10);
+  for (const task of listening) {
+    const markup = sandbox.renderScriptControl(task.script);
+    assert.match(markup, />Show Script<\/button>/, task.title);
+    assert.match(markup, /practice-transcript" hidden/, task.title);
+  }
 });
 
 test('updated-test architecture defines each required task family and audio contract', () => {
