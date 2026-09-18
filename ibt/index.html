@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New TOEFL iBT Practice</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/brand-tokens.css">
     <style>
         :root {
-            --primary-blue: #00467f;
-            --accent-blue: #0073e6;
-            --bg-page: #f4f7f9;
-            --text-main: #2c3e50;
-            --white: #ffffff;
+            --primary-blue: var(--ep-navy, #0D3B6F);
+            --accent-blue: var(--ep-purple, #470074);
+            --bg-page: var(--ep-bg, #F7F8FC);
+            --text-main: var(--ep-ink, #1A1A2E);
+            --white: var(--ep-surface, #ffffff);
             --error-red: #d93025;
             --success-green: #28a745;
             --timer-dark: #1a1a1a;
@@ -20,7 +21,7 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Outfit', system-ui, sans-serif;
             background-color: var(--bg-page);
             color: var(--text-main);
             margin: 0;
@@ -47,15 +48,22 @@
         .active { display: flex; flex-direction: column; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        h1, h2 { color: var(--primary-blue); text-align: center; margin-bottom: 40px; }
+        h1, h2 { color: var(--primary-blue); text-align: center; margin-bottom: 40px; font-family: 'Cormorant Garamond', Georgia, serif; }
 
-        #menu-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-            margin-top: 40px;
-        }
+        .library-header { text-align: center; margin-bottom: 42px; }
+        .library-header h1 { margin: 0 0 10px; font-size: clamp(2.25rem, 5vw, 3.25rem); }
+        .library-header p { margin: 0; color: var(--text-neutral); font-size: 1rem; }
+
+        #menu-grid { display: grid; gap: 30px; }
+        .test-collection { border: 1px solid var(--ep-border, rgba(13,59,111,.12)); border-radius: 20px; padding: 28px; background: var(--white); }
+        .test-collection.updated { background: linear-gradient(180deg, rgba(71,0,116,.035), var(--white) 38%); border-top: 3px solid var(--accent-blue); }
+        .collection-kicker { color: var(--accent-blue); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 7px; }
+        .collection-title { color: var(--primary-blue); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; line-height: 1.1; margin: 0 0 6px; }
+        .collection-description { color: var(--text-neutral); margin: 0; line-height: 1.55; }
+        .collection-tests { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 22px; }
+        .collection-tests .btn { min-width: 0; width: 100%; margin: 0; padding: 14px 16px; }
+        .btn-coming-soon { background: var(--ep-card-soft, #F4F6FB); color: var(--primary-blue); border: 1px solid var(--ep-border, rgba(13,59,111,.12)); cursor: default; }
+        .btn-coming-soon small { display: block; color: var(--text-neutral); font-size: .67rem; font-weight: 500; margin-top: 3px; }
 
         .fill-blank {
             display: inline-block;
@@ -106,6 +114,20 @@
         .right-ans-label { color: var(--text-neutral); font-weight: bold; margin-bottom: 8px; display: block; }
         .correct-text { color: var(--success-green); font-weight: bold; }
         .wrong-text { color: var(--error-red); font-weight: bold; }
+
+        .discussion-response { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+        .discussion-card { background: var(--ep-card-soft, #F4F6FB); border: 1px solid var(--ep-border, rgba(13,59,111,.12)); border-radius: 12px; padding: 16px; }
+        .discussion-card strong { display: block; color: var(--primary-blue); margin-bottom: 6px; }
+        .interview-prompt { background: var(--ep-card-soft, #F4F6FB); border-left: 4px solid var(--accent-blue); border-radius: 10px; padding: 22px; font-size: 1.2rem; line-height: 1.55; }
+
+        @media (max-width: 700px) {
+            body { align-items: stretch; }
+            #app-wrapper { width: 100%; min-height: 100vh; padding: 32px 18px; border-radius: 0; }
+            .test-collection { padding: 22px 16px; }
+            .collection-tests { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .discussion-response, .academic-grid { grid-template-columns: 1fr; }
+            .reading-text-box { border-right: 0; border-bottom: 1px solid #eee; padding: 0 0 20px; height: auto; max-height: 420px; }
+        }
     </style>
 
 <script>
@@ -122,23 +144,54 @@ function notifyUpgrade() {
   var allowedParam = params.get('allowed');
   if (allowedParam) _allowedTests = allowedParam.split(',');
 })();
+var testCollections = [
+  {
+    id: 'general-practice',
+    title: 'GENERAL PRACTICE',
+    description: 'Build familiarity with TOEFL-style English skills and question types.',
+    tests: Array.from({length: 30}, function(_, index) { return 'Test ' + (index + 1); })
+  },
+  {
+    id: 'updated-toefl-practice',
+    title: 'UPDATED TOEFL PRACTICE',
+    description: 'Practice with the task types and format introduced in the updated TOEFL iBT.',
+    tests: ['Test 31']
+  }
+];
+
 function _buildIBTMenu() {
   var menuGrid = document.getElementById('menu-grid');
   if (!menuGrid) return;
   menuGrid.innerHTML = '';
-  Object.keys(testData).forEach(function(key) {
-    var btn = document.createElement('button');
-    btn.className = 'btn';
-    var isLocked = _allowedTests.indexOf(key) === -1;
-    if (isLocked) {
-      btn.textContent = '🔒 ' + key;
-      btn.style.opacity = '0.5'; btn.style.background = '#888';
-      btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
-    } else {
-      btn.textContent = key;
-      btn.onclick = (function(k){ return function(){ start(k); }; })(key);
-    }
-    menuGrid.appendChild(btn);
+  testCollections.forEach(function(collection, collectionIndex) {
+    var section = document.createElement('section');
+    section.className = 'test-collection' + (collectionIndex ? ' updated' : '');
+    section.setAttribute('aria-labelledby', collection.id + '-title');
+    section.innerHTML = '<div class="collection-kicker">Collection ' + (collectionIndex + 1) + '</div>' +
+      '<h2 class="collection-title" id="' + collection.id + '-title">' + collection.title + '</h2>' +
+      '<p class="collection-description">' + collection.description + '</p>' +
+      '<div class="collection-tests"></div>';
+    var testsGrid = section.querySelector('.collection-tests');
+    collection.tests.forEach(function(key) {
+      var btn = document.createElement('button');
+      btn.className = 'btn';
+      var hasContent = Array.isArray(testData[key]) && testData[key].length > 0;
+      var isLocked = _allowedTests.indexOf(key) === -1;
+      if (!hasContent) {
+        btn.className += ' btn-coming-soon';
+        btn.disabled = true;
+        btn.innerHTML = key + '<small>Content coming soon</small>';
+      } else if (isLocked) {
+        btn.textContent = '🔒 ' + key;
+        btn.style.opacity = '0.5'; btn.style.background = '#888';
+        btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
+      } else {
+        btn.textContent = key;
+        btn.onclick = (function(k){ return function(){ start(k); }; })(key);
+      }
+      testsGrid.appendChild(btn);
+    });
+    menuGrid.appendChild(section);
   });
 }
 </script>
@@ -147,7 +200,10 @@ function _buildIBTMenu() {
 
 <div id="app-wrapper">
     <div id="screen-home" class="screen active">
-        <h1>New TOEFL iBT Practice</h1>
+        <header class="library-header">
+            <h1>TOEFL iBT Practice</h1>
+            <p>Choose a practice collection and test to begin.</p>
+        </header>
         <div id="menu-grid">
           <!-- Generado automáticamente por _buildIBTMenu() -->
         </div>
@@ -170,6 +226,25 @@ function _buildIBTMenu() {
 </div>
 
 <script>
+    /*
+     * Authoring contract for Test 31 and later. Add completed tests to testData using
+     * these task types; the catalog enables a test automatically when its array exists.
+     * Scripts stay in data for review/admin use and are not rendered for updated
+     * listening tasks during a student attempt.
+     */
+    const updatedTestBlueprint = Object.freeze({
+        reading: ['complete-words', 'read-daily', 'academic-reading'],
+        listening: ['listen-response', 'listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'],
+        writing: ['build-sentence', 'writing-email', 'academic-discussion'],
+        speaking: ['listen-repeat-updated', 'take-interview'],
+        audio: Object.freeze({
+            listeningFiles: 10,
+            repeatFiles: ['sentence-1.mp3', 'sentence-2.mp3', 'sentence-3.mp3', 'sentence-4.mp3', 'sentence-5.mp3', 'sentence-6.mp3', 'sentence-7.mp3'],
+            targetFilesPerTest: 17,
+            maximumFilesPerTest: 19
+        })
+    });
+
     const testData = {
         // 1️⃣ TEST 1 DATA (EXACT MECHANICAL REPLICA OF BACKUP)
         "Test 1": [
@@ -2287,12 +2362,14 @@ function _buildIBTMenu() {
     };
 
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
+    let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
 
     function start(k) { _currentTestKey = k; curSet=testData[k]; idx=0; results=[]; switchScreen('screen-exercise'); render(); }
 
     function render() {
         clearInterval(timer);
         const ex = curSet[idx]; const cont = document.getElementById('exercise-content');
+        repeatSentenceIndex = 0; interviewQuestionIndex = 0;
         document.getElementById('skip-btn').style.display = ex.canSkip ? 'block' : 'none';
         cont.innerHTML = `<h2>${ex.title}</h2>`;
 
@@ -2305,21 +2382,56 @@ function _buildIBTMenu() {
             cont.innerHTML += `<div class="exercise-paragraph">${h}</div>`;
         } else if (ex.type === 'listen-repeat') {
             cont.innerHTML += `<div style="display:grid; gap:15px;">` + ex.sentences.map((s,i)=>`<div style="display:flex; align-items:center; gap:15px;"><button class="btn-audio-minimal" onclick="new Audio('${s.audio}').play().catch(e=>console.error(e))">▶️</button><button class="btn btn-outline" style="flex:1; margin:0;" onclick="this.parentElement.nextElementSibling.style.display='block'">Reveal Sentence ${i+1}</button></div><div style="background:#f8f9fa; padding:20px; border-left:5px solid var(--primary-blue); display:none; margin-bottom:10px;">${s.text}</div>`).join('') + `</div>`;
+        } else if (ex.type === 'listen-repeat-updated') {
+            renderRepeatSentence(ex);
+        } else if (ex.type === 'take-interview') {
+            renderInterviewPrompt(ex);
         } else if (ex.type === 'speaking-timer') {
             cont.innerHTML += `<div id="timer-box">00:${ex.time}</div><button class="btn" style="background:var(--success-green);" id="t-btn" onclick="runTimer(${ex.time}, 'timer-box')">Start Timer</button>`;
         } else if (ex.type === 'build-sentence') {
             let s = [...ex.words].sort(()=>Math.random()-0.5);
             cont.innerHTML += `<div class="context-box">${ex.context}</div><div class="word-bank" id="w-bank">${s.map(w=>`<div class="draggable-word" onclick="toD(this)">${w}</div>`).join('')}</div><div id="d-area" class="drop-area" onclick="fromD(event)"></div>`;
-        } else if (ex.type === 'academic-reading') {
+        } else if (ex.type === 'academic-reading' || ['listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)) {
             let qh = ex.questions.map((q,qi)=>`<div style="margin-bottom:30px;"><strong>${qi+1}. ${q.q}</strong>${q.options.map((o,oi)=>`<div class="option q${qi}" onclick="mSel(${qi},${oi})">${o}</div>`).join('')}</div>`).join('');
-            cont.innerHTML += `<div class="academic-grid"><div class="reading-text-box">${ex.text}</div><div>${qh}</div></div>`;
+            const source = ex.type === 'academic-reading' ? `<div class="reading-text-box">${ex.text}</div>` : '';
+            cont.innerHTML += ex.type === 'academic-reading' ? `<div class="academic-grid">${source}<div>${qh}</div></div>` : qh;
+        } else if (ex.type === 'listen-response') {
+            cont.innerHTML += `<p><strong>${ex.question || 'Choose the most appropriate response.'}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
         } else if (ex.options) {
             let t = ex.script ? `<button class="btn btn-outline" onclick="this.nextElementSibling.style.display='block'">Show Script</button><div style="background:#f8f9fa; padding:20px; display:none; margin-bottom:20px; border-left: 4px solid var(--primary-blue);">${ex.script}</div>` : `<p>${ex.text || ""}</p>`;
             cont.innerHTML += t + `<p><strong>${ex.question}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
+        } else if (ex.type === 'academic-discussion') {
+            cont.innerHTML += `<div class="discussion-card"><strong>Professor</strong>${ex.professorPrompt}</div><div class="discussion-response"><div class="discussion-card"><strong>Student A</strong>${ex.studentA}</div><div class="discussion-card"><strong>Student B</strong>${ex.studentB}</div></div><div class="small-timer" id="discussion-t">10:00</div><label for="discussion-answer"><strong>Your response</strong></label><textarea id="discussion-answer" style="width:100%; height:220px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; box-sizing:border-box;"></textarea>`;
+            setTimeout(()=>runTimer(ex.time || 600, 'discussion-t', true), 100);
         } else if (ex.type === 'writing-email') {
             cont.innerHTML += `<div class="small-timer" id="email-t">07:00</div><p>${ex.text}</p><textarea style="width:100%; height:200px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; outline:none;"></textarea>`;
             setTimeout(()=>runTimer(ex.time, 'email-t', true), 100);
         }
+    }
+
+    function renderRepeatSentence(ex) {
+        const sentence = ex.sentences[repeatSentenceIndex];
+        const isLast = repeatSentenceIndex === ex.sentences.length - 1;
+        document.getElementById('exercise-content').innerHTML += `<p>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</p><div class="interview-prompt">Listen, then repeat the sentence aloud.</div><button class="btn" onclick="new Audio('${sentence.audio}').play().catch(e=>console.error(e))">▶ Play sentence</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
+    }
+
+    function nextRepeatSentence() {
+        repeatSentenceIndex++;
+        const ex = curSet[idx];
+        document.getElementById('exercise-content').innerHTML = `<h2>${ex.title}</h2>`;
+        renderRepeatSentence(ex);
+    }
+
+    function renderInterviewPrompt(ex) {
+        const isLast = interviewQuestionIndex === ex.questions.length - 1;
+        document.getElementById('exercise-content').innerHTML += `<p>Question ${interviewQuestionIndex + 1} of ${ex.questions.length}</p><div class="interview-prompt">${ex.questions[interviewQuestionIndex]}</div><div id="interview-timer" class="small-timer">00:45</div><button class="btn" id="t-btn" onclick="runTimer(45, 'interview-timer')">Start response time</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextInterviewPrompt()">Next interview question</button>'}`;
+    }
+
+    function nextInterviewPrompt() {
+        clearInterval(timer); interviewQuestionIndex++;
+        const ex = curSet[idx];
+        document.getElementById('exercise-content').innerHTML = `<h2>${ex.title}</h2>`;
+        renderInterviewPrompt(ex);
     }
 
     function runTimer(s, elementId, isEmail = false) {
@@ -2342,7 +2454,7 @@ function _buildIBTMenu() {
         if(ex.type==='complete-words'){
             const ui=Array.from(document.querySelectorAll('.fill-blank')).map(i=>i.value.trim().toLowerCase());
             r.isCorrect = ui.every((v,i)=>v===ex.answers[i].toLowerCase()); r.ui=ui; r.ans=ex.answers; r.raw=ex.text;
-        } else if(ex.type==='academic-reading'){
+        } else if(ex.type==='academic-reading' || ['listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)){
             r.qs=ex.questions.map((q,qi)=>{ const s=document.querySelector(`.q${qi}.selected`); const c=s?parseInt(s.dataset.choice):null; return {qText:q.q, isC:c===q.correct, uVal:c!==null?q.options[c]:"N/A", cVal:q.options[q.correct]};});
             r.isCorrect=r.qs.every(q=>q.isC);
         } else if(ex.type==='build-sentence'){
@@ -2357,11 +2469,21 @@ function _buildIBTMenu() {
 
     function finish() {
         switchScreen('screen-results');
-        const v = results.filter(r=>!r.skipped && r.type!=='speaking-timer' && r.type!=='writing-email' && r.type!=='listen-repeat');
-        const sCount = v.filter(r=>r.isCorrect).length;
-        const p = sCount/(v.length||1);
-        let band = (p * 5 + 1).toFixed(1);
-        let ibt = Math.round(p * 120);
+        const unscoredTypes = ['speaking-timer', 'writing-email', 'academic-discussion', 'listen-repeat', 'listen-repeat-updated', 'take-interview'];
+        const v = results.filter(r=>!r.skipped && !unscoredTypes.includes(r.type));
+        const scoreFor = r => r.type === 'complete-words'
+            ? {earned: r.ui.filter((value, i) => value === r.ans[i].toLowerCase()).length, possible: r.ans.length}
+            : r.qs
+                ? {earned: r.qs.filter(q => q.isC).length, possible: r.qs.length}
+                : {earned: r.isCorrect ? 1 : 0, possible: 1};
+        const totals = v.reduce((sum, result) => {
+            const item = scoreFor(result);
+            sum.earned += item.earned; sum.possible += item.possible;
+            return sum;
+        }, {earned: 0, possible: 0});
+        const sCount = totals.earned;
+        const maxScore = totals.possible;
+        const accuracy = Math.round((sCount / (maxScore || 1)) * 100);
 
         // Report score to parent platform — first, before any rendering that could throw
         let _reported = false;
@@ -2372,23 +2494,23 @@ function _buildIBTMenu() {
                     exerciseType: 'TOEFL iBT',
                     exerciseName: _currentTestKey || 'Test',
                     score: sCount,
-                    maxScore: v.length
+                    maxScore: maxScore
                 }, window.location.origin);
                 _reported = true;
             }
         } catch(e) { console.error('postMessage error:', e); }
 
         document.getElementById('score-display').innerHTML = `
-            <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${band} / 6.0</div>
-            <p style="font-size:1.2rem;">TOEFL Band Score</p>
-            <div style="font-size: 1.1rem; color: var(--text-neutral);">Approximate iBT Total: <strong>${ibt} / 120</strong></div>
+            <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${accuracy}%</div>
+            <p style="font-size:1.2rem;">Practice Accuracy</p>
+            <div style="font-size: 1.1rem; color: var(--text-neutral);"><strong>${sCount}</strong> of <strong>${maxScore}</strong> scored items correct</div>
             ${_reported ? '<div style="margin-top:16px;font-size:0.85rem;color:#1a7a4a;font-weight:600;">✅ Progress saved to My Progress</div>' : ''}
         `;
 
         let feed = '';
         try {
         results.forEach(r => {
-            if(r.skipped || r.type==='speaking-timer' || r.type==='writing-email' || r.type==='listen-repeat') return;
+            if(r.skipped || unscoredTypes.includes(r.type)) return;
             feed += `<div class="feedback-card"><h3>${r.title}</h3>`;
             if(r.type==='complete-words'){
                 let u=r.raw, c=r.raw;
@@ -2398,7 +2520,7 @@ function _buildIBTMenu() {
                     c = c.replace(/\[\d+\]/, `<span class="correct-text">${r.ans[i]}</span>`);
                 });
                 feed += `<div class="attempt-box"><span class="right-ans-label">Right Answer: <span class="neutral-text" style="color:var(--text-neutral);">${c.replace(/<span class=\"correct-text\">/g, '').replace(/<\/span>/g, '')}</span></span><span class="right-ans-label">Your Attempt: ${u}</span></div>`;
-            } else if(r.type==='academic-reading'){
+            } else if(r.qs){
                 r.qs.forEach(q => {
                     let colClass = q.isC ? 'correct-text' : 'wrong-text';
                     feed += `<div class="attempt-box"><p><strong>${q.qText}</strong></p><span class="right-ans-label">Right Answer: <span class="correct-text">${q.cVal}</span></span><span class="right-ans-label">Your Answer: <span class="${colClass}">${q.uVal}</span></span></div>`;
