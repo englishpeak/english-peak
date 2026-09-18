@@ -1881,10 +1881,9 @@ function openIBT() {
   document.getElementById('topbarTitle').textContent='TOEFL iBT Practice';
   document.getElementById('ibt-badge').textContent=hasFullAccessTier(currentTier)?'✓ All '+IBT_TOTAL:'🔓 '+allowed.length+' of '+IBT_TOTAL;
   var frame = document.getElementById('frame-ibt');
-  // Keep the catalog URL tied to the content release. This prevents a cached
-  // pre-Test-31 document from continuing to show the completed test as
-  // "Content coming soon" after a deployment.
-  frame.src = '/ibt?release=test-31&allowed=' + allowed.join(',');
+  var params = new URLSearchParams();
+  params.set('allowed', allowed.join(','));
+  frame.src = '/ibt?' + params.toString();
   closeMobileSidebar();
 }
 function openGeneral() {

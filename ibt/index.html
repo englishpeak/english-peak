@@ -181,11 +181,7 @@ function _buildIBTMenu() {
     collection.tests.forEach(function(key) {
       var hasContent = Array.isArray(testData[key]) && testData[key].length > 0;
       var isLocked = _allowedTests.indexOf(key) === -1;
-      // Available tests use a real URL instead of relying solely on an inline
-      // click callback. Besides supporting normal link behavior, this gives
-      // Test 31 a reliable navigation path even if the catalog is embedded or
-      // restored from the browser's back/forward cache.
-      var btn = document.createElement(hasContent && !isLocked ? 'a' : 'button');
+      var btn = document.createElement('button');
       btn.className = 'btn';
       if (!hasContent) {
         btn.className += ' btn-coming-soon';
@@ -197,7 +193,7 @@ function _buildIBTMenu() {
         btn.onclick = function(e) { e.preventDefault(); notifyUpgrade(); };
       } else {
         btn.textContent = key;
-        btn.href = buildTestHref(key);
+        btn.onclick = function() { start(key); };
       }
       testsGrid.appendChild(btn);
     });
