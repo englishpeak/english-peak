@@ -1,8 +1,18 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
+import vm from 'node:vm';
 
 const html = readFileSync(new URL('./index.html', import.meta.url), 'utf8');
+const scripts = [...html.matchAll(/<script(?: [^>]*)?>([\s\S]*?)<\/script>/g)].map((match) => match[1]);
+const sandbox = {
+  console,
+  URLSearchParams,
+  window: { location: { search: '' } },
+  document: { getElementById: () => null },
+};
+vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"];`, sandbox);
+const test31 = sandbox.test31;
 const test30Source = html.match(/"Test 30": \[([\s\S]*?)\n\s*\],/);
 
 assert.ok(test30Source, 'Test 30 should be present in ibt/index.html');
@@ -63,10 +73,52 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /tests: \['Test 31'\]/);
 });
 
-test('Test 31 is a content-safe placeholder rather than invented test data', () => {
-  assert.doesNotMatch(html, /"Test 31": \[/);
-  assert.match(html, /btn\.disabled = true/);
-  assert.match(html, /Content coming soon/);
+test('Test 31 contains the complete updated TOEFL practice sequence', () => {
+  assert.match(html, /testData\["Test 31"\] = \[/);
+  const sections = [...html.matchAll(/section:'(Reading|Listening|Writing|Speaking)'/g)].map((match) => match[1]);
+  assert.deepEqual([...new Set(sections)], ['Reading', 'Listening', 'Writing', 'Speaking']);
+  // Nineteen object literals plus four mapped listening-response objects and
+  // six mapped build-sentence objects produce the 27-task runtime array.
+  assert.equal(sections.length, 19);
+  assert.match(html, /Writing and Speaking practice tasks are not included in automatic scoring/);
+  assert.match(html, /not an official TOEFL score/);
+});
+
+test('Test 31 uses only the supplied audio files and no interview audio', () => {
+  const test31 = html.slice(html.indexOf('testData["Test 31"]'), html.indexOf('let curSet = []'));
+  for (const task of [8, 9, 10, 11, 15, 16, 18, 19, 20, 21]) {
+    assert.match(test31, new RegExp(`test-31/task-(?:\\$\\{x\\[0\\]\\}|${task})\\.mp3`));
+  }
+  assert.match(test31, /test-31\/sentence-\$\{i\+1\}\.mp3/);
+  assert.doesNotMatch(test31, /interview[^\n]*\.mp3/i);
+});
+
+test('Test 31 has the specified task and objective-item counts by section', () => {
+  const tasksBySection = Object.groupBy(test31, (task) => task.section);
+  assert.deepEqual(
+    Object.fromEntries(Object.entries(tasksBySection).map(([section, tasks]) => [section, tasks.length])),
+    { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 },
+  );
+  const objectiveCount = test31.reduce((count, task) => {
+    if (['writing-email', 'academic-discussion', 'listen-repeat-updated', 'take-interview'].includes(task.type)) return count;
+    if (task.type === 'complete-words') return count + task.answers.length;
+    if (task.questions) return count + task.questions.length;
+    if (task.type === 'build-sentence' || task.type === 'listen-response') return count + 1;
+    return count;
+  }, 0);
+  assert.equal(objectiveCount, 61);
+});
+
+test('Test 31 complete-word passages reconstruct exactly with ten blanks each', () => {
+  const expected = [
+    'Trees can preserve surprisingly detailed evidence about past climate. As a tree grows, it produces a new ring beneath its bark each year. The width of a ring often reflects the conditions in which the tree grew. During favorable years, when water and sunlight are plentiful, growth may be relatively rapid. In colder or drier years, the resulting ring may be narrower. Scientists compare patterns from living trees with those found in old timber to construct records extending far into the past.',
+    'Languages have always borrowed words from one another. When communities interact through trade, migration, conquest, science, or popular culture, useful expressions can cross linguistic boundaries. A borrowed word does not necessarily remain unchanged after entering a new language. Speakers may alter its pronunciation, spelling, or even its meaning so that it fits more naturally into local patterns. Over generations, people may stop recognizing the word as foreign at all. Borrowing therefore provides linguists with valuable evidence of historical contact between different communities.',
+  ];
+  test31.filter((task) => task.type === 'complete-words').forEach((task, index) => {
+    assert.equal(task.answers.length, 10);
+    let answer = 0;
+    assert.equal(task.text.replace(/\[\d+\]/g, () => task.answers[answer++]), expected[index]);
+  });
 });
 
 test('updated-test architecture defines each required task family and audio contract', () => {

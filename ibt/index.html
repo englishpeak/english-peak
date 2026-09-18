@@ -119,6 +119,12 @@
         .discussion-card { background: var(--ep-card-soft, #F4F6FB); border: 1px solid var(--ep-border, rgba(13,59,111,.12)); border-radius: 12px; padding: 16px; }
         .discussion-card strong { display: block; color: var(--primary-blue); margin-bottom: 6px; }
         .interview-prompt { background: var(--ep-card-soft, #F4F6FB); border-left: 4px solid var(--accent-blue); border-radius: 10px; padding: 22px; font-size: 1.2rem; line-height: 1.55; }
+        .section-marker { display:flex; align-items:center; gap:12px; margin-bottom:22px; color:var(--accent-blue); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.76rem; }
+        .section-marker::after { content:""; height:1px; flex:1; background:var(--ep-border, rgba(13,59,111,.12)); }
+        .document-box { white-space:pre-wrap; line-height:1.65; background:var(--ep-card-soft, #F4F6FB); border:1px solid var(--ep-border, rgba(13,59,111,.12)); border-radius:14px; padding:22px; margin-bottom:26px; }
+        .reply-scaffold { font-size:1.3rem; font-weight:600; color:var(--primary-blue); margin:18px 0; }
+        .task-instructions { color:var(--text-neutral); margin-top:-22px; margin-bottom:25px; }
+        .word-count { text-align:right; color:var(--text-neutral); font-size:.9rem; margin-top:6px; }
 
         @media (max-width: 700px) {
             body { align-items: stretch; }
@@ -2361,6 +2367,133 @@ function _buildIBTMenu() {
             
     };
 
+
+    testData["Test 31"] = [
+      { section:'Reading', type:'complete-words', taskFamily:'Complete the Words', title:'Task 1: Tree Rings and Past Climate', instruction:'Complete the words in the passage.', text:'Trees can preserve surprisingly detailed evidence about past climate. As a tree gr[3], it produces a new ri[2] beneath its ba[2] each ye[2]. The width of a ri[2] often refl[4] the conditions in wh[3] the tree gr[2]. During favo[5] years, when wa[3] and sunlight are plentiful, growth may be relatively rapid. In colder or drier years, the resulting ring may be narrower. Scientists compare patterns from living trees with those found in old timber to construct records extending far into the past.', answers:['ows','ng','rk','ar','ng','ects','ich','ew','rable','ter'] },
+      { section:'Reading', type:'complete-words', taskFamily:'Complete the Words', title:'Task 2: Borrowed Words', instruction:'Complete the words in the passage.', text:'Languages have always borrowed words from one another. When communities inte[4] through tr[3], migration, conq[4], science, or pop[4] culture, use[3] expressions can cr[3] linguistic bound[5]. A borr[4] word do[2] not neces[7] remain unchanged after entering a new language. Speakers may alter its pronunciation, spelling, or even its meaning so that it fits more naturally into local patterns. Over generations, people may stop recognizing the word as foreign at all. Borrowing therefore provides linguists with valuable evidence of historical contact between different communities.', answers:['ract','ade','uest','ular','ful','oss','aries','owed','es','sarily'] },
+      { section:'Reading', type:'read-daily', taskFamily:'Read in Daily Life', title:'Task 3: Restaurant Menu', instruction:'Read a menu.', text:`RIVER STREET KITCHEN
+LUNCH — 11:30 a.m.–3:00 p.m.
+
+SOUP + SANDWICH — $14
+Choose one soup and one half sandwich.
+
+Soups
+Tomato & Basil (V)
+Chicken Noodle
+Today's Soup — ask your server
+
+Sandwiches
+Roast Turkey — turkey, Swiss cheese, mustard
+Garden Club (V) — avocado, cucumber, tomato
+Tuna Melt — tuna salad, cheddar
+
+Add-ons
+Side salad +$3
+French fries +$2
+Gluten-free bread +$1.50
+
+PLEASE NOTE:
+The Garden Club can be made vegan on request.
+Gluten-free bread is available for sandwiches only.
+Lunch combinations cannot be ordered after 3:00 p.m.`, questions:[
+        {q:"A customer wants a vegan lunch combination. Which option could meet the customer's needs?",options:['Tomato & Basil soup with a Garden Club prepared on request','Chicken Noodle soup with a Garden Club','Tomato & Basil soup with a Tuna Melt',"Today's Soup with a Roast Turkey sandwich"],correct:0},
+        {q:'What does the menu indicate about gluten-free bread?',options:['It costs the same as regular bread.','It is included with every lunch combination.','It can be requested for a sandwich for an additional charge.','It is available only after 3:00 p.m.'],correct:2}]},
+      { section:'Reading', type:'read-daily', taskFamily:'Read in Daily Life', title:'Task 4: Mobile-Service Invoice', instruction:'Read an invoice.', text:`NORTHLINE MOBILE
+
+Account ending: 4821
+Billing period: August 12–September 11
+
+Previous balance ................. $48.00
+Payment received Sept. 2 ........ -$48.00
+
+Monthly service .................. $45.00
+International calling ............ $6.50
+Device installment ............... $18.00
+Taxes and fees ................... $4.20
+
+AMOUNT DUE ....................... $73.70
+Due date ......................... October 3
+
+AutoPay: OFF
+
+Save $5 each month on your service charge by enrolling in AutoPay with an eligible bank account. Changes made after the 25th may not take effect until the following billing cycle.`, questions:[
+        {q:'Why is the amount due higher than the monthly service charge?',options:['The customer failed to pay the previous bill.','Additional charges include international calling, a device payment, and taxes.','The company charged two months of service.','AutoPay added a processing fee.'],correct:1},
+        {q:'A customer enrolls in AutoPay on September 28. What does the invoice suggest?',options:['The discount may not begin with the next billing cycle.','The current amount due will immediately decrease by $5.','International calling will become free.','The October 3 payment will automatically be canceled.'],correct:0}]},
+      { section:'Reading', type:'read-daily', taskFamily:'Read in Daily Life', title:'Task 5: Text-Message Chain', instruction:'Read a chain of text messages.', text:`MAYA — 4:12 PM
+Change of plans — my meeting is running late, so I won't get home before 6.
+
+JON — 4:14 PM
+No problem. I can still pick up the projector, but I need your building key.
+
+MAYA — 4:15 PM
+Right. I left it with Priya at the café downstairs. She'll be there until 5:30.
+
+JON — 4:17 PM
+I'm across town and probably won't make it by then.
+
+PRIYA — 4:19 PM
+I can leave it in an envelope with Luis at the front desk when I go.
+
+MAYA — 4:20 PM
+Perfect. Jon, just ask Luis for the envelope. The projector is in the hall closet.
+
+JON — 4:21 PM
+Got it. I'll head there after my class.`, questions:[
+        {q:"Why does Jon need Maya's key?",options:['He needs to enter her building to get the projector.','He agreed to lock the café after Priya leaves.',"He needs to attend Maya's meeting.",'He left his own key in Maya’s apartment.'],correct:0},
+        {q:'Why does Priya offer to leave the key with Luis?',options:['Maya asked her to take the projector upstairs.','Jon may arrive after Priya has left the café.','Luis needs the key before 5:30.','The café is closing earlier than expected.'],correct:1},
+        {q:'In Maya’s message, “Perfect” most nearly indicates that',options:['she believes the projector is in excellent condition.','she has decided to cancel her meeting.','Priya’s suggestion solves the key-handoff problem.','Jon no longer needs to collect the projector.'],correct:2}]},
+      { section:'Reading', type:'academic-reading', taskFamily:'Read an Academic Passage', title:'Task 6: Development of Public Museums', instruction:'Read an academic passage.', text:`<p>Many early European collections of art, antiquities, and unusual natural objects were not public institutions. They belonged to monarchs, wealthy families, scholars, or religious organizations, and access to them was often restricted. During the seventeenth and eighteenth centuries, however, attitudes toward collections gradually changed. Scholars increasingly viewed carefully organized collections as resources for systematic study rather than simply as displays of wealth or curiosity.</p><p>The establishment of institutions open to a broader public accelerated during the eighteenth and nineteenth centuries. Some collections were donated to universities or governments, while others became public property following major political changes. Museums also began arranging objects according to emerging scholarly systems. Natural specimens might be grouped by biological classification, for example, while archaeological objects could be organized by geographic region or historical period.</p><p>Public museums served several purposes simultaneously. They preserved valuable objects, provided scholars with material for research, and offered visitors opportunities for education. Yet the meaning of "public" remained limited by modern standards. Opening hours could be restrictive, admission procedures sometimes favored educated or wealthy visitors, and many collections reflected the priorities of colonial powers. Thus, although the growth of public museums expanded access to knowledge, that access developed gradually and unevenly.</p>`, questions:[
+        {q:'What is the passage mainly about?',options:['Why private collectors stopped acquiring natural objects','How collections gradually developed into broader public and scholarly institutions','Why universities competed with governments to purchase art','How biological classification replaced archaeological research'],correct:1},
+        {q:"According to paragraph 1, how did scholars' attitudes toward collections change?",options:['They increasingly regarded collections as useful for systematic study.','They became less interested in organizing objects.','They argued that collections should remain private.','They stopped collecting objects associated with wealth.'],correct:0},
+        {q:'Why does the author mention biological classification and geographic region?',options:['To argue that natural history museums were more advanced','To identify two reasons museums became public','To give examples of systems used to organize museum objects','To show that archaeological objects were difficult to classify'],correct:2},
+        {q:'The word “restrictive” in paragraph 3 is closest in meaning to',options:['expensive','limited','unpredictable','traditional'],correct:1},
+        {q:"What can be inferred about the author's view of early public museums?",options:['They immediately provided equal access to everyone.','Their educational purpose was less important than their commercial purpose.','They represented an expansion of access, although important barriers remained.','They were primarily established to support colonial governments.'],correct:2}]},
+      { section:'Reading', type:'academic-reading', taskFamily:'Read an Academic Passage', title:'Task 7: Desert Varnish', instruction:'Read an academic passage.', text:`<p>In many dry regions, exposed rock surfaces develop a thin, dark coating known as desert varnish. The coating is usually composed largely of clay minerals combined with small amounts of manganese and iron oxides. Because desert varnish can take centuries or even millennia to develop, very dark surfaces may appear extremely old. Nevertheless, scientists must be cautious when using the coating to estimate how long a rock has been exposed.</p><p>The precise processes responsible for varnish formation have been debated. Wind can carry extremely fine clay particles onto rock surfaces, but simply depositing dust does not explain why manganese becomes unusually concentrated in the coating. Researchers have therefore investigated the possible role of microorganisms as well as chemical processes that occur when rock surfaces are occasionally moistened. Current evidence suggests that varnish formation may result from several interacting processes rather than a single mechanism.</p><p>Desert varnish is useful to researchers for reasons beyond its appearance. Because the coating develops at the exposed surface, scratches or carvings can remove it and reveal lighter rock beneath. Ancient people used this contrast to create petroglyphs. Over time, new varnish may gradually form on the carved area. Scientists have studied differences between the varnish on a petroglyph and the surrounding rock, but environmental conditions vary so much that such comparisons cannot provide a simple universal clock.</p>`, questions:[
+        {q:'What is the main purpose of the passage?',options:['To explain what desert varnish is, how it may form, and why interpreting it requires caution','To demonstrate that microorganisms are the sole cause of desert varnish','To describe how ancient people manufactured dark pigments','To compare deserts on different continents'],correct:0},
+        {q:'According to paragraph 1, desert varnish contains',options:['mostly organic material from microorganisms.','clay minerals and small quantities of metal oxides.','sand held together by rainwater.','pigments deliberately applied to rocks.'],correct:1},
+        {q:'Why does the author say that depositing dust does not completely explain varnish formation?',options:['Dust cannot travel through dry regions.','Clay particles disappear when rock becomes wet.','It does not explain the unusually high concentration of manganese.','Most varnish forms underground.'],correct:2},
+        {q:'The word “interacting” in paragraph 2 is closest in meaning to',options:['operating in relation to one another','occurring at widely separated times','remaining completely unchanged','being easily observed'],correct:0},
+        {q:'What can be inferred about attempts to date petroglyphs by comparing varnish?',options:['They are most accurate in regions with frequent rainfall.','They can provide useful evidence but are affected by local environmental conditions.','They prove that all dark petroglyphs are thousands of years old.','They work only when carvings contain manganese.'],correct:1}]},
+      ...[
+        [8,`I thought the study group was meeting here at three. Did they change the room again?`,['Yes, they moved it to Room 204 this morning.','I usually study for about three hours.','The room has enough chairs for everyone.',"No, I haven't changed my major."],0],
+        [9,`Would you mind watching my laptop for a minute while I go get some coffee?`,["Sure. I'll keep an eye on it.",'The coffee shop closes at seven.','My laptop battery lasts about six hours.',"I don't usually drink coffee in the afternoon."],0],
+        [10,`I wouldn't count on the bookstore having any copies left this late in the semester.`,['The semester begins in late August.',"I'll check somewhere else, then.",'I already copied the notes from the board.','The bookstore is across from the library.'],1],
+        [11,`Didn't Professor Kim say we could turn the assignment in on Monday instead?`,['Yes, I remember her extending the deadline.','Professor Kim teaches in the science building.','Monday is usually my busiest day.','The assignment has four separate questions.'],0]
+      ].map(x=>({section:'Listening',type:'listen-response',taskFamily:'Listen and Choose a Response',title:`Task ${x[0]}: Listen and Choose a Response`,instruction:'Choose the best response.',script:x[1],question:'Choose the best response.',options:x[2],correct:x[3],audioUrl:`../audio/ibt/test-31/task-${x[0]}.mp3`})),
+      {section:'Listening',type:'listen-conversation',taskFamily:'Listen to a Conversation',title:'Task 15: Language Center Scheduling',instruction:'Listen to a conversation.',audioUrl:'../audio/ibt/test-31/task-15.mp3',script:`Narrator: Listen to a conversation at a university language center.\n\nWoman: Hi. I'm supposed to have a pronunciation session with a tutor at two, but my professor just moved our class quiz to the same time. Is there any chance I can come later today?\n\nMan: Let me check. Your tutor is fully booked this afternoon, but she had a cancellation tomorrow morning at ten-thirty.\n\nWoman: I have economics until ten. It usually finishes on time, but the language center is all the way across campus.\n\nMan: Then I can hold the ten-thirty appointment until ten-forty. Just come straight here after class.\n\nWoman: That would be perfect. Thanks for working around my schedule.`,questions:[
+        {q:'Why does the woman want to change her tutoring appointment?',options:['Her economics class has moved to another building.','A class quiz now conflicts with the appointment.','Her tutor canceled the afternoon session.','She needs additional time to prepare for a pronunciation test.'],correct:1},
+        {q:'What does the man imply when he says he can hold the appointment until 10:40?',options:['The woman may arrive a few minutes after the scheduled starting time.','The tutor will begin teaching economics at 10:40.','The woman should cancel if her class ends before 10:00.','The tutoring session will last only ten minutes.'],correct:0}]},
+      {section:'Listening',type:'listen-conversation',taskFamily:'Listen to a Conversation',title:'Task 16: Class Presentation',instruction:'Listen to a conversation.',audioUrl:'../audio/ibt/test-31/task-16.mp3',script:`Narrator: Listen to two students discussing a class presentation.\n\nMan: Did you see the message from Leo? He's sick and says he probably won't be here for our presentation tomorrow.\n\nWoman: I did. That's a problem because he's the one who was going to explain the survey results.\n\nMan: He sent me his slides, but there are hardly any notes on them. I can present that section if I have to, but I don't really understand how he calculated the percentages.\n\nWoman: Why don't we call him tonight? If he's feeling well enough, he can talk us through the data. Then you can take over his section tomorrow.\n\nMan: Good idea. I'll message him now and see when he's available.`,questions:[
+        {q:"Why is Leo's possible absence especially difficult for the group?",options:['He has the only copy of the presentation.','He was responsible for explaining data that the man does not fully understand.','He has not sent the other students his slides.','He was supposed to reserve the classroom.'],correct:1},
+        {q:'What will the man probably do next?',options:['Recalculate all of the survey percentages himself.','Ask the professor to postpone the presentation.','Contact Leo to arrange a time to discuss the data.','Remove the survey results from the presentation.'],correct:2}]},
+      {section:'Listening',type:'listen-announcement-updated',taskFamily:'Listen to an Announcement',title:'Task 18: Field Trip',instruction:'Listen to an announcement.',audioUrl:'../audio/ibt/test-31/task-18.mp3',script:`Narrator: Listen to an announcement in a classroom.\n\nWoman: Before you leave, there's been a change to Friday's geology field trip. Because the north entrance to the nature reserve is closed for road construction, our bus will depart thirty minutes earlier than planned, at seven-fifteen. Please meet outside the science building by seven. Bring the same equipment listed in your course guide. The return time is not expected to change.`,questions:[{q:'What should students do differently because of the change?',options:['Use the north entrance to the reserve.','Bring additional field equipment.','Meet at the science building earlier than originally planned.','Expect to return to campus thirty minutes later.'],correct:2}]},
+      {section:'Listening',type:'listen-announcement-updated',taskFamily:'Listen to an Announcement',title:'Task 19: Orchestra Auditions',instruction:'Listen to an announcement.',audioUrl:'../audio/ibt/test-31/task-19.mp3',script:`Narrator: Listen to an announcement in a university music department.\n\nMan: A quick update for students auditioning for the university orchestra next week. Because more violinists registered than expected, violin auditions will now begin Monday afternoon instead of Tuesday. Auditions for all other instruments will remain on the original schedule. Revised violin times will be posted outside the rehearsal hall by five o'clock today, so please check the list before leaving campus.`,questions:[{q:'Who needs to check a revised audition schedule?',options:['All students auditioning for the orchestra','Students auditioning on Tuesday morning','Students auditioning as violinists','Students who registered after five o’clock'],correct:2}]},
+      {section:'Listening',type:'listen-academic-talk',taskFamily:'Listen to an Academic Talk',title:'Task 20: Standard Time',instruction:'Listen to an academic talk.',audioUrl:'../audio/ibt/test-31/task-20.mp3',script:`Narrator: Listen to part of a talk about the history of transportation.\n\nMan: Today, we're going to look at something so ordinary that most of us never think about it: standard time. Imagine traveling by train in the nineteenth century, before time zones existed. A town might set its clocks according to the position of the sun, so noon in one city could be several minutes different from noon in the next city.\n\nNow, that wasn't much of a problem when people traveled slowly. But railroads changed everything. Trains moved quickly between towns, and railway companies needed precise schedules. If every station used its own local time, passengers could easily miss trains, and even railway employees might misunderstand when trains were supposed to arrive or depart.\n\nRail companies therefore began using standardized railway time. Eventually, governments adopted broader systems of time zones, grouping large geographic areas under the same official time.\n\nWhat's interesting is that standardized time wasn't created simply because scientists wanted more accurate clocks. It developed largely as a practical response to a new transportation technology. In other words, the way societies measured time changed because the way people moved through space had changed.`,questions:[
+        {q:'What is the main idea of the talk?',options:['Nineteenth-century scientists developed clocks specifically for railway companies.','The growth of rail transportation helped create a practical need for standardized time.','Local governments opposed the development of railway schedules.','Time zones allowed trains to travel at much higher speeds.'],correct:1},
+        {q:'Why did local time become a problem for railways?',options:['Different towns could use slightly different clock times.','Railway clocks were less accurate than town clocks.','Passengers preferred traveling according to the position of the sun.','Governments prohibited railway companies from publishing schedules.'],correct:0},
+        {q:'Why does the speaker mention that local time was less problematic when people traveled slowly?',options:['To explain why early travelers rarely carried clocks','To show that transportation technology made existing differences in local time more consequential','To argue that slow transportation was more reliable','To explain why railway companies initially opposed standard time'],correct:1},
+        {q:'What does the speaker suggest about standardized time?',options:['It was primarily the result of a scientific attempt to measure the Sun.','It developed independently of changes in transportation.','A technological change contributed to a change in social organization.','Governments adopted it before railway companies did.'],correct:2}]},
+      {section:'Listening',type:'listen-academic-talk',taskFamily:'Listen to an Academic Talk',title:'Task 21: Syncopation',instruction:'Listen to an academic talk.',audioUrl:'../audio/ibt/test-31/task-21.mp3',script:`Narrator: Listen to a professor discussing a concept in music.\n\nWoman: Let's talk about rhythm, specifically something called syncopation. In many kinds of music, listeners expect certain beats to receive more emphasis than others. If you're counting a simple rhythm—one, two, three, four—you might naturally feel the strongest emphasis on one and three.\n\nSyncopation disrupts that expectation. A musician may emphasize a normally weak beat, or even place an important note between the beats. The result can make the music feel as though it's pushing forward or momentarily pulling against the underlying rhythm.\n\nNow, syncopation isn't a mistake. That's important. The musician isn't losing track of the beat. In fact, syncopation works precisely because both the performer and the listener still sense the regular pulse underneath it. The unexpected emphasis creates tension against that pulse.\n\nYou'll hear syncopation in many musical traditions, particularly in jazz, but also in pop, rock, and classical music. Once you begin listening for it, you'll notice that a relatively small shift in rhythmic emphasis can completely change the character and energy of a musical phrase.`,questions:[
+        {q:'What is syncopation as described in the talk?',options:['Gradually increasing the speed of a musical passage','Emphasizing beats or positions where emphasis is not normally expected','Removing the regular pulse from a piece of music','Repeating the strongest beat several times'],correct:1},
+        {q:'Why does the professor emphasize that syncopation is not a mistake?',options:['Because it depends on a continuing awareness of the regular underlying pulse','Because musicians use it only when they forget the original rhythm','Because audiences usually cannot hear rhythmic changes','Because it occurs only in improvised music'],correct:0},
+        {q:'According to the professor, what creates the characteristic effect of syncopation?',options:['Eliminating all strong beats','Changing the musical instrument during a phrase','Creating tension between unexpected emphasis and the regular pulse','Playing the same rhythm at different volumes'],correct:2},
+        {q:'Why does the professor mention jazz, pop, rock, and classical music?',options:['To identify the historical order in which syncopation developed','To demonstrate that syncopation occurs across different musical traditions','To argue that jazz uses more complex rhythms than classical music','To recommend genres students should study first'],correct:1}]},
+      ...[
+        [1,"Speaker A: “Why didn't Elena come to the workshop?”",'She ______ ______ ______ ______.',['said','she had','already made','other plans','has made'],['said','she had','already made','other plans'],'She said she had already made other plans.'],
+        [2,'Speaker A: “Do you know when the library closes?”','The librarian ______ ______ ______ ______.',['told me','that it','would stay open','until midnight','stays opening'],['told me','that it','would stay open','until midnight'],'The librarian told me that it would stay open until midnight.'],
+        [3,'Speaker A: “How was the guest lecture?”','The speaker ______ ______ ______ ______.',['explained','the theory','more clearly than','I expected','was explaining'],['explained','the theory','more clearly than','I expected'],'The speaker explained the theory more clearly than I expected.'],
+        [4,'Speaker A: “Why are you taking the earlier train?”','I want ______ ______ ______ ______.',['to make sure','that I arrive','before the meeting','starts','will start'],['to make sure','that I arrive','before the meeting','starts'],'I want to make sure that I arrive before the meeting starts.'],
+        [5,'Speaker A: “Did Marcus finish the report by himself?”','No, he ______ ______ ______ ______.',['had it','reviewed by','two colleagues','before submitting it','has reviewed'],['had it','reviewed by','two colleagues','before submitting it'],'No, he had it reviewed by two colleagues before submitting it.'],
+        [6,'Speaker A: “Is the outdoor concert still happening?”','It ______ ______ ______ ______.',['will be moved','indoors','if the weather','gets worse','would get'],['will be moved','indoors','if the weather','gets worse'],'It will be moved indoors if the weather gets worse.']
+      ].map(x=>({section:'Writing',type:'build-sentence',taskFamily:'Build a Sentence',title:`Writing Task ${x[0]}: Build a Sentence`,context:x[1],scaffold:x[2],chunks:x[3],words:x[3],correctOrder:x[4],distractor:x[3].find(c=>!x[4].includes(c)),completedSentence:x[5]})),
+      {section:'Writing',type:'writing-email',taskFamily:'Write an Email',title:'Write an Email',instruction:'Write as much as you can and in complete sentences.',time:420,text:`<p>You recently volunteered to help with a community language-exchange program. The program coordinator, Ms. Rivera, has asked volunteers to suggest an activity for next month's meeting.</p><p>Write an email to Ms. Rivera. In your email:</p><ul><li>describe an activity you would like to organize;</li><li>explain why you think it would work well for people practicing different languages; and</li><li>ask what materials or resources the organization can provide.</li></ul><p>Write as much as you can and in complete sentences.</p>`},
+      {section:'Writing',type:'academic-discussion',taskFamily:'Write for an Academic Discussion',title:'Write for an Academic Discussion',time:600,professor:'Professor Bennett',professorPrompt:`<p>This week, we are discussing the responsibilities of museums that possess culturally significant objects acquired in other parts of the world. Some governments and communities have requested that such objects be returned to their places of origin. Others argue that major international museums can preserve these objects and make them accessible to a global audience.</p><p><strong>In your view, should museums generally return culturally significant artifacts when a country or community of origin requests them? Why or why not?</strong></p>`,studentAName:'Maya',studentA:'I think museums should usually return them. An artifact can have religious or historical meaning that is difficult to understand when it is separated from the community that created it. Returning important objects can also allow local museums to present their own history in a fuller context.',studentBName:'Daniel',studentB:"I don't think there should be a general rule requiring return. Large international museums may have specialized conservation facilities, and their collections allow visitors to compare cultures from different parts of the world in one place. Decisions should depend on the circumstances of each object.",studentInstruction:`Write a response to the professor's question. Express and support your own opinion and make a contribution to the discussion in your own words. An effective response will contain at least 100 words.`},
+      {section:'Speaking',type:'listen-repeat-updated',taskFamily:'Listen and Repeat',title:'Listen and Repeat',scenario:'You are learning to assist visitors during an open house at a university observatory. Listen to your supervisor and repeat what she says. Repeat only once.',sentences:[
+        ['Welcome to the university observatory.',8],['Our public viewing area is upstairs on the main observation deck.',8],["Tonight, you'll be able to see the Moon and several bright planets through our telescopes.",9],['Please wait until a staff member invites you forward before approaching any of the equipment.',10],["To protect everyone's night vision, keep your phone screen dim and avoid using the camera flash.",10],["If clouds prevent us from using the outdoor telescopes, we'll move inside for a demonstration of astronomical imaging.",11],['Visitors who would like information about future viewing nights, student workshops, or astronomy courses can pick up a program beside the exit before they leave.',12]
+      ].map((s,i)=>({script:s[0],text:s[0],responseTime:s[1],audio:`../audio/ibt/test-31/sentence-${i+1}.mp3`}))},
+      {section:'Speaking',type:'take-interview',taskFamily:'Take an Interview',title:'Take an Interview',adaptationNote:'Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.',introduction:'You have agreed to take part in a research study about how people learn new skills. You will have a short interview with a researcher.',responseTime:45,questions:["Think about a skill you've learned recently, either for work, school, or your personal life. What skill did you learn, and what made you want to learn it?",'Now think about the learning process itself. How did you learn that skill, and what part of the process helped you improve the most?','Some people prefer teaching themselves new skills, while others learn better with a teacher or instructor. Which approach do you think is more effective, and why?','Universities traditionally place a strong emphasis on academic knowledge. Do you think universities should devote more time to teaching practical skills that students can use in everyday life and employment? Why or why not?']}
+    ];
+
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
     let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
 
@@ -2371,7 +2504,8 @@ function _buildIBTMenu() {
         const ex = curSet[idx]; const cont = document.getElementById('exercise-content');
         repeatSentenceIndex = 0; interviewQuestionIndex = 0;
         document.getElementById('skip-btn').style.display = ex.canSkip ? 'block' : 'none';
-        cont.innerHTML = `<h2>${ex.title}</h2>`;
+        const previousSection = idx > 0 ? curSet[idx - 1].section : null;
+        cont.innerHTML = `${ex.section && ex.section !== previousSection ? `<div class="section-marker">${ex.section} section</div>` : ''}<h2>${ex.title}</h2>${ex.instruction ? `<p class="task-instructions">${ex.instruction}</p>` : ''}`;
 
         if (ex.audioUrl) {
             cont.innerHTML += `<div class="audio-container"><p>▶️ Play Audio Material</p><audio controls preload="metadata" crossorigin="anonymous"><source src="${ex.audioUrl}" type="audio/mpeg"></audio></div>`;
@@ -2390,21 +2524,21 @@ function _buildIBTMenu() {
             cont.innerHTML += `<div id="timer-box">00:${ex.time}</div><button class="btn" style="background:var(--success-green);" id="t-btn" onclick="runTimer(${ex.time}, 'timer-box')">Start Timer</button>`;
         } else if (ex.type === 'build-sentence') {
             let s = [...ex.words].sort(()=>Math.random()-0.5);
-            cont.innerHTML += `<div class="context-box">${ex.context}</div><div class="word-bank" id="w-bank">${s.map(w=>`<div class="draggable-word" onclick="toD(this)">${w}</div>`).join('')}</div><div id="d-area" class="drop-area" onclick="fromD(event)"></div>`;
-        } else if (ex.type === 'academic-reading' || ['listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)) {
+            cont.innerHTML += `<div class="context-box">${ex.context}</div>${ex.scaffold ? `<div class="reply-scaffold">${ex.scaffold}</div>` : ''}<div class="word-bank" id="w-bank">${s.map(w=>`<div class="draggable-word" onclick="toD(this)">${w}</div>`).join('')}</div><div id="d-area" class="drop-area" onclick="fromD(event)" aria-label="Constructed reply"></div>`;
+        } else if (['academic-reading', 'read-daily', 'listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)) {
             let qh = ex.questions.map((q,qi)=>`<div style="margin-bottom:30px;"><strong>${qi+1}. ${q.q}</strong>${q.options.map((o,oi)=>`<div class="option q${qi}" onclick="mSel(${qi},${oi})">${o}</div>`).join('')}</div>`).join('');
             const source = ex.type === 'academic-reading' ? `<div class="reading-text-box">${ex.text}</div>` : '';
-            cont.innerHTML += ex.type === 'academic-reading' ? `<div class="academic-grid">${source}<div>${qh}</div></div>` : qh;
+            cont.innerHTML += ex.type === 'academic-reading' ? `<div class="academic-grid">${source}<div>${qh}</div></div>` : ex.type === 'read-daily' ? `<div class="document-box">${ex.text}</div>${qh}` : qh;
         } else if (ex.type === 'listen-response') {
             cont.innerHTML += `<p><strong>${ex.question || 'Choose the most appropriate response.'}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
         } else if (ex.options) {
             let t = ex.script ? `<button class="btn btn-outline" onclick="this.nextElementSibling.style.display='block'">Show Script</button><div style="background:#f8f9fa; padding:20px; display:none; margin-bottom:20px; border-left: 4px solid var(--primary-blue);">${ex.script}</div>` : `<p>${ex.text || ""}</p>`;
             cont.innerHTML += t + `<p><strong>${ex.question}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
         } else if (ex.type === 'academic-discussion') {
-            cont.innerHTML += `<div class="discussion-card"><strong>Professor</strong>${ex.professorPrompt}</div><div class="discussion-response"><div class="discussion-card"><strong>Student A</strong>${ex.studentA}</div><div class="discussion-card"><strong>Student B</strong>${ex.studentB}</div></div><div class="small-timer" id="discussion-t">10:00</div><label for="discussion-answer"><strong>Your response</strong></label><textarea id="discussion-answer" style="width:100%; height:220px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; box-sizing:border-box;"></textarea>`;
+            cont.innerHTML += `<div class="discussion-card"><strong>${ex.professor || 'Professor'}</strong>${ex.professorPrompt}</div><div class="discussion-response"><div class="discussion-card"><strong>${ex.studentAName || 'Student A'}</strong>${ex.studentA}</div><div class="discussion-card"><strong>${ex.studentBName || 'Student B'}</strong>${ex.studentB}</div></div>${ex.studentInstruction ? `<p>${ex.studentInstruction}</p>` : ''}<div class="small-timer" id="discussion-t">${formatTime(ex.time || 600)}</div><label for="discussion-answer"><strong>Your response</strong></label><textarea id="discussion-answer" oninput="updateWordCount(this, 'discussion-count')" style="width:100%; height:220px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; box-sizing:border-box;"></textarea><div class="word-count" id="discussion-count">0 words</div>`;
             setTimeout(()=>runTimer(ex.time || 600, 'discussion-t', true), 100);
         } else if (ex.type === 'writing-email') {
-            cont.innerHTML += `<div class="small-timer" id="email-t">07:00</div><p>${ex.text}</p><textarea style="width:100%; height:200px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; outline:none;"></textarea>`;
+            cont.innerHTML += `<div class="small-timer" id="email-t">${formatTime(ex.time || 420)}</div><div>${ex.text}</div><textarea style="width:100%; height:200px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; outline:none; box-sizing:border-box;"></textarea>`;
             setTimeout(()=>runTimer(ex.time, 'email-t', true), 100);
         }
     }
@@ -2412,7 +2546,14 @@ function _buildIBTMenu() {
     function renderRepeatSentence(ex) {
         const sentence = ex.sentences[repeatSentenceIndex];
         const isLast = repeatSentenceIndex === ex.sentences.length - 1;
-        document.getElementById('exercise-content').innerHTML += `<p>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</p><div class="interview-prompt">Listen, then repeat the sentence aloud.</div><button class="btn" onclick="new Audio('${sentence.audio}').play().catch(e=>console.error(e))">▶ Play sentence</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
+        document.getElementById('exercise-content').innerHTML += `${repeatSentenceIndex === 0 ? `<div class="context-box">${ex.scenario}</div>` : ''}<p>Sentence ${repeatSentenceIndex + 1} of ${ex.sentences.length}</p><div class="interview-prompt">Listen, then repeat the sentence aloud. The sentence text is intentionally hidden.</div><div id="repeat-timer" class="small-timer">00:${String(sentence.responseTime).padStart(2,'0')}</div><button class="btn" id="repeat-play" onclick="playRepeatSentence('${sentence.audio}', ${sentence.responseTime})">▶ Play sentence</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextRepeatSentence()">Continue to next sentence</button>'}`;
+    }
+
+    function playRepeatSentence(audio, seconds) {
+        const button = document.getElementById('repeat-play');
+        button.disabled = true; button.textContent = 'Audio played — repeat aloud';
+        new Audio(audio).play().catch(e=>console.error(e));
+        runTimer(seconds, 'repeat-timer', true);
     }
 
     function nextRepeatSentence() {
@@ -2424,7 +2565,7 @@ function _buildIBTMenu() {
 
     function renderInterviewPrompt(ex) {
         const isLast = interviewQuestionIndex === ex.questions.length - 1;
-        document.getElementById('exercise-content').innerHTML += `<p>Question ${interviewQuestionIndex + 1} of ${ex.questions.length}</p><div class="interview-prompt">${ex.questions[interviewQuestionIndex]}</div><div id="interview-timer" class="small-timer">00:45</div><button class="btn" id="t-btn" onclick="runTimer(45, 'interview-timer')">Start response time</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextInterviewPrompt()">Next interview question</button>'}`;
+        document.getElementById('exercise-content').innerHTML += `${interviewQuestionIndex === 0 ? `<p class="task-instructions">${ex.adaptationNote}</p><div class="context-box">${ex.introduction}</div>` : ''}<p>Question ${interviewQuestionIndex + 1} of ${ex.questions.length}</p><div class="interview-prompt">${ex.questions[interviewQuestionIndex]}</div><div id="interview-timer" class="small-timer">${formatTime(ex.responseTime || 45)}</div><button class="btn" id="t-btn" onclick="runTimer(${ex.responseTime || 45}, 'interview-timer')">Start response time</button>${isLast ? '' : '<button class="btn btn-outline" onclick="nextInterviewPrompt()">Next interview question</button>'}`;
     }
 
     function nextInterviewPrompt() {
@@ -2444,6 +2585,16 @@ function _buildIBTMenu() {
         },1000);
     }
 
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60); const remainder = seconds % 60;
+        return `${String(minutes).padStart(2,'0')}:${String(remainder).padStart(2,'0')}`;
+    }
+
+    function updateWordCount(textarea, targetId) {
+        const words = textarea.value.trim() ? textarea.value.trim().split(/\s+/).length : 0;
+        document.getElementById(targetId).textContent = `${words} word${words === 1 ? '' : 's'}`;
+    }
+
     function mSel(qi,oi) { document.querySelectorAll(`.q${qi}`).forEach(e=>e.classList.remove('selected')); const t=document.querySelectorAll(`.q${qi}`)[oi]; t.classList.add('selected'); t.dataset.choice=oi; }
     function select(e,i) { document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); e.classList.add('selected'); e.dataset.idx=i; }
     function toD(e) { document.getElementById('d-area').appendChild(e); }
@@ -2454,7 +2605,7 @@ function _buildIBTMenu() {
         if(ex.type==='complete-words'){
             const ui=Array.from(document.querySelectorAll('.fill-blank')).map(i=>i.value.trim().toLowerCase());
             r.isCorrect = ui.every((v,i)=>v===ex.answers[i].toLowerCase()); r.ui=ui; r.ans=ex.answers; r.raw=ex.text;
-        } else if(ex.type==='academic-reading' || ['listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)){
+        } else if(['academic-reading', 'read-daily', 'listen-conversation', 'listen-announcement-updated', 'listen-academic-talk'].includes(ex.type)){
             r.qs=ex.questions.map((q,qi)=>{ const s=document.querySelector(`.q${qi}.selected`); const c=s?parseInt(s.dataset.choice):null; return {qText:q.q, isC:c===q.correct, uVal:c!==null?q.options[c]:"N/A", cVal:q.options[q.correct]};});
             r.isCorrect=r.qs.every(q=>q.isC);
         } else if(ex.type==='build-sentence'){
@@ -2503,7 +2654,8 @@ function _buildIBTMenu() {
         document.getElementById('score-display').innerHTML = `
             <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${accuracy}%</div>
             <p style="font-size:1.2rem;">Practice Accuracy</p>
-            <div style="font-size: 1.1rem; color: var(--text-neutral);"><strong>${sCount}</strong> of <strong>${maxScore}</strong> scored items correct</div>
+            <div style="font-size: 1.1rem; color: var(--text-neutral);"><strong>${sCount}</strong> correct out of <strong>${maxScore}</strong> objective items</div>
+            ${_currentTestKey === 'Test 31' ? '<p style="color:var(--text-neutral);">Writing and Speaking practice tasks are not included in automatic scoring. This is practice performance, not an official TOEFL score.</p>' : ''}
             ${_reported ? '<div style="margin-top:16px;font-size:0.85rem;color:#1a7a4a;font-weight:600;">✅ Progress saved to My Progress</div>' : ''}
         `;
 
