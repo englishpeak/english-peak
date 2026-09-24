@@ -4,7 +4,7 @@ import test from 'node:test';
 import {
   APPROVED_SUBSCRIPTION_PRICE_IDS,
   createConfirmPaymentHandler,
-} from './confirm-payment.js';
+} from '../../api/confirm-payment.js';
 
 const USER_A = 'user-a';
 const USER_B = 'user-b';
