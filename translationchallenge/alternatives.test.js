@@ -20,14 +20,99 @@ test("every translation challenge sentence gains accepted alternatives", () => {
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 
-  assert.equal(expandedSets.length, 8);
-  assert.equal(expandedSentences.length, 240);
+  assert.equal(expandedSets.length, 9);
+  assert.equal(expandedSentences.length, 270);
   expandedSentences.slice(0, 90).forEach((sentence, index) => {
     assert.ok(
       sentence.acceptedAnswers.length > originalCounts[index],
       `Set ${Math.floor(index / 30) + 1}, sentence ${(index % 30) + 1} should gain an alternative`
     );
   });
+});
+
+test("Set 9 has the exact mixed CEFR content and supports every exercise mode", () => {
+  const sets = evaluateSets(html.slice(dataStart, expansionStart));
+  const set9 = sets.find(set => set.id === 9);
+  const expectedPrompts = [
+    "¿A qué hora llegaste a casa anoche?",
+    "Últimamente he estado intentando cocinar más en casa.",
+    "Si vuelves a encontrarte con ese problema, avísame de inmediato.",
+    "No encuentro un enchufe cerca de la cama para cargar el teléfono.",
+    "No fue hasta que revisé mi estado de cuenta que me di cuenta de que me habían cobrado dos veces.",
+    "Por más razonable que parezca la explicación, todavía no aborda la causa principal del problema.",
+    "Mi papá toma café todas las mañanas.",
+    "¿Ya decidiste qué vas a llevar al viaje?",
+    "¿Podrías bajar las persianas? El sol me está dando directamente en la cara.",
+    "No me esperaba que la conversación tomara ese rumbo.",
+    "Si hubiéramos salido a tiempo, no estaríamos atrapados en el tráfico ahora.",
+    "Esta mochila es demasiado pesada.",
+    "Llevo meses intentando convencerlo de que cambie de opinión.",
+    "¿Sabes qué trámite tengo que hacer para renovar el permiso?",
+    "No podemos seguir dependiendo de una solución temporal.",
+    "Por lo que he podido averiguar, el problema afecta principalmente a los usuarios más antiguos.",
+    "¿Hay un cajero automático cerca de aquí?",
+    "No tenía intención de sonar grosero; simplemente estaba cansado.",
+    "La puerta hace ruido porque una de las bisagras está floja.",
+    "Nunca había visto tanta gente en un solo lugar.",
+    "No descartaría la posibilidad de que hayan interpretado mal nuestras intenciones.",
+    "¿Puedes guardar esto en el refrigerador?",
+    "Pensé que ya habría terminado para cuando llegaras.",
+    "Tuvieron que cerrar parte de la banqueta mientras reparaban la tubería.",
+    "Me cuesta creer que nadie se haya dado cuenta antes.",
+    "Lejos de resolver el problema, la medida parece haber agravado una situación que ya era bastante delicada.",
+    "¿Por qué no tomamos un taxi en lugar de esperar el autobús?",
+    "Me habría ahorrado mucho tiempo si alguien me hubiera explicado el proceso desde el principio.",
+    "El banco rechazó mi solicitud de contracargo porque había pasado demasiado tiempo desde la compra.",
+    "Por muy tentador que resulte atribuir el fracaso a una sola decisión, hacerlo sería pasar por alto una serie de factores que venían acumulándose desde hacía años."
+  ];
+  const expectedLevels = ["A1","B1","A2","C1","B2","C1","A1","A2","B1","B1","B2","A1","B1","B2","B2","C1","A1","B1","B1","A2","C1","A1","B2","A2","C1","C2","A2","B2","C1","C2"];
+  const normalize = value => String(value).toLowerCase().replace(/[’‘`´]/g, "'").replace(/[¿?¡!]/g, " ").replace(/[.,;]/g, " ").replace(/\s+/g, " ").trim();
+  const easyWords = value => value.replace(/[’‘`´]/g, "'").replace(/[.,;:!?¿¡]/g, "").split(/\s+/).filter(Boolean);
+
+  assert.ok(set9);
+  assert.equal(set9.title, "Set 9");
+  assert.equal(set9.description, "30 sentences · Mixed levels · Mixed grammar and vocabulary");
+  assert.deepEqual(Array.from(set9.sentences, sentence => sentence.spanish), expectedPrompts);
+  assert.deepEqual(Array.from(set9.sentences, sentence => sentence.level), expectedLevels);
+  assert.deepEqual(Array.from(set9.sentences, sentence => sentence.id), Array.from({ length: 30 }, (_, index) => index + 1));
+  assert.deepEqual(Object.fromEntries(["A1","A2","B1","B2","C1","C2"].map(level => [level, set9.sentences.filter(sentence => sentence.level === level).length])), { A1:5, A2:5, B1:6, B2:6, C1:6, C2:2 });
+
+  set9.sentences.forEach(sentence => {
+    assert.deepEqual(Object.keys(sentence).sort(), ["acceptedAnswers", "id", "level", "mediumPrompt", "note", "primaryAnswer", "spanish"]);
+    assert.ok(sentence.acceptedAnswers.length >= 3 && sentence.acceptedAnswers.length <= 6);
+    assert.ok(sentence.mediumPrompt.split(/\s+/).length >= 2 && sentence.mediumPrompt.split(/\s+/).length <= 3);
+    assert.ok(sentence.primaryAnswer.startsWith(sentence.mediumPrompt));
+    assert.ok(sentence.note);
+    assert.equal(normalize(easyWords(sentence.primaryAnswer).join(" ")), normalize(sentence.primaryAnswer));
+    assert.equal(normalize(`${sentence.mediumPrompt} ${sentence.primaryAnswer.slice(sentence.mediumPrompt.length).trim()}`), normalize(sentence.primaryAnswer));
+    for (const answer of [sentence.primaryAnswer, ...sentence.acceptedAnswers]) {
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(answer)));
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(`  ${answer.toUpperCase().replaceAll("'", "’")}!!!  `)));
+    }
+    assert.equal([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(answer => normalize(answer) === normalize("This is not a valid translation.")), false);
+  });
+
+  const vocabularyChallenges = {
+    4: ["enchufe", "outlet"],
+    9: ["persianas", "blinds"],
+    14: ["trámite", "paperwork"],
+    19: ["bisagras", "hinges"],
+    24: ["banqueta", "sidewalk"],
+    29: ["contracargo", "chargeback"]
+  };
+  assert.equal(Object.keys(vocabularyChallenges).length, 6);
+  assert.equal(Object.keys(vocabularyChallenges).length / set9.sentences.length, 0.2);
+  for (const [id, [spanishTarget, englishTarget]] of Object.entries(vocabularyChallenges)) {
+    const sentence = set9.sentences[Number(id) - 1];
+    assert.match(sentence.spanish.toLowerCase(), new RegExp(spanishTarget));
+    assert.match(sentence.primaryAnswer.toLowerCase(), new RegExp(englishTarget));
+  }
+  assert.doesNotMatch(set9.sentences[3].primaryAnswer.toLowerCase(), /plug/);
+  assert.doesNotMatch(set9.sentences[8].acceptedAnswers.join(" ").toLowerCase(), /curtain/);
+  assert.match(set9.sentences[13].note, /no single fixed equivalent/i);
+  assert.doesNotMatch(set9.sentences[23].primaryAnswer.toLowerCase(), /bench/);
+  assert.doesNotMatch(set9.sentences[28].acceptedAnswers.join(" ").toLowerCase(), /refund/);
+  assert.match(set9.sentences[12].acceptedAnswers.join(" "), /convince her/);
 });
 
 test("Set 8 has the exact mixed CEFR content and supports every exercise mode", () => {
