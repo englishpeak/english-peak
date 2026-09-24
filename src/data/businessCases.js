@@ -489,7 +489,81 @@ export const businessCases = [
       tips:[], usefulPhrases:['Before entering the market...','The company should prioritise...','From a regulatory perspective...','One potential risk is...','A short delay would allow...','Rather than rushing the process...','Management should ensure that...','The long-term benefits would...','I would recommend...','The proposed strategy would allow Nexora to...']
     },
     takeaway:{ text:'International expansion involves much more than identifying an attractive market. Companies must also choose an appropriate legal structure, understand local regulations, prepare their workforce, establish financial and administrative systems, and ensure that the new operation supports their long-term commercial strategy.\n\nDeadlines matter, but entering a new market with the wrong structure can create significantly greater problems later.', reminder:'Successful international expansion is not simply about entering a market quickly. It is about building an operation that can succeed there for years.' }
+  },
+  {
+    id:'case-9', caseNumber:9, slug:'case-9', title:'The Price of Growth',
+    teaser:'Vela has built a product customers genuinely love. Now its leadership must decide whether the next stage of growth should come from selling to more people—or becoming more valuable to fewer of them.',
+    level:'B2–C1', levelGuidance:'', estimatedTime:'40–60 minutes', accessTier:'premium',
+    company:'Vela Technologies', industry:'Productivity Technology / SaaS', location:'Boston, Massachusetts, USA',
+    characters:[
+      { name:'Miranda Hayes', role:'Chief Executive Officer' },
+      { name:'Elliot Chen', role:'VP of Growth Strategy' }
+    ],
+    imageUrl:'/audio/businesscases/case-9.png',
+    imageAlt:'CEO Miranda Hayes and growth executive Elliot Chen reviewing pricing and market data in a corporate office.',
+    introduction:'Vela Technologies has reached an important stage in its growth. Its flagship product is successful, customer satisfaction is high, and management believes there is room to expand significantly. The question is no longer whether the product can compete. It is how the company should position it for the next phase of the business.',
+    vocabulary:[
+      ['pricing strategy','the method a company uses to determine how much customers pay'],
+      ['undercut competitors','to charge less than competing businesses'],
+      ['premium positioning','presenting a product as higher-quality or more exclusive than alternatives'],
+      ['profit margin','the amount of revenue remaining after costs are considered'],
+      ['buyer pool','the group of potential customers who could realistically purchase a product'],
+      ['conversion rate','the percentage of potential customers who complete a desired action or purchase'],
+      ['price-sensitive','strongly influenced by changes in price'],
+      ['perceived value','how valuable customers believe a product or service to be'],
+      ['market share','the percentage of total sales in a market controlled by one company'],
+      ['top of the funnel','the broadest stage of the sales process, where potential customers first become interested'],
+      ['customer acquisition','the process of gaining new customers'],
+      ['brand positioning','the way a company wants customers to perceive its brand']
+    ],
+    reading:{ title:'Background Brief', paragraphs:[
+      'Vela Technologies is a Boston-based software company that develops productivity and workflow tools for businesses and independent professionals. Its flagship platform, Vela Workspace, combines project management, team communication, document collaboration, scheduling, and automation in a single subscription.',
+      'The company entered a highly competitive market several years ago and initially grew through recommendations, digital marketing, and a reputation for unusually polished product design. Vela has never been the cheapest option in its category, but it has also avoided positioning itself as an exclusive premium product.',
+      'That strategy has worked well. Customer satisfaction is high, cancellation rates remain relatively low, and independent reviews consistently rank the platform among the strongest products in its category. Vela has also recently completed a major product update that management believes significantly improves the platform.',
+      "Competition, however, has intensified. Several larger technology companies now offer similar features, while smaller competitors have entered the market with aggressive introductory prices. At the same time, Vela's research suggests that many existing customers consider the platform more valuable than its current price might indicate.",
+      'Management has therefore reached an important strategic moment. The company has sufficient financial resources to support its next stage of growth, but leadership must first decide what kind of market position it wants Vela to occupy.',
+      "Miranda Hayes, Vela's CEO, has asked Elliot Chen, the company's VP of Growth Strategy, to review two very different approaches. The final decision will be Miranda's."
+    ]},
+    listening:{ title:'Executive Conversation', context:"Listen to Miranda and Elliot as they compare two very different strategies for Vela's next stage of growth.", audioUrl:'/audio/businesscases/case-9.mp3', transcript:[
+      { speaker:'Miranda Hayes', text:'So, give me the strongest argument for lowering the price.' },
+      { speaker:'Elliot Chen', text:"Scale. We cut the subscription price by twenty percent and suddenly we're cheaper than most of our serious competitors. That gives the sales team a much easier message and dramatically increases the number of companies willing to consider us." },
+      { speaker:'Miranda Hayes', text:'More leads, more trials, more customers.' },
+      { speaker:'Elliot Chen', text:'Exactly. We sacrifice margin per account, but we make it up through volume. The top of the funnel becomes much larger.' },
+      { speaker:'Miranda Hayes', text:'And the other option is almost the complete opposite.' },
+      { speaker:'Elliot Chen', text:'Raise the price fifteen percent. Smaller buyer pool, higher margin, and we deliberately position Vela as the premium product in the category.' },
+      { speaker:'Miranda Hayes', text:"Which is risky. Some customers will immediately ask why they're paying more." },
+      { speaker:'Elliot Chen', text:'They will. But the product can support the story. Satisfaction is high, retention is strong, and the latest update puts us ahead of several competitors. Sometimes price itself communicates value.' },
+      { speaker:'Miranda Hayes', text:"What worries me about the discount strategy is that once we compete on price, it's difficult to stop. Someone else can always go cheaper." },
+      { speaker:'Elliot Chen', text:"True. But premium positioning has its own risk. We'd be voluntarily turning away thousands of price-sensitive customers." },
+      { speaker:'Miranda Hayes', text:'Which strategy would you choose?' },
+      { speaker:'Elliot Chen', text:'Premium. Not because it guarantees more growth, but because I think we have a product worth paying more for.' },
+      { speaker:'Miranda Hayes', text:"I'm leaning that way too. Let's model the fifteen-percent increase, but I don't want to roll it out immediately. Test it with new customers first. If conversion collapses, we reconsider." },
+      { speaker:'Elliot Chen', text:'So premium positioning, but with an exit strategy.' },
+      { speaker:'Miranda Hayes', text:'Exactly. I want us to be ambitious, not reckless.' }
+    ]},
+    quizQuestions:[
+      { id:'q1', source:'Reading', question:'How has Vela traditionally positioned its flagship product?', options:options('As the cheapest product available','As an exclusive luxury product','Between the low-cost and premium extremes','As a free alternative to larger competitors'), correctAnswer:'c', explanation:'The Background Brief states that Vela has never been the cheapest option but has also avoided positioning itself as an exclusive premium product.' },
+      { id:'q2', source:'Reading', question:'Why does management believe Vela may have room to change its market position?', options:options('Customer satisfaction is high and research suggests customers perceive significant value in the product.','The company is losing most of its customers.','Vela has stopped developing new features.','Its competitors have left the market.'), correctAnswer:'a', explanation:'The reading describes strong customer satisfaction, relatively low cancellation rates, positive reviews, and research suggesting that customers may value Vela more highly than its current price reflects.' },
+      { id:'q3', source:'Listening', question:"What is the main argument for reducing Vela's price by 20%?", options:options('It would immediately increase profit margin.','It could attract a much larger pool of potential customers.','It would transform Vela into a luxury brand.','It would eliminate the need for a sales team.'), correctAnswer:'b', explanation:'Elliot explains that the lower price would make Vela attractive to more companies, increase leads, and expand the top of the sales funnel.' },
+      { id:'q4', source:'Listening', question:'How does Miranda decide to approach the premium strategy?', options:options("Increase all customers' prices immediately.",'Increase prices by 30%.','Test the higher price with new customers before implementing it more broadly.','Reject the premium strategy completely.'), correctAnswer:'c', explanation:'Miranda decides to test the 15% increase with new customers first and reconsider if conversion falls significantly.' },
+      { id:'q5', source:'Reading + Listening', question:'What is the fundamental strategic choice facing Vela?', options:options('Whether to stop selling its flagship product','Whether to prioritise greater market reach or greater value and margin per customer','Whether to move its headquarters','Whether to replace its management team'), correctAnswer:'b', explanation:'The case contrasts a lower-price, higher-volume strategy with a higher-price premium strategy that accepts a smaller buyer pool in exchange for stronger margins and positioning.' }
+    ],
+    speaking:{ questions:[
+      'If you were Miranda, would you reduce the price by 20% or increase it by 15%? Why?',
+      "Do you agree with Elliot that a higher price can sometimes increase a customer's perception of quality?",
+      'When is it dangerous for a company to compete primarily on price?',
+      'Would you rather run a business with many lower-margin customers or fewer high-margin customers? What factors would influence your decision?',
+      'Miranda chooses to test the premium strategy with new customers first. Do you think this is a smart compromise, or does it make the experiment less reliable?'
+    ], tip:'Think about market share, customer acquisition, profit margins, brand perception, price sensitivity, conversion rates, customer lifetime value, and competitive advantage. There is no automatically correct strategy: explain what assumptions your decision depends on.' },
+    writingTask:{
+      title:"Recommend Vela's Pricing Strategy", instructions:'Imagine Miranda has asked you to challenge the decision one final time before the new pricing experiment begins.\n\nWrite a short strategic recommendation explaining which pricing direction you believe Vela should pursue.\n\nYou may recommend reducing the price by 20%, increasing the price by 15%, maintaining the current price, testing different prices before making a permanent decision, or proposing another pricing strategy.\n\nYour recommendation should explain how your choice could affect customer acquisition, conversion, brand positioning, profit margins, and long-term growth.\n\nDo not simply state which price you prefer. Explain the business logic behind your recommendation.',
+      format:'Strategic recommendation', audience:'Miranda Hayes, CEO', wordRange:'180–220 words',
+      planningQuestions:['What type of customer should Vela target?','How price-sensitive is that customer likely to be?','Is market share or margin more important at this stage?',"What could happen to Vela's brand if it lowers its price?",'What could happen to demand if it raises its price?','How could the company test the strategy before fully committing?'],
+      tips:[], usefulPhrases:['I recommend positioning Vela as...','The strongest argument in favour of...','A lower price could potentially...','Premium positioning would allow Vela to...','The main risk associated with this strategy is...','From a margin perspective...','In terms of customer acquisition...','Rather than implementing the change immediately...','I would suggest testing...','The results should be measured by...']
+    },
+    takeaway:{ text:'Price is more than a number. It influences demand, profitability, customer expectations, competitive positioning, and even the way people perceive a brand.\n\nLower prices can increase market reach but reduce margin and make price competition more important. Higher prices can strengthen profitability and premium positioning, but they can also reduce the number of customers willing to buy.\n\nThe strongest pricing strategy depends on what a company is trying to maximise—and what kind of customer it wants to attract.', reminder:'A good product can sometimes support more than one successful pricing strategy. The difficult part is deciding which business you want that product to build.' }
   }
+
 ];
 
 export const getBusinessCase = slug => businessCases.find(item => item.slug === slug);
