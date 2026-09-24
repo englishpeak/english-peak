@@ -288,6 +288,38 @@ test('Case 9 contains the complete ePeak+ pricing lesson data and local media', 
   for (const spoiler of ['20%', '15%', 'twenty percent', 'fifteen percent', 'price reduction', 'price increase']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
 });
 
+test('Case 10 contains the complete ePeak+ recruitment lesson data and local media', () => {
+  const item = businessCases[9];
+  assert.equal(item.slug, 'case-10');
+  assert.equal(item.placeholder, undefined);
+  assert.equal(item.title, 'The Candidate You Want');
+  assert.equal(item.level, 'B2–C1');
+  assert.equal(item.estimatedTime, '40–60 minutes');
+  assert.equal(item.accessTier, 'premium');
+  assert.equal(canAccessBusinessCase(item, 'visitor'), false);
+  assert.equal(canAccessBusinessCase(item, 'free'), false);
+  assert.equal(canAccessBusinessCase(item, 'premium'), true);
+  assert.equal(accessLabel(item, 'free'), 'ePeak+ required');
+  assert.equal(accessLabel(item, 'premium'), 'Included with ePeak+');
+  assert.equal(item.imageUrl, '/audio/businesscases/case-10.png');
+  assert.equal(item.listening.audioUrl, '/audio/businesscases/case-10.mp3');
+  assert.equal(item.listening.title, 'Final Interview');
+  assert.equal(item.vocabulary.length, 12);
+  assert.equal(item.reading.paragraphs.length, 9);
+  assert.equal(item.reading.vocabulary, undefined);
+  assert.equal(item.listening.transcript.length, 21);
+  assert.equal(item.quizQuestions.length, 5);
+  assert.deepEqual(item.quizQuestions.map(question => question.source), ['Reading', 'Reading', 'Listening', 'Listening', 'Reading + Listening']);
+  assert.deepEqual(item.quizQuestions.map(question => question.correctAnswer), ['b', 'c', 'c', 'c', 'b']);
+  assert.ok(item.quizQuestions.every(question => question.options.map(option => option.id).join('') === 'abcd'));
+  assert.equal(item.speaking.questions.length, 5);
+  assert.equal(item.writingTask.title, 'Design the Final Offer');
+  assert.equal(item.writingTask.audience, 'Ramón Álvarez');
+  assert.equal(item.takeaway.reminder, 'The best agreement is often not the one where one side gets everything it wanted. It is the one both sides believe is valuable enough to accept.');
+  const brief = item.reading.paragraphs.join(' ');
+  for (const spoiler of ['20%', 'twenty percent', 'four days', 'twice a week', 'eight percent', 'three days', 'additional week', 'stronger bonus']) assert.doesNotMatch(brief, new RegExp(spoiler, 'i'));
+});
+
 test('lesson photos fill their responsive 3:2 frame without distortion', async () => {
   const styles = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
   assert.match(styles, /\.case-photo\{[^}]*width:100%[^}]*aspect-ratio:3\/2[^}]*overflow:hidden[^}]*padding:0/);
