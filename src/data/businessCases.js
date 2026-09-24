@@ -562,6 +562,92 @@ export const businessCases = [
       tips:[], usefulPhrases:['I recommend positioning Vela as...','The strongest argument in favour of...','A lower price could potentially...','Premium positioning would allow Vela to...','The main risk associated with this strategy is...','From a margin perspective...','In terms of customer acquisition...','Rather than implementing the change immediately...','I would suggest testing...','The results should be measured by...']
     },
     takeaway:{ text:'Price is more than a number. It influences demand, profitability, customer expectations, competitive positioning, and even the way people perceive a brand.\n\nLower prices can increase market reach but reduce margin and make price competition more important. Higher prices can strengthen profitability and premium positioning, but they can also reduce the number of customers willing to buy.\n\nThe strongest pricing strategy depends on what a company is trying to maximise—and what kind of customer it wants to attract.', reminder:'A good product can sometimes support more than one successful pricing strategy. The difficult part is deciding which business you want that product to build.' }
+  },
+  {
+    id:'case-10', caseNumber:10, slug:'case-10', title:'The Candidate You Want',
+    teaser:'PulseForm has found an exceptional candidate for an important commercial role. Both sides want to move forward—but reaching an agreement may require more flexibility than either expected.',
+    level:'B2–C1', levelGuidance:'', estimatedTime:'40–60 minutes', accessTier:'premium',
+    company:'PulseForm', industry:'Fitness Equipment & Digital Fitness', location:'Chicago, Illinois, USA',
+    characters:[
+      { name:'Faith Morgan', role:'Human Resources Director' },
+      { name:'Ramón Álvarez', role:'Senior Sales Candidate' }
+    ],
+    imageUrl:'/audio/businesscases/case-10.png',
+    imageAlt:'Human Resources Director Faith Morgan interviewing senior sales candidate Ramón Álvarez in a corporate office.',
+    introduction:'PulseForm is expanding its commercial team as its connected fitness business continues to grow. After an extensive recruitment process, the company believes it has found an excellent candidate for a senior sales position. The interviews have gone extremely well, but the final stage of the process has introduced several points that still need to be negotiated.',
+    vocabulary:[
+      ['salary range','the minimum and maximum salary established for a particular position'],
+      ['salary band','a defined compensation range assigned to a job level or category'],
+      ['base salary','the fixed amount an employee earns before bonuses or other additional compensation'],
+      ['variable compensation','earnings that depend on performance, sales, targets, or other results'],
+      ['performance bonus','additional compensation awarded for achieving specific objectives'],
+      ['benefits package','non-salary compensation such as vacation, insurance, retirement contributions, or other benefits'],
+      ['hybrid work','an arrangement combining remote work and working from a company office'],
+      ['company policy','an established rule or standard employees are expected to follow'],
+      ['internal pay equity','maintaining reasonable and fair compensation relationships among employees'],
+      ['onboarding','the process of integrating and training a new employee'],
+      ['negotiate','to discuss different positions in order to reach an agreement'],
+      ['compromise','an agreement in which both sides accept some concessions']
+    ],
+    reading:{ title:'Background Brief', paragraphs:[
+      'PulseForm is a Chicago-based fitness company that designs and sells premium exercise equipment for home and commercial use. Its product line includes connected exercise bikes, treadmills, strength-training equipment, and a growing range of smart fitness accessories.',
+      'The company also operates PulseForm+, a subscription-based digital platform offering instructor-led workouts, personalised training programmes, performance tracking, and content that integrates directly with its connected equipment.',
+      "Over the past three years, the digital side of the business has grown rapidly. Management now sees the combination of physical equipment and recurring subscription revenue as central to the company's long-term strategy.",
+      "PulseForm is currently expanding its commercial division. The company wants to strengthen relationships with corporate wellness programmes, hotels, residential developments, gyms, universities, and other organisations that could purchase equipment while also generating new subscribers for PulseForm+.",
+      "One of the most important positions in this expansion is a new Senior Sales role. The successful candidate will manage several major accounts, develop new business opportunities, coordinate with marketing and partnerships, and help shape the company's broader B2B sales strategy.",
+      "After several rounds of interviews, Faith Morgan, PulseForm's Human Resources Director, has identified Ramón Álvarez as the strongest candidate. His experience, industry knowledge, sales record, and leadership style have impressed both Faith and the commercial team.",
+      "There are other qualified candidates still available, and some have already indicated that they would accept PulseForm's standard employment conditions.",
+      "Ramón, however, remains Faith's preferred candidate.",
+      'The recruitment process has now reached its final stage. Faith and Ramón are meeting one more time to determine whether they can agree on the terms necessary to move forward.'
+    ]},
+    listening:{ title:'Final Interview', context:'Listen to Faith and Ramón as they discuss the final conditions of a potential employment agreement.', audioUrl:'/audio/businesscases/case-10.mp3', transcript:[
+      { speaker:'Faith', text:'I’ll be straightforward with you, Ramón. You’re our first choice. The team liked you, your experience is exactly what we need, and I think you’d be very good in this role.' },
+      { speaker:'Ramón', text:'I appreciate that. And I feel the same way about the company. The position is probably the most interesting one I’ve interviewed for this year.' },
+      { speaker:'Faith', text:'So we have a good problem. We both want this to happen. We just need to figure out whether we can make the numbers and the working conditions work.' },
+      { speaker:'Ramón', text:'Right. The salary is the biggest issue for me. The offer is competitive, but to leave my current position, I’d be looking for about twenty percent more.' },
+      { speaker:'Faith', text:'And that’s difficult. Not because we don’t think you’re worth it. We have a salary band for Senior Sales, and what you’re asking would put you above people already here at the same level.' },
+      { speaker:'Ramón', text:'I understand. But I’m also giving up a pretty flexible arrangement. Right now, I’m only in the office twice a week. You’re asking for four days.' },
+      { speaker:'Faith', text:'That one is difficult for me too. Four days is company policy for commercial leadership roles. Our sales team works closely with marketing, product, and the fitness partnerships team. I can’t promise you two days when everyone else at your level is doing four.' },
+      { speaker:'Ramón', text:'What about three?' },
+      { speaker:'Faith', text:'Permanently? I’d have to get approval. But honestly, I think I’d have a better chance getting three days approved than getting another twenty percent on the base salary.' },
+      { speaker:'Ramón', text:'What flexibility do you have on compensation?' },
+      { speaker:'Faith', text:'I could probably move the base up eight percent. Beyond that, I’d rather look at the performance bonus. Your role would have a significant revenue target, so we could potentially make the variable compensation more aggressive.' },
+      { speaker:'Ramón', text:'So if I perform, I could actually end up above the number I asked for.' },
+      { speaker:'Faith', text:'Potentially, yes. But I don’t want to sell it as guaranteed money. It would depend on results.' },
+      { speaker:'Ramón', text:'Fair enough. And the three office days?' },
+      { speaker:'Faith', text:'Let me take that back to the CEO. I could also propose four days during your first three months, while you’re onboarding and building relationships, then three days after that.' },
+      { speaker:'Ramón', text:'That’s closer. I’d also want the additional week of vacation we discussed.' },
+      { speaker:'Faith', text:'I think I can make that work.' },
+      { speaker:'Ramón', text:'Then we might actually have a deal.' },
+      { speaker:'Faith', text:'We might. But I need you to meet me somewhere on the salary. I have other candidates who have already accepted our range. You’re the person I want, Ramón, but I also have to be fair to the people already working here.' },
+      { speaker:'Ramón', text:'I understand. If you can get the three-day arrangement after onboarding, the extra vacation week, and the stronger bonus structure, I’m willing to reconsider the twenty percent.' },
+      { speaker:'Faith', text:'Then let me see how far I can push internally. If we’re both moving a little, I think there’s a way to make this work.' }
+    ]},
+    quizQuestions:[
+      { id:'q1', source:'Reading', question:'Why is PulseForm expanding its commercial division?', options:options('It plans to stop selling fitness equipment directly to consumers.','It wants to develop more B2B opportunities that can generate both equipment sales and digital subscriptions.','It is replacing its entire existing sales department.','It wants to discontinue PulseForm+.'), correctAnswer:'b', explanation:'The Background Brief explains that PulseForm wants to develop relationships with organisations that can purchase its equipment while also creating new subscribers for PulseForm+.' },
+      { id:'q2', source:'Reading', question:'What makes Ramón important to the recruitment decision?', options:options('He is the only candidate who applied.','He has already worked for PulseForm.',"Faith considers him the strongest candidate, although other qualified candidates remain available.","He has agreed to all of PulseForm's standard conditions."), correctAnswer:'c', explanation:"The reading states that Ramón is Faith's preferred candidate because of his experience, industry knowledge, sales record, and leadership style, but other candidates are still available." },
+      { id:'q3', source:'Listening', question:"Why can't Faith simply approve Ramón's request for 20% more base salary?", options:options('PulseForm never negotiates salaries.','The company cannot afford to hire another employee.','His requested salary would place him above existing employees at the same level.','The CEO has already rejected Ramón personally.'), correctAnswer:'c', explanation:"Faith explains that PulseForm has a salary band for the role and that Ramón's request would put him above employees who are already working at the same level." },
+      { id:'q4', source:'Listening', question:'Which potential compromise do Faith and Ramón discuss?', options:options('Ramón works completely remotely and receives no bonus.','Ramón receives a 20% salary increase but gives up vacation time.','Ramón may receive a smaller base-salary increase, stronger variable compensation, additional vacation, and potentially three office days after onboarding.','Ramón accepts the original offer without any changes.'), correctAnswer:'c', explanation:'Their discussion moves toward a package involving several smaller concessions rather than giving Ramón everything he originally requested.' },
+      { id:'q5', source:'Reading + Listening', question:"What is Faith's central dilemma?", options:options('Whether PulseForm should eliminate the Senior Sales position.','Whether to pursue her preferred candidate by seeking exceptions and compromises or hire another qualified candidate who will accept the standard terms.','Whether Ramón should become CEO.','Whether PulseForm should close its digital fitness platform.'), correctAnswer:'b', explanation:"The reading establishes that Ramón is Faith's preferred candidate but that alternatives exist. The listening shows that hiring him may require compromises involving compensation, flexibility, and company policy." }
+    ],
+    speaking:{ questions:[
+      'If you were Faith, how far would you be willing to go to hire Ramón instead of choosing another qualified candidate?',
+      "Do you think Ramón's request for 20% more salary is reasonable if he is genuinely the strongest candidate? Why or why not?",
+      'Should companies make exceptions to hybrid-work policies when trying to recruit exceptional candidates?',
+      'How important is internal pay equity? Would it be unfair to existing employees if PulseForm paid Ramón significantly more for the same job level?',
+      'Imagine you were Ramón. Which would matter more to you: a higher guaranteed salary, greater work-from-home flexibility, additional vacation, or a larger performance bonus? Why?'
+    ], tip:'Consider salary, flexibility, career opportunity, internal fairness, performance incentives, company culture, employee retention, work-life balance, and the cost of losing an exceptional candidate. Remember that negotiation does not always require one side to win and the other to lose.' },
+    writingTask:{
+      title:'Design the Final Offer',
+      instructions:"Imagine Faith has asked you to help her prepare PulseForm's final employment offer to Ramón.\n\nWrite a short email to Ramón presenting the best compromise you believe the company should offer.\n\nYou may negotiate:\n\n- base salary\n- performance bonus\n- number of office days\n- the onboarding period\n- vacation allowance\n- other reasonable benefits\n\nYou do NOT need to give Ramón everything he requested.\n\nYour objective is to create an offer that is attractive enough for an exceptional candidate while remaining fair and realistic for PulseForm.\n\nExplain the offer clearly and positively, and finish by encouraging Ramón to accept and move forward.",
+      format:'Professional employment-offer email', audience:'Ramón Álvarez', wordRange:'160–200 words',
+      planningQuestions:['How much should PulseForm increase the base salary?','Should the company change its hybrid-work requirement?','Should any flexibility begin immediately or after onboarding?','How could performance-based compensation help close the gap?','What additional benefits could make the package more attractive?','How can Faith communicate enthusiasm without sounding desperate?'],
+      tips:[], usefulPhrases:['Following our conversation...','We are very pleased to...','We believe your experience would...','We have reviewed the points you raised...','We are prepared to offer...','In addition to your base salary...','Following the initial onboarding period...','This arrangement would allow...','We hope this revised package...','We would be delighted to welcome you to the team.']
+    },
+    takeaway:{
+      text:'Successful negotiation is not always about deciding which side should give in.\n\nCompensation, flexibility, benefits, career opportunities, performance incentives, and working conditions all have value. When two sides genuinely want to reach an agreement, changing the structure of the offer can sometimes solve a disagreement that cannot be resolved by changing a single number.\n\nEmployers must also consider internal fairness. Making an exception to attract an exceptional candidate may solve an immediate recruitment problem, but it can create new problems if existing employees believe they are being treated differently.',
+      reminder:'The best agreement is often not the one where one side gets everything it wanted. It is the one both sides believe is valuable enough to accept.'
+    }
   }
 
 ];
