@@ -15,8 +15,9 @@ const sandbox = {
   window: { location: { search: '' } },
   document: { getElementById: () => null },
 };
-vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"]; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
+vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"]; globalThis.test32 = testData["Test 32"]; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
 const test31 = sandbox.test31;
+const test32 = sandbox.test32;
 const test30Source = html.match(/"Test 30": \[([\s\S]*?)\n\s*\],/);
 
 assert.ok(test30Source, 'Test 30 should be present in ibt/index.html');
@@ -74,7 +75,7 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
-  assert.match(html, /tests: \['Test 31'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32'\]/);
 });
 
 test('Test 31 deep links remain supported as an optional entry path', () => {
@@ -108,9 +109,9 @@ function parentIBTAccess(tier) {
 test('every full-access tier sends Test 31 in the iframe allowed parameter', () => {
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     const access = parentIBTAccess(tier);
-    assert.equal(access.allowed.length, 31, tier);
-    assert.equal(access.allowed.at(-1), 'Test 31', tier);
-    assert.equal(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').at(-1), 'Test 31', tier);
+    assert.equal(access.allowed.length, 32, tier);
+    assert.deepEqual(access.allowed.slice(-2), ['Test 31', 'Test 32'], tier);
+    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-2), ['Test 31', 'Test 32'], tier);
   }
 });
 
@@ -191,7 +192,8 @@ test('a future catalog test without testData remains disabled as coming soon', (
 
 test('Test 31 contains the complete updated TOEFL practice sequence', () => {
   assert.match(html, /testData\["Test 31"\] = \[/);
-  const sections = [...html.matchAll(/section:'(Reading|Listening|Writing|Speaking)'/g)].map((match) => match[1]);
+  const test31Source = html.slice(html.indexOf('testData["Test 31"]'), html.indexOf('testData["Test 32"]'));
+  const sections = [...test31Source.matchAll(/section:'(Reading|Listening|Writing|Speaking)'/g)].map((match) => match[1]);
   assert.deepEqual([...new Set(sections)], ['Reading', 'Listening', 'Writing', 'Speaking']);
   // Nineteen object literals plus four mapped listening-response objects and
   // six mapped build-sentence objects produce the 27-task runtime array.
@@ -363,4 +365,65 @@ test('results use item-level Practice Accuracy instead of an unofficial TOEFL sc
   assert.match(html, /if\(r\.skipped \|\| unscoredTypes\.includes\(r\.type\)\) return/);
   assert.doesNotMatch(html, /TOEFL Band Score/);
   assert.doesNotMatch(html, /Approximate iBT Total/);
+});
+
+
+test('Test 32 is enabled in the updated catalog and preserves the complete section sequence', () => {
+  assert.match(html, /tests: \['Test 31', 'Test 32'\]/);
+  assert.equal(test32.length, 27);
+  assert.deepEqual([...new Set(test32.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
+  const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: ['Test 32'], key: 'Test 32' });
+  assert.equal(result.control.disabled, false);
+  result.control.click();
+  assert.deepEqual(result.started, ['Test 32']);
+});
+
+test('Test 32 has the expected task and item counts', () => {
+  assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(test32, (task) => task.section)).map(([section, tasks]) => [section, tasks.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
+  const count = test32.reduce((total, task) => {
+    if (['writing-email', 'academic-discussion', 'listen-repeat-updated', 'take-interview'].includes(task.type)) return total;
+    if (task.type === 'complete-words') return total + task.answers.length;
+    if (task.questions) return total + task.questions.length;
+    return total + 1;
+  }, 0);
+  assert.equal(count, 61);
+});
+
+test('all twenty Test 32 complete-word prefixes and suffixes reconstruct exactly', () => {
+  const expected = [
+    'Cities are often warmer than the rural areas surrounding them. Materials such as asphalt and concrete absorb solar energy during the day and release heat slowly after sunset. Buildings can also reduce air circulation, while vehicles and cooling systems produce additional heat. This phenomenon, known as the urban heat island effect, can raise nighttime temperatures considerably. Planting trees and creating green roofs may help moderate the effect because vegetation provides shade and cools the surrounding air through evaporation.',
+    "Sleep plays an important role in the formation of long-term memories. During waking hours, the brain continuously receives new information, but not all of it will be retained. Research suggests that processes occurring during sleep help stabilize some recently acquired memories. Different stages of sleep may contribute in different ways, and scientists are still investigating the mechanisms involved. Although sleep cannot replace effective study, adequate rest after learning may improve a person's ability to remember information later.",
+  ];
+  test32.filter((task) => task.type === 'complete-words').forEach((task, taskIndex) => {
+    assert.equal(task.answers.length, 10);
+    let index = 0;
+    assert.equal(task.text.replace(/\[\d+\]/g, () => task.answers[index++]), expected[taskIndex]);
+    assert.match(sandbox.renderCompleteWordsText(task.text), /class="incomplete-word">[^<]+<input/g);
+    assert.doesNotMatch(sandbox.renderCompleteWordsText(task.text), /class="incomplete-word">[^<]+\s+<input/g);
+  });
+});
+
+test('Test 32 uses every supplied audio path and closed script controls', () => {
+  const listening = test32.filter((task) => task.section === 'Listening');
+  assert.equal(listening.length, 10);
+  for (const task of listening) {
+    assert.match(task.audioUrl, /^\.\.\/audio\/ibt\/test-32\/task-(8|9|10|11|15|16|18|19|20|21)\.mp3$/);
+    const markup = sandbox.renderScriptControl(task.script);
+    assert.match(markup, />Show Script<\/button>/);
+    assert.match(markup, /practice-transcript" hidden/);
+  }
+  const repeat = test32.find((task) => task.type === 'listen-repeat-updated');
+  assert.deepEqual([...repeat.sentences].map((sentence) => sentence.audio), Array.from({ length: 7 }, (_, index) => `../audio/ibt/test-32/sentence-${index + 1}.mp3`));
+});
+
+test('Test 32 extended tasks retain established timing and sentence behavior', () => {
+  assert.equal(test32.find((task) => task.type === 'writing-email').time, 420);
+  assert.equal(test32.find((task) => task.type === 'academic-discussion').time, 600);
+  assert.equal(test32.find((task) => task.type === 'take-interview').responseTime, 45);
+  for (const task of test32.filter((entry) => entry.type === 'build-sentence')) assert.equal(task.words.length, task.correctOrder.length + 1);
+  const repeat = test32.find((task) => task.type === 'listen-repeat-updated');
+  assert.equal(repeat.sentences.length, 7);
+  const markup = renderPracticeComponent(`repeatSentenceIndex = 0; renderRepeatSentence(testData['Test 32'].find(task => task.type === 'listen-repeat-updated'))`);
+  assert.match(markup, /Sentence 1 of 7/);
+  assert.match(markup, />Show Text<\/button>/);
 });
