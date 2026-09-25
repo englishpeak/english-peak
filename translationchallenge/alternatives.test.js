@@ -30,6 +30,20 @@ test("every translation challenge sentence gains accepted alternatives", () => {
   });
 });
 
+test("Set 9 adds multiple natural alternatives, with broader coverage for advanced sentences", () => {
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
+  const expandedSets = evaluateSets(html.slice(dataStart, appStart));
+  const originalSet9 = originalSets.find(set => set.id === 9);
+  const expandedSet9 = expandedSets.find(set => set.id === 9);
+
+  expandedSet9.sentences.forEach((sentence, index) => {
+    const additions = sentence.acceptedAnswers.length - originalSet9.sentences[index].acceptedAnswers.length;
+    assert.ok(additions >= 2, `Set 9, sentence ${sentence.id} should gain at least two alternatives`);
+    if (sentence.level === "C1") assert.ok(additions >= 6, `C1 sentence ${sentence.id} should gain at least six alternatives`);
+    if (sentence.level === "C2") assert.ok(additions >= 8, `C2 sentence ${sentence.id} should gain at least eight alternatives`);
+  });
+});
+
 test("Set 9 has the exact mixed CEFR content and supports every exercise mode", () => {
   const sets = evaluateSets(html.slice(dataStart, expansionStart));
   const set9 = sets.find(set => set.id === 9);
