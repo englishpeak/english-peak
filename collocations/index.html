@@ -12,27 +12,30 @@
 </head>
 <body class="ep-brand-scope">
   <main class="page-shell">
-    <header class="hero">
-      <div><span class="eyebrow">Vocabulary practice</span><h1>Collocations</h1><p>Learn which words naturally go together.</p></div>
-      <button id="new-set" class="new-set" type="button">↻ New set</button>
+    <header class="page-header">
+      <span class="eyebrow">Vocabulary practice</span>
+      <h1>Collocations</h1>
+      <p>Learn which words naturally go together.</p>
     </header>
 
     <section class="control-panel" aria-label="Practice settings">
-      <fieldset><legend>Difficulty</legend><div class="segmented">
-        <button class="mode-button active" data-mode="easy" aria-pressed="true">Easy <small>Match</small></button>
-        <button class="mode-button" data-mode="medium" aria-pressed="false">Medium <small>Choose</small></button>
-        <button class="mode-button" data-mode="hard" aria-pressed="false">Hard <small>Type</small></button>
+      <fieldset><legend>Practice mode</legend><div class="segmented">
+        <button type="button" class="mode-button active" data-mode="easy" aria-pressed="true"><span>Easy</span><small>Match</small></button>
+        <button type="button" class="mode-button" data-mode="medium" aria-pressed="false"><span>Medium</span><small>Choose</small></button>
+        <button type="button" class="mode-button" data-mode="hard" aria-pressed="false"><span>Hard</span><small>Type</small></button>
       </div></fieldset>
       <fieldset><legend>CEFR level</legend><div class="level-options">
-        <button class="level-button active" data-level="all" aria-pressed="true">All Levels</button>
-        <button class="level-button" data-level="A1" aria-pressed="false">A1</button><button class="level-button" data-level="A2" aria-pressed="false">A2</button>
-        <button class="level-button" data-level="B1" aria-pressed="false">B1</button><button class="level-button" data-level="B2" aria-pressed="false">B2</button><button class="level-button" data-level="C1" aria-pressed="false">C1</button>
+        <button type="button" class="level-button active" data-level="all" aria-pressed="true">All</button>
+        <button type="button" class="level-button" data-level="A1" aria-pressed="false">A1</button><button type="button" class="level-button" data-level="A2" aria-pressed="false">A2</button>
+        <button type="button" class="level-button" data-level="B1" aria-pressed="false">B1</button><button type="button" class="level-button" data-level="B2" aria-pressed="false">B2</button><button type="button" class="level-button" data-level="C1" aria-pressed="false">C1</button>
       </div></fieldset>
-      <div id="session-meta" class="session-meta"></div>
     </section>
 
-    <section id="exercise" class="exercise-card" aria-label="Collocations exercise"></section>
-    <div id="feedback" class="feedback" aria-live="polite"></div>
+    <section class="exercise-card" aria-label="Collocations exercise">
+      <div class="session-bar"><div><span class="session-label">Current set</span><span id="session-meta" class="session-meta"></span></div><button id="new-set" class="new-set" type="button" aria-label="Generate a new randomized set"><span aria-hidden="true">↻</span> New set</button></div>
+      <div id="exercise"></div>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+    </section>
     <p id="live-region" class="sr-only" aria-live="assertive"></p>
   </main>
   <script type="module" src="./collocations.js"></script>
