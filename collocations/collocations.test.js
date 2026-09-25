@@ -1,6 +1,18 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { COLLOCATIONS, createSession, filterByLevels, getDistractor, isCorrectAnswer } from './collocations.js';
+
+test('dashboard route uses canonical collocations asset URLs', async () => {
+  const html = await readFile(new URL('./index.html', import.meta.url), 'utf8');
+  const stylesheet = html.match(/<link rel="stylesheet" href="([^"]*collocations\.css)"/u)?.[1];
+  const module = html.match(/<script type="module" src="([^"]*collocations\.js)"/u)?.[1];
+
+  assert.equal(stylesheet, '/collocations/collocations.css');
+  assert.equal(module, '/collocations/collocations.js');
+  assert.equal(new URL(stylesheet, 'https://epeak.app/collocations').pathname, '/collocations/collocations.css');
+  assert.equal(new URL(module, 'https://epeak.app/collocations').pathname, '/collocations/collocations.js');
+});
 
 test('catalogue has 200 valid and unique records across every CEFR level', () => {
   assert.equal(COLLOCATIONS.length, 200);
