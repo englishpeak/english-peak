@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { COLLOCATIONS, createSession, filterByLevels, getDistractor, isCorrectAnswer } from './collocations.js';
+
+test('catalogue has 200 valid and unique records across every CEFR level', () => {
+  assert.equal(COLLOCATIONS.length, 200);
+  assert.equal(new Set(COLLOCATIONS.map(item => item.id)).size, 200);
+  assert.deepEqual([...new Set(COLLOCATIONS.map(item => item.level))], ['A1','A2','B1','B2','C1']);
+  COLLOCATIONS.forEach(item => assert.equal(item.full, `${item.first} ${item.second}`));
+});
+test('level filter is ready for one or multiple selections', () => {
+  const result = filterByLevels(COLLOCATIONS, ['A1','C1']);
+  assert.ok(result.length > 10); assert.ok(result.every(item => ['A1','C1'].includes(item.level)));
+  assert.equal(filterByLevels(COLLOCATIONS, []).length, 200);
+});
+test('sessions avoid duplicate records and prompts where possible', () => {
+  const session = createSession(COLLOCATIONS, 10, () => 0.42);
+  assert.equal(session.length, 10); assert.equal(new Set(session.map(item => item.id)).size, 10);
+  assert.equal(new Set(session.map(item => item.first)).size, 10);
+  assert.equal(new Set(session.map(item => item.second)).size, 10);
+});
+test('distractors are distinct and favor compatible metadata', () => {
+  const answer = COLLOCATIONS.find(item => item.full === 'make a mistake');
+  const distractor = getDistractor(answer, COLLOCATIONS, () => 0);
+  assert.notEqual(distractor.second, answer.second); assert.notEqual(distractor.first, answer.first);
+  assert.equal(distractor.category, answer.category); assert.equal(distractor.level, answer.level);
+});
+test('typed comparison ignores case and harmless spacing only', () => {
+  assert.equal(isCorrectAnswer('  A   Decision ', 'a decision'), true);
+  assert.equal(isCorrectAnswer('decision', 'a decision'), false);
+  assert.equal(isCorrectAnswer('a decisions', 'a decision'), false);
+});
