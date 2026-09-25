@@ -4,205 +4,205 @@
  * IDs are stable as long as existing rows keep their order; append new rows.
  */
 const ROWS = `make|a mistake|A1|Verb + Noun
-do|homework|A1|Verb + Noun
-take|a shower|A1|Verb + Noun
-have|breakfast|A1|Verb + Noun
-catch|a bus|A1|Verb + Noun
-get|dressed|A1|Verb + Adjective
-go|home|A1|Verb + Adverb
-watch|television|A1|Verb + Noun
-listen|to music|A1|Verb + Preposition
-wait|for a friend|A1|Verb + Preposition
-ask|a question|A1|Verb + Noun
-give|an answer|A1|Verb + Noun
-make|the bed|A1|Verb + Noun
-take|a photo|A1|Verb + Noun
-have|a good time|A1|Verb + Noun
-go|shopping|A1|Verb + Noun
-play|football|A1|Verb + Noun
-read|a book|A1|Verb + Noun
-drink|coffee|A1|Verb + Noun
-wear|glasses|A1|Verb + Noun
-heavy|rain|A1|Adjective + Noun
-strong|coffee|A1|Adjective + Noun
-fast|car|A1|Adjective + Noun
-best|friend|A1|Adjective + Noun
-big|problem|A1|Adjective + Noun
-new|job|A1|Adjective + Noun
-small|town|A1|Adjective + Noun
-beautiful|day|A1|Adjective + Noun
-good|idea|A1|Adjective + Noun
-bad|weather|A1|Adjective + Noun
-very|happy|A1|Adverb + Adjective / Verb
-really|tired|A1|Adverb + Adjective / Verb
-quite|easy|A1|Adverb + Adjective / Verb
-speak|slowly|A1|Adverb + Adjective / Verb
-work|hard|A1|Adverb + Adjective / Verb
-look|at the picture|A1|Verb + Preposition
-talk|to my teacher|A1|Verb + Preposition
-live|with my family|A1|Verb + Preposition
-come|from Mexico|A1|Verb + Preposition
-pay|by card|A1|Verb + Preposition
-make|a decision|A2|Verb + Noun
+make|a decision|A1|Verb + Noun
+make|an effort|A1|Verb + Noun
+make|a mess|A1|Verb + Noun
+make|money|A1|Verb + Noun
+do|your best|A1|Verb + Noun
+do|a favor|A1|Verb + Noun
+do|business|A1|Verb + Noun
+do|the dishes|A1|Verb + Noun
+do|research|A1|Verb + Noun
+have|a look|A2|Verb + Noun
+have|a chat|A2|Verb + Noun
+have|a baby|A2|Verb + Noun
+have|a problem|A2|Verb + Noun
+have|a good time|A2|Verb + Noun
 take|a break|A2|Verb + Noun
-have|a conversation|A2|Verb + Noun
-catch|a cold|A2|Verb + Noun
-miss|a train|A2|Verb + Noun
-save|money|A2|Verb + Noun
-spend|time|A2|Verb + Noun
-keep|a secret|A2|Verb + Noun
-lose|weight|A2|Verb + Noun
-tell|the truth|A2|Verb + Noun
-make|friends|A2|Verb + Noun
+take|a chance|A2|Verb + Noun
+take|a picture|A2|Verb + Noun
+take|a seat|A2|Verb + Noun
 take|notes|A2|Verb + Noun
-have|a rest|A2|Verb + Noun
-book|a table|A2|Verb + Noun
-change|your mind|A2|Verb + Noun
-strong|wind|A2|Adjective + Noun
-heavy|traffic|A2|Adjective + Noun
-close|friend|A2|Adjective + Noun
-free|time|A2|Adjective + Noun
-healthy|diet|A2|Adjective + Noun
-high|price|A2|Adjective + Noun
-low|cost|A2|Adjective + Noun
-long|journey|A2|Adjective + Noun
-quick|shower|A2|Adjective + Noun
-fresh|air|A2|Adjective + Noun
-completely|different|A2|Adverb + Adjective / Verb
-really|enjoy|A2|Adverb + Adjective / Verb
-speak|fluently|A2|Adverb + Adjective / Verb
-drive|carefully|A2|Adverb + Adjective / Verb
-work|together|A2|Adverb + Adjective / Verb
-agree|with someone|A2|Verb + Preposition
-apologize|for being late|A2|Verb + Preposition
-belong|to me|A2|Verb + Preposition
-depend|on the weather|A2|Verb + Preposition
-look|for a job|A2|Verb + Preposition
-prepare|for an exam|A2|Verb + Preposition
-worry|about money|A2|Verb + Preposition
-laugh|at a joke|A2|Verb + Preposition
-arrive|at the station|A2|Verb + Preposition
-pay|for dinner|A2|Verb + Preposition
-make|an effort|B1|Verb + Noun
-take|responsibility|B1|Verb + Noun
+get|ready|B1|Verb + Noun
+get|married|B1|Verb + Noun
+get|lost|B1|Verb + Noun
+get|upset|B1|Verb + Noun
+get|a job|B1|Verb + Noun
 pay|attention|B1|Verb + Noun
-keep|in touch|B1|Verb + Preposition
-reach|an agreement|B1|Verb + Noun
-solve|a problem|B1|Verb + Noun
-meet|a deadline|B1|Verb + Noun
-gain|experience|B1|Verb + Noun
-raise|money|B1|Verb + Noun
-do|research|B1|Verb + Noun
-make|progress|B1|Verb + Noun
-take|part|B1|Verb + Noun
-have|an impact|B1|Verb + Noun
-break|the law|B1|Verb + Noun
-set|a goal|B1|Verb + Noun
-heavy|workload|B1|Adjective + Noun
-strong|opinion|B1|Adjective + Noun
-wide|range|B1|Adjective + Noun
-major|change|B1|Adjective + Noun
-common|mistake|B1|Adjective + Noun
-serious|injury|B1|Adjective + Noun
-reasonable|price|B1|Adjective + Noun
-valuable|experience|B1|Adjective + Noun
-highly|successful|B1|Adverb + Adjective / Verb
-deeply|worried|B1|Adverb + Adjective / Verb
-fully|understand|B1|Adverb + Adjective / Verb
+pay|a visit|B1|Verb + Noun
+pay|the bill|B1|Verb + Noun
+pay|cash|B1|Verb + Noun
+pay|a compliment|B1|Verb + Noun
+keep|a secret|B2|Verb + Noun
+keep|in touch|B2|Verb + Noun
+keep|quiet|B2|Verb + Noun
+keep|a promise|B2|Verb + Noun
+keep|in mind|B2|Verb + Noun
+catch|a cold|B2|Verb + Noun
+catch|fire|B2|Verb + Noun
+catch|sight of|B2|Verb + Noun
+catch|someone's eye|B2|Verb + Noun
+catch|a bus|B2|Verb + Noun
+save|time|C1|Verb + Noun
+save|money|C1|Verb + Noun
+save|energy|C1|Verb + Noun
+save|a seat|C1|Verb + Noun
+save|a life|C1|Verb + Noun
+break|a habit|C1|Verb + Noun
+break|the rules|C1|Verb + Noun
+break|a promise|C1|Verb + Noun
+break|the ice|C1|Verb + Noun
+break|the news|C1|Verb + Noun
+heavy|rain|A1|Adjective + Noun
+heavy|traffic|A1|Adjective + Noun
+heavy|smoker|A1|Adjective + Noun
+heavy|burden|A1|Adjective + Noun
+heavy|schedule|A1|Adjective + Noun
+strong|coffee|A1|Adjective + Noun
+strong|accent|A1|Adjective + Noun
+strong|language|A1|Adjective + Noun
+strong|smell|A1|Adjective + Noun
+strong|wind|A1|Adjective + Noun
+deep|sleep|A2|Adjective + Noun
+deep|breath|A2|Adjective + Noun
+deep|thought|A2|Adjective + Noun
+deep|trouble|A2|Adjective + Noun
+deep|voice|A2|Adjective + Noun
+high|standard|A2|Adjective + Noun
+high|quality|A2|Adjective + Noun
+high|price|A2|Adjective + Noun
+high|energy|A2|Adjective + Noun
+high|risk|A2|Adjective + Noun
+fast|food|B1|Adjective + Noun
+fast|pace|B1|Adjective + Noun
+fast|track|B1|Adjective + Noun
+fast|learner|B1|Adjective + Noun
+fast|asleep|B1|Adjective + Noun
+quick|glance|B1|Adjective + Noun
+quick|meal|B1|Adjective + Noun
+quick|decision|B1|Adjective + Noun
+quick|shower|B1|Adjective + Noun
+quick|fix|B1|Adjective + Noun
+bad|temper|B2|Adjective + Noun
+bad|habit|B2|Adjective + Noun
+bad|breath|B2|Adjective + Noun
+bad|luck|B2|Adjective + Noun
+bad|mood|B2|Adjective + Noun
+good|deal|B2|Adjective + Noun
+good|time|B2|Adjective + Noun
+good|luck|B2|Adjective + Noun
+good|idea|B2|Adjective + Noun
+good|company|B2|Adjective + Noun
+big|deal|C1|Adjective + Noun
+big|mistake|C1|Adjective + Noun
+big|surprise|C1|Adjective + Noun
+big|difference|C1|Adjective + Noun
+big|mouth|C1|Adjective + Noun
+great|deal|C1|Adjective + Noun
+great|success|C1|Adjective + Noun
+great|time|C1|Adjective + Noun
+great|effort|C1|Adjective + Noun
+great|importance|C1|Adjective + Noun
+agree|with|A1|Verb + Preposition
+apologize|for|A1|Verb + Preposition
+apply|for|A1|Verb + Preposition
+argue|about|A1|Verb + Preposition
+ask|for|A1|Verb + Preposition
+believe|in|A1|Verb + Preposition
+belong|to|A1|Verb + Preposition
+care|for|A1|Verb + Preposition
+complain|about|A1|Verb + Preposition
+concentrate|on|A1|Verb + Preposition
+depend|on|A2|Verb + Preposition
+dream|about|A2|Verb + Preposition
+focus|on|A2|Verb + Preposition
+happen|to|A2|Verb + Preposition
+hear|about|A2|Verb + Preposition
+insist|on|A2|Verb + Preposition
+laugh|at|A2|Verb + Preposition
+listen|to|A2|Verb + Preposition
+look|at|A2|Verb + Preposition
+look|for|A2|Verb + Preposition
+pay|for|B1|Verb + Preposition
+point|at|B1|Verb + Preposition
+prepare|for|B1|Verb + Preposition
+recover|from|B1|Verb + Preposition
+rely|on|B1|Verb + Preposition
+smile|at|B1|Verb + Preposition
+stare|at|B1|Verb + Preposition
+suffer|from|B1|Verb + Preposition
+talk|about|B1|Verb + Preposition
+think|about|B1|Verb + Preposition
+wait|for|B2|Verb + Preposition
+worry|about|B2|Verb + Preposition
+object|to|B2|Verb + Preposition
+participate|in|B2|Verb + Preposition
+succeed|in|B2|Verb + Preposition
+apologize|to|B2|Verb + Preposition
+blame|for|B2|Verb + Preposition
+consist|of|B2|Verb + Preposition
+excuse|for|B2|Verb + Preposition
+forgive|for|B2|Verb + Preposition
+hide|from|C1|Verb + Preposition
+protect|from|C1|Verb + Preposition
+rescue|from|C1|Verb + Preposition
+save|from|C1|Verb + Preposition
+smell|of|C1|Verb + Preposition
+warn|about|C1|Verb + Preposition
+care|about|C1|Verb + Preposition
+result|in|C1|Verb + Preposition
+vote|for|C1|Verb + Preposition
+wish|for|C1|Verb + Preposition
+fully|aware|A1|Adverb + Adjective / Verb
+fully|understand|A1|Adverb + Adjective / Verb
+fully|booked|A1|Adverb + Adjective / Verb
+fully|equipped|A1|Adverb + Adjective / Verb
+fully|recovered|A1|Adverb + Adjective / Verb
+highly|recommended|A1|Adverb + Adjective / Verb
+highly|educated|A1|Adverb + Adjective / Verb
+highly|likely|A1|Adverb + Adjective / Verb
+highly|successful|A1|Adverb + Adjective / Verb
+highly|profitable|A1|Adverb + Adjective / Verb
+bitterly|cold|A2|Adverb + Adjective / Verb
+bitterly|disappointed|A2|Adverb + Adjective / Verb
+bitterly|complain|A2|Adverb + Adjective / Verb
+bitterly|opposed|A2|Adverb + Adjective / Verb
+bitterly|regret|A2|Adverb + Adjective / Verb
+deeply|concerned|A2|Adverb + Adjective / Verb
+deeply|offended|A2|Adverb + Adjective / Verb
+deeply|rooted|A2|Adverb + Adjective / Verb
+deeply|moved|A2|Adverb + Adjective / Verb
+deeply|regret|A2|Adverb + Adjective / Verb
+strongly|agree|B1|Adverb + Adjective / Verb
+strongly|condemn|B1|Adverb + Adjective / Verb
 strongly|recommend|B1|Adverb + Adjective / Verb
-closely|related|B1|Adverb + Adjective / Verb
-deal|with a problem|B1|Verb + Preposition
-focus|on the task|B1|Verb + Preposition
-apply|for a job|B1|Verb + Preposition
-suffer|from stress|B1|Verb + Preposition
-participate|in a meeting|B1|Verb + Preposition
-recover|from an illness|B1|Verb + Preposition
-refer|to the report|B1|Verb + Preposition
-concentrate|on your work|B1|Verb + Preposition
-benefit|from experience|B1|Verb + Preposition
-cope|with pressure|B1|Verb + Preposition
-make|a difference|B1|Verb + Noun
-take|advantage|B1|Verb + Noun
-make|a commitment|B2|Verb + Noun
-take|into account|B2|Verb + Preposition
-draw|a conclusion|B2|Verb + Noun
-pose|a threat|B2|Verb + Noun
-raise|awareness|B2|Verb + Noun
-meet|expectations|B2|Verb + Noun
-exercise|caution|B2|Verb + Noun
-bear|in mind|B2|Verb + Preposition
-hold|a meeting|B2|Verb + Noun
-launch|a campaign|B2|Verb + Noun
-gain|access|B2|Verb + Noun
-address|an issue|B2|Verb + Noun
-conduct|an investigation|B2|Verb + Noun
-reach|a compromise|B2|Verb + Noun
-face|a challenge|B2|Verb + Noun
-fierce|competition|B2|Adjective + Noun
-mutual|respect|B2|Adjective + Noun
-key|factor|B2|Adjective + Noun
-pressing|issue|B2|Adjective + Noun
-substantial|amount|B2|Adjective + Noun
-compelling|evidence|B2|Adjective + Noun
-reasonable|assumption|B2|Adjective + Noun
-sustainable|growth|B2|Adjective + Noun
-highly|unlikely|B2|Adverb + Adjective / Verb
-widely|recognized|B2|Adverb + Adjective / Verb
-closely|monitor|B2|Adverb + Adjective / Verb
-strongly|oppose|B2|Adverb + Adjective / Verb
-readily|available|B2|Adverb + Adjective / Verb
-account|for the difference|B2|Verb + Preposition
-comply|with regulations|B2|Verb + Preposition
-contribute|to society|B2|Verb + Preposition
-refrain|from commenting|B2|Verb + Preposition
-resort|to violence|B2|Verb + Preposition
-stem|from inequality|B2|Verb + Preposition
-adhere|to the rules|B2|Verb + Preposition
-engage|in debate|B2|Verb + Preposition
-object|to the proposal|B2|Verb + Preposition
-result|in failure|B2|Verb + Preposition
-make|an exception|B2|Verb + Noun
-strike|a balance|B2|Verb + Noun
-mount|a challenge|C1|Verb + Noun
-spark|controversy|C1|Verb + Noun
-wield|influence|C1|Verb + Noun
-shed|light|C1|Verb + Noun
-set|a precedent|C1|Verb + Noun
-pave|the way|C1|Verb + Noun
-fuel|speculation|C1|Verb + Noun
-curb|inflation|C1|Verb + Noun
-voice|concern|C1|Verb + Noun
-levy|a tax|C1|Verb + Noun
-render|a verdict|C1|Verb + Noun
-lodge|a complaint|C1|Verb + Noun
-exert|pressure|C1|Verb + Noun
-draw|a distinction|C1|Verb + Noun
-scrutinize|the evidence|C1|Verb + Noun
-heated|debate|C1|Adjective + Noun
-stark|contrast|C1|Adjective + Noun
-acute|shortage|C1|Adjective + Noun
-unprecedented|growth|C1|Adjective + Noun
-compelling|argument|C1|Adjective + Noun
-inherent|risk|C1|Adjective + Noun
-tangible|benefit|C1|Adjective + Noun
-viable|alternative|C1|Adjective + Noun
-utterly|unacceptable|C1|Adverb + Adjective / Verb
-deeply|entrenched|C1|Adverb + Adjective / Verb
-widely|acknowledged|C1|Adverb + Adjective / Verb
-fundamentally|flawed|C1|Adverb + Adjective / Verb
-categorically|deny|C1|Adverb + Adjective / Verb
-abide|by a decision|C1|Verb + Preposition
-allude|to a problem|C1|Verb + Preposition
-detract|from the value|C1|Verb + Preposition
-embark|on a project|C1|Verb + Preposition
-grapple|with uncertainty|C1|Verb + Preposition
-hinge|on the outcome|C1|Verb + Preposition
-reconcile|with reality|C1|Verb + Preposition
-subscribe|to the view|C1|Verb + Preposition
-succumb|to pressure|C1|Verb + Preposition
-veer|from the topic|C1|Verb + Preposition
-cast|doubt|C1|Verb + Noun
-prompt|a response|C1|Verb + Noun`;
+strongly|suggest|B1|Adverb + Adjective / Verb
+strongly|dislike|B1|Adverb + Adjective / Verb
+widely|accepted|B1|Adverb + Adjective / Verb
+widely|available|B1|Adverb + Adjective / Verb
+widely|known|B1|Adverb + Adjective / Verb
+widely|read|B1|Adverb + Adjective / Verb
+widely|used|B1|Adverb + Adjective / Verb
+dead|tired|B2|Adverb + Adjective / Verb
+dead|right|B2|Adverb + Adjective / Verb
+dead|certain|B2|Adverb + Adjective / Verb
+dead|wrong|B2|Adverb + Adjective / Verb
+dead|silence|B2|Adverb + Adjective / Verb
+absolutely|certain|B2|Adverb + Adjective / Verb
+absolutely|clear|B2|Adverb + Adjective / Verb
+absolutely|necessary|B2|Adverb + Adjective / Verb
+absolutely|wrong|B2|Adverb + Adjective / Verb
+absolutely|fabulous|B2|Adverb + Adjective / Verb
+painfully|slow|C1|Adverb + Adjective / Verb
+painfully|aware|C1|Adverb + Adjective / Verb
+painfully|shy|C1|Adverb + Adjective / Verb
+painfully|obvious|C1|Adverb + Adjective / Verb
+painfully|thin|C1|Adverb + Adjective / Verb
+perfectly|normal|C1|Adverb + Adjective / Verb
+perfectly|clear|C1|Adverb + Adjective / Verb
+perfectly|safe|C1|Adverb + Adjective / Verb
+perfectly|capable|C1|Adverb + Adjective / Verb
+perfectly|honest|C1|Adverb + Adjective / Verb`;
 
 export const COLLOCATION_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1']);
 

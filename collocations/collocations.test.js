@@ -8,6 +8,20 @@ test('catalogue has 200 valid and unique records across every CEFR level', () =>
   assert.deepEqual([...new Set(COLLOCATIONS.map(item => item.level))], ['A1','A2','B1','B2','C1']);
   COLLOCATIONS.forEach(item => assert.equal(item.full, `${item.first} ${item.second}`));
 });
+test('catalogue contains the supplied groups in their original order', () => {
+  assert.deepEqual(
+    [COLLOCATIONS[0].full, COLLOCATIONS[49].full, COLLOCATIONS[50].full, COLLOCATIONS[99].full],
+    ['make a mistake', 'break the news', 'heavy rain', 'great importance']
+  );
+  assert.deepEqual(
+    [COLLOCATIONS[100].full, COLLOCATIONS[149].full, COLLOCATIONS[150].full, COLLOCATIONS[199].full],
+    ['agree with', 'wish for', 'fully aware', 'perfectly honest']
+  );
+  assert.deepEqual(
+    [...new Set(COLLOCATIONS.map(item => item.category))],
+    ['Verb + Noun', 'Adjective + Noun', 'Verb + Preposition', 'Adverb + Adjective / Verb']
+  );
+});
 test('level filter is ready for one or multiple selections', () => {
   const result = filterByLevels(COLLOCATIONS, ['A1','C1']);
   assert.ok(result.length > 10); assert.ok(result.every(item => ['A1','C1'].includes(item.level)));
