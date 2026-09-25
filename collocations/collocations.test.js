@@ -13,6 +13,14 @@ test('level filter is ready for one or multiple selections', () => {
   assert.ok(result.length > 10); assert.ok(result.every(item => ['A1','C1'].includes(item.level)));
   assert.equal(filterByLevels(COLLOCATIONS, []).length, 200);
 });
+test('every CEFR filter supplies a complete ten-item exercise pool', () => {
+  for (const level of ['A1', 'A2', 'B1', 'B2', 'C1']) {
+    const pool = filterByLevels(COLLOCATIONS, [level]);
+    assert.equal(pool.length, 40);
+    assert.ok(pool.every(item => item.level === level));
+    assert.equal(createSession(pool, 10, () => 0.37).length, 10);
+  }
+});
 test('sessions avoid duplicate records and prompts where possible', () => {
   const session = createSession(COLLOCATIONS, 10, () => 0.42);
   assert.equal(session.length, 10); assert.equal(new Set(session.map(item => item.id)).size, 10);

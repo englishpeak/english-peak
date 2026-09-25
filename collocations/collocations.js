@@ -49,7 +49,7 @@ export function isCorrectAnswer(actual, expected) {
   return normalizeAnswer(actual) === normalizeAnswer(expected);
 }
 
-const state = { mode: 'easy', levels: [], session: [], index: 0, score: 0, answered: false, selectedFirst: null };
+const state = { mode: 'easy', levels: [], session: [], previousIds: '', index: 0, score: 0, answered: false, selectedFirst: null, missed: new Set() };
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const pool = () => filterByLevels(COLLOCATIONS, state.levels);
@@ -64,7 +64,12 @@ function updateMeta() {
   $('#session-meta').textContent = `${state.session.length} items · ${state.levels.length ? state.levels.join(', ') : 'All levels'}`;
 }
 function startSession() {
-  state.session = createSession(pool()); state.index = 0; state.score = 0; state.answered = false; state.selectedFirst = null;
+  const available = pool();
+  let nextSession = createSession(available);
+  // A refresh should visibly refresh, not occasionally reproduce the same set.
+  for (let attempt = 0; attempt < 4 && nextSession.map(item => item.id).join(',') === state.previousIds; attempt += 1) nextSession = createSession(available);
+  state.session = nextSession; state.previousIds = nextSession.map(item => item.id).join(',');
+  state.index = 0; state.score = 0; state.answered = false; state.selectedFirst = null; state.missed = new Set();
   updateMeta(); renderExercise();
 }
 function setMode(mode) {
@@ -81,7 +86,7 @@ function progress() { return `${Math.min(state.index + 1, state.session.length)}
 
 function renderEasy() {
   const left = shuffle(state.session); const right = shuffle(state.session);
-  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">Match the pairs</span><h2>Build 10 collocations</h2></div><strong id="easy-progress">0 / ${state.session.length}</strong></div><p class="instructions">Choose a word on the left, then its natural partner on the right.</p><div class="match-grid"><div class="match-column" aria-label="First parts">${left.map(item => `<button class="match-card first" data-id="${item.id}">${item.first}</button>`).join('')}</div><div class="match-column" aria-label="Second parts">${right.map(item => `<button class="match-card second" data-id="${item.id}">${item.second}</button>`).join('')}</div></div>`;
+  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">Match the pairs</span><h2>Build 10 collocations</h2></div><strong id="easy-progress">0 / ${state.session.length}</strong></div><div class="progress-track" aria-hidden="true"><span id="progress-fill" style="width:0%"></span></div><p class="instructions">Choose a word on the left, then its natural partner on the right.</p><div class="match-grid"><div class="match-column" aria-label="First parts">${left.map(item => `<button type="button" class="match-card first" data-id="${item.id}">${item.first}</button>`).join('')}</div><div class="match-column" aria-label="Second parts">${right.map(item => `<button type="button" class="match-card second" data-id="${item.id}">${item.second}</button>`).join('')}</div></div>`;
   $$('.match-card.first').forEach(button => button.addEventListener('click', () => {
     if (button.disabled) return; state.selectedFirst = Number(button.dataset.id);
     $$('.match-card.first').forEach(card => card.classList.toggle('selected', card === button));
@@ -95,18 +100,21 @@ function matchPair(secondButton) {
   const correct = state.selectedFirst === Number(secondButton.dataset.id);
   if (!correct) {
     [firstButton, secondButton].forEach(button => { button.classList.add('incorrect'); setTimeout(() => button.classList.remove('incorrect'), 450); });
-    state.selectedFirst = null; firstButton.classList.remove('selected'); announce('Not quite. Try another partner.'); return;
+    state.missed.add(state.selectedFirst); state.selectedFirst = null; firstButton.classList.remove('selected'); setFeedback('✕ Not quite — try another partner.', 'wrong'); announce('Not quite. Try another partner.'); return;
   }
   [firstButton, secondButton].forEach(button => { button.disabled = true; button.classList.remove('selected'); button.classList.add('matched'); });
-  state.score += 1; state.selectedFirst = null; $('#easy-progress').textContent = `${state.score} / ${state.session.length}`;
-  announce(`Correct. ${firstButton.textContent} ${secondButton.textContent}.`);
-  if (state.score === state.session.length) renderComplete();
+  const matches = $$('.match-card.first:disabled').length;
+  if (!state.missed.has(Number(secondButton.dataset.id))) state.score += 1;
+  state.selectedFirst = null; $('#easy-progress').textContent = `${matches} / ${state.session.length}`;
+  $('#progress-fill').style.width = `${matches / state.session.length * 100}%`;
+  setFeedback(`✓ Correct — ${firstButton.textContent} ${secondButton.textContent}.`, 'correct'); announce($('#feedback').textContent);
+  if (matches === state.session.length) renderComplete();
 }
 
 function renderQuestion() {
   const item = state.session[state.index];
   const hard = state.mode === 'hard';
-  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">${hard ? 'Active recall' : 'Choose the partner'}</span><h2>${hard ? 'Complete the collocation' : 'Which words go together?'}</h2></div><strong>${progress()}</strong></div><div class="prompt"><span>${item.first}</span><span class="blank" aria-hidden="true"></span></div>${hard ? `<form id="answer-form"><label for="answer">Type the missing words</label><div class="answer-row"><input id="answer" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Check</button></div></form>` : `<div class="choices">${mediumChoices(item).map(choice => `<button data-answer="${choice.second}" class="choice">${choice.second}</button>`).join('')}</div>`}<button id="next" class="primary next" hidden>Continue →</button>`;
+  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">${hard ? 'Active recall' : 'Choose the partner'}</span><h2>${hard ? 'Complete the collocation' : 'Which words go together?'}</h2></div><strong>${progress()}</strong></div><div class="progress-track" aria-hidden="true"><span style="width:${state.index / state.session.length * 100}%"></span></div><p class="instructions">${hard ? 'Type the word or phrase that naturally completes the collocation.' : 'Choose the word or phrase that naturally completes the collocation.'}</p><div class="prompt"><span>${item.first}</span><span class="blank" aria-hidden="true"></span></div>${hard ? `<form id="answer-form"><label for="answer">Your answer</label><div class="answer-row"><input id="answer" aria-describedby="feedback" placeholder="Type the missing words…" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Check</button></div></form>` : `<div class="choices">${mediumChoices(item).map(choice => `<button type="button" data-answer="${choice.second}" class="choice">${choice.second}</button>`).join('')}</div>`}<button id="next" type="button" class="primary next" hidden>Continue →</button>`;
   if (hard) { $('#answer-form').addEventListener('submit', event => { event.preventDefault(); checkTyped(item); }); $('#answer').focus(); }
   else $$('.choice').forEach(button => button.addEventListener('click', () => checkChoice(button, item)));
   $('#next').addEventListener('click', nextQuestion);
@@ -117,7 +125,8 @@ function mediumChoices(item) {
 }
 function finishAnswer(ok, item) {
   state.answered = true; if (ok) state.score += 1;
-  setFeedback(ok ? `Correct — ${item.full}.` : `Not quite. The correct answer is “${item.second}”.`, ok ? 'correct' : 'wrong');
+  if (!ok) state.missed.add(item.id);
+  setFeedback(ok ? `✓ Correct — ${item.full}.` : `✕ Not quite. Correct answer: ${item.full}.`, ok ? 'correct' : 'wrong');
   announce($('#feedback').textContent); $('#next').hidden = false; $('#next').focus();
 }
 function checkChoice(button, item) {
@@ -131,7 +140,10 @@ function checkTyped(item) {
 }
 function nextQuestion() { state.index += 1; state.answered = false; setFeedback(''); state.index >= state.session.length ? renderComplete() : renderQuestion(); }
 function renderComplete() {
-  $('#exercise').innerHTML = `<div class="success-state"><span class="success-mark">✓</span><span class="eyebrow">Session complete</span><h2>${state.score} / ${state.session.length}</h2><p>${state.score === state.session.length ? 'Excellent — every collocation was correct.' : 'Good practice. A new set is ready whenever you are.'}</p><button id="another-set" class="primary">Try another set</button></div>`;
+  setFeedback('');
+  const percent = Math.round(state.score / state.session.length * 100);
+  const missedItems = state.session.filter(item => state.missed.has(item.id));
+  $('#exercise').innerHTML = `<div class="success-state"><span class="success-mark">✓</span><span class="eyebrow">Set complete</span><h2>${state.score} / ${state.session.length}</h2><p class="completion-percent">${percent}% correct</p>${missedItems.length ? `<div class="review"><strong>Review these collocations</strong><ul>${missedItems.map(item => `<li>${item.full}</li>`).join('')}</ul></div>` : '<p>Excellent — every collocation was correct.</p>'}<button id="another-set" type="button" class="primary">Practice another set</button></div>`;
   $('#another-set').addEventListener('click', startSession); announce(`Session complete. Score ${state.score} out of ${state.session.length}.`);
 }
 function renderExercise() { setFeedback(''); state.mode === 'easy' ? renderEasy() : renderQuestion(); }

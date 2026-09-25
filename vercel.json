@@ -29,6 +29,7 @@
     { "source": "/listen-and-write", "destination": "/listen-and-write/index.html" },
     { "source": "/audio-studio",       "destination": "/audio-studio/index.html" },
     { "source": "/audio-studio/:path*", "destination": "/audio-studio/index.html" }
+    ,{ "source": "/collocations",        "destination": "/collocations/index.html" }
     ,{ "source": "/agreementpractice",        "destination": "/agreementpractice/index.html" }
     ,{ "source": "/businesscases",        "destination": "/businesscases/index.html" }
     ,{ "source": "/businesscases/:path*", "destination": "/businesscases/index.html" }
