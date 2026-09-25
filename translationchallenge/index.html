@@ -333,6 +333,43 @@ const set9AdditionalAlternatives={
 const set9=sets.find(set=>set.id===9);
 set9.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set9AdditionalAlternatives[sentence.id]));
 
+// Set 9 deliberately mixes everyday prompts with sentences whose meaning can
+// be preserved through many different structures. Keep a second curated layer
+// so learners are not penalized for choosing another natural formulation.
+const set9FurtherAlternatives={
+1:["What time did you make it home last night?"],
+2:["I've been cooking at home more often lately."],
+3:["Should you encounter that problem again, notify me immediately."],
+4:["I can't see an outlet close to the bed where I could charge my phone.","I can't find a socket by the bed for charging my phone.","There isn't a power outlet near the bed that I can use to charge my phone."],
+5:["I realized I had been charged twice only after I reviewed my bank statement."],
+6:["Reasonable though the explanation sounds, it still fails to address the problem's underlying cause.","Regardless of how plausible the explanation seems, it does not tackle the main cause of the problem.","The explanation may appear reasonable, yet it still leaves the root cause of the problem unresolved."],
+7:["Every morning, my father has a cup of coffee."],
+8:["Have you decided what you're bringing on the trip?"],
+9:["Can you shut the blinds? The sun is shining straight in my face."],
+10:["I didn't anticipate the conversation taking that turn."],
+11:["If we had started out on time, we wouldn't be sitting in traffic now."],
+12:["This backpack is heavier than it should be."],
+13:["I've been trying for months to get him to reconsider."],
+14:["Do you know what procedure I have to complete in order to renew the permit?"],
+15:["We can't continue depending on a stopgap."],
+16:["As best I can determine, the issue chiefly affects users who have been with us the longest.","Everything I've found indicates that the problem primarily affects longstanding users.","Judging by the information available to me, the problem mostly affects users with the oldest accounts."],
+17:["Is there a cashpoint near here?"],
+18:["I never intended to come across as rude; I was just tired."],
+19:["One of the hinges is loose, so the door is making a noise."],
+20:["Until then, I had never seen so many people together in one place."],
+21:["I wouldn't rule out their having misinterpreted our intentions.","It is entirely possible that they have misconstrued what we intended.","We should allow for the possibility that they misunderstood our intentions."],
+22:["Could you put this away in the fridge?"],
+23:["I assumed I would have finished by the time you arrived."],
+24:["They had to cordon off a section of the pavement while repairing the pipe."],
+25:["I find it scarcely believable that nobody became aware of it sooner.","It is hard to understand how this could have escaped everyone's notice until now.","I struggle to accept that not one person spotted it earlier."],
+26:["Far from addressing the problem, the measure appears to have compounded a situation that was already rather precarious.","The measure seems to have deepened an already delicate situation rather than resolving the problem.","Instead of remedying the problem, the measure appears to have further destabilized an already fragile situation.","So far from solving the problem, the measure seems to have made an already fraught situation still worse."],
+27:["Why don't we catch a taxi rather than wait for the bus?"],
+28:["I would have saved considerable time had someone explained the process to me at the outset."],
+29:["The bank refused my chargeback claim because too much time had gone by since the transaction.","Since too much time had elapsed after the purchase, the bank declined my chargeback request.","My request for a chargeback was denied because the bank considered the purchase too old."],
+30:["However tempting a single decision may be as an explanation for the failure, it would overlook numerous factors that had been mounting for years.","To attribute the failure solely to one decision, appealing though that may be, would be to ignore a range of factors built up over many years.","Although blaming one decision for the failure might seem tempting, that would disregard the many contributing factors that had accumulated over the years.","As tempting as it is to trace the failure back to one decision, doing so would leave out a host of factors that had long been gathering force."]
+};
+set9.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set9FurtherAlternatives[sentence.id]));
+
 const set4AdditionalAlternatives={
 1:["For how long have you known your best friend?","How long have you been friends with your best friend?"],
 2:["I didn't imagine you would take it so seriously.","I didn't think you would take it that seriously."],

@@ -38,9 +38,9 @@ test("Set 9 adds multiple natural alternatives, with broader coverage for advanc
 
   expandedSet9.sentences.forEach((sentence, index) => {
     const additions = sentence.acceptedAnswers.length - originalSet9.sentences[index].acceptedAnswers.length;
-    assert.ok(additions >= 2, `Set 9, sentence ${sentence.id} should gain at least two alternatives`);
-    if (sentence.level === "C1") assert.ok(additions >= 6, `C1 sentence ${sentence.id} should gain at least six alternatives`);
-    if (sentence.level === "C2") assert.ok(additions >= 8, `C2 sentence ${sentence.id} should gain at least eight alternatives`);
+    assert.ok(additions >= 3, `Set 9, sentence ${sentence.id} should gain at least three alternatives`);
+    if (sentence.level === "C1") assert.ok(additions >= 9, `C1 sentence ${sentence.id} should gain at least nine alternatives`);
+    if (sentence.level === "C2") assert.ok(additions >= 12, `C2 sentence ${sentence.id} should gain at least twelve alternatives`);
   });
 });
 
