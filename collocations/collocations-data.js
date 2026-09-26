@@ -2,6 +2,8 @@
  * English Peak collocation catalogue.
  * Add one pipe-delimited row per item: first|second|CEFR|category.
  * IDs are stable as long as existing rows keep their order; append new rows.
+ * Medium-mode distractors are explicitly curated in DISTRACTOR_ROWS below and
+ * must remain aligned with this catalogue.
  */
 const ROWS = `make|a mistake|A1|Verb + Noun
 make|a decision|A1|Verb + Noun
@@ -203,6 +205,210 @@ perfectly|clear|C1|Adverb + Adjective / Verb
 perfectly|safe|C1|Adverb + Adjective / Verb
 perfectly|capable|C1|Adverb + Adjective / Verb
 perfectly|honest|C1|Adverb + Adjective / Verb`;
+
+// Two prevalidated wrong completions for every catalogue row. These are kept as
+// data (rather than borrowed from other collocations at runtime) so Medium mode
+// never labels another natural English collocation as incorrect.
+const DISTRACTOR_ROWS = `a homework|an attention
+a homework|an attention
+a homework|an attention
+a homework|an attention
+a homework|an attention
+a mistake|a decision
+a mistake|a decision
+a mistake|a decision
+a mistake|a decision
+a mistake|a decision
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|an attention
+a homework|an attention
+a homework|an attention
+a homework|an attention
+a homework|an attention
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a mistake
+a homework|a mistake
+a homework|a mistake
+a homework|a mistake
+a homework|a mistake
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+a homework|a decision
+sunshine|a whisper
+sunshine|a whisper
+sunshine|a whisper
+sunshine|a whisper
+sunshine|a whisper
+rain|sleep
+rain|sleep
+rain|sleep
+rain|sleep
+rain|sleep
+traffic|sunshine
+traffic|sunshine
+traffic|sunshine
+traffic|sunshine
+traffic|sunshine
+rain|sleep
+rain|sleep
+rain|sleep
+rain|sleep
+rain|sleep
+rain|coffee
+rain|coffee
+rain|coffee
+rain|coffee
+rain|coffee
+food|traffic
+food|traffic
+food|traffic
+food|traffic
+food|traffic
+sunshine|luggage
+sunshine|luggage
+sunshine|luggage
+sunshine|luggage
+sunshine|luggage
+thunder|luggage
+thunder|luggage
+thunder|luggage
+thunder|luggage
+thunder|luggage
+rain|sleep
+rain|sleep
+rain|sleep
+rain|sleep
+rain|sleep
+traffic|weather
+traffic|weather
+traffic|weather
+traffic|weather
+traffic|weather
+to|about
+on|with
+to|at
+for|over
+about|after
+on|at
+with|for
+on|by
+for|of
+at|in
+of|with
+of|for
+at|into
+with|for
+of|at
+at|for
+to|with
+at|for
+on|with
+by|with
+at|under
+to|towards
+to|against
+of|at
+at|from
+to|towards
+to|towards
+of|with
+for|of
+of|on
+to|on
+for|over
+against|about
+on|at
+at|with
+at|with
+on|about
+from|on
+of|about
+about|of
+of|behind
+against|of
+of|out of
+against|out of
+like|from
+of|against
+on|by
+to|at
+on|about
+about|after
+sleepy|chilly
+sleepy|chilly
+sleepy|chilly
+sleepy|chilly
+sleepy|chilly
+asleep|ready
+asleep|ready
+asleep|ready
+asleep|ready
+asleep|ready
+warm|pleased
+warm|pleased
+warm|pleased
+warm|pleased
+warm|pleased
+tiny|brief
+tiny|brief
+tiny|brief
+tiny|brief
+tiny|brief
+sleep|arrive
+sleep|arrive
+sleep|arrive
+sleep|arrive
+sleep|arrive
+asleep|ready
+asleep|ready
+asleep|ready
+asleep|ready
+asleep|ready
+aware|asleep
+aware|asleep
+aware|asleep
+aware|asleep
+aware|asleep
+mild|partial
+mild|partial
+mild|partial
+mild|partial
+mild|partial
+quick|cheerful
+quick|cheerful
+quick|cheerful
+quick|cheerful
+quick|cheerful
+tiny|partial
+tiny|partial
+tiny|partial
+tiny|partial
+tiny|partial`;
 
 // Contexts are deliberately stored beside the catalogue rather than in the UI.
 // Each entry aligns with the row at the same index and contains one answer blank.
@@ -411,7 +617,18 @@ const EXAMPLES = [
 
 export const COLLOCATION_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1']);
 
+const DISTRACTORS = DISTRACTOR_ROWS.trim().split('\n').map(row => Object.freeze(row.split('|')));
+
 export const COLLOCATIONS = Object.freeze(ROWS.trim().split('\n').map((row, index) => {
   const [first, second, level, category] = row.split('|');
-  return Object.freeze({ id: index + 1, first, second, full: `${first} ${second}`, level, category, example: EXAMPLES[index] });
+  return Object.freeze({
+    id: index + 1,
+    first,
+    second,
+    full: `${first} ${second}`,
+    level,
+    category,
+    example: EXAMPLES[index],
+    distractors: DISTRACTORS[index]
+  });
 }));

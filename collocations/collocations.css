@@ -49,13 +49,11 @@ button { -webkit-tap-highlight-color: transparent; }
 .match-card { position: relative; z-index: 1; min-height: 54px; padding: 13px 17px; touch-action: none; user-select: none; animation: tile-float var(--float-duration, 9s) ease-in-out var(--float-delay, 0s) infinite; }
 .match-card:hover:not(:disabled), .choice:hover:not(:disabled) { border-color: rgba(13,59,111,.4); background: #fbfcfe; transform: translateY(-1px); }
 .match-card.selected { border-color: var(--ep-navy); background: rgba(13,59,111,.07); box-shadow: inset 3px 0 var(--ep-navy); }
-.match-card.matched { border-color: rgba(26,122,74,.28); background: rgba(26,122,74,.07); color: var(--ep-success); }
-.match-card.matched::before { content: '✓ '; }
 .match-card.incorrect { border-color: rgba(198,40,40,.45); background: rgba(198,40,40,.06); animation: tile-miss .36s ease; }
 .match-card:disabled { cursor: default; opacity: .6; }
 .match-card.dragging { z-index: 10; animation-play-state: paused; border-color: rgba(13,59,111,.38); box-shadow: 0 14px 28px rgba(13,59,111,.2); cursor: grabbing; }
 .match-card.drop-target { animation-play-state: paused; border-color: var(--ep-purple); box-shadow: 0 0 0 3px rgba(71,0,116,.1), 0 8px 20px rgba(13,59,111,.12); }
-.match-card.pairing { animation: pair-complete .35s ease both; }
+.match-card.joining { z-index: 4; animation-play-state: paused; pointer-events: none; border-color: rgba(26,122,74,.32); color: var(--ep-navy); opacity: 1; }
 .match-card.pastel-1 { background: #f4f7fc; }
 .match-card.pastel-2 { background: #f7f3fa; }
 .match-card.pastel-3 { background: #f1f8f7; }
@@ -66,8 +64,24 @@ button { -webkit-tap-highlight-color: transparent; }
 .match-card.pastel-8 { background: #f0f7fa; }
 
 @keyframes tile-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(var(--float-distance, 3px) * -1); } }
-@keyframes pair-complete { 50% { transform: translateX(var(--pair-direction, 2px)) scale(1.02); } }
 @keyframes tile-miss { 25% { translate: -3px 0; } 75% { translate: 3px 0; } }
+
+.completed-area { margin-top: 22px; padding: 16px; border: 1px dashed rgba(13,59,111,.2); border-radius: var(--ep-radius-lg); background: rgba(244,246,251,.55); }
+.completed-heading { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 11px; color: var(--ep-navy); font-size: .76rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.completed-heading span:last-child { color: var(--ep-muted); font-variant-numeric: tabular-nums; }
+.completed-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.completed-empty { grid-column: 1 / -1; margin: 2px 0; color: var(--ep-muted-light); font-size: .85rem; text-align: center; }
+.completed-collocation { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr) auto; align-items: stretch; overflow: hidden; border: 1px solid rgba(26,122,74,.24); border-radius: var(--ep-radius-md); background: rgba(26,122,74,.06); color: var(--ep-navy); box-shadow: 0 4px 12px rgba(13,59,111,.06); font-size: .88rem; font-weight: 600; }
+.completed-collocation span { display: flex; align-items: center; min-width: 0; padding: 10px 11px; }
+.completed-collocation span + span { border-left: 1px solid rgba(13,59,111,.12); }
+.completed-collocation strong { display: grid; place-items: center; padding: 0 11px; color: var(--ep-success); }
+.easy-complete { display: grid; gap: 22px; }
+.easy-complete-summary { display: flex; align-items: center; justify-content: center; gap: 16px; text-align: left; }
+.easy-complete-summary .success-mark { flex: none; margin: 0; }
+.easy-complete-summary h2 { margin: 1px 0 0; color: var(--ep-navy); font: 700 2.5rem/1 var(--ep-font-serif); }
+.easy-complete-summary p { margin: 3px 0 0; color: var(--ep-muted); font-size: .84rem; }
+.completed-area.complete { margin-top: 0; border-style: solid; background: var(--ep-card-soft); }
+.easy-complete > .primary { justify-self: center; }
 
 .prompt { display: flex; align-items: center; gap: 16px; margin: 45px 0 30px; color: var(--ep-navy); font: 700 clamp(2.45rem, 8vw, 4.2rem)/1 var(--ep-font-serif); }
 .blank { display: inline-block; width: min(38vw, 270px); border-bottom: 3px solid rgba(13,59,111,.2); }
@@ -116,6 +130,7 @@ button { -webkit-tap-highlight-color: transparent; }
   .match-grid { gap: 16px; padding-inline: 0; }
   .match-column { gap: 14px; }
   .match-card { min-height: 50px; padding: 11px; font-size: .9rem; }
+  .completed-list { grid-template-columns: 1fr; }
   .prompt { margin: 38px 0 32px; }
   .choices { grid-template-columns: 1fr; }
   .answer-row { align-items: stretch; flex-direction: column; }

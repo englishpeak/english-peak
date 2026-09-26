@@ -1,6 +1,6 @@
 import { COLLOCATIONS, COLLOCATION_LEVELS } from './collocations-data.js';
 
-export const SESSION_SIZE = 10;
+export const SESSION_SIZE = 7;
 export const MODES = Object.freeze(['easy', 'medium', 'hard']);
 
 export function normalizeAnswer(value) {
@@ -39,24 +39,17 @@ export function createEasySession(pool, count = SESSION_SIZE, random = Math.rand
   return selected;
 }
 
-export function getDistractor(answer, pool, random = Math.random, catalogue = COLLOCATIONS) {
-  const validSeconds = new Set(catalogue.filter(item => item.first === answer.first).map(item => item.second));
-  const candidates = pool.filter(item => item.id !== answer.id && !validSeconds.has(item.second));
-  const ranked = candidates.map(item => ({
-    item,
-    score: (item.category === answer.category ? 4 : 0) +
-      (item.level === answer.level ? 2 : 0) +
-      (item.second.split(/\s+/).length === answer.second.split(/\s+/).length ? 1.5 : 0) +
-      (Math.abs(item.second.length - answer.second.length) <= 3 ? 1 : 0) + random()
-  })).sort((a, b) => b.score - a.score);
-  return ranked[0]?.item ?? null;
+export function createMediumChoices(item, random = Math.random) {
+  const distractor = item.distractors[Math.floor(random() * item.distractors.length)];
+  const choices = [item.second, distractor];
+  return random() < 0.5 ? choices : choices.reverse();
 }
 
 export function isCorrectAnswer(actual, expected) {
   return normalizeAnswer(actual) === normalizeAnswer(expected);
 }
 
-const state = { mode: 'easy', levels: [], session: [], previousIds: '', index: 0, score: 0, answered: false, selectedFirst: null, missed: new Set() };
+const state = { mode: 'easy', levels: [], session: [], previousIds: '', index: 0, score: 0, answered: false, selectedFirst: null, missed: new Set(), completed: [], joining: false };
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const pool = () => filterByLevels(COLLOCATIONS, state.levels);
@@ -77,7 +70,7 @@ function startSession() {
   // A refresh should visibly refresh, not occasionally reproduce the same set.
   for (let attempt = 0; attempt < 4 && nextSession.map(item => item.id).join(',') === state.previousIds; attempt += 1) nextSession = makeSession();
   state.session = nextSession; state.previousIds = nextSession.map(item => item.id).join(',');
-  state.index = 0; state.score = 0; state.answered = false; state.selectedFirst = null; state.missed = new Set();
+  state.index = 0; state.score = 0; state.answered = false; state.selectedFirst = null; state.missed = new Set(); state.completed = []; state.joining = false;
   updateMeta(); renderExercise();
 }
 function setMode(mode) {
@@ -95,10 +88,10 @@ function progress() { return `${Math.min(state.index + 1, state.session.length)}
 function renderEasy() {
   const left = shuffle(state.session); const right = shuffle(state.session);
   const tile = (item, side, index) => `<button type="button" class="match-card ${side} pastel-${Math.floor(Math.random() * 8) + 1}" data-id="${item.id}" style="--float-duration:${7 + Math.random() * 4}s;--float-delay:${-Math.random() * 8}s;--float-distance:${2 + index % 3}px">${item[side]}</button>`;
-  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">Match the pairs</span><h2>Build 10 collocations</h2></div><strong id="easy-progress">0 / ${state.session.length}</strong></div><div class="progress-track" aria-hidden="true"><span id="progress-fill" style="width:0%"></span></div><p class="instructions">Choose a word on the left, then its natural partner on the right — or drag one tile onto the other.</p><div class="match-grid"><div class="match-column" aria-label="First parts">${left.map((item, index) => tile(item, 'first', index)).join('')}</div><div class="match-column" aria-label="Second parts">${right.map((item, index) => tile(item, 'second', index + 1)).join('')}</div></div>`;
+  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">Match the pairs</span><h2>Build ${SESSION_SIZE} collocations</h2></div><strong id="easy-progress">0 / ${state.session.length}</strong></div><div class="progress-track" aria-hidden="true"><span id="progress-fill" style="width:0%"></span></div><p class="instructions">Choose a word on the left, then its natural partner on the right — or drag one tile onto the other.</p><div class="match-grid"><div class="match-column" aria-label="First parts">${left.map((item, index) => tile(item, 'first', index)).join('')}</div><div class="match-column" aria-label="Second parts">${right.map((item, index) => tile(item, 'second', index + 1)).join('')}</div></div><section class="completed-area" aria-labelledby="completed-title"><div class="completed-heading"><span id="completed-title">Completed collocations</span><span id="completed-count">0 of ${state.session.length}</span></div><div id="completed-list" class="completed-list"><p class="completed-empty">Your completed expressions will join here.</p></div></section>`;
   $$('.match-card.first').forEach(button => button.addEventListener('click', () => {
     if (button.dataset.suppressClick) { delete button.dataset.suppressClick; return; }
-    if (button.disabled) return; state.selectedFirst = Number(button.dataset.id);
+    if (button.disabled || state.joining) return; state.selectedFirst = Number(button.dataset.id);
     $$('.match-card.first').forEach(card => card.classList.toggle('selected', card === button));
     announce(`${button.textContent} selected. Now choose its partner.`);
   }));
@@ -108,7 +101,8 @@ function renderEasy() {
   }));
   $$('.match-card').forEach(enablePointerDrag);
 }
-function matchPair(secondButton) {
+async function matchPair(secondButton) {
+  if (state.joining) return;
   if (!state.selectedFirst || secondButton.disabled) { announce('Choose a word from the left first.'); return; }
   const firstButton = $(`.match-card.first[data-id="${state.selectedFirst}"]`);
   const correct = state.selectedFirst === Number(secondButton.dataset.id);
@@ -116,13 +110,67 @@ function matchPair(secondButton) {
     [firstButton, secondButton].forEach(button => { button.classList.add('incorrect'); setTimeout(() => button.classList.remove('incorrect'), 450); });
     state.missed.add(state.selectedFirst); state.selectedFirst = null; firstButton.classList.remove('selected'); setFeedback('✕ Not quite — try another partner.', 'wrong'); announce('Not quite. Try another partner.'); return;
   }
-  [firstButton, secondButton].forEach(button => { button.disabled = true; button.classList.remove('selected'); button.classList.add('matched'); });
-  const matches = $$('.match-card.first:disabled').length;
+  state.joining = true;
+  [firstButton, secondButton].forEach(button => { button.disabled = true; button.classList.remove('selected'); button.classList.add('joining'); });
+  const item = state.session.find(entry => entry.id === Number(secondButton.dataset.id));
+  const matches = state.completed.length + 1;
   if (!state.missed.has(Number(secondButton.dataset.id))) state.score += 1;
   state.selectedFirst = null; $('#easy-progress').textContent = `${matches} / ${state.session.length}`;
   $('#progress-fill').style.width = `${matches / state.session.length * 100}%`;
   setFeedback(`✓ Correct — ${firstButton.textContent} ${secondButton.textContent}.`, 'correct'); announce($('#feedback').textContent);
-  if (matches === state.session.length) renderComplete();
+  await joinPair(firstButton, secondButton, item);
+  state.joining = false;
+  if (matches === state.session.length) renderEasyComplete();
+}
+
+function animateReflow(previousPositions) {
+  $$('.match-card').forEach(card => {
+    const before = previousPositions.get(card);
+    if (!before) return;
+    const after = card.getBoundingClientRect();
+    const dx = before.left - after.left; const dy = before.top - after.top;
+    if (dx || dy) card.animate(
+      [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0, 0)' }],
+      { duration: 360, easing: 'cubic-bezier(.2,.75,.25,1)' }
+    );
+  });
+}
+
+async function joinPair(firstButton, secondButton, item) {
+  const remaining = $$('.match-card:not(.joining)');
+  const previousPositions = new Map(remaining.map(card => [card, card.getBoundingClientRect()]));
+  const firstRect = firstButton.getBoundingClientRect(); const secondRect = secondButton.getBoundingClientRect();
+  const meetingX = (firstRect.right + secondRect.left) / 2;
+  const firstShift = meetingX - firstRect.right; const secondShift = meetingX - secondRect.left;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const options = { duration: reduceMotion ? 0 : 340, easing: 'cubic-bezier(.2,.8,.25,1)', fill: 'forwards' };
+  const animations = [
+    firstButton.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${firstShift}px,0)`, opacity: .15 }], options),
+    secondButton.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${secondShift}px,0)`, opacity: .15 }], options)
+  ];
+  await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
+  firstButton.remove(); secondButton.remove();
+  state.completed.push(item);
+  const list = $('#completed-list'); list.querySelector('.completed-empty')?.remove();
+  list.insertAdjacentHTML('beforeend', completedCard(item));
+  list.lastElementChild.animate(
+    [{ opacity: 0, transform: 'translateY(-10px) scale(.97)' }, { opacity: 1, transform: 'translateY(0) scale(1)' }],
+    { duration: reduceMotion ? 0 : 320, easing: 'cubic-bezier(.2,.8,.25,1)' }
+  );
+  $('#completed-count').textContent = `${state.completed.length} of ${state.session.length}`;
+  animateReflow(previousPositions);
+}
+
+function completedCard(item) {
+  return `<div class="completed-collocation"><span>${item.first}</span><span>${item.second}</span><strong aria-label="Correct">✓</strong></div>`;
+}
+
+function renderEasyComplete() {
+  setFeedback('');
+  const percent = Math.round(state.score / state.session.length * 100);
+  $('#exercise').innerHTML = `<div class="easy-complete"><div class="easy-complete-summary"><span class="success-mark">✓</span><div><span class="eyebrow">Set complete</span><h2>${state.score} / ${state.session.length}</h2><p>${percent}% correct</p></div></div><section class="completed-area complete" aria-labelledby="completed-title"><div class="completed-heading"><span id="completed-title">Your completed collocations</span><span>${state.completed.length} of ${state.session.length}</span></div><div class="completed-list">${state.completed.map(completedCard).join('')}</div></section><button id="another-set" type="button" class="primary">Practice another set</button></div>`;
+  $('#another-set').addEventListener('click', startSession);
+  announce(`Session complete. Score ${state.score} out of ${state.session.length}.`);
 }
 
 function completeDraggedPair(dragged, target) {
@@ -130,16 +178,12 @@ function completeDraggedPair(dragged, target) {
   const secondButton = dragged.classList.contains('second') ? dragged : target;
   state.selectedFirst = Number(firstButton.dataset.id);
   matchPair(secondButton);
-  if (firstButton.disabled) [firstButton, secondButton].forEach(button => {
-    button.classList.add('pairing');
-    setTimeout(() => button.classList.remove('pairing'), 360);
-  });
 }
 
 function enablePointerDrag(button) {
   let startX = 0; let startY = 0; let dragging = false; let target = null;
   button.addEventListener('pointerdown', event => {
-    if (button.disabled || event.button > 0) return;
+    if (button.disabled || state.joining || event.button > 0) return;
     startX = event.clientX; startY = event.clientY; dragging = false;
     button.setPointerCapture(event.pointerId);
   });
@@ -169,14 +213,10 @@ function enablePointerDrag(button) {
 function renderQuestion() {
   const item = state.session[state.index];
   const hard = state.mode === 'hard';
-  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">${hard ? 'Active recall' : 'Choose the partner'}</span><h2>${hard ? 'Complete the collocation' : 'Which words go together?'}</h2></div><strong>${progress()}</strong></div><div class="progress-track" aria-hidden="true"><span style="width:${state.index / state.session.length * 100}%"></span></div><p class="instructions">${hard ? 'Use the context to type the word or phrase that completes the collocation.' : 'Choose the word or phrase that naturally completes the collocation.'}</p><div class="prompt"><span>${item.first}</span><span class="blank" aria-hidden="true"></span></div>${hard ? `<p class="context-sentence">“${item.example}”</p><form id="answer-form"><label for="answer">Your answer</label><div class="answer-row"><input id="answer" aria-describedby="feedback" placeholder="Type the missing words…" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Check</button></div></form>` : `<div class="choices">${mediumChoices(item).map(choice => `<button type="button" data-answer="${choice.second}" class="choice">${choice.second}</button>`).join('')}</div>`}<button id="next" type="button" class="primary next" hidden>Continue →</button>`;
+  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">${hard ? 'Active recall' : 'Choose the partner'}</span><h2>${hard ? 'Complete the collocation' : 'Which words go together?'}</h2></div><strong>${progress()}</strong></div><div class="progress-track" aria-hidden="true"><span style="width:${state.index / state.session.length * 100}%"></span></div><p class="instructions">${hard ? 'Use the context to type the word or phrase that completes the collocation.' : 'Choose the word or phrase that naturally completes the collocation.'}</p><div class="prompt"><span>${item.first}</span><span class="blank" aria-hidden="true"></span></div>${hard ? `<p class="context-sentence">“${item.example}”</p><form id="answer-form"><label for="answer">Your answer</label><div class="answer-row"><input id="answer" aria-describedby="feedback" placeholder="Type the missing words…" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Check</button></div></form>` : `<div class="choices">${createMediumChoices(item).map(choice => `<button type="button" data-answer="${choice}" class="choice">${choice}</button>`).join('')}</div>`}<button id="next" type="button" class="primary next" hidden>Continue →</button>`;
   if (hard) { $('#answer-form').addEventListener('submit', event => { event.preventDefault(); checkTyped(item); }); $('#answer').focus(); }
   else $$('.choice').forEach(button => button.addEventListener('click', () => checkChoice(button, item)));
   $('#next').addEventListener('click', nextQuestion);
-}
-function mediumChoices(item) {
-  const distractor = getDistractor(item, pool());
-  return shuffle(distractor ? [item, distractor] : [item]);
 }
 function finishAnswer(ok, item) {
   state.answered = true; if (ok) state.score += 1;
