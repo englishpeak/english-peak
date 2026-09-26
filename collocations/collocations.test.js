@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { COLLOCATIONS, createEasySession, createSession, filterByLevels, getDistractor, isCorrectAnswer } from './collocations.js';
+import { COLLOCATIONS, SESSION_SIZE, createEasySession, createMediumChoices, createSession, filterByLevels, isCorrectAnswer } from './collocations.js';
 
 test('dashboard route uses canonical collocations asset URLs', async () => {
   const html = await readFile(new URL('./index.html', import.meta.url), 'utf8');
@@ -19,6 +19,16 @@ test('catalogue has 200 valid and unique records across every CEFR level', () =>
   assert.equal(new Set(COLLOCATIONS.map(item => item.id)).size, 200);
   assert.deepEqual([...new Set(COLLOCATIONS.map(item => item.level))], ['A1','A2','B1','B2','C1']);
   COLLOCATIONS.forEach(item => assert.equal(item.full, `${item.first} ${item.second}`));
+});
+test('every catalogue record has at least two distinct curated Medium distractors', () => {
+  COLLOCATIONS.forEach(item => {
+    const knownCompletions = new Set(COLLOCATIONS.filter(candidate => candidate.first === item.first).map(candidate => candidate.second));
+    assert.ok(Array.isArray(item.distractors), `${item.full} needs distractors`);
+    assert.ok(item.distractors.length >= 2, `${item.full} needs at least two distractors`);
+    assert.equal(new Set(item.distractors).size, item.distractors.length, `${item.full} repeats a distractor`);
+    assert.equal(item.distractors.includes(item.second), false, `${item.full} includes its answer as a distractor`);
+    item.distractors.forEach(distractor => assert.equal(knownCompletions.has(distractor), false, `${item.first} ${distractor} is another catalogue answer`));
+  });
 });
 test('every catalogue record has one contextual answer blank', () => {
   COLLOCATIONS.forEach(item => {
@@ -46,51 +56,58 @@ test('level filter is ready for one or multiple selections', () => {
   assert.ok(result.length > 10); assert.ok(result.every(item => ['A1','C1'].includes(item.level)));
   assert.equal(filterByLevels(COLLOCATIONS, []).length, 200);
 });
-test('every CEFR filter supplies a complete ten-item exercise pool', () => {
+test('every CEFR filter supplies a complete seven-item exercise pool', () => {
   for (const level of ['A1', 'A2', 'B1', 'B2', 'C1']) {
     const pool = filterByLevels(COLLOCATIONS, [level]);
     assert.equal(pool.length, 40);
     assert.ok(pool.every(item => item.level === level));
-    assert.equal(createSession(pool, 10, () => 0.37).length, 10);
+    assert.equal(createSession(pool, SESSION_SIZE, () => 0.37).length, 7);
   }
 });
 test('easy sessions select different first groups whenever the pool permits', () => {
-  const session = createEasySession(COLLOCATIONS, 10, () => 0.42);
-  assert.equal(session.length, 10); assert.equal(new Set(session.map(item => item.id)).size, 10);
-  assert.equal(new Set(session.map(item => item.first)).size, 10);
+  const session = createEasySession(COLLOCATIONS, SESSION_SIZE, () => 0.42);
+  assert.equal(session.length, 7); assert.equal(new Set(session.map(item => item.id)).size, 7);
+  assert.equal(new Set(session.map(item => item.first)).size, 7);
   for (const level of ['A1', 'A2', 'B1', 'B2', 'C1']) {
-    const levelSession = createEasySession(filterByLevels(COLLOCATIONS, [level]), 10, () => 0.31);
-    assert.equal(new Set(levelSession.map(item => item.first)).size, 10);
+    const levelSession = createEasySession(filterByLevels(COLLOCATIONS, [level]), SESSION_SIZE, () => 0.31);
+    assert.equal(new Set(levelSession.map(item => item.first)).size, 7);
   }
 });
 test('sessions never repeat a collocation and new sets remain valid', () => {
   for (const creator of [createSession, createEasySession]) {
-    const first = creator(COLLOCATIONS, 10, () => 0.17);
-    const next = creator(COLLOCATIONS, 10, () => 0.73);
-    assert.equal(first.length, 10); assert.equal(next.length, 10);
-    assert.equal(new Set(first.map(item => item.id)).size, 10);
+    const first = creator(COLLOCATIONS, SESSION_SIZE, () => 0.17);
+    const next = creator(COLLOCATIONS, SESSION_SIZE, () => 0.73);
+    assert.equal(first.length, 7); assert.equal(next.length, 7);
+    assert.equal(new Set(first.map(item => item.id)).size, 7);
     assert.ok(first.every(item => COLLOCATIONS.includes(item)));
   }
 });
-test('distractors are distinct and favor compatible metadata', () => {
-  const answer = COLLOCATIONS.find(item => item.full === 'make a mistake');
-  const distractor = getDistractor(answer, COLLOCATIONS, () => 0);
-  assert.notEqual(distractor.second, answer.second); assert.notEqual(distractor.first, answer.first);
-  assert.equal(distractor.category, answer.category); assert.equal(distractor.level, answer.level);
-});
-test('medium distractors are never another valid completion from the full catalogue', () => {
-  for (const answer of COLLOCATIONS) {
-    const validSeconds = new Set(COLLOCATIONS.filter(item => item.first === answer.first).map(item => item.second));
-    const distractor = getDistractor(answer, filterByLevels(COLLOCATIONS, [answer.level]), () => 0.5);
-    assert.ok(distractor, `missing distractor for ${answer.full}`);
-    assert.equal(validSeconds.has(distractor.second), false, `${distractor.second} is valid after ${answer.first}`);
+test('Medium draws only from curated distractors and randomizes answer position', () => {
+  for (const item of COLLOCATIONS) {
+    const first = createMediumChoices(item, sequenceRandom(0, 0));
+    const last = createMediumChoices(item, sequenceRandom(0, 0.9));
+    assert.equal(first[0], item.second);
+    assert.equal(last[1], item.second);
+    assert.ok(item.distractors.includes(first[1]), `${item.full} used an uncurated distractor`);
+    assert.ok(item.distractors.includes(last[0]), `${item.full} used an uncurated distractor`);
   }
+});
+test('the Collocations UI uses seven-item progress and completion copy', async () => {
+  const source = await readFile(new URL('./collocations.js', import.meta.url), 'utf8');
+  assert.equal(SESSION_SIZE, 7);
+  assert.match(source, /Build \$\{SESSION_SIZE\} collocations/u);
+  assert.doesNotMatch(source, /Build 10 collocations|10 items/u);
 });
 test('typed comparison ignores case and harmless spacing only', () => {
   assert.equal(isCorrectAnswer('  A   Decision ', 'a decision'), true);
   assert.equal(isCorrectAnswer('decision', 'a decision'), false);
   assert.equal(isCorrectAnswer('a decisions', 'a decision'), false);
 });
+
+function sequenceRandom(...values) {
+  let index = 0;
+  return () => values[index++] ?? values.at(-1);
+}
 
 test('dashboard places one Collocations card first in New Practice before Listen and Write', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
