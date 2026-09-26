@@ -318,7 +318,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
         <button class="btn btn-ghost btn-sm" onclick="loadUsers()">↻ Refresh</button>
       </div>
       <div class="search-bar">
-        <input type="text" id="userSearch" placeholder="Search by name or email..." oninput="filterUsers()">
+        <input type="search" id="userSearch" placeholder="Search by name or email..." oninput="scheduleUserFilter()">
       </div>
       <div class="table-wrap">
         <div id="usersLoading" class="loading"><span class="spinner"></span> Loading users...</div>
@@ -680,6 +680,9 @@ let allUsers = [];
 let selectedUserId = null;
 let selectedStudentAccount = null;
 let activeUserFilter = 'all';
+let userFilterTimer = null;
+let userRowCache = new WeakMap();
+let userSearchCache = new WeakMap();
 const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 
 // ═══════════════════════════════════
@@ -804,6 +807,8 @@ async function loadUsers() {
   }
 
   allUsers = data;
+  userRowCache = new WeakMap();
+  userSearchCache = new WeakMap();
   renderUsers(data);
   updateStats(data);
 }
@@ -821,9 +826,9 @@ function updateStats(data) {
 
 function renderUsers(data) {
   const tbody = document.getElementById('usersBody');
-  tbody.innerHTML = '';
 
   if (data.length === 0) {
+    tbody.replaceChildren();
     document.getElementById('usersTable').style.display = 'none';
     document.getElementById('usersEmpty').style.display = 'block';
     return;
@@ -832,7 +837,12 @@ function renderUsers(data) {
   document.getElementById('usersTable').style.display = 'table';
   document.getElementById('usersEmpty').style.display = 'none';
 
-  data.forEach(user => {
+  // Build the complete table markup once. Appending with innerHTML in a loop
+  // reparses every previously-added row, which made searches increasingly slow.
+  tbody.innerHTML = data.map(user => {
+    const cachedRow = userRowCache.get(user);
+    if (cachedRow) return cachedRow;
+
     const date = new Date(user.created_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
     const tierBadge = user.is_admin
       ? '<span class="tier-badge tier-admin">🛡 Master Admin</span>'
@@ -853,7 +863,7 @@ function renderUsers(data) {
     const actions = user.is_admin ? '<span style="font-size:0.75rem;color:var(--muted)">Master account · full access</span>' :
       `<div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="openTierModal('${user.id}','${user.email}','${user.tier}')">Change tier</button>${user.tier === 'student' ? `<button class="btn btn-primary btn-sm" onclick="openStudentMatchModal('${user.id}')">Match student</button>` : ''}</div>`;
 
-    tbody.innerHTML += `
+    const row = `
       <tr>
         <td>
           <div style="font-weight:500">${user.full_name || '—'}</div>
@@ -864,13 +874,22 @@ function renderUsers(data) {
         <td style="font-size:0.8rem;color:var(--muted)">${date}</td>
         <td>${actions}</td>
       </tr>`;
-  });
+    userRowCache.set(user, row);
+    return row;
+  }).join('');
 }
 
 function filterUsers() {
-  const q = document.getElementById('userSearch').value.toLowerCase();
+  const q = document.getElementById('userSearch').value.trim().toLocaleLowerCase();
   const filtered = allUsers.filter(u => {
-    const matchesSearch = (u.email || '').toLowerCase().includes(q) || (u.full_name || '').toLowerCase().includes(q);
+    // Cache normalized searchable text so each keystroke does not repeatedly
+    // allocate lowercase copies for every signed-up user.
+    let searchText = userSearchCache.get(u);
+    if (searchText === undefined) {
+      searchText = `${u.email || ''}\n${u.full_name || ''}`.toLocaleLowerCase();
+      userSearchCache.set(u, searchText);
+    }
+    const matchesSearch = searchText.includes(q);
     const matchesTier = activeUserFilter === 'all'
       || (activeUserFilter === 'admin' ? u.is_admin : u.tier === activeUserFilter && (activeUserFilter !== 'free' || !u.is_admin));
     return matchesSearch && matchesTier;
@@ -878,7 +897,13 @@ function filterUsers() {
   renderUsers(filtered);
 }
 
+function scheduleUserFilter() {
+  clearTimeout(userFilterTimer);
+  userFilterTimer = setTimeout(filterUsers, 120);
+}
+
 function filterUsersByTier(tier) {
+  clearTimeout(userFilterTimer);
   activeUserFilter = tier;
   document.querySelectorAll('[data-user-filter]').forEach(card => {
     const active = card.dataset.userFilter === tier;
