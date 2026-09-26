@@ -351,6 +351,10 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
+      <div class="ex-card" onclick="openCollocations()">
+        <div class="card-header"><div class="card-icon purple">🔗</div><div class="card-access access-new">New</div></div>
+        <div class="card-body"><div class="card-title">Collocations Practice</div><div class="card-desc">Learn which words naturally go together with matching, two-option, and typed-answer practice.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item">🧩 200 collocations</span></div><button class="card-btn btn-open">Start Practice →</button></div>
+      </div>
       <div class="ex-card" onclick="openListenAndWrite()">
         <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
         <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
@@ -410,10 +414,6 @@ body.download-preview-lock{overflow:hidden}
       <div class="ex-card" onclick="openReading()">
         <div class="card-header"><div class="card-icon red">📖</div><div class="card-access access-new" id="access-reading">New</div></div>
         <div class="card-body"><div class="card-title">Reading Practice</div><div class="card-desc">Twelve modular reading tests with business, science, pop culture and biography passages. Each test includes feedback for every answer and saves scores to My Progress.</div><div class="card-meta"><span class="meta-item">📖 12 tests</span><span class="meta-item">🧠 3 passages each</span><span class="meta-item" id="meta-reading">Loading access...</span></div><button class="card-btn btn-partial" id="btn-reading">Start Practice →</button></div>
-      </div>
-      <div class="ex-card" onclick="openCollocations()">
-        <div class="card-header"><div class="card-icon purple">🔗</div><div class="card-access access-new">New</div></div>
-        <div class="card-body"><div class="card-title">Collocations Practice</div><div class="card-desc">Learn which words naturally go together with matching, two-option, and typed-answer practice.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item">🧩 200 collocations</span></div><button class="card-btn btn-open">Start Practice →</button></div>
       </div>
       <div class="ex-card" id="card-listening" style="display:none" onclick="openListening()">
         <div class="card-header"><div class="card-icon red">🎧</div><div class="card-access access-new" id="access-listening">New</div></div>
