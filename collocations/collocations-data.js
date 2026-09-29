@@ -423,7 +423,7 @@ of|with
 of|for
 at|into
 with|for
-of|at
+under|across
 at|for
 to|with
 at|for
@@ -925,15 +925,20 @@ const DISTRACTORS = DISTRACTOR_ROWS.trim().split('\n').map(row => Object.freeze(
 // relationships discovered during the Easy/Medium ambiguity audit.
 export const SUPPLEMENTAL_ACCEPTED_PARTNERS = Object.freeze({
   make: ['a promise', 'a good decision'],
-  have: ['a break', 'a chance', 'a seat'],
-  take: ['a look', 'a decision', 'a chance', 'a photo'],
+  do: ['a job', 'the research', 'the work'],
+  have: ['a break', 'a chance', 'a seat', 'a decision to make', 'a good idea', 'an advantage'],
+  take: ['a look', 'a decision', 'a chance', 'a photo', 'a shower', 'a breath', 'a risk'],
   get: ['a chance', 'a compliment', 'experience'],
+  give: ['a compliment', 'permission', 'an answer', 'a chance'],
   pay: ['money'],
-  quick: ['learner'],
+  keep: ['control'],
+  quick: ['learner', 'look', 'answer'],
   good: ['effort', 'decision', 'luck', 'time', 'company', 'idea', 'deal'],
   great: ['idea', 'company', 'luck'],
   big: ['decision', 'problem'],
-  strong: ['decision'],
+  strong: ['decision', 'evidence', 'argument', 'relationship'],
+  heavy: ['workload'],
+  deep: ['concern'],
   close: ['connection'],
   serious: ['damage'],
   major: ['concern'],
@@ -941,12 +946,10 @@ export const SUPPLEMENTAL_ACCEPTED_PARTNERS = Object.freeze({
   clear: ['difference'],
   growing: ['problem'],
   reasonable: ['decision'],
-  agree: ['with'],
-  result: ['in'],
-  apologize: ['for', 'to'],
   talk: ['to'],
   care: ['about', 'for'],
   smell: ['like'],
+  hear: ['of'],
   look: ['into', 'after'],
   think: ['of'],
   deeply: ['aware', 'disappointed'],
@@ -972,7 +975,7 @@ export const COLLOCATIONS = Object.freeze(ROWS.trim().split('\n').map((row, inde
     level,
     category,
     example: EXAMPLES[index],
-    distractors: DISTRACTORS[index],
+    mediumDistractors: DISTRACTORS[index],
     acceptedAlternatives: Object.freeze([...new Set([
       ...(CATALOGUE_PARTNERS.get(first) ?? []),
       ...(SUPPLEMENTAL_ACCEPTED_PARTNERS[first] ?? [])

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { COLLOCATIONS, SESSION_SIZE, VALID_PARTNERS, acceptedPartners, createEasySession, createMediumChoices, createMediumSession, createSession, filterByLevels, isAcceptedPair, isCorrectAnswer, isUnambiguousEasyBoard, reduceDragState, safeMediumDistractors } from './collocations.js';
+import { COLLOCATIONS, SESSION_SIZE, VALID_PARTNERS, acceptedPartners, createEasySession, createMediumChoices, createMediumQuestion, createMediumSession, createSession, filterByLevels, isAcceptedPair, isCorrectAnswer, isUnambiguousEasyBoard, isValidPartner, isValidatedDistractor, reduceDragState, safeMediumDistractors } from './collocations.js';
 
 test('dashboard route uses canonical collocations asset URLs', async () => {
   const html = await readFile(new URL('./index.html', import.meta.url), 'utf8');
@@ -25,16 +25,20 @@ test('canonical partner index automatically contains every target', () => {
   COLLOCATIONS.forEach(item => assert.equal(VALID_PARTNERS.get(item.first)?.has(item.second), true, item.full));
   assert.deepEqual(COLLOCATIONS.slice(200).map(item => item.id), Array.from({ length: 100 }, (_, index) => index + 201));
 });
-test('every catalogue record has at least two distinct curated Medium distractors', () => {
+test('all 300 records have only positively validated, canonically invalid Medium distractors', () => {
   COLLOCATIONS.forEach(item => {
     const knownCompletions = new Set(COLLOCATIONS.filter(candidate => candidate.first === item.first).map(candidate => candidate.second));
-    assert.ok(Array.isArray(item.distractors), `${item.full} needs distractors`);
-    assert.ok(item.distractors.length >= 2, `${item.full} needs at least two distractors`);
-    assert.equal(new Set(item.distractors).size, item.distractors.length, `${item.full} repeats a distractor`);
-    assert.equal(item.distractors.includes(item.second), false, `${item.full} includes its answer as a distractor`);
-    item.distractors.forEach(distractor => {
-      assert.equal(knownCompletions.has(distractor), false, `${item.first} ${distractor} is another catalogue answer`);
-      assert.equal(acceptedPartners(item).has(distractor), false, `${item.first} ${distractor} is accepted English`);
+    assert.ok(Array.isArray(item.mediumDistractors), `${item.full} needs distractors`);
+    assert.ok(item.mediumDistractors.length >= 2, `${item.full} needs at least two distractors`);
+    assert.equal(new Set(item.mediumDistractors).size, item.mediumDistractors.length, `${item.full} repeats a distractor`);
+    assert.equal(item.mediumDistractors.includes(item.second), false, `${item.full} includes its answer as a distractor`);
+    item.mediumDistractors.forEach(distractor => {
+      const identity = `record ${item.id}: ${item.first} ${item.second}; offending distractor: ${distractor}`;
+      assert.equal(isValidatedDistractor(item, distractor), true, identity);
+      assert.equal(knownCompletions.has(distractor), false, identity);
+      assert.equal(item.acceptedAlternatives.includes(distractor), false, identity);
+      assert.equal(acceptedPartners(item).has(distractor), false, identity);
+      assert.equal(isValidPartner(item.first, distractor), false, identity);
     });
   });
 });
@@ -96,8 +100,8 @@ test('hundreds of Easy boards across every CEFR filter satisfy the full 7x7 inva
     }
   }
 });
-test('known valid alternatives are represented and cannot oppose one another', () => {
-  for (const [first, second] of [['make','a mistake'], ['make','a decision'], ['make','progress'], ['make','sense'], ['make','an appointment'], ['make','a difference'], ['make','a complaint'], ['take','a break'], ['take','a chance'], ['take','a picture'], ['take','a seat'], ['take','notes'], ['take','responsibility'], ['take','advantage of'], ['take','action'], ['take','part'], ['take','control'], ['talk','to'], ['talk','about'], ['care','for'], ['care','about'], ['smell','of'], ['smell','like'], ['agree','with'], ['agree','on'], ['agree','about'], ['result','in'], ['result','from'], ['quick','meal'], ['quick','learner']]) {
+test('known valid partner families are represented and can never oppose one another', () => {
+  for (const [first, second] of [['make','a mistake'], ['make','a decision'], ['make','progress'], ['make','sense'], ['make','an appointment'], ['make','a difference'], ['make','a complaint'], ['take','a break'], ['take','a chance'], ['take','a picture'], ['take','a seat'], ['take','notes'], ['take','responsibility'], ['take','advantage of'], ['take','action'], ['take','part'], ['take','control'], ['talk','to'], ['talk','about'], ['care','for'], ['care','about'], ['smell','of'], ['smell','like'], ['agree','with'], ['agree','on'], ['agree','about'], ['result','in'], ['result','from'], ['quick','meal'], ['quick','learner'], ['hear','about'], ['hear','of'], ['hear','from'], ['think','about'], ['think','of'], ['ask','for'], ['ask','about'], ['complain','about'], ['complain','to']]) {
     assert.equal(isAcceptedPair(first, second), true, `${first} ${second} should be accepted`);
   }
   const byFull = full => COLLOCATIONS.find(item => item.full === full);
@@ -120,12 +124,13 @@ test('Medium draws only from curated distractors and randomizes answer position'
     const last = createMediumChoices(item, sequenceRandom(0, 0.9));
     assert.equal(first[0], item.second);
     assert.equal(last[1], item.second);
-    assert.ok(item.distractors.includes(first[1]), `${item.full} used an uncurated distractor`);
-    assert.ok(item.distractors.includes(last[0]), `${item.full} used an uncurated distractor`);
+    assert.ok(item.mediumDistractors.includes(first[1]), `${item.full} used an uncurated distractor`);
+    assert.ok(item.mediumDistractors.includes(last[0]), `${item.full} used an uncurated distractor`);
     assert.equal(acceptedPartners(item).has(first[1]), false);
   }
 });
-test('hundreds of Medium questions across every CEFR filter use only invalid distractors', () => {
+test('at least 1,000 Medium questions across every CEFR filter satisfy all three invariants', () => {
+  let questionCount = 0;
   for (const levels of [[], ['A1'], ['A2'], ['B1'], ['B2'], ['C1']]) {
     const pool = filterByLevels(COLLOCATIONS, levels);
     const random = seededRandom(42 + pool.length);
@@ -133,13 +138,25 @@ test('hundreds of Medium questions across every CEFR filter use only invalid dis
       const session = createMediumSession(pool, SESSION_SIZE, random);
       assert.equal(session.length, SESSION_SIZE);
       session.forEach(item => {
-        const choices = createMediumChoices(item, random);
-        const distractor = choices.find(choice => choice !== item.second);
-        assert.equal(isAcceptedPair(item.first, item.second), true);
-        assert.equal(isAcceptedPair(item.first, distractor), false, `${item.first} ${distractor} is valid`);
+        const question = createMediumQuestion(item, random);
+        assert.ok(question);
+        questionCount += 1;
+        assert.equal(isValidPartner(item.first, question.correct), true);
+        assert.equal(isValidatedDistractor(item, question.distractor), true);
+        assert.equal(COLLOCATIONS.some(candidate => candidate.first === item.first && candidate.second === question.distractor), false);
+        assert.equal(item.acceptedAlternatives.includes(question.distractor), false);
+        assert.equal(isValidPartner(item.first, question.distractor), false, `${item.first} ${question.distractor} is valid`);
       });
     }
   }
+  assert.ok(questionCount >= 1000, `only generated ${questionCount} Medium questions`);
+});
+
+test('Medium renders the existing contextual example without changing Advanced recall', async () => {
+  const source = await readFile(new URL('./collocations.js', import.meta.url), 'utf8');
+  assert.match(source, /const mediumQuestion = hard \? null : createMediumQuestion\(item\)/u);
+  assert.match(source, /<p class="context-sentence">“\$\{item\.example\}”<\/p>/u);
+  assert.match(source, /hard \? `<form id="answer-form"/u);
 });
 test('drag state tracks candidates, cancellations, attempts, and cleanup', () => {
   const idle = { active: false, candidate: null, result: null };
