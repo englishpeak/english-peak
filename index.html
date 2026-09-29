@@ -352,8 +352,8 @@ body.download-preview-lock{overflow:hidden}
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
       <div class="ex-card" onclick="openCollocations()">
-        <div class="card-header"><div class="card-icon purple">🔗</div><div class="card-access access-new">New</div></div>
-        <div class="card-body"><div class="card-title">Collocations Practice</div><div class="card-desc">Learn which words naturally go together with matching, two-option, and typed-answer practice.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item">🧩 200 collocations</span></div><button class="card-btn btn-open">Start Practice →</button></div>
+        <div class="card-header"><div class="card-icon purple">🔗</div><div class="card-access access-locked" id="access-collocations">🔐 Members</div></div>
+        <div class="card-body"><div class="card-title">Collocations Practice</div><div class="card-desc">Learn which words naturally go together with matching, two-option, and typed-answer practice.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-collocations">Free account required</span></div><button class="card-btn btn-locked" id="btn-collocations">🔐 Sign in to access</button></div>
       </div>
       <div class="ex-card" onclick="openListenAndWrite()">
         <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
@@ -1002,9 +1002,14 @@ window.addEventListener('message', async function(e) {
       e.source.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, e.origin);
     }
   }
-  if (e.data === 'showModal' || (e.data && e.data.type === 'showModal')) {
+  if (e.data && e.data.type === 'collocationsAccessRequest') {
+    if (e.source && typeof e.source.postMessage === 'function') {
+      e.source.postMessage({ type: 'collocationsAccess', authenticated: Boolean(_currentUser) }, e.origin);
+    }
+  }
+  if (e.data === 'showModal' || (e.data && (e.data.type === 'showModal' || e.data.type === 'showAuthModal'))) {
     if (!_currentUser) {
-      showAuthModal('register');
+      showAuthModal(e.data && e.data.tab === 'login' ? 'login' : 'register');
     } else {
       showModal();
     }
@@ -1181,6 +1186,10 @@ function notifyListenWriteAccess() {
   if (frame && frame.contentWindow) {
     frame.contentWindow.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, window.location.origin);
   }
+  var collocationsFrame = document.getElementById('frame-collocations');
+  if (collocationsFrame && collocationsFrame.contentWindow) {
+    collocationsFrame.contentWindow.postMessage({ type: 'collocationsAccess', authenticated: Boolean(_currentUser) }, window.location.origin);
+  }
 }
 
 function applyTier(tier) {
@@ -1271,6 +1280,14 @@ function applyTier(tier) {
     document.getElementById('btn-reading').className      = 'card-btn btn-partial';
   }
   document.getElementById('reading-badge').textContent = isFullAccess ? '✓ All ' + READING_TOTAL : '🔓 ' + rc + ' of ' + READING_TOTAL;
+  var hasCollocationsAccess = Boolean(_currentUser);
+  var collocationsAccess = document.getElementById('access-collocations');
+  var collocationsMeta = document.getElementById('meta-collocations');
+  var collocationsButton = document.getElementById('btn-collocations');
+  if (collocationsAccess) { collocationsAccess.textContent = hasCollocationsAccess ? '✓ Members' : '🔐 Members'; collocationsAccess.className = 'card-access ' + (hasCollocationsAccess ? 'access-free' : 'access-locked'); }
+  if (collocationsMeta) collocationsMeta.textContent = hasCollocationsAccess ? '200 collocations' : 'Free account required';
+  if (collocationsButton) { collocationsButton.className = 'card-btn ' + (hasCollocationsAccess ? 'btn-open' : 'btn-locked'); collocationsButton.textContent = hasCollocationsAccess ? 'Start Practice →' : '🔐 Sign in to access'; }
+
   var hasTranslationAccess = !!_currentUser || tierKey === 'free' || isFullAccess;
   var tcAccess = document.getElementById('access-translationchallenge');
   var tcMeta = document.getElementById('meta-translationchallenge');
@@ -1853,11 +1870,16 @@ function openEmoji() {
 }
 
 function openCollocations() {
+  if (!_currentUser) {
+    showAuthModal('register');
+    return;
+  }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-collocations').classList.add('active');
   document.getElementById('topbarTitle').textContent = '🔗 Collocations Practice';
   document.getElementById('topbarSub').textContent = 'Learn which words naturally go together';
   document.getElementById('frame-collocations').src = '/collocations';
+  document.getElementById('frame-collocations').addEventListener('load', notifyListenWriteAccess, { once: true });
   closeMobileSidebar();
 }
 
@@ -2815,7 +2837,13 @@ function checkHamburger() {
 window.addEventListener('resize',checkHamburger);
 checkHamburger();
 
-// ── AUTO-OPEN EXERCISE FROM URL PARAMETER ──
+// ── AUTO-OPEN AUTH / EXERCISE FROM URL PARAMETERS ──
+// Direct exercise pages use these existing dashboard auth tabs for sign-in and registration.
+(function() {
+  var authTab = new URLSearchParams(window.location.search).get('auth');
+  if (authTab === 'login' || authTab === 'register') showAuthModal(authTab);
+})();
+
 // Waits for auth session to resolve before opening, so tier-based locks are correct
 (function() {
   var params = new URLSearchParams(window.location.search);

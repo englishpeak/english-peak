@@ -317,11 +317,75 @@ function renderComplete() {
 }
 function renderExercise() { setFeedback(''); state.mode === 'easy' ? renderEasy() : renderQuestion(); }
 
-if (typeof document !== 'undefined') {
+const SUPABASE_URL = 'https://jnqekougzmihjqffhuva.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i';
+let exerciseInitialized = false;
+let collocationsClient = null;
+
+function renderAccessState(authenticated) {
+  const loading = $('#auth-loading');
+  const lock = $('#member-lock');
+  const practice = $('#practice-content');
+  if (!loading || !lock || !practice) return;
+  loading.hidden = true;
+  lock.hidden = authenticated;
+  practice.hidden = !authenticated;
+  if (authenticated && !exerciseInitialized) {
+    exerciseInitialized = true;
+    startSession();
+  }
+}
+
+function requestParentAuth(action) {
+  if (window.parent === window) return;
+  window.parent.postMessage({ type: 'showAuthModal', tab: action }, window.location.origin);
+}
+
+async function initializeMemberAccess() {
   $$('.mode-button').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
   $$('.level-button').forEach(button => button.addEventListener('click', () => setLevel(button.dataset.level)));
   $('#new-set').addEventListener('click', startSession);
-  startSession();
+  $$('[data-auth-action]').forEach(link => link.addEventListener('click', event => {
+    if (window.parent === window) return;
+    event.preventDefault();
+    requestParentAuth(link.dataset.authAction);
+  }));
+
+  window.addEventListener('message', event => {
+    if (event.origin !== window.location.origin || !event.data || event.data.type !== 'collocationsAccess') return;
+    renderAccessState(Boolean(event.data.authenticated));
+  });
+
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: 'collocationsAccessRequest' }, window.location.origin);
+  }
+
+  if (!window.supabase?.createClient) {
+    renderAccessState(false);
+    return;
+  }
+  collocationsClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      storageKey: 'ep-auth-token',
+      storage: {
+        getItem(key) { try { return localStorage.getItem(key); } catch { try { return sessionStorage.getItem(key); } catch { return null; } } },
+        setItem(key, value) { try { localStorage.setItem(key, value); } catch { try { sessionStorage.setItem(key, value); } catch {} } },
+        removeItem(key) { try { localStorage.removeItem(key); } catch { try { sessionStorage.removeItem(key); } catch {} } }
+      }
+    }
+  });
+  try {
+    const { data } = await collocationsClient.auth.getSession();
+    renderAccessState(Boolean(data?.session?.user));
+  } catch {
+    renderAccessState(false);
+  }
+  collocationsClient.auth.onAuthStateChange((_event, session) => renderAccessState(Boolean(session?.user)));
 }
+
+if (typeof document !== 'undefined') initializeMemberAccess();
 
 export { COLLOCATIONS, COLLOCATION_LEVELS };

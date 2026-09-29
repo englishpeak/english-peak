@@ -9,9 +9,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/brand-tokens.css">
   <link rel="stylesheet" href="/collocations/collocations.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="ep-brand-scope">
   <main class="page-shell">
+    <section id="auth-loading" class="auth-loading" aria-live="polite">
+      <span class="auth-spinner" aria-hidden="true"></span>
+      <p>Checking your ePeak account…</p>
+    </section>
+
+    <section id="member-lock" class="member-lock" hidden aria-labelledby="member-lock-title">
+      <div class="lock-symbol" aria-hidden="true">🔐</div>
+      <span class="eyebrow">Members-only practice</span>
+      <h1 id="member-lock-title">Collocations Practice</h1>
+      <p>Practice collocations with interactive matching, multiple choice and contextual exercises.</p>
+      <strong>Create a free ePeak account to practice.</strong>
+      <div class="member-actions">
+        <a class="primary" href="/?auth=register" data-auth-action="register">Create account</a>
+        <a class="secondary" href="/?auth=login" data-auth-action="login">Sign in</a>
+      </div>
+    </section>
+
+    <div id="practice-content" hidden>
     <header class="page-header">
       <span class="eyebrow">Vocabulary practice</span>
       <h1>Collocations</h1>
@@ -37,6 +56,7 @@
       <div id="feedback" class="feedback" aria-live="polite"></div>
     </section>
     <p id="live-region" class="sr-only" aria-live="assertive"></p>
+    </div>
   </main>
   <script type="module" src="/collocations/collocations.js"></script>
 </body>
