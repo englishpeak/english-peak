@@ -338,7 +338,7 @@ to|towards
 to|towards
 of|with
 for|of
-of|on
+under|across
 to|on
 for|over
 against|about
@@ -353,7 +353,7 @@ of|behind
 against|of
 of|out of
 against|out of
-like|from
+at|for
 of|against
 on|by
 to|at
@@ -619,6 +619,39 @@ export const COLLOCATION_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1']);
 
 const DISTRACTORS = DISTRACTOR_ROWS.trim().split('\n').map(row => Object.freeze(row.split('|')));
 
+// Common partners which are valid English but are not necessarily catalogue
+// targets for the same first component. Catalogue siblings are added
+// automatically below, so this table only records cross-group and out-of-list
+// relationships discovered during the Easy/Medium ambiguity audit.
+const ACCEPTED_PARTNERS = Object.freeze({
+  make: ['a promise', 'a good decision'],
+  have: ['a break', 'a chance', 'a seat'],
+  take: ['a look', 'a decision', 'a chance'],
+  get: ['a chance', 'a compliment'],
+  pay: ['money'],
+  quick: ['learner'],
+  good: ['effort', 'decision', 'luck', 'time', 'company', 'idea', 'deal'],
+  great: ['idea', 'company', 'luck'],
+  big: ['decision', 'problem'],
+  strong: ['decision'],
+  talk: ['to'],
+  care: ['about', 'for'],
+  smell: ['like'],
+  look: ['into', 'after'],
+  think: ['of'],
+  deeply: ['aware', 'disappointed'],
+  highly: ['aware'],
+  absolutely: ['right', 'clear', 'certain', 'wrong'],
+  perfectly: ['aware', 'right', 'wrong'],
+  painfully: ['clear']
+});
+
+const CATALOGUE_PARTNERS = new Map();
+ROWS.trim().split('\n').forEach(row => {
+  const [first, second] = row.split('|');
+  CATALOGUE_PARTNERS.set(first, [...(CATALOGUE_PARTNERS.get(first) ?? []), second]);
+});
+
 export const COLLOCATIONS = Object.freeze(ROWS.trim().split('\n').map((row, index) => {
   const [first, second, level, category] = row.split('|');
   return Object.freeze({
@@ -629,6 +662,10 @@ export const COLLOCATIONS = Object.freeze(ROWS.trim().split('\n').map((row, inde
     level,
     category,
     example: EXAMPLES[index],
-    distractors: DISTRACTORS[index]
+    distractors: DISTRACTORS[index],
+    acceptedAlternatives: Object.freeze([...new Set([
+      ...(CATALOGUE_PARTNERS.get(first) ?? []),
+      ...(ACCEPTED_PARTNERS[first] ?? [])
+    ])].filter(partner => partner !== second))
   });
 }));
