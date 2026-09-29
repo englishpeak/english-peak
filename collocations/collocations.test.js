@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { COLLOCATIONS, SESSION_SIZE, acceptedPartners, createEasySession, createMediumChoices, createMediumSession, createSession, filterByLevels, isAcceptedPair, isCorrectAnswer, isUnambiguousEasyBoard, reduceDragState, safeMediumDistractors } from './collocations.js';
+import { COLLOCATIONS, SESSION_SIZE, VALID_PARTNERS, acceptedPartners, createEasySession, createMediumChoices, createMediumSession, createSession, filterByLevels, isAcceptedPair, isCorrectAnswer, isUnambiguousEasyBoard, reduceDragState, safeMediumDistractors } from './collocations.js';
 
 test('dashboard route uses canonical collocations asset URLs', async () => {
   const html = await readFile(new URL('./index.html', import.meta.url), 'utf8');
@@ -14,11 +14,16 @@ test('dashboard route uses canonical collocations asset URLs', async () => {
   assert.equal(new URL(module, 'https://epeak.app/collocations').pathname, '/collocations/collocations.js');
 });
 
-test('catalogue has 200 valid and unique records across every CEFR level', () => {
-  assert.equal(COLLOCATIONS.length, 200);
-  assert.equal(new Set(COLLOCATIONS.map(item => item.id)).size, 200);
+test('catalogue has 300 valid and unique records across every CEFR level', () => {
+  assert.equal(COLLOCATIONS.length, 300);
+  assert.equal(new Set(COLLOCATIONS.map(item => item.id)).size, 300);
   assert.deepEqual([...new Set(COLLOCATIONS.map(item => item.level))], ['A1','A2','B1','B2','C1']);
   COLLOCATIONS.forEach(item => assert.equal(item.full, `${item.first} ${item.second}`));
+});
+test('canonical partner index automatically contains every target', () => {
+  assert.equal(new Set(COLLOCATIONS.map(item => item.full.trim().replace(/\s+/gu, ' ').toLowerCase())).size, 300);
+  COLLOCATIONS.forEach(item => assert.equal(VALID_PARTNERS.get(item.first)?.has(item.second), true, item.full));
+  assert.deepEqual(COLLOCATIONS.slice(200).map(item => item.id), Array.from({ length: 100 }, (_, index) => index + 201));
 });
 test('every catalogue record has at least two distinct curated Medium distractors', () => {
   COLLOCATIONS.forEach(item => {
@@ -57,12 +62,12 @@ test('catalogue contains the supplied groups in their original order', () => {
 test('level filter is ready for one or multiple selections', () => {
   const result = filterByLevels(COLLOCATIONS, ['A1','C1']);
   assert.ok(result.length > 10); assert.ok(result.every(item => ['A1','C1'].includes(item.level)));
-  assert.equal(filterByLevels(COLLOCATIONS, []).length, 200);
+  assert.equal(filterByLevels(COLLOCATIONS, []).length, 300);
 });
 test('every CEFR filter supplies a complete seven-item exercise pool', () => {
   for (const level of ['A1', 'A2', 'B1', 'B2', 'C1']) {
     const pool = filterByLevels(COLLOCATIONS, [level]);
-    assert.equal(pool.length, 40);
+    assert.ok(pool.length >= 7);
     assert.ok(pool.every(item => item.level === level));
     assert.equal(createSession(pool, SESSION_SIZE, () => 0.37).length, 7);
   }
@@ -76,18 +81,23 @@ test('easy sessions select different first groups whenever the pool permits', ()
     assert.equal(new Set(levelSession.map(item => item.first)).size, 7);
   }
 });
-test('many randomized Easy boards expose exactly one accepted partner per first', () => {
+test('hundreds of Easy boards across every CEFR filter satisfy the full 7x7 invariant', () => {
   const random = seededRandom(981723);
-  for (let run = 0; run < 500; run += 1) {
-    const board = createEasySession(COLLOCATIONS, SESSION_SIZE, random);
-    assert.equal(board.length, SESSION_SIZE);
-    assert.equal(isUnambiguousEasyBoard(board), true);
-    const visibleSeconds = board.map(item => item.second);
-    board.forEach(item => assert.equal(visibleSeconds.filter(second => isAcceptedPair(item.first, second)).length, 1));
+  for (const levels of [[], ['A1'], ['A2'], ['B1'], ['B2'], ['C1']]) {
+    const pool = filterByLevels(COLLOCATIONS, levels);
+    for (let run = 0; run < 100; run += 1) {
+      const board = createEasySession(pool, SESSION_SIZE, random);
+      assert.equal(board.length, SESSION_SIZE);
+      assert.equal(isUnambiguousEasyBoard(board), true);
+      const firsts = board.map(item => item.first); const seconds = board.map(item => item.second);
+      assert.equal(new Set(board.map(item => item.id)).size, SESSION_SIZE);
+      firsts.forEach(first => assert.equal(seconds.filter(second => isAcceptedPair(first, second)).length, 1));
+      seconds.forEach(second => assert.equal(firsts.filter(first => isAcceptedPair(first, second)).length, 1));
+    }
   }
 });
 test('known valid alternatives are represented and cannot oppose one another', () => {
-  for (const [first, second] of [['talk','to'], ['talk','about'], ['care','for'], ['care','about'], ['smell','of'], ['smell','like'], ['quick','meal'], ['quick','learner']]) {
+  for (const [first, second] of [['make','a mistake'], ['make','a decision'], ['make','progress'], ['make','sense'], ['make','an appointment'], ['make','a difference'], ['make','a complaint'], ['take','a break'], ['take','a chance'], ['take','a picture'], ['take','a seat'], ['take','notes'], ['take','responsibility'], ['take','advantage of'], ['take','action'], ['take','part'], ['take','control'], ['talk','to'], ['talk','about'], ['care','for'], ['care','about'], ['smell','of'], ['smell','like'], ['agree','with'], ['agree','on'], ['agree','about'], ['result','in'], ['result','from'], ['quick','meal'], ['quick','learner']]) {
     assert.equal(isAcceptedPair(first, second), true, `${first} ${second} should be accepted`);
   }
   const byFull = full => COLLOCATIONS.find(item => item.full === full);
@@ -115,18 +125,21 @@ test('Medium draws only from curated distractors and randomizes answer position'
     assert.equal(acceptedPartners(item).has(first[1]), false);
   }
 });
-test('every generated Medium question rejects targets and all known valid partners', () => {
-  const session = createMediumSession(COLLOCATIONS, COLLOCATIONS.length, seededRandom(42));
-  assert.equal(session.length, COLLOCATIONS.length);
-  session.forEach(item => {
-    const safe = safeMediumDistractors(item);
-    assert.ok(safe.length > 0, `${item.full} should have a safe distractor`);
-    for (let run = 0; run < 10; run += 1) {
-      const distractor = createMediumChoices(item, seededRandom(run)).find(choice => choice !== item.second);
-      assert.notEqual(distractor, item.second);
-      assert.equal(acceptedPartners(item).has(distractor), false, `${item.first} ${distractor} is valid`);
+test('hundreds of Medium questions across every CEFR filter use only invalid distractors', () => {
+  for (const levels of [[], ['A1'], ['A2'], ['B1'], ['B2'], ['C1']]) {
+    const pool = filterByLevels(COLLOCATIONS, levels);
+    const random = seededRandom(42 + pool.length);
+    for (let run = 0; run < 100; run += 1) {
+      const session = createMediumSession(pool, SESSION_SIZE, random);
+      assert.equal(session.length, SESSION_SIZE);
+      session.forEach(item => {
+        const choices = createMediumChoices(item, random);
+        const distractor = choices.find(choice => choice !== item.second);
+        assert.equal(isAcceptedPair(item.first, item.second), true);
+        assert.equal(isAcceptedPair(item.first, distractor), false, `${item.first} ${distractor} is valid`);
+      });
     }
-  });
+  }
 });
 test('drag state tracks candidates, cancellations, attempts, and cleanup', () => {
   const idle = { active: false, candidate: null, result: null };

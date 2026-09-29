@@ -204,7 +204,107 @@ perfectly|normal|C1|Adverb + Adjective / Verb
 perfectly|clear|C1|Adverb + Adjective / Verb
 perfectly|safe|C1|Adverb + Adjective / Verb
 perfectly|capable|C1|Adverb + Adjective / Verb
-perfectly|honest|C1|Adverb + Adjective / Verb`;
+perfectly|honest|C1|Adverb + Adjective / Verb
+make|progress|A2|Verb + Noun
+make|sense|A2|Verb + Noun
+make|an appointment|A2|Verb + Noun
+make|a difference|B1|Verb + Noun
+make|a complaint|B1|Verb + Noun
+take|responsibility|B1|Verb + Noun
+take|advantage of|B2|Verb + Noun
+take|action|B1|Verb + Noun
+take|part|A2|Verb + Noun
+take|control|B1|Verb + Noun
+have|experience|A2|Verb + Noun
+have|difficulty|B1|Verb + Noun
+have|access|B1|Verb + Noun
+have|confidence|B1|Verb + Noun
+have|an impact|B2|Verb + Noun
+give|advice|A2|Verb + Noun
+give|permission|B1|Verb + Noun
+give|someone a hand|A2|Verb + Noun
+give|an example|A2|Verb + Noun
+give|priority to|B2|Verb + Noun
+get|permission|B1|Verb + Noun
+get|involved|B1|Verb + Noun
+get|attention|B1|Verb + Noun
+get|the impression|B2|Verb + Noun
+get|rid of|B1|Verb + Noun
+keep|control|B1|Verb + Noun
+keep|track of|B2|Verb + Noun
+keep|an eye on|B1|Verb + Noun
+keep|your distance|B1|Verb + Noun
+keep|records|B2|Verb + Noun
+reach|an agreement|B1|Verb + Noun
+reach|a conclusion|B2|Verb + Noun
+reach|a decision|B1|Verb + Noun
+reach|a goal|B1|Verb + Noun
+reach|a compromise|B2|Verb + Noun
+raise|awareness|B2|Verb + Noun
+raise|money|A2|Verb + Noun
+raise|a question|B1|Verb + Noun
+raise|concerns|B2|Verb + Noun
+raise|standards|B2|Verb + Noun
+close|friend|A1|Adjective + Noun
+close|relationship|B1|Adjective + Noun
+close|attention|B1|Adjective + Noun
+serious|problem|A2|Adjective + Noun
+serious|injury|B1|Adjective + Noun
+serious|consequences|B2|Adjective + Noun
+serious|concern|B2|Adjective + Noun
+major|problem|B1|Adjective + Noun
+major|change|B1|Adjective + Noun
+major|role|B1|Adjective + Noun
+major|challenge|B2|Adjective + Noun
+key|factor|B2|Adjective + Noun
+key|role|B1|Adjective + Noun
+key|issue|B2|Adjective + Noun
+key|difference|B2|Adjective + Noun
+clear|message|A2|Adjective + Noun
+clear|evidence|B2|Adjective + Noun
+clear|understanding|B2|Adjective + Noun
+clear|distinction|C1|Adjective + Noun
+clear|advantage|B2|Adjective + Noun
+growing|concern|B2|Adjective + Noun
+growing|demand|B2|Adjective + Noun
+growing|number|B1|Adjective + Noun
+growing|awareness|B2|Adjective + Noun
+growing|pressure|B2|Adjective + Noun
+reasonable|price|B1|Adjective + Noun
+reasonable|explanation|B2|Adjective + Noun
+reasonable|chance|B1|Adjective + Noun
+reasonable|assumption|C1|Adjective + Noun
+reasonable|request|B2|Adjective + Noun
+deal|with|B1|Verb + Preposition
+cope|with|B2|Verb + Preposition
+agree|on|B1|Verb + Preposition
+agree|about|B1|Verb + Preposition
+approve|of|B2|Verb + Preposition
+benefit|from|B1|Verb + Preposition
+contribute|to|B2|Verb + Preposition
+refer|to|B2|Verb + Preposition
+respond|to|B1|Verb + Preposition
+react|to|B1|Verb + Preposition
+lead|to|B2|Verb + Preposition
+result|from|B2|Verb + Preposition
+account|for|C1|Verb + Preposition
+search|for|A2|Verb + Preposition
+ask|about|A1|Verb + Preposition
+think|of|A2|Verb + Preposition
+learn|about|A1|Verb + Preposition
+hear|from|A2|Verb + Preposition
+complain|to|B1|Verb + Preposition
+apologize|about|B1|Verb + Preposition
+closely|related|B2|Adverb + Adjective / Verb
+closely|connected|B2|Adverb + Adjective / Verb
+closely|associated|C1|Adverb + Adjective / Verb
+seriously|injured|B1|Adverb + Adjective / Verb
+seriously|concerned|B2|Adverb + Adjective / Verb
+seriously|consider|B2|Adverb + Adjective / Verb
+greatly|appreciate|B2|Adverb + Adjective / Verb
+greatly|improve|B1|Adverb + Adjective / Verb
+clearly|understand|B1|Adverb + Adjective / Verb
+clearly|demonstrate|C1|Adverb + Adjective / Verb`;
 
 // Two prevalidated wrong completions for every catalogue row. These are kept as
 // data (rather than borrowed from other collocations at runtime) so Medium mode
@@ -309,11 +409,11 @@ traffic|weather
 traffic|weather
 traffic|weather
 traffic|weather
-to|about
+for|to
 on|with
 to|at
 for|over
-about|after
+on|with
 on|at
 with|for
 on|by
@@ -408,7 +508,107 @@ tiny|partial
 tiny|partial
 tiny|partial
 tiny|partial
-tiny|partial`;
+tiny|partial
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a research
+a homework|a progress
+a homework|a progress
+a homework|a progress
+a homework|a progress
+a homework|a progress
+an advice|a progress
+an advice|a progress
+an advice|a progress
+an advice|a progress
+an advice|a progress
+a progress|a decision
+a progress|a decision
+a progress|a decision
+a progress|a decision
+a progress|a decision
+an advice|a sense
+an advice|a sense
+an advice|a sense
+an advice|a sense
+an advice|a sense
+a decision|an agreement
+a decision|an agreement
+a decision|an agreement
+a decision|an agreement
+a decision|an agreement
+an appointment|a complaint
+an appointment|a complaint
+an appointment|a complaint
+an appointment|a complaint
+an appointment|a complaint
+a decision|an appointment
+a decision|an appointment
+a decision|an appointment
+a decision|an appointment
+a decision|an appointment
+solution|result
+solution|result
+solution|result
+price|message
+price|message
+price|message
+price|message
+friend|evidence
+friend|evidence
+friend|evidence
+friend|evidence
+relationship|price
+relationship|price
+relationship|price
+relationship|price
+friend|pressure
+friend|pressure
+friend|pressure
+friend|pressure
+friend|pressure
+price|explanation
+price|explanation
+price|explanation
+price|explanation
+price|explanation
+injury|role
+injury|role
+injury|role
+injury|role
+injury|role
+for|to
+for|of
+for|to
+for|to
+on|from
+of|to
+for|with
+with|from
+on|for
+on|for
+with|from
+to|with
+to|with
+about|to
+on|of
+at|for
+on|of
+to|on
+of|from
+on|with
+aware|improve
+aware|improve
+aware|improve
+connected|appreciate
+connected|appreciate
+connected|appreciate
+related|consider
+related|consider
+injured|associated
+injured|associated`;
 
 // Contexts are deliberately stored beside the catalogue rather than in the UI.
 // Each entry aligns with the row at the same index and contains one answer blank.
@@ -612,7 +812,107 @@ const EXAMPLES = [
   'Let me be perfectly _____: the deadline cannot move.',
   'The path is perfectly _____ in daylight, but avoid it after dark.',
   'With her experience, she is perfectly _____ of leading the project.',
-  'To be perfectly _____, I did not enjoy the film.'
+  'To be perfectly _____, I did not enjoy the film.',
+  'She practices every day and is finally starting to make _____.',
+  'Once the missing detail was explained, the confusing instructions began to make _____.',
+  'I called the dentist to make _____ for Tuesday morning.',
+  'Even a small donation can make _____ to a child’s future.',
+  'The meal was cold, so the customer asked to make _____ to the manager.',
+  'The manager admitted the error and agreed to take _____ for what happened.',
+  'Students should take _____ the free language workshops.',
+  'The council must take _____ now to prevent further flooding.',
+  'More than fifty runners will take _____ in Sunday’s race.',
+  'The pilot had to take _____ of the aircraft manually.',
+  'Applicants should have _____ of working with young children.',
+  'Some learners have _____ understanding very fast speech.',
+  'Only authorized staff have _____ to these confidential files.',
+  'After weeks of practice, she finally had _____ in her ability to present.',
+  'The new railway could have _____ on local wildlife.',
+  'A financial expert can give _____ about saving for retirement.',
+  'A parent must give _____ before a child joins the trip.',
+  'These boxes are heavy; could you give _____ carrying them?',
+  'The teacher asked Maya to give _____ of renewable energy.',
+  'During the shortage, hospitals will give _____ emergency patients.',
+  'You must get _____ from the owner before entering the land.',
+  'She decided to get _____ in the local environmental campaign.',
+  'The bright warning sign was designed to get _____.',
+  'From his relaxed smile, I got _____ that the interview had gone well.',
+  'We need to get _____ these broken chairs before moving.',
+  'Despite the panic around her, the captain managed to keep _____.',
+  'Use this app to keep _____ your daily expenses.',
+  'Could you keep _____ my bag while I buy a ticket?',
+  'The sign warns visitors to keep _____ from the wild animals.',
+  'Clinics must keep _____ of every patient’s treatment.',
+  'After hours of negotiation, both sides finally reached _____.',
+  'After reviewing all the evidence, the jury reached _____.',
+  'The panel expects to reach _____ by Friday.',
+  'Careful planning helped the team reach _____ of reducing waste by half.',
+  'Neither side got everything it wanted, but they reached _____.',
+  'The campaign aims to raise _____ about mental health at work.',
+  'The school fair will raise _____ for new library books.',
+  'The unexpected result may raise _____ about the accuracy of the test.',
+  'The cracks in the bridge have raised _____ about public safety.',
+  'The new training programme is intended to raise _____ across the industry.',
+  'I have known Lena since childhood, and she is still a close _____.',
+  'The twins have always shared a close _____.',
+  'Please pay close _____ to the emergency instructions.',
+  'Water leaking near electrical wires is a serious _____.',
+  'Fortunately, everyone escaped the crash without serious _____.',
+  'Ignoring the safety rules could have serious _____.',
+  'The rapid loss of forest is a serious _____ for local communities.',
+  'A shortage of trained staff remains a major _____.',
+  'Moving production overseas would be a major _____ for the company.',
+  'Public transport will play a major _____ in reducing traffic.',
+  'Providing clean water to every village is a major _____.',
+  'Regular practice is a key _____ in language learning.',
+  'The goalkeeper played a key _____ in the team’s victory.',
+  'The cost of housing is a key _____ in the election.',
+  'Price is the key _____ between the two plans.',
+  'The election result sent a clear _____ that voters wanted change.',
+  'The fingerprints provided clear _____ linking him to the scene.',
+  'Before signing, make sure you have a clear _____ of the terms.',
+  'The law draws a clear _____ between personal and business expenses.',
+  'Her fluency gave her a clear _____ over the other candidates.',
+  'Air pollution is a growing _____ among city residents.',
+  'Factories are expanding to meet growing _____ for electric cars.',
+  'A growing _____ of commuters now cycle to work.',
+  'There is growing _____ of the need to protect oceans.',
+  'The minister faces growing _____ to resign.',
+  'The hotel offers clean rooms at a reasonable _____.',
+  'There must be a reasonable _____ for why the alarm sounded.',
+  'With more training, she has a reasonable _____ of winning.',
+  'Given the dark clouds, rain was a reasonable _____.',
+  'Asking for one day’s notice seems like a reasonable _____.',
+  'A trained mediator helped the neighbours deal _____ their dispute.',
+  'He found it hard to cope _____ the stress of two jobs.',
+  'Before booking, we need to agree _____ a date.',
+  'The experts agree _____ the need for urgent reform.',
+  'Her parents do not approve _____ her decision to leave college.',
+  'Small businesses will benefit _____ the lower tax rate.',
+  'Regular exercise can contribute _____ better mental health.',
+  'In her speech, the minister referred _____ the latest report.',
+  'The company failed to respond _____ my email.',
+  'Some patients may react badly _____ this medicine.',
+  'A lack of sleep can lead _____ poor concentration.',
+  'The damage appears to result _____ years of neglect.',
+  'Online sales now account _____ half of the company’s income.',
+  'Rescue teams continued to search _____ the missing climber.',
+  'At reception, ask _____ the guided tours.',
+  'Can you think _____ a safer way to cross the river?',
+  'The class visited the museum to learn _____ local history.',
+  'I hope to hear _____ the employer after my interview.',
+  'If the service is poor, complain _____ the duty manager.',
+  'I called to apologize _____ the confusion over your booking.',
+  'The two issues are closely _____, so we should discuss them together.',
+  'Diet and long-term health are closely _____.',
+  'The condition is closely _____ with prolonged exposure to dust.',
+  'Two passengers were seriously _____ in the collision.',
+  'Doctors are seriously _____ about the patient’s sudden decline.',
+  'With rent rising, we must seriously _____ moving to a smaller office.',
+  'We would greatly _____ your feedback on the proposal.',
+  'Better lighting would greatly _____ safety on this road.',
+  'Before starting, make sure you clearly _____ the instructions.',
+  'The trial results clearly _____ the treatment’s effectiveness.'
 ];
 
 export const COLLOCATION_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1']);
@@ -623,17 +923,27 @@ const DISTRACTORS = DISTRACTOR_ROWS.trim().split('\n').map(row => Object.freeze(
 // targets for the same first component. Catalogue siblings are added
 // automatically below, so this table only records cross-group and out-of-list
 // relationships discovered during the Easy/Medium ambiguity audit.
-const ACCEPTED_PARTNERS = Object.freeze({
+export const SUPPLEMENTAL_ACCEPTED_PARTNERS = Object.freeze({
   make: ['a promise', 'a good decision'],
   have: ['a break', 'a chance', 'a seat'],
-  take: ['a look', 'a decision', 'a chance'],
-  get: ['a chance', 'a compliment'],
+  take: ['a look', 'a decision', 'a chance', 'a photo'],
+  get: ['a chance', 'a compliment', 'experience'],
   pay: ['money'],
   quick: ['learner'],
   good: ['effort', 'decision', 'luck', 'time', 'company', 'idea', 'deal'],
   great: ['idea', 'company', 'luck'],
   big: ['decision', 'problem'],
   strong: ['decision'],
+  close: ['connection'],
+  serious: ['damage'],
+  major: ['concern'],
+  key: ['advantage'],
+  clear: ['difference'],
+  growing: ['problem'],
+  reasonable: ['decision'],
+  agree: ['with'],
+  result: ['in'],
+  apologize: ['for', 'to'],
   talk: ['to'],
   care: ['about', 'for'],
   smell: ['like'],
@@ -665,7 +975,7 @@ export const COLLOCATIONS = Object.freeze(ROWS.trim().split('\n').map((row, inde
     distractors: DISTRACTORS[index],
     acceptedAlternatives: Object.freeze([...new Set([
       ...(CATALOGUE_PARTNERS.get(first) ?? []),
-      ...(ACCEPTED_PARTNERS[first] ?? [])
+      ...(SUPPLEMENTAL_ACCEPTED_PARTNERS[first] ?? [])
     ])].filter(partner => partner !== second))
   });
 }));

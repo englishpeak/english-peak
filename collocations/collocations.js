@@ -1,4 +1,4 @@
-import { COLLOCATIONS, COLLOCATION_LEVELS } from './collocations-data.js';
+import { COLLOCATIONS, COLLOCATION_LEVELS, SUPPLEMENTAL_ACCEPTED_PARTNERS } from './collocations-data.js';
 
 export const SESSION_SIZE = 7;
 export const MODES = Object.freeze(['easy', 'medium', 'hard']);
@@ -6,6 +6,20 @@ export const MODES = Object.freeze(['easy', 'medium', 'hard']);
 export function normalizeAnswer(value) {
   return String(value ?? '').trim().replace(/\s+/gu, ' ').toLowerCase();
 }
+
+export function buildValidPartnerIndex(catalogue = COLLOCATIONS, supplemental = SUPPLEMENTAL_ACCEPTED_PARTNERS) {
+  const index = new Map();
+  const add = (first, second) => {
+    const key = normalizeAnswer(first);
+    if (!index.has(key)) index.set(key, new Set());
+    index.get(key).add(normalizeAnswer(second));
+  };
+  catalogue.forEach(item => add(item.first, item.second));
+  Object.entries(supplemental).forEach(([first, seconds]) => seconds.forEach(second => add(first, second)));
+  return index;
+}
+
+export const VALID_PARTNERS = buildValidPartnerIndex();
 
 export function shuffle(items, random = Math.random) {
   const result = [...items];
@@ -26,21 +40,22 @@ export function createSession(pool, count = SESSION_SIZE, random = Math.random) 
 }
 
 export function acceptedPartners(item, catalogue = COLLOCATIONS) {
-  return new Set([
-    item.second,
-    ...(item.acceptedAlternatives ?? []),
-    ...catalogue.filter(candidate => candidate.first === item.first).map(candidate => candidate.second)
-  ]);
+  const index = catalogue === COLLOCATIONS ? VALID_PARTNERS : buildValidPartnerIndex(catalogue, {});
+  return new Set(index.get(normalizeAnswer(item.first)) ?? []);
 }
 
 export function isAcceptedPair(first, second, catalogue = COLLOCATIONS) {
-  const records = catalogue.filter(item => item.first === first);
-  return records.some(item => acceptedPartners(item, catalogue).has(second));
+  const index = catalogue === COLLOCATIONS ? VALID_PARTNERS : buildValidPartnerIndex(catalogue, {});
+  return index.get(normalizeAnswer(first))?.has(normalizeAnswer(second)) ?? false;
 }
 
 export function isUnambiguousEasyBoard(items, catalogue = COLLOCATIONS) {
+  if (new Set(items.map(item => normalizeAnswer(item.first))).size !== items.length ||
+      new Set(items.map(item => normalizeAnswer(item.second))).size !== items.length) return false;
+  const firsts = items.map(item => item.first);
   const seconds = items.map(item => item.second);
-  return items.every(item => seconds.filter(second => isAcceptedPair(item.first, second, catalogue)).length === 1);
+  return firsts.every(first => seconds.filter(second => isAcceptedPair(first, second, catalogue)).length === 1) &&
+    seconds.every(second => firsts.filter(first => isAcceptedPair(first, second, catalogue)).length === 1);
 }
 
 export function createEasySession(pool, count = SESSION_SIZE, random = Math.random) {
@@ -63,8 +78,8 @@ export function createEasySession(pool, count = SESSION_SIZE, random = Math.rand
 }
 
 export function safeMediumDistractors(item, catalogue = COLLOCATIONS) {
-  const accepted = acceptedPartners(item, catalogue);
-  return [...new Set(item.distractors ?? [])].filter(distractor => distractor !== item.second && !accepted.has(distractor));
+  return [...new Set(item.distractors ?? [])].filter(distractor =>
+    normalizeAnswer(distractor) !== normalizeAnswer(item.second) && !isAcceptedPair(item.first, distractor, catalogue));
 }
 
 export function createMediumChoices(item, random = Math.random, catalogue = COLLOCATIONS) {
@@ -151,9 +166,9 @@ async function matchPair(secondButton) {
   const correct = state.selectedFirst === Number(secondButton.dataset.id);
   if (!correct) {
     if (isAcceptedPair(firstButton.textContent.trim(), secondButton.textContent.trim())) {
-      state.selectedFirst = null; firstButton.classList.remove('selected');
-      setFeedback('That is valid English, but this board has another intended partner. Try another tile.', 'valid');
-      announce('That combination is valid English. Try another tile on this board.');
+      console.warn(`[Collocations] Ambiguous Easy board escaped validation: ${firstButton.textContent.trim()} + ${secondButton.textContent.trim()}`);
+      setFeedback('This set contained an ambiguous pairing, so a new set has been prepared.', 'valid');
+      startSession();
       return;
     }
     [firstButton, secondButton].forEach(button => { button.classList.add('incorrect'); setTimeout(() => button.classList.remove('incorrect'), 450); });
