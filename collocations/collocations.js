@@ -44,10 +44,13 @@ export function acceptedPartners(item, catalogue = COLLOCATIONS) {
   return new Set(index.get(normalizeAnswer(item.first)) ?? []);
 }
 
-export function isAcceptedPair(first, second, catalogue = COLLOCATIONS) {
+export function isValidPartner(first, second, catalogue = COLLOCATIONS) {
   const index = catalogue === COLLOCATIONS ? VALID_PARTNERS : buildValidPartnerIndex(catalogue, {});
   return index.get(normalizeAnswer(first))?.has(normalizeAnswer(second)) ?? false;
 }
+
+// Backwards-compatible name used by the Easy board code and existing callers.
+export const isAcceptedPair = isValidPartner;
 
 export function isUnambiguousEasyBoard(items, catalogue = COLLOCATIONS) {
   if (new Set(items.map(item => normalizeAnswer(item.first))).size !== items.length ||
@@ -78,16 +81,49 @@ export function createEasySession(pool, count = SESSION_SIZE, random = Math.rand
 }
 
 export function safeMediumDistractors(item, catalogue = COLLOCATIONS) {
-  return [...new Set(item.distractors ?? [])].filter(distractor =>
-    normalizeAnswer(distractor) !== normalizeAnswer(item.second) && !isAcceptedPair(item.first, distractor, catalogue));
+  return [...new Set(item.mediumDistractors ?? [])].filter(distractor =>
+    isValidatedDistractor(item, distractor) && !isValidPartner(item.first, distractor, catalogue));
+}
+
+export function isValidatedDistractor(item, distractor) {
+  const normalized = normalizeAnswer(distractor);
+  return normalized !== normalizeAnswer(item.second) &&
+    (item.mediumDistractors ?? []).some(candidate => normalizeAnswer(candidate) === normalized);
+}
+
+function reportInvalidMediumQuestion(item, distractor, catalogue) {
+  const details = {
+    id: item.id,
+    first: item.first,
+    target: item.second,
+    distractor,
+    targetIsValid: isValidPartner(item.first, item.second, catalogue),
+    distractorIsCurated: isValidatedDistractor(item, distractor),
+    distractorIsValid: isValidPartner(item.first, distractor, catalogue)
+  };
+  if (globalThis.process?.env?.NODE_ENV !== 'production') console.error('[Collocations] Refusing invalid Medium question', details);
+}
+
+export function createMediumQuestion(item, random = Math.random, catalogue = COLLOCATIONS) {
+  const safe = safeMediumDistractors(item, catalogue);
+  if (!safe.length || !isValidPartner(item.first, item.second, catalogue)) {
+    reportInvalidMediumQuestion(item, safe[0], catalogue);
+    return null;
+  }
+  const distractor = safe[Math.floor(random() * safe.length)];
+  const choices = [item.second, distractor];
+  const orderedChoices = random() < 0.5 ? choices : choices.reverse();
+  if (!isValidPartner(item.first, item.second, catalogue) ||
+      !isValidatedDistractor(item, distractor) ||
+      isValidPartner(item.first, distractor, catalogue)) {
+    reportInvalidMediumQuestion(item, distractor, catalogue);
+    return null;
+  }
+  return Object.freeze({ item, correct: item.second, distractor, choices: Object.freeze(orderedChoices), context: item.example });
 }
 
 export function createMediumChoices(item, random = Math.random, catalogue = COLLOCATIONS) {
-  const safe = safeMediumDistractors(item, catalogue);
-  if (!safe.length) return [];
-  const distractor = safe[Math.floor(random() * safe.length)];
-  const choices = [item.second, distractor];
-  return random() < 0.5 ? choices : choices.reverse();
+  return createMediumQuestion(item, random, catalogue)?.choices ?? [];
 }
 
 export function createMediumSession(pool, count = SESSION_SIZE, random = Math.random) {
@@ -302,7 +338,9 @@ function enablePointerDrag(button) {
 function renderQuestion() {
   const item = state.session[state.index];
   const hard = state.mode === 'hard';
-  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">${hard ? 'Active recall' : 'Choose the partner'}</span><h2>${hard ? 'Complete the collocation' : 'Which words go together?'}</h2></div><strong>${progress()}</strong></div><div class="progress-track" aria-hidden="true"><span style="width:${state.index / state.session.length * 100}%"></span></div><p class="instructions">${hard ? 'Use the context to type the word or phrase that completes the collocation.' : 'Choose the word or phrase that naturally completes the collocation.'}</p><div class="prompt"><span>${item.first}</span><span class="blank" aria-hidden="true"></span></div>${hard ? `<p class="context-sentence">“${item.example}”</p><form id="answer-form"><label for="answer">Your answer</label><div class="answer-row"><input id="answer" aria-describedby="feedback" placeholder="Type the missing words…" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Check</button></div></form>` : `<div class="choices">${createMediumChoices(item).map(choice => `<button type="button" data-answer="${choice}" class="choice">${choice}</button>`).join('')}</div>`}<button id="next" type="button" class="primary next" hidden>Continue →</button>`;
+  const mediumQuestion = hard ? null : createMediumQuestion(item);
+  if (!hard && !mediumQuestion) { startSession(); return; }
+  $('#exercise').innerHTML = `<div class="exercise-heading"><div><span class="eyebrow">${hard ? 'Active recall' : 'Choose the partner'}</span><h2>${hard ? 'Complete the collocation' : 'Which words go together?'}</h2></div><strong>${progress()}</strong></div><div class="progress-track" aria-hidden="true"><span style="width:${state.index / state.session.length * 100}%"></span></div><p class="instructions">${hard ? 'Use the context to type the word or phrase that completes the collocation.' : 'Use the context to choose the word or phrase that naturally completes the collocation.'}</p><div class="prompt"><span>${item.first}</span><span class="blank" aria-hidden="true"></span></div><p class="context-sentence">“${item.example}”</p>${hard ? `<form id="answer-form"><label for="answer">Your answer</label><div class="answer-row"><input id="answer" aria-describedby="feedback" placeholder="Type the missing words…" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Check</button></div></form>` : `<div class="choices">${mediumQuestion.choices.map(choice => `<button type="button" data-answer="${choice}" class="choice">${choice}</button>`).join('')}</div>`}<button id="next" type="button" class="primary next" hidden>Continue →</button>`;
   if (hard) { $('#answer-form').addEventListener('submit', event => { event.preventDefault(); checkTyped(item); }); $('#answer').focus(); }
   else $$('.choice').forEach(button => button.addEventListener('click', () => checkChoice(button, item)));
   $('#next').addEventListener('click', nextQuestion);
