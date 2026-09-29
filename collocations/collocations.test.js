@@ -170,3 +170,28 @@ test('dashboard places one Collocations card first in New Practice before Listen
   assert.equal((html.match(/onclick="openCollocations\(\)"/gu) ?? []).length, 1);
   assert.ok(newPractice.indexOf('Collocations Practice') < newPractice.indexOf('Listen and Write'));
 });
+
+test('dashboard marks Collocations as member-only and unlocks solely from authentication', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="access-collocations">🔐 Members/u);
+  assert.match(html, /id="meta-collocations">Free account required/u);
+  assert.match(html, /var hasCollocationsAccess = Boolean\(_currentUser\)/u);
+  assert.doesNotMatch(html, /hasCollocationsAccess = hasFullAccessTier/u);
+  assert.match(html, /function openCollocations\(\) \{\s*if \(!_currentUser\)/u);
+});
+
+test('direct Collocations route uses the shared ePeak Supabase session and has a locked state', async () => {
+  const [html, source] = await Promise.all([
+    readFile(new URL('./index.html', import.meta.url), 'utf8'),
+    readFile(new URL('./collocations.js', import.meta.url), 'utf8')
+  ]);
+  assert.match(html, /id="member-lock"/u);
+  assert.match(html, /Create a free ePeak account to practice\./u);
+  assert.match(html, /href="\/\?auth=register"/u);
+  assert.match(html, /href="\/\?auth=login"/u);
+  assert.match(source, /storageKey: 'ep-auth-token'/u);
+  assert.match(source, /auth\.getSession\(\)/u);
+  assert.match(source, /auth\.onAuthStateChange/u);
+  assert.match(source, /renderAccessState\(Boolean\(session\?\.user\)\)/u);
+  assert.doesNotMatch(source, /tier|premium|subscription/iu);
+});
