@@ -51,8 +51,10 @@ button { -webkit-tap-highlight-color: transparent; }
 .match-card.selected { border-color: var(--ep-navy); background: rgba(13,59,111,.07); box-shadow: inset 3px 0 var(--ep-navy); }
 .match-card.incorrect { border-color: rgba(198,40,40,.45); background: rgba(198,40,40,.06); animation: tile-miss .36s ease; }
 .match-card:disabled { cursor: default; opacity: .6; }
-.match-card.dragging { z-index: 10; animation-play-state: paused; border-color: rgba(13,59,111,.38); box-shadow: 0 14px 28px rgba(13,59,111,.2); cursor: grabbing; }
-.match-card.drop-target { animation-play-state: paused; border-color: var(--ep-purple); box-shadow: 0 0 0 3px rgba(71,0,116,.1), 0 8px 20px rgba(13,59,111,.12); }
+.match-grid.is-dragging .match-card { animation-play-state: paused; }
+.match-card.drag-source { opacity: .28; cursor: grabbing; }
+.match-card.drag-ghost { position: fixed; z-index: 1000; pointer-events: none; transform-origin: center; border-color: rgba(13,59,111,.38); box-shadow: 0 14px 28px rgba(13,59,111,.2); cursor: grabbing; will-change: transform; }
+.match-card.drop-target { animation-play-state: paused; border-color: var(--ep-purple); background-color: rgba(71,0,116,.055); box-shadow: 0 0 0 3px rgba(71,0,116,.1), 0 8px 20px rgba(13,59,111,.12); transform: translateY(-1px) scale(1.012); }
 .match-card.joining { z-index: 4; animation-play-state: paused; pointer-events: none; border-color: rgba(26,122,74,.32); color: var(--ep-navy); opacity: 1; }
 .match-card.pastel-1 { background: #f4f7fc; }
 .match-card.pastel-2 { background: #f7f3fa; }
@@ -106,6 +108,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .feedback:empty { display: none; }
 .feedback.correct { border: 1px solid rgba(26,122,74,.2); background: rgba(26,122,74,.07); color: var(--ep-success); }
 .feedback.wrong { border: 1px solid rgba(198,40,40,.2); background: rgba(198,40,40,.06); color: var(--ep-error); }
+.feedback.valid { border: 1px solid rgba(13,59,111,.2); background: rgba(13,59,111,.06); color: var(--ep-navy); }
 .success-state { display: grid; place-items: center; align-content: center; min-height: 340px; text-align: center; }
 .success-mark { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 16px; border-radius: 50%; background: rgba(26,122,74,.1); color: var(--ep-success); font-size: 1.5rem; }
 .success-state h2 { font-size: 3.15rem; }

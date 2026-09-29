@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { COLLOCATIONS, SESSION_SIZE, createEasySession, createMediumChoices, createSession, filterByLevels, isCorrectAnswer } from './collocations.js';
+import { COLLOCATIONS, SESSION_SIZE, acceptedPartners, createEasySession, createMediumChoices, createMediumSession, createSession, filterByLevels, isAcceptedPair, isCorrectAnswer, isUnambiguousEasyBoard, reduceDragState, safeMediumDistractors } from './collocations.js';
 
 test('dashboard route uses canonical collocations asset URLs', async () => {
   const html = await readFile(new URL('./index.html', import.meta.url), 'utf8');
@@ -27,7 +27,10 @@ test('every catalogue record has at least two distinct curated Medium distractor
     assert.ok(item.distractors.length >= 2, `${item.full} needs at least two distractors`);
     assert.equal(new Set(item.distractors).size, item.distractors.length, `${item.full} repeats a distractor`);
     assert.equal(item.distractors.includes(item.second), false, `${item.full} includes its answer as a distractor`);
-    item.distractors.forEach(distractor => assert.equal(knownCompletions.has(distractor), false, `${item.first} ${distractor} is another catalogue answer`));
+    item.distractors.forEach(distractor => {
+      assert.equal(knownCompletions.has(distractor), false, `${item.first} ${distractor} is another catalogue answer`);
+      assert.equal(acceptedPartners(item).has(distractor), false, `${item.first} ${distractor} is accepted English`);
+    });
   });
 });
 test('every catalogue record has one contextual answer blank', () => {
@@ -73,6 +76,25 @@ test('easy sessions select different first groups whenever the pool permits', ()
     assert.equal(new Set(levelSession.map(item => item.first)).size, 7);
   }
 });
+test('many randomized Easy boards expose exactly one accepted partner per first', () => {
+  const random = seededRandom(981723);
+  for (let run = 0; run < 500; run += 1) {
+    const board = createEasySession(COLLOCATIONS, SESSION_SIZE, random);
+    assert.equal(board.length, SESSION_SIZE);
+    assert.equal(isUnambiguousEasyBoard(board), true);
+    const visibleSeconds = board.map(item => item.second);
+    board.forEach(item => assert.equal(visibleSeconds.filter(second => isAcceptedPair(item.first, second)).length, 1));
+  }
+});
+test('known valid alternatives are represented and cannot oppose one another', () => {
+  for (const [first, second] of [['talk','to'], ['talk','about'], ['care','for'], ['care','about'], ['smell','of'], ['smell','like'], ['quick','meal'], ['quick','learner']]) {
+    assert.equal(isAcceptedPair(first, second), true, `${first} ${second} should be accepted`);
+  }
+  const byFull = full => COLLOCATIONS.find(item => item.full === full);
+  assert.equal(isUnambiguousEasyBoard([byFull('talk about'), byFull('listen to')]), false);
+  assert.equal(isUnambiguousEasyBoard([byFull('smell of'), { ...byFull('fast learner'), second: 'like' }]), false);
+  assert.equal(isUnambiguousEasyBoard([byFull('quick meal'), byFull('fast learner')]), false);
+});
 test('sessions never repeat a collocation and new sets remain valid', () => {
   for (const creator of [createSession, createEasySession]) {
     const first = creator(COLLOCATIONS, SESSION_SIZE, () => 0.17);
@@ -90,7 +112,35 @@ test('Medium draws only from curated distractors and randomizes answer position'
     assert.equal(last[1], item.second);
     assert.ok(item.distractors.includes(first[1]), `${item.full} used an uncurated distractor`);
     assert.ok(item.distractors.includes(last[0]), `${item.full} used an uncurated distractor`);
+    assert.equal(acceptedPartners(item).has(first[1]), false);
   }
+});
+test('every generated Medium question rejects targets and all known valid partners', () => {
+  const session = createMediumSession(COLLOCATIONS, COLLOCATIONS.length, seededRandom(42));
+  assert.equal(session.length, COLLOCATIONS.length);
+  session.forEach(item => {
+    const safe = safeMediumDistractors(item);
+    assert.ok(safe.length > 0, `${item.full} should have a safe distractor`);
+    for (let run = 0; run < 10; run += 1) {
+      const distractor = createMediumChoices(item, seededRandom(run)).find(choice => choice !== item.second);
+      assert.notEqual(distractor, item.second);
+      assert.equal(acceptedPartners(item).has(distractor), false, `${item.first} ${distractor} is valid`);
+    }
+  });
+});
+test('drag state tracks candidates, cancellations, attempts, and cleanup', () => {
+  const idle = { active: false, candidate: null, result: null };
+  const started = reduceDragState(idle, { type: 'start' });
+  assert.deepEqual(started, { active: true, candidate: null, result: null });
+  const overFirst = reduceDragState(started, { type: 'candidate', id: 12 });
+  assert.equal(overFirst.candidate, 12);
+  const overSecond = reduceDragState(overFirst, { type: 'candidate', id: 18 });
+  assert.equal(overSecond.candidate, 18);
+  const cleared = reduceDragState(overSecond, { type: 'candidate', id: null });
+  assert.equal(reduceDragState(cleared, { type: 'drop' }).result, 'cancel');
+  const attempted = reduceDragState(overSecond, { type: 'drop' });
+  assert.deepEqual(attempted, { active: false, candidate: null, result: 'attempt' });
+  assert.deepEqual(reduceDragState(attempted, { type: 'cleanup' }), attempted);
 });
 test('the Collocations UI uses seven-item progress and completion copy', async () => {
   const source = await readFile(new URL('./collocations.js', import.meta.url), 'utf8');
@@ -107,6 +157,11 @@ test('typed comparison ignores case and harmless spacing only', () => {
 function sequenceRandom(...values) {
   let index = 0;
   return () => values[index++] ?? values.at(-1);
+}
+
+function seededRandom(seed) {
+  let value = seed >>> 0;
+  return () => { value = (value * 1664525 + 1013904223) >>> 0; return value / 4294967296; };
 }
 
 test('dashboard places one Collocations card first in New Practice before Listen and Write', async () => {

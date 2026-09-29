@@ -25,24 +25,67 @@ export function createSession(pool, count = SESSION_SIZE, random = Math.random) 
   return shuffle(pool, random).slice(0, Math.min(count, pool.length));
 }
 
+export function acceptedPartners(item, catalogue = COLLOCATIONS) {
+  return new Set([
+    item.second,
+    ...(item.acceptedAlternatives ?? []),
+    ...catalogue.filter(candidate => candidate.first === item.first).map(candidate => candidate.second)
+  ]);
+}
+
+export function isAcceptedPair(first, second, catalogue = COLLOCATIONS) {
+  const records = catalogue.filter(item => item.first === first);
+  return records.some(item => acceptedPartners(item, catalogue).has(second));
+}
+
+export function isUnambiguousEasyBoard(items, catalogue = COLLOCATIONS) {
+  const seconds = items.map(item => item.second);
+  return items.every(item => seconds.filter(second => isAcceptedPair(item.first, second, catalogue)).length === 1);
+}
+
 export function createEasySession(pool, count = SESSION_SIZE, random = Math.random) {
   if (!pool.length) return [];
   const groups = new Map();
   pool.forEach(item => groups.set(item.first, [...(groups.get(item.first) ?? []), item]));
-  const selected = shuffle([...groups.values()], random)
-    .slice(0, Math.min(count, groups.size))
-    .map(group => shuffle(group, random)[0]);
-  if (selected.length < Math.min(count, pool.length)) {
-    const selectedIds = new Set(selected.map(item => item.id));
-    selected.push(...shuffle(pool.filter(item => !selectedIds.has(item.id)), random).slice(0, count - selected.length));
+  const wanted = Math.min(count, groups.size);
+  // Greedy construction checks the whole partial board after every addition.
+  // Multiple randomized passes avoid exposing a board unless all cross-pairs
+  // have exactly one accepted partner.
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    const selected = [];
+    for (const group of shuffle([...groups.values()], random)) {
+      const candidate = shuffle(group, random).find(item => isUnambiguousEasyBoard([...selected, item]));
+      if (candidate) selected.push(candidate);
+      if (selected.length === wanted) return selected;
+    }
   }
-  return selected;
+  return [];
 }
 
-export function createMediumChoices(item, random = Math.random) {
-  const distractor = item.distractors[Math.floor(random() * item.distractors.length)];
+export function safeMediumDistractors(item, catalogue = COLLOCATIONS) {
+  const accepted = acceptedPartners(item, catalogue);
+  return [...new Set(item.distractors ?? [])].filter(distractor => distractor !== item.second && !accepted.has(distractor));
+}
+
+export function createMediumChoices(item, random = Math.random, catalogue = COLLOCATIONS) {
+  const safe = safeMediumDistractors(item, catalogue);
+  if (!safe.length) return [];
+  const distractor = safe[Math.floor(random() * safe.length)];
   const choices = [item.second, distractor];
   return random() < 0.5 ? choices : choices.reverse();
+}
+
+export function createMediumSession(pool, count = SESSION_SIZE, random = Math.random) {
+  return createSession(pool.filter(item => safeMediumDistractors(item).length), count, random);
+}
+
+export function reduceDragState(state, action) {
+  if (action.type === 'start') return { active: true, candidate: null, result: null };
+  if (!state.active) return state;
+  if (action.type === 'candidate') return { ...state, candidate: action.id ?? null };
+  if (action.type === 'drop') return { active: false, candidate: null, result: state.candidate ? 'attempt' : 'cancel' };
+  if (action.type === 'cleanup') return { active: false, candidate: null, result: state.result };
+  return state;
 }
 
 export function isCorrectAnswer(actual, expected) {
@@ -65,7 +108,7 @@ function updateMeta() {
 }
 function startSession() {
   const available = pool();
-  const makeSession = () => state.mode === 'easy' ? createEasySession(available) : createSession(available);
+  const makeSession = () => state.mode === 'easy' ? createEasySession(available) : state.mode === 'medium' ? createMediumSession(available) : createSession(available);
   let nextSession = makeSession();
   // A refresh should visibly refresh, not occasionally reproduce the same set.
   for (let attempt = 0; attempt < 4 && nextSession.map(item => item.id).join(',') === state.previousIds; attempt += 1) nextSession = makeSession();
@@ -107,6 +150,12 @@ async function matchPair(secondButton) {
   const firstButton = $(`.match-card.first[data-id="${state.selectedFirst}"]`);
   const correct = state.selectedFirst === Number(secondButton.dataset.id);
   if (!correct) {
+    if (isAcceptedPair(firstButton.textContent.trim(), secondButton.textContent.trim())) {
+      state.selectedFirst = null; firstButton.classList.remove('selected');
+      setFeedback('That is valid English, but this board has another intended partner. Try another tile.', 'valid');
+      announce('That combination is valid English. Try another tile on this board.');
+      return;
+    }
     [firstButton, secondButton].forEach(button => { button.classList.add('incorrect'); setTimeout(() => button.classList.remove('incorrect'), 450); });
     state.missed.add(state.selectedFirst); state.selectedFirst = null; firstButton.classList.remove('selected'); setFeedback('✕ Not quite — try another partner.', 'wrong'); announce('Not quite. Try another partner.'); return;
   }
@@ -181,7 +230,21 @@ function completeDraggedPair(dragged, target) {
 }
 
 function enablePointerDrag(button) {
-  let startX = 0; let startY = 0; let dragging = false; let target = null;
+  let startX = 0; let startY = 0; let dragging = false; let target = null; let ghost = null;
+  const updateTarget = (x, y) => {
+    const oppositeClass = button.classList.contains('first') ? 'second' : 'first';
+    const candidates = $$(`.match-card.${oppositeClass}:not(:disabled)`);
+    // Use pointer geometry rather than hover events. The small inset tolerance
+    // makes edge drops forgiving while nearest-distance selection guarantees
+    // that no more than one tile can be active.
+    const hits = candidates.map(card => {
+      const rect = card.getBoundingClientRect(); const tolerance = 8;
+      const inside = x >= rect.left - tolerance && x <= rect.right + tolerance && y >= rect.top - tolerance && y <= rect.bottom + tolerance;
+      return { card, inside, distance: Math.hypot(x - (rect.left + rect.width / 2), y - (rect.top + rect.height / 2)) };
+    }).filter(hit => hit.inside).sort((a, b) => a.distance - b.distance);
+    target?.classList.remove('drop-target'); target = hits[0]?.card ?? null; target?.classList.add('drop-target');
+  };
+  const moveGhost = (x, y) => { if (ghost) ghost.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.02)`; };
   button.addEventListener('pointerdown', event => {
     if (button.disabled || state.joining || event.button > 0) return;
     startX = event.clientX; startY = event.clientY; dragging = false;
@@ -191,23 +254,34 @@ function enablePointerDrag(button) {
     if (!button.hasPointerCapture(event.pointerId)) return;
     const x = event.clientX - startX; const y = event.clientY - startY;
     if (!dragging && Math.hypot(x, y) < 6) return;
-    dragging = true; button.classList.add('dragging'); button.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.025)`;
-    $$('.match-card').forEach(card => card.classList.remove('drop-target'));
-    const candidate = document.elementFromPoint(event.clientX, event.clientY)?.closest('.match-card');
-    const opposite = candidate && candidate !== button && !candidate.disabled && candidate.classList.contains(button.classList.contains('first') ? 'second' : 'first');
-    target = opposite ? candidate : null;
-    target?.classList.add('drop-target');
+    if (!dragging) {
+      dragging = true; button.classList.add('drag-source'); $('.match-grid').classList.add('is-dragging');
+      const rect = button.getBoundingClientRect();
+      ghost = button.cloneNode(true); ghost.removeAttribute('id'); ghost.classList.remove('drag-source'); ghost.classList.add('drag-ghost');
+      Object.assign(ghost.style, { left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px`, margin: '0', animation: 'none' });
+      document.body.append(ghost);
+    }
+    moveGhost(x, y); updateTarget(event.clientX, event.clientY);
   });
-  const finish = event => {
+  const finish = async (event, cancelled = false) => {
     if (!button.hasPointerCapture(event.pointerId)) return;
-    button.releasePointerCapture(event.pointerId); button.classList.remove('dragging'); button.style.transform = '';
-    target?.classList.remove('drop-target');
+    button.releasePointerCapture(event.pointerId);
+    const droppedTarget = cancelled ? null : target; target?.classList.remove('drop-target'); target = null;
     if (dragging) button.dataset.suppressClick = 'true';
-    if (dragging && target) completeDraggedPair(button, target);
-    target = null; dragging = false;
+    if (dragging && ghost && !droppedTarget) {
+      const rect = button.getBoundingClientRect();
+      const animation = ghost.animate(
+        [{ transform: ghost.style.transform }, { transform: `translate3d(${rect.left - parseFloat(ghost.style.left)}px, ${rect.top - parseFloat(ghost.style.top)}px, 0) scale(1)` }],
+        { duration: 180, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' }
+      );
+      await animation.finished.catch(() => {});
+    }
+    ghost?.remove(); ghost = null; button.classList.remove('drag-source'); $('.match-grid')?.classList.remove('is-dragging');
+    dragging = false;
+    if (droppedTarget) completeDraggedPair(button, droppedTarget);
   };
   button.addEventListener('pointerup', finish);
-  button.addEventListener('pointercancel', finish);
+  button.addEventListener('pointercancel', event => finish(event, true));
 }
 
 function renderQuestion() {
