@@ -15,9 +15,10 @@ const sandbox = {
   window: { location: { search: '' } },
   document: { getElementById: () => null },
 };
-vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"]; globalThis.test32 = testData["Test 32"]; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
+vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"]; globalThis.test32 = testData["Test 32"]; globalThis.test33 = testData["Test 33"]; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
 const test31 = sandbox.test31;
 const test32 = sandbox.test32;
+const test33 = sandbox.test33;
 const test30Source = html.match(/"Test 30": \[([\s\S]*?)\n\s*\],/);
 
 assert.ok(test30Source, 'Test 30 should be present in ibt/index.html');
@@ -75,7 +76,7 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
-  assert.match(html, /tests: \['Test 31', 'Test 32'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33'\]/);
 });
 
 test('Test 31 deep links remain supported as an optional entry path', () => {
@@ -109,9 +110,9 @@ function parentIBTAccess(tier) {
 test('every full-access tier sends Test 31 in the iframe allowed parameter', () => {
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     const access = parentIBTAccess(tier);
-    assert.equal(access.allowed.length, 32, tier);
-    assert.deepEqual(access.allowed.slice(-2), ['Test 31', 'Test 32'], tier);
-    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-2), ['Test 31', 'Test 32'], tier);
+    assert.equal(access.allowed.length, 33, tier);
+    assert.deepEqual(access.allowed.slice(-3), ['Test 31', 'Test 32', 'Test 33'], tier);
+    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-3), ['Test 31', 'Test 32', 'Test 33'], tier);
   }
 });
 
@@ -369,7 +370,7 @@ test('results use item-level Practice Accuracy instead of an unofficial TOEFL sc
 
 
 test('Test 32 is enabled in the updated catalog and preserves the complete section sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33'\]/);
   assert.equal(test32.length, 27);
   assert.deepEqual([...new Set(test32.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: ['Test 32'], key: 'Test 32' });
@@ -426,4 +427,58 @@ test('Test 32 extended tasks retain established timing and sentence behavior', (
   const markup = renderPracticeComponent(`repeatSentenceIndex = 0; renderRepeatSentence(testData['Test 32'].find(task => task.type === 'listen-repeat-updated'))`);
   assert.match(markup, /Sentence 1 of 7/);
   assert.match(markup, />Show Text<\/button>/);
+});
+
+test('Test 33 is enabled with the complete updated practice sequence', () => {
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33'\]/);
+  assert.equal(test33.length, 27);
+  assert.deepEqual([...new Set(test33.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
+  assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(test33, (task) => task.section)).map(([section, tasks]) => [section, tasks.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
+  const result = catalogControl({ allowedTests: ['Test 33'], populatedTests: ['Test 33'], key: 'Test 33' });
+  assert.equal(result.control.disabled, false);
+});
+
+test('all twenty Test 33 prefix and suffix pairs reconstruct exactly without DOM separators', () => {
+  const expected = [
+    'Coral reefs support an extraordinary variety of marine life. Although corals may resemble rocks or plants, they are colonies of small animals that live together. Many reef-building corals maintain a close relationship with tiny algae living inside their tissues. The algae use sunlight to produce nutrients, some of which are transferred to the coral. In return, the algae receive shelter and access to compounds they need for photosynthesis. This partnership helps corals grow efficiently in tropical waters where certain nutrients may be scarce.',
+    'Writing systems allowed people to preserve information beyond the limits of human memory. Some early systems developed from visual symbols representing objects, quantities, or ideas. Over time, however, written signs could acquire more abstract functions, including the representation of sounds. This change made it possible to record a much wider range of language. Writing did not develop in exactly the same way in every society, and different systems often combined several principles. Their invention nevertheless transformed administration, trade, literature, and the transmission of knowledge across generations.',
+  ];
+  test33.filter((task) => task.type === 'complete-words').forEach((task, taskIndex) => {
+    assert.equal(task.answers.length, 10);
+    let answer = 0;
+    assert.equal(task.text.replace(/\[\d+\]/g, () => task.answers[answer++]), expected[taskIndex]);
+    const markup = sandbox.renderCompleteWordsText(task.text);
+    assert.equal((markup.match(/class="incomplete-word"/g) || []).length, 10);
+    assert.equal((markup.match(/<\/span>/g) || []).length, 10);
+    assert.doesNotMatch(markup, /class="incomplete-word">[^<]+\s+<input/);
+    assert.doesNotMatch(markup, /class="incomplete-word">[^<]+&nbsp;<input/);
+  });
+});
+
+test('Test 33 uses all exact audio paths with hidden listening scripts', () => {
+  const listening = test33.filter((task) => task.section === 'Listening');
+  assert.equal(listening.length, 10);
+  assert.deepEqual([...listening].map((task) => task.audioUrl), [8,9,10,11,15,16,18,19,20,21].map((number) => `../audio/ibt/test-33/task-${number}.mp3`));
+  for (const task of listening) {
+    const markup = sandbox.renderScriptControl(task.script);
+    assert.match(markup, />Show Script<\/button>/);
+    assert.match(markup, /practice-transcript" hidden/);
+  }
+  const repeat = test33.find((task) => task.type === 'listen-repeat-updated');
+  assert.deepEqual([...repeat.sentences].map((sentence) => sentence.audio), Array.from({length: 7}, (_, index) => `../audio/ibt/test-33/sentence-${index + 1}.mp3`));
+});
+
+test('Test 33 scoring and extended-task contracts match Tests 31 and 32', () => {
+  const objectiveCount = test33.reduce((total, task) => {
+    if (['writing-email', 'academic-discussion', 'listen-repeat-updated', 'take-interview'].includes(task.type)) return total;
+    if (task.type === 'complete-words') return total + task.answers.length;
+    if (task.questions) return total + task.questions.length;
+    return total + 1;
+  }, 0);
+  assert.equal(objectiveCount, 61);
+  assert.equal(test33.find((task) => task.type === 'writing-email').time, 420);
+  assert.equal(test33.find((task) => task.type === 'academic-discussion').time, 600);
+  assert.equal(test33.find((task) => task.type === 'take-interview').responseTime, 45);
+  test33.filter((task) => task.type === 'build-sentence').forEach((task) => assert.equal(task.words.length, task.correctOrder.length + 1));
+  assert.equal(test33.find((task) => task.type === 'listen-repeat-updated').sentences.length, 7);
 });
