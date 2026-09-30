@@ -2,8 +2,8 @@
   "rewrites": [
     { "source": "/teachers",        "destination": "/teachers/index.html" },
     { "source": "/teachers/:path*", "destination": "/teachers/index.html" },
-    { "source": "/itp-mc",          "destination": "/itp-mc/index.html" },
-    { "source": "/itp-mc/:path*",   "destination": "/itp-mc/index.html" },
+    { "source": "/multiple-choice",        "destination": "/multiple-choice/index.html" },
+    { "source": "/multiple-choice/:path*", "destination": "/multiple-choice/index.html" },
     { "source": "/emoji",           "destination": "/emoji/index.html" },
     { "source": "/emoji/:path*",    "destination": "/emoji/index.html" },
     { "source": "/irregular-verbs",        "destination": "/irregular-verbs/index.html" },

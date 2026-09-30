@@ -386,7 +386,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
             <option value="">All exercise types</option>
             <option value="TOEFL ITP">TOEFL ITP</option>
             <option value="TOEFL iBT">TOEFL iBT</option>
-            <option value="ITP Multiple Choice">ITP Multiple Choice</option>
+            <option value="Multiple choice">Multiple choice</option>
             <option value="Unscramble">Unscramble</option>
             <option value="Emoji Flashcards">Emoji Flashcards</option>
           </select>
@@ -1507,7 +1507,7 @@ function renderAdminProgress(data) {
   table.style.display = 'table';
   tbody.innerHTML = '';
 
-  const typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','ITP Multiple Choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'};
+  const typeIcon = {'TOEFL ITP':'🎯','TOEFL iBT':'🌐','Multiple choice':'📝','Unscramble':'🔀','Emoji Flashcards':'😊','Conversation':'💬'};
 
   data.forEach(row => {
     const date = new Date(row.completed_at);
