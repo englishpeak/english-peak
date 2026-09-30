@@ -2652,11 +2652,16 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
 
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
     let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
+    let currentAudioObjectUrl = '';
 
     function start(k) { _currentTestKey = k; curSet=testData[k]; idx=0; results=[]; switchScreen('screen-exercise'); render(); }
 
     function render() {
         clearInterval(timer);
+        if (currentAudioObjectUrl) {
+            URL.revokeObjectURL(currentAudioObjectUrl);
+            currentAudioObjectUrl = '';
+        }
         const ex = curSet[idx]; const cont = document.getElementById('exercise-content');
         repeatSentenceIndex = 0; interviewQuestionIndex = 0;
         document.getElementById('skip-btn').style.display = ex.canSkip ? 'block' : 'none';
@@ -2665,7 +2670,8 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
         cont.innerHTML = `${ex.section && ex.section !== previousSection ? `<div class="section-marker">${ex.section} section</div>` : ''}<h2>${ex.title}</h2>${ex.instruction ? `<p class="task-instructions">${ex.instruction}</p>` : ''}`;
 
         if (ex.audioUrl) {
-            cont.innerHTML += `<div class="audio-container"><p>▶️ Play Audio Material</p><audio controls preload="metadata" crossorigin="anonymous"><source src="${ex.audioUrl}" type="audio/mpeg"></audio></div>`;
+            const source = requiresContinuousAudioSource(ex.audioUrl) ? '' : `<source src="${ex.audioUrl}" type="audio/mpeg">`;
+            cont.innerHTML += `<div class="audio-container"><p>▶️ Play Audio Material</p><audio controls preload="metadata" crossorigin="anonymous">${source}</audio></div>`;
             if (isUpdatedPractice() && ex.script) cont.innerHTML += renderScriptControl(ex.script);
         }
 
@@ -2704,6 +2710,65 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
         } else if (ex.type === 'writing-email') {
             cont.innerHTML += `<div class="small-timer" id="email-t">${formatTime(ex.time || 420)}</div><div>${ex.text}</div><textarea style="width:100%; height:200px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; outline:none; box-sizing:border-box;"></textarea>`;
             setTimeout(()=>runTimer(ex.time, 'email-t', true), 100);
+        }
+
+        if (requiresContinuousAudioSource(ex.audioUrl)) {
+            prepareContinuousAudio(cont.querySelector('audio'), ex.audioUrl, ex);
+        }
+    }
+
+    function requiresContinuousAudioSource(audioUrl = '') {
+        return /\/audio\/ibt\/test-33\/task-(?:15|16)\.mp3$/.test(audioUrl);
+    }
+
+    function normalizeConversationMp3(buffer) {
+        const bytes = new Uint8Array(buffer);
+        const frames = [];
+        let outputSize = 0;
+        let offset = 0;
+        let removedCompatibilityFrames = 0;
+
+        while (offset < bytes.length) {
+            const isConversationFrame = bytes[offset] === 0xff && bytes[offset + 1] === 0xf3 && bytes[offset + 2] === 0xc4 && bytes[offset + 3] === 0xc4;
+            const isCompatibilityFrame = bytes[offset] === 0xff && bytes[offset + 1] === 0xe3 && bytes[offset + 2] === 0x18 && bytes[offset + 3] === 0xc4;
+            if (isConversationFrame && offset + 384 <= bytes.length) {
+                frames.push(bytes.subarray(offset, offset + 384));
+                outputSize += 384;
+                offset += 384;
+            } else if (isCompatibilityFrame && offset + 291 <= bytes.length) {
+                removedCompatibilityFrames++;
+                offset += 291;
+            } else {
+                return bytes;
+            }
+        }
+
+        if (!removedCompatibilityFrames) return bytes;
+        const normalized = new Uint8Array(outputSize);
+        let writeOffset = 0;
+        for (const frame of frames) {
+            normalized.set(frame, writeOffset);
+            writeOffset += frame.length;
+        }
+        return normalized;
+    }
+
+    async function prepareContinuousAudio(audio, audioUrl, exercise) {
+        if (!audio) return;
+        try {
+            const response = await fetch(audioUrl);
+            if (!response.ok) throw new Error(`Audio request failed with status ${response.status}`);
+            const normalized = normalizeConversationMp3(await response.arrayBuffer());
+            if (curSet[idx] !== exercise || !audio.isConnected) return;
+            currentAudioObjectUrl = URL.createObjectURL(new Blob([normalized], {type: 'audio/mpeg'}));
+            audio.src = currentAudioObjectUrl;
+            audio.load();
+        } catch (error) {
+            console.error(error);
+            if (curSet[idx] === exercise && audio.isConnected) {
+                audio.src = audioUrl;
+                audio.load();
+            }
         }
     }
 

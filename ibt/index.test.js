@@ -468,6 +468,26 @@ test('Test 33 uses all exact audio paths with hidden listening scripts', () => {
   assert.deepEqual([...repeat.sentences].map((sentence) => sentence.audio), Array.from({length: 7}, (_, index) => `../audio/ibt/test-33/sentence-${index + 1}.mp3`));
 });
 
+test('Test 33 conversation audio is normalized for continuous browser playback', () => {
+  assert.equal(sandbox.requiresContinuousAudioSource('../audio/ibt/test-33/task-15.mp3'), true);
+  assert.equal(sandbox.requiresContinuousAudioSource('../audio/ibt/test-33/task-16.mp3'), true);
+  assert.equal(sandbox.requiresContinuousAudioSource('../audio/ibt/test-33/task-18.mp3'), false);
+
+  const conversationFrame = new Uint8Array(384);
+  conversationFrame.set([0xff, 0xf3, 0xc4, 0xc4]);
+  const compatibilityFrame = new Uint8Array(291);
+  compatibilityFrame.set([0xff, 0xe3, 0x18, 0xc4]);
+  const input = new Uint8Array(conversationFrame.length * 2 + compatibilityFrame.length);
+  input.set(conversationFrame, 0);
+  input.set(compatibilityFrame, conversationFrame.length);
+  input.set(conversationFrame, conversationFrame.length + compatibilityFrame.length);
+
+  const normalized = sandbox.normalizeConversationMp3(input.buffer);
+  assert.equal(normalized.length, conversationFrame.length * 2);
+  assert.deepEqual([...normalized.subarray(0, 4)], [0xff, 0xf3, 0xc4, 0xc4]);
+  assert.deepEqual([...normalized.subarray(384, 388)], [0xff, 0xf3, 0xc4, 0xc4]);
+});
+
 test('Test 33 scoring and extended-task contracts match Tests 31 and 32', () => {
   const objectiveCount = test33.reduce((total, task) => {
     if (['writing-email', 'academic-discussion', 'listen-repeat-updated', 'take-interview'].includes(task.type)) return total;
