@@ -15,7 +15,7 @@ Este documento es la referencia oficial para mantener consistencia visual cuando
 El código existente usa principalmente una identidad basada en azul marino, morado profundo, fondos claros y títulos serif. Los patrones más consistentes aparecen en el dashboard principal y ejercicios integrados:
 
 - `index.html` define la paleta central con `--navy`, `--purple`, `--ink`, `--sky`, `--bg`, `--border`, `--green` y `--gold`.
-- `index.html`, `unscramble.html` e `itp-mc/index.html` cargan **Cormorant Garamond** para títulos y **Outfit** para UI/cuerpo.
+- `index.html`, `unscramble.html` y `multiple-choice/index.html` cargan **Cormorant Garamond** para títulos y **Outfit** para UI/cuerpo.
 - Varias páginas antiguas (`ibt/index.html`, `general/index.html`, `emoji/index.html`, `conversations/index.html`) usan fuentes del sistema y valores de color duplicados. Al crear o retocar esas páginas, migra gradualmente a los tokens de este manual.
 
 ## 3. Tipografías
