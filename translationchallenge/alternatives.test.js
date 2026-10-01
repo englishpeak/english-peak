@@ -115,9 +115,9 @@ test("Set 10 accepts a broad range of natural translations for every prompt", ()
 
   expandedSet10.sentences.forEach((sentence, index) => {
     const additions = sentence.acceptedAnswers.length - originalSet10.sentences[index].acceptedAnswers.length;
-    assert.ok(additions >= 8, `Set 10, sentence ${sentence.id} should gain at least eight alternatives`);
+    assert.ok(additions >= 13, `Set 10, sentence ${sentence.id} should gain at least thirteen alternatives`);
     if (sentence.level === "C1") {
-      assert.ok(additions >= 12, `C1 sentence ${sentence.id} should gain at least twelve alternatives`);
+      assert.ok(additions >= 17, `C1 sentence ${sentence.id} should gain at least seventeen alternatives`);
     }
   });
 
