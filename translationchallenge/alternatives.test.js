@@ -20,14 +20,100 @@ test("every translation challenge sentence gains accepted alternatives", () => {
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 
-  assert.equal(expandedSets.length, 9);
-  assert.equal(expandedSentences.length, 270);
+  assert.equal(expandedSets.length, 10);
+  assert.equal(expandedSentences.length, 294);
   expandedSentences.slice(0, 90).forEach((sentence, index) => {
     assert.ok(
       sentence.acceptedAnswers.length > originalCounts[index],
       `Set ${Math.floor(index / 30) + 1}, sentence ${(index % 30) + 1} should gain an alternative`
     );
   });
+});
+
+test("Set 10 has the exact 24-item mixed CEFR content and supports every exercise mode", () => {
+  const sets = evaluateSets(html.slice(dataStart, expansionStart));
+  const set10 = sets.find(set => set.id === 10);
+  const expectedPrompts = [
+    "¿A qué hora te levantas normalmente?",
+    "Se me olvidó traerte el libro que me prestaste.",
+    "Llevo toda la semana tratando de encontrar un buen momento para hablar con ella.",
+    "Dejé las llaves en la repisa que está junto a la puerta.",
+    "Si quieres, puedo pasar por ti después del trabajo.",
+    "No pensé que me fuera a costar tanto acostumbrarme al nuevo horario.",
+    "¿Dónde compraste esos zapatos?",
+    "No me importa esperar un poco más, siempre y cuando me avises si vas a tardar.",
+    "¿Cómo te hiciste ese rasguño en el brazo?",
+    "Terminé quedándome en casa porque empezó a llover muy fuerte.",
+    "¿Ya sabes qué vas a pedir de comer?",
+    "Si hubiera sabido que venías, habría comprado algo para cenar.",
+    "Últimamente me cuesta mucho quedarme dormido.",
+    "Llegué tarde porque se me ponchó una llanta camino al trabajo.",
+    "No deberías tomarte lo que dijo tan a pecho.",
+    "¿Hace cuánto que no ves a tus amigos de la universidad?",
+    "Tengo que lavar la ropa esta tarde.",
+    "No sé cómo se las arregla para hacer tantas cosas y aun así tener tiempo libre.",
+    "¿Cuánta propina se suele dejar aquí?",
+    "Pensé que iba a ser incómodo, pero al final nos llevamos bastante bien.",
+    "No quiero sonar entrometido, pero ¿está todo bien entre ustedes?",
+    "De haber sabido que te sentías así, habría manejado la situación de otra manera.",
+    "Por más que intento no darle vueltas, sigo pensando en lo que pasó.",
+    "Me mareo fácilmente si intento leer mientras voy en el coche."
+  ];
+  const expectedLevels = ["A1","B1","B2","A2","A2","B2","A1","B2","B1","B1","A1","B2","B1","B1","B2","A2","A1","C1","B1","B2","C1","C1","C1","A2"];
+  const normalize = value => String(value).toLowerCase().replace(/[’‘`´]/g, "'").replace(/[¿?¡!]/g, " ").replace(/[.,;]/g, " ").replace(/\s+/g, " ").trim();
+  const easyWords = value => value.replace(/[’‘`´]/g, "'").replace(/[.,;:!?¿¡]/g, "").split(/\s+/).filter(Boolean);
+
+  assert.ok(set10);
+  assert.equal(set10.title, "Set 10");
+  assert.equal(set10.description, "24 sentences · Mixed levels · Mixed grammar and vocabulary");
+  assert.deepEqual(Array.from(set10.sentences, sentence => sentence.spanish), expectedPrompts);
+  assert.deepEqual(Array.from(set10.sentences, sentence => sentence.level), expectedLevels);
+  assert.deepEqual(Array.from(set10.sentences, sentence => sentence.id), Array.from({ length: 24 }, (_, index) => index + 1));
+  assert.deepEqual(Object.fromEntries(["A1","A2","B1","B2","C1","C2"].map(level => [level, set10.sentences.filter(sentence => sentence.level === level).length])), { A1:4, A2:4, B1:6, B2:6, C1:4, C2:0 });
+
+  set10.sentences.forEach(sentence => {
+    assert.deepEqual(Object.keys(sentence).sort(), ["acceptedAnswers", "id", "level", "mediumPrompt", "note", "primaryAnswer", "spanish"]);
+    assert.ok(sentence.acceptedAnswers.length >= 3 && sentence.acceptedAnswers.length <= 6);
+    assert.ok(sentence.mediumPrompt.split(/\s+/).length >= 2 && sentence.mediumPrompt.split(/\s+/).length <= 3);
+    assert.ok(sentence.primaryAnswer.startsWith(sentence.mediumPrompt));
+    assert.ok(sentence.note);
+    assert.equal(normalize(easyWords(sentence.primaryAnswer).join(" ")), normalize(sentence.primaryAnswer));
+    assert.equal(normalize(`${sentence.mediumPrompt} ${sentence.primaryAnswer.slice(sentence.mediumPrompt.length).trim()}`), normalize(sentence.primaryAnswer));
+    for (const answer of [sentence.primaryAnswer, ...sentence.acceptedAnswers]) {
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(answer)));
+      assert.ok([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(candidate => normalize(candidate) === normalize(`  ${answer.toUpperCase().replaceAll("'", "’")}!!!  `)));
+    }
+    assert.equal([sentence.primaryAnswer, ...sentence.acceptedAnswers].some(answer => normalize(answer) === normalize("This is not a valid translation.")), false);
+  });
+
+  const vocabularyChallenges = {
+    4: ["repisa", "shelf"],
+    9: ["rasguño", "scratch"],
+    14: ["llanta", "flat tire"],
+    19: ["propina", "tip"],
+    24: ["mareo", "motion sick"]
+  };
+  assert.equal(Object.keys(vocabularyChallenges).length, 5);
+  assert.equal(Object.keys(vocabularyChallenges).length / set10.sentences.length, 5 / 24);
+  for (const [id, [spanishTarget, englishTarget]] of Object.entries(vocabularyChallenges)) {
+    const sentence = set10.sentences[Number(id) - 1];
+    assert.match(sentence.spanish.toLowerCase(), new RegExp(spanishTarget));
+    assert.match(sentence.primaryAnswer.toLowerCase(), new RegExp(englishTarget));
+  }
+  assert.doesNotMatch(set10.sentences[8].acceptedAnswers.join(" ").toLowerCase(), /bruise/);
+  assert.doesNotMatch(set10.sentences[23].acceptedAnswers.join(" ").toLowerCase(), /dizzy/);
+  assert.match(set10.sentences[2].acceptedAnswers.join(" "), /talk to him/);
+  assert.match(set10.sentences[14].acceptedAnswers.join(" "), /what she said/);
+  assert.match(set10.sentences[17].acceptedAnswers.join(" "), /how he manages/);
+});
+
+test("progress, navigation, results, review, and restart derive totals from the selected set", () => {
+  assert.match(html, /const total=set\.sentences\.length,pct=\(\(state\.index\+1\)\/total\)\*100/);
+  assert.match(html, /state\.index>=setData\(\)\.sentences\.length-1/);
+  assert.match(html, /total:set\.sentences\.length/);
+  assert.match(html, /set\.sentences\.map\(\(s,i\)=>/);
+  assert.match(html, /state\.index=0;renderExercise\(\)/);
+  assert.match(html, /state\.index=0;show\("exercise"\)/);
 });
 
 test("Set 9 adds multiple natural alternatives, with broader coverage for advanced sentences", () => {
