@@ -107,6 +107,27 @@ test("Set 10 has the exact 24-item mixed CEFR content and supports every exercis
   assert.match(set10.sentences[17].acceptedAnswers.join(" "), /how he manages/);
 });
 
+test("Set 10 accepts a broad range of natural translations for every prompt", () => {
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
+  const expandedSets = evaluateSets(html.slice(dataStart, appStart));
+  const originalSet10 = originalSets.find(set => set.id === 10);
+  const expandedSet10 = expandedSets.find(set => set.id === 10);
+
+  expandedSet10.sentences.forEach((sentence, index) => {
+    const additions = sentence.acceptedAnswers.length - originalSet10.sentences[index].acceptedAnswers.length;
+    assert.ok(additions >= 8, `Set 10, sentence ${sentence.id} should gain at least eight alternatives`);
+    if (sentence.level === "C1") {
+      assert.ok(additions >= 12, `C1 sentence ${sentence.id} should gain at least twelve alternatives`);
+    }
+  });
+
+  assert.ok(expandedSet10.sentences[2].acceptedAnswers.some(answer => answer.includes("speak to him")));
+  assert.ok(expandedSet10.sentences[14].acceptedAnswers.some(answer => answer.includes("what they said to heart")));
+  assert.ok(expandedSet10.sentences[17].acceptedAnswers.some(answer => answer.includes("How he manages")));
+  assert.ok(expandedSet10.sentences[20].acceptedAnswers.some(answer => answer.includes("too personal")));
+  assert.ok(expandedSet10.sentences[23].acceptedAnswers.some(answer => answer.includes("motion sickness")));
+});
+
 test("progress, navigation, results, review, and restart derive totals from the selected set", () => {
   assert.match(html, /const total=set\.sentences\.length,pct=\(\(state\.index\+1\)\/total\)\*100/);
   assert.match(html, /state\.index>=setData\(\)\.sentences\.length-1/);
