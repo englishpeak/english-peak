@@ -29258,5 +29258,149 @@ export const businessFlashcards = [
       "High migration fees created vendor lock-in and prevented the company from moving to a cheaper cloud service."
     ]
   },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "skill set",
+    partOfSpeech: "noun",
+    category: "Professional Skills",
+    definition: "the combination of abilities, knowledge, and competencies a person has, especially those relevant to a particular job or professional role",
+    examples: [
+      "The recruiter is looking for a candidate with a skill set that combines financial analysis and client communication.",
+      "Managing an international team requires a broader skill set than her previous technical role did."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "performance review",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "a formal evaluation or discussion of an employee's work, achievements, objectives, strengths, and areas for improvement",
+    examples: [
+      "During his performance review, Amir and his manager discussed his sales results and agreed on new objectives.",
+      "The annual performance review highlighted Nina's leadership strengths and identified presentation skills as an area to develop."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "transferable skills",
+    partOfSpeech: "plural noun",
+    category: "Career Development",
+    definition: "abilities that can be used effectively in different jobs, industries, or professional situations",
+    examples: [
+      "Project coordination and negotiation are transferable skills that helped Luis move from construction into technology.",
+      "She emphasized her transferable skills when applying for a role outside the banking industry."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "soft skills",
+    partOfSpeech: "plural noun",
+    category: "Professional Skills",
+    definition: "interpersonal and behavioral abilities, such as communication, teamwork, adaptability, leadership, and problem-solving, that support effective work with others",
+    examples: [
+      "The assessment measures soft skills by asking candidates to resolve a disagreement within a team.",
+      "Her strong soft skills helped her communicate organizational changes with empathy and clarity."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "hard skills",
+    partOfSpeech: "plural noun",
+    category: "Professional Skills",
+    definition: "specific, teachable, and often measurable technical or professional abilities needed to perform particular tasks",
+    examples: [
+      "The data analyst role requires hard skills in SQL, statistical modeling, and dashboard design.",
+      "Candidates demonstrate their hard skills by completing a practical cybersecurity exercise."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "career path",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "the sequence or direction of roles and professional opportunities that a person may follow throughout their working life",
+    examples: [
+      "The company showed junior engineers a career path that could lead to technical leadership or product management.",
+      "After speaking with a mentor, Priya chose a career path focused on sustainable finance."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "career progression",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "professional advancement and development over time through greater skills, responsibilities, seniority, or more advanced roles",
+    examples: [
+      "Regular mentoring supported his career progression from customer adviser to regional manager.",
+      "Employees cited limited career progression as a major reason for seeking opportunities elsewhere."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "succession planning",
+    partOfSpeech: "noun",
+    category: "Talent Management",
+    definition: "the organizational process of identifying and developing people who could eventually fill important or senior positions",
+    examples: [
+      "Succession planning ensured that two experienced managers were ready to lead the division when its director retired.",
+      "The board reviews succession planning each year to reduce the risks created by sudden leadership changes."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "employee retention",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "an organization's ability and efforts to keep employees, particularly valuable or high-performing staff, from leaving",
+    examples: [
+      "Flexible working arrangements improved employee retention among experienced software developers.",
+      "The HR team tracks employee retention to see whether its new career development program is effective."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "employee turnover",
+    partOfSpeech: "noun",
+    category: "Workforce Management",
+    definition: "the rate or process at which employees leave an organization and are replaced by new hires",
+    examples: [
+      "High employee turnover in the support team increased recruitment costs and disrupted customer service.",
+      "Management introduced more predictable schedules after exit interviews revealed the main cause of employee turnover."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "performance improvement plan (PIP)",
+    partOfSpeech: "noun",
+    category: "Performance Management",
+    definition: "a formal workplace plan that identifies performance problems, sets specific expectations or targets, and gives an employee a defined period to improve",
+    examples: [
+      "The performance improvement plan (PIP) gave the account manager 60 days to meet clear accuracy and response-time targets.",
+      "Her manager scheduled weekly coaching sessions to support her progress during the performance improvement plan (PIP)."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 20,
+    word: "learning and development (L&D)",
+    partOfSpeech: "noun",
+    category: "Learning and Development",
+    definition: "the HR function and activities that improve employees' knowledge, skills, capabilities, and long-term professional growth",
+    examples: [
+      "The learning and development (L&D) team created a leadership program for employees preparing to manage people.",
+      "Our learning and development (L&D) strategy combines coaching, practical assignments, and courses rather than relying on general training alone."
+    ]
+  },
 
 ];
