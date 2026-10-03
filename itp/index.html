@@ -1439,12 +1439,12 @@ ed: [
     {
       s: "Much of what scientists know about the Earth's interior comes from study of seismic waves.",
       o: [
-        "from study of",
         "Much of what scientists know",
         "the Earth's interior",
+        "from study of",
         "seismic waves"
       ],
-      a: 0,
+      a: 2,
       expl: "Articles (B1/B2): A singular count noun normally requires a determiner. In this context, the natural form is 'comes from the study of seismic waves.'"
     },
 
@@ -1464,23 +1464,23 @@ ed: [
       s: "Early navigators relied on the stars not only to determine direction but also estimating their approximate position.",
       o: [
         "Early navigators relied",
-        "but also estimating",
         "to determine direction",
+        "but also estimating",
         "their approximate position"
       ],
-      a: 1,
+      a: 2,
       expl: "Parallel structure (B2): The elements joined by 'not only...but also' must be parallel: 'not only to determine ... but also to estimate.'"
     },
 
     {
       s: "A mature redwood can reach a height of more than 300 feet, making them among the tallest living organisms.",
       o: [
-        "making them",
         "A mature redwood",
         "a height of",
+        "making them",
         "the tallest living organisms"
       ],
-      a: 0,
+      a: 2,
       expl: "Pronoun agreement (B1): The pronoun refers to the singular noun 'A mature redwood,' so 'them' must be changed to 'it.'"
     },
 
@@ -1500,11 +1500,11 @@ ed: [
       s: "The ancient Greeks classified many plants according to their appearance, medicinal uses, and where they grew.",
       o: [
         "The ancient Greeks",
-        "their appearance, medicinal uses, and where they grew",
         "classified many plants",
-        "according to"
+        "according to",
+        "their appearance, medicinal uses, and where they grew"
       ],
-      a: 1,
+      a: 3,
       expl: "Parallel structure (B2): The series mixes two noun phrases with a clause. A parallel version would be 'their appearance, medicinal uses, and growing locations' or another set of equivalent grammatical forms."
     },
 
@@ -1512,11 +1512,11 @@ ed: [
       s: "A lunar month is slightly short than a calendar month, lasting approximately twenty-nine and a half days.",
       o: [
         "A lunar month",
+        "slightly short than",
         "a calendar month",
-        "lasting approximately",
-        "slightly short than"
+        "lasting approximately"
       ],
-      a: 3,
+      a: 1,
       expl: "Comparatives (B1): A comparison with 'than' requires the comparative adjective 'shorter': 'slightly shorter than a calendar month.'"
     },
 
@@ -1535,12 +1535,12 @@ ed: [
     {
       s: "The invention of movable type greatly increased the number of books that could be produced and reducing their cost.",
       o: [
-        "and reducing their cost",
         "The invention of movable type",
         "greatly increased",
-        "that could be produced"
+        "that could be produced",
+        "and reducing their cost"
       ],
-      a: 0,
+      a: 3,
       expl: "Parallel structure (B2): The two effects of the invention should use parallel finite verbs: 'increased ... and reduced their cost,' not 'increased ... and reducing.'"
     }
   ]
@@ -1549,6 +1549,34 @@ ed: [
 
 
 };
+
+function validateErrorDetectionQuestions() {
+  Object.entries(tests).forEach(([testNumber, test]) => {
+    test.ed.forEach((question, questionIndex) => {
+      const positions = question.o.map(segment => question.s.indexOf(segment));
+      const occursExactlyOnce = question.o.every((segment, optionIndex) =>
+        positions[optionIndex] !== -1 &&
+        question.s.indexOf(segment, positions[optionIndex] + 1) === -1
+      );
+      const doesNotOverlap = positions.every((position, optionIndex) =>
+        optionIndex === 0 || position >= positions[optionIndex - 1] + question.o[optionIndex - 1].length
+      );
+      const isStrictlyIncreasing = positions.every((position, optionIndex) =>
+        optionIndex === 0 || position > positions[optionIndex - 1]
+      );
+
+      if (question.o.length !== 4 || !occursExactlyOnce || !doesNotOverlap || !isStrictlyIncreasing) {
+        console.error(
+          `Invalid Error Detection segments in Test ${testNumber}, question ${questionIndex + 1}: ` +
+          "expected four non-overlapping segments that each occur exactly once in strict left-to-right order.",
+          { sentence: question.s, segments: question.o, positions }
+        );
+      }
+    });
+  });
+}
+
+validateErrorDetectionQuestions();
 
 // ---------------- STATE & LOGIC ----------------
 
@@ -1599,11 +1627,8 @@ function renderInlineErrorSentence(q) {
     return { start, end: start + option.length, option, optionIndex };
   });
 
-  // Options identify sentence segments, but their A–D order does not have to
-  // match their reading order. Sort by position so every valid item can still
-  // be rendered as one selectable sentence.
+  // Source options must already be in left-to-right A–D order.
   if (matches.some(match => match.start === -1)) return null;
-  matches.sort((a, b) => a.start - b.start);
 
   // Fall back if malformed options overlap, which would duplicate sentence text.
   if (matches.some((match, index) => index > 0 && match.start < matches[index - 1].end)) return null;
