@@ -14,14 +14,14 @@ function evaluateSets(source) {
   return context.challengeSets;
 }
 
-test("every translation challenge sentence gains accepted alternatives", () => {
+test("legacy translation challenge sentences gain accepted alternatives", () => {
   const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
   const expandedSets = evaluateSets(html.slice(dataStart, appStart));
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 
-  assert.equal(expandedSets.length, 10);
-  assert.equal(expandedSentences.length, 294);
+  assert.equal(expandedSets.length, 11);
+  assert.equal(expandedSentences.length, 318);
   expandedSentences.slice(0, 90).forEach((sentence, index) => {
     assert.ok(
       sentence.acceptedAnswers.length > originalCounts[index],
