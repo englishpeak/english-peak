@@ -137,11 +137,32 @@ const TEST_4_ITEMS = TEST_4_ROWS.map((answer, index) => {
   };
 });
 
+const TEST_5_ROWS = [
+  "I haven't decided what I'm going to wear to the party yet.",
+  'If you need any help, just give me a call.',
+  'The report raises several questions that deserve to be investigated more thoroughly.',
+  "I shouldn't have stayed up so late when I knew I had to work this morning.",
+  'Where did you buy those shoes?',
+  'She seems to have adapted remarkably well to her new responsibilities.',
+  'We ended up ordering pizza because neither of us felt like cooking.',
+  "Under no circumstances should personal information be disclosed without the user's consent.",
+  'How would you react if your boss asked you to work over the weekend?',
+  'Much as I appreciate their efforts, I remain unconvinced that this approach will solve the underlying problem.'
+];
+
+const TEST_5_ITEMS = TEST_5_ROWS.map((answer, index) => {
+  return {
+    answer, ...mediumPrompt(answer), scramble:scrambleWords(answer),
+    audio:listenWriteAudio(5, index + 1)
+  };
+});
+
 export const LISTEN_WRITE_SETS = Object.freeze([
   { number:1, title:'Test 1', access:ACCESS.PUBLIC, items:TEST_1_ITEMS },
   { number:2, title:'Test 2', access:ACCESS.REGISTERED, items:TEST_2_ITEMS },
   { number:3, title:'Test 3', access:ACCESS.REGISTERED, items:TEST_3_ITEMS },
-  { number:4, title:'Test 4', access:ACCESS.PLUS, items:TEST_4_ITEMS }
+  { number:4, title:'Test 4', access:ACCESS.PLUS, items:TEST_4_ITEMS },
+  { number:5, title:'Test 5', access:ACCESS.PLUS, items:TEST_5_ITEMS }
 ]);
 
 export function normalizeAnswer(value) {
