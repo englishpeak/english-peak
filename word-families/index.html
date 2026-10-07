@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="English word-formation practice, one family at a time.">
+<title>Word Families | ePeak</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles/brand-tokens.css">
+<script src="/teachers/vendor/supabase.js"></script>
+<style>
+:root{color-scheme:light;--ink:#172b40;--muted:#5b6570;--blue:#0D3B6F;--purple:#470074;--line:#dce0e4;--paper:#fff;--bg:#fff;--good:#136348;--bad:#a52d42;--round:8px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.55}
+.word-families{max-width:1240px;margin:auto;padding:32px 24px 40px}.intro{margin-bottom:24px}h1{font-size:27px;font-weight:650;line-height:1.25;letter-spacing:-.5px;margin:0 0 8px}.instructions{font-size:15px;color:var(--muted);margin:0}.instruction-note{font-size:13px;color:var(--muted);margin:4px 0 0}
+.workspace{background:var(--paper);border:1px solid var(--line);border-radius:var(--round);overflow:hidden}.roundbar{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line)}.roundheading{display:flex;gap:12px;align-items:center}.round-number{color:var(--muted);font-size:13px}.roundheading h2{font-size:14px;font-weight:650;margin:0}.coverage{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.legend{display:flex;gap:17px;font-size:12px;color:var(--muted)}.legend-item{display:inline-flex;align-items:center;gap:6px}.legend-box{width:14px;height:14px;border-radius:3px;border:1px solid #d5e0eb;background:#edf2f7}.legend-box.block{background:#f0f1f3;border-color:#e4e6e8}
+.table-scroll{overflow-x:auto;scrollbar-color:#bbc3cc transparent}table{border-collapse:collapse;width:100%;table-layout:fixed;min-width:800px;text-align:left}col.row-col{width:54px}th{background:#f7f8f9;padding:14px 10px 12px;font-size:14px;font-weight:700;vertical-align:top;border-bottom:1px solid var(--line)}th small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:2px}thead th:first-child{padding-left:23px;color:var(--muted);font-weight:400}tbody th{background:transparent;font-size:13px;font-weight:400;color:var(--muted);padding:17px 10px 17px 23px;vertical-align:middle;border-bottom:1px solid var(--line)}td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;height:72px}tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+.cell{position:relative;min-height:44px}.cell input{display:block;width:100%;height:44px;border-radius:5px;border:1px solid #cbd2da;background:#fff;color:var(--ink);padding:10px 28px 10px 11px;font-size:16px;min-width:0}.cell input::placeholder{color:#6a7480;font-size:14px}.cell input:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px #0d3b6f20}.given{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:44px;background:#edf2f7;border:1px solid #d5e0eb;border-radius:5px;padding:8px 11px;color:var(--blue);font-weight:650;font-size:16px;overflow-wrap:anywhere}.given-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:600;flex-shrink:0}.blocked{display:grid;place-items:center;min-height:44px;border:1px solid #e4e6e8;border-radius:5px;background:#f0f1f3;color:#6a7480;user-select:none}.blocked svg{width:15px;height:15px}.cell.correct input{border-color:#8bc4ac;background:#f0faf5;color:var(--good)}.cell.incorrect input{border-color:#dea1ac;background:#fff6f7}.cell.missing input{border-color:#aa8190;border-style:dashed;background:#fffafb}.cell .mark{position:absolute;right:9px;top:10px;font-weight:700;font-size:15px;pointer-events:none}.correct .mark{color:var(--good)}.incorrect .mark,.missing .mark{color:var(--bad)}.cell.answer input{background:#f5f0f8;border-color:#d8c9e2;color:var(--purple)}.cell input[readonly]{box-shadow:none}
+.toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;padding:16px 20px;border-top:1px solid var(--line)}.feedback{font-size:14px;color:var(--muted);max-width:550px;min-height:23px}.feedback strong{color:var(--ink)}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border-radius:5px;padding:10px 16px;font-size:14px;font-weight:650;min-height:44px;border:1px solid #cbd2da;color:var(--ink);background:#fff}.btn:hover{background:#f5f6f7;border-color:#aab5c0}.btn.primary,.btn.next{background:var(--blue);border-color:var(--blue);color:#fff}.btn.primary:hover,.btn.next:hover{background:#092e58}.under-table{margin:12px 2px 0;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}.smallnote{font-size:12px;color:var(--muted);margin:0}.keyboard{font-size:12px;color:var(--muted)}kbd{background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:1px 5px;font-family:inherit;font-size:11px}
+details{margin-top:24px;border-top:1px solid var(--line);padding-top:12px}summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:13px;font-weight:650;color:var(--muted);cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}.chevron{transition:transform .2s}details[open] .chevron{transform:rotate(90deg)}.bank-wrap{margin-top:8px;max-height:450px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:5px}.bank-table{min-width:900px}.bank-table th{position:sticky;top:0;z-index:1}.bank-table td{font-size:14px;height:auto;overflow-wrap:anywhere;padding:12px}.bank-table tbody th{position:static;font-size:12px;white-space:nowrap}.bank-table .empty{color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}noscript{display:block;padding:20px;color:var(--bad)}button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+@media(min-width:1100px){.given-label{display:none}.given{justify-content:center}}
+@media(max-width:1050px){.legend{display:none}.given-label{display:none}.roundheading{flex-wrap:wrap;gap:9px}.toolbar{align-items:flex-start}.feedback{flex-basis:100%}}
+@media(max-width:700px){.word-families{padding:22px 16px}h1{font-size:24px}.roundbar{padding:12px 16px;align-items:flex-start;flex-wrap:wrap;gap:8px}.toolbar{padding:16px}.actions{width:100%}.btn{flex:1;padding:10px 9px;font-size:13px}.under-table{gap:8px}.keyboard{display:none}.bank-wrap{max-height:380px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.legend,.actions,.keyboard,details{display:none}.word-families{padding:0}.workspace{border:1px solid #aaa}table{min-width:0}td{padding:6px}.cell input,.given{font-size:12px}.given-label{display:none}.toolbar{padding:12px}.blocked{print-color-adjust:exact}}
+[hidden]{display:none!important}
+.level-picker{display:flex;gap:8px;margin:0 0 22px}.level-picker button{border:1px solid var(--line);background:white;border-radius:24px;padding:10px 22px;color:var(--muted);font-weight:650}.level-picker button[aria-pressed="true"]{background:var(--blue);color:white;border-color:var(--blue)}
+.easy-board{background:linear-gradient(130deg,#fcf9ff,#f3faff)}.easy-stage{padding:26px;border:0;background:transparent}.easy-hint{margin:0 0 22px;color:var(--muted);font-size:14px}.word-cloud{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:20px;min-height:150px;padding:18px 8px 30px}.word-card{--tint:#e7ddfa;border:1px solid #19234618;background:var(--tint);color:var(--ink);padding:13px 20px;border-radius:14px;font-size:18px;font-weight:650;box-shadow:0 5px 0 #19234609;cursor:grab;animation:float-word 4s ease-in-out infinite;animation-delay:var(--delay,0s)}.word-card:active{cursor:grabbing}.word-card[aria-pressed="true"]{outline:3px solid var(--blue);outline-offset:4px;animation-play-state:paused}.word-card:hover,.word-card:focus-visible{animation-play-state:paused}.word-card:disabled{opacity:1;cursor:default}.word-card.good{border:2px solid #a7dcbc;background:#e9f8ee;color:#205b3b}.word-card.wrong{border:2px solid var(--bad)}
+@keyframes float-word{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+.easy-targets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:24px}.word-target{border:2px dashed #d6ddec;border-radius:15px;min-height:190px;background:#fafbfe;padding:16px;transition:background .2s,border-color .2s}.word-target.over{border-color:var(--blue);background:#edf2f7}.target-label{display:block;border:0;background:transparent;color:var(--ink);font-weight:700;font-size:16px;padding:0;text-align:left;width:100%}.target-label small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:4px}.target-cards{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.target-cards .word-card{font-size:15px;padding:9px 12px;animation:none}.empty-cloud{color:var(--muted);font-size:14px}
+@media(max-width:800px){.easy-targets{grid-template-columns:repeat(2,minmax(0,1fr));padding:16px}.easy-stage{padding:18px}.word-cloud{gap:15px}.word-card{font-size:16px;padding:11px 15px}}
+@media(max-width:420px){.easy-targets{grid-template-columns:1fr}.word-target{min-height:130px}}
+@media(prefers-reduced-motion:reduce){.word-card{animation:none}}
+
+/* Keep Easy's rounded card treatment while sharing the ePeak functional palette. */
+#easy-workspace{--ink:#192346;--muted:#57647a;--line:#dde3ed;border-radius:16px;box-shadow:0 6px 24px #162a5410}
+#easy-workspace .roundbar{padding:17px 23px}
+#easy-workspace .round-number{color:var(--blue);background:#edf2f7;border:1px solid #d5e0eb;border-radius:8px;font-size:14px;font-weight:700;padding:5px 11px}
+#easy-workspace .roundheading h2{font-size:16px}
+#easy-workspace .coverage{font-size:14px}
+#easy-workspace .toolbar{padding:18px 23px}
+#easy-workspace .btn{border-radius:9px}
+@media(max-width:700px){#easy-workspace .roundbar{padding:15px 17px}#easy-workspace .roundheading h2{font-size:14px}#easy-workspace .coverage{font-size:12px}#easy-workspace .toolbar{padding:16px}}
+
+/* A single, staggered confirmation pulse; no looping celebration. */
+#easy-workspace.is-complete .word-card.good{background:#e2f7e9;border-color:#91d6ad;animation:easy-correct-pop 650ms ease-out both;animation-delay:var(--success-delay,0ms);animation-play-state:running}
+#easy-workspace.is-complete .word-card.good::after{content:'✓';display:inline-block;margin-left:8px;font-size:13px;color:#287447}
+#easy-workspace.is-complete .word-target{border-color:#aedbc0;background:#f2fbf5}
+#easy-workspace.is-complete .feedback{color:#205b3b;font-weight:650}
+@keyframes easy-correct-pop{0%{transform:scale(1);box-shadow:0 0 0 0 #8bd7a860}40%{transform:translateY(-4px) scale(1.045);box-shadow:0 0 0 7px #8bd7a825}100%{transform:scale(1);box-shadow:0 0 0 12px #8bd7a800}}
+@media(prefers-reduced-motion:reduce){#easy-workspace.is-complete .word-card.good{animation:none}}
+/* Easy instructions first; actions close to the sorting targets. */
+#easy-workspace .easy-board>.easy-hint{margin:0;padding:20px 24px 0;font-size:12px}
+#easy-workspace .easy-board>.toolbar{border:0;padding:0 24px 16px;align-items:center}
+#easy-workspace .easy-stage{padding-top:8px}
+@media(max-width:800px){#easy-workspace .easy-board>.easy-hint{padding:16px 16px 0}#easy-workspace .easy-board>.toolbar{padding:0 16px 16px}}
+</style>
+<link rel="stylesheet" href="/word-families/access.css">
+</head>
+<body>
+<header class="exercise-topbar" id="standalone-topbar"><a class="back-btn" href="/">← Dashboard</a><div class="exercise-title">Word Families</div><div class="exercise-badge">ePeak+</div></header>
+<section id="auth-loading" class="auth-loading" role="status"><p>Checking your ePeak account…</p></section>
+<section id="member-lock" class="member-lock" hidden aria-labelledby="member-lock-title">
+<div class="lock-symbol" aria-hidden="true">🔐</div><h1 id="member-lock-title">Word Families</h1>
+<p id="access-message">Sign in to access ePeak+ practice.</p>
+<div class="member-actions"><a class="primary" href="/?auth=login" id="access-action">Sign in</a><button type="button" class="secondary" id="access-retry" hidden>Try again</button></div>
+</section>
+<div id="practice-content" hidden></div>
+<noscript>Turn on JavaScript in your browser to use the practice activity.</noscript>
+<template id="practice-template">
+<main class="word-families">
+<section class="intro" aria-labelledby="page-title"><h1 id="page-title">Word Families</h1><p class="instructions">Complete the missing forms using the word provided.</p><p class="instruction-note">Two adjective forms may be entered in either order.</p></section>
+<div class="level-picker" role="group" aria-label="Difficulty level"><button id="level-easy" type="button" aria-pressed="true">Easy · Sort the words</button><button id="level-hard" type="button" aria-pressed="false">Hard · Write the words</button></div>
+<section id="easy-workspace" class="workspace" aria-labelledby="easy-title" aria-describedby="easy-help">
+<div class="roundbar"><div class="roundheading"><span class="round-number" id="easy-round">Family 01</span><h2 id="easy-title">Sort the words</h2></div><span class="coverage" id="easy-coverage"></span></div>
+<div class="easy-board">
+<p class="easy-hint" id="easy-help">Drag, or click/tap a word, then a category.</p>
+<div class="easy-targets" id="easy-targets"></div>
+<div class="toolbar"><div id="easy-feedback" class="feedback" role="status" aria-live="polite"></div><div class="actions"><button class="btn primary" id="easy-check" type="button">Check answers</button><button class="btn" id="easy-reveal" type="button">Show answers</button><button class="btn next" id="easy-next" type="button">Next family</button></div></div>
+<div class="easy-stage"><div class="word-cloud" id="word-cloud" aria-label="Words to sort" aria-describedby="easy-help"></div></div>
+</div>
+
+</section>
+<section class="workspace" aria-labelledby="round-title">
+<div class="roundbar"><div class="roundheading"><span class="round-number" id="round-number">Round 01</span><h2 id="round-title">Complete the missing forms</h2></div><div class="legend" aria-label="Cell types"><span class="legend-item"><span class="legend-box" aria-hidden="true"></span>Revealed word</span><span class="legend-item"><span class="legend-box block" aria-hidden="true"></span>No target form</span></div><span class="coverage" id="coverage">1 / 300</span></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Practice table. Scroll horizontally on small screens.">
+<table id="practice-table"><caption class="sr-only">One word family. One word is given. Enter related words for each available category.</caption><colgroup><col class="row-col"><col><col><col><col><col></colgroup><thead><tr><th scope="col">#</th><th scope="col">Verb<small>an action or state</small></th><th scope="col">Noun<small>a person, thing or idea</small></th><th scope="col">Adjective 1<small>a describing word</small></th><th scope="col">Adjective 2<small>another adjective</small></th><th scope="col">Adverb<small>how, when or to what extent</small></th></tr></thead><tbody id="practice-rows"></tbody></table>
+</div>
+<div class="toolbar"><div id="feedback" class="feedback" role="status" aria-live="polite"></div><div class="actions"><button class="btn primary" id="check" type="button">Check answers</button><button class="btn" id="reveal" type="button">Show answers</button><button class="btn next" id="next" type="button">Next family</button></div></div>
+</section>
+<div class="under-table"><p class="smallnote">Shaded cells are not tested.</p><span class="keyboard"><kbd>Tab</kbd> next cell &nbsp; <kbd>Enter</kbd> check answers</span></div>
+<details id="bank"><summary><svg class="chevron" width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Word bank</summary><div class="bank-wrap" tabindex="0" role="region" aria-label="Full word bank"><table class="bank-table"><caption class="sr-only">The complete answer bank of 300 word families</caption><colgroup><col class="row-col"><col><col><col><col><col></colgroup><thead><tr><th scope="col">#</th><th scope="col">Verb</th><th scope="col">Noun</th><th scope="col">Adjective 1</th><th scope="col">Adjective 2</th><th scope="col">Adverb</th></tr></thead><tbody id="bank-rows"></tbody></table></div></details>
+
+</main>
+</template>
+<script type="module" src="/word-families/access.js"></script>
+</body>
+</html>
