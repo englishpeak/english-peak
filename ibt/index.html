@@ -174,7 +174,7 @@ var testCollections = [
     id: 'updated-toefl-practice',
     title: 'UPDATED TOEFL PRACTICE',
     description: 'Practice with the task types and format introduced in the updated TOEFL iBT.',
-    tests: ['Test 31', 'Test 32', 'Test 33']
+    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34']
   }
 ];
 
@@ -256,6 +256,8 @@ function buildTestHref(key) {
      * these task types; the catalog enables a test automatically when its array exists.
      * Scripts stay in data for review/admin use and are not rendered for updated
      * listening tasks during a student attempt.
+     * Prefer balanced A/B/C/D positions across Reading + Listening MC questions
+     * in future content; retain locked choices and explicitly approved answer keys.
      */
     const updatedTestBlueprint = Object.freeze({
         reading: ['complete-words', 'read-daily', 'academic-reading'],
@@ -2650,6 +2652,807 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
       {section:'Speaking',type:'take-interview',taskFamily:'Take an Interview',title:'Take an Interview',adaptationNote:'Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.',introduction:"You are participating in a research interview about people's experiences with museums, exhibitions, and other cultural activities.",responseTime:45,questions:['Think about a museum, exhibition, or cultural place you have visited. What do you remember most clearly about the experience?','What do you think makes an exhibition interesting or memorable for visitors?','Some people prefer visiting museums by themselves, while others prefer going with friends, family members, or a guide. Which do you prefer, and why?','Some museums are making more of their collections available online. Do you think a virtual museum experience can provide the same educational value as visiting a museum in person? Why or why not?']}
     ];
 
+    // Test 34 keeps all 35 supplied Reading/Listening MC items and their locked keys.
+    // Approved distribution: A9 / B8 / C9 / D9.
+    testData["Test 34"] = [
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 1: Migratory Birds",
+        "instruction": "Complete the words in the passage.",
+        "text": "Many bird species travel enormous distances during seasonal migrations. Migration allows birds to take adva[5] of food and bree[4] conditions that change throu[5] the year. To navigate, birds may use several sources of infor[6], including the posi[4] of the sun and stars, familiar landmarks, and Earth's magn[4] field. Young birds of some species appear to inhe[3] part of their migratory behavior, while exper[5] can improve their ability to follow parti[5] routes. Because migration requires subst[6] energy, birds often build up fat reserves before beginning a long journey.",
+        "answers": [
+          "ntage",
+          "ding",
+          "ghout",
+          "mation",
+          "tion",
+          "etic",
+          "rit",
+          "ience",
+          "cular",
+          "antial"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 2: The Origin of Paper",
+        "instruction": "Complete the words in the passage.",
+        "text": "Paper gradually became an important material for recording and sharing information. Early paper-making tech[6] developed in China and used plant fib[3] that were bro[3] down, mixed with water, and formed into thin sheets. After drying, the resu[5] surface could be used for writing or drawing. Paper event[5] spread to other regions, where craftspeople adap[3] production methods to locally avai[5] materials. Compared with some earlier writing surfaces, paper could be relat[5] light and economical to produce. Its wider availability contri[5] to major changes in administration, education, and the circu[6] of written knowledge.",
+        "answers": [
+          "niques",
+          "ers",
+          "ken",
+          "lting",
+          "ually",
+          "ted",
+          "lable",
+          "ively",
+          "buted",
+          "lation"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 3: Equipment Rental Information",
+        "instruction": "Read an equipment-rental notice.",
+        "text": "CAMPUS OUTDOOR CENTER\nWEEKEND EQUIPMENT RENTALS\n\nTENT — $12\nSLEEPING BAG — $8\nHIKING POLES — $5\nCAMPING STOVE — $7\n\nPickup:\nFriday, 2:00–6:00 p.m.\n\nReturn:\nMonday, 8:00 a.m.–12:00 p.m.\n\nIMPORTANT\n\n• Current student ID is required at pickup.\n• Stove fuel is not included.\n• Tents must be returned dry.\n• Reservations may be canceled without charge until Thursday at 5:00 p.m.\n• Late returns are charged $5 per item per day.",
+        "questions": [
+          {
+            "q": "What must a student provide when collecting rented equipment?",
+            "options": [
+              "A cash deposit",
+              "Proof of residence",
+              "A fuel container",
+              "A current student ID"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What is indicated about camping stoves?",
+            "options": [
+              "They must be returned Sunday.",
+              "Fuel must be obtained separately.",
+              "They cannot be reserved in advance.",
+              "Only staff members may use them."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 4: Event Ticket",
+        "instruction": "Read an event ticket.",
+        "text": "RIVER CITY FILM FESTIVAL\n\nDOCUMENTARY NIGHT\nOctober 14 — 7:30 p.m.\n\nGrand Theater\nDoor 3\n\nSeat: BALCONY B-18\n\nADMISSION\n$12.00\n\nDoors open: 6:45 p.m.\n\nPlease be seated by 7:20 p.m.\nLate arrivals will be admitted only between films.\n\nTicket exchanges are permitted until 12:00 noon on the day of the event.\nTickets are nonrefundable.",
+        "questions": [
+          {
+            "q": "What should a person who wants to exchange this ticket do?",
+            "options": [
+              "Request the exchange before noon on October 14.",
+              "Arrive at Door 3 before 6:45 p.m.",
+              "Wait until the first film has ended.",
+              "Purchase another balcony seat."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What may happen if a ticket holder arrives after the program begins?",
+            "options": [
+              "The ticket will automatically be refunded.",
+              "The person must use a different entrance.",
+              "The person may have to wait before entering.",
+              "The seat will be moved to another section."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 5: Text Message Exchange",
+        "instruction": "Read a text-message exchange.",
+        "text": "MEL — 3:08 p.m.\nAre we still meeting at the café at five to plan Saturday's volunteer event?\n\nJORDAN — 3:10 p.m.\nI can, but I just saw that they're closing at 5:30 today for a private event.\n\nMEL — 3:12 p.m.\nThirty minutes probably isn't enough. The public library stays open until\neight.\n\nJORDAN — 3:14 p.m.\nWorks for me. The tables near the entrance are usually busy, though.\n\nMEL — 3:16 p.m.\nLet's use the quiet area upstairs. I'll bring the volunteer list.\n\nJORDAN — 3:18 p.m.\nGreat. I'll bring the schedule and the sign-up forms. See you there at five.",
+        "questions": [
+          {
+            "q": "Why do Mel and Jordan decide not to meet at the café?",
+            "options": [
+              "It is too far from the volunteer event.",
+              "Jordan cannot arrive by five.",
+              "The café does not have tables.",
+              "They would have little time there before it closes."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Where will they probably meet?",
+            "options": [
+              "In the café's private-event room",
+              "Near the library entrance",
+              "In the library's upstairs quiet area",
+              "At the location of Saturday's event"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What will Jordan bring?",
+            "options": [
+              "The schedule and sign-up forms",
+              "The volunteer list",
+              "Food from the café",
+              "Library reservation information"
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 6: Biofilms",
+        "instruction": "Read an academic passage.",
+        "text": "<p>Microorganisms do not always live as isolated individual cells. Many bacteria can attach to a surface and form organized communities known as biofilms. Within a biofilm, cells are surrounded by substances they produce themselves, creating a matrix that helps hold the community together.</p><p>Living in a biofilm can provide several advantages. The surrounding matrix may help cells remain attached to a favorable location and can offer some protection from environmental stress. Cells within a biofilm may also exchange chemical signals, allowing aspects of their behavior to change as the population becomes denser.</p><p>Biofilms occur in many environments. They can develop on rocks in streams, on industrial equipment, and on surfaces within the human body. Their resilience can create practical challenges. For example, bacteria growing in a biofilm may be more difficult to remove from a surface than free-living cells of the same species. Researchers therefore study both how biofilms form and how their structure influences microbial survival. Understanding these communities has applications in medicine, industry, and environmental science.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why all microorganisms must live in large colonies",
+              "How industrial equipment causes bacteria to reproduce",
+              "How biofilms form and why living in them can affect microorganisms",
+              "Why free-living bacteria are always more resilient than biofilms"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "According to paragraph 1, what helps hold a biofilm together?",
+            "options": [
+              "A matrix made from substances produced by the cells",
+              "Flowing water surrounding the cells",
+              "Minerals obtained from industrial surfaces",
+              "Signals produced by human tissue"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What is one possible advantage of living in a biofilm?",
+            "options": [
+              "Cells no longer need a favorable environment.",
+              "The matrix can offer some protection from environmental stress.",
+              "All cells become genetically identical.",
+              "Microorganisms stop responding to chemical signals."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "The word \"resilience\" in paragraph 3 is closest in meaning to",
+            "options": [
+              "complexity",
+              "location",
+              "appearance",
+              "ability to withstand difficult conditions"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why does the author mention medicine, industry, and environmental science?",
+            "options": [
+              "To identify fields in which understanding biofilms can be useful",
+              "To argue that biofilms occur only in artificial environments",
+              "To compare three methods of removing microorganisms",
+              "To explain where biofilms were first discovered"
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 7: Wayfinding in Cities",
+        "instruction": "Read an academic passage.",
+        "text": "<p>Finding one's way through a city involves more than remembering street names. People often construct mental representations of an environment by noticing features that help them understand where places are in relation to one another. Researchers sometimes refer to these internal representations as cognitive maps.</p><p>Certain urban features can make navigation easier. A distinctive tower, river, park, or other landmark may provide a reference point visible from several locations. Major streets can also organize an area by creating recognizable routes. Even boundaries such as railway lines may help people divide a city into meaningful sections.</p><p>However, a feature that is useful to one traveler may be less useful to another. A longtime resident may rely on small shops or buildings that a visitor would not recognize. People traveling on foot may notice different details from those traveling underground or by car. Consequently, effective wayfinding systems often combine several kinds of information, such as maps, street signs, recognizable landmarks, and route numbers. The goal is not merely to provide more information, but to provide cues that travelers can connect to their understanding of the surrounding environment.</p>",
+        "questions": [
+          {
+            "q": "What is the main idea of the passage?",
+            "options": [
+              "Street names are the only reliable way to navigate cities.",
+              "People use environmental cues to form mental representations that support navigation.",
+              "Visitors usually develop better cognitive maps than residents.",
+              "Modern transportation has made landmarks unnecessary."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why does the author mention a distinctive tower?",
+            "options": [
+              "To show why tall buildings are difficult to construct",
+              "To compare modern and historical architecture",
+              "To explain why travelers prefer walking",
+              "To give an example of a landmark that can serve as a reference point"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What can be inferred about longtime residents?",
+            "options": [
+              "They may use local features that are not meaningful to visitors.",
+              "They depend entirely on street signs.",
+              "They generally avoid major streets.",
+              "Their cognitive maps become less detailed over time."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "The word \"cues\" in paragraph 3 is closest in meaning to",
+            "options": [
+              "obstacles",
+              "measurements",
+              "signals",
+              "destinations"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "According to the passage, why can combining several kinds of wayfinding information be useful?",
+            "options": [
+              "It prevents travelers from developing cognitive maps.",
+              "Different travelers may notice and use different environmental features.",
+              "Route numbers are more accurate than maps.",
+              "Visitors should receive more information than residents."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 8: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-34/task-8.mp3",
+        "script": "I was hoping to borrow that camera for the weekend, but apparently someone reserved it before I did.",
+        "question": "Choose the best response.",
+        "options": [
+          "The camera takes excellent pictures outdoors.",
+          "I reserved a study room last weekend.",
+          "Maybe another camera is still available.",
+          "The weekend starts after Friday."
+        ],
+        "correct": 2
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 9: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-34/task-9.mp3",
+        "script": "Do you know if we're supposed to bring the textbook to tomorrow's discussion section?",
+        "question": "Choose the best response.",
+        "options": [
+          "I think so, but I'll check the course page to make sure.",
+          "The bookstore sold several textbooks.",
+          "Tomorrow's discussion was interesting.",
+          "I brought my laptop yesterday."
+        ],
+        "correct": 0
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 10: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-34/task-10.mp3",
+        "script": "I'm glad I checked the train schedule again. The last train leaves much earlier on Sundays.",
+        "question": "Choose the best response.",
+        "options": [
+          "Sundays are usually quieter downtown.",
+          "The train station has a new schedule board.",
+          "I checked my email earlier.",
+          "Good thing you looked, or you might have missed it."
+        ],
+        "correct": 3
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 11: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-34/task-11.mp3",
+        "script": "Would you mind sending me your notes from yesterday's lecture? I had to leave about halfway through.",
+        "question": "Choose the best response.",
+        "options": [
+          "Yesterday's lecture started at ten.",
+          "Sure. I'll send them to you this afternoon.",
+          "I left my notebook in the classroom.",
+          "The lecture hall was about half full."
+        ],
+        "correct": 1
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 15: Campus Bicycle Center",
+        "instruction": "Listen to a conversation.",
+        "audioUrl": "../audio/ibt/test-34/task-15.mp3",
+        "script": "Narrator: Listen to a conversation at a university bicycle center.\n\nMan: Hi. My bike's rear brake started making a strange noise this morning. Do I need an appointment to have someone look at it?\n\nWoman: For a full repair, yes. But we offer free ten-minute safety checks without an appointment.\n\nMan: I'm mostly worried because I ride downhill on my way home. I don't want to keep using it if the brake isn't safe.\n\nWoman: In that case, definitely have us check it before you ride again. One of our mechanics can take a look in about fifteen minutes.\n\nMan: And if it needs an actual repair?\n\nWoman: We can schedule that after the inspection. If it's something simple, though, the mechanic may be able to adjust it during the safety check.\n\nMan: Okay. I'll wait.",
+        "questions": [
+          {
+            "q": "Why is the man particularly concerned about the brake problem?",
+            "options": [
+              "He recently purchased the bicycle.",
+              "He needs the bicycle for a competition.",
+              "The bicycle center closes soon.",
+              "His route home includes riding downhill."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What will probably happen next?",
+            "options": [
+              "The man will make an appointment for next week and leave.",
+              "A mechanic will inspect the bicycle after a short wait.",
+              "The man will repair the brake himself.",
+              "The employee will lend him another bicycle."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 16: Course Reading",
+        "instruction": "Listen to a conversation.",
+        "audioUrl": "../audio/ibt/test-34/task-16.mp3",
+        "script": "Narrator: Listen to a student speaking with her professor.\n\nWoman: Professor Bennett, I wanted to ask about the article for Thursday. I found the title in the syllabus, but the link on the course website doesn't work.\n\nMan: Oh, thanks for telling me. The library changed its database system last week, so some of the old links stopped working.\n\nWoman: I searched for the article by title, but I found two versions. One is much shorter.\n\nMan: Use the longer one. The shorter version is an earlier conference paper. The journal article is the one we'll discuss in class.\n\nWoman: Okay. Could you post a new link so everyone knows which one to read?\n\nMan: Absolutely. I'll replace it this afternoon and send the class an announcement.",
+        "questions": [
+          {
+            "q": "Why does the link on the course website no longer work?",
+            "options": [
+              "The professor removed the article.",
+              "The journal stopped publishing online.",
+              "The library changed its database system.",
+              "The student searched for the wrong title."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What will the professor probably do later that day?",
+            "options": [
+              "Post a working link and notify the class.",
+              "Cancel Thursday's discussion.",
+              "Ask students to read the shorter conference paper.",
+              "Move the article to a different syllabus."
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 18: Astronomy Observation Night",
+        "instruction": "Listen to an announcement.",
+        "audioUrl": "../audio/ibt/test-34/task-18.mp3",
+        "script": "Narrator: Listen to an announcement in an astronomy class.\n\nMan: A reminder about tomorrow night's observation session: we'll still meet at the observatory at eight o'clock, but the forecast is currently calling for clouds. If the sky is too cloudy to use the telescopes, we'll move into the planetarium for an alternative activity. Either way, the session will take place, so please don't assume it's canceled because of the weather.",
+        "questions": [
+          {
+            "q": "What should students understand about tomorrow's session?",
+            "options": [
+              "It will begin earlier if the sky is cloudy.",
+              "Students should check the forecast before attending.",
+              "The planetarium activity has been canceled.",
+              "The session will take place even if telescopes cannot be used."
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 19: Student Art Competition",
+        "instruction": "Listen to an announcement.",
+        "audioUrl": "../audio/ibt/test-34/task-19.mp3",
+        "script": "Narrator: Listen to an announcement in a university art department.\n\nWoman: Entries for this year's student art competition are due next Monday. Students may submit up to two works, but each piece must be registered separately using the online form. Physical artwork should not be brought to the department yet. After the judges review the digital photographs, selected participants will receive instructions about when and where to deliver their original work.",
+        "questions": [
+          {
+            "q": "What should students do when initially entering the competition?",
+            "options": [
+              "Bring their original artwork to the department.",
+              "Submit only one work.",
+              "Register each entry separately online.",
+              "Wait until the judges contact them before registering."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 20: Why Some Cities Sink",
+        "instruction": "Listen to an academic talk.",
+        "audioUrl": "../audio/ibt/test-34/task-20.mp3",
+        "script": "Narrator: Listen to part of a talk about urban geology.\n\nMan: When we hear that a coastal city is becoming more vulnerable to flooding, we often think first about rising sea levels. But in some cities, another process is occurring at the same time: the land itself is gradually sinking. This process is known as subsidence.\n\nSubsidence can have several causes. One important example involves groundwater. Water stored beneath the ground occupies spaces between particles of sediment. When large quantities of groundwater are pumped out for drinking, industry, or agriculture, those sediments may become more tightly compressed. The surface above them can then move downward.\n\nThis movement isn't always easy to reverse. If the sediment has been permanently compressed, simply allowing groundwater levels to rise again may not restore the land to its former elevation.\n\nNow, groundwater extraction isn't the only cause of subsidence. The enormous weight of buildings can contribute in certain locations, and natural geological processes also play a role. But groundwater use is particularly important because it can sometimes be managed.\n\nFor a low-lying coastal city, even a relatively small amount of subsidence matters. If the land sinks while sea level rises, the relative change between the city and the water becomes greater than either process alone would suggest.",
+        "questions": [
+          {
+            "q": "What is the talk mainly about?",
+            "options": [
+              "Why groundwater is the main source of drinking water in coastal cities",
+              "Why sea level rise occurs at different rates",
+              "How buildings are designed for unstable sediments",
+              "What subsidence is, how it can occur, and why it matters for cities"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "How can groundwater extraction cause the land surface to sink?",
+            "options": [
+              "Removing water can allow underground sediments to become more compressed.",
+              "Groundwater causes buildings to become heavier.",
+              "Pumping creates new geological faults beneath cities.",
+              "Water removal immediately raises sea level."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why may subsidence caused by compressed sediment be difficult to reverse?",
+            "options": [
+              "Groundwater cannot enter sediment after it is pumped out.",
+              "Coastal cities cannot reduce groundwater use.",
+              "Permanently compressed sediment may not return to its previous volume.",
+              "Buildings prevent groundwater levels from rising."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Why is subsidence especially important in a low-lying coastal city?",
+            "options": [
+              "Subsidence prevents residents from using groundwater.",
+              "Land sinking can combine with rising sea level to increase relative change.",
+              "Coastal sediments never contain groundwater.",
+              "Sea-level rise stops when the land begins to sink."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 21: The Spacing Effect",
+        "instruction": "Listen to an academic talk.",
+        "audioUrl": "../audio/ibt/test-34/task-21.mp3",
+        "script": "Narrator: Listen to part of a talk about learning and memory.\n\nWoman: Suppose you need to learn a set of new terms for an exam. You could study them for three hours in a single evening, or divide those three hours across several days. Research on memory suggests that, in many situations, the second approach will lead to better long-term retention.\n\nThis phenomenon is called the spacing effect. Learning tends to be more durable when study sessions are separated in time rather than concentrated into one continuous period.\n\nOne reason may be that some forgetting occurs between sessions. That sounds like a disadvantage, but when you return to the material, your brain has to work to retrieve information that is no longer completely fresh. That effort can strengthen the memory.\n\nSpacing also gives learners repeated opportunities to encounter information under somewhat different conditions. You may study in a different place, at a different time of day, or while thinking about the material in a slightly different way. Those varied contexts can create additional routes for later retrieval.\n\nThis doesn't mean that longer study sessions are always ineffective. If you have an exam tomorrow and haven't studied yet, concentrated practice may be necessary. But when the goal is to remember something weeks or months later, distributing study over time is generally more effective than doing the same amount of practice all at once.",
+        "questions": [
+          {
+            "q": "What is the spacing effect?",
+            "options": [
+              "The tendency to forget information immediately after studying",
+              "The benefit of separating study sessions over time for longer-term retention",
+              "The advantage of studying in exactly the same location every time",
+              "The practice of increasing the total number of study hours"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why can some forgetting between study sessions be useful?",
+            "options": [
+              "It eliminates unnecessary information.",
+              "It makes each later study session shorter.",
+              "It prevents learners from depending on context.",
+              "Retrieving less-fresh information can strengthen the memory."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "How may varied study contexts contribute to learning?",
+            "options": [
+              "They can provide additional routes for later retrieval.",
+              "They prevent any forgetting from occurring.",
+              "They allow students to study without concentrating.",
+              "They reduce the amount of information that must be learned."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why does the speaker mention an exam scheduled for tomorrow?",
+            "options": [
+              "To argue that exams should be announced earlier",
+              "To show that the spacing effect works only for vocabulary",
+              "To acknowledge a situation in which concentrated study may be necessary",
+              "To recommend studying all material the night before an exam"
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 1: Build a Sentence",
+        "context": "Speaker A: \"Why didn't Daniel come to the meeting?\"",
+        "scaffold": "He said ______ ______ ______ ______.",
+        "chunks": [
+          "he had",
+          "to finish",
+          "an assignment",
+          "before midnight",
+          "has finishing"
+        ],
+        "words": [
+          "he had",
+          "to finish",
+          "an assignment",
+          "before midnight",
+          "has finishing"
+        ],
+        "correctOrder": [
+          "he had",
+          "to finish",
+          "an assignment",
+          "before midnight"
+        ],
+        "distractor": "has finishing",
+        "completedSentence": "He said he had to finish an assignment before midnight."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 2: Build a Sentence",
+        "context": "Speaker A: \"Do you know when the package will arrive?\"",
+        "scaffold": "They told me ______ ______ ______ ______.",
+        "chunks": [
+          "it should",
+          "be delivered",
+          "by",
+          "Friday afternoon",
+          "delivering"
+        ],
+        "words": [
+          "it should",
+          "be delivered",
+          "by",
+          "Friday afternoon",
+          "delivering"
+        ],
+        "correctOrder": [
+          "it should",
+          "be delivered",
+          "by",
+          "Friday afternoon"
+        ],
+        "distractor": "delivering",
+        "completedSentence": "They told me it should be delivered by Friday afternoon."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 3: Build a Sentence",
+        "context": "Speaker A: \"Why are you bringing an umbrella?\"",
+        "scaffold": "The forecast says ______ ______ ______ ______.",
+        "chunks": [
+          "it's likely",
+          "to rain",
+          "later",
+          "this evening",
+          "raining"
+        ],
+        "words": [
+          "it's likely",
+          "to rain",
+          "later",
+          "this evening",
+          "raining"
+        ],
+        "correctOrder": [
+          "it's likely",
+          "to rain",
+          "later",
+          "this evening"
+        ],
+        "distractor": "raining",
+        "completedSentence": "The forecast says it's likely to rain later this evening."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 4: Build a Sentence",
+        "context": "Speaker A: \"Did the technician fix your computer?\"",
+        "scaffold": "Yes, but it ______ ______ ______ ______.",
+        "chunks": [
+          "took",
+          "longer",
+          "than",
+          "I expected",
+          "taking"
+        ],
+        "words": [
+          "took",
+          "longer",
+          "than",
+          "I expected",
+          "taking"
+        ],
+        "correctOrder": [
+          "took",
+          "longer",
+          "than",
+          "I expected"
+        ],
+        "distractor": "taking",
+        "completedSentence": "Yes, but it took longer than I expected."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 5: Build a Sentence",
+        "context": "Speaker A: \"Can Priya join us for dinner?\"",
+        "scaffold": "She isn't sure ______ ______ ______ ______.",
+        "chunks": [
+          "whether",
+          "she'll be",
+          "finished with work",
+          "by then",
+          "finishing"
+        ],
+        "words": [
+          "whether",
+          "she'll be",
+          "finished with work",
+          "by then",
+          "finishing"
+        ],
+        "correctOrder": [
+          "whether",
+          "she'll be",
+          "finished with work",
+          "by then"
+        ],
+        "distractor": "finishing",
+        "completedSentence": "She isn't sure whether she'll be finished with work by then."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 6: Build a Sentence",
+        "context": "Speaker A: \"How did you hear about the internship?\"",
+        "scaffold": "My professor ______ ______ ______ ______.",
+        "chunks": [
+          "suggested",
+          "that I",
+          "apply",
+          "for it",
+          "applying"
+        ],
+        "words": [
+          "suggested",
+          "that I",
+          "apply",
+          "for it",
+          "applying"
+        ],
+        "correctOrder": [
+          "suggested",
+          "that I",
+          "apply",
+          "for it"
+        ],
+        "distractor": "applying",
+        "completedSentence": "My professor suggested that I apply for it."
+      },
+      {
+        "section": "Writing",
+        "type": "writing-email",
+        "taskFamily": "Write an Email",
+        "title": "Write an Email",
+        "instruction": "Write as much as you can and in complete sentences.",
+        "time": 420,
+        "text": "<p>You recently attended an event organized by your university's international student office. The coordinator, Ms. Romero, has asked participants for feedback about the event.</p><p>Write an email to Ms. Romero. In your email:</p><ul><li>describe one part of the event that you enjoyed or found useful;</li><li>explain one problem or difficulty you noticed; and</li><li>suggest one activity that could be included at a future event.</li></ul><p>Write as much as you can and in complete sentences.</p>"
+      },
+      {
+        "section": "Writing",
+        "type": "academic-discussion",
+        "taskFamily": "Write for an Academic Discussion",
+        "title": "Write for an Academic Discussion",
+        "time": 600,
+        "professor": "Professor Harris",
+        "professorPrompt": "<p>Digital technology makes it possible for people to access news almost immediately throughout the day. Some people believe this constant access helps citizens stay informed. Others argue that checking news too frequently can be distracting and may encourage people to react to events before enough information is available.</p><p>Do you think having constant access to news is generally beneficial, or would people benefit from checking the news less frequently? Why?</p>",
+        "studentAName": "Maya",
+        "studentA": "I think constant access is useful because important events can develop quickly. People may need timely information about weather emergencies, transportation, or decisions that affect their community. The problem isn't access itself; it is whether people choose reliable sources.",
+        "studentBName": "Noah",
+        "studentB": "I think people would benefit from checking less often. Early reports are sometimes incomplete, and constantly reading updates can make minor developments seem more important than they really are. A few careful updates during the day are usually enough for me.",
+        "studentInstruction": "Write a response to the professor's question. In your response: express and support your own opinion; and make a contribution to the discussion in your own words. An effective response will contain at least 100 words."
+      },
+      {
+        "section": "Speaking",
+        "type": "listen-repeat-updated",
+        "taskFamily": "Listen and Repeat",
+        "title": "Listen and Repeat",
+        "scenario": "You are attending an onboarding session. Listen and repeat what the representative says. Repeat only once.",
+        "sentences": [
+          {
+            "script": "Welcome to today's onboarding session!",
+            "text": "Welcome to today's onboarding session!",
+            "audio": "../audio/ibt/test-34/sentence-1.mp3"
+          },
+          {
+            "script": "You can collect your room key at the front desk.",
+            "text": "You can collect your room key at the front desk.",
+            "audio": "../audio/ibt/test-34/sentence-2.mp3"
+          },
+          {
+            "script": "The elevators are located just beyond the main lobby.",
+            "text": "The elevators are located just beyond the main lobby.",
+            "audio": "../audio/ibt/test-34/sentence-3.mp3"
+          },
+          {
+            "script": "Before moving your belongings upstairs, please make sure you've completed the check-in form.",
+            "text": "Before moving your belongings upstairs, please make sure you've completed the check-in form.",
+            "audio": "../audio/ibt/test-34/sentence-4.mp3"
+          },
+          {
+            "script": "If you notice any damage in your room, take a photograph and report it to the residence staff.",
+            "text": "If you notice any damage in your room, take a photograph and report it to the residence staff.",
+            "audio": "../audio/ibt/test-34/sentence-5.mp3"
+          },
+          {
+            "script": "Residents who need help connecting to the wireless network can visit the technology desk until eight o'clock tonight.",
+            "text": "Residents who need help connecting to the wireless network can visit the technology desk until eight o'clock tonight.",
+            "audio": "../audio/ibt/test-34/sentence-6.mp3"
+          },
+          {
+            "script": "Once you've finished unpacking, please join us in the ground-floor lounge, where the residence advisers will explain the building's safety procedures and answer any questions you may have.",
+            "text": "Once you've finished unpacking, please join us in the ground-floor lounge, where the residence advisers will explain the building's safety procedures and answer any questions you may have.",
+            "audio": "../audio/ibt/test-34/sentence-7.mp3"
+          }
+        ]
+      },
+      {
+        "section": "Speaking",
+        "type": "take-interview",
+        "taskFamily": "Take an Interview",
+        "title": "Take an Interview",
+        "adaptationNote": "Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.",
+        "introduction": "You are participating in a research interview about how people adapt to new environments and routines.",
+        "responseTime": 45,
+        "questions": [
+          "Think about a time when you started something new, such as a job, course, school, or activity. What was the experience like at first?",
+          "What helped you become more comfortable or confident in that new environment?",
+          "When people begin something new, do you think detailed instructions are more helpful than learning through experience? Why?",
+          "Organizations often provide onboarding or orientation programs for new students or employees. What do you think an effective onboarding program should include, and why?"
+        ]
+      }
+    ];
+
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
     let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
     let currentAudioObjectUrl = '';
@@ -2775,8 +3578,8 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
     function isUpdatedPractice() { return /^Test (?:3[1-9]|[4-9]\d|\d{3,})$/.test(_currentTestKey); }
 
     function renderCompleteWordsText(text) {
-        return text.replace(/([\p{L}\p{N}'’-]+)\[(\d+)\]/gu, (match, fragment, size) =>
-            `<span class="incomplete-word">${fragment}<input type="text" class="fill-blank" maxlength="${size}" style="width: ${size}ch" aria-label="Complete the word beginning ${fragment}"></span>`
+        return text.replace(/([\p{L}\p{N}'’-]+)\[(\d+)\]([.,;:!?]*)/gu, (match, fragment, size, punctuation) =>
+            `<span class="incomplete-word">${fragment}<input type="text" class="fill-blank" maxlength="${size}" style="width: ${size}ch" aria-label="Complete the word beginning ${fragment}">${punctuation}</span>`
         );
     }
 
@@ -2908,7 +3711,7 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
             <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${accuracy}%</div>
             <p style="font-size:1.2rem;">Practice Accuracy</p>
             <div style="font-size: 1.1rem; color: var(--text-neutral);"><strong>${sCount}</strong> correct out of <strong>${maxScore}</strong> objective items</div>
-            ${['Test 31', 'Test 32', 'Test 33'].includes(_currentTestKey) ? '<p style="color:var(--text-neutral);">Writing and Speaking practice tasks are not included in automatic scoring. This is practice performance, not an official TOEFL score.</p>' : ''}
+            ${['Test 31', 'Test 32', 'Test 33', 'Test 34'].includes(_currentTestKey) ? '<p style="color:var(--text-neutral);">Writing and Speaking practice tasks are not included in automatic scoring. This is practice performance, not an official TOEFL score.</p>' : ''}
             ${_reported ? '<div style="margin-top:16px;font-size:0.85rem;color:#1a7a4a;font-weight:600;">✅ Progress saved to My Progress</div>' : ''}
         `;
 

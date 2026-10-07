@@ -76,7 +76,7 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34'\]/);
 });
 
 test('Test 31 deep links remain supported as an optional entry path', () => {
@@ -110,9 +110,9 @@ function parentIBTAccess(tier) {
 test('every full-access tier sends Test 31 in the iframe allowed parameter', () => {
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     const access = parentIBTAccess(tier);
-    assert.equal(access.allowed.length, 33, tier);
-    assert.deepEqual(access.allowed.slice(-3), ['Test 31', 'Test 32', 'Test 33'], tier);
-    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-3), ['Test 31', 'Test 32', 'Test 33'], tier);
+    assert.equal(access.allowed.length, 34, tier);
+    assert.deepEqual(access.allowed.slice(-4), ['Test 31', 'Test 32', 'Test 33', 'Test 34'], tier);
+    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-4), ['Test 31', 'Test 32', 'Test 33', 'Test 34'], tier);
   }
 });
 
@@ -370,7 +370,7 @@ test('results use item-level Practice Accuracy instead of an unofficial TOEFL sc
 
 
 test('Test 32 is enabled in the updated catalog and preserves the complete section sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34'\]/);
   assert.equal(test32.length, 27);
   assert.deepEqual([...new Set(test32.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: ['Test 32'], key: 'Test 32' });
@@ -430,7 +430,7 @@ test('Test 32 extended tasks retain established timing and sentence behavior', (
 });
 
 test('Test 33 is enabled with the complete updated practice sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34'\]/);
   assert.equal(test33.length, 27);
   assert.deepEqual([...new Set(test33.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(test33, (task) => task.section)).map(([section, tasks]) => [section, tasks.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
