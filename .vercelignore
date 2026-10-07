@@ -1,2 +1,5 @@
 # Development-only editorial reports and integration notes.
 docs/word-families/
+
+# Tests are development-only and must not become API function entry points.
+**/*.test.js

@@ -43,6 +43,11 @@ bank read, adding the initializer wrapper, and trimming trailing whitespace.
 
 ## Preview verification still needed
 
+The initial automatic Vercel preview reported a deployment failure. Its
+authenticated build logs were unavailable in this environment. Test files are
+now excluded from deployment so API tests cannot become function entry points;
+the latest PR check must succeed before live-account verification or merging.
+
 Local security tests use mocked Supabase responses; they do not certify live
 account entitlement or the production project's current RLS configuration.
 Google Fonts were unavailable in this environment; fallback fonts were used.

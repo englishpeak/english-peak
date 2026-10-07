@@ -54,7 +54,9 @@ from deployment. Nothing links these reports from the student interface.
 ## Vercel
 
 The existing static-page and Node serverless deployment handles the route. The
-only `vercel.json` change is the clean-route rewrite. No build system, project,
+only `vercel.json` change is the clean-route rewrite. `.vercelignore` also excludes
+development reports and test files, preventing API tests from becoming function
+entry points. No build system, project,
 domain or production deployment is changed.
 
 No **new** environment variables are introduced. The endpoint needs the existing
