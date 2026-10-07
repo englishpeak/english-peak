@@ -1,0 +1,18 @@
+/* Reuse the platform's exercise topbar and member-gate treatment. */
+body { font-family: var(--ep-font-sans, 'Outfit', system-ui, sans-serif); }
+h1 { font-family: var(--ep-font-serif, 'Cormorant Garamond', Georgia, serif); }
+.exercise-topbar { display: flex; align-items: center; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--ep-border); background: var(--ep-surface); }
+.back-btn { font-size: .82rem; font-weight: 600; color: var(--ep-navy); text-decoration: none; }
+.exercise-title { flex: 1; color: var(--ep-navy); font-weight: 600; }
+.exercise-badge { font-size: .7rem; padding: 5px 12px; border-radius: 20px; background: rgba(71,0,116,.08); color: var(--ep-purple); font-weight: 600; }
+.embedded #standalone-topbar { display: none; }
+.auth-loading, .member-lock { min-height: 60vh; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 28px; text-align: center; }
+.auth-loading { color: var(--ep-muted); }
+.member-lock h1 { color: var(--ep-navy); }
+.member-lock p { max-width: 420px; color: var(--ep-muted); line-height: 1.6; }
+.lock-symbol { font-size: 2rem; }
+.member-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
+.member-actions a, .member-actions button { padding: 12px 22px; min-height: 44px; border-radius: 10px; border: 1px solid var(--ep-border); font: inherit; text-decoration: none; cursor: pointer; }
+.member-actions .primary { color: white; background: var(--ep-navy); }
+.member-actions .secondary { color: var(--ep-navy); background: white; }
+.member-actions :focus-visible, .back-btn:focus-visible { outline: 3px solid var(--ep-purple); outline-offset: 3px; }

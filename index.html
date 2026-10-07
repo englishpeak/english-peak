@@ -359,6 +359,10 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
         <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
       </div>
+      <div class="ex-card" onclick="openWordFamilies()">
+        <div class="card-header"><div class="card-icon purple">🌱</div><div class="card-access access-locked" id="access-word-families">🔒 ePeak+</div></div>
+        <div class="card-body"><div class="card-title">Word Families</div><div class="card-desc">Build vocabulary by sorting and completing related word forms.</div><div class="card-meta"><span class="meta-item">📚 300 word families</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-locked" id="btn-word-families">🔐 Sign in to access</button></div>
+      </div>
     </div>
 
     <div class="section-header"><h2>Free Exercises</h2><p>No account needed</p></div>
@@ -581,6 +585,12 @@ body.download-preview-lock{overflow:hidden}
   <div class="exercise-screen" id="exercise-emoji">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title" id="topbarTitleEmoji">Emoji Flashcards</div></div>
     <iframe class="exercise-frame" id="frame-emoji" src="" style="width:100%;height:calc(100vh - 56px);border:none;"></iframe>
+  </div>
+
+  <!-- ═══ WORD FAMILIES (iframe) ═══ -->
+  <div class="exercise-screen" id="exercise-word-families">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">🌱 Word Families</div><div class="exercise-badge">ePeak+</div></div>
+    <iframe class="exercise-frame" id="frame-word-families" src="" title="Word Families" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ COLLOCATIONS (iframe) ═══ -->
@@ -1280,6 +1290,12 @@ function applyTier(tier) {
     document.getElementById('btn-reading').className      = 'card-btn btn-partial';
   }
   document.getElementById('reading-badge').textContent = isFullAccess ? '✓ All ' + READING_TOTAL : '🔓 ' + rc + ' of ' + READING_TOTAL;
+  var hasWordFamiliesAccess = Boolean(_currentUser) && hasFullAccessTier(getEffectiveTier(_currentProfile));
+  var wordFamiliesAccess = document.getElementById('access-word-families');
+  var wordFamiliesButton = document.getElementById('btn-word-families');
+  if (wordFamiliesAccess) { wordFamiliesAccess.textContent = hasWordFamiliesAccess ? '✓ ePeak+' : '🔒 ePeak+'; wordFamiliesAccess.className = 'card-access ' + (hasWordFamiliesAccess ? 'access-premium' : 'access-locked'); }
+  if (wordFamiliesButton) { wordFamiliesButton.className = 'card-btn ' + (hasWordFamiliesAccess ? 'btn-open' : 'btn-locked'); wordFamiliesButton.textContent = hasWordFamiliesAccess ? 'Start Practice →' : _currentUser ? '⭐ Get ePeak+' : '🔐 Sign in to access'; }
+
   var hasCollocationsAccess = Boolean(_currentUser);
   var collocationsAccess = document.getElementById('access-collocations');
   var collocationsMeta = document.getElementById('meta-collocations');
@@ -1866,6 +1882,17 @@ function openEmoji() {
   document.getElementById('exercise-emoji').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Emoji Flashcards';
   document.getElementById('frame-emoji').src = '/emoji';
+  closeMobileSidebar();
+}
+
+function openWordFamilies() {
+  if (!_currentUser) { showAuthModal('login'); return; }
+  if (!hasFullAccessTier(getEffectiveTier(_currentProfile))) { showModal(); return; }
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-word-families').classList.add('active');
+  document.getElementById('topbarTitle').textContent = '🌱 Word Families';
+  document.getElementById('topbarSub').textContent = 'Sort and complete related word forms';
+  document.getElementById('frame-word-families').src = '/word-families';
   closeMobileSidebar();
 }
 
@@ -2842,6 +2869,7 @@ checkHamburger();
 (function() {
   var authTab = new URLSearchParams(window.location.search).get('auth');
   if (authTab === 'login' || authTab === 'register') showAuthModal(authTab);
+  if (new URLSearchParams(window.location.search).get('upgrade') === 'word-families') showModal();
 })();
 
 // Waits for auth session to resolve before opening, so tier-based locks are correct
@@ -2861,6 +2889,7 @@ checkHamburger();
     else if (exercise === 'conv') openConv();
     else if (exercise === 'thisorthat') openThisOrThat();
     else if (exercise === 'general') openGeneral();
+    else if (exercise === 'word-families') openWordFamilies();
   }
 
   // Wait for Supabase session to resolve (max 2s) before opening
