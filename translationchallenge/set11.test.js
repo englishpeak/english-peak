@@ -29,8 +29,12 @@ const expectedLevels = ["A1","B1","B2","A2","A2","B2","A1","B2","B1","B1","A1","
 const expectedPrompts = ["What time", "I didn't", "There's no", "This shelf", "Do you", "I thought", "My phone", "If you're", "I think", "We ended", "Are you", "If it", "We ran", "Check the", "I would", "Can you", "It's really", "I don't", "Can you", "It wasn't", "I don't", "No matter", "If there's", "Let the"];
 
 test("Set 11 preserves every supplied prompt, answer, alternative, and teaching note", () => {
-  const { sets } = challenge();
-  const set = sets.find(set => set.id === 11);
+  // Keep the fingerprint on the original supplied data so adding reviewed
+  // alternatives cannot hide a change to a prompt, primary answer, or note.
+  const context = {};
+  vm.runInNewContext(`${html.slice(html.indexOf("const sets="), html.indexOf("// Build out common, fully equivalent forms"))};globalThis.set11=sets.find(set=>set.id===11)`, context);
+  const set = context.set11;
+  const runtimeSet = challenge().sets.find(set => set.id === 11);
   assert.equal(set.title, "Set 11");
   assert.equal(set.description, "24 sentences · Mixed levels · Mixed grammar and vocabulary");
   assert.equal(set.sentences.length, 24);
@@ -44,6 +48,14 @@ test("Set 11 preserves every supplied prompt, answer, alternative, and teaching 
   assert.equal(digest(set.sentences), "5ac697743b2a44db18b514116ba7e03e84cb43f66dbf7b6b6824b2d87021bdc9");
   set.sentences.forEach(sentence => {
     assert.deepEqual(Object.keys(sentence).sort(), ["acceptedAnswers", "id", "level", "mediumPrompt", "note", "primaryAnswer", "spanish"]);
+    const expanded = runtimeSet.sentences.find(item => item.id === sentence.id);
+    for (const [field, value] of Object.entries(sentence)) {
+      if (field === "acceptedAnswers") {
+        assert.ok(value.every(answer => expanded.acceptedAnswers.includes(answer)));
+      } else {
+        assert.equal(expanded[field], value);
+      }
+    }
   });
 });
 
@@ -59,13 +71,56 @@ test("Set 11 includes the five specified vocabulary targets without special lear
   assert.ok(sentences[8].acceptedAnswers.some(answer => answer.includes("fringe")));
 });
 
-test("the actual Hard validator accepts all 182 supplied answers and existing mechanical normalization", () => {
+test("the actual Hard validator accepts all supplied and added answers with existing mechanical normalization", () => {
   const { sets, valid } = challenge();
   for (const sentence of sets.find(set => set.id === 11).sentences) {
     for (const answer of [sentence.primaryAnswer, ...sentence.acceptedAnswers]) {
       assert.ok(valid(answer, sentence, "Hard"), `Item ${sentence.id}: ${answer}`);
       assert.ok(valid(`  ${answer.toUpperCase().replaceAll("'", "’").replaceAll(" ", "  ")}!!!  `, sentence, "Hard"));
     }
+  }
+});
+
+test("Set 11 adds distinct curated alternatives, with more coverage for longer sentences", () => {
+  const app = challenge();
+  const set = app.sets.find(set => set.id === 11);
+  const originalCounts = [5,6,8,7,6,7,6,6,7,6,3,6,5,7,7,7,6,8,7,7,8,8,8,7];
+  let addedTotal = 0;
+  set.sentences.forEach((sentence, index) => {
+    const added = sentence.acceptedAnswers.length - originalCounts[index];
+    const minimum = sentence.level === "C1" ? 16 : sentence.level === "B2" ? 12 : 2;
+    assert.ok(added >= minimum, `Item ${sentence.id} should gain at least ${minimum} alternatives`);
+    addedTotal += added;
+    const answers = [sentence.primaryAnswer, ...sentence.acceptedAnswers];
+    const normalized = answers.map(answer => answer.toLowerCase().replace(/[’‘`´]/g, "'").replace(/[¿?¡!.,;]/g, " ").replace(/\s+/g, " ").trim());
+    assert.equal(new Set(normalized).size, answers.length, `Item ${sentence.id} has duplicate answers`);
+    app.state.index = index;
+    for (const answer of sentence.acceptedAnswers) {
+      assert.ok(answer.trim());
+      assert.equal(app.valid(answer, sentence, "Easy"), false, `Easy should keep the primary word bank for item ${sentence.id}`);
+      if (answer.startsWith(`${sentence.mediumPrompt} `)) {
+        app.state.difficulty = "Medium";
+        app.entry().typed = answer.slice(sentence.mediumPrompt.length).trim();
+        assert.ok(app.valid(app.currentUserAnswer(), sentence, "Medium"), `Medium item ${sentence.id}: ${answer}`);
+      }
+    }
+  });
+  assert.equal(addedTotal, 251);
+  assert.equal(set.sentences.reduce((total, sentence) => total + sentence.acceptedAnswers.length, 0), 409);
+
+  const examples = [
+    [3, "If neither of us is going to change our mind, there's no point in continuing to argue."],
+    [8, "If you're going to cancel, let me know early enough to make other plans."],
+    [9, "I think I'll get my fringe cut a little shorter."],
+    [12, "I'd get to your house in twenty minutes if it weren't for the traffic."],
+    [18, "I don't know how they get away with doing things like that every time."],
+    [20, "Not until I got to the airport did I remember that I'd left my passport at home."],
+    [21, "I don't want to draw any hasty conclusions, but their explanation hasn't quite convinced me."],
+    [22, "Try as I might to play it down, the situation still worries me."],
+    [23, "What bothers me is that they always assume I'll be available."]
+  ];
+  for (const [id, answer] of examples) {
+    assert.ok(app.valid(answer, set.sentences[id - 1], "Hard"), `Curated example ${id}`);
   }
 });
 
@@ -103,7 +158,7 @@ test("the actual validator rejects wrong structures, meanings, and unlisted auto
     assert.equal(valid(sentence.primaryAnswer.split(" ").slice(0, -1).join(" "), sentence, "Hard"), false);
     assert.equal(valid(`${sentence.primaryAnswer} tomorrow`, sentence, "Hard"), false);
   });
-  assert.equal(valid("I did not realize I'd left the window open.", sentences[1], "Hard"), false);
+  assert.equal(valid("I didn't realize I'd left the windows open.", sentences[1], "Hard"), false);
   assert.equal(valid("It's really hot today.", sentences[6], "Hard"), false);
 });
 
