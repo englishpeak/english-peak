@@ -49,7 +49,7 @@ test('all local Listen and Write MP3 files exist, are non-empty, and contain MP3
   }
 });
 
-test('every Easy word bank uses a genuine shuffle, including all Test 3 and Test 4 items',()=>{
+test('every Easy word bank uses a genuine shuffle across all tests',()=>{
   LISTEN_WRITE_SETS.forEach(set=>set.items.forEach((item,index)=>assertGenuinelyScrambled(item,`Test ${set.number} item ${index+1}`)));
 });
 
@@ -182,4 +182,54 @@ test('Test 4 is ePeak+ and has the requested order, modes, and local audio',()=>
     assert.deepEqual([...item.scramble].sort((a,b)=>a-b),Array.from({length:sentenceWords.length},(_,i)=>i));
     assert.notDeepEqual(item.scramble,[...item.scramble.keys()],`item ${index+1} is scrambled`);
   });
+});
+
+test('Test 5 preserves exact content, ePeak+ access, balanced blanks, and intact contractions',async()=>{
+  const set=LISTEN_WRITE_SETS.find(set=>set.number===5);
+  const answers=[
+    "I haven't decided what I'm going to wear to the party yet.",
+    'If you need any help, just give me a call.',
+    'The report raises several questions that deserve to be investigated more thoroughly.',
+    "I shouldn't have stayed up so late when I knew I had to work this morning.",
+    'Where did you buy those shoes?',
+    'She seems to have adapted remarkably well to her new responsibilities.',
+    'We ended up ordering pizza because neither of us felt like cooking.',
+    "Under no circumstances should personal information be disclosed without the user's consent.",
+    'How would you react if your boss asked you to work over the weekend?',
+    'Much as I appreciate their efforts, I remain unconvinced that this approach will solve the underlying problem.'
+  ];
+  assert.equal(set.title,'Test 5');
+  assert.equal(set.access,ACCESS.PLUS);
+  assert.deepEqual(LISTEN_WRITE_SETS.map(set=>set.access),[ACCESS.PUBLIC,ACCESS.REGISTERED,ACCESS.REGISTERED,ACCESS.PLUS,ACCESS.PLUS]);
+  assert.deepEqual(set.items.map(item=>item.answer),answers);
+  set.items.forEach((item,index)=>{
+    const tokens=words(item.answer);
+    assertGenuinelyScrambled(item,`Test 5 item ${index+1}`);
+    assert.equal(item.audio,listenWriteAudio(5,index+1));
+    assert.equal(item.blanks.length,Math.floor(tokens.length/2));
+    assert.equal((item.medium.match(/\[blank\]/g)||[]).length,item.blanks.length);
+    assert.deepEqual(item.blanks,tokens.filter((_,i)=>i%2===1).map(token=>token.replace(/[,.?!;:]+$/u,'')));
+    // Filling the displayed blanks reconstructs the exact supplied sentence.
+    let blank=0;
+    assert.equal(item.medium.replace(/\[blank\]/g,()=>item.blanks[blank++]),item.answer);
+  });
+  const tokens=set.items.flatMap(item=>words(item.answer));
+  ["haven't","I'm","shouldn't","user's"].forEach(token=>assert.ok(tokens.includes(token)));
+  await assert.rejects(stat(new URL('../audio/listen-and-write/test-5/.gitkeep',import.meta.url)),{code:'ENOENT'});
+});
+
+test('every Test 5 Hard answer accepts optional final punctuation but rejects content errors',()=>{
+  const set=LISTEN_WRITE_SETS.find(set=>set.number===5);
+  set.items.forEach(item=>{
+    const unpunctuated=item.answer.replace(/[.?!]+$/u,'');
+    assert.ok(isCorrect(item.answer,item.answer));
+    assert.ok(isCorrect(unpunctuated,item.answer));
+    assert.ok(isCorrect(`  ${unpunctuated.toUpperCase().replace(/ /g,'   ')}!  `,item.answer));
+    assert.ok(!isCorrect(unpunctuated.slice(1),item.answer),'spelling errors fail');
+    assert.ok(!isCorrect(unpunctuated.replace(/\S+\s/u,''),item.answer),'missing words fail');
+    assert.ok(!isCorrect(`${unpunctuated} really`,item.answer),'additional words fail');
+    assert.ok(!isCorrect(words(item.answer).reverse().join(' '),item.answer),'wrong order fails');
+    if(item.answer.includes("'")) assert.ok(!isCorrect(item.answer.replace(/'/g,''),item.answer),'missing contraction apostrophes fail');
+  });
+  assert.ok(!isCorrect('Where do you buy those shoes?',set.items[4].answer),'wrong grammar fails');
 });
