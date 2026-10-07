@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/course", "destination": "/course/index.html" },
+    { "source": "/course/:path*", "destination": "/course/index.html" },
     { "source": "/word-families", "destination": "/word-families/index.html" },
     { "source": "/teachers",        "destination": "/teachers/index.html" },
     { "source": "/teachers/:path*", "destination": "/teachers/index.html" },

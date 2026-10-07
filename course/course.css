@@ -1,0 +1,86 @@
+* { box-sizing: border-box; }
+html { color-scheme: light; scroll-padding-top: 28px; }
+body { margin: 0; background: var(--ep-bg); color: var(--ep-ink); font: 16px/1.5 var(--ep-font-sans); }
+a { color: var(--ep-navy); text-underline-offset: 4px; }
+a:focus-visible { outline: 3px solid var(--ep-purple); outline-offset: 5px; border-radius: 3px; }
+.skip-link { position: absolute; left: 16px; top: -80px; z-index: 2; padding: 12px 20px; background: var(--ep-surface); }
+.skip-link:focus { top: 12px; }
+.site-header { border-bottom: 1px solid var(--ep-border); background: var(--ep-surface); }
+.header-inner, .course-page, .site-footer { width: min(1200px, calc(100% - 80px)); margin-inline: auto; }
+.header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { font: 700 29px var(--ep-font-serif); color: var(--ep-navy); text-decoration: none; }
+.brand span { color: var(--ep-purple); }
+.back-link { font-size: 14px; text-decoration: none; padding-block: 12px; }
+.back-link:hover { text-decoration: underline; }
+.course-page { padding-block: 60px 80px; }
+.course-page:focus { outline: none; }
+.course-intro { padding-bottom: 44px; }
+.eyebrow { margin: 0 0 16px; color: var(--ep-navy); font-size: 11px; font-weight: 600; letter-spacing: .13em; }
+h1, h2 { color: var(--ep-navy); font-family: var(--ep-font-serif); }
+h1 { font-size: clamp(36px, 4.5vw, 54px); line-height: 1.1; margin: 0 0 18px; font-weight: 700; }
+.intro-description { margin: 0; max-width: 630px; font-size: 18px; color: var(--ep-muted); }
+.release-note { margin: 24px 0 0; padding-left: 12px; border-left: 2px solid var(--ep-purple); color: var(--ep-purple); font-size: 14px; }
+.curriculum-layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 48px; align-items: start; }
+.level-nav { position: sticky; top: 28px; padding-top: 8px; }
+.level-links, .module-list { list-style: none; padding: 0; margin: 0; }
+.level-link { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--ep-border); text-decoration: none; align-items: baseline; }
+.level-link:hover { color: var(--ep-purple); }
+.nav-code { font-weight: 600; font-size: 18px; }
+.nav-name { font-size: 13px; line-height: 1.5; }
+.level-section { background: var(--ep-surface); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-lg); overflow: hidden; margin-bottom: 32px; }
+.level-section:last-child { margin-bottom: 0; }
+.level-section:target { border-color: var(--ep-navy); }
+.level-heading { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 18px; padding: 28px 28px 24px; border-bottom: 1px solid var(--ep-border); background: var(--ep-card-soft); }
+.level-code { font: 600 32px/1.2 var(--ep-font-sans); color: var(--ep-navy); grid-row: span 2; }
+h2 { font-size: 29px; line-height: 1.1; margin: 0 0 8px; font-weight: 700; }
+.level-meta { margin: 0; font-size: 12px; color: var(--ep-muted); }
+.level-status { grid-column: 2; font-size: 13px; font-weight: 500; color: var(--ep-purple); margin-top: 12px; }
+.module-row, .module-entry { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 16px; align-items: center; }
+.module-row { margin-inline: 28px; padding-block: 17px; border-bottom: 1px solid var(--ep-border); }
+.module-row:last-child { border-bottom: 0; }
+.module-entry { grid-column: 1 / -1; text-decoration: none; }
+.module-entry:hover .module-title { text-decoration: underline; }
+.module-number { font-size: 12px; font-variant-numeric: tabular-nums; color: var(--ep-muted); align-self: start; padding-top: 3px; }
+.module-title { display: block; font-size: 16px; font-weight: 500; line-height: 1.4; }
+.access { display: block; color: var(--ep-muted); font-size: 12px; margin-top: 4px; }
+.access-epeak-plus { color: var(--ep-purple); }
+.availability { color: var(--ep-navy); font-size: 12px; white-space: nowrap; }
+.route-panel { max-width: 800px; padding-block: 12px 80px; }
+.route-panel > .back-link { display: inline-block; margin-bottom: 40px; }
+.route-status { font-size: 20px; color: var(--ep-purple); margin: 28px 0 12px; }
+.route-description { color: var(--ep-muted); }
+.action-link { display: inline-block; margin-top: 20px; padding: 12px 20px; background: var(--ep-navy); color: white; border-radius: var(--ep-radius-sm); text-decoration: none; }
+.site-footer { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--ep-border); padding-block: 24px 32px; color: var(--ep-muted); font-size: 12px; }
+.loading, .noscript { padding: 24px; color: var(--ep-muted); }
+body:has(.noscript) .loading { display: none; }
+@media (max-width: 1000px) {
+  .curriculum-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .level-nav { position: static; padding: 0; }
+  .level-links { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--ep-border); }
+  .level-link { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 14px 12px 14px 0; }
+  .nav-name { font-size: 12px; }
+}
+@media (max-width: 600px) {
+  .header-inner, .course-page, .site-footer { width: calc(100% - 32px); }
+  .header-inner { min-height: 72px; gap: 12px; }
+  .brand { font-size: 25px; }
+  .back-link { font-size: 12px; }
+  .course-page { padding-block: 36px 48px; }
+  .course-intro { padding-bottom: 32px; }
+  .intro-description { font-size: 16px; }
+  .release-note { font-size: 13px; }
+  .level-nav .eyebrow { margin-bottom: 8px; }
+  .level-link { padding: 12px 4px; align-items: center; }
+  .nav-name { display: none; }
+  .level-heading { padding: 24px 18px; column-gap: 12px; grid-template-columns: 42px minmax(0, 1fr); }
+  .level-code { font-size: 27px; }
+  h2 { font-size: 26px; }
+  .module-row, .module-entry { grid-template-columns: 24px minmax(0, 1fr); gap: 4px 10px; }
+  .module-row { margin-inline: 18px; padding-block: 16px; }
+  .module-number { grid-row: span 2; }
+  .module-title { font-size: 15px; }
+  .availability { grid-column: 2; margin-top: 4px; }
+  .module-details { display: contents; }
+  .access { grid-column: 2; grid-row: auto; margin-top: 0; }
+  .level-section { margin-bottom: 24px; }
+}
