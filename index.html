@@ -1081,6 +1081,11 @@ let _currentProfile = null;
   sb.auth.onAuthStateChange(async function(event, session) {
     if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
       if (session && session.user) {
+        if (_currentUser && _currentUser.id !== session.user.id) {
+          _currentProfile = null;
+          _currentUser = session.user;
+          prepareWordFamiliesFrame();
+        }
         _currentUser = session.user;
         await loadProfile();
       }
@@ -1295,6 +1300,7 @@ function applyTier(tier) {
   var wordFamiliesButton = document.getElementById('btn-word-families');
   if (wordFamiliesAccess) { wordFamiliesAccess.textContent = hasWordFamiliesAccess ? '✓ ePeak+' : '🔒 ePeak+'; wordFamiliesAccess.className = 'card-access ' + (hasWordFamiliesAccess ? 'access-premium' : 'access-locked'); }
   if (wordFamiliesButton) { wordFamiliesButton.className = 'card-btn ' + (hasWordFamiliesAccess ? 'btn-open' : 'btn-locked'); wordFamiliesButton.textContent = hasWordFamiliesAccess ? 'Start Practice →' : _currentUser ? '⭐ Get ePeak+' : '🔐 Sign in to access'; }
+  prepareWordFamiliesFrame();
 
   var hasCollocationsAccess = Boolean(_currentUser);
   var collocationsAccess = document.getElementById('access-collocations');
@@ -1885,6 +1891,21 @@ function openEmoji() {
   closeMobileSidebar();
 }
 
+function prepareWordFamiliesFrame() {
+  var frame = document.getElementById('frame-word-families');
+  if (!frame) return;
+  var userId = _currentUser && hasFullAccessTier(getEffectiveTier(_currentProfile)) ? _currentUser.id : null;
+  // Keep the authorized exercise and answers in memory for this account only.
+  // Loading early lets the protected API check finish while on the dashboard.
+  if (!userId) {
+    if (frame.dataset.userId) frame.src = 'about:blank';
+    delete frame.dataset.userId;
+  } else if (frame.dataset.userId !== userId) {
+    frame.dataset.userId = userId;
+    frame.src = '/word-families';
+  }
+}
+
 function openWordFamilies() {
   if (!_currentUser) { showAuthModal('login'); return; }
   if (!hasFullAccessTier(getEffectiveTier(_currentProfile))) { showModal(); return; }
@@ -1892,8 +1913,10 @@ function openWordFamilies() {
   document.getElementById('exercise-word-families').classList.add('active');
   document.getElementById('topbarTitle').textContent = '🌱 Word Families';
   document.getElementById('topbarSub').textContent = 'Sort and complete related word forms';
-  document.getElementById('frame-word-families').src = '/word-families';
+  prepareWordFamiliesFrame();
   closeMobileSidebar();
+  var frame = document.getElementById('frame-word-families');
+  if (frame.contentWindow) frame.contentWindow.postMessage({ type: 'wordFamiliesResume' }, window.location.origin);
 }
 
 function openCollocations() {

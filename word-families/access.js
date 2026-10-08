@@ -24,13 +24,26 @@ const retry = document.getElementById('access-retry');
 let generation = 0;
 let activeUserId = null;
 let pendingRequest = null;
+let pendingToken = null;
+let pendingPromise = null;
+let verifiedToken = null;
+let activeSessionUserId = null;
+let verifiedAt = 0;
 
 if (window.parent !== window) document.body.classList.add('embedded');
 
 function denyAccess(status) {
+  ++generation;
+  pendingRequest?.abort();
+  pendingRequest = null;
+  pendingToken = null;
+  pendingPromise = null;
   practice.hidden = true;
   practice.replaceChildren();
   activeUserId = null;
+  activeSessionUserId = null;
+  verifiedToken = null;
+  verifiedAt = 0;
   loading.hidden = true;
   lock.hidden = false;
   retry.hidden = status !== 'error';
@@ -45,50 +58,81 @@ function denyAccess(status) {
       : 'Sign in to access ePeak+ practice.';
 }
 
-async function verifySession(session) {
+function verifySession(session, { force = false } = {}) {
+  const token = session?.access_token;
+  // INITIAL_SESSION, getSession and repeated SIGNED_IN events can all describe
+  // the same session. Share its pending check and reuse its verified result.
+  if (token && pendingToken === token) return pendingPromise;
+  if (token && verifiedToken === token && activeUserId && !force && Date.now() - verifiedAt < 60_000) {
+    loading.hidden = true;
+    lock.hidden = true;
+    practice.hidden = false;
+    return Promise.resolve();
+  }
   const requestGeneration = ++generation;
   pendingRequest?.abort();
+  pendingToken = null;
+  pendingPromise = null;
+  if (!token) { denyAccess('login'); return Promise.resolve(); }
   pendingRequest = new AbortController();
-  practice.hidden = true;
-  lock.hidden = true;
-  loading.hidden = false;
-  if (!session?.access_token) { denyAccess('login'); return; }
-  try {
-    const response = await fetch('/api/word-families', {
-      headers: { Authorization: 'Bearer ' + session.access_token },
-      cache: 'no-store', signal: pendingRequest.signal,
-    });
-    if (requestGeneration !== generation) return;
-    if (response.status === 401) { denyAccess('login'); return; }
-    if (response.status === 403) { denyAccess('upgrade'); return; }
-    if (!response.ok) { denyAccess('error'); return; }
-    const payload = await response.json();
-    if (requestGeneration !== generation) return;
-    if (!payload.userId || !Array.isArray(payload.families)) throw new Error('Invalid practice response');
-    if (activeUserId !== payload.userId || !practice.children.length) {
-      practice.replaceChildren(document.getElementById('practice-template').content.cloneNode(true));
-      initializeWordFamilies(payload.families);
-      activeUserId = payload.userId;
-    }
-    loading.hidden = true;
-    practice.hidden = false;
-  } catch (error) {
-    if (requestGeneration === generation && error.name !== 'AbortError') denyAccess('error');
+  const controller = pendingRequest;
+  // Keep a verified account's current round visible during revalidation, but
+  // never display one account's practice while checking a different account.
+  const sameUser = activeUserId && session.user?.id && session.user.id === activeSessionUserId;
+  practice.hidden = !sameUser;
+  if (!sameUser) {
+    practice.replaceChildren();
+    activeUserId = null;
+    activeSessionUserId = null;
+    verifiedToken = null;
   }
+  lock.hidden = true;
+  loading.hidden = Boolean(sameUser);
+  pendingToken = token;
+  pendingPromise = (async () => {
+    try {
+      const response = await fetch('/api/word-families', {
+        headers: { Authorization: 'Bearer ' + token },
+        cache: 'no-store', signal: controller.signal,
+      });
+      if (requestGeneration !== generation) return;
+      if (response.status === 401) { denyAccess('login'); return; }
+      if (response.status === 403) { denyAccess('upgrade'); return; }
+      if (!response.ok) { denyAccess('error'); return; }
+      const payload = await response.json();
+      if (requestGeneration !== generation) return;
+      if (!payload.userId || !Array.isArray(payload.families)) throw new Error('Invalid practice response');
+      if (activeUserId !== payload.userId || !practice.children.length) {
+        practice.replaceChildren(document.getElementById('practice-template').content.cloneNode(true));
+        initializeWordFamilies(payload.families);
+        activeUserId = payload.userId;
+      }
+      activeSessionUserId = session.user?.id || null;
+      verifiedToken = token;
+      verifiedAt = Date.now();
+      loading.hidden = true;
+      practice.hidden = false;
+    } catch (error) {
+      if (requestGeneration === generation && error.name !== 'AbortError') denyAccess('error');
+    } finally {
+      if (requestGeneration === generation) {
+        pendingRequest = null;
+        pendingToken = null;
+        pendingPromise = null;
+      }
+    }
+  })();
+  return pendingPromise;
 }
 
-async function refreshAccess() {
+async function refreshAccess({ force = false } = {}) {
   if (!client) { denyAccess('error'); return; }
-  const sessionGeneration = ++generation;
-  pendingRequest?.abort();
-  practice.hidden = true;
-  loading.hidden = false;
-  lock.hidden = true;
+  const sessionGeneration = generation;
   try {
     const { data, error } = await client.auth.getSession();
     if (sessionGeneration !== generation) return;
     if (error) { denyAccess('error'); return; }
-    await verifySession(data?.session);
+    await verifySession(data?.session, { force });
   } catch { if (sessionGeneration === generation) denyAccess('error'); }
 }
 
@@ -97,12 +141,18 @@ action.addEventListener('click', event => {
   event.preventDefault();
   window.parent.postMessage({ type: 'showAuthModal', tab: 'login' }, window.location.origin);
 });
-retry.addEventListener('click', refreshAccess);
-client?.auth.onAuthStateChange((_event, session) => {
+retry.addEventListener('click', () => refreshAccess({ force: true }));
+client?.auth.onAuthStateChange((event, session) => {
   // Avoid calling back into the auth SDK while its state-change lock is held.
-  setTimeout(() => verifySession(session), 0);
+  setTimeout(() => verifySession(session, { force: event === 'USER_UPDATED' }), 0);
 });
-window.addEventListener('pageshow', event => { if (event.persisted) refreshAccess(); });
+window.addEventListener('pageshow', event => { if (event.persisted) refreshAccess({ force: true }); });
 window.addEventListener('pagehide', () => { practice.hidden = true; });
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refreshAccess(); });
+window.addEventListener('message', event => {
+  if (event.origin !== window.location.origin || event.source !== window.parent) return;
+  if (event.data?.type === 'wordFamiliesResume' && Date.now() - verifiedAt >= 60_000) {
+    refreshAccess({ force: true });
+  }
+});
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refreshAccess({ force: true }); });
 refreshAccess();
