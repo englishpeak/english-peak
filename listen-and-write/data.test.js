@@ -200,7 +200,7 @@ test('Test 5 preserves exact content, ePeak+ access, balanced blanks, and intact
   ];
   assert.equal(set.title,'Test 5');
   assert.equal(set.access,ACCESS.PLUS);
-  assert.deepEqual(LISTEN_WRITE_SETS.map(set=>set.access),[ACCESS.PUBLIC,ACCESS.REGISTERED,ACCESS.REGISTERED,ACCESS.PLUS,ACCESS.PLUS]);
+  assert.deepEqual(LISTEN_WRITE_SETS.slice(0,5).map(set=>set.access),[ACCESS.PUBLIC,ACCESS.REGISTERED,ACCESS.REGISTERED,ACCESS.PLUS,ACCESS.PLUS]);
   assert.deepEqual(set.items.map(item=>item.answer),answers);
   set.items.forEach((item,index)=>{
     const tokens=words(item.answer);

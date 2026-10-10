@@ -157,12 +157,39 @@ const TEST_5_ITEMS = TEST_5_ROWS.map((answer, index) => {
   };
 });
 
+// Test 6 uses authored blank positions to practise listening structures with
+// varied, balanced gaps while preserving the existing Medium rendering format.
+const TEST_6_ROWS = [
+  { answer:"I was about to leave the house when I realized I'd forgotten my wallet.", missing:[1,2,4,6,9,10,11] },
+  { answer:'How often do you visit your grandparents?', missing:[1,2,4] },
+  { answer:'The negotiations would have been far more productive had both parties been willing to compromise.', missing:[1,3,4,7,8,10,12,14] },
+  { answer:"She's been putting off making a decision because she's afraid of disappointing her colleagues.", missing:[0,2,3,6,9,11,13] },
+  { answer:'Can you show me how to use this machine?', missing:[0,2,4,6,8] },
+  { answer:'What surprised me most was how quickly everyone adjusted to the unexpected changes.', missing:[1,3,5,6,8,9,11] },
+  { answer:'The company has come under increasing scrutiny following allegations of financial misconduct.', missing:[1,3,4,6,8,10] },
+  { answer:'We might as well take a taxi since the last bus has already left.', missing:[1,2,3,6,9,11,13] },
+  { answer:'Had it not been for her persistence, the entire investigation might have been called off.', missing:[0,2,4,6,9,10,12,13] },
+  { answer:"I'm not entirely convinced that postponing the announcement will make the situation any easier to manage.", missing:[1,2,3,5,7,10,13,15] }
+];
+
+const TEST_6_ITEMS = TEST_6_ROWS.map(({ answer, missing }, index) => {
+  const blanks = [];
+  const medium = answer.split(/\s+/u).map((token, position) => {
+    if (!missing.includes(position)) return token;
+    const [, word, punctuation] = token.match(/^(.*?)([,.?!;:]*)$/u);
+    blanks.push(word);
+    return `[blank]${punctuation}`;
+  }).join(' ');
+  return { answer, medium, blanks, scramble:scrambleWords(answer), audio:listenWriteAudio(6, index + 1) };
+});
+
 export const LISTEN_WRITE_SETS = Object.freeze([
   { number:1, title:'Test 1', access:ACCESS.PUBLIC, items:TEST_1_ITEMS },
   { number:2, title:'Test 2', access:ACCESS.REGISTERED, items:TEST_2_ITEMS },
   { number:3, title:'Test 3', access:ACCESS.REGISTERED, items:TEST_3_ITEMS },
   { number:4, title:'Test 4', access:ACCESS.PLUS, items:TEST_4_ITEMS },
-  { number:5, title:'Test 5', access:ACCESS.PLUS, items:TEST_5_ITEMS }
+  { number:5, title:'Test 5', access:ACCESS.PLUS, items:TEST_5_ITEMS },
+  { number:6, title:'Test 6', access:ACCESS.PLUS, items:TEST_6_ITEMS }
 ]);
 
 export function normalizeAnswer(value) {
