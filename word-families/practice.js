@@ -104,7 +104,7 @@ document.getElementById('next').addEventListener('click',()=>{newRound();const i
 document.getElementById('bank').addEventListener('toggle',event=>{if(event.currentTarget.open)renderBank();});
 // Fail early if an edited bank has malformed or overlapping target groups.
 function validateFamilies(bank) {
-  if(bank.length!==300)throw new Error('The word bank must contain 300 families.');
+  if(!Array.isArray(bank)||!bank.length)throw new Error('The word bank must contain at least one family.');
   const ids=new Set();
   bank.forEach(({id,forms})=> {
     if(!Number.isInteger(id)||ids.has(id)||!Array.isArray(forms)||forms.length!==5)
@@ -191,7 +191,7 @@ function newEasyFamily(){
   });
   easyWords=shuffled(words);drawEasy();
   document.getElementById('easy-round').textContent='Family '+String(easyCount).padStart(2,'0');
-  document.getElementById('easy-coverage').textContent=easySeen.size+' of 300 families seen';
+  document.getElementById('easy-coverage').textContent=easySeen.size+' of '+families.length+' families seen';
   document.getElementById('easy-check').disabled=false;document.getElementById('easy-reveal').disabled=false;
   easyFeedback.textContent='';
 }

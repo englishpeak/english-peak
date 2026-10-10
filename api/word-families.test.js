@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { WORD_FAMILIES, createWordFamiliesHandler } from './word-families.js';
 
@@ -23,12 +22,34 @@ function fixture({ user = { id: 'verified-user' }, profile = { tier: 'premium', 
 const request = (authorization = 'Bearer valid-token', additions = {}) => ({ method: 'GET', headers: { authorization }, ...additions });
 
 test('the canonical 300-family bank remains identical to the supplied audited JSON', () => {
-  const source = readFileSync(new URL('./word-families.js', import.meta.url), 'utf8');
-  const serialized = source.split('export const WORD_FAMILIES = ')[1].split(';\n')[0];
+  const serialized = JSON.stringify(WORD_FAMILIES.slice(0, 300), null, 2);
   assert.equal(createHash('sha256').update(serialized).digest('hex'), '961511019e50e21c127c2f0237238ffe37a04c0215dadfca50c106a3e9073c27');
-  assert.equal(WORD_FAMILIES.length, 300);
-  assert.equal(new Set(WORD_FAMILIES.map((family) => family.id)).size, 300);
+  assert.equal(WORD_FAMILIES.length, 500);
+  assert.equal(new Set(WORD_FAMILIES.map((family) => family.id)).size, 500);
   WORD_FAMILIES.forEach((family) => assert.equal(family.forms.length, 5));
+});
+
+test('the 200 additions have unique IDs, distinct families and valid target groups', () => {
+  const words = new Map();
+  for (const [index, family] of WORD_FAMILIES.entries()) {
+    assert.equal(family.id, index + 1);
+    assert.equal(family.forms.length, 5);
+    assert.ok(family.forms.filter(Boolean).length >= 2, `Family ${family.id} needs a clue and an answer`);
+    for (const group of family.forms) {
+      if (group === null) continue;
+      assert.ok(Array.isArray(group) && group.length > 0);
+      assert.equal(new Set(group).size, group.length);
+      for (const word of group) {
+        assert.match(word, /^[a-z]+(?:[ -][a-z]+)*$/);
+        const previousFamily = words.get(word);
+        if (family.id > 300 && previousFamily) {
+          assert.equal(previousFamily, family.id, `Duplicate family word: ${word}`);
+        }
+        words.set(word, family.id);
+      }
+    }
+    assert.ok(!family.forms[2]?.some(word => family.forms[3]?.includes(word)), `Overlapping adjective groups: ${family.id}`);
+  }
 });
 
 test('missing, malformed and invalid tokens never receive the bank', async () => {
