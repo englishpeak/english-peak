@@ -6,6 +6,7 @@ import * as academicCore from './academic-core.js';
 import * as paymentCore from './payment-core.js';
 import { ACADEMIC_TABLES } from './academic-data.js';
 import * as receivables from './receivables-ledger.js';
+import { activatePayDay } from './pay-days.js';
 
 const source = await readFile(new URL('./app.js', import.meta.url), 'utf8');
 const day = (id, date, status = 'Open') => ({ id, pay_date: date, period_start: date === '2026-10-23' ? '2026-10-17' : '2026-10-10', period_end: date, status });
@@ -14,6 +15,23 @@ const day = (id, date, status = 'Open') => ({ id, pay_date: date, period_start: 
 function appHarness() {
   const listeners = {}, elements = new Map(), writes = [], alerts = [];
   const client = { from(table) {
+    if(table===ACADEMIC_TABLES.payDays){
+      let operation='select',payload,filter;
+      const execute=async()=>{
+        const rows=context.app.state.payDays;
+        if(operation==='select')return {data:rows.find(row=>row[filter[0]]===filter[1])||null};
+        if(operation==='update'){
+          assert.equal(filter[0],'id');
+          const row=rows.find(row=>row.id===filter[1]);
+          Object.assign(row,payload);writes.push({table,operation,payload,column:filter[0],value:filter[1]});
+          return {data:row};
+        }
+        const row={id:'new-date',...payload};rows.push(row);writes.push({table,operation,payload});return {data:row};
+      };
+      const q={select(){return q;},eq(key,value){filter=[key,value];return q;},
+        insert(value){operation='insert';payload=value;return q;},update(value){operation='update';payload=value;return q;},
+        maybeSingle:execute,single:execute};return q;
+    }
     return {
       insert(payload) {
         writes.push({ table, operation: 'insert', payload });
@@ -32,7 +50,7 @@ function appHarness() {
     };
   } };
   const context = vm.createContext({
-    ...academicCore, ...paymentCore, ...receivables, ACADEMIC_TABLES,
+    ...academicCore, ...paymentCore, ...receivables, ACADEMIC_TABLES, activatePayDay,
     localStorage: {}, AUTH_STORAGE_KEY: 'test-session', migrateLegacyAdminSession() {},
     supabase: { createClient: () => client },
     document: {
@@ -56,7 +74,7 @@ function appHarness() {
   Object.assign(app.state, { user: { id: 'teacher-1' }, payDays: [day('later', '2026-10-23'), day('earlier', '2026-10-16'), day('closed', '2026-10-09', 'Closed')] });
   return {
     ...app, context, writes, alerts, elements,
-    submit: (id, values, dataset = {}) => listeners.submit({ preventDefault() {}, target: { id, values, dataset } }),
+    submit: (id, values, dataset = {}) => listeners.submit({ preventDefault() {}, target: { id, values, dataset, querySelector:()=>({disabled:false}) } }),
     click: button => listeners.click({ target: { closest: () => button }, preventDefault() {}, stopImmediatePropagation() {} })
   };
 }
@@ -95,14 +113,14 @@ test('activation inserts the additional date without closing existing open dates
   assert.equal(app.state.payDays[0].status, 'Open');
 });
 
-test('activation rejects duplicate dates and inverted periods without any writes', async () => {
+test('activation of an open date is harmless and inverted new periods are rejected', async () => {
   const app = appHarness();
   app.state.isAdmin = true;
   await app.submit('payDayForm', { pay_date: '2026-10-23', period_start: '2026-10-17', period_end: '2026-10-23' });
   await app.submit('payDayForm', { pay_date: '2026-10-30', period_start: '2026-10-31', period_end: '2026-10-30' });
   assert.equal(app.writes.length, 0);
-  assert.match(app.alerts[0], /already exists/);
-  assert.match(app.alerts[1], /on or before/);
+  assert.equal(app.alerts.length,1);
+  assert.match(app.alerts[0], /on or before/);
 });
 
 test('clicking a specific date opens that form with only its saved hours and comments', () => {
@@ -180,4 +198,33 @@ test('no open dates shows an empty state with no reporting action', () => {
   app.state.payDays = [];
   assert.match(app.overview(), /has not opened a pay day/);
   assert.doesNotMatch(app.overview(), /data-action="report"/);
+});
+
+test('reopening a closed date preserves its identity, period, creator and existing reports', async () => {
+  const app=appHarness();app.state.isAdmin=true;
+  const existing={...day('earlier','2026-10-16','Closed'),created_by_user_id:'original-admin'};
+  app.state.payDays=[existing,day('later','2026-10-23')];
+  app.state.reports=[{id:'saved',teacher_user_id:'teacher-1',pay_day_id:'earlier',status:'Submitted'}];
+  await app.submit('payDayForm',{pay_date:'2026-10-16',period_start:'2026-01-01',period_end:'2026-10-16'});
+  assert.equal(app.alerts.length,0);
+  assert.equal(app.writes.length,1);
+  assert.deepEqual(app.writes[0].payload,{status:'Open'});
+  assert.equal(app.writes[0].value,'earlier');
+  assert.equal(existing.created_by_user_id,'original-admin');
+  assert.equal(existing.period_start,'2026-10-10');
+  assert.ok(app.state.payDays.every(day=>day.status==='Open'));
+  assert.equal(app.state.reports[0].id,'saved');
+});
+
+test('only administrators see reopen controls on Overview and Payments', () => {
+  const app=appHarness();
+  assert.doesNotMatch(app.overview(),/data-reopen-payday/);
+  app.state.isAdmin=true;
+  for(const html of [app.overview(),app.payments()]){
+    assert.match(html,/Previously closed pay days/);
+    assert.match(html,/data-reopen-payday="closed"/);
+    assert.doesNotMatch(html,/data-reopen-payday="earlier"/);
+    assert.match(html,/data-close-payday="earlier"/);
+    assert.match(html,/data-close-payday="later"/);
+  }
 });
