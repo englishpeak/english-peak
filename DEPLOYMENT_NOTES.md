@@ -53,3 +53,21 @@ Reopening changes only that pay day's status and preserves the original period,
 creator, and submitted reports. Other open pay days stay active. Selecting an
 already-open date succeeds without creating a duplicate. This fix needs no new
 migration beyond the multiple-open-pay-days migration above.
+
+## Teaching-hours submission error after the pay-day update
+
+`there is no unique or exclusion constraint matching the ON CONFLICT specification`
+means the deployed report upsert is using `(teacher_user_id, pay_day_id)` before
+the matching database index exists. Apply the complete
+`supabase/migrations/202610150001_multiple_open_pay_days.sql` in Supabase SQL
+Editor, then deploy the updated `/teachers` files, including `pay-reports.js`.
+The migration preserves reports and hours; it must run before two pay dates in
+the same week can both accept a report from the same teacher.
+
+The submission fix uses an exact teacher/pay-day lookup and an insert or a
+guarded update by report ID, so ordinary submissions and edits also work before
+that migration is applied. It never falls back to overwriting another pay day's
+report or a historical weekly-only report. If the old weekly constraint still
+blocks a second date in the same week, it stops before replacing any hour lines
+and asks for the pay-day update to be completed. Repeated submissions are disabled
+while a save is in progress. No new database migration is required for this fix.
