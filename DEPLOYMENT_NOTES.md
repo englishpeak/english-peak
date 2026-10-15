@@ -44,3 +44,12 @@ report per pay day, including when two pay dates fall within the same week.
 Activate each desired date in **Payments → Activate pay day**. Activating another
 date leaves existing dates open. All open dates appear on the administrator and
 teacher overviews, and each date has its own reporting or closing action.
+
+## Reopening pay days
+
+Admins can reopen a date through **Payments → Activate pay day** or
+**Previously closed pay days → Reopen reporting** on Overview or Payments.
+Reopening changes only that pay day's status and preserves the original period,
+creator, and submitted reports. Other open pay days stay active. Selecting an
+already-open date succeeds without creating a duplicate. This fix needs no new
+migration beyond the multiple-open-pay-days migration above.
