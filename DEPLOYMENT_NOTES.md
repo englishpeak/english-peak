@@ -34,3 +34,13 @@ reloading the PostgREST schema cache.
 ## Account closure
 
 Apply `supabase/migrations/202607300001_account_closure.sql` before deploying the profile account-closure UI and `/api/close-account`. The endpoint uses the existing `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and `STRIPE_SECRET_KEY` environment variables. Keep the service-role key server-side: the migration only grants its cleanup function to `service_role`.
+
+## Multiple open pay days
+
+Before deploying the updated `/teachers` application, apply
+`supabase/migrations/202610150001_multiple_open_pay_days.sql` after the earlier
+academic migrations. It preserves existing reports and gives each teacher one
+report per pay day, including when two pay dates fall within the same week.
+Activate each desired date in **Payments → Activate pay day**. Activating another
+date leaves existing dates open. All open dates appear on the administrator and
+teacher overviews, and each date has its own reporting or closing action.
