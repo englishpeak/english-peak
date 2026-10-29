@@ -56,7 +56,7 @@ test('Test 35 opens, renders all 20 questions, reports its score, and returns to
   const buttons = page.element('menu').children;
   assert.equal(buttons[34].textContent, 'Test 35');
   buttons[34].onclick();
-  assert.match(page.element('app').innerHTML, /Only after the chemical composition/);
+  assert.match(page.element('app').innerHTML, /Not until the early twentieth century/);
   assert.equal(page.run('tests[35].mc.length'), 10);
   assert.equal(page.run('tests[35].ed.length'), 10);
   for (let question = 0; question < 20; question++) {
