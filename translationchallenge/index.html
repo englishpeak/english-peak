@@ -1073,6 +1073,284 @@ const set11AdditionalAlternatives={
 const set11=sets.find(set=>set.id===11);
 set11.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set11AdditionalAlternatives[sentence.id]));
 
+// Give longer Set 12 prompts more ways to express the same meaning, while
+// preserving the supplied content and keeping every new answer manually reviewed.
+const set12AdditionalAlternatives={
+1:[
+"Where is my rucksack?",
+"Where's my rucksack?",
+"Where's my school bag?",
+"Where can I find my backpack?"
+],
+2:[
+"I overslept because I forgot to set my alarm.",
+"Because I forgot to set the alarm, I overslept.",
+"I forgot to set an alarm, and I overslept.",
+"I forgot to set my alarm clock, so I overslept.",
+"I forgot to set the alarm clock and ended up oversleeping.",
+"I forgot to set my alarm and ended up sleeping too long.",
+"I overslept after forgetting to set my alarm.",
+"I forgot to set my alarm, which is why I overslept."
+],
+3:[
+"If you had told me you were busy, I would not have interrupted you.",
+"If you'd told me that you were busy, I wouldn't have interrupted you.",
+"If you had told me that you were busy, I wouldn't have interrupted you.",
+"I wouldn't have interrupted you if you'd told me you were busy.",
+"I would not have interrupted you if you had told me you were busy.",
+"Had you told me that you were busy, I would not have interrupted you.",
+"If you had let me know you were busy, I wouldn't have interrupted you.",
+"If you'd let me know that you were busy, I wouldn't have interrupted you.",
+"I wouldn't have interrupted you had you told me you were busy.",
+"I would not have interrupted you if you had let me know you were busy.",
+"If you had said you were busy, I wouldn't have interrupted you.",
+"If you'd told me you were occupied, I wouldn't have interrupted you."
+],
+4:[
+"The kitchen ceiling is leaking.",
+"The ceiling in the kitchen is leaking.",
+"Water is dripping through the kitchen ceiling.",
+"There's a water leak in the kitchen ceiling."
+],
+5:[
+"Can you help me to put these bags in the car?",
+"Could you help me to put these bags in the car?",
+"Will you help me put these bags in the car?",
+"Would you help me load these bags into the car?",
+"Could you give me a hand putting these bags in the car?",
+"Can you give me a hand loading these bags into the car?",
+"Could you lend me a hand getting these bags into the car?",
+"Would you mind helping me put these bags in the car?"
+],
+6:[
+"I didn't expect the meeting to take so long.",
+"I didn't expect the meeting to run so long.",
+"I didn't expect the meeting to run on for so long.",
+"I didn't expect the meeting to carry on for so long.",
+"I wasn't expecting the meeting to last that long.",
+"I wasn't expecting the meeting to go on that long.",
+"I didn't think the meeting would go on for so long.",
+"I hadn't expected the meeting to last so long.",
+"The meeting lasted longer than I expected.",
+"The meeting went on longer than I'd expected.",
+"I didn't anticipate the meeting lasting so long.",
+"I never expected the meeting to last that long."
+],
+7:[
+"My brother keeps two dogs.",
+"My brother has a pair of dogs.",
+"Two dogs belong to my brother.",
+"My brother is the owner of two dogs."
+],
+8:[
+"No matter how hard I try, I can't recall his name.",
+"No matter how hard I try, I can't recall her name.",
+"However hard I try, I can't recall his name.",
+"However hard I try, I can't recall her name.",
+"Try as I might, I can't remember his name.",
+"Try as I might, I can't remember her name.",
+"No matter how hard I try, his name won't come to me.",
+"No matter how hard I try, her name won't come to me.",
+"I can't remember his name, no matter how hard I try.",
+"I can't remember her name, no matter how hard I try.",
+"Despite my best efforts, I can't remember his name.",
+"Despite my best efforts, I can't remember her name."
+],
+9:[
+"The zipper on my jacket broke, and I can't fasten it.",
+"The zip on my jacket is broken, so I can't zip it up.",
+"My jacket zipper broke, so I can't do it up.",
+"I can't do up my jacket because the zip broke.",
+"The zipper on my jacket broke, so I can't zip it closed.",
+"The zip on my jacket broke, and I can't close it.",
+"My jacket's zip is broken, and I can't fasten it.",
+"I can't close my jacket because its zipper is broken."
+],
+10:[
+"Nobody felt like cooking, so we ended up ordering food.",
+"No one was in the mood to cook, so we ended up ordering food.",
+"We ended up ordering food since nobody wanted to cook.",
+"We ended up ordering food as no one felt like cooking.",
+"We ended up ordering in because nobody felt like cooking.",
+"Since none of us felt like cooking, we ended up ordering food.",
+"In the end, we ordered food because no one was in the mood to cook.",
+"We wound up ordering food because nobody felt like cooking."
+],
+11:[
+"Do you like listening to this song?",
+"Are you a fan of this song?",
+"Is this a song you like?",
+"Is this song to your liking?"
+],
+12:[
+"You should have notified me before making a decision.",
+"You should have let me know before you made a decision.",
+"You should've let me know before you made a decision.",
+"You should have informed me before you made a decision.",
+"You should have given me a heads-up before you made a decision.",
+"You ought to have told me before making a decision.",
+"You ought to have let me know before you made a decision.",
+"You should have told me before deciding.",
+"You should've told me before you decided.",
+"Before making a decision, you should have let me know.",
+"Before you made a decision, you should have told me.",
+"You should have given me advance notice before making a decision."
+],
+13:[
+"Lately, I've been spending more than I ought to.",
+"Recently, I've been spending more money than I should.",
+"I have been spending more than I should lately.",
+"I've recently been spending more than I should.",
+"I've been overspending lately.",
+"Lately, I've been spending more than I should be.",
+"I've been spending too much lately.",
+"Lately, I've been spending more money than I ought to."
+],
+14:[
+"Did you keep the dinner leftovers in the fridge?",
+"Did you save the dinner leftovers in the refrigerator?",
+"Did you store the leftovers from dinner in the refrigerator?",
+"Did you put the leftover food from dinner in the fridge?",
+"Did you put what was left of dinner in the refrigerator?",
+"Did you refrigerate the dinner leftovers?",
+"Did you put the dinner leftovers away in the fridge?",
+"Did you put the leftovers from dinner into the fridge?"
+],
+15:[
+"I'd have loved to join you, but I'd already made other plans.",
+"I would have loved to come along, but I already had other plans.",
+"I'd have loved to come with you, but I already had other plans.",
+"I would have loved to accompany you, but I already had other plans.",
+"I would have loved to go along with you, but I already had other plans.",
+"I'd have loved to go with you, but I'd already made other plans.",
+"I would have loved to join you, but I'd already made other plans.",
+"I would have loved to come with you, but I had already made other plans.",
+"I'd already made other plans, but I would have loved to go with you.",
+"I would have loved to go with you, but I already had something else planned.",
+"I would have loved to join you, but I already had something else planned.",
+"I would've loved to come along, but I already had other plans."
+],
+16:[
+"Can you turn the volume down a bit?",
+"Could you turn down the volume a bit?",
+"Can you lower the volume a little?",
+"Would you mind lowering the volume a little?"
+],
+17:[
+"I'm in need of a glass of water.",
+"What I need is a glass of water.",
+"A glass of water is what I need.",
+"I need to have a glass of water."
+],
+18:[
+"I don't understand how she manages to remain calm even when everything goes wrong.",
+"I don't understand how he manages to remain calm even when everything goes wrong.",
+"I don't understand how she manages to keep her cool even when everything goes wrong.",
+"I don't understand how he manages to keep his cool even when everything goes wrong.",
+"I don't understand how she manages to keep her composure even when everything goes wrong.",
+"I don't understand how he manages to keep his composure even when everything goes wrong.",
+"I can't see how she manages to stay calm even when everything goes wrong.",
+"I can't see how he manages to stay calm even when everything goes wrong.",
+"I don't understand how she can stay calm even when everything goes wrong.",
+"I don't understand how he can stay calm even when everything goes wrong.",
+"Even when everything goes wrong, I don't understand how she manages to stay calm.",
+"Even when everything goes wrong, I don't understand how he manages to stay calm.",
+"How she manages to stay calm even when everything goes wrong is beyond me.",
+"How he manages to stay calm even when everything goes wrong is beyond me.",
+"I don't understand how she manages to stay composed even when everything goes wrong.",
+"I don't understand how he manages to stay composed even when everything goes wrong."
+],
+19:[
+"How did you come by that bruise on your leg?",
+"How did that bruise on your leg happen?",
+"How did you bruise your leg like that?",
+"How did you get bruised on your leg?",
+"How did that bruise get on your leg?",
+"Where did you pick up that bruise on your leg?",
+"What caused that bruise on your leg?",
+"How did you end up with a bruise like that on your leg?"
+],
+20:[
+"I thought you would already have finished by the time I arrived.",
+"I thought you'd already have finished by the time I got there.",
+"I thought you would have been done by the time I arrived.",
+"I thought you'd have been done by the time I got there.",
+"I thought you would be finished by the time I arrived.",
+"I thought you'd be finished by the time I got there.",
+"I expected you to be done by the time I arrived.",
+"I expected you to have finished by the time I got there.",
+"I thought you would have finished before I arrived.",
+"I thought you would have finished by the time I came.",
+"I thought you would already be done by the time I arrived.",
+"I thought you would have finished by the time I turned up."
+],
+21:[
+"I don't want to make matters worse, but I think someone should tell him the truth.",
+"I don't want to make matters worse, but I think someone should tell her the truth.",
+"I don't want to inflame the situation, but I think someone should tell him the truth.",
+"I don't want to inflame the situation, but I think someone should tell her the truth.",
+"I don't want to add more fuel to the fire, but I think someone should tell him the truth.",
+"I don't want to add more fuel to the fire, but I think someone should tell her the truth.",
+"I don't want to stir things up, but I think somebody ought to tell him the truth.",
+"I don't want to stir things up, but I think somebody ought to tell her the truth.",
+"I don't want to aggravate the situation, but I think someone ought to tell him the truth.",
+"I don't want to aggravate the situation, but I think someone ought to tell her the truth.",
+"I don't want to add fuel to the fire, but I believe someone should tell him the truth.",
+"I don't want to add fuel to the fire, but I believe someone should tell her the truth.",
+"I don't want to make things worse, but I think somebody should tell him the truth.",
+"I don't want to make things worse, but I think somebody should tell her the truth.",
+"I have no wish to add fuel to the fire, but I think someone should tell him the truth.",
+"I have no wish to add fuel to the fire, but I think someone should tell her the truth."
+],
+22:[
+"However much he tries to downplay it, I know what happened still affects him.",
+"However much she tries to downplay it, I know what happened still affects her.",
+"Try as he might to play it down, I know what happened still affects him.",
+"Try as she might to play it down, I know what happened still affects her.",
+"No matter how hard he tries to minimize it, I know what happened still affects him.",
+"No matter how hard she tries to minimize it, I know what happened still affects her.",
+"No matter how hard he tries to make light of it, I know what happened still bothers him.",
+"No matter how hard she tries to make light of it, I know what happened still bothers her.",
+"Despite his efforts to downplay it, I know what happened still affects him.",
+"Despite her efforts to downplay it, I know what happened still affects her.",
+"I know what happened still affects him, no matter how hard he tries to downplay it.",
+"I know what happened still affects her, no matter how hard she tries to downplay it.",
+"Much as he tries to play it down, I know what happened is still affecting him.",
+"Much as she tries to play it down, I know what happened is still affecting her.",
+"No matter how hard he tries to dismiss it as unimportant, I know what happened still affects him.",
+"No matter how hard she tries to dismiss it as unimportant, I know what happened still affects her."
+],
+23:[
+"If there is one thing I've learned from working with him, it's that you should never take anything for granted.",
+"If there's one thing I have learned from working with him, it's that you should never take anything for granted.",
+"If there's one thing I've learnt from working with him, it's that you should never take anything for granted.",
+"If there's one thing I've learned by working with him, it's that you should never take anything for granted.",
+"If there's one thing working with him has taught me, it's never to take anything for granted.",
+"If there's anything I've learned from working with him, it's that you should never take anything for granted.",
+"If I've learned one thing from working with him, it's never to take anything for granted.",
+"If I've learned anything from working with him, it's that you must never take anything for granted.",
+"One thing I've learned from working with him is never to take anything for granted.",
+"What I've learned from working with him is that you should never take anything for granted.",
+"Working with him has taught me that you should never take anything for granted.",
+"One thing I've learnt from working with him is that you should never take anything for granted.",
+"One thing working with him has taught me is that nothing should ever be taken for granted.",
+"If working with him has taught me anything, it's never to take anything for granted.",
+"If there's one lesson I've learned from working with him, it's that you should never take anything for granted.",
+"I've learned from working with him that you should never take anything for granted."
+],
+24:[
+"The drawer gets stuck whenever I try to open it.",
+"The drawer jams whenever I try to open it.",
+"The drawer sticks whenever I try to open it.",
+"Whenever I try to open the drawer, it gets stuck.",
+"The drawer gets jammed whenever I try to open it.",
+"Every time I try opening the drawer, it gets stuck.",
+"The drawer keeps sticking every time I try to open it.",
+"Each time I try to open it, the drawer gets stuck."
+]};
+const set12=sets.find(set=>set.id===12);
+set12.sentences.forEach(sentence=>sentence.acceptedAnswers.push(...set12AdditionalAlternatives[sentence.id]));
+
 // Sets 11 and 12 use only manually curated answers and the validator’s normalization.
 sets.filter(set=>set.id!==11&&set.id!==12).forEach(set=>set.sentences.forEach(addAlternativeVariants));
 const app=document.getElementById("app"),modalRoot=document.getElementById("modalRoot");const state={screen:"home",difficulty:null,setId:null,index:0,progress:{},review:false,magicMode:false,feedbackNonce:0};
