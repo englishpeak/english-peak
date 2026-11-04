@@ -47,15 +47,12 @@ function buildGrid() {
     button.addEventListener('click', () => openLesson(lesson.id));
     $('lessonGrid').appendChild(button);
   });
-  $('accountAction').textContent = verifiedUserId ? (plusAccess ? 'ePeak+' : 'FREE ACCOUNT') : 'SIGN IN';
-  $('accountAction').href = verifiedUserId ? '/' : '/?auth=login';
 }
 
 function closeModal() {
   $('modalBackdrop').classList.add('hidden');
   $('home').inert = false;
   $('lessonView').inert = false;
-  document.querySelector('.topbar').inert = false;
   modalTrigger?.focus();
 }
 
@@ -69,7 +66,6 @@ function openModal(title, message, actionLabel, action) {
   $('modalBackdrop').classList.remove('hidden');
   $('home').inert = true;
   $('lessonView').inert = true;
-  document.querySelector('.topbar').inert = true;
   $('modalClose').focus();
 }
 
@@ -79,7 +75,7 @@ function showHome({ updateUrl = true } = {}) {
   clearPractice();
   $('home').classList.remove('hidden');
   closeModal();
-  if (updateUrl) history.replaceState(null, '', '/idioms');
+  if (updateUrl) updateLocation(null);
 }
 
 function clearAccess() {
@@ -91,7 +87,20 @@ function clearAccess() {
   closeModal();
 }
 
-function signIn() { location.assign('/?auth=login'); }
+function updateLocation(lessonId) {
+  const params = new URLSearchParams({ embedded: '1' });
+  if (lessonId !== null) params.set('lesson', lessonId);
+  history.replaceState(null, '', '/idioms/index.html?' + params.toString());
+  window.parent.postMessage({ type: 'idiomsNavigation', lessonId }, location.origin);
+}
+
+function signIn() {
+  window.parent.postMessage({ type: 'showAuthModal', tab: 'login' }, location.origin);
+}
+
+function upgrade() {
+  window.parent.postMessage({ type: 'showModal' }, location.origin);
+}
 
 async function verifyAccess(nextSession, lessonId = activeLessonId, { preserve = false } = {}) {
   const currentGeneration = ++generation;
@@ -133,7 +142,7 @@ async function verifyAccess(nextSession, lessonId = activeLessonId, { preserve =
     if (response.status === 403) {
       showHome();
       status('Lesson 1 is included with your account.');
-      openModal('For ePeak+ members', 'Lesson 1 is included with any signed-in account. Lessons 2 and beyond are exclusively available with ePeak+.', 'Get ePeak+', () => location.assign('/?upgrade=idioms'));
+      upgrade();
       return;
     }
     if (payload.code === 'COMING_SOON' && response.status === 404) {
@@ -148,7 +157,7 @@ async function verifyAccess(nextSession, lessonId = activeLessonId, { preserve =
       const keepRound = preserve && sameAccount && activeLessonId === lessonId;
       activeLessonId = lessonId;
       showPractice(payload.lesson, payload.items, { preserve: keepRound });
-      history.replaceState(null, '', `/idioms?lesson=${lessonId}`);
+      updateLocation(lessonId);
       closeModal();
     }
     status(plusAccess ? 'Your account includes ePeak+ lessons.' : 'Lesson 1 is included with your account.');
@@ -225,11 +234,23 @@ client?.auth.onAuthStateChange((event, nextSession) => {
   }, 0);
 });
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refreshAccess(); });
+window.addEventListener('message', event => {
+  if (event.origin !== location.origin || event.source !== window.parent) return;
+  if (event.data?.type === 'idiomsResume') refreshAccess();
+});
 window.addEventListener('pagehide', () => {
   ++generation;
   controller?.abort();
   $('lessonView').classList.add('hidden');
 });
 window.addEventListener('pageshow', event => { if (event.persisted) refreshAccess(); });
-buildGrid();
-refreshAccess();
+if (window.parent === window) {
+  // Direct links to the internal document also enter the shared app shell.
+  const params = new URLSearchParams(location.search);
+  params.delete('embedded');
+  const query = params.toString();
+  location.replace('/idioms' + (query ? '?' + query : ''));
+} else {
+  buildGrid();
+  refreshAccess();
+}

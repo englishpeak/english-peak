@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/idioms", "destination": "/idioms/index.html" },
+    { "source": "/idioms", "destination": "/index.html" },
+    { "source": "/idioms/", "destination": "/index.html" },
     { "source": "/course", "destination": "/course/index.html" },
     { "source": "/course/:path*", "destination": "/course/index.html" },
     { "source": "/word-families", "destination": "/word-families/index.html" },
