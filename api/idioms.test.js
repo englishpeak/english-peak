@@ -34,11 +34,11 @@ test('Lesson 1 preserves all approved content verbatim, with ten unique IDs and 
   }
   const original = items.map(({ id, ...item }) => item);
   assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'b78230adb741fe790d50d494939eefe07c0846d41d516449d8cb9d137f830969');
-  assert.deepEqual(Object.keys(IDIOM_LESSON_CONTENT), ['1', '2', '3', '4']);
+  assert.deepEqual(Object.keys(IDIOM_LESSON_CONTENT), ['1', '2', '3', '4', '5']);
 });
 
 test('visitors, malformed tokens and invalid sessions never receive any lesson content', async () => {
-  for (const lesson of ['1', '2', '3', '4']) {
+  for (const lesson of ['1', '2', '3', '4', '5']) {
     for (const authorization of [undefined, '', 'Basic token', 'Bearer ', ['Bearer valid-token'], 'Bearer token extra']) {
       const { handler, res, calls } = fixture();
       await handler(request(lesson, { headers: { authorization } }), res);
@@ -85,12 +85,12 @@ test('existing full-access tiers and admin override pass the premium gate withou
     const { handler, res } = fixture({ profile });
     await handler(request(null), res);
     assert.equal(res.body.plusAccess, true);
-    for (const id of ['2', '3', '4']) {
+    for (const id of ['2', '3', '4', '5']) {
       await handler(request(id), res);
       assert.equal(res.statusCode, 200);
       assert.equal(res.body.items, IDIOM_LESSON_CONTENT[id]);
     }
-    for (const id of ['5', '6']) {
+    for (const id of ['6']) {
       await handler(request(id), res);
       assert.equal(res.statusCode, 404);
       assert.equal(res.body.code, 'COMING_SOON');
@@ -100,20 +100,20 @@ test('existing full-access tiers and admin override pass the premium gate withou
 });
 
 test('publishing another lesson needs only catalog/content additions and retains server access checks', async () => {
-  const lesson = IDIOM_LESSONS.find(item => item.id === 5);
+  const lesson = IDIOM_LESSONS.find(item => item.id === 6);
   lesson.published = true;
-  IDIOM_LESSON_CONTENT[5] = IDIOM_LESSON_CONTENT[1];
+  IDIOM_LESSON_CONTENT[6] = IDIOM_LESSON_CONTENT[1];
   try {
     for (const [tier, expected] of [['free', 403], ['premium', 200]]) {
       const { handler, res } = fixture({ profile: { tier } });
-      await handler(request('5'), res);
+      await handler(request('6'), res);
       assert.equal(res.statusCode, expected);
-      if (expected === 200) assert.equal(res.body.lesson.id, 5);
+      if (expected === 200) assert.equal(res.body.lesson.id, 6);
       else assert.equal(res.body.items, undefined);
     }
   } finally {
     lesson.published = false;
-    delete IDIOM_LESSON_CONTENT[5];
+    delete IDIOM_LESSON_CONTENT[6];
   }
 });
 

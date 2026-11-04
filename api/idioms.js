@@ -761,6 +761,198 @@ export const IDIOM_LESSON_CONTENT = {
       ],
       "spanish": "Llegar a fin de mes / Sacar para los gastos."
     }
+  ],
+  "5": [
+    {
+      "id": 1,
+      "idiom": "Go with the flow",
+      "question": "What does \"go with the flow\" mean?",
+      "options": [
+        "To follow other people's instructions without questioning them.",
+        "To avoid making plans because you dislike responsibilities.",
+        "To change your opinion whenever someone disagrees with you.",
+        "To adapt to circumstances instead of trying to control everything."
+      ],
+      "correct": 3,
+      "examples": [
+        "We don't have a strict itinerary for the trip. We're just going to go with the flow.",
+        "I used to worry about every little detail, but now I try to go with the flow.",
+        "When plans change unexpectedly, sometimes it's better to go with the flow.",
+        "Everyone else wanted to stay longer, so I decided to go with the flow."
+      ],
+      "spanish": "Dejarse llevar / Ir viendo qué pasa."
+    },
+    {
+      "id": 2,
+      "idiom": "Break even",
+      "question": "What does \"break even\" mean?",
+      "options": [
+        "To earn enough money to expand a business.",
+        "To recover financially after experiencing heavy losses.",
+        "To have no overall profit or loss because income equals expenses.",
+        "To divide the profits of a business equally among its owners."
+      ],
+      "correct": 2,
+      "examples": [
+        "Our small business finally broke even after its first year.",
+        "We sold enough tickets to break even, but we didn't make a profit.",
+        "The restaurant needs at least 50 customers a day to break even.",
+        "I'll be happy if we manage to break even on this event."
+      ],
+      "spanish": "Salir tablas / Quedar a mano / No ganar ni perder."
+    },
+    {
+      "id": 3,
+      "idiom": "Play it by ear",
+      "question": "What does \"play it by ear\" mean?",
+      "options": [
+        "To decide what to do as a situation develops instead of planning everything in advance.",
+        "To rely on someone else's experience when making an important decision.",
+        "To delay making a decision because you're afraid of the consequences.",
+        "To repeat something until you can do it without instructions."
+      ],
+      "correct": 0,
+      "examples": [
+        "We haven't decided where to eat tomorrow. We'll just play it by ear.",
+        "Let's see how the weather looks and play it by ear.",
+        "I'm not sure how long the meeting will take, so we'll have to play it by ear.",
+        "We don't need a detailed schedule for the weekend. Let's play it by ear."
+      ],
+      "spanish": "Ir improvisando / Decidir sobre la marcha."
+    },
+    {
+      "id": 4,
+      "idiom": "Leave no stone unturned",
+      "question": "What does \"leave no stone unturned\" mean?",
+      "options": [
+        "To avoid taking unnecessary risks when searching for something.",
+        "To try every possible approach or investigate every possibility.",
+        "To continue working even when success is impossible.",
+        "To complete a difficult task without asking anyone for assistance."
+      ],
+      "correct": 1,
+      "examples": [
+        "The police promised to leave no stone unturned in their investigation.",
+        "We'll leave no stone unturned until we find the missing documents.",
+        "She left no stone unturned while searching for the perfect apartment.",
+        "The research team left no stone unturned in trying to identify the cause."
+      ],
+      "spanish": "Agotar todas las posibilidades / No dejar piedra sin mover."
+    },
+    {
+      "id": 5,
+      "idiom": "In the nick of time",
+      "question": "What does \"in the nick of time\" mean?",
+      "options": [
+        "Much earlier than originally expected.",
+        "Immediately after receiving an urgent request.",
+        "At exactly the scheduled time, without any delays.",
+        "Just before it becomes too late."
+      ],
+      "correct": 3,
+      "examples": [
+        "We arrived at the airport in the nick of time and barely made our flight.",
+        "The firefighters rescued the family in the nick of time.",
+        "She submitted her application in the nick of time, just seconds before the deadline.",
+        "I caught the glass in the nick of time before it hit the floor."
+      ],
+      "spanish": "Justo a tiempo / En el último momento / Por un pelo."
+    },
+    {
+      "id": 6,
+      "idiom": "Get out of hand",
+      "question": "What does \"get out of hand\" mean?",
+      "options": [
+        "To become difficult or impossible to control.",
+        "To develop more quickly than anyone anticipated.",
+        "To become too complicated for one person to understand.",
+        "To require additional resources to finish successfully."
+      ],
+      "correct": 0,
+      "examples": [
+        "The argument got out of hand, and someone called the police.",
+        "What started as a small celebration quickly got out of hand.",
+        "We need to address these expenses before they get out of hand.",
+        "The situation got out of hand when hundreds of people showed up unexpectedly."
+      ],
+      "spanish": "Salirse de control / Irse de las manos."
+    },
+    {
+      "id": 7,
+      "idiom": "Give someone the benefit of the doubt",
+      "question": "What does \"give someone the benefit of the doubt\" mean?",
+      "options": [
+        "To forgive someone even when they've deliberately hurt you.",
+        "To trust someone's judgement in every situation.",
+        "To believe or trust someone despite uncertainty or insufficient evidence.",
+        "To avoid confronting someone because you fear their reaction."
+      ],
+      "correct": 2,
+      "examples": [
+        "He was late again, but I decided to give him the benefit of the doubt.",
+        "Let's give her the benefit of the doubt until we hear her explanation.",
+        "I usually give people the benefit of the doubt when I first meet them.",
+        "She gave her colleague the benefit of the doubt instead of immediately assuming he'd lied."
+      ],
+      "spanish": "Darle a alguien el beneficio de la duda."
+    },
+    {
+      "id": 8,
+      "idiom": "Put all your eggs in one basket",
+      "question": "What does \"put all your eggs in one basket\" mean?",
+      "options": [
+        "To make several investments without properly researching them.",
+        "To depend entirely on one opportunity or plan, risking everything if it fails.",
+        "To spend all your savings on something that isn't necessary.",
+        "To take responsibility for several difficult tasks simultaneously."
+      ],
+      "correct": 1,
+      "examples": [
+        "Don't put all your eggs in one basket. Apply to several universities.",
+        "He invested all his savings in one company and put all his eggs in one basket.",
+        "It's risky to put all your eggs in one basket when looking for a job.",
+        "We should diversify our clients instead of putting all our eggs in one basket."
+      ],
+      "spanish": "Poner todos los huevos en una sola canasta / Apostarlo todo a una sola carta."
+    },
+    {
+      "id": 9,
+      "idiom": "The elephant in the room",
+      "question": "What does \"the elephant in the room\" mean?",
+      "options": [
+        "A small disagreement that eventually becomes a serious conflict.",
+        "A problem that nobody knows how to solve.",
+        "An obvious, important issue that people deliberately avoid discussing.",
+        "An uncomfortable situation caused by someone's inappropriate behaviour."
+      ],
+      "correct": 2,
+      "examples": [
+        "Everyone knew the company was losing money, but nobody wanted to address the elephant in the room.",
+        "Let's talk about the elephant in the room: our project is already two months behind schedule.",
+        "His resignation was the elephant in the room during the meeting.",
+        "They kept making small talk, ignoring the elephant in the room."
+      ],
+      "spanish": "El tema incómodo que nadie quiere tocar / El problema evidente que todos evitan mencionar."
+    },
+    {
+      "id": 10,
+      "idiom": "Let sleeping dogs lie",
+      "question": "What does \"let sleeping dogs lie\" mean?",
+      "options": [
+        "To ignore a problem until it becomes serious enough to address.",
+        "To forgive someone without asking for an explanation.",
+        "To avoid discussing sensitive topics with unfamiliar people.",
+        "To avoid bringing up an old problem that could cause new trouble."
+      ],
+      "correct": 3,
+      "examples": [
+        "I thought about asking why they broke up, but decided to let sleeping dogs lie.",
+        "The argument happened years ago. It's better to let sleeping dogs lie.",
+        "She wanted to confront her former boss, but her friends advised her to let sleeping dogs lie.",
+        "We finally have a peaceful relationship, so let's just let sleeping dogs lie."
+      ],
+      "spanish": "No remover el pasado / Mejor no moverle / No reabrir viejas heridas."
+    }
   ]
 };
 
