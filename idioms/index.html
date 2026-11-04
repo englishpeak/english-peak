@@ -11,14 +11,13 @@
 <body>
 <main class="wrap" id="home">
  <section class="hero"><p class="eyebrow">Vocabulary · Learn by doing</p><h1>Idioms, made simple.</h1><p>Discover expressions that native speakers really use. Choose the correct meaning, explore examples, and find familiar expressions in Spanish.</p></section>
- <section aria-label="Lesson selection"><div class="section-top"><h2>Choose a lesson</h2><span class="legend">10 idioms per lesson</span></div><div class="lesson-grid" id="lessonGrid"></div><p id="accessMessage" class="access-message" role="status">Checking your account…</p><button class="secondary hidden" id="accessRetry">Try again</button><div class="demo">Lesson 1 is ready to explore. More ePeak+ lessons are coming soon.</div></section>
- <div class="footer">English Peak · Learn a little. Speak a lot.</div>
+ <section aria-label="Lesson selection"><div class="section-top"><h2>Choose a lesson</h2><span class="legend">10 idioms per lesson</span></div><div class="lesson-grid" id="lessonGrid"></div><p id="accessMessage" class="access-message" role="status">Checking your account…</p><button class="secondary hidden" id="accessRetry">Try again</button><div class="demo">Lesson 1 is ready to explore. Lesson 2 is available with ePeak+. Lessons 3–6 are coming soon.</div></section>
 </main>
 <main class="wrap hidden" id="lessonView"><div class="lesson-layout">
  <button class="back" id="backHome">← All lessons</button>
  <div class="lesson-head"><span><span id="lessonTitle">LESSON 1</span> <span id="lessonSubtitle" style="font-weight:500;color:#9aa6b6">/ Everyday idioms</span></span><span class="counter" id="counter">1 of 10</span></div><div class="progress" id="progress" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
  <section id="questionPanel" class="question-card" aria-live="polite">
-  <div class="tiny-label">What does this idiom mean?</div><h1 class="idiom" id="idiom"></h1><p class="prompt">Choose the best definition.</p>
+  <div class="tiny-label" id="questionPrompt">What does this idiom mean?</div><h1 class="idiom" id="idiom"></h1><p class="prompt">Choose the best definition.</p>
   <div class="answers" id="answers"></div><div id="feedback" class="feedback hidden" role="status"></div>
   <div class="tools"><button class="reveal" id="exampleBtn" aria-controls="examplesPanel" aria-expanded="false">▤ <span>See example sentences</span></button><button class="reveal" id="spanishBtn" aria-controls="spanishPanel" aria-expanded="false">◉ <span>Show Spanish equivalent</span></button></div>
   <div id="examplesPanel" class="details hidden"><h4>In context</h4><ol id="exampleList"></ol></div><div id="spanishPanel" class="details hidden"><h4>Equivalent in Spanish</h4><p id="spanishText"></p><p class="note">A natural equivalent, not necessarily a literal translation.</p></div>
