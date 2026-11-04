@@ -82,6 +82,7 @@ body.sidebar-collapsed .topbar-brand-logo{opacity:1;visibility:visible;transform
 .screen.active{display:flex}
 .exercise-screen{display:none;flex-direction:column;height:calc(100vh - 0px);}
 .exercise-screen.active{display:flex}
+#exercise-idioms{height:calc(100dvh - 72px);min-height:0}
 .exercise-topbar{background:white;border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:14px;flex-shrink:0}
 #exercise-itp-tests .exercise-topbar{background:var(--navy);border-bottom-color:rgba(255,255,255,0.1)}
 #exercise-itp-tests .exercise-title{color:white}
@@ -561,6 +562,11 @@ body.download-preview-lock{overflow:hidden}
   </div>
   </div><!-- end progress -->
 
+  <!-- ═══ IDIOMS LESSONS (shared platform shell) ═══ -->
+  <div class="exercise-screen" id="exercise-idioms">
+    <iframe class="exercise-frame" id="frame-idioms" title="Idioms Lessons" src="about:blank"></iframe>
+  </div>
+
   <!-- ═══ MULTIPLE CHOICE (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-multiple-choice">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Multiple choice</div><div class="exercise-badge">✓ Free</div></div>
@@ -1011,6 +1017,14 @@ function isTrustedExerciseMessage(e) {
 // Listen for messages from iframes (tier restriction + score logging)
 window.addEventListener('message', async function(e) {
   if (!isTrustedExerciseMessage(e)) return;
+  if (e.data && e.data.type === 'idiomsNavigation') {
+    var idiomsFrame = document.getElementById('frame-idioms');
+    if (e.origin !== window.location.origin || e.source !== idiomsFrame.contentWindow || !document.getElementById('exercise-idioms').classList.contains('active')) return;
+    var lessonId = e.data.lessonId;
+    if (lessonId !== null && (!Number.isSafeInteger(lessonId) || lessonId < 1)) return;
+    history.replaceState({exercise:'idioms'}, '', '/idioms' + (lessonId === null ? '' : '?lesson=' + lessonId));
+    return;
+  }
   if (e.data && e.data.type === 'listenWriteAccessRequest') {
     if (e.source && typeof e.source.postMessage === 'function') {
       e.source.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, e.origin);
@@ -1022,6 +1036,9 @@ window.addEventListener('message', async function(e) {
     }
   }
   if (e.data === 'showModal' || (e.data && (e.data.type === 'showModal' || e.data.type === 'showAuthModal'))) {
+    var idiomsFrame = document.getElementById('frame-idioms');
+    // A hidden lesson must not reopen dialogs over another platform screen.
+    if (idiomsFrame && e.source === idiomsFrame.contentWindow && !document.getElementById('exercise-idioms').classList.contains('active')) return;
     if (!_currentUser) {
       showAuthModal(e.data && e.data.tab === 'login' ? 'login' : 'register');
     } else {
@@ -1201,6 +1218,10 @@ function updateUIForVisitor() {
 }
 
 function notifyListenWriteAccess() {
+  var idiomsFrame = document.getElementById('frame-idioms');
+  if (idiomsFrame && idiomsFrame.contentWindow) {
+    idiomsFrame.contentWindow.postMessage({ type: 'idiomsResume' }, window.location.origin);
+  }
   var frame = document.getElementById('frame-listen-and-write');
   if (frame && frame.contentWindow) {
     frame.contentWindow.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, window.location.origin);
@@ -1664,7 +1685,7 @@ function updateListeningCard(c, isFullAccess) {
 
 // ═══ NAVIGATION ═══
 function showDashboard() {
-  if (window.location.pathname === '/thisorthat') history.pushState({}, '', '/');
+  if (window.location.pathname === '/thisorthat' || /^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-dashboard').classList.add('active');
   document.getElementById('topbarTitle').textContent='';
@@ -1673,6 +1694,7 @@ function showDashboard() {
 }
 
 async function showDownloads() {
+  if (/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-downloads').classList.add('active');
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
@@ -1924,7 +1946,16 @@ function openWordFamilies() {
 }
 
 function openIdioms() {
-  window.location.assign('/idioms');
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-idioms').classList.add('active');
+  document.getElementById('topbarTitle').textContent = '💡 Idioms Lessons';
+  document.getElementById('topbarSub').textContent = 'Everyday expressions, examples and Spanish equivalents';
+  var params = new URLSearchParams({ embedded: '1' });
+  var lesson = new URLSearchParams(window.location.search).get('lesson');
+  if (/^\/idioms\/?$/.test(window.location.pathname) && /^[1-9]\d*$/.test(lesson || '')) params.set('lesson', lesson);
+  document.getElementById('frame-idioms').src = '/idioms/index.html?' + params.toString();
+  if (!/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({exercise:'idioms'}, '', '/idioms');
+  closeMobileSidebar();
 }
 
 function openCollocations() {
@@ -2070,6 +2101,7 @@ var _progressData = []; // full unfiltered list
 var _progressFilter = 'all';
 
 async function showProgress() {
+  if (/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-progress').classList.add('active');
   // update sidebar active state
@@ -2085,6 +2117,7 @@ async function showProgress() {
 // PROFILE / SETTINGS
 // ═══════════════════════════════════════
 async function showProfile() {
+  if (/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
   if (!_currentUser) { showAuthModal('login'); return; }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-profile').classList.add('active');
@@ -2906,8 +2939,10 @@ checkHamburger();
 // Waits for auth session to resolve before opening, so tier-based locks are correct
 (function() {
   var params = new URLSearchParams(window.location.search);
-  var exercise = params.get('exercise');
+  var exercise = params.get('exercise') || (/^\/idioms\/?$/.test(window.location.pathname) ? 'idioms' : null);
   if (!exercise) return;
+  // Idioms performs its own protected API checks; show the shell immediately.
+  if (exercise === 'idioms') { openIdioms(); return; }
 
   function openExerciseWhenReady() {
     if (exercise === 'unscramble') openExercise('unscramble');
@@ -2935,6 +2970,12 @@ checkHamburger();
     }
   }, 100);
 })();
+
+// Restore the Idioms route when using browser Back/Forward.
+window.addEventListener('popstate', function() {
+  if (/^\/idioms\/?$/.test(window.location.pathname)) openIdioms();
+  else if (document.getElementById('exercise-idioms').classList.contains('active')) showDashboard();
+});
 
 // ═══ EXERCISE MODULES ═══
 

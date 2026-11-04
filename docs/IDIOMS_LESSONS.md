@@ -1,7 +1,11 @@
 # Idioms Lessons
 
-`/idioms` is a standalone section using the existing Supabase project and
-`ep-auth-token` session. The main dashboard opens it from New Practice.
+`/idioms` opens the shared platform shell, including the sidebar and global
+header, and mounts `/idioms/index.html?embedded=1` in its exercise iframe.
+The main dashboard opens it from New Practice without leaving the app.
+The lesson document has no separate top bar. Direct lesson links such as
+`/idioms?lesson=1` also open in this shell. Authentication continues to use the
+existing Supabase project and `ep-auth-token` session.
 Collocations Practice, Listen and Write, and Word Families keep their original
 handlers and routes and are now listed once under General English.
 
@@ -45,10 +49,13 @@ The client never supplies authoritative tier information. Every response
 disables browser and CDN caching. Invalid/missing tokens, profile failures,
 and backend errors return no learning content. The browser discards the round
 on sign-out/account change, ignores stale requests, and revalidates on token
-refresh, visible-page return and history restoration. Login links open the
-existing `/?auth=login` flow. Locked lessons use `/?upgrade=idioms`, which opens
-the existing dashboard subscription dialog. After signing in, return to Idioms
-Lessons from the dashboard.
+refresh, visible-page return and history restoration. Sign-in and upgrade requests use same-origin messages to open the existing
+platform dialogs in place. Returning to a visible page and platform auth
+notifications recheck the protected API. Navigation messages synchronize
+`/idioms?lesson=…` in the parent URL and are accepted only from the active
+Idioms frame at the same origin. The internal document keeps its own
+`/idioms/index.html?embedded=1` URL so reloading it never nests the shell.
+Opening that internal document as a top-level page redirects to `/idioms`.
 
 Deployment requires the existing `SUPABASE_URL` and
 `SUPABASE_SERVICE_ROLE_KEY` server environment variables, as for Word Families.
@@ -73,14 +80,16 @@ credentials and real test accounts.
 ## Implementation verification
 
 - All 48 repository test files passed; running each file directly confirmed
-  **359 individual tests passed**.
-- **11 Chromium browser checks passed** using intercepted requests and simulated
+  **362 individual tests passed**.
+- **12 Chromium browser checks passed** using intercepted requests and simulated
   Supabase account responses with the real API handler. These covered free,
   premium, visitor and failed-verification flows; optional Spanish omission;
   reveal/hide controls; feedback, first-answer locking, scoring and restarting;
-  account changes; delayed responses; upgrade navigation; and modal focus.
+  shared sidebar navigation, in-place login/upgrade dialogs, direct lesson
+  links, refresh, browser Back, iframe isolation, and modal focus.
 - Layout checks passed at 320, 375, 768 and 1440 pixels without horizontal
   overflow. Desktop and mobile screenshots were visually inspected.
 - `git diff --check` and new JavaScript syntax checks passed.
 - `package.json` defines no build script. No dependency or migration was added.
-- Live production Supabase/Stripe account checks and deployment were not run.
+- Live authenticated production Supabase/Stripe checks were not run.
+  Deployment status is tracked through the repository’s Vercel integration.
