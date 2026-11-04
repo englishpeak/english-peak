@@ -377,6 +377,198 @@ export const IDIOM_LESSON_CONTENT = {
       ],
       "spanish": "No hay mal que por bien no venga."
     }
+  ],
+  "3": [
+    {
+      "id": 1,
+      "idiom": "Read between the lines",
+      "question": "What does \"read between the lines\" mean?",
+      "options": [
+        "To carefully analyse every word in a document.",
+        "To misunderstand something because of missing information.",
+        "To understand a hidden or implied meaning.",
+        "To discover that someone has deliberately lied."
+      ],
+      "correct": 2,
+      "examples": [
+        "She said everything was fine, but I could read between the lines.",
+        "You need to read between the lines to understand what he's really suggesting.",
+        "His email sounded polite, but reading between the lines, I could tell he was disappointed.",
+        "If you read between the lines of the announcement, you'll realise the company is planning major changes."
+      ],
+      "spanish": "Leer entre líneas."
+    },
+    {
+      "id": 2,
+      "idiom": "Take a rain check",
+      "question": "What does \"take a rain check\" mean?",
+      "options": [
+        "To postpone an invitation or offer until another time.",
+        "To cancel plans permanently without explanation.",
+        "To accept an invitation at the last minute.",
+        "To make alternative arrangements because of bad weather."
+      ],
+      "correct": 0,
+      "examples": [
+        "I'd love to join you for dinner, but can I take a rain check?",
+        "She took a rain check on our coffee plans because she wasn't feeling well.",
+        "Can we take a rain check on the movie? I'm exhausted.",
+        "Thanks for inviting me! I'll have to take a rain check this time."
+      ],
+      "spanish": "Dejarlo para otra ocasión / Te tomo la palabra para otro día."
+    },
+    {
+      "id": 3,
+      "idiom": "Get the hang of something",
+      "question": "What does \"get the hang of something\" mean?",
+      "options": [
+        "To become bored with a repetitive activity.",
+        "To complete a difficult task without assistance.",
+        "To develop an interest in an unfamiliar subject.",
+        "To learn how to do something through practice."
+      ],
+      "correct": 3,
+      "examples": [
+        "Driving a manual car was difficult at first, but I eventually got the hang of it.",
+        "Don't worry! You'll get the hang of the software after a few days.",
+        "It took me a while to get the hang of speaking in front of large audiences.",
+        "Once you get the hang of the technique, it becomes much easier."
+      ],
+      "spanish": "Agarrarle la onda / Agarrarle el modo / Cogerle el truco (Spain)."
+    },
+    {
+      "id": 4,
+      "idiom": "Back to square one",
+      "question": "What does \"back to square one\" mean?",
+      "options": [
+        "To return to a familiar place after a long absence.",
+        "To start again from the beginning after a failed attempt.",
+        "To make progress by repeating a successful strategy.",
+        "To abandon a project before completing its first stage."
+      ],
+      "correct": 1,
+      "examples": [
+        "The experiment failed, so we're back to square one.",
+        "We thought we'd solved the problem, but the new error sent us back to square one.",
+        "After losing all our project files, we were back to square one.",
+        "If the client rejects the proposal, we'll have to go back to square one."
+      ],
+      "spanish": "Volver a empezar de cero / Regresar al punto de partida."
+    },
+    {
+      "id": 5,
+      "idiom": "In hot water",
+      "question": "What does \"be in hot water\" mean?",
+      "options": [
+        "To be in trouble because of something you've done.",
+        "To feel extremely stressed about an upcoming event.",
+        "To find yourself in a physically dangerous situation.",
+        "To receive unexpected criticism for a successful decision."
+      ],
+      "correct": 0,
+      "examples": [
+        "He got into hot water after missing three important deadlines.",
+        "You'll be in hot water if your parents find out what happened.",
+        "The politician found himself in hot water after making those comments.",
+        "She was in hot water with her manager for sharing confidential information."
+      ],
+      "spanish": "Estar en problemas / Meterse en un lío / Estar en aprietos."
+    },
+    {
+      "id": 6,
+      "idiom": "Keep someone in the loop",
+      "question": "What does \"keep someone in the loop\" mean?",
+      "options": [
+        "To involve someone in every decision, regardless of its importance.",
+        "To repeatedly remind someone about an unfinished task.",
+        "To keep someone informed about developments or decisions.",
+        "To prevent someone from leaving a particular situation."
+      ],
+      "correct": 2,
+      "examples": [
+        "Please keep me in the loop about any changes to the schedule.",
+        "Our manager always keeps the entire team in the loop.",
+        "I'll keep you in the loop as soon as I hear anything from the client.",
+        "She felt frustrated because nobody had kept her in the loop about the project."
+      ],
+      "spanish": "Mantener a alguien al tanto / Mantener informado a alguien."
+    },
+    {
+      "id": 7,
+      "idiom": "Miss the boat",
+      "question": "What does \"miss the boat\" mean?",
+      "options": [
+        "To arrive late because of unexpected circumstances.",
+        "To misunderstand the purpose of an opportunity.",
+        "To make the wrong decision despite having enough information.",
+        "To lose an opportunity by acting too late."
+      ],
+      "correct": 3,
+      "examples": [
+        "I wanted to buy tickets, but I waited too long and missed the boat.",
+        "Several companies missed the boat when online shopping became popular.",
+        "If you don't apply before Friday, you'll miss the boat.",
+        "He missed the boat on investing in that company when it was still small."
+      ],
+      "spanish": "Dejar pasar una oportunidad / Se te fue el tren."
+    },
+    {
+      "id": 8,
+      "idiom": "A tough nut to crack",
+      "question": "What does \"a tough nut to crack\" mean?",
+      "options": [
+        "A person who refuses to accept any criticism.",
+        "A problem or person that is difficult to understand or deal with.",
+        "A challenge that requires considerable physical strength.",
+        "A situation that seems difficult but has a very simple solution."
+      ],
+      "correct": 1,
+      "examples": [
+        "This mathematical problem is a tough nut to crack.",
+        "The new client is a tough nut to crack, but we're making progress.",
+        "Finding an affordable apartment in this neighbourhood is a tough nut to crack.",
+        "He's a tough nut to crack when it comes to discussing his feelings."
+      ],
+      "spanish": "Un hueso duro de roer."
+    },
+    {
+      "id": 9,
+      "idiom": "Jump to conclusions",
+      "question": "What does \"jump to conclusions\" mean?",
+      "options": [
+        "To make a quick decision under pressure.",
+        "To predict an outcome based on previous experience.",
+        "To form an opinion without having enough evidence.",
+        "To reach an agreement before discussing every possibility."
+      ],
+      "correct": 2,
+      "examples": [
+        "Don't jump to conclusions. We haven't heard her side of the story.",
+        "He jumped to conclusions when he saw the unfamiliar name on her phone.",
+        "It's easy to jump to conclusions when you don't have all the facts.",
+        "Instead of jumping to conclusions, let's investigate what actually happened."
+      ],
+      "spanish": "Sacar conclusiones precipitadas / Adelantarse a los hechos."
+    },
+    {
+      "id": 10,
+      "idiom": "The last straw",
+      "question": "What does \"the last straw\" mean?",
+      "options": [
+        "The final problem in a series that makes a situation unbearable.",
+        "The last opportunity to correct a serious mistake.",
+        "The final stage of a particularly difficult process.",
+        "A minor inconvenience that can easily be ignored."
+      ],
+      "correct": 0,
+      "examples": [
+        "His constant lateness was annoying, but missing the wedding was the last straw.",
+        "The unexpected price increase was the last straw for many customers.",
+        "When my boss cancelled my holiday again, that was the last straw.",
+        "We'd been having problems for months, but his dishonesty was the last straw."
+      ],
+      "spanish": "La gota que derramó el vaso."
+    }
   ]
 };
 
