@@ -16,7 +16,7 @@ handlers and routes and are now listed once under General English.
   display headings). Shared brand tokens are imported; the explicitly approved
   prototype values take precedence over the general branding defaults.
 - `idioms/catalog.js`: public lesson metadata (`id`, title, subtitle, kicker,
-  `access`, `published`). Lessons 2–6 are reserved, unpublished premium lessons.
+  `access`, `published`). Lesson 2 is published for ePeak+; Lessons 3–6 remain unpublished premium lessons.
 - `api/idioms.js`: server-only `IDIOM_LESSON_CONTENT`, keyed by lesson ID, and
   protected catalog/lesson endpoint. Lesson 1 preserves all ten original idioms,
   choices, correct answers, examples and Spanish equivalents verbatim.
@@ -28,7 +28,7 @@ To add a lesson, put exactly ten records in `IDIOM_LESSON_CONTENT[lessonId]`
 and mark its catalog entry `published: true`. Add another catalog entry to
 extend the index beyond six lessons; no UI or routing changes are needed.
 Each record has a unique `id`, `idiom`, four `options`, a zero-based `correct`
-index, four `examples`, and optional `spanish`. Omit `spanish` when there is no
+index, an optional exact `question`, four `examples`, and optional `spanish`. Omit `spanish` when there is no
 natural equivalent; the UI omits that reveal button. Never place learning
 content in a public static file. Unpublished lessons return `COMING_SOON` to
 eligible accounts and never return quiz items.
@@ -93,3 +93,20 @@ credentials and real test accounts.
 - `package.json` defines no build script. No dependency or migration was added.
 - Live authenticated production Supabase/Stripe checks were not run.
   Deployment status is tracked through the repository’s Vercel integration.
+
+## Lesson 2
+
+Lesson 2 uses the ten supplied idioms, exact questions and choices, 40 examples,
+and ten Spanish equivalents. Its content stays server-only and uses the existing
+entitlement checks, shuffled choices, practice UI and independent quiz rounds.
+The explicit Lesson 2 list repeats “Bite the bullet” and “The ball is in your
+court” from Lesson 1; the supplied list takes precedence and Lesson 1 is unchanged.
+The Idioms index footer tagline is removed; the lesson footer is preserved.
+
+Lesson 2 verification: all 49 repository test files pass. Focused checks cover
+the exact supplied content, premium/free/visitor API access, unpublished lessons,
+all reveal/hide controls, shuffled answers, scoring, navigation, restart and
+lesson switching. Lesson 1's existing content digest remains unchanged. Syntax
+and whitespace checks pass. There is no build script or new dependency. These
+checks use simulated accounts and DOM elements; live Supabase/Stripe and browser
+checks were not run for this addition.

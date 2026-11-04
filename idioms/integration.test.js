@@ -28,7 +28,7 @@ test('extensionless /idioms serves the shell with no static lesson content or se
     assert.ok(routes.some(route => route.source === source && route.destination === '/index.html'));
   }
   const sources = ['index.html', 'app.js', 'practice.js', 'quiz.js', 'catalog.js'].map(read).join('\n');
-  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|SUPABASE_SERVICE_ROLE_KEY/);
+  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Hacer de tripas corazón|To accept an unpleasant situation|SUPABASE_SERVICE_ROLE_KEY/);
   assert.match(read('index.html'), /type="module" src="\/idioms\/app.js"/);
   assert.match(read('app.js'), /storageKey: 'ep-auth-token'/);
   assert.match(read('app.js'), /Authorization: `Bearer \$\{token\}`/);
@@ -111,11 +111,13 @@ test('only navigation messages from the active same-origin Idioms iframe update 
   assert.deepEqual(urls, ['/idioms?lesson=1', '/idioms']);
 });
 
-test('catalog reserves six lessons without fabricated learning content', () => {
+test('catalog publishes Lessons 1–2 and reserves Lessons 3–6', () => {
   assert.deepEqual(IDIOM_LESSONS.map(item => item.id), [1, 2, 3, 4, 5, 6]);
   assert.equal(IDIOM_LESSONS[0].published, true);
   assert.equal(IDIOM_LESSONS[0].access, 'free');
-  for (const item of IDIOM_LESSONS.slice(1)) {
+  assert.equal(IDIOM_LESSONS[1].published, true);
+  assert.equal(IDIOM_LESSONS[1].access, 'premium');
+  for (const item of IDIOM_LESSONS.slice(2)) {
     assert.equal(item.access, 'premium');
     assert.equal(item.published, false);
     assert.equal(item.items, undefined);

@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { hasFullAccessTier } from '../businesscases/access.js';
 import { IDIOM_LESSONS } from '../idioms/catalog.js';
 
-// Server-only lesson content, preserved verbatim from the approved prototype.
+// Server-only lesson content. Lesson 1 preserves the approved prototype verbatim.
 export const IDIOM_LESSON_CONTENT = {
   "1": [
     {
@@ -184,6 +184,198 @@ export const IDIOM_LESSON_CONTENT = {
         "Let’s finish this last task and call it a day."
       ],
       "spanish": "Dar por terminado el día / dejarlo por hoy"
+    }
+  ],
+  "2": [
+    {
+      "id": 1,
+      "idiom": "Bite the bullet",
+      "question": "What does \"bite the bullet\" mean?",
+      "options": [
+        "To accept an unpleasant situation and face it bravely.",
+        "To make an impulsive decision without thinking.",
+        "To respond aggressively to criticism.",
+        "To refuse to participate in a difficult task."
+      ],
+      "correct": 0,
+      "examples": [
+        "I finally bit the bullet and booked my dentist appointment.",
+        "We had to bite the bullet and pay for the repairs.",
+        "She decided to bite the bullet and tell her manager the truth.",
+        "Sometimes you just have to bite the bullet and start over."
+      ],
+      "spanish": "Hacer de tripas corazón."
+    },
+    {
+      "id": 2,
+      "idiom": "The ball is in your court",
+      "question": "What does \"the ball is in your court\" mean?",
+      "options": [
+        "You have an advantage over everyone else.",
+        "It's your responsibility to make the next decision or take action.",
+        "You have missed an important opportunity.",
+        "Someone else is responsible for your mistakes."
+      ],
+      "correct": 1,
+      "examples": [
+        "I've sent you the proposal, so the ball is in your court now.",
+        "We made our offer, and the ball is in their court.",
+        "I've told you how I feel. The ball is in your court.",
+        "The company has all the information it needs, so the ball is in its court."
+      ],
+      "spanish": "Ahora te toca a ti decidir / La decisión está en tus manos."
+    },
+    {
+      "id": 3,
+      "idiom": "Cut corners",
+      "question": "What does \"cut corners\" mean?",
+      "options": [
+        "To shorten a meeting by removing unnecessary topics.",
+        "To simplify something without affecting its quality.",
+        "To do something cheaply or quickly by skipping important steps.",
+        "To find a clever solution to a complicated problem."
+      ],
+      "correct": 2,
+      "examples": [
+        "The contractor cut corners, and the roof started leaking.",
+        "We can't afford to cut corners when it comes to safety.",
+        "Some companies cut corners to reduce production costs.",
+        "If you cut corners during training, you'll struggle later."
+      ],
+      "spanish": "Hacer las cosas al aventón / Ahorrarse pasos importantes."
+    },
+    {
+      "id": 4,
+      "idiom": "Get cold feet",
+      "question": "What does \"get cold feet\" mean?",
+      "options": [
+        "To lose confidence or become nervous before doing something.",
+        "To suddenly change your opinion about someone.",
+        "To feel uncomfortable in an unfamiliar environment.",
+        "To regret something after it has already happened."
+      ],
+      "correct": 0,
+      "examples": [
+        "He got cold feet just before proposing to his girlfriend.",
+        "I was going to quit my job, but I got cold feet.",
+        "Don't get cold feet now. You've prepared for this presentation for weeks.",
+        "She got cold feet about moving abroad at the last minute."
+      ],
+      "spanish": "Echarse para atrás por miedo / Entrarle miedo a última hora."
+    },
+    {
+      "id": 5,
+      "idiom": "Go the extra mile",
+      "question": "What does \"go the extra mile\" mean?",
+      "options": [
+        "To work longer hours than everyone else.",
+        "To make an additional effort beyond what is expected.",
+        "To take unnecessary risks to achieve a goal.",
+        "To complete a task without asking for help."
+      ],
+      "correct": 1,
+      "examples": [
+        "Our teacher always goes the extra mile to help struggling students.",
+        "She went the extra mile to make the guests feel welcome.",
+        "Great customer service means being willing to go the extra mile.",
+        "He went the extra mile by preparing a personalised report for each client."
+      ],
+      "spanish": "Dar el extra / Hacer un esfuerzo adicional."
+    },
+    {
+      "id": 6,
+      "idiom": "On the fence",
+      "question": "What does \"be on the fence\" mean?",
+      "options": [
+        "To avoid getting involved in other people's problems.",
+        "To disagree with both sides of an argument.",
+        "To feel uncertain or undecided between different options.",
+        "To support an unpopular opinion."
+      ],
+      "correct": 2,
+      "examples": [
+        "I'm still on the fence about buying a new car.",
+        "She's on the fence about accepting the job offer.",
+        "Many voters remain on the fence ahead of the election.",
+        "I was on the fence at first, but the reviews convinced me."
+      ],
+      "spanish": "Estar indeciso / No decidirse todavía."
+    },
+    {
+      "id": 7,
+      "idiom": "Throw in the towel",
+      "question": "What does \"throw in the towel\" mean?",
+      "options": [
+        "To abandon a task temporarily.",
+        "To admit defeat or stop trying.",
+        "To accept responsibility for a mistake.",
+        "To ask someone else to finish your work."
+      ],
+      "correct": 1,
+      "examples": [
+        "After three failed attempts, he was ready to throw in the towel.",
+        "Don't throw in the towel just because the first interview went badly.",
+        "The team refused to throw in the towel despite being three goals behind.",
+        "She finally threw in the towel and closed the struggling business."
+      ],
+      "spanish": "Tirar la toalla."
+    },
+    {
+      "id": 8,
+      "idiom": "Take it with a grain of salt",
+      "question": "What does \"take it with a grain of salt\" mean?",
+      "options": [
+        "To deliberately ignore someone's advice.",
+        "To accept criticism without becoming upset.",
+        "To believe something only after confirming it with an expert.",
+        "To be sceptical about information rather than believing it completely."
+      ],
+      "correct": 3,
+      "examples": [
+        "Take his predictions with a grain of salt. He's often wrong.",
+        "I read the online reviews, but I take them with a grain of salt.",
+        "You should take anything you hear from that gossip account with a grain of salt.",
+        "She tends to exaggerate, so I take her stories with a grain of salt."
+      ],
+      "spanish": "Tomarlo con reservas / No creérselo del todo."
+    },
+    {
+      "id": 9,
+      "idiom": "Burn bridges",
+      "question": "What does \"burn bridges\" mean?",
+      "options": [
+        "To permanently damage relationships or eliminate opportunities to return.",
+        "To deliberately challenge someone in authority.",
+        "To end a friendship because of a misunderstanding.",
+        "To stop communicating with people for a short period."
+      ],
+      "correct": 0,
+      "examples": [
+        "Don't burn bridges when you leave your current job.",
+        "He burned his bridges with the company after publicly insulting his manager.",
+        "You can disagree with someone without burning bridges.",
+        "She regretted burning bridges with her former colleagues."
+      ],
+      "spanish": "Cerrar puertas / Romper relaciones definitivamente."
+    },
+    {
+      "id": 10,
+      "idiom": "A blessing in disguise",
+      "question": "What does \"a blessing in disguise\" mean?",
+      "options": [
+        "Something positive that happens when you least expect it.",
+        "An unexpected reward for helping someone.",
+        "Something that initially seems bad but eventually turns out to be beneficial.",
+        "A lucky opportunity that requires little effort."
+      ],
+      "correct": 2,
+      "examples": [
+        "Losing that job turned out to be a blessing in disguise because I found a better one.",
+        "Missing the train was a blessing in disguise; the next one was much less crowded.",
+        "The project cancellation seemed terrible, but it was a blessing in disguise.",
+        "Sometimes rejection is a blessing in disguise."
+      ],
+      "spanish": "No hay mal que por bien no venga."
     }
   ]
 };

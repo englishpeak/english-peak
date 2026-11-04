@@ -42,6 +42,7 @@ function render() {
   exampleOpen = false;
   spanishOpen = false;
   $('idiom').textContent = `“${item.idiom}”`;
+  $('questionPrompt').textContent = item.question || 'What does this idiom mean?';
   $('answers').replaceChildren();
   item.options.forEach((option, index) => {
     const button = document.createElement('button');

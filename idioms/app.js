@@ -39,11 +39,12 @@ function buildGrid() {
   $('lessonGrid').replaceChildren();
   IDIOM_LESSONS.forEach(lesson => {
     const premium = lesson.access === 'premium';
+    const locked = premium && (!plusAccess || !lesson.published);
     const button = document.createElement('button');
-    button.className = `lesson-card${premium ? ' locked' : ''}`;
+    button.className = `lesson-card${locked ? ' locked' : ''}`;
     button.disabled = checking;
-    button.innerHTML = `<div class="card-line"><span class="card-kicker">${lesson.kicker}</span><span class="circle ${premium ? 'lock' : ''}" aria-hidden="true">${premium ? '♢' : '→'}</span></div><div><h3>${lesson.title}</h3><p>10 idioms · Multiple choice</p></div><div class="card-line" style="margin-top:17px"><span class="pill ${premium ? 'pro' : ''}">${premium ? '✧ ePeak+' : '✓ Members'}</span><span class="inline-check">${!lesson.published ? 'COMING SOON' : 'START LESSON →'}</span></div>`;
-    button.setAttribute('aria-label', `${lesson.title}, ${premium ? 'ePeak+ required' : 'free account required'}${!lesson.published ? ', coming soon' : ''}`);
+    button.innerHTML = `<div class="card-line"><span class="card-kicker">${lesson.kicker}</span><span class="circle ${locked ? 'lock' : ''}" aria-hidden="true">${locked ? '♢' : '→'}</span></div><div><h3>${lesson.title}</h3><p>10 idioms · Multiple choice</p></div><div class="card-line" style="margin-top:17px"><span class="pill ${premium ? 'pro' : ''}">${premium ? '✧ ePeak+' : '✓ Members'}</span><span class="inline-check">${!lesson.published ? 'COMING SOON' : 'START LESSON →'}</span></div>`;
+    button.setAttribute('aria-label', `${lesson.title}, ${premium ? (locked ? 'ePeak+ required' : 'ePeak+') : 'free account required'}${!lesson.published ? ', coming soon' : ''}`);
     button.addEventListener('click', () => openLesson(lesson.id));
     $('lessonGrid').appendChild(button);
   });

@@ -34,22 +34,24 @@ test('Lesson 1 preserves all approved content verbatim, with ten unique IDs and 
   }
   const original = items.map(({ id, ...item }) => item);
   assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'b78230adb741fe790d50d494939eefe07c0846d41d516449d8cb9d137f830969');
-  assert.deepEqual(Object.keys(IDIOM_LESSON_CONTENT), ['1']);
+  assert.deepEqual(Object.keys(IDIOM_LESSON_CONTENT), ['1', '2']);
 });
 
 test('visitors, malformed tokens and invalid sessions never receive any lesson content', async () => {
-  for (const authorization of [undefined, '', 'Basic token', 'Bearer ', ['Bearer valid-token'], 'Bearer token extra']) {
-    const { handler, res, calls } = fixture();
-    await handler(request('1', { headers: { authorization } }), res);
-    assert.equal(res.statusCode, 401);
-    assert.equal(res.body.items, undefined);
-    assert.equal(calls.length, 0);
-  }
-  for (const options of [{ user: null }, { authError: { status: 401 } }]) {
-    const { handler, res } = fixture(options);
-    await handler(request(), res);
-    assert.equal(res.statusCode, 401);
-    assert.equal(res.body.items, undefined);
+  for (const lesson of ['1', '2']) {
+    for (const authorization of [undefined, '', 'Basic token', 'Bearer ', ['Bearer valid-token'], 'Bearer token extra']) {
+      const { handler, res, calls } = fixture();
+      await handler(request(lesson, { headers: { authorization } }), res);
+      assert.equal(res.statusCode, 401);
+      assert.equal(res.body.items, undefined);
+      assert.equal(calls.length, 0);
+    }
+    for (const options of [{ user: null }, { authError: { status: 401 } }]) {
+      const { handler, res } = fixture(options);
+      await handler(request(lesson), res);
+      assert.equal(res.statusCode, 401);
+      assert.equal(res.body.items, undefined);
+    }
   }
 });
 
@@ -83,7 +85,10 @@ test('existing full-access tiers and admin override pass the premium gate withou
     const { handler, res } = fixture({ profile });
     await handler(request(null), res);
     assert.equal(res.body.plusAccess, true);
-    for (const id of ['2', '3', '4', '5', '6']) {
+    await handler(request('2'), res);
+    assert.equal(res.statusCode, 200);
+    assert.equal(res.body.items, IDIOM_LESSON_CONTENT[2]);
+    for (const id of ['3', '4', '5', '6']) {
       await handler(request(id), res);
       assert.equal(res.statusCode, 404);
       assert.equal(res.body.code, 'COMING_SOON');
@@ -93,20 +98,20 @@ test('existing full-access tiers and admin override pass the premium gate withou
 });
 
 test('publishing another lesson needs only catalog/content additions and retains server access checks', async () => {
-  const lesson = IDIOM_LESSONS.find(item => item.id === 2);
+  const lesson = IDIOM_LESSONS.find(item => item.id === 3);
   lesson.published = true;
-  IDIOM_LESSON_CONTENT[2] = IDIOM_LESSON_CONTENT[1];
+  IDIOM_LESSON_CONTENT[3] = IDIOM_LESSON_CONTENT[1];
   try {
     for (const [tier, expected] of [['free', 403], ['premium', 200]]) {
       const { handler, res } = fixture({ profile: { tier } });
-      await handler(request('2'), res);
+      await handler(request('3'), res);
       assert.equal(res.statusCode, expected);
-      if (expected === 200) assert.equal(res.body.lesson.id, 2);
+      if (expected === 200) assert.equal(res.body.lesson.id, 3);
       else assert.equal(res.body.items, undefined);
     }
   } finally {
     lesson.published = false;
-    delete IDIOM_LESSON_CONTENT[2];
+    delete IDIOM_LESSON_CONTENT[3];
   }
 });
 
