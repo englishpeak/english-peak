@@ -9,10 +9,23 @@ import { QuizRound } from './quiz.js';
 
 const read = name => readFileSync(new URL(name, import.meta.url), 'utf8');
 
+test('published lessons contain no duplicate idioms after normalising case and punctuation', () => {
+  const seen = new Map();
+  for (const lesson of IDIOM_LESSONS.filter(item => item.published)) {
+    for (const item of IDIOM_LESSON_CONTENT[lesson.id]) {
+      const normalised = item.idiom.normalize('NFKC').toLowerCase()
+        .replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/^(?:to|be) /, '');
+      assert.ok(!seen.has(normalised),
+        `Duplicate idiom "${item.idiom}" in Lesson ${lesson.id}; already in Lesson ${seen.get(normalised)}`);
+      seen.set(normalised, lesson.id);
+    }
+  }
+});
+
 test('Lesson 2 pins the exact supplied questions, choices, answers, 40 examples and ten equivalents', () => {
   const items = IDIOM_LESSON_CONTENT[2];
   assert.equal(createHash('sha256').update(JSON.stringify(items)).digest('hex'),
-    '507da50e9f1b14f688a4bc244212f901eb4554016c38a9662faa1aa3da947f9e');
+    'baba9a778b32d496fd11c026578b536b26951cdc93c6d9fa2bacfd181e01e071');
   assert.equal(items.length, 10);
   assert.equal(new Set(items.map(item => item.idiom)).size, 10);
   assert.equal(new Set(items.map(item => item.id)).size, 10);

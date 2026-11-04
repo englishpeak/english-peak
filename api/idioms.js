@@ -189,41 +189,41 @@ export const IDIOM_LESSON_CONTENT = {
   "2": [
     {
       "id": 1,
-      "idiom": "Bite the bullet",
-      "question": "What does \"bite the bullet\" mean?",
+      "idiom": "Pull someone's leg",
+      "question": "What does \"pull someone's leg\" mean?",
       "options": [
-        "To accept an unpleasant situation and face it bravely.",
-        "To make an impulsive decision without thinking.",
-        "To respond aggressively to criticism.",
-        "To refuse to participate in a difficult task."
-      ],
-      "correct": 0,
-      "examples": [
-        "I finally bit the bullet and booked my dentist appointment.",
-        "We had to bite the bullet and pay for the repairs.",
-        "She decided to bite the bullet and tell her manager the truth.",
-        "Sometimes you just have to bite the bullet and start over."
-      ],
-      "spanish": "Hacer de tripas corazón."
-    },
-    {
-      "id": 2,
-      "idiom": "The ball is in your court",
-      "question": "What does \"the ball is in your court\" mean?",
-      "options": [
-        "You have an advantage over everyone else.",
-        "It's your responsibility to make the next decision or take action.",
-        "You have missed an important opportunity.",
-        "Someone else is responsible for your mistakes."
+        "To deliberately embarrass someone in public.",
+        "To joke with someone or playfully trick them.",
+        "To persuade someone to change their opinion.",
+        "To help someone overcome a difficult situation."
       ],
       "correct": 1,
       "examples": [
-        "I've sent you the proposal, so the ball is in your court now.",
-        "We made our offer, and the ball is in their court.",
-        "I've told you how I feel. The ball is in your court.",
-        "The company has all the information it needs, so the ball is in its court."
+        "Relax! I'm just pulling your leg.",
+        "He told me he'd won the lottery, but he was only pulling my leg.",
+        "Are you serious, or are you pulling my leg?",
+        "My brother loves pulling my leg about my terrible cooking."
       ],
-      "spanish": "Ahora te toca a ti decidir / La decisión está en tus manos."
+      "spanish": "Tomarle el pelo a alguien / Estarle tomando el pelo."
+    },
+    {
+      "id": 2,
+      "idiom": "Beat around the bush",
+      "question": "What does \"beat around the bush\" mean?",
+      "options": [
+        "To exaggerate the importance of a problem.",
+        "To discuss something without understanding it.",
+        "To spend too much time explaining minor details.",
+        "To avoid talking about something directly."
+      ],
+      "correct": 3,
+      "examples": [
+        "Stop beating around the bush and tell me what happened.",
+        "She kept beating around the bush instead of answering my question.",
+        "I don't want to beat around the bush, so I'll be direct.",
+        "He beat around the bush for ten minutes before admitting his mistake."
+      ],
+      "spanish": "Andarse por las ramas / Darle vueltas al asunto."
     },
     {
       "id": 3,

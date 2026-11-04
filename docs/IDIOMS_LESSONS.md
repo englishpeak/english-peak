@@ -99,8 +99,8 @@ credentials and real test accounts.
 Lesson 2 uses the ten supplied idioms, exact questions and choices, 40 examples,
 and ten Spanish equivalents. Its content stays server-only and uses the existing
 entitlement checks, shuffled choices, practice UI and independent quiz rounds.
-The explicit Lesson 2 list repeats “Bite the bullet” and “The ball is in your
-court” from Lesson 1; the supplied list takes precedence and Lesson 1 is unchanged.
+No idiom repeats across the published lessons. A test normalises idiom text
+to detect duplicate expressions across all published lessons. Lesson 1 is unchanged.
 The Idioms index footer tagline is removed; the lesson footer is preserved.
 
 Lesson 2 verification: all 49 repository test files pass. Focused checks cover

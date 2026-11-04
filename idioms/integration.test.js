@@ -28,7 +28,7 @@ test('extensionless /idioms serves the shell with no static lesson content or se
     assert.ok(routes.some(route => route.source === source && route.destination === '/index.html'));
   }
   const sources = ['index.html', 'app.js', 'practice.js', 'quiz.js', 'catalog.js'].map(read).join('\n');
-  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Hacer de tripas corazón|To accept an unpleasant situation|SUPABASE_SERVICE_ROLE_KEY/);
+  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Tomarle el pelo|To joke with someone|SUPABASE_SERVICE_ROLE_KEY/);
   assert.match(read('index.html'), /type="module" src="\/idioms\/app.js"/);
   assert.match(read('app.js'), /storageKey: 'ep-auth-token'/);
   assert.match(read('app.js'), /Authorization: `Bearer \$\{token\}`/);
