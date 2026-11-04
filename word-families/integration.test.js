@@ -18,11 +18,13 @@ test('the direct route and static files contain no production vocabulary bank', 
   assert.doesNotMatch(html + access, /SUPABASE_SERVICE_ROLE_KEY/);
 });
 
-test('the dashboard adds Word Families under New Practice with the established shell', () => {
+test('the dashboard places Word Families under General English with the established shell', () => {
   const newPractice = app.slice(app.indexOf('id="new-practice-section"'), app.indexOf('<h2>Free Exercises</h2>'));
-  assert.match(newPractice, /class="ex-card" onclick="openWordFamilies\(\)"/);
-  assert.match(newPractice, /card-icon purple/);
-  assert.match(newPractice, /id="access-word-families">🔒 ePeak\+/);
+  const generalEnglish = app.slice(app.indexOf('<h2>General English</h2>'), app.indexOf('<h2>Business</h2>'));
+  assert.doesNotMatch(newPractice, /openWordFamilies/);
+  assert.match(generalEnglish, /class="ex-card" onclick="openWordFamilies\(\)"/);
+  assert.match(generalEnglish, /card-icon purple/);
+  assert.match(generalEnglish, /id="access-word-families">🔒 ePeak\+/);
   assert.match(app, /id="exercise-word-families"/);
   assert.match(app, /id="frame-word-families"[^>]*title="Word Families"/);
 });
