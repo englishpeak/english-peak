@@ -16,7 +16,7 @@ handlers and routes and are now listed once under General English.
   display headings). Shared brand tokens are imported; the explicitly approved
   prototype values take precedence over the general branding defaults.
 - `idioms/catalog.js`: public lesson metadata (`id`, title, subtitle, kicker,
-  `access`, `published`). Lesson 2 is published for ePeak+; Lessons 3–6 remain unpublished premium lessons.
+  `access`, `published`). Lessons 2–3 are published for ePeak+; Lessons 4–6 remain unpublished premium lessons.
 - `api/idioms.js`: server-only `IDIOM_LESSON_CONTENT`, keyed by lesson ID, and
   protected catalog/lesson endpoint. Lesson 1 preserves all ten original idioms,
   choices, correct answers, examples and Spanish equivalents verbatim.
@@ -110,3 +110,19 @@ lesson switching. Lesson 1's existing content digest remains unchanged. Syntax
 and whitespace checks pass. There is no build script or new dependency. These
 checks use simulated accounts and DOM elements; live Supabase/Stripe and browser
 checks were not run for this addition.
+
+## Lesson 3
+
+Lesson 3 adds the ten supplied idioms, exact questions and choices, 40 examples,
+and ten Spanish equivalents to the protected endpoint. No new runtime component,
+authentication policy or dependency is needed. Lessons 1 and 2 are unchanged;
+Lessons 4–6 remain unpublished. The normalised duplicate check covers all three
+published lessons, and no duplicate expressions or grammatical variants were found.
+
+Validation covers premium/free/visitor API access; exact content and shuffled
+correct-answer mapping; rendering all questions and details; reveal/hide controls;
+progress, previous/next, final scoring, restart and independent lesson state.
+The existing Lesson 1 and Lesson 2 content digests remain pinned. All 49 repository
+test files pass, alongside syntax and whitespace checks. There is no build script.
+Checks use simulated accounts and DOM elements; live account and browser checks
+were not run for this addition.

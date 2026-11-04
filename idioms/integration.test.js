@@ -28,7 +28,7 @@ test('extensionless /idioms serves the shell with no static lesson content or se
     assert.ok(routes.some(route => route.source === source && route.destination === '/index.html'));
   }
   const sources = ['index.html', 'app.js', 'practice.js', 'quiz.js', 'catalog.js'].map(read).join('\n');
-  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Tomarle el pelo|To joke with someone|SUPABASE_SERVICE_ROLE_KEY/);
+  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Tomarle el pelo|To joke with someone|Leer entre líneas|To understand a hidden or implied meaning|SUPABASE_SERVICE_ROLE_KEY/);
   assert.match(read('index.html'), /type="module" src="\/idioms\/app.js"/);
   assert.match(read('app.js'), /storageKey: 'ep-auth-token'/);
   assert.match(read('app.js'), /Authorization: `Bearer \$\{token\}`/);
@@ -65,7 +65,7 @@ test('Idioms content removes its own top bar and delegates login and upgrades to
 test('dashboard entry and direct lesson URLs mount one content frame without loading a nested shell', () => {
   const app = read('../index.html');
   const source = app.slice(app.indexOf('function openIdioms()'), app.indexOf('function openCollocations()'));
-  for (const url of ['https://epeak.app/', 'https://epeak.app/idioms', 'https://epeak.app/idioms/?lesson=1']) {
+  for (const url of ['https://epeak.app/', 'https://epeak.app/idioms', 'https://epeak.app/idioms/?lesson=1', 'https://epeak.app/idioms?lesson=3']) {
     const nodes = new Map();
     const get = id => {
       if (!nodes.has(id)) nodes.set(id, { classList: { add() {} } });
@@ -78,7 +78,8 @@ test('dashboard entry and direct lesson URLs mount one content frame without loa
       history: { pushState(state, title, path) { navigations.push(path); } }, closeMobileSidebar() {},
     };
     vm.runInNewContext(source + '\nopenIdioms();', sandbox);
-    assert.equal(get('frame-idioms').src, '/idioms/index.html?embedded=1' + (url.includes('lesson=1') ? '&lesson=1' : ''));
+    const lessonId = new URL(url).searchParams.get('lesson');
+    assert.equal(get('frame-idioms').src, '/idioms/index.html?embedded=1' + (lessonId ? '&lesson=' + lessonId : ''));
     assert.equal(get('topbarTitle').textContent, '💡 Idioms Lessons');
     assert.deepEqual(navigations, url === 'https://epeak.app/' ? ['/idioms'] : []);
   }
@@ -111,13 +112,15 @@ test('only navigation messages from the active same-origin Idioms iframe update 
   assert.deepEqual(urls, ['/idioms?lesson=1', '/idioms']);
 });
 
-test('catalog publishes Lessons 1–2 and reserves Lessons 3–6', () => {
+test('catalog publishes Lessons 1–3 and reserves Lessons 4–6', () => {
   assert.deepEqual(IDIOM_LESSONS.map(item => item.id), [1, 2, 3, 4, 5, 6]);
   assert.equal(IDIOM_LESSONS[0].published, true);
   assert.equal(IDIOM_LESSONS[0].access, 'free');
   assert.equal(IDIOM_LESSONS[1].published, true);
   assert.equal(IDIOM_LESSONS[1].access, 'premium');
-  for (const item of IDIOM_LESSONS.slice(2)) {
+  assert.equal(IDIOM_LESSONS[2].published, true);
+  assert.equal(IDIOM_LESSONS[2].access, 'premium');
+  for (const item of IDIOM_LESSONS.slice(3)) {
     assert.equal(item.access, 'premium');
     assert.equal(item.published, false);
     assert.equal(item.items, undefined);
