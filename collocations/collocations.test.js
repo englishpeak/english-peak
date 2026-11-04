@@ -194,11 +194,14 @@ function seededRandom(seed) {
   return () => { value = (value * 1664525 + 1013904223) >>> 0; return value / 4294967296; };
 }
 
-test('dashboard places one Collocations card first in New Practice before Listen and Write', async () => {
+test('dashboard places one Collocations card in General English before Listen and Write', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const newPractice = html.slice(html.indexOf('id="new-practice-section"'), html.indexOf('<div class="section-header"><h2>Free Exercises'));
+  const generalEnglish = html.slice(html.indexOf('<h2>General English</h2>'), html.indexOf('<h2>Business</h2>'));
   assert.equal((html.match(/onclick="openCollocations\(\)"/gu) ?? []).length, 1);
-  assert.ok(newPractice.indexOf('Collocations Practice') < newPractice.indexOf('Listen and Write'));
+  assert.doesNotMatch(newPractice, /Collocations Practice/);
+  assert.ok(generalEnglish.indexOf('Collocations Practice') >= 0);
+  assert.ok(generalEnglish.indexOf('Collocations Practice') < generalEnglish.indexOf('Listen and Write'));
 });
 
 test('dashboard marks Collocations as member-only and unlocks solely from authentication', async () => {

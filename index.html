@@ -351,17 +351,9 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
-      <div class="ex-card" onclick="openCollocations()">
-        <div class="card-header"><div class="card-icon purple">🔗</div><div class="card-access access-locked" id="access-collocations">🔐 Members</div></div>
-        <div class="card-body"><div class="card-title">Collocations Practice</div><div class="card-desc">Learn which words naturally go together with matching, two-option, and typed-answer practice.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-collocations">Free account required</span></div><button class="card-btn btn-locked" id="btn-collocations">🔐 Sign in to access</button></div>
-      </div>
-      <div class="ex-card" onclick="openListenAndWrite()">
-        <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
-        <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
-      </div>
-      <div class="ex-card" onclick="openWordFamilies()">
-        <div class="card-header"><div class="card-icon purple">🌱</div><div class="card-access access-locked" id="access-word-families">🔒 ePeak+</div></div>
-        <div class="card-body"><div class="card-title">Word Families</div><div class="card-desc">Build vocabulary by sorting and completing related word forms.</div><div class="card-meta"><span class="meta-item">📚 500 word families</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-locked" id="btn-word-families">🔐 Sign in to access</button></div>
+      <div class="ex-card" onclick="openIdioms()">
+        <div class="card-header"><div class="card-icon purple">💡</div><div class="card-access access-free">Free Account · ePeak+</div></div>
+        <div class="card-body"><div class="card-title">Idioms Lessons</div><div class="card-desc">Discover everyday idioms with multiple-choice meanings, example sentences, and natural Spanish equivalents.</div><div class="card-meta"><span class="meta-item">💡 10 idioms per lesson</span><span class="meta-item">🔐 Lesson 1 for members</span></div><button class="card-btn btn-open">Choose a Lesson →</button></div>
       </div>
     </div>
 
@@ -397,6 +389,18 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header"><h2>General English</h2><p>Grammar, vocabulary, reading &amp; listening · A1 to C1</p></div>
     <div class="cards-grid">
+      <div class="ex-card" onclick="openCollocations()">
+        <div class="card-header"><div class="card-icon purple">🔗</div><div class="card-access access-locked" id="access-collocations">🔐 Members</div></div>
+        <div class="card-body"><div class="card-title">Collocations Practice</div><div class="card-desc">Learn which words naturally go together with matching, two-option, and typed-answer practice.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-collocations">Free account required</span></div><button class="card-btn btn-locked" id="btn-collocations">🔐 Sign in to access</button></div>
+      </div>
+      <div class="ex-card" onclick="openListenAndWrite()">
+        <div class="card-header"><div class="card-icon purple">🎙️</div><div class="card-access access-free">✓ Set 1 Free</div></div>
+        <div class="card-body"><div class="card-title">Listen and Write</div><div class="card-desc">Practice dictation with word unscrambling, meaningful missing words, or complete sentence writing.</div><div class="card-meta"><span class="meta-item">🎧 10 sentences</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-open">Choose a Set →</button></div>
+      </div>
+      <div class="ex-card" onclick="openWordFamilies()">
+        <div class="card-header"><div class="card-icon purple">🌱</div><div class="card-access access-locked" id="access-word-families">🔒 ePeak+</div></div>
+        <div class="card-body"><div class="card-title">Word Families</div><div class="card-desc">Build vocabulary by sorting and completing related word forms.</div><div class="card-meta"><span class="meta-item">📚 500 word families</span><span class="meta-item">🎯 Easy → Hard</span></div><button class="card-btn btn-locked" id="btn-word-families">🔐 Sign in to access</button></div>
+      </div>
       <div class="ex-card" onclick="openGeneral()">
         <div class="card-header"><div class="card-icon blue">📝</div><div class="card-access access-free" id="access-general">🔓 Test 1 Free</div></div>
         <div class="card-body"><div class="card-title">General English Practice</div><div class="card-desc">Grammar, vocabulary and sentence structure exercises from A1 to C1 level. Immediate feedback with explanations.</div><div class="card-meta"><span class="meta-item">🎯 A1 → C1</span><span class="meta-item" id="meta-general">Loading tests...</span></div><button class="card-btn btn-partial" id="btn-general">Start Practice →</button></div>
@@ -1919,6 +1923,10 @@ function openWordFamilies() {
   if (frame.contentWindow) frame.contentWindow.postMessage({ type: 'wordFamiliesResume' }, window.location.origin);
 }
 
+function openIdioms() {
+  window.location.assign('/idioms');
+}
+
 function openCollocations() {
   if (!_currentUser) {
     showAuthModal('register');
@@ -2892,7 +2900,7 @@ checkHamburger();
 (function() {
   var authTab = new URLSearchParams(window.location.search).get('auth');
   if (authTab === 'login' || authTab === 'register') showAuthModal(authTab);
-  if (new URLSearchParams(window.location.search).get('upgrade') === 'word-families') showModal();
+  if (['word-families', 'idioms'].includes(new URLSearchParams(window.location.search).get('upgrade'))) showModal();
 })();
 
 // Waits for auth session to resolve before opening, so tier-based locks are correct
