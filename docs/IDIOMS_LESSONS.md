@@ -16,7 +16,7 @@ handlers and routes and are now listed once under General English.
   display headings). Shared brand tokens are imported; the explicitly approved
   prototype values take precedence over the general branding defaults.
 - `idioms/catalog.js`: public lesson metadata (`id`, title, subtitle, kicker,
-  `access`, `published`). Lessons 2–3 are published for ePeak+; Lessons 4–6 remain unpublished premium lessons.
+  `access`, `published`). Lessons 2–4 are published for ePeak+; Lessons 5–6 remain unpublished premium lessons.
 - `api/idioms.js`: server-only `IDIOM_LESSON_CONTENT`, keyed by lesson ID, and
   protected catalog/lesson endpoint. Lesson 1 preserves all ten original idioms,
   choices, correct answers, examples and Spanish equivalents verbatim.
@@ -32,6 +32,20 @@ index, an optional exact `question`, four `examples`, and optional `spanish`. Om
 natural equivalent; the UI omits that reveal button. Never place learning
 content in a public static file. Unpublished lessons return `COMING_SOON` to
 eligible accounts and never return quiz items.
+
+For Lesson 4 and future lessons, distribute correct answers as evenly as
+mathematically possible across A, B, C and D. Ten questions require a 3/3/2/2
+distribution. Vary the sequence between lessons; avoid long runs of one answer
+and repeating A-B-C-D patterns. The existing quiz shuffles options per round
+while preserving exactly one correct answer, so the balanced distribution
+applies to the source data rather than the displayed letters.
+
+Before publishing, check against all earlier idioms and within the new lesson,
+including pronoun and verb variants. The tests in `idioms/lesson4.test.js`
+normalise pronouns and known inflections across all published lessons and
+enforce balanced answer counts and varied sequences for Lesson 4 onward.
+Extend the known inflections for new verbs and review variants editorially;
+automated normalisation does not identify every possible paraphrase.
 
 ## Access and deployment
 
@@ -126,3 +140,27 @@ The existing Lesson 1 and Lesson 2 content digests remain pinned. All 49 reposit
 test files pass, alongside syntax and whitespace checks. There is no build script.
 Checks use simulated accounts and DOM elements; live account and browser checks
 were not run for this addition.
+
+## Lesson 4
+
+Lesson 4 adds the ten approved idioms, exact questions and four choices per
+question, all 40 example sentences, and ten Spanish equivalents. The content
+uses the existing protected endpoint and full-access entitlement policy.
+The lesson UI, shuffled answers, reveal controls, navigation, progress,
+scoring, restart and independent lesson state are reused unchanged.
+Lessons 1–3 retain their original content; Lessons 5–6 remain unpublished.
+
+No internal duplicates or grammatical variants of idioms in Lessons 1–3 were
+found. The source answer sequence is C, A, D, B, A, C, B, D, A, B:
+A:3, B:3, C:2, D:2. The duplicate checks now cover all 40 published idioms.
+
+Focused automated checks cover exact content digests, server access checks
+for visitors, free accounts and existing full-access tiers, forged claims,
+direct Lesson 4 URLs, sign-in/upgrade delegation, all detail controls, answer
+shuffling, navigation, progress, scoring, restart and lesson switching.
+The existing Lesson 1–3 content digests remain pinned. All 50 repository test
+files pass with `node --test`; all 30 focused checks pass with
+`node --test --test-isolation=none api/idioms.test.js idioms/*.test.js`.
+JavaScript syntax and `git diff --check` checks pass. Tests use simulated
+accounts and DOM elements; live authenticated production checks are not run.
+There is no build script or new dependency, and no migration is required.

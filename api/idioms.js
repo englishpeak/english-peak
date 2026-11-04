@@ -569,6 +569,198 @@ export const IDIOM_LESSON_CONTENT = {
       ],
       "spanish": "La gota que derramó el vaso."
     }
+  ],
+  "4": [
+    {
+      "id": 1,
+      "idiom": "Out of the blue",
+      "question": "What does \"out of the blue\" mean?",
+      "options": [
+        "After a long period of preparation.",
+        "At a particularly convenient moment.",
+        "Suddenly and completely unexpectedly.",
+        "Without understanding the consequences."
+      ],
+      "correct": 2,
+      "examples": [
+        "My old high school friend called me out of the blue yesterday.",
+        "She received a job offer out of the blue.",
+        "The company announced the changes completely out of the blue.",
+        "He showed up at my house out of the blue after five years."
+      ],
+      "spanish": "De la nada / Así de repente / Sin previo aviso."
+    },
+    {
+      "id": 2,
+      "idiom": "Get something off your chest",
+      "question": "What does \"get something off your chest\" mean?",
+      "options": [
+        "To express something that's been worrying or bothering you.",
+        "To overcome a difficult situation without asking for help.",
+        "To admit responsibility for something you didn't do.",
+        "To forget about an unpleasant experience."
+      ],
+      "correct": 0,
+      "examples": [
+        "I need to get something off my chest. I've been worried about this for weeks.",
+        "She finally got it off her chest and told her friend how she felt.",
+        "If something's bothering you, it's better to get it off your chest.",
+        "He felt relieved after getting everything off his chest."
+      ],
+      "spanish": "Desahogarse / Sacarse algo del pecho."
+    },
+    {
+      "id": 3,
+      "idiom": "See eye to eye",
+      "question": "What does \"see eye to eye\" mean?",
+      "options": [
+        "To understand someone's feelings without speaking.",
+        "To pay close attention to another person's behaviour.",
+        "To admire someone because of their achievements.",
+        "To agree with someone or share the same opinion."
+      ],
+      "correct": 3,
+      "examples": [
+        "My brother and I don't always see eye to eye on politics.",
+        "It's important that business partners see eye to eye on major decisions.",
+        "We finally saw eye to eye after discussing the problem.",
+        "They rarely see eye to eye when it comes to raising their children."
+      ],
+      "spanish": "Estar de acuerdo / Coincidir en la forma de pensar."
+    },
+    {
+      "id": 4,
+      "idiom": "Up in the air",
+      "question": "What does \"up in the air\" mean?",
+      "options": [
+        "Extremely unlikely to happen.",
+        "Not yet decided or confirmed.",
+        "Completely beyond someone's control.",
+        "More complicated than originally expected."
+      ],
+      "correct": 1,
+      "examples": [
+        "Our holiday plans are still up in the air.",
+        "The date of the meeting is up in the air until everyone confirms.",
+        "Whether the company will open a new office is still up in the air.",
+        "Everything's up in the air because we haven't received approval yet."
+      ],
+      "spanish": "Estar en el aire / Todavía no estar definido."
+    },
+    {
+      "id": 5,
+      "idiom": "Hit the ground running",
+      "question": "What does \"hit the ground running\" mean?",
+      "options": [
+        "To start a new activity or job immediately and effectively.",
+        "To recover quickly after making a serious mistake.",
+        "To begin working without understanding the instructions.",
+        "To complete a project much earlier than expected."
+      ],
+      "correct": 0,
+      "examples": [
+        "She hit the ground running on her first day at the new company.",
+        "We need someone who can hit the ground running without weeks of training.",
+        "The team hit the ground running after the holiday break.",
+        "He hit the ground running and secured three clients in his first week."
+      ],
+      "spanish": "Empezar con todo / Arrancar con el pie derecho."
+    },
+    {
+      "id": 6,
+      "idiom": "Keep your chin up",
+      "question": "What does \"keep your chin up\" mean?",
+      "options": [
+        "To remain confident even when you're wrong.",
+        "To avoid showing your emotions in public.",
+        "To stay positive and hopeful during difficult times.",
+        "To ignore criticism from people around you."
+      ],
+      "correct": 2,
+      "examples": [
+        "Keep your chin up! I'm sure you'll find another job soon.",
+        "I know you're disappointed, but keep your chin up.",
+        "She told her son to keep his chin up after losing the competition.",
+        "Even when things went wrong, he managed to keep his chin up."
+      ],
+      "spanish": "No te desanimes / Mantén el ánimo / Arriba ese ánimo."
+    },
+    {
+      "id": 7,
+      "idiom": "Draw the line",
+      "question": "What does \"draw the line\" mean?",
+      "options": [
+        "To make a clear distinction between two similar ideas.",
+        "To establish a limit on what you're willing to accept.",
+        "To end an argument by agreeing with the other person.",
+        "To separate personal responsibilities from professional ones."
+      ],
+      "correct": 1,
+      "examples": [
+        "I don't mind working late occasionally, but I draw the line at working every weekend.",
+        "You have to draw the line when people start taking advantage of you.",
+        "She draws the line at lending money to coworkers.",
+        "Everyone has to decide where to draw the line when it comes to privacy."
+      ],
+      "spanish": "Poner límites / Marcar la raya / Hasta ahí llegar."
+    },
+    {
+      "id": 8,
+      "idiom": "A long shot",
+      "question": "What does \"a long shot\" mean?",
+      "options": [
+        "A difficult decision that requires careful planning.",
+        "An opportunity that takes a long time to develop.",
+        "A strategy that involves taking unnecessary risks.",
+        "An attempt or possibility with very little chance of success."
+      ],
+      "correct": 3,
+      "examples": [
+        "Getting tickets for the sold-out concert is a long shot, but I'll try.",
+        "It's a long shot, but maybe the company will reconsider our proposal.",
+        "Winning the competition would be a long shot for such a small team.",
+        "I know it's a long shot, but I'm going to apply for the scholarship anyway."
+      ],
+      "spanish": "Una posibilidad muy remota / Está difícil, pero vale la pena intentar."
+    },
+    {
+      "id": 9,
+      "idiom": "By the book",
+      "question": "What does \"by the book\" mean?",
+      "options": [
+        "Following established rules or procedures exactly.",
+        "Learning how to do something without practical experience.",
+        "Making decisions based on advice from experts.",
+        "Completing a task in the traditional way rather than using technology."
+      ],
+      "correct": 0,
+      "examples": [
+        "Our new manager does everything by the book.",
+        "The inspector insisted that every procedure be followed by the book.",
+        "We can't take shortcuts here. Everything has to be done by the book.",
+        "She always plays by the book, even when nobody's watching."
+      ],
+      "spanish": "Hacer las cosas al pie de la letra / Seguir las reglas estrictamente."
+    },
+    {
+      "id": 10,
+      "idiom": "Make ends meet",
+      "question": "What does \"make ends meet\" mean?",
+      "options": [
+        "To save enough money for a major purchase.",
+        "To earn enough money to cover basic living expenses.",
+        "To pay off all your debts ahead of schedule.",
+        "To manage several financial investments successfully."
+      ],
+      "correct": 1,
+      "examples": [
+        "With rent increasing every year, it's becoming harder to make ends meet.",
+        "She worked two jobs to make ends meet while studying.",
+        "Many families struggle to make ends meet during difficult economic times.",
+        "He had to reduce his expenses just to make ends meet."
+      ],
+      "spanish": "Llegar a fin de mes / Sacar para los gastos."
+    }
   ]
 };
 
