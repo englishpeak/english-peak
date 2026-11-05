@@ -20,6 +20,8 @@ const verbs = Object.fromEntries([
   'draw draws drew drawn drawing', 'make makes made making',
   'play plays played playing', 'leave leaves left leaving',
   'give gives gave given giving', 'put puts putting', 'let lets letting',
+  'sweep sweeps swept sweeping', 'stick sticks stuck sticking',
+  'move moves moved moving',
 ].flatMap(group => {
   const [lemma, ...forms] = group.split(' ');
   return forms.map(form => [form, lemma]);
@@ -27,7 +29,7 @@ const verbs = Object.fromEntries([
 
 function normaliseIdiom(value) {
   return value.normalize('NFKC').toLowerCase().replace(/[’']/g, '')
-    .replace(/\bher(?= (?:leg|chest|chin|court|bridges)\b)/g, 'possessive')
+    .replace(/\bher(?= (?:leg|chest|chin|court|bridges|wires|foot|mouth|guns)\b)/g, 'possessive')
     .replace(/\b(?:someones|ones|my|your|his|its|our|their)\b/g, 'possessive')
     .replace(/\b(?:someone|somebody|me|you|him|her|us|them)\b/g, 'person')
     .replace(/\b(?:something|it|everything)\b/g, 'thing')
@@ -72,6 +74,16 @@ test('duplicate detection catches pronoun and verb variants without merging dist
     ['Give someone the benefit of the doubt', 'Gave her the benefit of the doubt'],
     ['Put all your eggs in one basket', 'Putting all my eggs in one basket'],
     ['Let sleeping dogs lie', 'Letting sleeping dogs lie'],
+    ['Sweep something under the rug', 'Swept it under the rug'],
+    ['Get your wires crossed', 'Got our wires crossed'],
+    ['Take the plunge', 'Took the plunge'],
+    ['Throw someone under the bus', 'Threw him under the bus'],
+    ['Keep a straight face', 'Kept a straight face'],
+    ['Go down a rabbit hole', 'Went down a rabbit hole'],
+    ['Get the short end of the stick', 'Getting the short end of the stick'],
+    ['Put your foot in your mouth', 'Putting her foot in her mouth'],
+    ['Stick to your guns', 'Stuck to their guns'],
+    ['Move the goalposts', 'Moving the goalposts'],
   ]) {
     assert.equal(normaliseIdiom(original), normaliseIdiom(variant));
   }
@@ -82,6 +94,7 @@ test('duplicate detection catches pronoun and verb variants without merging dist
 for (const [lessonId, sequence] of [
   [4, ['C', 'A', 'D', 'B', 'A', 'C', 'B', 'D', 'A', 'B']],
   [5, ['D', 'C', 'A', 'B', 'D', 'A', 'C', 'B', 'C', 'D']],
+  [6, ['C', 'A', 'D', 'B', 'C', 'A', 'D', 'B', 'D', 'C']],
 ]) {
   test(`Lesson ${lessonId} preserves the approved answer sequence and contains no answer markers`, () => {
     const items = IDIOM_LESSON_CONTENT[lessonId];
@@ -104,7 +117,7 @@ test('Lesson 4 and future lessons balance answers and avoid repeated or cyclic p
   }
 });
 
-for (const lessonId of [4, 5]) {
+for (const lessonId of [4, 5, 6]) {
   test(`direct Lesson ${lessonId} access reuses sign-in, upgrade and verified practice flows`, async () => {
     const app = readFileSync(new URL('./app.js', import.meta.url), 'utf8');
     const source = app.slice(app.indexOf('async function verifyAccess('), app.indexOf('async function refreshAccess('));

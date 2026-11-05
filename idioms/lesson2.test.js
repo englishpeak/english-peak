@@ -27,6 +27,7 @@ for (const [lessonId, digest] of [
   [3, 'c08a9f8db28708b68195579b661d9243a0c1507bc337423c776497a3d7d1aac5'],
   [4, 'b5d8c2d862c62377e04d6e7b59d259bd693d18117c0bdc1214f0cb75ce948edf'],
   [5, 'f08da5cc3da3bc12e831468bb15a8181dfd0ecd2dabd53efc74a9fdaf909398e'],
+  [6, '87d0e8072ab82047e5430a59e7cd6a19e1934a12e51c70f0485952ae6e552768'],
 ]) {
   test(`Lesson ${lessonId} pins the exact supplied questions, choices, answers, 40 examples and ten equivalents`, () => {
     const items = IDIOM_LESSON_CONTENT[lessonId];
@@ -71,7 +72,7 @@ function element() {
   };
 }
 
-for (const lessonId of [2, 3, 4, 5]) {
+for (const lessonId of [2, 3, 4, 5, 6]) {
   test(`Lesson ${lessonId} renders every item, reveals and hides details, scores, navigates and restarts independently`, () => {
     const nodes = new Map();
     const get = id => { if (!nodes.has(id)) nodes.set(id, element()); return nodes.get(id); };
@@ -122,7 +123,7 @@ for (const lessonId of [2, 3, 4, 5]) {
     assert.equal(get('counter').textContent, '1 of 10');
     assert.equal(get('nextBtn').disabled, true);
     assert.equal(get('answers').children.every(button => !button.disabled), true);
-    for (const targetId of [1, 2, 3, 4, 5]) {
+    for (const targetId of [1, 2, 3, 4, 5, 6]) {
       sandbox.clearPractice();
       sandbox.showPractice(IDIOM_LESSONS[targetId - 1], IDIOM_LESSON_CONTENT[targetId]);
       assert.equal(get('lessonTitle').textContent, `LESSON ${targetId}`);
@@ -138,7 +139,7 @@ for (const lessonId of [2, 3, 4, 5]) {
   });
 }
 
-test('Lessons 2–5 unlock only for eligible accounts while Lesson 6 remains locked', () => {
+test('Lessons 2–6 unlock only for eligible accounts', () => {
   const source = read('app.js');
   const buildGrid = source.slice(source.indexOf('function buildGrid()'), source.indexOf('function closeModal()'));
   for (const plusAccess of [false, true]) {
@@ -148,18 +149,14 @@ test('Lessons 2–5 unlock only for eligible accounts while Lesson 6 remains loc
       document: { createElement: element }, openLesson: id => opened.push(id) };
     vm.runInNewContext(buildGrid + '\nbuildGrid();', sandbox);
     assert.equal(grid.children.length, 6);
-    for (const lessonId of [2, 3, 4, 5]) {
+    for (const lessonId of [2, 3, 4, 5, 6]) {
       const button = grid.children[lessonId - 1];
       assert.equal(button.className.includes('locked'), !plusAccess);
       assert.equal(button.innerHTML.includes('COMING SOON'), false);
       assert.equal(button.innerHTML.includes('circle lock'), !plusAccess);
       button.click();
     }
-    assert.deepEqual(opened, [2, 3, 4, 5]);
-    for (const button of grid.children.slice(5)) {
-      assert.match(button.className, /locked/);
-      assert.match(button.innerHTML, /COMING SOON/);
-    }
+    assert.deepEqual(opened, [2, 3, 4, 5, 6]);
   }
   const html = read('index.html');
   const index = html.slice(0, html.indexOf('id="lessonView"'));

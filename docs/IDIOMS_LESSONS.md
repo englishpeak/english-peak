@@ -16,7 +16,7 @@ handlers and routes and are now listed once under General English.
   display headings). Shared brand tokens are imported; the explicitly approved
   prototype values take precedence over the general branding defaults.
 - `idioms/catalog.js`: public lesson metadata (`id`, title, subtitle, kicker,
-  `access`, `published`). Lessons 2–5 are published for ePeak+; Lesson 6 remains an unpublished premium lesson.
+  `access`, `published`). Lessons 2–6 are published for ePeak+.
 - `api/idioms.js`: server-only `IDIOM_LESSON_CONTENT`, keyed by lesson ID, and
   protected catalog/lesson endpoint. Lesson 1 preserves all ten original idioms,
   choices, correct answers, examples and Spanish equivalents verbatim.
@@ -190,4 +190,32 @@ progress, previous/next navigation, scoring, restart, and independent rounds.
 Lessons 1–4 pass their original content digest checks. Syntax and whitespace
 checks pass. No build script exists, and no dependency or migration is needed.
 These checks use simulated accounts and DOM elements; live authenticated
+production Supabase/Stripe checks were not run.
+
+## Lesson 6
+
+Lesson 6 publishes the ten approved idioms with the exact questions, four
+choices per question, all 40 example sentences and ten Spanish equivalents.
+It reuses the protected API, existing Supabase subscription verification and
+unchanged practice components. Visitors must sign in, free members use the
+existing upgrade flow, and eligible ePeak+ accounts can open the lesson,
+including through direct links. Lessons 1–5 and their content remain unchanged.
+
+Editorial review found no duplicate expressions or grammatical variants among
+all 60 idioms, no ambiguous correct definitions, and no example or Spanish
+translation errors. Automated duplicate validation now includes Lesson 6's
+verb and pronoun variants. The exact source answer sequence is
+C, A, D, B, C, A, D, B, D, C: A:2, B:2, C:3, D:3. Existing per-round answer
+shuffling preserves the correct definitions and scoring.
+
+All 50 repository test files pass with `node --test`. All 39 focused checks
+pass with `node --test --test-isolation=none api/idioms.test.js idioms/*.test.js`.
+Coverage includes exact content, duplicate detection, answer distribution,
+visitor/free/premium API access, forged claims, direct lesson links, index locks,
+all examples and Spanish reveals, feedback, navigation, progress, restart and
+independent lesson state. Every option in Lesson 6 is scored under three
+shuffle orders, including perfect and zero-score rounds. Lessons 1–5 retain
+their original content and pass their existing digest checks. Syntax and
+whitespace checks pass. No build script exists, and no dependency or migration
+is required. Tests use simulated accounts and DOM elements; live authenticated
 production Supabase/Stripe checks were not run.

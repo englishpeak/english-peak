@@ -53,3 +53,29 @@ test('completion, previous from completion, mixed scoring and restarting stay co
   assert.equal(round.score, 0);
   assert.ok(round.selected.every(answer => answer === null));
 });
+
+test('Lesson 6 scores every choice correctly after shuffling, including perfect and zero-score rounds', () => {
+  const items = IDIOM_LESSON_CONTENT[6];
+  for (const random of [() => 0, () => 0.5, () => 0.999]) {
+    for (const item of items) {
+      for (const option of item.options) {
+        const round = new QuizRound([item], random);
+        round.choose(round.item.options.indexOf(option));
+        assert.equal(round.score, Number(option === item.options[item.correct]));
+        round.next();
+        assert.equal(round.complete, true);
+      }
+    }
+    for (const expected of [0, 10]) {
+      const round = new QuizRound(items, random);
+      while (!round.complete) {
+        round.choose(expected ? round.item.correct : (round.item.correct + 1) % 4);
+        round.next();
+      }
+      assert.equal(round.score, expected);
+      round.reset();
+      assert.equal(round.score, 0);
+      assert.ok(round.selected.every(answer => answer === null));
+    }
+  }
+});

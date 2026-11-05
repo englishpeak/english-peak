@@ -953,6 +953,198 @@ export const IDIOM_LESSON_CONTENT = {
       ],
       "spanish": "No remover el pasado / Mejor no moverle / No reabrir viejas heridas."
     }
+  ],
+  "6": [
+    {
+      "id": 1,
+      "idiom": "Sweep something under the rug",
+      "question": "What does \"sweep something under the rug\" mean?",
+      "options": [
+        "To solve a problem without involving other people.",
+        "To forget about an unpleasant experience over time.",
+        "To hide or ignore a problem instead of dealing with it.",
+        "To make a difficult situation seem less serious than it is."
+      ],
+      "correct": 2,
+      "examples": [
+        "The company tried to sweep the scandal under the rug.",
+        "We can't keep sweeping our financial problems under the rug.",
+        "Instead of addressing the complaints, management swept them under the rug.",
+        "She has a habit of sweeping disagreements under the rug rather than discussing them."
+      ],
+      "spanish": "Esconder las cosas debajo de la alfombra / Hacer como que no pasa nada."
+    },
+    {
+      "id": 2,
+      "idiom": "Get your wires crossed",
+      "question": "What does \"get your wires crossed\" mean?",
+      "options": [
+        "To misunderstand each other because of a communication problem.",
+        "To accidentally share information with the wrong person.",
+        "To become confused while trying to make an important decision.",
+        "To disagree because you have completely different opinions."
+      ],
+      "correct": 0,
+      "examples": [
+        "I thought the meeting was at three, but apparently we got our wires crossed.",
+        "Sorry, we must have got our wires crossed about the reservation.",
+        "They got their wires crossed and both ended up buying the same gift.",
+        "I think we've got our wires crossed. I was talking about next Friday, not this Friday."
+      ],
+      "spanish": "Se nos cruzaron los cables / Hubo un malentendido."
+    },
+    {
+      "id": 3,
+      "idiom": "Take the plunge",
+      "question": "What does \"take the plunge\" mean?",
+      "options": [
+        "To make a decision without considering its consequences.",
+        "To recover from a difficult or disappointing experience.",
+        "To abandon a familiar situation because you feel frustrated.",
+        "To finally commit to something important or risky after hesitation."
+      ],
+      "correct": 3,
+      "examples": [
+        "After years of saving money, we finally took the plunge and bought a house.",
+        "She decided to take the plunge and start her own business.",
+        "I've been thinking about moving abroad, and I think I'm ready to take the plunge.",
+        "They took the plunge and got married after dating for six years."
+      ],
+      "spanish": "Dar el gran paso / Animarse a hacerlo."
+    },
+    {
+      "id": 4,
+      "idiom": "Throw someone under the bus",
+      "question": "What does \"throw someone under the bus\" mean?",
+      "options": [
+        "To abandon someone when they need emotional support.",
+        "To betray or sacrifice someone to protect yourself or gain an advantage.",
+        "To blame someone for a mistake they genuinely made.",
+        "To publicly disagree with someone during an argument."
+      ],
+      "correct": 1,
+      "examples": [
+        "He threw his colleague under the bus to avoid taking responsibility for the mistake.",
+        "I can't believe she threw me under the bus during the meeting.",
+        "A good manager doesn't throw employees under the bus when things go wrong.",
+        "The politician threw his former adviser under the bus to protect his reputation."
+      ],
+      "spanish": "Echarle la culpa a alguien para salvarse / Sacrificar a alguien para quedar bien."
+    },
+    {
+      "id": 5,
+      "idiom": "Keep a straight face",
+      "question": "What does \"keep a straight face\" mean?",
+      "options": [
+        "To remain calm when someone criticises you.",
+        "To hide your disappointment during an uncomfortable conversation.",
+        "To avoid laughing or showing amusement, especially when something is funny.",
+        "To speak seriously even when you don't believe what you're saying."
+      ],
+      "correct": 2,
+      "examples": [
+        "I couldn't keep a straight face when he walked in wearing that ridiculous costume.",
+        "She somehow managed to keep a straight face throughout the entire prank.",
+        "It's impossible to keep a straight face when my brother tells that story.",
+        "The teacher struggled to keep a straight face after hearing the student's excuse."
+      ],
+      "spanish": "Aguantarse la risa / No perder la seriedad."
+    },
+    {
+      "id": 6,
+      "idiom": "Go down a rabbit hole",
+      "question": "What does \"go down a rabbit hole\" mean?",
+      "options": [
+        "To become deeply involved in exploring a topic, often much longer than intended.",
+        "To become trapped in a situation because of a poor decision.",
+        "To repeatedly make the same mistake without learning from it.",
+        "To follow an idea that has very little chance of success."
+      ],
+      "correct": 0,
+      "examples": [
+        "I went down a rabbit hole watching documentaries about ancient Rome.",
+        "She went down a rabbit hole researching the history of her family.",
+        "I only wanted to look up one recipe, but I ended up going down a rabbit hole for two hours.",
+        "Be careful not to go down a rabbit hole when you're researching your presentation."
+      ],
+      "spanish": "Clavarse demasiado en un tema / Meterse de lleno en algo y perder la noción del tiempo."
+    },
+    {
+      "id": 7,
+      "idiom": "Get the short end of the stick",
+      "question": "What does \"get the short end of the stick\" mean?",
+      "options": [
+        "To make a poor decision because of limited information.",
+        "To receive less recognition than you expected.",
+        "To lose an opportunity because someone else acted first.",
+        "To receive unfair or unfavourable treatment compared with others."
+      ],
+      "correct": 3,
+      "examples": [
+        "I always get the short end of the stick when we divide the weekend shifts.",
+        "The younger employees got the short end of the stick during the negotiations.",
+        "She felt she'd got the short end of the stick because everyone else received a bonus.",
+        "In the end, the customers got the short end of the stick when the company raised its prices."
+      ],
+      "spanish": "Salir perdiendo / Llevarse la peor parte."
+    },
+    {
+      "id": 8,
+      "idiom": "Put your foot in your mouth",
+      "question": "What does \"put your foot in your mouth\" mean?",
+      "options": [
+        "To speak without thinking because you're angry.",
+        "To say something embarrassing, inappropriate, or unintentionally offensive.",
+        "To reveal information that you promised to keep secret.",
+        "To make a promise that you know you cannot keep."
+      ],
+      "correct": 1,
+      "examples": [
+        "I really put my foot in my mouth when I asked her how her husband was doing. I didn't know they'd divorced.",
+        "He put his foot in his mouth by congratulating her on a promotion she hadn't received.",
+        "I tend to put my foot in my mouth when I get nervous.",
+        "She realised she'd put her foot in her mouth as soon as she mentioned his age."
+      ],
+      "spanish": "Meter la pata / Decir algo fuera de lugar."
+    },
+    {
+      "id": 9,
+      "idiom": "Stick to your guns",
+      "question": "What does \"stick to your guns\" mean?",
+      "options": [
+        "To refuse to listen to criticism, even when it's justified.",
+        "To defend someone who has been unfairly accused.",
+        "To continue following a plan even after discovering serious problems.",
+        "To maintain your position or beliefs despite pressure to change them."
+      ],
+      "correct": 3,
+      "examples": [
+        "Everyone told her to lower her prices, but she stuck to her guns.",
+        "He stuck to his guns and refused to sign the agreement.",
+        "Sometimes you have to stick to your guns, even when people disagree with you.",
+        "The director stuck to her guns despite criticism from the investors."
+      ],
+      "spanish": "Mantenerse firme / No dar el brazo a torcer."
+    },
+    {
+      "id": 10,
+      "idiom": "Move the goalposts",
+      "question": "What does \"move the goalposts\" mean?",
+      "options": [
+        "To change your plans because of unexpected difficulties.",
+        "To set increasingly ambitious goals as you make progress.",
+        "To unfairly change the rules or requirements after something has already begun.",
+        "To postpone a deadline because the original target was unrealistic."
+      ],
+      "correct": 2,
+      "examples": [
+        "We met every requirement, but the client kept moving the goalposts.",
+        "It's frustrating when your boss moves the goalposts halfway through a project.",
+        "The company promised a bonus if we reached our target, but then moved the goalposts.",
+        "You can't keep moving the goalposts every time we get close to an agreement."
+      ],
+      "spanish": "Cambiar las reglas a medio juego / Cambiar las condiciones sobre la marcha."
+    }
   ]
 };
 
