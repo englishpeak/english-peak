@@ -13,6 +13,8 @@
 <body class="ep-brand-scope">
   <main class="activity">
     <a id="dashboard-link" href="/">← Dashboard</a>
+    <div id="member-lock" class="ep-card slide" hidden><h1 class="ep-heading">Debates</h1><p>A free account or ePeak+ membership is required.</p><a href="/?auth=login&amp;exercise=debates" target="_top">Sign in</a></div>
+    <div id="practice-content" hidden>
     <header class="activity-header">
       <select id="debate-set" aria-label="Debate set"></select>
     </header>
@@ -27,7 +29,9 @@
       <button id="next" class="ep-btn-primary" type="button">Next</button>
       <button id="start-over" type="button">Start Over</button>
     </nav>
+    </div>
   </main>
-  <script type="module" src="/debates/app.js"></script>
+  <script src="/teachers/vendor/supabase.js"></script>
+  <script type="module" src="/debates/access.js"></script>
 </body>
 </html>
