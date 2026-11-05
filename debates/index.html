@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debates | English Peak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/brand-tokens.css">
+  <link rel="stylesheet" href="/debates/styles.css">
+</head>
+<body class="ep-brand-scope">
+  <main class="activity">
+    <a id="dashboard-link" href="/">← Dashboard</a>
+    <header class="activity-header">
+      <h1 class="ep-heading">Debates</h1>
+      <select id="debate-set" aria-label="Debate set"></select>
+    </header>
+    <article class="ep-card slide" aria-labelledby="debate-title">
+      <h2 class="ep-heading" id="debate-title"></h2>
+      <img id="debate-image" alt="">
+      <p id="debate-question"></p>
+    </article>
+    <nav class="controls" aria-label="Slideshow controls">
+      <button id="back" type="button">Back</button>
+      <span id="progress" role="status" aria-label="Slide progress" aria-atomic="true"></span>
+      <button id="next" class="ep-btn-primary" type="button">Next</button>
+      <button id="start-over" type="button">Start Over</button>
+    </nav>
+  </main>
+  <script type="module" src="/debates/app.js"></script>
+</body>
+</html>

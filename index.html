@@ -453,6 +453,10 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-free" id="access-thisorthat">✓ Public</div></div>
         <div class="card-body"><div class="card-title">This or That?</div><div class="card-desc">100 quick-choice questions designed to spark conversation and encourage students to explain their opinions.</div><div class="card-meta"><span class="meta-item">💬 All levels</span><span class="meta-item">🎲 100 questions</span></div><button class="card-btn btn-open" id="btn-thisorthat">Start Practice →</button></div>
       </div>
+      <div class="ex-card" onclick="openDebates()">
+        <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-free">✓ Public</div></div>
+        <div class="card-body"><div class="card-title">Debates</div><button class="card-btn btn-open" id="btn-debates">Start Practice →</button></div>
+      </div>
     </div>
 
   </div>
@@ -667,6 +671,11 @@ body.download-preview-lock{overflow:hidden}
   <div class="exercise-screen" id="exercise-thisorthat">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">This or That?</div><div class="exercise-badge" id="thisorthat-badge">✓ Public</div></div>
     <iframe class="exercise-frame" id="frame-thisorthat" src="" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
+  </div>
+
+  <div class="exercise-screen" id="exercise-debates">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Debates</div><div class="exercise-badge">✓ Public</div></div>
+    <iframe class="exercise-frame" id="frame-debates" src="" title="Debates" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ PROFILE / SETTINGS ═══ -->
@@ -2090,6 +2099,14 @@ function openThisOrThat() {
   if (window.location.pathname !== '/thisorthat') history.pushState({exercise:'thisorthat'}, '', '/thisorthat');
   closeMobileSidebar();
 }
+function openDebates() {
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-debates').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'Debates';
+  document.getElementById('topbarSub').textContent = '';
+  document.getElementById('frame-debates').src = '/debates';
+  closeMobileSidebar();
+}
 function hideLock(id){document.getElementById('lock-'+id).classList.remove('show');}
 
 
@@ -2954,6 +2971,7 @@ checkHamburger();
     else if (exercise === 'listening') openListening();
     else if (exercise === 'conv') openConv();
     else if (exercise === 'thisorthat') openThisOrThat();
+    else if (exercise === 'debates') openDebates();
     else if (exercise === 'general') openGeneral();
     else if (exercise === 'word-families') openWordFamilies();
   }
