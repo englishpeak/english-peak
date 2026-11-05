@@ -19,13 +19,13 @@ const builds = tasks.filter((task) => task.type === 'build-sentence');
 const repeat = tasks.find((task) => task.type === 'listen-repeat-updated');
 const interview = tasks.find((task) => task.type === 'take-interview');
 
-test('Test 34 contains the complete 27-task sequence and leaves Test 35 unavailable', () => {
+test('Test 34 contains the complete 27-task sequence and retains its place in the updated catalog', () => {
   assert.equal(tasks.length, 27);
   assert.deepEqual([...new Set(tasks.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(tasks, (task) => task.section)).map(([key, value]) => [key, value.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
   const catalog = vm.runInContext('testCollections[1].tests', sandbox);
-  assert.deepEqual([...catalog], ['Test 31', 'Test 32', 'Test 33', 'Test 34']);
-  assert.equal(vm.runInContext("testData['Test 35']", sandbox), undefined);
+  assert.deepEqual([...catalog], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35']);
+  assert.equal(vm.runInContext("testData['Test 36']", sandbox), undefined);
 });
 
 test('all 20 locked prefix/suffix pairs reconstruct exact words and retain first sentences', () => {
