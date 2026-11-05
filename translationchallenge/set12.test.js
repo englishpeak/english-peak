@@ -32,6 +32,14 @@ function originalSet12() {
   return context.set12;
 }
 
+function previouslyExpandedSet12() {
+  const context = {};
+  const furtherStart = html.indexOf("// Further reviewed Set 12 alternatives");
+  assert.ok(furtherStart > dataStart);
+  vm.runInNewContext(`${html.slice(dataStart, furtherStart)};globalThis.set12=set12`, context);
+  return context.set12;
+}
+
 const digest = value => createHash("sha256").update(JSON.stringify(value)).digest("hex");
 const expectedLevels = ["A1","B1","B2","A2","A2","B2","A1","B2","B1","B1","A1","B2","B1","B1","B2","A2","A1","C1","B1","B2","C1","C1","C1","A2"];
 const expectedPrompts = ["Where is…","I forgot…","If you’d…","There’s a…","Can you…","I didn’t…","My brother…","No matter…","The zipper…","We ended…","Do you…","You should…","Lately, I’ve…","Did you…","I would…","Can you…","I need…","I don’t…","How did…","I thought…","I don’t…","No matter…","If there’s…","The drawer…"];
@@ -95,8 +103,79 @@ test("every Set 12 sentence gains distinct alternatives, with more coverage for 
     }
     assert.ok(mediumAdditions > 0, `Item ${sentence.id} needs a new answer compatible with its locked Medium prompt`);
   });
-  assert.equal(addedTotal, 224);
-  assert.equal(set.sentences.reduce((total, sentence) => total + sentence.acceptedAnswers.length, 0), 382);
+  assert.equal(addedTotal, 516);
+  assert.equal(set.sentences.reduce((total, sentence) => total + sentence.acceptedAnswers.length, 0), 674);
+});
+
+test("the further Set 12 expansion preserves every previous answer and prioritizes complex prompts", () => {
+  const app = challenge();
+  const previous = previouslyExpandedSet12();
+  assert.equal(digest(previous.sentences), "1ed899736022cc3c10e778a79316940c9928da5c3f8409b687983c049a06c0c1");
+  const current = app.sets.find(set => set.id === 12);
+  let total = 0;
+  for (const [index, sentence] of current.sentences.entries()) {
+    const prior = previous.sentences[index];
+    for (const [field, value] of Object.entries(prior)) {
+      if (field === "acceptedAnswers") {
+        assert.deepEqual(Array.from(sentence.acceptedAnswers.slice(0, value.length)), Array.from(value));
+      } else {
+        assert.equal(sentence[field], value);
+      }
+    }
+    const additions = sentence.acceptedAnswers.slice(prior.acceptedAnswers.length);
+    const minimum = sentence.level === "C1" ? 24 : sentence.level === "B2" ? 16 :
+      sentence.level === "B1" ? 10 : sentence.id === 5 ? 12 : [16, 24].includes(sentence.id) ? 8 : 2;
+    assert.ok(additions.length >= minimum, `Further expansion for item ${sentence.id} needs ${minimum} answers`);
+    total += additions.length;
+    const prefix = app.normalizeAnswer(sentence.mediumPrompt.replace(/…$/, ""));
+    let mediumCompatible = 0;
+    app.state.index = index;
+    for (const answer of additions) {
+      assert.ok(app.valid(answer, sentence, "Hard"), `New Hard ${sentence.id}: ${answer}`);
+      assert.equal(app.valid(answer, sentence, "Easy"), false, `Easy keeps its primary word bank: ${sentence.id}`);
+      const normalized = app.normalizeAnswer(answer);
+      if (normalized.startsWith(`${prefix} `)) {
+        app.state.difficulty = "Medium";
+        app.entry().typed = answer.trim().slice(sentence.mediumPrompt.slice(0, -1).length).trim();
+        assert.ok(app.valid(app.currentUserAnswer(), sentence, "Medium"), `New Medium ${sentence.id}: ${answer}`);
+        mediumCompatible++;
+      }
+    }
+    assert.ok(mediumCompatible > 0, `New answers must include Medium completions for item ${sentence.id}`);
+  }
+  assert.equal(total, 292);
+});
+
+test("further paraphrases preserve conditional time, negation, quantities, and question details", () => {
+  const { sets, valid } = challenge();
+  const sentences = sets.find(set => set.id === 12).sentences;
+  const examples = [
+    [3, "Had you let me know you were busy, I wouldn't have interrupted you.", "Had you let me know you were busy, I would have interrupted you."],
+    [5, "Could you help me carry these bags into the car?", "Could you help me carry these bags out of the car?"],
+    [6, "I didn't expect the meeting to last as long as it did.", "I expected the meeting to last as long as it did."],
+    [7, "My brother owns a pair of dogs.", "My brother owns a pair of cats."],
+    [8, "No matter how hard I try, I can't bring her name to mind.", "No matter how hard I try, I can bring her name to mind."],
+    [9, "My jacket won't zip up because its zipper broke.", "My jacket won't zip up because its button broke."],
+    [10, "We ended up ordering a takeaway because nobody felt like cooking.", "We ended up cooking because nobody felt like ordering a takeaway."],
+    [12, "You should have let me know before reaching a decision.", "You should have let me know after reaching a decision."],
+    [13, "Recently, I've been overspending.", "Recently, I've been underspending."],
+    [14, "Have you put the leftovers from dinner in the fridge?", "Have you put the leftovers from dinner in the freezer?"],
+    [15, "I would have been delighted to join you, but I'd already made other plans.", "I would have been delighted to join you, but I will make other plans."],
+    [16, "Could you reduce the volume a little?", "Could you increase the volume a little?"],
+    [18, "I can't fathom how she stays calm even when everything goes wrong.", "I can't fathom how she stays calm only when everything goes right."],
+    [19, "How come you've got that bruise on your leg?", "How come you've got that bruise on your arm?"],
+    [20, "I thought that by the time I arrived, you'd already have finished.", "I thought that by the time I arrived, you'd already have started."],
+    [21, "I don't want to fan the flames, but I think someone should tell her the truth.", "I don't want to fan the flames, but I think someone should lie to her."],
+    [22, "Despite her attempts to play it down, I know she's still affected by what happened.", "Despite her attempts to play it down, I know she's no longer affected by what happened."],
+    [23, "Working with him has taught me that nothing should ever be taken for granted.", "Working with him has taught me that everything should always be taken for granted."],
+    [24, "The drawer gets stuck each time I try to open it.", "The drawer gets stuck each time I try to close it."]
+  ];
+  for (const [id, accepted, rejected] of examples) {
+    assert.ok(valid(accepted, sentences[id - 1], "Hard"), `Meaning-preserving item ${id}: ${accepted}`);
+    for (const difficulty of ["Medium", "Hard"]) {
+      assert.equal(valid(rejected, sentences[id - 1], difficulty), false, `Meaning-changing item ${id}: ${rejected}`);
+    }
+  }
 });
 
 test("Set 12 accepts natural changes in word order, idioms, dialect, and sentence structure", () => {
