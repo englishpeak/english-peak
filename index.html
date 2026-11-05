@@ -454,8 +454,8 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-body"><div class="card-title">This or That?</div><div class="card-desc">100 quick-choice questions designed to spark conversation and encourage students to explain their opinions.</div><div class="card-meta"><span class="meta-item">💬 All levels</span><span class="meta-item">🎲 100 questions</span></div><button class="card-btn btn-open" id="btn-thisorthat">Start Practice →</button></div>
       </div>
       <div class="ex-card" onclick="openDebates()">
-        <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-free">✓ Public</div></div>
-        <div class="card-body"><div class="card-title">Debates</div><div class="card-desc">Explore real-world topics with images and thought-provoking questions. Share your opinions and explain your point of view.</div><div class="card-meta"><span class="meta-item">🗣 Speaking practice</span><span class="meta-item">🖼️ 10 debates</span></div><button class="card-btn btn-open" id="btn-debates">Start Practice →</button></div>
+        <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-locked" id="access-debates">🔐 Sign in</div></div>
+        <div class="card-body"><div class="card-title">Debates</div><div class="card-desc">Explore real-world topics with images and thought-provoking questions. Share your opinions and explain your point of view.</div><div class="card-meta"><span class="meta-item">🗣 Speaking practice</span><span class="meta-item">🖼️ 10 debates</span></div><button class="card-btn btn-locked" id="btn-debates">🔐 Sign in to access</button></div>
       </div>
     </div>
 
@@ -674,7 +674,7 @@ body.download-preview-lock{overflow:hidden}
   </div>
 
   <div class="exercise-screen" id="exercise-debates">
-    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Debates</div><div class="exercise-badge">✓ Public</div></div>
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Debates</div><div class="exercise-badge">Free Account</div></div>
     <iframe class="exercise-frame" id="frame-debates" src="" title="Debates" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
@@ -1288,6 +1288,7 @@ function applyTier(tier) {
     document.getElementById('btn-conv').textContent = '🔐 Sign in to access';
     document.getElementById('meta-conv').textContent = '💼 Business: ePeak+';
   }
+  updateDebatesAccess();
   document.getElementById('conv-badge').textContent = hasFullAccessTier(tierKey) ? '✓ Full' : tierKey === 'free' ? '✓ Free' : '🔐 Required';
 
   // General English badge
@@ -1641,6 +1642,7 @@ function setTier(tier,btn) {
     document.getElementById('btn-conv').textContent='🔐 Sign in to access';
     document.getElementById('meta-conv').textContent='💼 Business: ePeak+';
   }
+  updateDebatesAccess();
   document.getElementById('conv-badge').textContent=hasFullAccessTier(tier)?'✓ Full':tier==='free'?'✓ Free':'🔐 Required';
 
   var gc=c.generalTests.length;
@@ -2099,7 +2101,16 @@ function openThisOrThat() {
   if (window.location.pathname !== '/thisorthat') history.pushState({exercise:'thisorthat'}, '', '/thisorthat');
   closeMobileSidebar();
 }
+function updateDebatesAccess() {
+  var allowed = !!_currentUser;
+  document.getElementById('access-debates').textContent = allowed ? '✓ Free Account' : '🔐 Sign in';
+  document.getElementById('access-debates').className = 'card-access ' + (allowed ? 'access-free' : 'access-locked');
+  document.getElementById('btn-debates').textContent = allowed ? 'Start Practice →' : '🔐 Sign in to access';
+  document.getElementById('btn-debates').className = 'card-btn ' + (allowed ? 'btn-open' : 'btn-locked');
+  if (!allowed) document.getElementById('frame-debates').src = '';
+}
 function openDebates() {
+  if (!_currentUser) { showAuthModal('login'); return; }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-debates').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Debates';
