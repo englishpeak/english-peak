@@ -34,11 +34,11 @@ test('Lesson 1 preserves all approved content verbatim, with ten unique IDs and 
   }
   const original = items.map(({ id, ...item }) => item);
   assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'b78230adb741fe790d50d494939eefe07c0846d41d516449d8cb9d137f830969');
-  assert.deepEqual(Object.keys(IDIOM_LESSON_CONTENT), ['1', '2', '3', '4', '5']);
+  assert.deepEqual(Object.keys(IDIOM_LESSON_CONTENT), ['1', '2', '3', '4', '5', '6']);
 });
 
 test('visitors, malformed tokens and invalid sessions never receive any lesson content', async () => {
-  for (const lesson of ['1', '2', '3', '4', '5']) {
+  for (const lesson of ['1', '2', '3', '4', '5', '6']) {
     for (const authorization of [undefined, '', 'Basic token', 'Bearer ', ['Bearer valid-token'], 'Bearer token extra']) {
       const { handler, res, calls } = fixture();
       await handler(request(lesson, { headers: { authorization } }), res);
@@ -80,40 +80,40 @@ test('free accounts cannot load any premium lesson using forged URL/body/user cl
   }
 });
 
-test('existing full-access tiers and admin override pass the premium gate without receiving unpublished quizzes', async () => {
+test('existing full-access tiers and admin override can load every published premium lesson', async () => {
   for (const profile of ['premium', 'teacher', 'student', 'courtesy', 'admin'].map(tier => ({ tier })).concat({ tier: 'free', is_admin: true })) {
     const { handler, res } = fixture({ profile });
     await handler(request(null), res);
     assert.equal(res.body.plusAccess, true);
-    for (const id of ['2', '3', '4', '5']) {
+    for (const id of ['2', '3', '4', '5', '6']) {
       await handler(request(id), res);
       assert.equal(res.statusCode, 200);
       assert.equal(res.body.items, IDIOM_LESSON_CONTENT[id]);
-    }
-    for (const id of ['6']) {
-      await handler(request(id), res);
-      assert.equal(res.statusCode, 404);
-      assert.equal(res.body.code, 'COMING_SOON');
-      assert.equal(res.body.items, undefined);
     }
   }
 });
 
 test('publishing another lesson needs only catalog/content additions and retains server access checks', async () => {
-  const lesson = IDIOM_LESSONS.find(item => item.id === 6);
-  lesson.published = true;
-  IDIOM_LESSON_CONTENT[6] = IDIOM_LESSON_CONTENT[1];
+  const lesson = { id: 7, access: 'premium', published: false };
+  IDIOM_LESSONS.push(lesson);
   try {
+    const { handler, res } = fixture({ profile: { tier: 'premium' } });
+    await handler(request('7'), res);
+    assert.equal(res.statusCode, 404);
+    assert.equal(res.body.code, 'COMING_SOON');
+    assert.equal(res.body.items, undefined);
+    lesson.published = true;
+    IDIOM_LESSON_CONTENT[7] = IDIOM_LESSON_CONTENT[1];
     for (const [tier, expected] of [['free', 403], ['premium', 200]]) {
       const { handler, res } = fixture({ profile: { tier } });
-      await handler(request('6'), res);
+      await handler(request('7'), res);
       assert.equal(res.statusCode, expected);
-      if (expected === 200) assert.equal(res.body.lesson.id, 6);
+      if (expected === 200) assert.equal(res.body.lesson.id, 7);
       else assert.equal(res.body.items, undefined);
     }
   } finally {
-    lesson.published = false;
-    delete IDIOM_LESSON_CONTENT[6];
+    IDIOM_LESSONS.pop();
+    delete IDIOM_LESSON_CONTENT[7];
   }
 });
 

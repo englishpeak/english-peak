@@ -28,7 +28,7 @@ test('extensionless /idioms serves the shell with no static lesson content or se
     assert.ok(routes.some(route => route.source === source && route.destination === '/index.html'));
   }
   const sources = ['index.html', 'app.js', 'practice.js', 'quiz.js', 'catalog.js'].map(read).join('\n');
-  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Tomarle el pelo|To joke with someone|Leer entre líneas|To understand a hidden or implied meaning|Out of the blue|Suddenly and completely unexpectedly|Llegar a fin de mes|Go with the flow|Dejarse llevar|Just before it becomes too late|SUPABASE_SERVICE_ROLE_KEY/);
+  assert.doesNotMatch(sources, /Break the ice|Romper el hielo|Tomarle el pelo|To joke with someone|Leer entre líneas|To understand a hidden or implied meaning|Out of the blue|Suddenly and completely unexpectedly|Llegar a fin de mes|Go with the flow|Dejarse llevar|Just before it becomes too late|Sweep something under the rug|Cambiar las reglas a medio juego|SUPABASE_SERVICE_ROLE_KEY/);
   assert.match(read('index.html'), /type="module" src="\/idioms\/app.js"/);
   assert.match(read('app.js'), /storageKey: 'ep-auth-token'/);
   assert.match(read('app.js'), /Authorization: `Bearer \$\{token\}`/);
@@ -65,7 +65,7 @@ test('Idioms content removes its own top bar and delegates login and upgrades to
 test('dashboard entry and direct lesson URLs mount one content frame without loading a nested shell', () => {
   const app = read('../index.html');
   const source = app.slice(app.indexOf('function openIdioms()'), app.indexOf('function openCollocations()'));
-  for (const url of ['https://epeak.app/', 'https://epeak.app/idioms', 'https://epeak.app/idioms/?lesson=1', 'https://epeak.app/idioms?lesson=3', 'https://epeak.app/idioms?lesson=4', 'https://epeak.app/idioms?lesson=5']) {
+  for (const url of ['https://epeak.app/', 'https://epeak.app/idioms', 'https://epeak.app/idioms/?lesson=1', 'https://epeak.app/idioms?lesson=3', 'https://epeak.app/idioms?lesson=4', 'https://epeak.app/idioms?lesson=5', 'https://epeak.app/idioms?lesson=6']) {
     const nodes = new Map();
     const get = id => {
       if (!nodes.has(id)) nodes.set(id, { classList: { add() {} } });
@@ -112,7 +112,7 @@ test('only navigation messages from the active same-origin Idioms iframe update 
   assert.deepEqual(urls, ['/idioms?lesson=1', '/idioms']);
 });
 
-test('catalog publishes Lessons 1–5 and reserves Lesson 6', () => {
+test('catalog publishes Lessons 1–6 with premium access after Lesson 1', () => {
   assert.deepEqual(IDIOM_LESSONS.map(item => item.id), [1, 2, 3, 4, 5, 6]);
   assert.equal(IDIOM_LESSONS[0].published, true);
   assert.equal(IDIOM_LESSONS[0].access, 'free');
@@ -126,7 +126,7 @@ test('catalog publishes Lessons 1–5 and reserves Lesson 6', () => {
   assert.equal(IDIOM_LESSONS[4].access, 'premium');
   for (const item of IDIOM_LESSONS.slice(5)) {
     assert.equal(item.access, 'premium');
-    assert.equal(item.published, false);
+    assert.equal(item.published, true);
     assert.equal(item.items, undefined);
   }
 });
