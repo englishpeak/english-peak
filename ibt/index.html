@@ -174,7 +174,7 @@ var testCollections = [
     id: 'updated-toefl-practice',
     title: 'UPDATED TOEFL PRACTICE',
     description: 'Practice with the task types and format introduced in the updated TOEFL iBT.',
-    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34']
+    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35']
   }
 ];
 
@@ -3453,6 +3453,808 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
       }
     ];
 
+    // Test 35 retains all locked content, option orders, and 17 uploaded audio paths.
+    testData["Test 35"] = [
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 1: How Dew Forms",
+        "instruction": "Complete the words in the passage.",
+        "text": "On clear nights, water droplets sometimes appear on grass and other surfaces. When the gro[3] loses heat after sun[3], nea[3] air may cool enough for water vapor to cond[4]. This process occurs espec[5] when winds are light and the sky is relat[5] clou[5]. The droplets do not necessarily fall from clouds; instead, they develop dire[4] on cooler objects. Dew can provide small amounts of mois[4] to plants and insects, although it is usually less significant than rainfall. In dry regions, even a modest over[5] deposit may help small organisms survive.",
+        "answers": [
+          "und",
+          "set",
+          "rby",
+          "ense",
+          "ially",
+          "ively",
+          "dless",
+          "ctly",
+          "ture",
+          "night"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 2: Natural Dyes and Textiles",
+        "instruction": "Complete the words in the passage.",
+        "text": "Before synthetic dyes became common, many textiles were colored with substances obtained from plants and insects. Artisans often crus[3] leaves, roots, or other mate[5] to rele[3] compounds that could produce lasting colors. Some fabrics needed special prepar[5] before dyeing, because certain pigm[4] would not att[3] easily to fibers. Craftspeople sometimes added a subs[5] called a mordant to help bind the dye to the cloth. The final shade could vary depending on the water, the temper[5], and the length of treatment. These methods required patience and experime[7], and techniques frequ[5] differed from one region to another.",
+        "answers": [
+          "hed",
+          "rials",
+          "ase",
+          "ation",
+          "ents",
+          "ach",
+          "tance",
+          "ature",
+          "ntation",
+          "ently"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 3: Campus Parcel Locker Notice",
+        "instruction": "Read a notice about collecting packages.",
+        "text": "CAMPUS PARCEL COLLECTION\n\nSELF-SERVICE LOCKERS\nOpen daily: 7:00 a.m.–11:00 p.m.\n\nUse the six-digit collection code sent to your university email.\n\nIMPORTANT INFORMATION\n\n- Packages must be collected within 48 hours of notification.\n- After 48 hours, uncollected packages are transferred to the\n  mail center service desk.\n- Large packages that do not fit inside a locker are sent\n  directly to the service desk.\n- Locker collection requires only the collection code.\n- Service-desk collection requires a photo ID.\n\nMAIL CENTER SERVICE DESK\nMonday–Friday: 9:00 a.m.–5:00 p.m.\nClosed Saturday and Sunday.",
+        "questions": [
+          {
+            "q": "What happens to a package that remains uncollected for more than 48 hours?",
+            "options": [
+              "It is returned immediately to the sender.",
+              "It is placed in a different locker.",
+              "It is moved to the mail center service desk.",
+              "It is delivered to the student's classroom."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What does the notice indicate about the self-service lockers?",
+            "options": [
+              "They close at five o'clock every afternoon.",
+              "They require students to show a photo ID.",
+              "They are unavailable at weekends.",
+              "They can be used on Saturday evening until eleven."
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 4: Volunteer Confirmation",
+        "instruction": "Read a volunteer assignment confirmation.",
+        "text": "HARBOR CLEANUP DAY\nVOLUNTEER CONFIRMATION\n\nVolunteer Shift:\nSunday, May 17\n9:00 a.m.–12:00 noon\n\nCHECK-IN\n8:30 a.m.\nPier Gate 2\n\nPlease bring:\n- A refillable water bottle\n- Closed-toe shoes\n- Sunscreen\n\nWe provide:\n- Work gloves\n- Trash collection equipment\n- Drinking-water refill stations\n\nVolunteers must attend the short safety briefing\nbefore beginning their assigned activities.\n\nIf you cannot attend, cancel your registration\nthrough the volunteer portal by Friday at 6:00 p.m.",
+        "questions": [
+          {
+            "q": "Which items should volunteers bring themselves?",
+            "options": [
+              "Work gloves and trash bags",
+              "A refillable water bottle and closed-toe shoes",
+              "A safety vest and collection equipment",
+              "A portable water station and sunscreen"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "When should volunteers arrive for check-in?",
+            "options": [
+              "At 8:30 a.m.",
+              "At 9:00 a.m.",
+              "At 12:00 noon",
+              "At 6:00 p.m."
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 5: Group Chat",
+        "instruction": "Read a group-message conversation.",
+        "text": "ARI — 2:14 p.m.\nAre we still practicing our presentation in the media lab at four?\n\nJULES — 2:16 p.m.\nI just got an email saying the lab's audio equipment is offline for repairs.\n\nSAM — 2:18 p.m.\nThe seminar room in Building C has a screen we can use, but someone\nreserved it until 4:30.\n\nARI — 2:20 p.m.\nThen let's meet there at 4:45. We really need to check the slides\non a large screen before tomorrow.\n\nJULES — 2:21 p.m.\nWorks for me. I can bring an HDMI adapter in case we need one.\n\nSAM — 2:23 p.m.\nI'll bring the revised slides. Ari, could you bring the timer?\n\nARI — 2:25 p.m.\nSure. See you both in Building C at 4:45.",
+        "questions": [
+          {
+            "q": "Why does the group change its original meeting location?",
+            "options": [
+              "Their presentation has been postponed.",
+              "Building C is closer to their classrooms.",
+              "The media lab is reserved until 4:30.",
+              "The media lab's audio equipment is unavailable."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why do they decide to meet at 4:45?",
+            "options": [
+              "Their class ends at 4:30.",
+              "Jules needs to collect the adapter first.",
+              "The alternative room is reserved until 4:30.",
+              "The presentation begins at five."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What does Jules offer to bring?",
+            "options": [
+              "The revised slides",
+              "An HDMI adapter",
+              "A presentation timer",
+              "An audio recorder"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 6: Mycorrhizal Fungi",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>In many forests, the roots of trees grow alongside microscopic fungi. Some fungi form mutually beneficial associations with roots, called mycorrhizae. The fungi grow thin filaments through the soil, reaching places that roots alone may not easily access. In return for sugars produced by the plant, the fungi can help it absorb water and nutrients, particularly phosphorus.</p><p>Yet not every association provides the same degree of benefit. The outcome may depend on soil conditions, the species involved, and how much energy the plant must provide to the fungus. A partnership that is valuable in nutrient-poor soil could be less advantageous when those nutrients are plentiful.</p><p>Scientists investigate these relationships using experiments that track the movement of substances between plants and fungi. For example, a tracer added to the air around a plant may later appear in fungal tissue, offering evidence that material has moved between the organisms. Some fungi also connect the roots of more than one plant, which has led to interest in how resources might move through a shared network. However, detecting a connection does not by itself establish that plants deliberately help one another. Researchers must distinguish measurable transfers from claims about the intentions of the organisms involved.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "How associations between fungi and plant roots function, and why their effects can vary",
+              "Why fungi always compete with trees for nutrients",
+              "How all trees exchange identical quantities of water",
+              "Why plants cannot grow without fungal networks"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "According to paragraph 1, how can fungi benefit plants?",
+            "options": [
+              "By preventing plants from producing sugars",
+              "By eliminating the need for roots",
+              "By converting phosphorus into sunlight",
+              "By helping plants reach water and nutrients in the soil"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "The word \"tracer\" in paragraph 3 refers to",
+            "options": [
+              "an organism that damages fungal tissues",
+              "an instrument used to measure the age of trees",
+              "a substance used to follow the movement of material",
+              "a chemical that prevents roots from absorbing nutrients"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What can be inferred from paragraph 2?",
+            "options": [
+              "Mycorrhizal partnerships are equally valuable in every environment.",
+              "Environmental conditions can influence how beneficial a plant–fungus association is.",
+              "Plants always provide more energy than fungi can use.",
+              "Fungal associations occur only in forests with poor soil."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why does the author caution against interpreting connections between plants as evidence of deliberate cooperation?",
+            "options": [
+              "A physical connection alone does not establish that plants intentionally help one another.",
+              "Fungi cannot connect to the roots of multiple plants.",
+              "Researchers have never tracked substances in fungal tissue.",
+              "All movement through fungal networks is accidental."
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 7: The Development of Public Clocks",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Long before accurate personal watches became common, public clocks helped organize daily activities in many towns. A clock installed in a tower might mark the hours for merchants, workers, and residents who could not easily observe its mechanism. In some places, bells were more important than a clock face because their sound could reach people in nearby streets.</p><p>Early mechanical clocks were not consistently precise. Their operation depended on devices that had to be maintained, and the rate at which they kept time could vary. Improvements in mechanisms eventually made clocks more reliable, but their social role had already become significant. Market openings, religious observances, and public meetings could be coordinated around signals shared by many people.</p><p>Another challenge emerged as transportation between towns became faster. Traditionally, places could set their clocks according to local solar time, so noon in one town might differ slightly from noon in another. This caused inconvenience when railway companies tried to create timetables connecting several cities. Adopting common time standards made published schedules easier to follow. The history of public timekeeping therefore illustrates a broader point: a technology's impact depends not only on its accuracy, but also on the way communities agree to use it.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why private watches replaced all public clocks",
+              "How mechanical clocks eliminated the need for timetables",
+              "Why clock towers were built primarily as decorations",
+              "How public clocks helped coordinate society and eventually encouraged shared time standards"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why were bells useful in early public clocks?",
+            "options": [
+              "They made the clocks more mechanically accurate.",
+              "They allowed people who could not see the clock face to hear time signals.",
+              "They prevented clocks from requiring maintenance.",
+              "They allowed clocks to operate without mechanisms."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "The word \"precise\" in paragraph 2 is closest in meaning to",
+            "options": [
+              "accurate",
+              "expensive",
+              "complicated",
+              "traditional"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why did faster transportation encourage common time standards?",
+            "options": [
+              "Railway passengers preferred mechanical clocks to solar clocks.",
+              "Trains made it impossible to determine local noon.",
+              "Different local times complicated schedules connecting multiple cities.",
+              "Railway companies wanted to remove clocks from stations."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What broader conclusion does the author draw about public timekeeping?",
+            "options": [
+              "Technological improvements always precede social change.",
+              "Public clocks became useful only after personal watches were invented.",
+              "Communities benefit most when each town uses a different time.",
+              "A technology's influence depends partly on how people coordinate their use of it."
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 8: Listen and Choose a Response",
+        "instruction": "Choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-35/task-8.mp3",
+        "script": "I've read the instructions twice, but I still can't figure out how to upload my portfolio.",
+        "options": [
+          "Maybe someone at the technology help desk can show you how to do it.",
+          "The portfolio exhibition opens next month.",
+          "I submitted my portfolio successfully yesterday.",
+          "Reading instructions is easier than writing them."
+        ],
+        "correct": 0
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 9: Listen and Choose a Response",
+        "instruction": "Choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-35/task-9.mp3",
+        "script": "Would you mind looking over the introduction to my essay before I submit it?",
+        "options": [
+          "The introduction was shorter than the conclusion.",
+          "Sure. Send it to me, and I'll read it tonight.",
+          "I submitted my last assignment on Tuesday.",
+          "The essay topic was announced last week."
+        ],
+        "correct": 1
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 10: Listen and Choose a Response",
+        "instruction": "Choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-35/task-10.mp3",
+        "script": "I didn't expect the guest speaker to stay for nearly an hour answering questions.",
+        "options": [
+          "The lecture hall is available for another hour.",
+          "I have a question about tomorrow's homework.",
+          "The guest speaker arrived an hour late.",
+          "That was generous of the speaker, especially with so many questions."
+        ],
+        "correct": 3
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 11: Listen and Choose a Response",
+        "instruction": "Choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-35/task-11.mp3",
+        "script": "I thought attendance at the rehearsal was mandatory, but now I'm hearing it's optional.",
+        "options": [
+          "Rehearsals usually take place in the auditorium.",
+          "I attended a similar event last semester.",
+          "We should check with the organizer to find out for sure.",
+          "Optional courses generally have fewer students."
+        ],
+        "correct": 2
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 15: Campus Printing Center",
+        "instruction": "Listen to a conversation.",
+        "audioUrl": "../audio/ibt/test-35/task-15.mp3",
+        "script": "Narrator:\nListen to a conversation at a university printing center.\n\nMan:\nHi. I ordered a research poster yesterday, and I got an email saying there was a problem with the file.\n\nWoman:\nLet me check. Oh, yes. The charts in your poster are quite blurry. They might be difficult to read once we print them at full size.\n\nMan:\nThat's strange. They look fine on my laptop.\n\nWoman:\nThat's common. Images can look sharp on a small screen but lose quality when enlarged. Do you still have the original charts?\n\nMan:\nYes, I created them in a spreadsheet. I could export them again.\n\nWoman:\nGreat. Try saving them as high-resolution images or as vector graphics. Then replace the charts in your poster and upload the new file.\n\nMan:\nWill that delay my order? I need the poster for a conference on Friday.\n\nWoman:\nIf you send the corrected file by four o'clock today, we should still be able to have it ready Thursday afternoon.\n\nMan:\nPerfect. I'll update it right away.",
+        "questions": [
+          {
+            "q": "Why did the printing center contact the student?",
+            "options": [
+              "His payment had not been processed.",
+              "Some charts might be unclear when printed at full size.",
+              "The conference had changed its poster requirements.",
+              "The printing center no longer accepts spreadsheet files."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "What must the student do to have the poster ready by Thursday afternoon?",
+            "options": [
+              "Collect the poster himself before four o'clock.",
+              "Change his conference registration.",
+              "Upload the corrected poster file by four o'clock today.",
+              "Print the charts separately from the poster."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 16: History Research Project",
+        "instruction": "Listen to a conversation.",
+        "audioUrl": "../audio/ibt/test-35/task-16.mp3",
+        "script": "Narrator:\nListen to a conversation between a student and her history professor.\n\nWoman:\nProfessor Adams, I wanted to ask about my research project. I'm studying how the neighborhood around the university has changed over the past fifty years.\n\nMan:\nThat sounds promising. Have you found enough historical documents?\n\nWoman:\nI've collected old maps and newspaper articles, but I was thinking of interviewing some longtime residents too.\n\nMan:\nInterviews could add an interesting perspective, especially if you're looking at how people experienced those changes.\n\nWoman:\nDo interviews count as sources for the assignment?\n\nMan:\nYes, but they shouldn't replace written sources entirely. You'll still need at least two historical documents to support your analysis.\n\nWoman:\nOkay. And should I record the interviews?\n\nMan:\nOnly if the participants give you permission. Explain how you plan to use their responses, and make sure they're comfortable being recorded.\n\nWoman:\nUnderstood. I'll prepare my questions and contact a few residents this weekend.",
+        "questions": [
+          {
+            "q": "Why does the student want to interview longtime residents?",
+            "options": [
+              "She wants to avoid using written historical documents.",
+              "She needs permission to visit the university library.",
+              "She wants to find people who can provide old photographs.",
+              "She hopes to understand how residents personally experienced changes in the neighborhood."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "According to the professor, what must the student do before recording interviews?",
+            "options": [
+              "Obtain permission from the participants.",
+              "Submit all the interview recordings to the library.",
+              "Have the interviews approved by her classmates.",
+              "Replace the historical documents with interview transcripts."
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 18: Campus Food Pantry",
+        "instruction": "Listen to an announcement.",
+        "audioUrl": "../audio/ibt/test-35/task-18.mp3",
+        "script": "Narrator:\nListen to an announcement at a university.\n\nWoman:\nBeginning next week, the campus food pantry will extend its opening hours on Tuesdays and Thursdays until seven in the evening. Students can collect groceries without making an appointment, although they'll need to show their current student ID when they arrive. Please remember to bring your own shopping bag, since the pantry will no longer provide disposable bags.",
+        "questions": [
+          {
+            "q": "What are students instructed to bring when visiting the food pantry?",
+            "options": [
+              "An appointment confirmation and a payment card",
+              "Their current student ID and their own shopping bag",
+              "A completed registration form and a food container",
+              "A university timetable and a disposable bag"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 19: Environmental Science Field Report",
+        "instruction": "Listen to an announcement.",
+        "audioUrl": "../audio/ibt/test-35/task-19.mp3",
+        "script": "Narrator:\nListen to an announcement in an environmental science class.\n\nMan:\nBefore you submit your field reports, please check that you've included the photographs from last week's sampling activity. Each photograph should have a brief caption identifying the location and what it shows. You may work with the data you collected as a group, but your written analysis must be your own. Remember, the deadline is Friday at midnight, not at the beginning of Friday's class.",
+        "questions": [
+          {
+            "q": "What does the professor say about the field report?",
+            "options": [
+              "Students must collect all their data individually.",
+              "Photographs are optional if students include tables.",
+              "Group data may be shared, but each student must write an individual analysis.",
+              "The report must be submitted before Friday's class begins."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 20: Wildlife Corridors in Cities",
+        "instruction": "Listen to part of an academic talk.",
+        "audioUrl": "../audio/ibt/test-35/task-20.mp3",
+        "script": "Narrator:\nListen to part of a talk about urban ecology.\n\nMan:\nAs cities expand, natural habitats are often divided into smaller, isolated areas. A forest that once extended across a large region, for example, may become separated into several patches by roads, buildings, and parking lots. This process is known as habitat fragmentation.\n\nOne way to reduce its effects is to create wildlife corridors. These are routes that connect separate habitats, allowing animals to move between them. A corridor might be a strip of vegetation along a river, a planted area connecting two parks, or even a specially designed bridge that allows animals to cross a highway safely.\n\nWhy are these connections important? Well, animals often need to move to find food, reproduce, or establish new territories. When populations become isolated, individuals may have fewer opportunities to find mates outside their immediate group. Over time, this can reduce genetic diversity.\n\nHowever, simply creating a narrow green strip doesn't guarantee success. Different species have different needs. Some animals require dense vegetation to feel protected, while others can move through relatively open areas.\n\nResearchers therefore study which animals actually use these corridors. They may install motion-sensitive cameras, for instance, to monitor movement without disturbing the wildlife.\n\nThe larger lesson is that protecting individual parks may not be enough. In many cases, the connections between habitats are just as important as the habitats themselves.",
+        "questions": [
+          {
+            "q": "What is the main purpose of wildlife corridors?",
+            "options": [
+              "To increase the number of buildings near natural habitats",
+              "To prevent all animals from entering urban parks",
+              "To replace protected habitats with narrow green spaces",
+              "To connect separated habitats and allow animals to move between them"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why can isolated animal populations experience reduced genetic diversity?",
+            "options": [
+              "Individuals may have fewer opportunities to mate with animals from other populations.",
+              "Corridors prevent animals from reproducing.",
+              "Animals in isolated habitats stop searching for food.",
+              "Urban parks eliminate all genetic variation."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why does the speaker mention that different species have different needs?",
+            "options": [
+              "To suggest that all corridors should contain dense forests",
+              "To show that open areas are always better for wildlife",
+              "To explain why effective corridor designs may differ depending on the animals using them",
+              "To argue that most species cannot use urban corridors"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Why might researchers install motion-sensitive cameras near wildlife corridors?",
+            "options": [
+              "To discourage animals from entering the corridors",
+              "To observe animal movement without disturbing the wildlife",
+              "To measure the amount of sunlight reaching the vegetation",
+              "To record changes in city traffic"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 21: Relative Dating in Archaeology",
+        "instruction": "Listen to part of an academic talk.",
+        "audioUrl": "../audio/ibt/test-35/task-21.mp3",
+        "script": "Narrator:\nListen to part of a talk about archaeology.\n\nWoman:\nWhen archaeologists discover an object, one of their first questions is often how old it is. But determining an object's age doesn't always mean identifying the exact year it was made.\n\nIn many excavations, archaeologists begin by establishing a relative chronology. In other words, they try to determine which objects or deposits are older and which are more recent.\n\nOne important technique involves studying layers of soil, a method known as stratigraphy. In an undisturbed archaeological site, lower layers were generally deposited before the layers above them. So an object found in a lower layer is often older than one discovered closer to the surface.\n\nOf course, the situation isn't always that simple. People may have dug pits into older deposits, or natural processes may have moved objects from one layer to another. Archaeologists have to look carefully for signs of this disturbance.\n\nAnother useful approach is to compare the styles of objects, particularly pottery. Certain shapes, decorations, and manufacturing techniques were more common during particular periods. By comparing these features with objects from other sites, researchers can help establish the order in which different styles were used.\n\nNeither technique automatically provides an exact calendar date. However, when archaeologists combine evidence from soil layers, object styles, and other dating methods, they can construct a more reliable picture of how a site developed over time.",
+        "questions": [
+          {
+            "q": "What does the speaker mean by \"relative chronology\"?",
+            "options": [
+              "Identifying the exact year every object was produced",
+              "Measuring how much objects have changed in size",
+              "Determining which discoveries are older or more recent without necessarily assigning exact calendar dates",
+              "Comparing the financial value of objects from different periods"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Why are objects in lower soil layers often older?",
+            "options": [
+              "Older artifacts are usually heavier.",
+              "Archaeologists place older objects at the bottom during excavation.",
+              "Underground water makes objects age more quickly.",
+              "In undisturbed sites, lower layers were generally deposited first."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What can make evidence from soil layers difficult to interpret?",
+            "options": [
+              "Digging or natural processes may have moved objects between layers.",
+              "Archaeologists cannot identify differences between soil layers.",
+              "Every archaeological site contains the same sequence of layers.",
+              "Pottery is always found above other objects."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why do archaeologists compare pottery styles from different sites?",
+            "options": [
+              "To determine which pottery is most valuable",
+              "To help establish the order in which styles were used",
+              "To prove that every culture used identical manufacturing techniques",
+              "To identify the exact day a piece of pottery was made"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 1: Build a Sentence",
+        "context": "Speaker A: “Did you finish the grant application?”",
+        "scaffold": "Not yet, but ______ ______ ______ ______.",
+        "chunks": [
+          "all the documents",
+          "needed for",
+          "am gathering",
+          "I've gathered",
+          "it"
+        ],
+        "words": [
+          "all the documents",
+          "needed for",
+          "am gathering",
+          "I've gathered",
+          "it"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "I've gathered",
+          "all the documents",
+          "needed for",
+          "it"
+        ],
+        "distractor": "am gathering",
+        "completedSentence": "Not yet, but I've gathered all the documents needed for it."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 2: Build a Sentence",
+        "context": "Speaker A: “Why was the auditorium empty?”",
+        "scaffold": "The lecture ______ ______ ______ ______.",
+        "chunks": [
+          "to next week",
+          "was postponing",
+          "without notice",
+          "had been",
+          "postponed"
+        ],
+        "words": [
+          "to next week",
+          "was postponing",
+          "without notice",
+          "had been",
+          "postponed"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "had been",
+          "postponed",
+          "to next week",
+          "without notice"
+        ],
+        "distractor": "was postponing",
+        "completedSentence": "The lecture had been postponed to next week without notice."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 3: Build a Sentence",
+        "context": "Speaker A: “How did you learn to repair bicycles?”",
+        "scaffold": "I learned ______ ______ ______ ______.",
+        "chunks": [
+          "online tutorials",
+          "at home",
+          "watched",
+          "by watching",
+          "and practicing"
+        ],
+        "words": [
+          "online tutorials",
+          "at home",
+          "watched",
+          "by watching",
+          "and practicing"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "by watching",
+          "online tutorials",
+          "and practicing",
+          "at home"
+        ],
+        "distractor": "watched",
+        "completedSentence": "I learned by watching online tutorials and practicing at home."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 4: Build a Sentence",
+        "context": "Speaker A: “Can you email the forms today?”",
+        "scaffold": "I'll send them ______ ______ ______ ______.",
+        "chunks": [
+          "the changes",
+          "approves",
+          "will approved",
+          "as soon as",
+          "the manager"
+        ],
+        "words": [
+          "the changes",
+          "approves",
+          "will approved",
+          "as soon as",
+          "the manager"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "as soon as",
+          "the manager",
+          "approves",
+          "the changes"
+        ],
+        "distractor": "will approved",
+        "completedSentence": "I'll send them as soon as the manager approves the changes."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 5: Build a Sentence",
+        "context": "Speaker A: “Will the conference registration still be open tomorrow?”",
+        "scaffold": "I'm not sure ______ ______ ______ ______.",
+        "chunks": [
+          "has already",
+          "is passing",
+          "passed",
+          "whether",
+          "the deadline"
+        ],
+        "words": [
+          "has already",
+          "is passing",
+          "passed",
+          "whether",
+          "the deadline"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "whether",
+          "the deadline",
+          "has already",
+          "passed"
+        ],
+        "distractor": "is passing",
+        "completedSentence": "I'm not sure whether the deadline has already passed."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 6: Build a Sentence",
+        "context": "Speaker A: “Did the new assistant understand the instructions?”",
+        "scaffold": "She asked ______ ______ ______ ______.",
+        "chunks": [
+          "again",
+          "explain",
+          "me to",
+          "explaining",
+          "the last step"
+        ],
+        "words": [
+          "again",
+          "explain",
+          "me to",
+          "explaining",
+          "the last step"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "me to",
+          "explain",
+          "the last step",
+          "again"
+        ],
+        "distractor": "explaining",
+        "completedSentence": "She asked me to explain the last step again."
+      },
+      {
+        "section": "Writing",
+        "type": "writing-email",
+        "taskFamily": "Write an Email",
+        "title": "Write an Email",
+        "instruction": "Write as much as you can and in complete sentences.",
+        "time": 420,
+        "text": "<p>You recently registered for a laboratory safety workshop required for students who want to use your university's science facilities.</p><p>You have just discovered that the workshop takes place at the same time as one of your exams.</p><p>Write an email to the workshop coordinator, Dr. Ellis.</p><p>In your email:</p><ul><li>explain which workshop you registered for and why you need it;</li><li>describe your scheduling conflict;</li><li>ask about another session or an alternative way to complete the requirement; and</li><li>mention when you would be available instead.</li></ul><p>Write as much as you can and in complete sentences.</p>"
+      },
+      {
+        "section": "Writing",
+        "type": "academic-discussion",
+        "taskFamily": "Write for an Academic Discussion",
+        "title": "Write for an Academic Discussion",
+        "time": 600,
+        "professor": "Professor Monroe",
+        "professorPrompt": "<p>Some universities encourage students to participate in community service activities, such as helping local organizations, tutoring children, or supporting environmental projects.</p><p>A few institutions have considered making community service a requirement for graduation. Supporters believe this could help students develop important skills and contribute to society. Opponents argue that students already have different academic, work, and family responsibilities.</p><p>Should universities require all undergraduate students to complete community service before graduating? Why or why not?</p>",
+        "studentAName": "Elena",
+        "studentA": "I support a requirement because community service gives students experiences they might not seek out voluntarily. They can learn about local issues, develop teamwork and communication skills, and discover organizations they may want to help in the future. Universities could offer different kinds of service so students could choose activities that interest them.",
+        "studentBName": "Marcus",
+        "studentB": "I think community service should be encouraged rather than required. Some students already work long hours or care for family members, so finding extra time could be difficult. Volunteering is more meaningful when people choose to do it. Universities could offer recognition or other incentives without making service another graduation requirement.",
+        "studentInstruction": "Write a response to the professor's question. In your response: - express and support your own opinion; - make a meaningful contribution to the discussion; and - use your own words. An effective response will contain at least 100 words."
+      },
+      {
+        "section": "Speaking",
+        "type": "listen-repeat-updated",
+        "taskFamily": "Listen and Repeat",
+        "title": "Listen and Repeat",
+        "scenario": "You are visiting the university radio station. Listen and repeat what the station representative says. Repeat only once.",
+        "sentences": [
+          {
+            "script": "Welcome to the university radio station.",
+            "text": "Welcome to the university radio station.",
+            "audio": "../audio/ibt/test-35/sentence-1.mp3"
+          },
+          {
+            "script": "Please keep your phones on silent while we're recording.",
+            "text": "Please keep your phones on silent while we're recording.",
+            "audio": "../audio/ibt/test-35/sentence-2.mp3"
+          },
+          {
+            "script": "Our student volunteers produce several programs that are broadcast throughout the week.",
+            "text": "Our student volunteers produce several programs that are broadcast throughout the week.",
+            "audio": "../audio/ibt/test-35/sentence-3.mp3"
+          },
+          {
+            "script": "Before entering the recording studio, please wait until the red light above the door has been turned off.",
+            "text": "Before entering the recording studio, please wait until the red light above the door has been turned off.",
+            "audio": "../audio/ibt/test-35/sentence-4.mp3"
+          },
+          {
+            "script": "Students who are interested in hosting their own programs must first complete a short training course on audio equipment.",
+            "text": "Students who are interested in hosting their own programs must first complete a short training course on audio equipment.",
+            "audio": "../audio/ibt/test-35/sentence-5.mp3"
+          },
+          {
+            "script": "Although most of our broadcasts are recorded in advance, certain interviews and special events are transmitted live from this studio.",
+            "text": "Although most of our broadcasts are recorded in advance, certain interviews and special events are transmitted live from this studio.",
+            "audio": "../audio/ibt/test-35/sentence-6.mp3"
+          },
+          {
+            "script": "If you'd like to volunteer at the station next semester, you can submit an application through our website, where you'll also find information about available positions and upcoming training sessions.",
+            "text": "If you'd like to volunteer at the station next semester, you can submit an application through our website, where you'll also find information about available positions and upcoming training sessions.",
+            "audio": "../audio/ibt/test-35/sentence-7.mp3"
+          }
+        ]
+      },
+      {
+        "section": "Speaking",
+        "type": "take-interview",
+        "taskFamily": "Take an Interview",
+        "title": "Take an Interview",
+        "adaptationNote": "Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.",
+        "introduction": "You are participating in an interview about collaboration and creative projects.",
+        "responseTime": 45,
+        "questions": [
+          "Describe a time when you worked with other people to create something, such as a presentation, video, or event. What was your contribution to the project?",
+          "What do you think helps people communicate successfully when team members have different ideas or opinions?",
+          "Some teams assign each person a clearly defined role, while others allow members to share responsibilities more flexibly. Which approach do you think works better, and why?",
+          "How could universities encourage students from different academic subjects to work together on creative projects? What benefits might these collaborations provide?"
+        ]
+      }
+    ];
+
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
     let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
     let currentAudioObjectUrl = '';
@@ -3492,7 +4294,7 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
         } else if (ex.type === 'speaking-timer') {
             cont.innerHTML += `<div id="timer-box">00:${ex.time}</div><button class="btn" style="background:var(--success-green);" id="t-btn" onclick="runTimer(${ex.time}, 'timer-box')">Start Timer</button>`;
         } else if (ex.type === 'build-sentence') {
-            let s = [...ex.words].sort(()=>Math.random()-0.5);
+            let s = ex.preserveChunkOrder ? [...ex.words] : [...ex.words].sort(()=>Math.random()-0.5);
             if (isUpdatedPractice() && ex.scaffold) {
                 const fixedText = ex.scaffold.replace(/(?:\s*_+)+/g, '').replace(/\s+([.!?])$/, '$1').replace(/[.!?]$/, '').trimEnd();
                 const punctuation = (ex.completedSentence.match(/[.!?]$/) || [''])[0];
@@ -3655,8 +4457,22 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
 
     function mSel(qi,oi) { document.querySelectorAll(`.q${qi}`).forEach(e=>e.classList.remove('selected')); const t=document.querySelectorAll(`.q${qi}`)[oi]; t.classList.add('selected'); t.dataset.choice=oi; }
     function select(e,i) { document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); e.classList.add('selected'); e.dataset.idx=i; }
-    function toD(e) { document.getElementById('d-area').appendChild(e); }
-    function fromD(e) { if(e.target.classList.contains('draggable-word')) document.getElementById('w-bank').appendChild(e.target); }
+    function updateInlineSentenceSpacing(area) {
+        if (!area.closest('.sentence-construction')) return;
+        const chunks = Array.from(area.children);
+        area.replaceChildren(...chunks.flatMap((chunk, index) => index ? [' ', chunk] : [chunk]));
+    }
+    function toD(e) {
+        const area = document.getElementById('d-area');
+        area.appendChild(e);
+        updateInlineSentenceSpacing(area);
+    }
+    function fromD(e) {
+        if (e.target.classList.contains('draggable-word')) {
+            document.getElementById('w-bank').appendChild(e.target);
+            updateInlineSentenceSpacing(document.getElementById('d-area'));
+        }
+    }
 
     function submitAnswer() {
         const ex=curSet[idx]; let r={title:ex.title, type:ex.type, isCorrect:false};
@@ -3713,7 +4529,7 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
             <div style="font-size: 4rem; color: var(--primary-blue); font-weight: bold;">${accuracy}%</div>
             <p style="font-size:1.2rem;">Practice Accuracy</p>
             <div style="font-size: 1.1rem; color: var(--text-neutral);"><strong>${sCount}</strong> correct out of <strong>${maxScore}</strong> objective items</div>
-            ${['Test 31', 'Test 32', 'Test 33', 'Test 34'].includes(_currentTestKey) ? '<p style="color:var(--text-neutral);">Writing and Speaking practice tasks are not included in automatic scoring. This is practice performance, not an official TOEFL score.</p>' : ''}
+            ${isUpdatedPractice() ? '<p style="color:var(--text-neutral);">Writing and Speaking practice tasks are not included in automatic scoring. This is practice performance, not an official TOEFL score.</p>' : ''}
             ${_reported ? '<div style="margin-top:16px;font-size:0.85rem;color:#1a7a4a;font-weight:600;">✅ Progress saved to My Progress</div>' : ''}
         `;
 

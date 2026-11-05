@@ -76,7 +76,7 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35'\]/);
 });
 
 test('Test 31 deep links remain supported as an optional entry path', () => {
@@ -107,12 +107,12 @@ function parentIBTAccess(tier) {
   return { allowed: [...parentSandbox.allowed], frameSrc: element('frame-ibt').src };
 }
 
-test('every full-access tier sends Test 31 in the iframe allowed parameter', () => {
+test('every full-access tier sends Tests 31–35 in the iframe allowed parameter', () => {
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     const access = parentIBTAccess(tier);
-    assert.equal(access.allowed.length, 34, tier);
-    assert.deepEqual(access.allowed.slice(-4), ['Test 31', 'Test 32', 'Test 33', 'Test 34'], tier);
-    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-4), ['Test 31', 'Test 32', 'Test 33', 'Test 34'], tier);
+    assert.equal(access.allowed.length, 35, tier);
+    assert.deepEqual(access.allowed.slice(-5), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35'], tier);
+    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-5), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35'], tier);
   }
 });
 
@@ -315,11 +315,22 @@ test('Build a Sentence renders selected chunks inline with its scaffold and iden
   assert.equal(task.words.length, task.correctOrder.length + 1);
 
   const bank = { children: [], appendChild(node) { this.children.push(node); } };
-  const inlineArea = { children: [], appendChild(node) { this.children.push(node); } };
+  const inlineArea = {
+    children: [],
+    appendChild(node) { this.children.push(node); },
+    closest(selector) { return selector === '.sentence-construction'; },
+    replaceChildren(...nodes) {
+      this.nodes = nodes;
+      this.children = nodes.filter((node) => typeof node !== 'string');
+    },
+  };
   sandbox.document.getElementById = (id) => id === 'd-area' ? inlineArea : bank;
   const chunk = { innerText: 'said' };
   sandbox.toD(chunk);
   assert.deepEqual(inlineArea.children, [chunk]);
+  const nextChunk = { innerText: 'she' };
+  sandbox.toD(nextChunk);
+  assert.deepEqual(inlineArea.nodes, [chunk, ' ', nextChunk]);
 });
 
 test('Interview questions start hidden, reveal on request, reset hidden, and retain 45 seconds', () => {
@@ -370,7 +381,7 @@ test('results use item-level Practice Accuracy instead of an unofficial TOEFL sc
 
 
 test('Test 32 is enabled in the updated catalog and preserves the complete section sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35'\]/);
   assert.equal(test32.length, 27);
   assert.deepEqual([...new Set(test32.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: ['Test 32'], key: 'Test 32' });
@@ -430,7 +441,7 @@ test('Test 32 extended tasks retain established timing and sentence behavior', (
 });
 
 test('Test 33 is enabled with the complete updated practice sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35'\]/);
   assert.equal(test33.length, 27);
   assert.deepEqual([...new Set(test33.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(test33, (task) => task.section)).map(([section, tasks]) => [section, tasks.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
