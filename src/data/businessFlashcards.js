@@ -29402,5 +29402,125 @@ export const businessFlashcards = [
       "Our learning and development (L&D) strategy combines coaching, practical assignments, and courses rather than relying on general training alone."
     ]
   },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "seniority",
+    partOfSpeech: "noun",
+    category: "Organizational Hierarchy",
+    definition: "a person's rank, authority, or status in an organization, or the length of their service compared with others",
+    examples: [
+      "Her seniority as regional director gives her authority to approve departmental budgets.",
+      "Under the agreement, employees with greater seniority receive priority when choosing annual leave dates."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "tenure",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "the length of time a person has held a particular job or position",
+    examples: [
+      "During her three-year tenure as HR director, Maya introduced a structured mentoring program.",
+      "The recruiter asked about his short tenure in each of his last two roles."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "chain of command",
+    partOfSpeech: "noun",
+    category: "Organizational Hierarchy",
+    definition: "the formal order of authority that determines who gives instructions, makes decisions, and reports to whom in an organization",
+    examples: [
+      "The new organization chart clarifies the chain of command for approving recruitment requests.",
+      "Following the chain of command, the supervisor raised the staffing issue with her manager, who referred it to the operations director."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "direct report",
+    partOfSpeech: "noun",
+    category: "People Management",
+    definition: "an employee who is supervised directly by a particular manager",
+    examples: [
+      "Each direct report meets with the team manager every fortnight to discuss priorities.",
+      "As her direct report, I submit my performance goals to her for approval."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "middle management",
+    partOfSpeech: "noun",
+    category: "Organizational Hierarchy",
+    definition: "the managers between senior executives and frontline staff or supervisors who turn business plans into departmental action",
+    examples: [
+      "Middle management translated the board's growth strategy into hiring targets for each department.",
+      "The CEO consulted middle management about how the new reporting system would affect daily operations."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "C-suite",
+    partOfSpeech: "noun",
+    category: "Executive Leadership",
+    definition: "the group of an organization's highest-ranking executives, whose titles usually begin with Chief, such as Chief Executive Officer or Chief Financial Officer",
+    examples: [
+      "The C-suite approved a company-wide leadership development program after reviewing the HR proposal.",
+      "Department heads presented their staffing forecasts to the C-suite before the annual budget was agreed."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "lateral move",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "a change to a different job at roughly the same organizational level, without moving to a higher or lower rank",
+    examples: [
+      "Her transfer from recruitment manager to training manager was a lateral move with the same grade and salary.",
+      "He chose a lateral move into another division to gain experience before applying for a more senior role."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "promotion",
+    partOfSpeech: "noun",
+    category: "Career Development",
+    definition: "advancement to a higher position or rank, usually with greater responsibility and often higher pay",
+    examples: [
+      "Her promotion from team leader to department manager gave her responsibility for three teams.",
+      "The promotion came with a higher salary and authority to approve new hires."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "demotion",
+    partOfSpeech: "noun",
+    category: "Human Resources",
+    definition: "a reassignment to a lower position or rank within an organization",
+    examples: [
+      "After a formal review, his demotion from supervisor to team member removed his responsibility for managing staff.",
+      "HR explained that the proposed demotion would place her one grade below her current role."
+    ]
+  },
+  {
+    level: "advanced",
+    unit: 21,
+    word: "span of control",
+    partOfSpeech: "noun",
+    category: "People Management",
+    definition: "the number of employees a manager supervises directly",
+    examples: [
+      "The support manager has a span of control of twelve, with twelve advisers reporting directly to her.",
+      "Hiring two additional team leaders reduced each manager's span of control and allowed more time for individual coaching."
+    ]
+  },
 
 ];
