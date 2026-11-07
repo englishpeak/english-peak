@@ -39,47 +39,52 @@ function loadPage(search = '') {
   return { sandbox, element, messages, run: source => vm.runInContext(source, sandbox) };
 }
 
-test('ITP boots and renders all 35 menu buttons with guest access restrictions', () => {
+test('ITP boots and renders all 36 menu buttons with guest access restrictions', () => {
   const page = loadPage();
   const buttons = page.element('menu').children;
-  assert.equal(buttons.length, 35);
+  assert.equal(buttons.length, 36);
   assert.deepEqual(buttons.slice(0, 3).map(button => button.textContent), ['Test 1', 'Test 2', 'Test 3']);
   assert.ok(buttons.slice(3).every(button => button.textContent.startsWith('🔒 Test ')));
   let prevented = false;
-  buttons[34].onclick({ preventDefault() { prevented = true; } });
+  buttons[35].onclick({ preventDefault() { prevented = true; } });
   assert.ok(prevented);
   assert.equal(page.messages[0].message.type, 'showModal');
 });
 
-test('Test 35 opens, renders all 20 questions, reports its score, and returns to the menu', () => {
-  const page = loadPage('?allowed=1,35');
-  const buttons = page.element('menu').children;
-  assert.equal(buttons[34].textContent, 'Test 35');
-  buttons[34].onclick();
-  assert.match(page.element('app').innerHTML, /Not until the early twentieth century/);
-  assert.equal(page.run('tests[35].mc.length'), 10);
-  assert.equal(page.run('tests[35].ed.length'), 10);
-  for (let question = 0; question < 20; question++) {
-    if (question > 0) page.run(`index = ${question}; render();`);
-    assert.match(page.element('app').innerHTML, new RegExp(`Question ${question + 1} of 20`));
-    if (question >= 10) assert.match(page.element('app').innerHTML, /class="error-segment"/);
-    page.run('check((index < 10 ? tests[35].mc[index] : tests[35].ed[index - 10]).a, (index < 10 ? tests[35].mc[index] : tests[35].ed[index - 10]).a, {classList: {add() {}}});');
-    if (question === 9) {
-      page.run('showTransition();');
-      assert.match(page.element('app').innerHTML, /Ready for Section 2/);
+for (const [testNumber, firstQuestion] of [
+  [35, /Not until the early twentieth century/],
+  [36, /The earliest instruments were designed/],
+]) {
+  test(`Test ${testNumber} opens, renders all 20 questions, reports its score, and returns to the menu`, () => {
+    const page = loadPage(`?allowed=1,${testNumber}`);
+    const buttons = page.element('menu').children;
+    assert.equal(buttons[testNumber - 1].textContent, `Test ${testNumber}`);
+    buttons[testNumber - 1].onclick();
+    assert.match(page.element('app').innerHTML, firstQuestion);
+    assert.equal(page.run(`tests[${testNumber}].mc.length`), 10);
+    assert.equal(page.run(`tests[${testNumber}].ed.length`), 10);
+    for (let question = 0; question < 20; question++) {
+      if (question > 0) page.run(`index = ${question}; render();`);
+      assert.match(page.element('app').innerHTML, new RegExp(`Question ${question + 1} of 20`));
+      if (question >= 10) assert.match(page.element('app').innerHTML, /class="error-segment"/);
+      page.run(`check((index < 10 ? tests[${testNumber}].mc[index] : tests[${testNumber}].ed[index - 10]).a, (index < 10 ? tests[${testNumber}].mc[index] : tests[${testNumber}].ed[index - 10]).a, {classList: {add() {}}});`);
+      if (question === 9) {
+        page.run('showTransition();');
+        assert.match(page.element('app').innerHTML, /Ready for Section 2/);
+      }
     }
-  }
-  page.run('index = 20; render();');
-  assert.match(page.element('app').innerHTML, /Test Complete!/);
-  assert.match(page.element('app').innerHTML, /Score: 20\/20/);
-  assert.equal(page.messages.at(-1).message.exerciseName, 'Test 35');
-  assert.equal(page.messages.at(-1).message.maxScore, 20);
-  page.run('backToMenu();');
-  assert.equal(page.element('app').children.length, 35);
-  assert.equal(page.element('app').children[34].textContent, 'Test 35');
-});
+    page.run('index = 20; render();');
+    assert.match(page.element('app').innerHTML, /Test Complete!/);
+    assert.match(page.element('app').innerHTML, /Score: 20\/20/);
+    assert.equal(page.messages.at(-1).message.exerciseName, `Test ${testNumber}`);
+    assert.equal(page.messages.at(-1).message.maxScore, 20);
+    page.run('backToMenu();');
+    assert.equal(page.element('app').children.length, 36);
+    assert.equal(page.element('app').children[testNumber - 1].textContent, `Test ${testNumber}`);
+  });
+}
 
-test('the public ITP routes serve the current catalog and full-access tiers include Test 35', () => {
+test('the public ITP routes serve the current catalog and full-access tiers include Test 36', () => {
   const config = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
   for (const source of ['/itp', '/itp/:path*']) {
     assert.equal(config.rewrites.find(rule => rule.source === source).destination, '/itp/index.html');
@@ -87,9 +92,9 @@ test('the public ITP routes serve the current catalog and full-access tiers incl
   const tierSource = appHtml.slice(appHtml.indexOf('var ITP_TOTAL ='), appHtml.indexOf('function getEffectiveTier'));
   const sandbox = {};
   vm.runInNewContext(tierSource, sandbox);
-  assert.equal(sandbox.ITP_TOTAL, 35);
+  assert.equal(sandbox.ITP_TOTAL, 36);
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
-    assert.ok(sandbox.TIERS[tier].itpTests.includes(35), tier);
+    assert.ok(sandbox.TIERS[tier].itpTests.includes(36), tier);
   }
   assert.equal(sandbox.TIERS.visitor.itpTests.length, 3);
   assert.equal(sandbox.TIERS.free.itpTests.length, 6);
