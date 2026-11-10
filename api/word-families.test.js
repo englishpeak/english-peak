@@ -24,12 +24,17 @@ const request = (authorization = 'Bearer valid-token', additions = {}) => ({ met
 test('the canonical 300-family bank remains identical to the supplied audited JSON', () => {
   const serialized = JSON.stringify(WORD_FAMILIES.slice(0, 300), null, 2);
   assert.equal(createHash('sha256').update(serialized).digest('hex'), '961511019e50e21c127c2f0237238ffe37a04c0215dadfca50c106a3e9073c27');
-  assert.equal(WORD_FAMILIES.length, 500);
-  assert.equal(new Set(WORD_FAMILIES.map((family) => family.id)).size, 500);
+  assert.equal(WORD_FAMILIES.length, 560);
+  assert.equal(new Set(WORD_FAMILIES.map((family) => family.id)).size, 560);
   WORD_FAMILIES.forEach((family) => assert.equal(family.forms.length, 5));
 });
 
-test('the 200 additions have unique IDs, distinct families and valid target groups', () => {
+test('the original 500 families are preserved when adding 60 new families', () => {
+  assert.equal(createHash('sha256').update(JSON.stringify(WORD_FAMILIES.slice(0, 500))).digest('hex'), '457477b99e33c6e4d3175ad372301e05473aa1337d971347c28a2e54c463c740');
+  assert.equal(WORD_FAMILIES.slice(500).length, 60);
+});
+
+test('the 260 additions have unique IDs, distinct families and valid target groups', () => {
   const words = new Map();
   for (const [index, family] of WORD_FAMILIES.entries()) {
     assert.equal(family.id, index + 1);
