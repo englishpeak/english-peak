@@ -3,7 +3,7 @@ import { hasFullAccessTier } from '../businesscases/access.js';
 
 // The canonical audited bank lives in this server function, never in a public
 // static JSON file or browser bundle. The original 300 audited records are
-// preserved; IDs 301–500 extend the bank with additional learner word families.
+// preserved; IDs 301–560 extend the bank with additional learner word families.
 export const WORD_FAMILIES = [
   {
     "id": 1,
@@ -9526,6 +9526,1085 @@ export const WORD_FAMILIES = [
       [
         "wisely",
         "unwisely"
+      ]
+    ]
+  },
+  {
+    "id": 501,
+    "forms": [
+      [
+        "abandon"
+      ],
+      [
+        "abandonment"
+      ],
+      [
+        "abandoned"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 502,
+    "forms": [
+      [
+        "abolish"
+      ],
+      [
+        "abolition",
+        "abolitionist"
+      ],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 503,
+    "forms": [
+      [
+        "abbreviate"
+      ],
+      [
+        "abbreviation"
+      ],
+      [
+        "abbreviated"
+      ],
+      [
+        "unabbreviated"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 504,
+    "forms": [
+      [
+        "abstain"
+      ],
+      [
+        "abstention",
+        "abstinence"
+      ],
+      [
+        "abstinent"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 505,
+    "forms": [
+      [
+        "addict"
+      ],
+      [
+        "addiction",
+        "addict"
+      ],
+      [
+        "addictive"
+      ],
+      [
+        "addicted"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 506,
+    "forms": [
+      [
+        "adhere"
+      ],
+      [
+        "adherence",
+        "adhesion"
+      ],
+      [
+        "adhesive"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 507,
+    "forms": [
+      [
+        "allocate"
+      ],
+      [
+        "allocation"
+      ],
+      [
+        "allocated"
+      ],
+      [
+        "unallocated"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 508,
+    "forms": [
+      [
+        "amend"
+      ],
+      [
+        "amendment"
+      ],
+      [
+        "amended"
+      ],
+      [
+        "unamended"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 509,
+    "forms": [
+      [
+        "arbitrate"
+      ],
+      [
+        "arbitration",
+        "arbitrator"
+      ],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 510,
+    "forms": [
+      [
+        "ascend"
+      ],
+      [
+        "ascent"
+      ],
+      [
+        "ascending"
+      ],
+      [
+        "ascendant"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 511,
+    "forms": [
+      [
+        "aspire"
+      ],
+      [
+        "aspiration",
+        "aspirant"
+      ],
+      [
+        "aspiring"
+      ],
+      [
+        "aspirational"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 512,
+    "forms": [
+      [
+        "authenticate"
+      ],
+      [
+        "authentication",
+        "authenticity"
+      ],
+      [
+        "authentic"
+      ],
+      [
+        "inauthentic"
+      ],
+      [
+        "authentically"
+      ]
+    ]
+  },
+  {
+    "id": 513,
+    "forms": [
+      [
+        "blend"
+      ],
+      [
+        "blend",
+        "blender"
+      ],
+      [
+        "blended"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 514,
+    "forms": [
+      [
+        "capture"
+      ],
+      [
+        "capture",
+        "captivity",
+        "captive"
+      ],
+      [
+        "captive"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 515,
+    "forms": [
+      [
+        "caution"
+      ],
+      [
+        "caution"
+      ],
+      [
+        "cautious"
+      ],
+      [
+        "incautious"
+      ],
+      [
+        "cautiously",
+        "incautiously"
+      ]
+    ]
+  },
+  {
+    "id": 516,
+    "forms": [
+      [
+        "certify"
+      ],
+      [
+        "certification",
+        "certificate"
+      ],
+      [
+        "certified"
+      ],
+      [
+        "uncertified"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 517,
+    "forms": [
+      [
+        "characterise",
+        "characterize"
+      ],
+      [
+        "character",
+        "characterisation",
+        "characterization",
+        "characteristic"
+      ],
+      [
+        "characteristic"
+      ],
+      [
+        "uncharacteristic"
+      ],
+      [
+        "characteristically",
+        "uncharacteristically"
+      ]
+    ]
+  },
+  {
+    "id": 518,
+    "forms": [
+      [
+        "cheat"
+      ],
+      [
+        "cheat",
+        "cheater"
+      ],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 519,
+    "forms": [
+      [
+        "cite"
+      ],
+      [
+        "citation"
+      ],
+      [
+        "citable"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 520,
+    "forms": [
+      [
+        "civilise",
+        "civilize"
+      ],
+      [
+        "civilisation",
+        "civilization",
+        "civility"
+      ],
+      [
+        "civil"
+      ],
+      [
+        "uncivil"
+      ],
+      [
+        "civilly",
+        "uncivilly"
+      ]
+    ]
+  },
+  {
+    "id": 521,
+    "forms": [
+      [
+        "cohere"
+      ],
+      [
+        "coherence"
+      ],
+      [
+        "coherent"
+      ],
+      [
+        "incoherent"
+      ],
+      [
+        "coherently",
+        "incoherently"
+      ]
+    ]
+  },
+  {
+    "id": 522,
+    "forms": [
+      [
+        "collapse"
+      ],
+      [
+        "collapse"
+      ],
+      [
+        "collapsible"
+      ],
+      [
+        "collapsed"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 523,
+    "forms": [
+      [
+        "commemorate"
+      ],
+      [
+        "commemoration"
+      ],
+      [
+        "commemorative"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 524,
+    "forms": [
+      [
+        "conceive"
+      ],
+      [
+        "conception"
+      ],
+      [
+        "conceivable"
+      ],
+      [
+        "inconceivable"
+      ],
+      [
+        "conceivably",
+        "inconceivably"
+      ]
+    ]
+  },
+  {
+    "id": 525,
+    "forms": [
+      [
+        "condemn"
+      ],
+      [
+        "condemnation"
+      ],
+      [
+        "condemnatory"
+      ],
+      [
+        "condemned"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 526,
+    "forms": [
+      [
+        "confess"
+      ],
+      [
+        "confession"
+      ],
+      [
+        "confessional"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 527,
+    "forms": [
+      [
+        "conquer"
+      ],
+      [
+        "conquest",
+        "conqueror"
+      ],
+      [
+        "conquering"
+      ],
+      [
+        "unconquered"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 528,
+    "forms": [
+      [
+        "constrain"
+      ],
+      [
+        "constraint"
+      ],
+      [
+        "constrained"
+      ],
+      [
+        "unconstrained"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 529,
+    "forms": [
+      [
+        "convene"
+      ],
+      [
+        "convention",
+        "convener",
+        "convenor"
+      ],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 530,
+    "forms": [
+      [
+        "converse"
+      ],
+      [
+        "conversation"
+      ],
+      [
+        "conversational"
+      ],
+      null,
+      [
+        "conversationally"
+      ]
+    ]
+  },
+  {
+    "id": 531,
+    "forms": [
+      [
+        "dazzle"
+      ],
+      [
+        "dazzle"
+      ],
+      [
+        "dazzling"
+      ],
+      [
+        "dazzled"
+      ],
+      [
+        "dazzlingly"
+      ]
+    ]
+  },
+  {
+    "id": 532,
+    "forms": [
+      [
+        "deduce"
+      ],
+      [
+        "deduction"
+      ],
+      [
+        "deductive"
+      ],
+      null,
+      [
+        "deductively"
+      ]
+    ]
+  },
+  {
+    "id": 533,
+    "forms": [
+      [
+        "defy"
+      ],
+      [
+        "defiance"
+      ],
+      [
+        "defiant"
+      ],
+      null,
+      [
+        "defiantly"
+      ]
+    ]
+  },
+  {
+    "id": 534,
+    "forms": [
+      [
+        "delete"
+      ],
+      [
+        "deletion"
+      ],
+      [
+        "deleted"
+      ],
+      [
+        "undeleted"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 535,
+    "forms": [
+      [
+        "deplete"
+      ],
+      [
+        "depletion"
+      ],
+      [
+        "depleted"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 536,
+    "forms": [
+      [
+        "deprive"
+      ],
+      [
+        "deprivation"
+      ],
+      [
+        "deprived"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 537,
+    "forms": [
+      [
+        "diagnose"
+      ],
+      [
+        "diagnosis",
+        "diagnostician"
+      ],
+      [
+        "diagnostic"
+      ],
+      null,
+      [
+        "diagnostically"
+      ]
+    ]
+  },
+  {
+    "id": 538,
+    "forms": [
+      [
+        "dilute"
+      ],
+      [
+        "dilution"
+      ],
+      [
+        "dilute"
+      ],
+      [
+        "diluted"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 539,
+    "forms": [
+      [
+        "discipline"
+      ],
+      [
+        "discipline"
+      ],
+      [
+        "disciplinary"
+      ],
+      [
+        "disciplined"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 540,
+    "forms": [
+      [
+        "displace"
+      ],
+      [
+        "displacement"
+      ],
+      [
+        "displaced"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 541,
+    "forms": [
+      [
+        "diversify"
+      ],
+      [
+        "diversity",
+        "diversification"
+      ],
+      [
+        "diverse"
+      ],
+      null,
+      [
+        "diversely"
+      ]
+    ]
+  },
+  {
+    "id": 542,
+    "forms": [
+      [
+        "elevate"
+      ],
+      [
+        "elevation"
+      ],
+      [
+        "elevated"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 543,
+    "forms": [
+      null,
+      [
+        "abundance"
+      ],
+      [
+        "abundant"
+      ],
+      null,
+      [
+        "abundantly"
+      ]
+    ]
+  },
+  {
+    "id": 544,
+    "forms": [
+      null,
+      [
+        "acuteness"
+      ],
+      [
+        "acute"
+      ],
+      null,
+      [
+        "acutely"
+      ]
+    ]
+  },
+  {
+    "id": 545,
+    "forms": [
+      null,
+      [
+        "agility"
+      ],
+      [
+        "agile"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 546,
+    "forms": [
+      null,
+      [
+        "arrogance"
+      ],
+      [
+        "arrogant"
+      ],
+      null,
+      [
+        "arrogantly"
+      ]
+    ]
+  },
+  {
+    "id": 547,
+    "forms": [
+      null,
+      [
+        "benevolence"
+      ],
+      [
+        "benevolent"
+      ],
+      null,
+      [
+        "benevolently"
+      ]
+    ]
+  },
+  {
+    "id": 548,
+    "forms": [
+      null,
+      [
+        "brilliance"
+      ],
+      [
+        "brilliant"
+      ],
+      null,
+      [
+        "brilliantly"
+      ]
+    ]
+  },
+  {
+    "id": 549,
+    "forms": [
+      null,
+      [
+        "competence",
+        "incompetence",
+        "competency"
+      ],
+      [
+        "competent"
+      ],
+      [
+        "incompetent"
+      ],
+      [
+        "competently",
+        "incompetently"
+      ]
+    ]
+  },
+  {
+    "id": 550,
+    "forms": [
+      null,
+      [
+        "conscience",
+        "conscientiousness"
+      ],
+      [
+        "conscientious"
+      ],
+      [
+        "unconscientious"
+      ],
+      [
+        "conscientiously"
+      ]
+    ]
+  },
+  {
+    "id": 551,
+    "forms": [
+      null,
+      [
+        "consistency",
+        "inconsistency"
+      ],
+      [
+        "consistent"
+      ],
+      [
+        "inconsistent"
+      ],
+      [
+        "consistently",
+        "inconsistently"
+      ]
+    ]
+  },
+  {
+    "id": 552,
+    "forms": [
+      [
+        "credit"
+      ],
+      [
+        "credit",
+        "credibility"
+      ],
+      [
+        "credible"
+      ],
+      [
+        "incredible"
+      ],
+      [
+        "credibly",
+        "incredibly"
+      ]
+    ]
+  },
+  {
+    "id": 553,
+    "forms": [
+      null,
+      [
+        "cynicism",
+        "cynic"
+      ],
+      [
+        "cynical"
+      ],
+      null,
+      [
+        "cynically"
+      ]
+    ]
+  },
+  {
+    "id": 554,
+    "forms": [
+      [
+        "dignify"
+      ],
+      [
+        "dignity"
+      ],
+      [
+        "dignified"
+      ],
+      [
+        "undignified"
+      ],
+      null
+    ]
+  },
+  {
+    "id": 555,
+    "forms": [
+      null,
+      [
+        "elegance"
+      ],
+      [
+        "elegant"
+      ],
+      null,
+      [
+        "elegantly"
+      ]
+    ]
+  },
+  {
+    "id": 556,
+    "forms": [
+      [
+        "empathise",
+        "empathize"
+      ],
+      [
+        "empathy"
+      ],
+      [
+        "empathetic",
+        "empathic"
+      ],
+      null,
+      [
+        "empathetically",
+        "empathically"
+      ]
+    ]
+  },
+  {
+    "id": 557,
+    "forms": [
+      null,
+      [
+        "fragility"
+      ],
+      [
+        "fragile"
+      ],
+      null,
+      null
+    ]
+  },
+  {
+    "id": 558,
+    "forms": [
+      [
+        "humble"
+      ],
+      [
+        "humility"
+      ],
+      [
+        "humble"
+      ],
+      null,
+      [
+        "humbly"
+      ]
+    ]
+  },
+  {
+    "id": 559,
+    "forms": [
+      null,
+      [
+        "modesty",
+        "immodesty"
+      ],
+      [
+        "modest"
+      ],
+      [
+        "immodest"
+      ],
+      [
+        "modestly",
+        "immodestly"
+      ]
+    ]
+  },
+  {
+    "id": 560,
+    "forms": [
+      null,
+      [
+        "precision",
+        "imprecision"
+      ],
+      [
+        "precise"
+      ],
+      [
+        "imprecise"
+      ],
+      [
+        "precisely",
+        "imprecisely"
       ]
     ]
   }

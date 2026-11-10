@@ -61,7 +61,7 @@ function fixture(families = WORD_FAMILIES, random = 0.25) {
   return { get: document.getElementById, root };
 }
 
-test('both modes traverse all 500 families before repeating and the bank renders all rows once', () => {
+test('both modes traverse all 560 families before repeating and the bank renders all rows once', () => {
   const { get, root } = fixture();
   const hardSeen = new Set();
   const easySeen = new Set();
@@ -79,17 +79,17 @@ test('both modes traverse all 500 families before repeating and the bank renders
     assert.ok(get('practice-rows').querySelectorAll('input').every(input => input.value && input.readOnly));
     if (index < WORD_FAMILIES.length - 1) { get('next').fire('click'); get('easy-next').fire('click'); }
   }
-  assert.equal(hardSeen.size, 500);
-  assert.equal(easySeen.size, 500);
-  assert.equal(get('coverage').textContent, '500 / 500');
-  assert.equal(get('easy-coverage').textContent, '500 of 500 families seen');
+  assert.equal(hardSeen.size, 560);
+  assert.equal(easySeen.size, 560);
+  assert.equal(get('coverage').textContent, '560 / 560');
+  assert.equal(get('easy-coverage').textContent, '560 of 560 families seen');
   get('bank').open = true;
   get('bank').fire('toggle');
   get('bank').fire('toggle');
-  assert.equal(get('bank-rows').children.length, 500);
+  assert.equal(get('bank-rows').children.length, 560);
   get('next').fire('click'); get('easy-next').fire('click');
-  assert.equal(get('coverage').textContent, '500 / 500');
-  assert.equal(get('easy-coverage').textContent, '500 of 500 families seen');
+  assert.equal(get('coverage').textContent, '560 / 560');
+  assert.equal(get('easy-coverage').textContent, '560 of 560 families seen');
 });
 
 test('every new family accepts every stored alternative for each possible Hard clue', () => {
