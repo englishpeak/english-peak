@@ -48,7 +48,7 @@ test("Set 12 preserves the complete authoritative content, order, and exact Medi
   const { sets } = challenge();
   const set = originalSet12();
   const runtimeSet = sets.find(set => set.id === 12);
-  assert.equal(sets.length, 12);
+  assert.equal(sets.length, 13);
   assert.equal(set.title, "Set 12");
   assert.equal(set.description, "24 sentences · Mixed levels · Mixed grammar and vocabulary");
   assert.equal(set.sentences.length, 24);
