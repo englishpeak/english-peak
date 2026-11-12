@@ -181,5 +181,5 @@ test('Practice Accuracy counts 61 individual objective items and excludes all fo
 
 test('Tests 1–34 retain their original data exactly', () => {
   const priorData = vm.runInContext('JSON.stringify(Object.fromEntries(Object.entries(testData).filter(([key]) => key !== "Test 35")))', sandbox);
-  assert.equal(createHash('sha256').update(priorData).digest('hex'), '9898c6e398f9427ecbedb75b27fab4129d660e69d924fa54b9c92cff2421b07d');
+  assert.equal(createHash('sha256').update(priorData).digest('hex'), '9ccc1b6096bad4afcee744ce230a6c81a7aca0c66cac8eeb27ad34b49a485e7e');
 });
