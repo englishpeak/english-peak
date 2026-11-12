@@ -6,6 +6,7 @@ import vm from "node:vm";
 
 const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 const data = html.slice(html.indexOf("const sets="), html.indexOf("const app="));
+const priorData = data.slice(0, data.indexOf("// Further reviewed Set 13 alternatives"));
 const originalData = html.slice(html.indexOf("const sets="), html.indexOf("// Build out common, fully equivalent forms"));
 const names = ["normalizeAnswer", "stripPunctuationWords", "setData", "sentence", "key", "entry", "valid", "chooseDifficulty", "startSet", "currentUserAnswer", "results"];
 const functions = [...new Set(names.map(name => {
@@ -14,9 +15,9 @@ const functions = [...new Set(names.map(name => {
   return line;
 }))].join("\n");
 
-function challenge() {
+function challenge(source = data) {
   const context = {};
-  vm.runInNewContext(`${data}
+  vm.runInNewContext(`${source}
     const state={screen:"exercise",difficulty:"Hard",setId:13,index:0,progress:{}};
     function show(screen){state.screen=screen}
     ${functions}
@@ -63,8 +64,8 @@ test("Set 13 preserves every original prompt, primary answer, alternative, openi
   }
 });
 
-test("all 24 prompts gain distinct curated answers, with more coverage for longer sentences", () => {
-  const app = challenge();
+test("the first expansion adds 384 distinct curated answers across all 24 prompts", () => {
+  const app = challenge(priorData);
   const originals = originalSet13().sentences;
   const sentences = app.sets.find(set => set.id === 13).sentences;
   const minimumByLevel = { A1:6, A2:8, B1:14, B2:16, C1:20 };
@@ -90,6 +91,82 @@ test("all 24 prompts gain distinct curated answers, with more coverage for longe
   }
   assert.equal(added, 384);
   assert.equal(sentences.reduce((total, s) => total + s.acceptedAnswers.length, 0), 550);
+});
+
+test("the further expansion preserves all 550 prior alternatives and adds 250, chiefly for B2/C1", () => {
+  const app = challenge();
+  const prior = challenge(priorData).sets.find(set => set.id === 13);
+  const expanded = app.sets.find(set => set.id === 13);
+  assert.equal(digest(prior), "06736c7cd2f86031ecd2421372ffdb714d3a5e1b9a677b4ee37f3f25ff2ff72b");
+  const minimumByLevel = { B1:9, B2:16, C1:24 };
+  let added = 0;
+  let advancedAdded = 0;
+  for (const [index, s] of expanded.sentences.entries()) {
+    const previous = prior.sentences[index];
+    assert.deepEqual(JSON.parse(JSON.stringify({ ...s, acceptedAnswers:s.acceptedAnswers.slice(0, previous.acceptedAnswers.length) })), JSON.parse(JSON.stringify(previous)));
+    const additions = s.acceptedAnswers.slice(previous.acceptedAnswers.length);
+    const minimum = minimumByLevel[s.level] || 0;
+    assert.ok(additions.length >= minimum, `Item ${s.id} (${s.level}) needs ${minimum} new alternatives`);
+    if (!minimum) assert.equal(additions.length, 0);
+    added += additions.length;
+    if (["B2", "C1"].includes(s.level)) advancedAdded += additions.length;
+    const answers = [s.primaryAnswer, ...s.acceptedAnswers];
+    assert.equal(new Set(answers.map(app.normalizeAnswer)).size, answers.length, `Duplicate item ${s.id}`);
+    if (!additions.length) continue;
+    let mediumCompatible = 0;
+    for (const answer of additions) {
+      if (!answer.startsWith(`${s.mediumPrompt} `)) continue;
+      app.state.index = index;
+      app.state.difficulty = "Medium";
+      app.entry().typed = answer.slice(s.mediumPrompt.length).trim();
+      assert.ok(app.valid(app.currentUserAnswer(), s, "Medium"), `Further Medium ${s.id}: ${answer}`);
+      mediumCompatible++;
+    }
+    assert.ok(mediumCompatible >= 2, `Item ${s.id} needs multiple new Medium completions`);
+  }
+  assert.equal(added, 250);
+  assert.equal(advancedAdded, 196);
+  assert.equal(expanded.sentences.reduce((total, s) => total + s.acceptedAnswers.length, 0), 800);
+});
+
+test("further advanced paraphrases retain the condition, regret, politeness, and decision details", () => {
+  const { sets, valid } = challenge();
+  const sentences = sets.find(set => set.id === 13).sentences;
+  const examples = [
+    [2, "You were trying to call me just as I lost reception.", "You were trying to call me just as I regained reception."],
+    [3, "But for the last-minute change to my work shift, I would have gone with you.", "But for the last-minute change to your work shift, I would have gone with you."],
+    [5, "My preference for checking it myself doesn't mean I don't trust you.", "My preference for checking it myself means I don't trust you."],
+    [6, "After so long without driving, I'm concerned I may be out of practice.", "After so long without driving, I'm certain I haven't lost any practice."],
+    [8, "In spite of having promised me they would arrive early, they turned up nearly an hour late.", "In spite of having promised me they would arrive early, they turned up an hour early."],
+    [9, "Could you check this window's latch? Air is coming in because it isn't closing properly.", "Could you check this window's latch? Air is coming in because it is closing properly."],
+    [12, "If only I hadn't made that remark in front of everybody.", "If only I haven't made that remark in front of everybody."],
+    [13, "Have you got enough food already, or do I need to bring anything?", "Have you got enough food already, or did I need to bring anything yesterday?"],
+    [14, "This black T-shirt comes out of the wash covered in lint every time.", "This black T-shirt comes out of the wash without any lint every time."],
+    [15, "I get the feeling she's playing for time so she won't have to commit to a date.", "I get the feeling she's playing for time because she has committed to a date."],
+    [18, "I thought I'd already answered your message, but I never clicked send.", "I thought I'd already answered your message, and I clicked send."],
+    [19, "I don't want to appear demanding, but I'd appreciate it if you notified me further in advance next time.", "I don't want to appear demanding, but you should have notified me further in advance last time."],
+    [20, "At first I thought he was overstating things, but then I realized he was right.", "At first I thought he was overstating things, but then I realized I was right."],
+    [21, "This towel is starting to unravel at the edges.", "This towel is starting to unravel in the middle."],
+    [23, "While I don't want to rush things, we can't keep going over the same ground without deciding anything.", "While I don't want to rush things, we can keep going over the same ground without deciding anything."],
+    [24, "Do you recall having told me I could share that picture?", "Do you recall having told me I couldn't share that picture?"]
+  ];
+  for (const [id, accepted, rejected] of examples) {
+    for (const difficulty of ["Medium", "Hard"]) {
+      assert.ok(valid(accepted, sentences[id - 1], difficulty), `Further item ${id}: ${accepted}`);
+      assert.equal(valid(rejected, sentences[id - 1], difficulty), false, `Meaning changed for item ${id}: ${rejected}`);
+    }
+  }
+});
+
+test("new contrast, stalling, and realization variants cover all three implied subjects", () => {
+  const prior = challenge(priorData).sets.find(set => set.id === 13).sentences;
+  const expanded = challenge().sets.find(set => set.id === 13).sentences;
+  for (const id of [8, 15, 20]) {
+    const additions = expanded[id - 1].acceptedAnswers.slice(prior[id - 1].acceptedAnswers.length);
+    for (const subject of ["he", "she", "they"]) {
+      assert.ok(additions.filter(answer => new RegExp(`\\b${subject}\\b`).test(answer)).length >= 6, `Item ${id}: ${subject}`);
+    }
+  }
 });
 
 test("new paraphrases preserve tense, negation, vocabulary, and sentence details", () => {
