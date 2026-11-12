@@ -8,9 +8,9 @@ const dashboardHtml = fs.readFileSync(new URL('../index.html', import.meta.url),
 const match = html.match(/const QUESTIONS = (\[[\s\S]*?\]);/);
 const questions = vm.runInNewContext(match[1]);
 
-test('contains exactly 100 unique This or That questions', () => {
-  assert.equal(questions.length, 100);
-  assert.equal(new Set(questions).size, 100);
+test('contains exactly 160 unique This or That questions', () => {
+  assert.equal(questions.length, 160);
+  assert.equal(new Set(questions).size, 160);
   assert.equal(questions[0], 'Early bird or night owl?');
   assert.equal(questions[99], 'Have a comfortable predictable life or an exciting unpredictable one?');
 });
@@ -24,8 +24,8 @@ test('uses a complete shuffled sequence and supports backward navigation', () =>
       const j = Math.floor(Math.random() * (i + 1));
       [sequence[i], sequence[j]] = [sequence[j], sequence[i]];
     }
-    assert.equal(sequence.length, 100);
-    assert.equal(new Set(sequence).size, 100);
+    assert.equal(sequence.length, 160);
+    assert.equal(new Set(sequence).size, 160);
     let position = 0;
     position += 1;
     const second = sequence[position];
