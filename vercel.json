@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/toefl-dictionary", "destination": "/toefl-dictionary/index.html" },
+    { "source": "/toefl-dictionary/", "destination": "/toefl-dictionary/index.html" },
     { "source": "/idioms", "destination": "/index.html" },
     { "source": "/idioms/", "destination": "/index.html" },
     { "source": "/course", "destination": "/course/index.html" },
