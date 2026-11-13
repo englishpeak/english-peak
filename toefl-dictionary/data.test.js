@@ -4,19 +4,22 @@ import test from 'node:test';
 import { TOEFL_DICTIONARY } from '../api/_lib/toefl-dictionary-data.js';
 import { filterEntries } from './dictionary.js';
 
+// Keep the existing English content frozen while adding Spanish equivalents.
+const englishContent = entries => entries.map(({ spanish, ...entry }) => entry);
+
 test('Set 1 contains exactly the 30 requested distinct words with complete entries', () => {
   const expected = 'Analyze Assess Assume Benefit Coherent Compile Comprehensive Consequently Considerable Contribute Crucial Decline Demonstrate Derive Diverse Emphasize Empirical Enhance Establish Evident Fluctuate Furthermore Generate Hypothesis Indicate Interpret Justify Maintain Significant Undergo'.split(' ');
   const original = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-1-'));
   assert.deepEqual(original.map(entry => entry.word).sort(), expected.sort());
   // Freeze every original ID and content field while future sets are appended.
-  assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'b96e64a282ca0da7c35721ddb5aa3b765ccda364221d0e0617dc0fc4e161d63c');
+  assert.equal(createHash('sha256').update(JSON.stringify(englishContent(original))).digest('hex'), 'b96e64a282ca0da7c35721ddb5aa3b765ccda364221d0e0617dc0fc4e161d63c');
 });
 
 test('the combined dictionary contains 90 unique, complete entries including all Set 2 words', () => {
   const expected = 'Allocate Ambiguous Attribute Bias Capacity Constraint Contradict Correlate Diminish Distinguish Emerge Facilitate Inhibit Inevitable Prevalent Retain Subsequent Sustain Valid Widespread'.split(' ');
   const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-2-'));
   assert.deepEqual(added.map(entry => entry.word), expected);
-  assert.equal(createHash('sha256').update(JSON.stringify(added)).digest('hex'), '5e37808f6d5d20198742a7dc35d59749c4944ec2c1c038bd5a8f803bcdafd71d');
+  assert.equal(createHash('sha256').update(JSON.stringify(englishContent(added))).digest('hex'), '5e37808f6d5d20198742a7dc35d59749c4944ec2c1c038bd5a8f803bcdafd71d');
   assert.equal(TOEFL_DICTIONARY.length, 90);
   for (const entry of added) {
     assert.equal(entry.id, 'set-2-' + entry.word.toLowerCase());
@@ -41,7 +44,7 @@ test('Set 3 contains exactly the 20 requested words with stable IDs', () => {
   const expected = 'Abundant Adapt Advocate Aggregate Arbitrary Cease Constitute Detect Deviate Elaborate Exclude Infer Integrate Modify Persist Proportion Reinforce Relevant Substitute Verify'.split(' ');
   const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-3-'));
   assert.deepEqual(added.map(entry => entry.word), expected);
-  assert.equal(createHash('sha256').update(JSON.stringify(added)).digest('hex'), '39530cee0100e8f3994402a8bbe45aeb6634e737d396ac846904422d6c775045');
+  assert.equal(createHash('sha256').update(JSON.stringify(englishContent(added))).digest('hex'), '39530cee0100e8f3994402a8bbe45aeb6634e737d396ac846904422d6c775045');
   for (const entry of added) {
     assert.equal(entry.id, 'set-3-' + entry.word.toLowerCase());
     assert.equal(entry.examples.length, 2, entry.word);
@@ -53,7 +56,7 @@ test('Set 4 contains the 20 requested words with exact content and stable IDs', 
   const expected = 'Accumulate Adequate Alter Anticipate Approximate Attain Catalyst Coincide Controversial Deduce Deteriorate Discrete Disperse Exceed Exploit Fundamental Imply Innovative Parameter Simulate'.split(' ');
   const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-4-'));
   assert.deepEqual(added.map(entry => entry.word), expected);
-  assert.equal(createHash('sha256').update(JSON.stringify(added)).digest('hex'), 'b895cd2bed52c0eb32a31de96c437d22690abda29f497b60d98c72c24945924d');
+  assert.equal(createHash('sha256').update(JSON.stringify(englishContent(added))).digest('hex'), 'b895cd2bed52c0eb32a31de96c437d22690abda29f497b60d98c72c24945924d');
   for (const entry of added) {
     assert.equal(entry.id, 'set-4-' + entry.word.toLowerCase());
     assert.equal(entry.examples.length, 2, entry.word);
@@ -69,7 +72,7 @@ test('search ignores capitalization, sorts unsorted input, and does not mutate t
   assert.deepEqual(filterEntries(input, '  eMPiR  ').map(entry => entry.word), ['Empirical']);
   assert.deepEqual(filterEntries(input, '  aLLoC  ').map(entry => entry.word), ['Allocate']);
   assert.deepEqual(filterEntries(input, 'WIDESPREAD').map(entry => entry.word), ['Widespread']);
-  assert.deepEqual(filterEntries(input, 'con').map(entry => entry.word), ['Consequently', 'Considerable', 'Constitute', 'Constraint', 'Contradict', 'Contribute', 'Controversial']);
+  assert.deepEqual(filterEntries(input, 'con').map(entry => entry.word), ['Consequently', 'Considerable', 'Constitute', 'Constraint', 'Contradict', 'Contribute', 'Controversial', 'Retain']);
   for (const [query, word] of [['  aBUn  ', 'Abundant'], ['CONSTITU', 'Constitute'], ['proportion', 'Proportion'], ['VERIFY', 'Verify']]) {
     assert.deepEqual(filterEntries(input, query).map(entry => entry.word), [word]);
   }
@@ -83,4 +86,30 @@ test('future entries are counted and sorted without changes to presentation code
   assert.equal(result.length, TOEFL_DICTIONARY.length + 1);
   assert.equal(result.find(entry => entry.word === 'Abstract'), next);
   assert.deepEqual(result.map(entry => entry.word), result.map(entry => entry.word).sort((a, b) => a.localeCompare(b, 'en-US')));
+});
+
+test('every word has a Spanish equivalent for its existing meaning', () => {
+  for (const entry of TOEFL_DICTIONARY) {
+    assert.equal(typeof entry.spanish, 'string', entry.word);
+    assert.ok(entry.spanish.trim(), entry.word);
+    assert.doesNotMatch(entry.spanish, /TODO|TBD|undefined|translation pending/i, entry.word);
+  }
+  // Guard against false friends and the wrong part of speech.
+  for (const [word, expected] of [
+    ['Assume', 'suponer'], ['Comprehensive', 'exhaustivo; integral'],
+    ['Advocate', 'defender; propugnar'], ['Elaborate', 'explicar en detalle; ampliar'],
+    ['Discrete', 'separado; distinto'], ['Approximate', 'aproximado'],
+  ]) assert.equal(TOEFL_DICTIONARY.find(entry => entry.word === word).spanish, expected);
+});
+
+test('Spanish search ignores accents, case and surrounding whitespace', () => {
+  for (const [query, word] of [
+    ['  hIPOTESIS  ', 'Hypothesis'], ['PARÁMETRO', 'Parameter'],
+    ['sesgo', 'Bias'], ['explicar en detalle', 'Elaborate'],
+  ]) assert.deepEqual(filterEntries(TOEFL_DICTIONARY, query).map(entry => entry.word), [word]);
+  for (const entry of TOEFL_DICTIONARY) {
+    for (const equivalent of entry.spanish.split('; ')) {
+      assert.ok(filterEntries(TOEFL_DICTIONARY, equivalent).includes(entry), entry.word);
+    }
+  }
 });

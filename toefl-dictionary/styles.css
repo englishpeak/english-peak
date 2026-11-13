@@ -24,6 +24,9 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--ep-purple);
 .word-detail-content { padding: 22px 26px; max-width: 850px; }
 .part-of-speech { margin: 0 0 8px; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: #57647a; }
 .definition { margin: 0; font-size: 1rem; }
+.spanish-translation { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 14px 0 0; padding: 10px 14px; border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); background: var(--ep-card-soft); }
+.translation-label { color: var(--ep-purple); font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.translation-text { min-width: 0; color: var(--ep-navy); font-size: .95rem; font-weight: 500; }
 .word-detail h2 { margin: 20px 0 8px; color: var(--ep-navy); font-size: .83rem; font-weight: 600; }
 .examples { margin: 0; padding-left: 22px; font-size: .93rem; }
 .examples li + li { margin-top: 7px; }
