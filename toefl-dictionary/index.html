@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Build your academic vocabulary, one word at a time with the ePeak+ TOEFL Dictionary.">
+<title>TOEFL Dictionary | ePeak</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles/brand-tokens.css">
+<link rel="stylesheet" href="/word-families/access.css">
+<link rel="stylesheet" href="/toefl-dictionary/styles.css">
+<script src="/teachers/vendor/supabase.js"></script>
+</head>
+<body>
+<header class="exercise-topbar" id="standalone-topbar"><a class="back-btn" href="/">← Dashboard</a><div class="exercise-title">TOEFL Dictionary</div><div class="exercise-badge">ePeak+</div></header>
+<section id="auth-loading" class="auth-loading" role="status"><p>Checking your ePeak account…</p></section>
+<section id="member-lock" class="member-lock" hidden aria-labelledby="member-lock-title">
+  <div class="lock-symbol" aria-hidden="true">🔐</div><h1 id="member-lock-title">TOEFL Dictionary</h1>
+  <p id="access-message">Sign in to access ePeak+ practice.</p>
+  <div class="member-actions"><a class="primary" href="/?auth=login" id="access-action">Sign in</a><button type="button" class="secondary" id="access-retry" hidden>Try again</button></div>
+</section>
+<div id="practice-content" hidden></div>
+<noscript>Turn on JavaScript in your browser to use the dictionary.</noscript>
+<template id="practice-template">
+  <main class="dictionary">
+    <header class="dictionary-intro">
+      <h1>TOEFL Dictionary</h1>
+      <p>Build your academic vocabulary, one word at a time.</p>
+    </header>
+    <section class="dictionary-workspace" aria-label="Academic vocabulary">
+      <div class="dictionary-tools">
+        <label class="search-field"><span class="sr-only">Search vocabulary</span><input id="vocabulary-search" type="search" placeholder="Search vocabulary..." autocomplete="off" aria-controls="word-grid"></label>
+        <p id="word-count" class="word-count" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+      <p class="dictionary-hint">Select a word to explore its meaning and use.</p>
+      <div id="word-grid" class="word-grid"></div>
+      <p id="dictionary-empty" class="dictionary-empty" hidden>No words found. Try a different spelling or a shorter search.</p>
+    </section>
+    <p class="dictionary-note">Academic vocabulary for TOEFL preparation. This is not an official ETS vocabulary list.</p>
+  </main>
+</template>
+<script type="module" src="/toefl-dictionary/access.js"></script>
+</body>
+</html>

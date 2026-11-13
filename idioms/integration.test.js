@@ -19,7 +19,7 @@ test('New Practice contains only Idioms Lessons; relocated cards occur once in G
     assert.ok(general.includes(`onclick="${handler}()"`));
     assert.ok(!newPractice.includes(handler));
   }
-  assert.match(html, /\['word-families', 'idioms'\].*showModal\(\)/);
+  assert.match(html, /\['word-families', 'idioms', 'toefl-dictionary'\].*showModal\(\)/);
 });
 
 test('extensionless /idioms serves the shell with no static lesson content or secret', () => {

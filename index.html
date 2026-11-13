@@ -374,7 +374,7 @@ body.download-preview-lock{overflow:hidden}
       </div>
     </div>
 
-    <div class="section-header"><h2>TOEFL Practice</h2><p>Timed mock tests · updated weekly</p></div>
+    <div class="section-header"><h2>TOEFL Practice</h2><p>Mock tests and academic vocabulary</p></div>
     <div class="cards-grid">
       <div class="ex-card" onclick="openITPTests()">
         <div class="card-header"><div class="card-icon purple">🎯</div><div class="card-access access-partial" id="access-itp-tests">🔓 3 of 9</div></div>
@@ -385,6 +385,10 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 9</div></div>
         <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">9 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 9.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
+      </div>
+      <div class="ex-card" onclick="openToeflDictionary()">
+        <div class="card-header"><div class="card-icon purple">📖</div><div class="card-access access-locked" id="access-toefl-dictionary">🔒 ePeak+</div></div>
+        <div class="card-body"><div class="card-title">TOEFL Dictionary</div><div class="card-desc">Build your academic vocabulary, one word at a time. Explore definitions, examples, and common collocations.</div><div class="card-meta"><span class="meta-item">📚 Academic vocabulary</span></div><button class="card-btn btn-locked" id="btn-toefl-dictionary">🔐 Sign in to access</button></div>
       </div>
     </div>
 
@@ -599,6 +603,12 @@ body.download-preview-lock{overflow:hidden}
   <div class="exercise-screen" id="exercise-emoji">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title" id="topbarTitleEmoji">Emoji Flashcards</div></div>
     <iframe class="exercise-frame" id="frame-emoji" src="" style="width:100%;height:calc(100vh - 56px);border:none;"></iframe>
+  </div>
+
+  <!-- ═══ TOEFL DICTIONARY (iframe) ═══ -->
+  <div class="exercise-screen" id="exercise-toefl-dictionary">
+    <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">TOEFL Dictionary</div><div class="exercise-badge">ePeak+</div></div>
+    <iframe class="exercise-frame" id="frame-toefl-dictionary" src="about:blank" title="TOEFL Dictionary" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ WORD FAMILIES (iframe) ═══ -->
@@ -1336,6 +1346,7 @@ function applyTier(tier) {
   if (wordFamiliesAccess) { wordFamiliesAccess.textContent = hasWordFamiliesAccess ? '✓ ePeak+' : '🔒 ePeak+'; wordFamiliesAccess.className = 'card-access ' + (hasWordFamiliesAccess ? 'access-premium' : 'access-locked'); }
   if (wordFamiliesButton) { wordFamiliesButton.className = 'card-btn ' + (hasWordFamiliesAccess ? 'btn-open' : 'btn-locked'); wordFamiliesButton.textContent = hasWordFamiliesAccess ? 'Start Practice →' : _currentUser ? '⭐ Get ePeak+' : '🔐 Sign in to access'; }
   prepareWordFamiliesFrame();
+  updateToeflDictionaryCard();
 
   var hasCollocationsAccess = Boolean(_currentUser);
   var collocationsAccess = document.getElementById('access-collocations');
@@ -1925,6 +1936,36 @@ function openEmoji() {
   document.getElementById('exercise-emoji').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Emoji Flashcards';
   document.getElementById('frame-emoji').src = '/emoji';
+  closeMobileSidebar();
+}
+
+function updateToeflDictionaryCard() {
+  var allowed = Boolean(_currentUser) && hasFullAccessTier(getEffectiveTier(_currentProfile));
+  var access = document.getElementById('access-toefl-dictionary');
+  var button = document.getElementById('btn-toefl-dictionary');
+  if (access) { access.textContent = allowed ? '✓ ePeak+' : '🔒 ePeak+'; access.className = 'card-access ' + (allowed ? 'access-premium' : 'access-locked'); }
+  if (button) { button.textContent = allowed ? 'Explore Vocabulary →' : _currentUser ? '⭐ Get ePeak+' : '🔐 Sign in to access'; button.className = 'card-btn ' + (allowed ? 'btn-open' : 'btn-locked'); }
+  var frame = document.getElementById('frame-toefl-dictionary');
+  if (frame && frame.dataset.userId && (!allowed || frame.dataset.userId !== _currentUser.id)) {
+    frame.src = 'about:blank';
+    delete frame.dataset.userId;
+  }
+}
+
+function openToeflDictionary() {
+  if (!_currentUser) { showAuthModal('login'); return; }
+  if (!hasFullAccessTier(getEffectiveTier(_currentProfile))) { showModal(); return; }
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('exercise-toefl-dictionary').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'TOEFL Dictionary';
+  document.getElementById('topbarSub').textContent = 'Build your academic vocabulary, one word at a time.';
+  var frame = document.getElementById('frame-toefl-dictionary');
+  if (frame.dataset.userId !== _currentUser.id) {
+    frame.dataset.userId = _currentUser.id;
+    frame.src = '/toefl-dictionary';
+  } else if (frame.contentWindow) {
+    frame.contentWindow.postMessage({ type: 'toeflDictionaryResume' }, window.location.origin);
+  }
   closeMobileSidebar();
 }
 
@@ -2961,7 +3002,7 @@ checkHamburger();
 (function() {
   var authTab = new URLSearchParams(window.location.search).get('auth');
   if (authTab === 'login' || authTab === 'register') showAuthModal(authTab);
-  if (['word-families', 'idioms'].includes(new URLSearchParams(window.location.search).get('upgrade'))) showModal();
+  if (['word-families', 'idioms', 'toefl-dictionary'].includes(new URLSearchParams(window.location.search).get('upgrade'))) showModal();
 })();
 
 // Waits for auth session to resolve before opening, so tier-based locks are correct
@@ -2985,6 +3026,7 @@ checkHamburger();
     else if (exercise === 'debates') openDebates();
     else if (exercise === 'general') openGeneral();
     else if (exercise === 'word-families') openWordFamilies();
+    else if (exercise === 'toefl-dictionary') openToeflDictionary();
   }
 
   // Wait for Supabase session to resolve (max 2s) before opening
