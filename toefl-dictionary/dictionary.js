@@ -2,9 +2,13 @@
 // the protected API; this browser module contains no dictionary dataset.
 const TINTS = ['#e8def9', '#d9eee5', '#ffe5d5', '#dceafa'];
 
+function normalizeSearch(text) {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('en-US');
+}
+
 export function filterEntries(entries, query = '') {
-  const search = query.trim().toLocaleLowerCase('en-US');
-  return entries.filter(entry => entry.word.toLocaleLowerCase('en-US').includes(search))
+  const search = normalizeSearch(query.trim());
+  return entries.filter(entry => [entry.word, entry.spanish].some(text => normalizeSearch(text || '').includes(search)))
     .sort((a, b) => a.word.localeCompare(b.word, 'en-US'));
 }
 
@@ -32,7 +36,13 @@ function renderDetails(entry) {
   const content = document.createElement('div');
   content.className = 'word-detail-content';
   content.append(textElement('p', 'part-of-speech', entry.partOfSpeech),
-    textElement('p', 'definition', entry.definition), textElement('h2', '', 'Example sentences'));
+    textElement('p', 'definition', entry.definition));
+  const translation = document.createElement('p');
+  translation.className = 'spanish-translation';
+  translation.lang = 'es';
+  translation.append(textElement('span', 'translation-label', 'Español'), ' ',
+    textElement('span', 'translation-text', entry.spanish));
+  content.append(translation, textElement('h2', '', 'Example sentences'));
   const examples = document.createElement('ol');
   examples.className = 'examples';
   entry.examples.forEach(example => examples.append(textElement('li', '', example)));
