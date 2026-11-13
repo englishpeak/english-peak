@@ -755,5 +755,305 @@ export const TOEFL_DICTIONARY = [
       "widespread concern",
       "widespread damage"
     ]
+  },
+  {
+    "id": "set-3-abundant",
+    "word": "Abundant",
+    "partOfSpeech": "adjective",
+    "definition": "Existing or available in large quantities; more than enough.",
+    "examples": [
+      "The tropical rainforest provides abundant resources for a wide variety of plant and animal species.",
+      "Archaeologists discovered abundant evidence of trade between the ancient civilizations."
+    ],
+    "collocations": [
+      "abundant resources",
+      "abundant evidence",
+      "abundant supply"
+    ]
+  },
+  {
+    "id": "set-3-adapt",
+    "word": "Adapt",
+    "partOfSpeech": "verb",
+    "definition": "To change or adjust in order to function successfully in new or different conditions.",
+    "examples": [
+      "Many animal species have adapted to survive in extremely cold environments.",
+      "Universities must adapt their teaching methods to meet the needs of modern students."
+    ],
+    "collocations": [
+      "adapt to change",
+      "adapt to new conditions",
+      "adapt quickly"
+    ]
+  },
+  {
+    "id": "set-3-advocate",
+    "word": "Advocate",
+    "partOfSpeech": "verb",
+    "definition": "To publicly support or recommend a particular idea, policy or course of action.",
+    "examples": [
+      "Environmental organizations advocate stricter regulations on industrial pollution.",
+      "Many education specialists advocate increasing access to early childhood education."
+    ],
+    "collocations": [
+      "strongly advocate",
+      "advocate for change",
+      "advocate the use of"
+    ]
+  },
+  {
+    "id": "set-3-aggregate",
+    "word": "Aggregate",
+    "partOfSpeech": "verb",
+    "definition": "To collect and combine separate pieces of information or individual amounts into a single total or group.",
+    "examples": [
+      "The researchers aggregated data from several universities to identify national trends.",
+      "The software aggregates individual responses into a comprehensive statistical report."
+    ],
+    "collocations": [
+      "aggregate data",
+      "aggregate results",
+      "aggregate information"
+    ]
+  },
+  {
+    "id": "set-3-arbitrary",
+    "word": "Arbitrary",
+    "partOfSpeech": "adjective",
+    "definition": "Based on personal choice, chance or convenience rather than a clear reason, rule or consistent system.",
+    "examples": [
+      "The researchers avoided using arbitrary criteria when selecting participants for the experiment.",
+      "The boundaries between some historical territories were established through arbitrary political decisions."
+    ],
+    "collocations": [
+      "arbitrary decision",
+      "arbitrary distinction",
+      "arbitrary criteria"
+    ]
+  },
+  {
+    "id": "set-3-cease",
+    "word": "Cease",
+    "partOfSpeech": "verb",
+    "definition": "To stop happening or to bring an activity or process to an end.",
+    "examples": [
+      "The factory was ordered to cease operations until it complied with environmental regulations.",
+      "Several traditional agricultural practices ceased to exist after the introduction of modern machinery."
+    ],
+    "collocations": [
+      "cease operations",
+      "cease production",
+      "cease to exist"
+    ]
+  },
+  {
+    "id": "set-3-constitute",
+    "word": "Constitute",
+    "partOfSpeech": "verb",
+    "definition": "To form or make up something, or to be considered a particular thing.",
+    "examples": [
+      "International students constitute approximately twenty percent of the university's population.",
+      "The destruction of natural habitats constitutes a serious threat to biodiversity."
+    ],
+    "collocations": [
+      "constitute a threat",
+      "constitute a significant proportion",
+      "constitute a major part"
+    ]
+  },
+  {
+    "id": "set-3-detect",
+    "word": "Detect",
+    "partOfSpeech": "verb",
+    "definition": "To discover or notice something, especially something that is difficult to see or recognise.",
+    "examples": [
+      "Scientists developed a new instrument capable of detecting extremely small changes in temperature.",
+      "The research team detected traces of harmful chemicals in the water samples."
+    ],
+    "collocations": [
+      "detect changes",
+      "detect the presence of",
+      "detect abnormalities"
+    ]
+  },
+  {
+    "id": "set-3-deviate",
+    "word": "Deviate",
+    "partOfSpeech": "verb",
+    "definition": "To move away from an expected direction, established standard or usual pattern.",
+    "examples": [
+      "The experimental results deviated significantly from the researchers' original predictions.",
+      "Some migratory birds deviate from their usual routes when weather conditions change."
+    ],
+    "collocations": [
+      "deviate from the norm",
+      "deviate significantly",
+      "deviate from the original plan"
+    ]
+  },
+  {
+    "id": "set-3-elaborate",
+    "word": "Elaborate",
+    "partOfSpeech": "verb",
+    "definition": "To explain or describe something in greater detail.",
+    "examples": [
+      "The professor asked the student to elaborate on her argument during the discussion.",
+      "The researcher elaborated on the methodology used to collect the data."
+    ],
+    "collocations": [
+      "elaborate on",
+      "elaborate further",
+      "elaborate on an idea"
+    ]
+  },
+  {
+    "id": "set-3-exclude",
+    "word": "Exclude",
+    "partOfSpeech": "verb",
+    "definition": "To deliberately leave someone or something out of a group, activity or consideration.",
+    "examples": [
+      "The study excluded participants who had previously received the experimental treatment.",
+      "Researchers cannot exclude the possibility that external factors influenced the results."
+    ],
+    "collocations": [
+      "exclude from",
+      "exclude the possibility",
+      "deliberately exclude"
+    ]
+  },
+  {
+    "id": "set-3-infer",
+    "word": "Infer",
+    "partOfSpeech": "verb",
+    "definition": "To reach a conclusion based on available evidence or information rather than direct statements.",
+    "examples": [
+      "From the fossil evidence, scientists inferred that the region once had a much warmer climate.",
+      "Readers can infer the author's attitude from the language used throughout the passage."
+    ],
+    "collocations": [
+      "infer from evidence",
+      "reasonably infer",
+      "infer that"
+    ]
+  },
+  {
+    "id": "set-3-integrate",
+    "word": "Integrate",
+    "partOfSpeech": "verb",
+    "definition": "To combine separate elements into a unified system or make something part of a larger whole.",
+    "examples": [
+      "The university plans to integrate artificial intelligence tools into its academic programs.",
+      "The new transportation network integrates buses, trains and bicycle routes into a single system."
+    ],
+    "collocations": [
+      "integrate into",
+      "integrate technology",
+      "integrate different systems"
+    ]
+  },
+  {
+    "id": "set-3-modify",
+    "word": "Modify",
+    "partOfSpeech": "verb",
+    "definition": "To make partial changes to something, usually to improve it or make it more suitable for a particular purpose.",
+    "examples": [
+      "The engineers modified the original design to improve energy efficiency.",
+      "Scientists may need to modify their hypothesis when new evidence becomes available."
+    ],
+    "collocations": [
+      "modify a design",
+      "modify behavior",
+      "slightly modify"
+    ]
+  },
+  {
+    "id": "set-3-persist",
+    "word": "Persist",
+    "partOfSpeech": "verb",
+    "definition": "To continue to exist or happen, often despite difficulties or attempts to stop it.",
+    "examples": [
+      "Economic inequality has persisted in the region despite decades of development.",
+      "Some pollutants can persist in the environment for hundreds of years."
+    ],
+    "collocations": [
+      "persist over time",
+      "persist despite",
+      "problems persist"
+    ]
+  },
+  {
+    "id": "set-3-proportion",
+    "word": "Proportion",
+    "partOfSpeech": "noun",
+    "definition": "A part or share of a whole, especially when compared with the total amount.",
+    "examples": [
+      "A large proportion of the city's population relies on public transportation.",
+      "The proportion of renewable energy used in electricity production has increased substantially."
+    ],
+    "collocations": [
+      "large proportion",
+      "significant proportion",
+      "proportion of the population"
+    ]
+  },
+  {
+    "id": "set-3-reinforce",
+    "word": "Reinforce",
+    "partOfSpeech": "verb",
+    "definition": "To make something stronger or more effective, or to provide additional support for an idea or belief.",
+    "examples": [
+      "The new findings reinforce the theory that regular exercise improves cognitive performance.",
+      "Teachers can reinforce important concepts through practical activities and frequent review."
+    ],
+    "collocations": [
+      "reinforce an idea",
+      "reinforce a belief",
+      "reinforce existing evidence"
+    ]
+  },
+  {
+    "id": "set-3-relevant",
+    "word": "Relevant",
+    "partOfSpeech": "adjective",
+    "definition": "Directly connected to or important for the subject, situation or problem being considered.",
+    "examples": [
+      "Students should include only relevant evidence when supporting an academic argument.",
+      "The professor explained why the historical event was relevant to contemporary political developments."
+    ],
+    "collocations": [
+      "relevant information",
+      "relevant evidence",
+      "directly relevant to"
+    ]
+  },
+  {
+    "id": "set-3-substitute",
+    "word": "Substitute",
+    "partOfSpeech": "verb",
+    "definition": "To use one thing instead of another, especially when the original is unavailable or unsuitable.",
+    "examples": [
+      "Some manufacturers have substituted recycled materials for traditional raw materials.",
+      "Researchers cannot substitute personal opinions for reliable scientific evidence."
+    ],
+    "collocations": [
+      "substitute for",
+      "substitute one thing for another",
+      "substitute an alternative material"
+    ]
+  },
+  {
+    "id": "set-3-verify",
+    "word": "Verify",
+    "partOfSpeech": "verb",
+    "definition": "To confirm that something is true, accurate or correct by examining evidence or conducting checks.",
+    "examples": [
+      "Scientists repeated the experiment to verify the accuracy of the initial results.",
+      "Historians must verify information by consulting multiple independent sources."
+    ],
+    "collocations": [
+      "verify information",
+      "verify the accuracy",
+      "independently verify"
+    ]
   }
 ];
