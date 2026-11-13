@@ -39,14 +39,14 @@ function loadPage(search = '') {
   return { sandbox, element, messages, run: source => vm.runInContext(source, sandbox) };
 }
 
-test('ITP boots and renders all 36 menu buttons with guest access restrictions', () => {
+test('ITP boots and renders all 37 menu buttons with guest access restrictions', () => {
   const page = loadPage();
   const buttons = page.element('menu').children;
-  assert.equal(buttons.length, 36);
+  assert.equal(buttons.length, 37);
   assert.deepEqual(buttons.slice(0, 3).map(button => button.textContent), ['Test 1', 'Test 2', 'Test 3']);
   assert.ok(buttons.slice(3).every(button => button.textContent.startsWith('🔒 Test ')));
   let prevented = false;
-  buttons[35].onclick({ preventDefault() { prevented = true; } });
+  buttons[36].onclick({ preventDefault() { prevented = true; } });
   assert.ok(prevented);
   assert.equal(page.messages[0].message.type, 'showModal');
 });
@@ -54,6 +54,7 @@ test('ITP boots and renders all 36 menu buttons with guest access restrictions',
 for (const [testNumber, firstQuestion] of [
   [35, /Not until the early twentieth century/],
   [36, /The earliest instruments were designed/],
+  [37, /The laboratory continued to produce inconsistent results/],
 ]) {
   test(`Test ${testNumber} opens, renders all 20 questions, reports its score, and returns to the menu`, () => {
     const page = loadPage(`?allowed=1,${testNumber}`);
@@ -79,12 +80,12 @@ for (const [testNumber, firstQuestion] of [
     assert.equal(page.messages.at(-1).message.exerciseName, `Test ${testNumber}`);
     assert.equal(page.messages.at(-1).message.maxScore, 20);
     page.run('backToMenu();');
-    assert.equal(page.element('app').children.length, 36);
+    assert.equal(page.element('app').children.length, 37);
     assert.equal(page.element('app').children[testNumber - 1].textContent, `Test ${testNumber}`);
   });
 }
 
-test('the public ITP routes serve the current catalog and full-access tiers include Test 36', () => {
+test('the public ITP routes serve the current catalog and full-access tiers include Test 37', () => {
   const config = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
   for (const source of ['/itp', '/itp/:path*']) {
     assert.equal(config.rewrites.find(rule => rule.source === source).destination, '/itp/index.html');
@@ -92,9 +93,10 @@ test('the public ITP routes serve the current catalog and full-access tiers incl
   const tierSource = appHtml.slice(appHtml.indexOf('var ITP_TOTAL ='), appHtml.indexOf('function getEffectiveTier'));
   const sandbox = {};
   vm.runInNewContext(tierSource, sandbox);
-  assert.equal(sandbox.ITP_TOTAL, 36);
+  assert.equal(sandbox.ITP_TOTAL, 37);
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     assert.ok(sandbox.TIERS[tier].itpTests.includes(36), tier);
+    assert.ok(sandbox.TIERS[tier].itpTests.includes(37), tier);
   }
   assert.equal(sandbox.TIERS.visitor.itpTests.length, 3);
   assert.equal(sandbox.TIERS.free.itpTests.length, 6);
