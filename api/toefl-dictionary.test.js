@@ -54,7 +54,7 @@ test('all existing full-access tiers and the is_admin override retain access', a
     assert.equal(res.statusCode, 200);
     assert.equal(res.body.userId, 'verified-user');
     assert.equal(res.body.entries, TOEFL_DICTIONARY);
-    assert.equal(res.body.entries.length, 70);
+    assert.equal(res.body.entries.length, 90);
   }
 });
 
