@@ -29,12 +29,11 @@ const expectedSplits = [
   [['crus', 'hed', 'crushed'], ['mate', 'rials', 'materials'], ['rele', 'ase', 'release'], ['prepar', 'ation', 'preparation'], ['pigm', 'ents', 'pigments'], ['att', 'ach', 'attach'], ['subs', 'tance', 'substance'], ['temper', 'ature', 'temperature'], ['experime', 'ntation', 'experimentation'], ['frequ', 'ently', 'frequently']],
 ];
 
-test('Test 35 enables exactly 27 tasks in the established section sequence, with no Test 36', () => {
+test('Test 35 enables exactly 27 tasks in the established section sequence', () => {
   assert.equal(tasks.length, 27);
   assert.deepEqual([...new Set(tasks.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(tasks, (task) => task.section)).map(([key, value]) => [key, value.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
-  assert.deepEqual([...vm.runInContext('testCollections[1].tests', sandbox)], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35']);
-  assert.equal(vm.runInContext("testData['Test 36']", sandbox), undefined);
+  assert.deepEqual([...vm.runInContext('testCollections[1].tests', sandbox)], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36']);
 });
 
 test('all 20 locked splits reconstruct the exact source passages with intact first sentences', () => {
@@ -180,6 +179,6 @@ test('Practice Accuracy counts 61 individual objective items and excludes all fo
 });
 
 test('Tests 1–34 retain their original data exactly', () => {
-  const priorData = vm.runInContext('JSON.stringify(Object.fromEntries(Object.entries(testData).filter(([key]) => key !== "Test 35")))', sandbox);
+  const priorData = vm.runInContext('JSON.stringify(Object.fromEntries(Object.entries(testData).filter(([key]) => Number(key.replace("Test ", "")) <= 34)))', sandbox);
   assert.equal(createHash('sha256').update(priorData).digest('hex'), '9ccc1b6096bad4afcee744ce230a6c81a7aca0c66cac8eeb27ad34b49a485e7e');
 });

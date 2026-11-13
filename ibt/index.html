@@ -174,7 +174,7 @@ var testCollections = [
     id: 'updated-toefl-practice',
     title: 'UPDATED TOEFL PRACTICE',
     description: 'Practice with the task types and format introduced in the updated TOEFL iBT.',
-    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35']
+    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36']
   }
 ];
 
@@ -4255,6 +4255,812 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
       }
     ];
 
+    // Test 36 preserves the supplied content, locked splits, option order, and audio filenames.
+    testData["Test 36"] = [
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 1: How Sand Dunes Move",
+        "instruction": "Complete the words in the passage.",
+        "text": "Sand dunes can slowly change shape as winds carry grains across the ground. When moving air becomes strong enough, it lifts loose part[5] and pushes them over the surf[3]. Grains often accum[5] on the shel[5] side of a dune, where wind speed decre[4]. As more mate[4] collects, the slope may become too steep and small quant[5] of sand slide down[4]. This repeated movement causes the entire dune to migr[3] over time. Plants can limit these changes by trapping sediment with their roots, but veget[5] may struggle to survive in extremely dry conditions.",
+        "answers": [
+          "icles",
+          "ace",
+          "ulate",
+          "tered",
+          "ases",
+          "rial",
+          "ities",
+          "ward",
+          "ate",
+          "ation"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 2: Natural Rubber",
+        "instruction": "Complete the words in the passage.",
+        "text": "Natural rubber is produced from the milky sap of certain tropical trees. Work[3] make shal[3] cuts in the bark and collect the liquid in small conta[5]. This fluid, called latex, contains tiny part[5] that can be separ[4] and processed into a flex[4] material. Fresh rubber can be sticky and may change its prope[5] when temper[6] rise or fall. A treatment involving heat and sulfur can improve its durab[5] and elasticity. Although synthetic alternatives are widely used today, natural rubber remains valuable for products that require particular combinations of strength, flexibility, and resis[5] to wear.",
+        "answers": [
+          "ers",
+          "low",
+          "iners",
+          "icles",
+          "ated",
+          "ible",
+          "rties",
+          "atures",
+          "ility",
+          "tance"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 3: Volunteer Training Schedule",
+        "instruction": "Read the volunteer training schedule.",
+        "text": "CITY SCIENCE CENTER\nSATURDAY VOLUNTEER TRAINING\n\n10:00–11:30 a.m.\nWelcome and Safety Briefing\nHall A\n\n11:45 a.m.–12:30 p.m.\nExhibit Demonstrations\nLab 2\n\n12:30–1:15 p.m.\nLunch Break\nLunch is not provided.\n\n1:15–2:00 p.m.\nCommunicating with Visitors\nHall A\n\nIMPORTANT:\n\n- Participants must wear closed-toe shoes in Lab 2.\n- Volunteers must attend the safety briefing before\n  leading public tours.\n- Printed volunteer guides will be distributed at the end.\n- Parking validation is available at reception.",
+        "questions": [
+          {
+            "q": "When will volunteers practice communicating with visitors?",
+            "options": [
+              "10:00–11:30 a.m.",
+              "11:45 a.m.–12:30 p.m.",
+              "1:15–2:00 p.m.",
+              "12:30–1:15 p.m."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What is required for participants entering Lab 2?",
+            "options": [
+              "A printed volunteer guide",
+              "A parking validation ticket",
+              "Their own exhibition materials",
+              "Closed-toe shoes"
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 4: Workshop Registration Confirmation",
+        "instruction": "Read a workshop registration confirmation.",
+        "text": "RIVERSIDE ARTS CENTER\nREGISTRATION CONFIRMED\n\nParticipant: Noor Hassan\n\nWorkshop:\nIntroduction to Botanical Sketching\n\nSaturday, April 11\n10:00 a.m.–12:00 noon\n\nLocation:\nStudio 3\n\nAll drawing materials will be provided.\n\nPlease show your registration confirmation code\nat check-in.\n\nTo change to another session, contact the\nregistration office by Thursday at 4:00 p.m.\n\nChanges requested after the deadline are subject\nto available space.",
+        "questions": [
+          {
+            "q": "What is included with the workshop registration?",
+            "options": [
+              "Drawing materials",
+              "Transportation to the arts center",
+              "A printed course textbook",
+              "Lunch and refreshments"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What should a participant do to request a session change without being subject to the late-change availability condition?",
+            "options": [
+              "Ask the instructor when the workshop begins.",
+              "Contact the registration office by Thursday at 4:00 p.m.",
+              "Wait until all participants have checked in.",
+              "Submit a new payment on Saturday morning."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 5: Group Message Exchange",
+        "instruction": "Read the group messages.",
+        "text": "TESSA — 3:04 p.m.\nThe urban gardening workshop is still at three on Friday, right?\n\nOWEN — 3:06 p.m.\nIt was moved to Saturday at ten because of the rain forecast.\nSame location, though—the botanical garden.\n\nNORA — 3:08 p.m.\nOh, I have swimming practice until eleven on Saturday.\nI'd miss the first hour.\n\nTESSA — 3:10 p.m.\nThe organizer says you need to attend the safety briefing\nat the beginning if you want to use the gardening tools.\n\nOWEN — 3:12 p.m.\nMaybe you could still join the discussion afterward?\n\nNORA — 3:14 p.m.\nI'll email the organizer and ask. Otherwise, I'll register\nfor the next workshop.",
+        "questions": [
+          {
+            "q": "Why was the workshop rescheduled?",
+            "options": [
+              "The instructor was unavailable.",
+              "The botanical garden will close early.",
+              "Too few people registered for Friday.",
+              "Rain is expected."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why might Nora be unable to use the gardening tools?",
+            "options": [
+              "She may miss the required safety briefing.",
+              "She has not purchased the tools.",
+              "She is not registered as a student.",
+              "The tools will be collected before eleven."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What will Nora probably do next?",
+            "options": [
+              "Ask Tessa to bring the tools to her.",
+              "Cancel her swimming practice immediately.",
+              "Contact the workshop organizer.",
+              "Travel to the botanical garden on Friday."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 6: Volcanic Ash and Soil Development",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Volcanic ash is composed of tiny fragments of rock, minerals, and volcanic glass produced during an eruption. Falling ash can harm crops immediately by covering leaves and reducing the sunlight plants receive. Thick deposits may also make the ground difficult to cultivate. Yet, over longer periods, volcanic material can contribute to the development of productive soils.</p><p>As ash particles are exposed to water, air, and biological activity, their minerals gradually break down. This process, called weathering, may release nutrients that plants can use. However, the rate of weathering varies with temperature, rainfall, and the chemical composition of the ash. Therefore, newly deposited ash does not automatically create fertile farmland. In a dry environment, some minerals may change very slowly.</p><p>To understand how soils develop, researchers compare areas covered by volcanic deposits at different times. They examine soil thickness, available nutrients, and the kinds of vegetation that have established themselves. Such comparisons reveal that the effects of volcanic eruptions are not limited to the initial destruction. Over decades or centuries, the same material that once buried a landscape can become part of the soil that supports new life.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why most crops grow best immediately after volcanic eruptions",
+              "How volcanic ash can damage land initially but contribute to soil development over time",
+              "Why volcanic glass cannot undergo chemical changes",
+              "How all volcanic eruptions produce identical soils"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "How can volcanic ash eventually increase the nutrients available to plants?",
+            "options": [
+              "It prevents water from reaching plant roots.",
+              "It blocks sunlight throughout the growing season.",
+              "It removes existing minerals from the soil.",
+              "Minerals in the ash may break down and release nutrients."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "The word \"weathering\" in paragraph 2 refers to",
+            "options": [
+              "the movement of ash by strong winds",
+              "the prediction of rainfall after eruptions",
+              "the gradual breakdown or alteration of materials",
+              "the rapid growth of vegetation on new deposits"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What can be inferred about volcanic deposits in very dry environments?",
+            "options": [
+              "Some mineral changes may occur relatively slowly.",
+              "They always become fertile more quickly than wet deposits.",
+              "They cannot contain minerals useful to plants.",
+              "They immediately produce deep, mature soils."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why do researchers compare volcanic deposits of different ages?",
+            "options": [
+              "To determine which volcano will erupt next",
+              "To investigate how soil characteristics develop over time",
+              "To show that all ash deposits have the same composition",
+              "To measure how much sunlight is blocked during an eruption"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 7: Scientific Peer Review",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Scientific journals often ask specialists to evaluate research papers before deciding whether to publish them. This process, known as peer review, gives editors an opportunity to receive informed judgments about a study's methods, evidence, and conclusions. Reviewers usually work in a field related to the paper's subject, although they may approach the research from different perspectives.</p><p>A reviewer might point out that a sample is too small, request a clearer explanation of an experiment, or question whether the evidence supports a particular claim. Authors can then revise their manuscripts or explain why they disagree with a suggestion. The goal is not simply to find errors, but to make research easier for others to evaluate and build upon.</p><p>Peer review has limitations. Reviewers may disagree, overlook problems, or be influenced by their own assumptions. Some journals conceal the identities of authors or reviewers to reduce certain biases, while others experiment with more transparent approaches. Publication also does not mark the end of scrutiny. Other researchers may repeat an experiment or examine the same data in a new way. Peer review is therefore one stage in an ongoing process of scientific evaluation, rather than a guarantee that every published finding is correct.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why scientific journals no longer accept experimental research",
+              "How researchers decide which subjects are popular",
+              "How peer review evaluates research and why it has limitations",
+              "Why all published studies must reach identical conclusions"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Who typically evaluates a paper during peer review?",
+            "options": [
+              "Specialists familiar with the research area",
+              "Students selected randomly from the university",
+              "Readers who have never studied the subject",
+              "Journal subscribers without technical experience"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "The word \"scrutiny\" in paragraph 3 is closest in meaning to",
+            "options": [
+              "financial support",
+              "careful examination",
+              "public celebration",
+              "immediate publication"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Which limitation of peer review is mentioned?",
+            "options": [
+              "Reviewers are prohibited from discussing methods.",
+              "Journals cannot request revisions.",
+              "Authors must always accept every suggestion.",
+              "Reviewers may disagree or overlook problems."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why does the author mention researchers repeating an experiment after publication?",
+            "options": [
+              "To suggest that published research should not be read",
+              "To argue that experiments are unnecessary before publication",
+              "To show that the evaluation of findings can continue after peer review",
+              "To explain why journals do not use reviewers"
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 8: Listen and Choose a Response",
+        "instruction": "Listen and choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-36/task-8.mp3",
+        "script": "I was certain I'd sent the form, but it's still sitting in my drafts folder.",
+        "question": "Choose the most appropriate response.",
+        "options": [
+          "The forms are usually available at reception.",
+          "You should probably send it now, if the deadline hasn't passed.",
+          "I printed several copies of the form yesterday.",
+          "The drafts folder is easier to organize than the inbox."
+        ],
+        "correct": 1
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 9: Listen and Choose a Response",
+        "instruction": "Listen and choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-36/task-9.mp3",
+        "script": "If you're heading to the cafeteria, could you grab me a bottle of water?",
+        "question": "Choose the most appropriate response.",
+        "options": [
+          "The cafeteria was crowded this morning.",
+          "I bought a reusable bottle last year.",
+          "The water fountain is beside the cafeteria.",
+          "Of course. Is still water okay?"
+        ],
+        "correct": 3
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 10: Listen and Choose a Response",
+        "instruction": "Listen and choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-36/task-10.mp3",
+        "script": "It turns out the student orchestra's concert is sold out, even though tickets only went on sale yesterday.",
+        "question": "Choose the most appropriate response.",
+        "options": [
+          "Wow, the concert must be really popular!",
+          "I played the violin in high school.",
+          "The concert will probably last two hours.",
+          "Orchestra rehearsals are held every Thursday."
+        ],
+        "correct": 0
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 11: Listen and Choose a Response",
+        "instruction": "Listen and choose the most appropriate response.",
+        "audioUrl": "../audio/ibt/test-36/task-11.mp3",
+        "script": "We need to finish the laboratory inventory before five, and we've barely started.",
+        "question": "Choose the most appropriate response.",
+        "options": [
+          "The laboratory was renovated last year.",
+          "I usually arrive at five.",
+          "Let's divide the remaining work so we can finish more quickly.",
+          "The inventory forms are printed on blue paper."
+        ],
+        "correct": 2
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 15: Student Housing Maintenance",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-36/task-15.mp3",
+        "script": "Narrator:\nListen to a conversation at a university housing office.\n\nWoman:\nHi. I reported that the heater in my room stopped working on Monday. I got a message saying it had been inspected, but it's still cold.\n\nMan:\nLet me check the report. Ah, yes. The technician identified a faulty valve, but the replacement part won't arrive until Thursday.\n\nWoman:\nOh. I was hoping it could be fixed today. Is there anything I can do in the meantime?\n\nMan:\nWe can provide a portable heater, as long as you follow the safety instructions. I'll also ask maintenance to prioritize the repair once the part arrives.\n\nWoman:\nWould I need to pick up the heater somewhere?\n\nMan:\nNo. A staff member can bring it to your room this afternoon. Just make sure someone's there to receive it.\n\nWoman:\nOkay. I'll be back after two. Thanks for your help.",
+        "questions": [
+          {
+            "q": "Why can't the woman's heater be repaired immediately?",
+            "options": [
+              "The housing office has not inspected the room.",
+              "The university is closing for the weekend.",
+              "The woman has not completed the necessary form.",
+              "A replacement component has not arrived yet."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What arrangement does the employee offer?",
+            "options": [
+              "Moving the student to another residence hall",
+              "Delivering a portable heater to her room",
+              "Giving the student permission to repair the valve",
+              "Refunding the student's housing payment"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 16: Biology Experiment",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-36/task-16.mp3",
+        "script": "Narrator:\nListen to a conversation between a student and his biology professor.\n\nMan:\nProfessor Silva, can I ask about the seedlings we grew for the lab? Mine were much taller than the others, even though we all used the same seeds.\n\nWoman:\nInteresting. Were the plants kept under the same conditions?\n\nMan:\nNot exactly. I put mine by a window at home, but some students kept theirs under classroom lights.\n\nWoman:\nThat could explain part of the difference. But we can't conclude that the window caused it based on just one group of seedlings.\n\nMan:\nSo should I repeat the experiment?\n\nWoman:\nIt would be helpful to set up a comparison where the only intentional difference is the type of light. Keep the water, soil, and containers the same.\n\nMan:\nAnd measure their height each day?\n\nWoman:\nExactly. That way, you'll have better evidence about whether lighting affects their growth.\n\nMan:\nAll right. I'll prepare another set of plants this week.",
+        "questions": [
+          {
+            "q": "Why is the professor cautious about the student's conclusion?",
+            "options": [
+              "The growing conditions were not adequately controlled.",
+              "The seedlings were all the same height.",
+              "The student used different types of seeds.",
+              "The plants were measured too frequently."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What does the professor recommend?",
+            "options": [
+              "Using a different kind of seed for every group",
+              "Moving all plants outdoors permanently",
+              "Comparing groups while keeping water, soil, and containers the same",
+              "Measuring only the tallest plant in each group"
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 18: Graduate-School Fair",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-36/task-18.mp3",
+        "script": "Narrator:\nListen to an announcement at a university.\n\nWoman:\nThe graduate-school fair this Thursday has moved from the recreation hall to the central auditorium. The event will still run from noon until four, and students don't need to register in advance. Representatives from several universities will be available to answer questions about academic programs and application requirements. If you're planning to attend, bringing a list of questions may help you make the most of your conversations.",
+        "questions": [
+          {
+            "q": "Which statement about the graduate-school fair is accurate?",
+            "options": [
+              "It has been postponed until Friday.",
+              "Students must register before attending.",
+              "It will now begin at four in the afternoon.",
+              "The location has changed, but the scheduled time remains the same."
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 19: Geography Mapping Assignment",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-36/task-19.mp3",
+        "script": "Narrator:\nListen to an announcement in a geography class.\n\nMan:\nFor next week's mapping assignment, please use the updated data file I posted this morning. I discovered that a few locations in the original file had incorrect coordinates. You don't need to redo the written introduction, but any maps made using the earlier file should be generated again. The submission deadline remains Tuesday at six o'clock.",
+        "questions": [
+          {
+            "q": "What should students do if they created maps using the original data file?",
+            "options": [
+              "Submit them without making changes.",
+              "Generate the maps again using the corrected data.",
+              "Rewrite the introduction but keep the original maps.",
+              "Ask the professor to extend the deadline."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 20: How Suspension Bridges Work",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-36/task-20.mp3",
+        "script": "Narrator:\nListen to part of a talk about bridge engineering.\n\nMan:\nImagine trying to build a bridge across a wide channel where placing numerous supports in the water would be difficult. One solution is a suspension bridge, a design that can span remarkably long distances.\n\nIn a suspension bridge, the roadway hangs from vertical cables connected to much larger main cables. These main cables pass over tall towers and are secured to massive anchorages at either end of the bridge.\n\nWhen vehicles travel across the bridge, their weight is transferred through the vertical cables to the main cables. The main cables are under tension, meaning they're being pulled rather than pushed. The towers carry large downward forces, while the anchorages resist the horizontal pull of the cables.\n\nThis arrangement allows engineers to build bridges with relatively few supports beneath the roadway. That's especially valuable when crossing wide rivers or deep waterways.\n\nHowever, the flexibility of suspension bridges creates challenges. Wind and moving vehicles can cause the roadway to vibrate or shift. Engineers therefore incorporate structures that help stabilize the bridge and study how it responds to different wind conditions.\n\nIn fact, designers often test scale models in wind tunnels before construction begins.\n\nSo the success of a suspension bridge depends not only on the strength of its materials, but also on how its different components distribute forces and keep the roadway stable.",
+        "questions": [
+          {
+            "q": "Why are suspension bridges particularly useful for some wide crossings?",
+            "options": [
+              "They eliminate the need for cables.",
+              "They require supports at short intervals beneath the roadway.",
+              "They can span long distances with relatively few supports below the roadway.",
+              "They do not experience forces from vehicles."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "According to the speaker, how is the weight of vehicles transferred?",
+            "options": [
+              "Through the vertical cables to the main cables",
+              "Directly from the roadway into the water",
+              "Entirely through the bridge's road surface",
+              "Through the anchorages without involving cables"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What is the function of the bridge's anchorages?",
+            "options": [
+              "To prevent vehicles from entering during high winds",
+              "To carry the roadway above the towers",
+              "To measure the vertical movement of the bridge",
+              "To resist the horizontal pull of the main cables"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why do engineers test suspension-bridge models in wind tunnels?",
+            "options": [
+              "To determine the cost of purchasing steel",
+              "To study how the bridge may respond to wind",
+              "To measure water depth beneath the bridge",
+              "To choose the location of nearby roads"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 21: Why Languages Borrow Words",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-36/task-21.mp3",
+        "script": "Narrator:\nListen to part of a talk about linguistics.\n\nWoman:\nWhen English speakers use words like karaoke, sofa, or algebra, they may not think about where those words originally came from. But all three entered English through contact with other languages, although their histories are quite different.\n\nLinguists call this process lexical borrowing. It happens when speakers adopt words from one language into another.\n\nBorrowing often occurs when communities come into contact through trade, migration, education, or cultural exchange. Sometimes speakers encounter a new object or practice and adopt the word already used to describe it.\n\nHowever, borrowed words don't always remain exactly as they were in the original language. Their pronunciation may change to fit the sound patterns of the receiving language. Their spelling may also be adjusted, and occasionally their meaning changes over time.\n\nInterestingly, borrowing doesn't necessarily mean that a language lacks a word for something. Speakers sometimes adopt foreign expressions even when a similar word already exists in their own language.\n\nAnd borrowing isn't limited to English. It's a normal process found in languages around the world.\n\nWhat makes this particularly interesting is that borrowed vocabulary can provide clues about historical contact between communities. By studying when certain words entered a language and where they came from, linguists can learn about patterns of trade, migration, and cultural influence.\n\nSo a familiar everyday word may preserve evidence of relationships between societies that developed centuries ago.",
+        "questions": [
+          {
+            "q": "What is lexical borrowing?",
+            "options": [
+              "The adoption of words from one language into another",
+              "The process of removing rarely used words from a dictionary",
+              "The creation of new writing systems from symbols",
+              "The translation of every word in a language into another"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "According to the speaker, what can encourage word borrowing?",
+            "options": [
+              "A complete lack of communication between communities",
+              "The disappearance of all local expressions",
+              "A requirement that languages have identical grammar",
+              "Contact through trade, migration, and cultural exchange"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What can happen to a borrowed word after it enters another language?",
+            "options": [
+              "Its original pronunciation must always be preserved.",
+              "Its spelling can change, but its meaning never changes.",
+              "Its pronunciation, spelling, or meaning may change.",
+              "It must replace every existing word with a similar meaning."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What can borrowed vocabulary reveal to linguists?",
+            "options": [
+              "The exact number of people living in an ancient city",
+              "Evidence of historical contact between communities",
+              "The complete grammar of a language that no longer exists",
+              "Proof that languages stop changing after borrowing words"
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 1: Build a Sentence",
+        "context": "Speaker A: “Has the librarian found the missing journal?”",
+        "scaffold": "She thinks ______ ______ ______ ______.",
+        "chunks": [
+          "returned",
+          "was returning",
+          "this morning",
+          "it may",
+          "have been"
+        ],
+        "words": [
+          "returned",
+          "was returning",
+          "this morning",
+          "it may",
+          "have been"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "it may",
+          "have been",
+          "returned",
+          "this morning"
+        ],
+        "distractor": "was returning",
+        "completedSentence": "She thinks it may have been returned this morning."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 2: Build a Sentence",
+        "context": "Speaker A: “Why didn't you start the course earlier?”",
+        "scaffold": "I couldn't enroll ______ ______ ______ ______.",
+        "chunks": [
+          "became",
+          "until",
+          "having",
+          "available",
+          "a place"
+        ],
+        "words": [
+          "became",
+          "until",
+          "having",
+          "available",
+          "a place"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "until",
+          "a place",
+          "became",
+          "available"
+        ],
+        "distractor": "having",
+        "completedSentence": "I couldn't enroll until a place became available."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 3: Build a Sentence",
+        "context": "Speaker A: “What happened to the outdoor lecture?”",
+        "scaffold": "They decided ______ ______ ______ ______.",
+        "chunks": [
+          "the rain",
+          "moving",
+          "to move",
+          "because of",
+          "it indoors"
+        ],
+        "words": [
+          "the rain",
+          "moving",
+          "to move",
+          "because of",
+          "it indoors"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "to move",
+          "it indoors",
+          "because of",
+          "the rain"
+        ],
+        "distractor": "moving",
+        "completedSentence": "They decided to move it indoors because of the rain."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 4: Build a Sentence",
+        "context": "Speaker A: “Why are you checking the contract again?”",
+        "scaffold": "I want ______ ______ ______ ______.",
+        "chunks": [
+          "the conditions",
+          "to make sure",
+          "understood",
+          "all of",
+          "I understand"
+        ],
+        "words": [
+          "the conditions",
+          "to make sure",
+          "understood",
+          "all of",
+          "I understand"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "to make sure",
+          "I understand",
+          "all of",
+          "the conditions"
+        ],
+        "distractor": "understood",
+        "completedSentence": "I want to make sure I understand all of the conditions."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 5: Build a Sentence",
+        "context": "Speaker A: “Can we use the computer lab tonight?”",
+        "scaffold": "The lab is ______ ______ ______ ______.",
+        "chunks": [
+          "a supervisor",
+          "is present",
+          "only if",
+          "available",
+          "been presenting"
+        ],
+        "words": [
+          "a supervisor",
+          "is present",
+          "only if",
+          "available",
+          "been presenting"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "available",
+          "only if",
+          "a supervisor",
+          "is present"
+        ],
+        "distractor": "been presenting",
+        "completedSentence": "The lab is available only if a supervisor is present."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 6: Build a Sentence",
+        "context": "Speaker A: “Did you find the instructions confusing?”",
+        "scaffold": "I wish ______ ______ ______ ______.",
+        "chunks": [
+          "more clearly",
+          "explained",
+          "was explaining",
+          "someone had",
+          "them"
+        ],
+        "words": [
+          "more clearly",
+          "explained",
+          "was explaining",
+          "someone had",
+          "them"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "someone had",
+          "explained",
+          "them",
+          "more clearly"
+        ],
+        "distractor": "was explaining",
+        "completedSentence": "I wish someone had explained them more clearly."
+      },
+      {
+        "section": "Writing",
+        "type": "writing-email",
+        "taskFamily": "Write an Email",
+        "title": "Write an Email",
+        "instruction": "Write as much as you can and in complete sentences.",
+        "time": 420,
+        "text": "<p>Last week, you reserved a music practice room at your university to prepare for a class performance.</p><p>When you arrived, the electronic keyboard in the room was not working properly, and you were unable to complete your planned practice session.</p><p>Write an email to Ms. Ford, the manager of the university's practice facilities.</p><p>In your email:</p><ul><li>explain when you used the room and why you reserved it;</li><li>describe the equipment problem and how it affected your practice session;</li><li>ask whether a working room or replacement instrument will be available for your next practice session; and</li><li>suggest one way the facilities team could prevent similar problems in the future.</li></ul><p>Write as much as you can and in complete sentences.</p>"
+      },
+      {
+        "section": "Writing",
+        "type": "academic-discussion",
+        "taskFamily": "Write for an Academic Discussion",
+        "title": "Write for an Academic Discussion",
+        "time": 600,
+        "professor": "Professor Bennett",
+        "professorPrompt": "<p>Universities often require students to take courses outside their main field of study. For example, an engineering student might take a literature course, while a business student might study biology or philosophy.</p><p>Some people believe these requirements help students develop broader knowledge and discover connections between different subjects. Others think students should have more freedom to focus on courses directly related to their major.</p><p>Should universities continue requiring students to take courses outside their major, or should students have more freedom to specialize? Why?</p>",
+        "studentAName": "Maya",
+        "studentA": "I think taking courses outside your major is valuable. Students may develop skills they wouldn't gain from their main subject alone. For instance, science students can improve their communication skills through writing courses, and students in the humanities can benefit from learning about technology. Sometimes combining ideas from different subjects can lead to creative solutions.",
+        "studentBName": "Daniel",
+        "studentB": "I would prefer more freedom to specialize. University courses are expensive, and students have limited time. Taking several unrelated courses may leave fewer opportunities for advanced classes, internships, or projects in a student's chosen field. Students who are interested in other subjects could still take those courses voluntarily.",
+        "studentInstruction": "Write a response to the professor's question. In your response: - express and support your opinion; - make a meaningful contribution to the discussion; and - use your own words. An effective response will contain at least 100 words."
+      },
+      {
+        "section": "Speaking",
+        "type": "listen-repeat-updated",
+        "taskFamily": "Listen and Repeat",
+        "title": "Listen and Repeat",
+        "scenario": "You are visiting the university research vessel. Listen and repeat what the representative says. Repeat only once.",
+        "sentences": [
+          {
+            "script": "Welcome aboard the university research vessel.",
+            "text": "Welcome aboard the university research vessel.",
+            "audio": "../audio/ibt/test-36/sentence-1.mp3"
+          },
+          {
+            "script": "Please keep your life jacket on throughout the tour.",
+            "text": "Please keep your life jacket on throughout the tour.",
+            "audio": "../audio/ibt/test-36/sentence-2.mp3"
+          },
+          {
+            "script": "Our research team collects water samples from different depths to study changes in ocean conditions.",
+            "text": "Our research team collects water samples from different depths to study changes in ocean conditions.",
+            "audio": "../audio/ibt/test-36/sentence-3.mp3"
+          },
+          {
+            "script": "Before stepping onto the upper deck, make sure your life jacket is properly fastened and follow the crew's instructions.",
+            "text": "Before stepping onto the upper deck, make sure your life jacket is properly fastened and follow the crew's instructions.",
+            "audio": "../audio/ibt/test-36/sentence-4.mp3"
+          },
+          {
+            "script": "Any equipment used during today's demonstration must be cleaned and returned to its assigned storage area before we leave the vessel.",
+            "text": "Any equipment used during today's demonstration must be cleaned and returned to its assigned storage area before we leave the vessel.",
+            "audio": "../audio/ibt/test-36/sentence-5.mp3"
+          },
+          {
+            "script": "Although the vessel normally operates near the coast, some research expeditions require scientists to travel farther offshore to investigate changes in marine ecosystems.",
+            "text": "Although the vessel normally operates near the coast, some research expeditions require scientists to travel farther offshore to investigate changes in marine ecosystems.",
+            "audio": "../audio/ibt/test-36/sentence-6.mp3"
+          },
+          {
+            "script": "Students who are interested in participating in future research expeditions should contact the program coordinator after today's tour to learn about the required safety training, application procedures, and opportunities to work alongside experienced marine scientists.",
+            "text": "Students who are interested in participating in future research expeditions should contact the program coordinator after today's tour to learn about the required safety training, application procedures, and opportunities to work alongside experienced marine scientists.",
+            "audio": "../audio/ibt/test-36/sentence-7.mp3"
+          }
+        ]
+      },
+      {
+        "section": "Speaking",
+        "type": "take-interview",
+        "taskFamily": "Take an Interview",
+        "title": "Take an Interview",
+        "adaptationNote": "Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.",
+        "introduction": "You are participating in a research interview about transportation and how people travel in everyday life.",
+        "responseTime": 45,
+        "questions": [
+          "What form of transportation do you use most often when traveling to work, school, or other regular activities, and why?",
+          "Describe a time when your transportation plans changed unexpectedly. What happened, and how did you deal with the situation?",
+          "When choosing how to travel, do you think convenience is more important than cost or environmental impact? Why or why not?",
+          "What changes could cities make to encourage more people to use public transportation instead of private cars? Which changes would be most effective, in your opinion?"
+        ]
+      }
+    ];
+
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
     let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
     let currentAudioObjectUrl = '';
@@ -4313,10 +5119,10 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
             cont.innerHTML += t + `<p><strong>${ex.question}</strong></p>` + ex.options.map((o,i)=>`<div class="option" onclick="select(this,${i})">${o}</div>`).join('');
         } else if (ex.type === 'academic-discussion') {
             cont.innerHTML += `<div class="discussion-card"><strong>${ex.professor || 'Professor'}</strong>${ex.professorPrompt}</div><div class="discussion-response"><div class="discussion-card"><strong>${ex.studentAName || 'Student A'}</strong>${ex.studentA}</div><div class="discussion-card"><strong>${ex.studentBName || 'Student B'}</strong>${ex.studentB}</div></div>${ex.studentInstruction ? `<p>${ex.studentInstruction}</p>` : ''}<div class="small-timer" id="discussion-t">${formatTime(ex.time || 600)}</div><label for="discussion-answer"><strong>Your response</strong></label><textarea id="discussion-answer" oninput="updateWordCount(this, 'discussion-count')" style="width:100%; height:220px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; box-sizing:border-box;"></textarea><div class="word-count" id="discussion-count">0 words</div>`;
-            setTimeout(()=>runTimer(ex.time || 600, 'discussion-t', true), 100);
+            setTimeout(()=>{ if (curSet[idx] === ex) runTimer(ex.time || 600, 'discussion-t', true); }, 100);
         } else if (ex.type === 'writing-email') {
             cont.innerHTML += `<div class="small-timer" id="email-t">${formatTime(ex.time || 420)}</div><div>${ex.text}</div><textarea style="width:100%; height:200px; padding:20px; border-radius:10px; font-family:inherit; font-size:1.1rem; border:1.5px solid #ddd; outline:none; box-sizing:border-box;"></textarea>`;
-            setTimeout(()=>runTimer(ex.time, 'email-t', true), 100);
+            setTimeout(()=>{ if (curSet[idx] === ex) runTimer(ex.time, 'email-t', true); }, 100);
         }
 
         if (requiresContinuousAudioSource(ex.audioUrl)) {
@@ -4493,6 +5299,7 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
     }
 
     function finish() {
+        clearInterval(timer);
         switchScreen('screen-results');
         const unscoredTypes = ['speaking-timer', 'writing-email', 'academic-discussion', 'listen-repeat', 'listen-repeat-updated', 'take-interview'];
         const v = results.filter(r=>!r.skipped && !unscoredTypes.includes(r.type));
