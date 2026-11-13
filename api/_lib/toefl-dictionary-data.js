@@ -1055,5 +1055,305 @@ export const TOEFL_DICTIONARY = [
       "verify the accuracy",
       "independently verify"
     ]
+  },
+  {
+    "id": "set-4-accumulate",
+    "word": "Accumulate",
+    "partOfSpeech": "verb",
+    "definition": "To gradually collect or increase in quantity over a period of time.",
+    "examples": [
+      "Sediment accumulates at the bottom of lakes and rivers over thousands of years.",
+      "Students accumulate knowledge through repeated exposure to new concepts and practical experience."
+    ],
+    "collocations": [
+      "accumulate wealth",
+      "accumulate evidence",
+      "accumulate over time"
+    ]
+  },
+  {
+    "id": "set-4-adequate",
+    "word": "Adequate",
+    "partOfSpeech": "adjective",
+    "definition": "Sufficient or satisfactory for a particular purpose or situation.",
+    "examples": [
+      "The researchers concluded that the available evidence was not adequate to support the hypothesis.",
+      "Schools in remote communities often struggle to provide adequate educational resources."
+    ],
+    "collocations": [
+      "adequate resources",
+      "adequate funding",
+      "adequate evidence"
+    ]
+  },
+  {
+    "id": "set-4-alter",
+    "word": "Alter",
+    "partOfSpeech": "verb",
+    "definition": "To change something or make it different, usually without completely replacing it.",
+    "examples": [
+      "Human activities have significantly altered the natural landscape of the region.",
+      "The scientists altered the experimental conditions to determine how temperature affected the results."
+    ],
+    "collocations": [
+      "alter the outcome",
+      "significantly alter",
+      "alter the structure"
+    ]
+  },
+  {
+    "id": "set-4-anticipate",
+    "word": "Anticipate",
+    "partOfSpeech": "verb",
+    "definition": "To expect or predict that something will happen and sometimes prepare for it in advance.",
+    "examples": [
+      "Economists anticipate that demand for renewable energy will continue to increase.",
+      "The research team anticipated several technical difficulties before beginning the experiment."
+    ],
+    "collocations": [
+      "anticipate changes",
+      "anticipate problems",
+      "widely anticipated"
+    ]
+  },
+  {
+    "id": "set-4-approximate",
+    "word": "Approximate",
+    "partOfSpeech": "adjective",
+    "definition": "Close to the actual amount, number or value, but not completely exact.",
+    "examples": [
+      "Archaeologists estimated the approximate age of the settlement by examining pottery fragments.",
+      "The researchers calculated the approximate distance between the two locations using satellite images."
+    ],
+    "collocations": [
+      "approximate value",
+      "approximate age",
+      "approximate distance"
+    ]
+  },
+  {
+    "id": "set-4-attain",
+    "word": "Attain",
+    "partOfSpeech": "verb",
+    "definition": "To achieve or reach a particular goal, level, condition or standard, often through effort.",
+    "examples": [
+      "Students must complete several advanced courses to attain the required level of academic proficiency.",
+      "The laboratory attained a high degree of accuracy after improving its measurement techniques."
+    ],
+    "collocations": [
+      "attain a goal",
+      "attain a high level",
+      "attain success"
+    ]
+  },
+  {
+    "id": "set-4-catalyst",
+    "word": "Catalyst",
+    "partOfSpeech": "noun",
+    "definition": "Something that causes or accelerates a change or process; in chemistry, a substance that speeds up a reaction without being consumed.",
+    "examples": [
+      "The invention of the steam engine served as a catalyst for industrial development.",
+      "The chemical reaction proceeded much faster after the researchers introduced a catalyst."
+    ],
+    "collocations": [
+      "catalyst for change",
+      "catalyst for growth",
+      "act as a catalyst"
+    ]
+  },
+  {
+    "id": "set-4-coincide",
+    "word": "Coincide",
+    "partOfSpeech": "verb",
+    "definition": "To happen at the same time as something else, or to correspond closely with it.",
+    "examples": [
+      "The decline in agricultural production coincided with a prolonged period of drought.",
+      "The introduction of new transportation systems coincided with rapid urban expansion."
+    ],
+    "collocations": [
+      "coincide with",
+      "closely coincide",
+      "coincide in time"
+    ]
+  },
+  {
+    "id": "set-4-controversial",
+    "word": "Controversial",
+    "partOfSpeech": "adjective",
+    "definition": "Causing strong disagreement or opposing opinions among people.",
+    "examples": [
+      "The government's decision to construct a dam near the protected forest was highly controversial.",
+      "The professor introduced a controversial theory that challenged traditional interpretations of the historical event."
+    ],
+    "collocations": [
+      "controversial issue",
+      "controversial decision",
+      "highly controversial"
+    ]
+  },
+  {
+    "id": "set-4-deduce",
+    "word": "Deduce",
+    "partOfSpeech": "verb",
+    "definition": "To reach a logical conclusion by considering facts, evidence or information.",
+    "examples": [
+      "Scientists deduced the composition of the planet's atmosphere by examining the light it reflected.",
+      "From the available historical records, researchers deduced that the settlement had been abandoned gradually."
+    ],
+    "collocations": [
+      "deduce from evidence",
+      "logically deduce",
+      "deduce that"
+    ]
+  },
+  {
+    "id": "set-4-deteriorate",
+    "word": "Deteriorate",
+    "partOfSpeech": "verb",
+    "definition": "To become progressively worse in quality, condition or effectiveness.",
+    "examples": [
+      "The condition of the ancient manuscripts deteriorated because of prolonged exposure to humidity.",
+      "Water quality can deteriorate rapidly when industrial waste enters a river."
+    ],
+    "collocations": [
+      "deteriorate rapidly",
+      "gradually deteriorate",
+      "conditions deteriorate"
+    ]
+  },
+  {
+    "id": "set-4-discrete",
+    "word": "Discrete",
+    "partOfSpeech": "adjective",
+    "definition": "Separate and distinct from other things rather than forming a continuous whole.",
+    "examples": [
+      "The researchers divided the experimental process into several discrete stages.",
+      "The professor explained that the data consisted of discrete categories rather than continuous measurements."
+    ],
+    "collocations": [
+      "discrete categories",
+      "discrete units",
+      "discrete stages"
+    ]
+  },
+  {
+    "id": "set-4-disperse",
+    "word": "Disperse",
+    "partOfSpeech": "verb",
+    "definition": "To spread or distribute something over a wide area, or to move in different directions.",
+    "examples": [
+      "Wind helps disperse pollen over considerable distances.",
+      "The volcanic eruption released particles that dispersed throughout the atmosphere."
+    ],
+    "collocations": [
+      "disperse particles",
+      "widely dispersed",
+      "disperse throughout"
+    ]
+  },
+  {
+    "id": "set-4-exceed",
+    "word": "Exceed",
+    "partOfSpeech": "verb",
+    "definition": "To be greater than a particular amount, limit, number or standard.",
+    "examples": [
+      "The concentration of pollutants in the river exceeded the maximum level permitted by environmental regulations.",
+      "The number of students applying to the university exceeded the institution's original expectations."
+    ],
+    "collocations": [
+      "exceed expectations",
+      "exceed the limit",
+      "exceed the maximum"
+    ]
+  },
+  {
+    "id": "set-4-exploit",
+    "word": "Exploit",
+    "partOfSpeech": "verb",
+    "definition": "To use a resource, opportunity or situation for one's own benefit, sometimes in an unfair or harmful way.",
+    "examples": [
+      "Several industries have exploited natural resources without considering their long-term environmental impact.",
+      "Early civilizations learned to exploit the fertile soil surrounding major river systems."
+    ],
+    "collocations": [
+      "exploit natural resources",
+      "exploit an opportunity",
+      "exploit a weakness"
+    ]
+  },
+  {
+    "id": "set-4-fundamental",
+    "word": "Fundamental",
+    "partOfSpeech": "adjective",
+    "definition": "Forming the essential foundation of something; extremely important to its existence or development.",
+    "examples": [
+      "Understanding the structure of DNA is fundamental to modern genetics.",
+      "The professor explained several fundamental principles of economic theory."
+    ],
+    "collocations": [
+      "fundamental principles",
+      "fundamental difference",
+      "fundamental importance"
+    ]
+  },
+  {
+    "id": "set-4-imply",
+    "word": "Imply",
+    "partOfSpeech": "verb",
+    "definition": "To suggest or indicate something without stating it directly.",
+    "examples": [
+      "The results imply that environmental conditions may influence the development of certain species.",
+      "The author's argument implies that technological progress does not always lead to social improvement."
+    ],
+    "collocations": [
+      "strongly imply",
+      "imply that",
+      "seem to imply"
+    ]
+  },
+  {
+    "id": "set-4-innovative",
+    "word": "Innovative",
+    "partOfSpeech": "adjective",
+    "definition": "Introducing new ideas, methods or technologies that are original and potentially useful.",
+    "examples": [
+      "The university developed an innovative approach to teaching complex scientific concepts.",
+      "Innovative agricultural techniques have helped farmers reduce water consumption."
+    ],
+    "collocations": [
+      "innovative approach",
+      "innovative technology",
+      "innovative solution"
+    ]
+  },
+  {
+    "id": "set-4-parameter",
+    "word": "Parameter",
+    "partOfSpeech": "noun",
+    "definition": "A measurable factor that helps define a system or process, or a limit within which an activity can take place.",
+    "examples": [
+      "The researchers adjusted several experimental parameters to determine which factors influenced the results.",
+      "The computer model uses temperature and humidity as key parameters when predicting weather conditions."
+    ],
+    "collocations": [
+      "key parameters",
+      "establish parameters",
+      "experimental parameters"
+    ]
+  },
+  {
+    "id": "set-4-simulate",
+    "word": "Simulate",
+    "partOfSpeech": "verb",
+    "definition": "To create an artificial representation of a real process, event or situation, often to study or predict its behavior.",
+    "examples": [
+      "Scientists use computer models to simulate the effects of climate change on ocean temperatures.",
+      "The engineering students designed an experiment to simulate the conditions experienced during an earthquake."
+    ],
+    "collocations": [
+      "simulate conditions",
+      "simulate a process",
+      "computer-simulated environment"
+    ]
   }
 ];
