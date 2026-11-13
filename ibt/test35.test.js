@@ -33,7 +33,7 @@ test('Test 35 enables exactly 27 tasks in the established section sequence', () 
   assert.equal(tasks.length, 27);
   assert.deepEqual([...new Set(tasks.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(tasks, (task) => task.section)).map(([key, value]) => [key, value.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
-  assert.deepEqual([...vm.runInContext('testCollections[1].tests', sandbox)], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36']);
+  assert.deepEqual([...vm.runInContext('testCollections[1].tests', sandbox)], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37']);
 });
 
 test('all 20 locked splits reconstruct the exact source passages with intact first sentences', () => {
