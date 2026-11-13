@@ -6,12 +6,13 @@ import { IDIOM_LESSONS } from './catalog.js';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 
-test('New Practice contains only Idioms Lessons; relocated cards occur once in General English', () => {
+test('New Practice contains Idioms Lessons and TOEFL Dictionary; General English cards remain unique', () => {
   const html = read('../index.html');
   const newPractice = html.slice(html.indexOf('id="new-practice-section"'), html.indexOf('<h2>Free Exercises</h2>'));
   const general = html.slice(html.indexOf('<h2>General English</h2>'), html.indexOf('<h2>Business</h2>'));
-  assert.equal((newPractice.match(/class="ex-card"/g) || []).length, 1);
+  assert.equal((newPractice.match(/class="ex-card"/g) || []).length, 2);
   assert.match(newPractice, /Idioms Lessons/);
+  assert.match(newPractice, /TOEFL Dictionary/);
   assert.match(html, /id="exercise-idioms"/);
   assert.match(html, /id="frame-idioms" title="Idioms Lessons"/);
   for (const handler of ['openCollocations', 'openListenAndWrite', 'openWordFamilies']) {

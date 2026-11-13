@@ -25,9 +25,12 @@ test('routes expose only the shell and browser assets contain no vocabulary', ()
   assert.ok(!routing.rewrites.some(route => route.destination.includes('/api/_lib/')));
 });
 
-test('TOEFL navigation follows existing login, upgrade and member flows', () => {
-  const section = app.slice(app.indexOf('<h2>TOEFL Practice</h2>'), app.indexOf('<h2>General English</h2>'));
+test('NEW has one dictionary card following existing login, upgrade and member flows', () => {
+  const section = app.slice(app.indexOf('id="new-practice-section"'), app.indexOf('<h2>Free Exercises</h2>'));
   assert.match(section, /onclick="openToeflDictionary\(\)"/);
+  assert.match(section, /id="access-toefl-dictionary">🔒 ePeak\+/);
+  assert.match(section, /onclick="openIdioms\(\)"/);
+  assert.equal((app.match(/onclick="openToeflDictionary\(\)"/g) || []).length, 1);
   assert.match(app, /id="frame-toefl-dictionary"[^>]*title="TOEFL Dictionary"/);
   const source = app.slice(app.indexOf('function updateToeflDictionaryCard()'), app.indexOf('function prepareWordFamiliesFrame()'));
   const tiers = app.slice(app.indexOf('function getEffectiveTier('), app.indexOf('// Popup presentation only'));

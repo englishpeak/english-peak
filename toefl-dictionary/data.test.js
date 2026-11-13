@@ -1,11 +1,26 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import test from 'node:test';
 import { TOEFL_DICTIONARY } from '../api/_lib/toefl-dictionary-data.js';
 import { filterEntries } from './dictionary.js';
 
 test('Set 1 contains exactly the 30 requested distinct words with complete entries', () => {
   const expected = 'Analyze Assess Assume Benefit Coherent Compile Comprehensive Consequently Considerable Contribute Crucial Decline Demonstrate Derive Diverse Emphasize Empirical Enhance Establish Evident Fluctuate Furthermore Generate Hypothesis Indicate Interpret Justify Maintain Significant Undergo'.split(' ');
-  assert.deepEqual(TOEFL_DICTIONARY.map(entry => entry.word).sort(), expected.sort());
+  const original = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-1-'));
+  assert.deepEqual(original.map(entry => entry.word).sort(), expected.sort());
+  // Freeze every original ID and content field while future sets are appended.
+  assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'b96e64a282ca0da7c35721ddb5aa3b765ccda364221d0e0617dc0fc4e161d63c');
+});
+
+test('the combined dictionary contains 50 unique, complete entries including all Set 2 words', () => {
+  const expected = 'Allocate Ambiguous Attribute Bias Capacity Constraint Contradict Correlate Diminish Distinguish Emerge Facilitate Inhibit Inevitable Prevalent Retain Subsequent Sustain Valid Widespread'.split(' ');
+  const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-2-'));
+  assert.deepEqual(added.map(entry => entry.word), expected);
+  assert.equal(TOEFL_DICTIONARY.length, 50);
+  for (const entry of added) {
+    assert.equal(entry.id, 'set-2-' + entry.word.toLowerCase());
+    assert.equal(entry.collocations.length, 3, entry.word);
+  }
   assert.equal(new Set(TOEFL_DICTIONARY.map(entry => entry.id)).size, TOEFL_DICTIONARY.length);
   assert.equal(new Set(TOEFL_DICTIONARY.map(entry => entry.word.toLowerCase())).size, TOEFL_DICTIONARY.length);
   for (const entry of TOEFL_DICTIONARY) {
@@ -24,8 +39,11 @@ test('Set 1 contains exactly the 30 requested distinct words with complete entri
 test('search ignores capitalization, sorts unsorted input, and does not mutate the bank', () => {
   const input = [...TOEFL_DICTIONARY].reverse();
   const before = [...input];
-  assert.deepEqual(filterEntries(input).map(entry => entry.word), TOEFL_DICTIONARY.map(entry => entry.word));
+  assert.deepEqual(filterEntries(input).map(entry => entry.word), TOEFL_DICTIONARY.map(entry => entry.word).sort((a, b) => a.localeCompare(b, 'en-US')));
   assert.deepEqual(filterEntries(input, '  eMPiR  ').map(entry => entry.word), ['Empirical']);
+  assert.deepEqual(filterEntries(input, '  aLLoC  ').map(entry => entry.word), ['Allocate']);
+  assert.deepEqual(filterEntries(input, 'WIDESPREAD').map(entry => entry.word), ['Widespread']);
+  assert.deepEqual(filterEntries(input, 'con').map(entry => entry.word), ['Consequently', 'Considerable', 'Constraint', 'Contradict', 'Contribute']);
   assert.deepEqual(filterEntries(input, 'zzzzz'), []);
   assert.deepEqual(input, before);
 });
@@ -33,6 +51,6 @@ test('search ignores capitalization, sorts unsorted input, and does not mutate t
 test('future entries are counted and sorted without changes to presentation code', () => {
   const next = { ...TOEFL_DICTIONARY[0], id: 'future-abstract', word: 'Abstract' };
   const result = filterEntries([...TOEFL_DICTIONARY, next]);
-  assert.equal(result.length, 31);
+  assert.equal(result.length, TOEFL_DICTIONARY.length + 1);
   assert.equal(result[0], next);
 });

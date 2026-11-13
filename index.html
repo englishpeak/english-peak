@@ -356,6 +356,10 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon purple">💡</div><div class="card-access access-free">Free Account · ePeak+</div></div>
         <div class="card-body"><div class="card-title">Idioms Lessons</div><div class="card-desc">Discover everyday idioms with multiple-choice meanings, example sentences, and natural Spanish equivalents.</div><div class="card-meta"><span class="meta-item">💡 10 idioms per lesson</span><span class="meta-item">🔐 Lesson 1 for members</span></div><button class="card-btn btn-open">Choose a Lesson →</button></div>
       </div>
+      <div class="ex-card" onclick="openToeflDictionary()">
+        <div class="card-header"><div class="card-icon purple">📖</div><div class="card-access access-locked" id="access-toefl-dictionary">🔒 ePeak+</div></div>
+        <div class="card-body"><div class="card-title">TOEFL Dictionary</div><div class="card-desc">Build your academic vocabulary, one word at a time. Explore definitions, examples, and common collocations.</div><div class="card-meta"><span class="meta-item">📚 Academic vocabulary</span></div><button class="card-btn btn-locked" id="btn-toefl-dictionary">🔐 Sign in to access</button></div>
+      </div>
     </div>
 
     <div class="section-header"><h2>Free Exercises</h2><p>No account needed</p></div>
@@ -385,10 +389,6 @@ body.download-preview-lock{overflow:hidden}
         <div class="card-header"><div class="card-icon gold">🌐</div><div class="card-access access-partial" id="access-ibt">🔓 2 of 9</div></div>
         <div class="card-body"><div class="card-title">TOEFL iBT Practice</div><div class="card-desc">Advanced iBT-style exercises updated to the latest 2026 format. Reading, listening and writing tasks. <strong>Immediate feedback</strong> and estimated result at the end of every test.</div><div class="card-meta"><span class="meta-item">🕐 Timed</span><span class="meta-item">🆕 2026 format</span><span class="meta-item" id="meta-ibt">9 tests · 2 unlocked</span></div><button class="card-btn btn-partial" id="btn-ibt">Start Practice →</button></div>
         <div class="lock-overlay" id="lock-ibt"><div class="lock-icon-big">🔒</div><div class="lock-title2">Unlock more iBT tests</div><div class="lock-sub2">Free account unlocks tests 1–5. ePeak+ unlocks all 9.</div><button class="lock-cta" onclick="showModal();event.stopPropagation()">Unlock now →</button><button class="lock-dismiss" onclick="hideLock('ibt');event.stopPropagation()">Maybe later</button></div>
-      </div>
-      <div class="ex-card" onclick="openToeflDictionary()">
-        <div class="card-header"><div class="card-icon purple">📖</div><div class="card-access access-locked" id="access-toefl-dictionary">🔒 ePeak+</div></div>
-        <div class="card-body"><div class="card-title">TOEFL Dictionary</div><div class="card-desc">Build your academic vocabulary, one word at a time. Explore definitions, examples, and common collocations.</div><div class="card-meta"><span class="meta-item">📚 Academic vocabulary</span></div><button class="card-btn btn-locked" id="btn-toefl-dictionary">🔐 Sign in to access</button></div>
       </div>
     </div>
 

@@ -455,5 +455,305 @@ export const TOEFL_DICTIONARY = [
       "undergo testing",
       "undergo a change"
     ]
+  },
+  {
+    "id": "set-2-allocate",
+    "word": "Allocate",
+    "partOfSpeech": "verb",
+    "definition": "To distribute or assign resources, money, time or responsibilities for a particular purpose.",
+    "examples": [
+      "The university allocated additional funding to scientific research.",
+      "Governments must decide how to allocate limited resources among public services."
+    ],
+    "collocations": [
+      "allocate resources",
+      "allocate funding",
+      "allocate time"
+    ]
+  },
+  {
+    "id": "set-2-ambiguous",
+    "word": "Ambiguous",
+    "partOfSpeech": "adjective",
+    "definition": "Having more than one possible meaning or interpretation; not clear or definite.",
+    "examples": [
+      "The instructions were ambiguous, causing several students to misunderstand the assignment.",
+      "The researchers could not draw a firm conclusion because the results were ambiguous."
+    ],
+    "collocations": [
+      "ambiguous language",
+      "ambiguous statement",
+      "ambiguous results"
+    ]
+  },
+  {
+    "id": "set-2-attribute",
+    "word": "Attribute",
+    "partOfSpeech": "verb",
+    "definition": "To explain something as being caused by a particular person, factor or situation.",
+    "examples": [
+      "Scientists attribute the increase in global temperatures primarily to human activities.",
+      "The professor attributed the improvement in test scores to changes in teaching methods."
+    ],
+    "collocations": [
+      "attribute success to",
+      "attribute the increase to",
+      "attribute differences to"
+    ]
+  },
+  {
+    "id": "set-2-bias",
+    "word": "Bias",
+    "partOfSpeech": "noun",
+    "definition": "An unfair preference or tendency that influences judgment, decisions or the interpretation of information.",
+    "examples": [
+      "Researchers must consider possible bias when designing surveys.",
+      "The study showed evidence of selection bias because the participants did not represent the wider population."
+    ],
+    "collocations": [
+      "selection bias",
+      "confirmation bias",
+      "cultural bias"
+    ]
+  },
+  {
+    "id": "set-2-capacity",
+    "word": "Capacity",
+    "partOfSpeech": "noun",
+    "definition": "The maximum amount something can contain, produce or handle, or the ability to do something.",
+    "examples": [
+      "The factory increased its production capacity by installing new equipment.",
+      "Scientists are studying the human brain's capacity to process complex information."
+    ],
+    "collocations": [
+      "production capacity",
+      "storage capacity",
+      "capacity to learn"
+    ]
+  },
+  {
+    "id": "set-2-constraint",
+    "word": "Constraint",
+    "partOfSpeech": "noun",
+    "definition": "Something that limits what can be done or restricts the choices available.",
+    "examples": [
+      "Budget constraints prevented the university from expanding its laboratory facilities.",
+      "The experiment had to be completed within strict time constraints."
+    ],
+    "collocations": [
+      "budget constraints",
+      "time constraints",
+      "environmental constraints"
+    ]
+  },
+  {
+    "id": "set-2-contradict",
+    "word": "Contradict",
+    "partOfSpeech": "verb",
+    "definition": "To state or show the opposite of something, making it impossible for both claims to be true in the same sense.",
+    "examples": [
+      "The new archaeological evidence contradicts earlier theories about the settlement.",
+      "The results of the second experiment directly contradicted the original findings."
+    ],
+    "collocations": [
+      "contradict the evidence",
+      "contradict previous findings",
+      "directly contradict"
+    ]
+  },
+  {
+    "id": "set-2-correlate",
+    "word": "Correlate",
+    "partOfSpeech": "verb",
+    "definition": "To have a relationship in which two or more things tend to change together.",
+    "examples": [
+      "The researchers found that exercise frequency correlated with improved sleep quality.",
+      "Higher levels of air pollution often correlate with an increased risk of respiratory problems."
+    ],
+    "collocations": [
+      "correlate with",
+      "strongly correlate with",
+      "positively correlate with"
+    ]
+  },
+  {
+    "id": "set-2-diminish",
+    "word": "Diminish",
+    "partOfSpeech": "verb",
+    "definition": "To become smaller, weaker or less important, or to make something decrease in these ways.",
+    "examples": [
+      "The effectiveness of the treatment diminished over time.",
+      "Limited access to education can diminish employment opportunities."
+    ],
+    "collocations": [
+      "diminish over time",
+      "diminish the impact",
+      "gradually diminish"
+    ]
+  },
+  {
+    "id": "set-2-distinguish",
+    "word": "Distinguish",
+    "partOfSpeech": "verb",
+    "definition": "To recognise or explain the differences between people, things, ideas or situations.",
+    "examples": [
+      "Students must learn to distinguish between reliable and unreliable sources.",
+      "The researcher used genetic evidence to distinguish the two species."
+    ],
+    "collocations": [
+      "distinguish between",
+      "clearly distinguish",
+      "distinguish one from another"
+    ]
+  },
+  {
+    "id": "set-2-emerge",
+    "word": "Emerge",
+    "partOfSpeech": "verb",
+    "definition": "To appear, develop or become known, especially after being hidden or previously unknown.",
+    "examples": [
+      "New technologies emerged during the Industrial Revolution.",
+      "A clear pattern emerged after the researchers analysed the survey responses."
+    ],
+    "collocations": [
+      "emerge from",
+      "new patterns emerge",
+      "emerge as a leader"
+    ]
+  },
+  {
+    "id": "set-2-facilitate",
+    "word": "Facilitate",
+    "partOfSpeech": "verb",
+    "definition": "To make a process, activity or action easier or more likely to succeed.",
+    "examples": [
+      "Digital platforms facilitate communication between students and instructors.",
+      "The new transportation system was designed to facilitate the movement of goods."
+    ],
+    "collocations": [
+      "facilitate learning",
+      "facilitate communication",
+      "facilitate the process"
+    ]
+  },
+  {
+    "id": "set-2-inhibit",
+    "word": "Inhibit",
+    "partOfSpeech": "verb",
+    "definition": "To prevent, slow down or restrict a process, activity or development.",
+    "examples": [
+      "Extremely low temperatures can inhibit the growth of certain bacteria.",
+      "A lack of financial resources may inhibit technological innovation."
+    ],
+    "collocations": [
+      "inhibit growth",
+      "inhibit development",
+      "inhibit the process"
+    ]
+  },
+  {
+    "id": "set-2-inevitable",
+    "word": "Inevitable",
+    "partOfSpeech": "adjective",
+    "definition": "Certain to happen or impossible to avoid.",
+    "examples": [
+      "Some scientists argue that technological change is an inevitable part of economic development.",
+      "Without adequate conservation efforts, the loss of certain habitats may become inevitable."
+    ],
+    "collocations": [
+      "inevitable consequence",
+      "inevitable outcome",
+      "almost inevitable"
+    ]
+  },
+  {
+    "id": "set-2-prevalent",
+    "word": "Prevalent",
+    "partOfSpeech": "adjective",
+    "definition": "Common or frequently found within a particular group, area or period.",
+    "examples": [
+      "The disease is more prevalent in regions with limited access to clean water.",
+      "Renewable energy technologies have become increasingly prevalent in modern cities."
+    ],
+    "collocations": [
+      "highly prevalent",
+      "prevalent among",
+      "more prevalent"
+    ]
+  },
+  {
+    "id": "set-2-retain",
+    "word": "Retain",
+    "partOfSpeech": "verb",
+    "definition": "To keep, preserve or continue to possess something.",
+    "examples": [
+      "Students are more likely to retain information when they review it regularly.",
+      "Certain types of soil can retain moisture for extended periods."
+    ],
+    "collocations": [
+      "retain information",
+      "retain moisture",
+      "retain control"
+    ]
+  },
+  {
+    "id": "set-2-subsequent",
+    "word": "Subsequent",
+    "partOfSpeech": "adjective",
+    "definition": "Happening or occurring after something else, especially as part of a sequence.",
+    "examples": [
+      "Subsequent research confirmed several of the original study's findings.",
+      "The discovery influenced the work of subsequent generations of scientists."
+    ],
+    "collocations": [
+      "subsequent research",
+      "subsequent generations",
+      "subsequent events"
+    ]
+  },
+  {
+    "id": "set-2-sustain",
+    "word": "Sustain",
+    "partOfSpeech": "verb",
+    "definition": "To maintain or support something so that it can continue over time.",
+    "examples": [
+      "The region must develop new strategies to sustain economic growth.",
+      "Healthy ecosystems depend on sufficient resources to sustain diverse populations."
+    ],
+    "collocations": [
+      "sustain growth",
+      "sustain an ecosystem",
+      "sustain attention"
+    ]
+  },
+  {
+    "id": "set-2-valid",
+    "word": "Valid",
+    "partOfSpeech": "adjective",
+    "definition": "Based on sound reasoning, evidence or accepted principles; reasonable or logically acceptable.",
+    "examples": [
+      "The researcher questioned whether the conclusions were valid given the small sample size.",
+      "A scientific argument must be supported by valid evidence and logical reasoning."
+    ],
+    "collocations": [
+      "valid argument",
+      "valid conclusion",
+      "valid reason"
+    ]
+  },
+  {
+    "id": "set-2-widespread",
+    "word": "Widespread",
+    "partOfSpeech": "adjective",
+    "definition": "Existing, occurring or affecting many people or places over a large area.",
+    "examples": [
+      "The invention of the printing press contributed to the widespread distribution of written information.",
+      "The severe drought caused widespread damage to agricultural regions."
+    ],
+    "collocations": [
+      "widespread adoption",
+      "widespread concern",
+      "widespread damage"
+    ]
   }
 ];
