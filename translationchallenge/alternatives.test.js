@@ -20,8 +20,8 @@ test("legacy translation challenge sentences gain accepted alternatives", () => 
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 
-  assert.equal(expandedSets.length, 13);
-  assert.equal(expandedSentences.length, 366);
+  assert.equal(expandedSets.length, 14);
+  assert.equal(expandedSentences.length, 390);
   expandedSentences.slice(0, 90).forEach((sentence, index) => {
     assert.ok(
       sentence.acceptedAnswers.length > originalCounts[index],
