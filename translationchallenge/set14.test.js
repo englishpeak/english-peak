@@ -6,6 +6,10 @@ import vm from "node:vm";
 
 const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 const data = html.slice(html.indexOf("const sets="), html.indexOf("const app="));
+const originalData = data.slice(0, data.indexOf("// Build out common, fully equivalent forms"));
+const originalSet14 = vm.runInNewContext(`${originalData}
+  sets.find(set => set.id === 14)
+`);
 const functions = html.split("\n").filter(line =>
   /^function (normalizeAnswer|stripPunctuationWords|setData|valid|currentUserAnswer)\(/.test(line)
 ).join("\n");
@@ -28,9 +32,13 @@ test("Set 14 preserves all supplied content in order and only uses the existing 
     assert.ok(sentence.note.trim());
   }
   assert.deepEqual(counts, { A1: 4, A2: 4, B1: 6, B2: 6, C1: 4, C2: 0 });
-  assert.equal(set14.sentences.reduce((sum, sentence) => sum + sentence.acceptedAnswers.length, 0), 188);
   // Fingerprint from the supplied text with the renderer's trailing periods omitted.
-  assert.equal(digest(set14.sentences), "c8d2afae8f5a869a2a531589fe319e0e6ac2b06c559179e571a335610a644644");
+  assert.equal(digest(originalSet14.sentences), "c8d2afae8f5a869a2a531589fe319e0e6ac2b06c559179e571a335610a644644");
+  const originalContent = set14.sentences.map((sentence, index) => ({
+    ...sentence,
+    acceptedAnswers: sentence.acceptedAnswers.slice(0, originalSet14.sentences[index].acceptedAnswers.length)
+  }));
+  assert.equal(digest(originalContent), digest(originalSet14.sentences));
 
   for (const [id, spanish, english] of [
     [4, "recogedor", "dustpan"],
@@ -73,14 +81,41 @@ test("Hard accepts each distinct curated answer with the existing normalization"
   }
 });
 
-test("Hard rejects incorrect auxiliaries, tense, word order, meaning, and unlisted variations", () => {
+test("Set 14 adds alternatives to every prompt with more coverage for longer prompts", () => {
+  const minimumByLevel = { A1: 5, A2: 9, B1: 11, B2: 18, C1: 22 };
+  for (const [index, sentence] of set14.sentences.entries()) {
+    const original = originalSet14.sentences[index];
+    const additions = sentence.acceptedAnswers.length - original.acceptedAnswers.length;
+    assert.ok(additions >= minimumByLevel[sentence.level], `Item ${sentence.id} added only ${additions}`);
+  }
+  assert.ok(app.valid("Are you all set to go?", set14.sentences[0], "Hard"));
+  assert.ok(app.valid("When you were finally called in, how long had you been waiting?", set14.sentences[5], "Hard"));
+  assert.ok(app.valid("I realised I'd mixed up the dates when I checked my calendar.", set14.sentences[23], "Hard"));
+});
+
+test("Medium accepts curated alternatives that fit its displayed opening", () => {
+  app.state.difficulty = "Medium";
+  for (const [index, sentence] of set14.sentences.entries()) {
+    app.state.index = index;
+    const opening = app.normalizeAnswer(sentence.mediumPrompt);
+    const completions = sentence.acceptedAnswers.map(app.normalizeAnswer)
+      .filter(answer => answer.startsWith(`${opening} `));
+    assert.ok(completions.length > 0, `No Medium alternatives for item ${sentence.id}`);
+    for (const answer of completions) {
+      app.entry().typed = answer.slice(opening.length).trim();
+      assert.ok(app.valid(app.currentUserAnswer(), sentence), answer);
+    }
+  }
+});
+
+test("Hard rejects incorrect auxiliaries, tense, word order, and meaning", () => {
   for (const [id, answer] of [
     [1, "Do you ready to leave?"],
     [3, "If we haven't booked ahead, we wouldn't have gotten a table."],
     [6, "How long you had been waiting when they finally called you in?"],
     [8, "I would have sent you the location, but my phone didn't die."],
     [18, "You promised you'd let me know as soon as you will find out anything."],
-    [24, "I realised I'd mixed up the dates when I checked my calendar."]
+    [24, "I realised I'd got the dates right when I checked my calendar."]
   ]) {
     assert.equal(app.valid(answer, set14.sentences[id - 1], "Hard"), false, answer);
   }
