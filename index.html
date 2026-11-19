@@ -82,7 +82,7 @@ body.sidebar-collapsed .topbar-brand-logo{opacity:1;visibility:visible;transform
 .screen.active{display:flex}
 .exercise-screen{display:none;flex-direction:column;height:calc(100vh - 0px);}
 .exercise-screen.active{display:flex}
-#exercise-idioms{height:calc(100dvh - 72px);min-height:0}
+#exercise-idioms,#exercise-spelling-bee{height:calc(100dvh - 72px);min-height:0}
 .exercise-topbar{background:white;border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:14px;flex-shrink:0}
 #exercise-itp-tests .exercise-topbar{background:var(--navy);border-bottom-color:rgba(255,255,255,0.1)}
 #exercise-itp-tests .exercise-title{color:white}
@@ -353,8 +353,8 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
-      <a class="ex-card spelling-bee-card" href="/spelling-bee">
-        <div class="card-header"><div class="card-icon blue" aria-hidden="true">🔊</div><div class="card-access access-free">Free Account · ePeak+</div></div>
+      <a class="ex-card spelling-bee-card" href="/?exercise=spelling-bee" onclick="openSpellingBee(event)">
+        <div class="card-header"><div class="card-icon blue" aria-hidden="true">🐝</div><div class="card-access access-free">Free Account · ePeak+</div></div>
         <div class="card-body"><div class="card-title">Spelling Bee</div><div class="card-desc">Listen to English words and practice spelling them at your level.</div><div class="card-meta"><span class="meta-item">A1–C2</span></div><span class="card-btn btn-open">Start Practice →</span></div>
       </a>
       <div class="ex-card" onclick="openIdioms()">
@@ -608,6 +608,11 @@ body.download-preview-lock{overflow:hidden}
   <div class="exercise-screen" id="exercise-emoji">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title" id="topbarTitleEmoji">Emoji Flashcards</div></div>
     <iframe class="exercise-frame" id="frame-emoji" src="" style="width:100%;height:calc(100vh - 56px);border:none;"></iframe>
+  </div>
+
+  <div class="exercise-screen" id="exercise-spelling-bee">
+    <div class="exercise-topbar"><button class="back-btn" type="button" onclick="showNewPractice()">← Dashboard</button></div>
+    <iframe class="exercise-frame" id="frame-spelling-bee" src="about:blank" title="Spelling Bee"></iframe>
   </div>
 
   <!-- ═══ TOEFL DICTIONARY (iframe) ═══ -->
@@ -1049,6 +1054,14 @@ window.addEventListener('message', async function(e) {
     history.replaceState({exercise:'idioms'}, '', '/idioms' + (lessonId === null ? '' : '?lesson=' + lessonId));
     return;
   }
+  if (e.data?.type === 'spellingBeeSignIn') {
+    var frame = document.getElementById('frame-spelling-bee');
+    if (e.origin !== window.location.origin || e.source !== frame.contentWindow ||
+        !document.getElementById('exercise-spelling-bee').classList.contains('active')) return;
+    showNewPractice();
+    requestSpellingBeeSignIn();
+    return;
+  }
   if (e.data && e.data.type === 'listenWriteAccessRequest') {
     if (e.source && typeof e.source.postMessage === 'function') {
       e.source.postMessage({ type: 'listenWriteAccess', authenticated: Boolean(_currentUser), plusAccess: hasFullAccessTier(getEffectiveTier(_currentProfile)) }, e.origin);
@@ -1105,6 +1118,7 @@ window.addEventListener('message', async function(e) {
 
 let _currentUser = null;
 let _currentProfile = null;
+let spellingBeeSignInPending = false;
 
 // Init auth state on load
 // Robust session init — handles Safari, Chrome, OAuth redirects
@@ -1114,10 +1128,7 @@ let _currentProfile = null;
     var { data: sessionData } = await sb.auth.getSession();
     if (sessionData && sessionData.session && sessionData.session.user) {
       _currentUser = sessionData.session.user;
-      if (returnToSpellingBeeAfterGoogle()) {
-        window.location.replace('/spelling-bee');
-        return;
-      }
+      if (returnToSpellingBeeAfterGoogle()) openSpellingBee();
       await loadProfile();
     } else {
       updateUIForVisitor();
@@ -1228,6 +1239,7 @@ function updateUIForUser() {
 }
 
 function updateUIForVisitor() {
+  if (document.getElementById('exercise-spelling-bee').classList.contains('active')) showNewPractice();
   notifyListenWriteAccess();
   document.getElementById('sidebarName').textContent = 'Guest';
   document.getElementById('sidebarAvatar').textContent = '👤';
@@ -1396,6 +1408,7 @@ function showAuthModal(tab) {
 }
 function closeAuthModal() {
   document.getElementById('authModalOverlay').classList.remove('show');
+  spellingBeeSignInPending = false;
 }
 function switchAuthTab(tab) {
   document.getElementById('authPanelLogin').style.display    = tab === 'login'    ? 'block' : 'none';
@@ -1421,9 +1434,11 @@ async function doLogin() {
     err.style.display = 'block';
     return;
   }
+  var openSpellingBeeAfterLogin = spellingBeeSignInPending;
   closeAuthModal();
-  if (new URLSearchParams(window.location.search).get('exercise') === 'spelling-bee') {
-    window.location.replace('/spelling-bee');
+  if (openSpellingBeeAfterLogin) {
+    _currentUser = result.data?.user || _currentUser;
+    openSpellingBee();
   }
 }
 
@@ -1489,7 +1504,7 @@ function returnToSpellingBeeAfterGoogle() {
 }
 
 async function signInGoogle() {
-  var returnToBee = new URLSearchParams(window.location.search).get('exercise') === 'spelling-bee';
+  var returnToBee = spellingBeeSignInPending;
   if (returnToBee) {
     try { sessionStorage.setItem('ep-spelling-bee-return', Date.now() + 15 * 60 * 1000); } catch {}
   }
@@ -1931,6 +1946,33 @@ function showNewPractice() {
     if(section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 40);
 }
+function requestSpellingBeeSignIn(tab) {
+  spellingBeeSignInPending = true;
+  showAuthModal(tab || 'login');
+}
+function openSpellingBee(event) {
+  if (event) {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+  }
+  if (!_currentUser) { requestSpellingBeeSignIn(); return; }
+
+  var screen = document.getElementById('exercise-spelling-bee');
+  if (screen.classList.contains('active')) return;
+  document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
+  screen.classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'Spelling Bee';
+  document.getElementById('topbarSub').textContent = '';
+  document.getElementById('frame-spelling-bee').src = '/spelling-bee';
+  closeMobileSidebar();
+}
+(function() {
+  var screen = document.getElementById('exercise-spelling-bee');
+  // Leaving the exercise stops audio and resets the round for the next visit.
+  new MutationObserver(function() {
+    if (!screen.classList.contains('active')) document.getElementById('frame-spelling-bee').src = 'about:blank';
+  }).observe(screen, { attributes: true, attributeFilter: ['class'] });
+})();
 function openIrregularVerbs() {
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-irregular-verbs').classList.add('active');
@@ -3034,9 +3076,13 @@ checkHamburger();
 // ── AUTO-OPEN AUTH / EXERCISE FROM URL PARAMETERS ──
 // Direct exercise pages use these existing dashboard auth tabs for sign-in and registration.
 (function() {
-  var authTab = new URLSearchParams(window.location.search).get('auth');
-  if (authTab === 'login' || authTab === 'register') showAuthModal(authTab);
-  if (['word-families', 'idioms', 'toefl-dictionary'].includes(new URLSearchParams(window.location.search).get('upgrade'))) showModal();
+  var params = new URLSearchParams(window.location.search);
+  var authTab = params.get('auth');
+  if (authTab === 'login' || authTab === 'register') {
+    if (params.get('exercise') === 'spelling-bee') requestSpellingBeeSignIn(authTab);
+    else showAuthModal(authTab);
+  }
+  if (['word-families', 'idioms', 'toefl-dictionary'].includes(params.get('upgrade'))) showModal();
 })();
 
 // Waits for auth session to resolve before opening, so tier-based locks are correct
@@ -3046,6 +3092,7 @@ checkHamburger();
   if (!exercise) return;
   // Idioms performs its own protected API checks; show the shell immediately.
   if (exercise === 'idioms') { openIdioms(); return; }
+  if (exercise === 'spelling-bee' && ['login', 'register'].includes(params.get('auth'))) return;
 
   function openExerciseWhenReady() {
     if (exercise === 'unscramble') openExercise('unscramble');
@@ -3061,6 +3108,7 @@ checkHamburger();
     else if (exercise === 'general') openGeneral();
     else if (exercise === 'word-families') openWordFamilies();
     else if (exercise === 'toefl-dictionary') openToeflDictionary();
+    else if (exercise === 'spelling-bee') openSpellingBee();
   }
 
   // Wait for Supabase session to resolve (max 2s) before opening

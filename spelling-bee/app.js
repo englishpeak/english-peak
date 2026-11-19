@@ -4,7 +4,12 @@ const signInUrl = '/?auth=login&exercise=spelling-bee';
 const accessStatus = document.getElementById('access-status');
 const accessRetry = document.getElementById('retry-access');
 const practice = document.getElementById('practice-content');
-const client = window.supabase?.createClient(
+const embedded = window.frameElement?.id === 'frame-spelling-bee';
+if (embedded) {
+  document.body.classList.add('embedded');
+  document.getElementById('dashboard-link').hidden = true;
+}
+const client = embedded ? window.parent.sb : window.supabase?.createClient(
   'https://jnqekougzmihjqffhuva.supabase.co',
   'sb_publishable_CbFnopBPwmFgfKfgQJGa8g_Qpbh6C5i',
   { auth: {
@@ -28,7 +33,8 @@ function signIn() {
   leavingPage = true;
   dispose?.();
   practice.replaceChildren();
-  window.location.replace(signInUrl);
+  if (embedded) window.parent.postMessage({ type: 'spellingBeeSignIn' }, window.location.origin);
+  else window.location.replace(signInUrl);
 }
 
 async function request(action, params = {}, signal) {
@@ -70,9 +76,10 @@ function mountPractice() {
       'check', 'feedback', 'reveal', 'next', 'restart'].map(id => [id, document.getElementById(id)])
   );
   const levels = [...practice.querySelectorAll('[data-level]')];
-  const rounds = new Map();
   const player = createPronunciationPlayer((questionId, signal) => request('audio', { questionId }, signal));
-  let difficulty = 'easy';
+  const selected = new Set(levels.map(button => button.dataset.level));
+  let round;
+  let pendingLoad;
   let controller;
   let audioId;
   let questionId;
@@ -98,7 +105,20 @@ function mountPractice() {
     elements.feedback.textContent = message;
   }
 
+  function showRoundEnd(focus) {
+    const restart = () => loadWord('start', undefined, true);
+    if (round.state === 'complete') {
+      showRoundStatus('Round complete! You’ve reached the end of this word list.', 'Start a new round', restart, focus);
+    } else if (round.state === 'filtered') {
+      showRoundStatus('No more words in the selected levels.', 'Start a new round', restart, focus);
+    } else {
+      showRoundStatus('There are no recordings available yet.', 'Check again', restart, focus);
+    }
+  }
+
   async function loadWord(action, previousId, focus = false) {
+    pendingLoad = { action, previousId };
+    if (!selected.size) return;
     controller?.abort();
     controller = new AbortController();
     const { signal } = controller;
@@ -114,30 +134,15 @@ function mountPractice() {
     elements.check.disabled = elements.reveal.disabled = false;
     showRoundStatus('Loading a word…');
 
-    const selected = difficulty;
     try {
-      let round = action === 'resume' ? rounds.get(selected) : null;
-      if (round?.state !== 'complete') {
-        let requestAction = action;
-        let from = previousId;
-        if (action === 'resume') {
-          requestAction = round?.state === 'question' ? 'skip' : 'start';
-          from = round?.questionId;
-        }
-        const response = await request(requestAction, { difficulty: selected, questionId: from }, signal);
-        round = await readResponse(response);
-      }
-      if (signal.aborted || !round) return;
-      rounds.set(selected, round);
+      const response = await request(action, { difficulties: [...selected], questionId: previousId }, signal);
+      const result = await readResponse(response);
+      if (signal.aborted || !result) return;
+      round = result;
+      pendingLoad = null;
 
-      if (round.state === 'complete') {
-        showRoundStatus('Round complete! You’ve reached the end of this word list.', 'Start a new round',
-          () => loadWord('start', undefined, true), focus);
-        return;
-      }
-      if (round.state === 'empty') {
-        showRoundStatus('There are no recordings available for this difficulty yet.', 'Check again',
-          () => loadWord('start', undefined, true), focus);
+      if (round.state !== 'question') {
+        showRoundEnd(focus);
         return;
       }
 
@@ -146,12 +151,15 @@ function mountPractice() {
       elements.check.hidden = false;
       showRoundStatus('');
       if (focus) elements.play.focus();
-      const { error } = await player.preload(audioId).download;
-      if (!signal.aborted && error && elements.play.dataset.state === 'idle') updateAudio('error', error);
+      const clip = player.preload(audioId);
+      const { error } = await clip.download;
+      if (!signal.aborted && !clip.controller.signal.aborted && error &&
+          !elements.question.hidden && elements.play.dataset.state === 'idle') updateAudio('error', error);
     } catch (error) {
       if (signal.aborted) return;
+      if (error.status === 409) pendingLoad = { action: 'start' };
       showRoundStatus(error.message, error.status === 409 ? 'Start a new round' : 'Try again',
-        () => error.status === 409 ? loadWord('start', undefined, true) : loadWord(action, previousId, true), focus);
+        () => loadWord(pendingLoad.action, pendingLoad.previousId, true), focus);
     }
   }
 
@@ -171,7 +179,7 @@ function mountPractice() {
       const result = await readResponse(response);
       if (signal.aborted || !result) return;
       questionId = result.questionId;
-      rounds.set(difficulty, { state: 'question', questionId });
+      round.questionId = questionId;
 
       if (result.state === 'incorrect') {
         feedback('incorrect', 'Not quite. Try again!');
@@ -195,7 +203,7 @@ function mountPractice() {
     } catch (error) {
       if (signal.aborted) return;
       if (error.status === 409) {
-        await loadWord('resume', undefined, true);
+        await loadWord('start', undefined, true);
       } else {
         feedback('error', error.message);
       }
@@ -206,12 +214,32 @@ function mountPractice() {
     }
   }
 
-  for (const level of levels) {
-    level.addEventListener('click', () => {
-      if (level.dataset.level === difficulty) return;
-      difficulty = level.dataset.level;
-      for (const button of levels) button.setAttribute('aria-pressed', String(button === level));
-      loadWord('resume');
+  for (const button of levels) {
+    button.addEventListener('click', () => {
+      const level = button.dataset.level;
+      if (!selected.delete(level)) selected.add(level);
+      button.setAttribute('aria-pressed', String(selected.has(level)));
+
+      if (!selected.size) {
+        if (pendingLoad) controller?.abort();
+        player.stop();
+        updateAudio('idle', '');
+        elements.question.hidden = true;
+        showRoundStatus('Select at least one difficulty level to practice.');
+      } else if (pendingLoad) {
+        loadWord(pendingLoad.action, pendingLoad.previousId);
+      } else if (round.state === 'question') {
+        if (selected.has(round.difficulty)) {
+          elements.question.hidden = false;
+          showRoundStatus('');
+        } else {
+          loadWord('skip', round.questionId);
+        }
+      } else if (round.state === 'filtered') {
+        loadWord('resume', round.questionId);
+      } else {
+        showRoundEnd(false);
+      }
     });
   }
   elements.play.addEventListener('click', () => player.play(audioId, updateAudio));
@@ -250,7 +278,12 @@ async function openPractice() {
 }
 
 accessRetry.addEventListener('click', openPractice);
-client?.auth.onAuthStateChange((event, session) => {
+const authListener = client?.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_OUT' || (activeUserId && session?.user?.id && session.user.id !== activeUserId)) signIn();
 });
+if (embedded) {
+  window.addEventListener('pagehide', event => {
+    if (!event.persisted) authListener?.data?.subscription?.unsubscribe();
+  });
+}
 openPractice();

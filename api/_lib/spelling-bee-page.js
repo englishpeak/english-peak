@@ -2,8 +2,8 @@ export const SPELLING_BEE_MARKUP = `
   <h1 class="ep-heading">Spelling Bee</h1>
   <div class="levels" role="group" aria-label="Difficulty">
     <button type="button" data-level="easy" aria-pressed="true">Easy <small>A1–A2</small></button>
-    <button type="button" data-level="medium" aria-pressed="false">Medium <small>B1–B2</small></button>
-    <button type="button" data-level="hard" aria-pressed="false">Hard <small>C1–C2</small></button>
+    <button type="button" data-level="medium" aria-pressed="true">Medium <small>B1–B2</small></button>
+    <button type="button" data-level="hard" aria-pressed="true">Hard <small>C1–C2</small></button>
   </div>
   <section class="ep-card practice" aria-labelledby="practice-title">
     <h2 class="ep-heading" id="practice-title">Listen and spell</h2>
@@ -11,8 +11,8 @@ export const SPELLING_BEE_MARKUP = `
     <p id="round-status" role="status"></p>
     <button type="button" class="secondary" id="restart" hidden></button>
     <div id="question" hidden>
-      <button type="button" id="play" aria-describedby="audio-status">
-        <span aria-hidden="true">🔊</span> Play pronunciation
+      <button type="button" id="play" aria-label="Play pronunciation" aria-describedby="audio-status">
+        <span aria-hidden="true">▶</span>
       </button>
       <p id="audio-status" role="status"></p>
       <button type="button" class="secondary" id="skip" hidden>Skip this word</button>

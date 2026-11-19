@@ -1,6 +1,7 @@
 [hidden] { display: none !important; }
 
 body { margin: 0; }
+body.embedded h1 { display: none; }
 
 .activity {
   box-sizing: border-box;
@@ -61,13 +62,11 @@ button:disabled { cursor: default; opacity: .65; }
 #round-status:not(:empty) { margin: 24px 0 12px; }
 
 #play {
-  display: inline-flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  min-height: 64px;
-  max-width: 100%;
-  padding: 12px 20px;
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
   border: 1px solid var(--ep-border);
   border-radius: var(--ep-radius-xl);
   background: var(--ep-card-soft);
