@@ -114,6 +114,7 @@ body.sidebar-collapsed .topbar-brand-logo{opacity:1;visibility:visible;transform
 .section-header p{font-size:0.82rem;color:#888}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-bottom:28px}
 .ex-card{background:white;border-radius:18px;overflow:hidden;border:1.5px solid var(--border);transition:transform .22s,box-shadow .22s;position:relative;cursor:pointer}
+.spelling-bee-card{text-decoration:none}
 .ex-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(13,59,111,0.1)}
 .card-header{padding:22px 22px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .card-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
@@ -352,6 +353,10 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
+      <a class="ex-card spelling-bee-card" href="/spelling-bee">
+        <div class="card-header"><div class="card-icon blue" aria-hidden="true">🔊</div><div class="card-access access-free">Free Account · ePeak+</div></div>
+        <div class="card-body"><div class="card-title">Spelling Bee</div><div class="card-desc">Listen to English words and practice spelling them at your level.</div><div class="card-meta"><span class="meta-item">A1–C2</span></div><span class="card-btn btn-open">Start Practice →</span></div>
+      </a>
       <div class="ex-card" onclick="openIdioms()">
         <div class="card-header"><div class="card-icon purple">💡</div><div class="card-access access-free">Free Account · ePeak+</div></div>
         <div class="card-body"><div class="card-title">Idioms Lessons</div><div class="card-desc">Discover everyday idioms with multiple-choice meanings, example sentences, and natural Spanish equivalents.</div><div class="card-meta"><span class="meta-item">💡 10 idioms per lesson</span><span class="meta-item">🔐 Lesson 1 for members</span></div><button class="card-btn btn-open">Choose a Lesson →</button></div>
@@ -1109,6 +1114,10 @@ let _currentProfile = null;
     var { data: sessionData } = await sb.auth.getSession();
     if (sessionData && sessionData.session && sessionData.session.user) {
       _currentUser = sessionData.session.user;
+      if (returnToSpellingBeeAfterGoogle()) {
+        window.location.replace('/spelling-bee');
+        return;
+      }
       await loadProfile();
     } else {
       updateUIForVisitor();
@@ -1413,6 +1422,9 @@ async function doLogin() {
     return;
   }
   closeAuthModal();
+  if (new URLSearchParams(window.location.search).get('exercise') === 'spelling-bee') {
+    window.location.replace('/spelling-bee');
+  }
 }
 
 async function doRegister() {
@@ -1466,11 +1478,26 @@ async function doForgotPassword() {
   succ.style.display = 'block';
 }
 
+function returnToSpellingBeeAfterGoogle() {
+  try {
+    var expires = Number(sessionStorage.getItem('ep-spelling-bee-return'));
+    sessionStorage.removeItem('ep-spelling-bee-return');
+    return expires > Date.now();
+  } catch {
+    return false;
+  }
+}
+
 async function signInGoogle() {
-  await sb.auth.signInWithOAuth({
+  var returnToBee = new URLSearchParams(window.location.search).get('exercise') === 'spelling-bee';
+  if (returnToBee) {
+    try { sessionStorage.setItem('ep-spelling-bee-return', Date.now() + 15 * 60 * 1000); } catch {}
+  }
+  var result = await sb.auth.signInWithOAuth({
     provider: 'google',
     options: { redirectTo: 'https://epeak.app/' }
   });
+  if (returnToBee && result.error) returnToSpellingBeeAfterGoogle();
 }
 
 // Override showModal to show auth if not logged in

@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { hasFullAccessTier } from '../businesscases/access.js';
 import { TOEFL_DICTIONARY } from './_lib/toefl-dictionary-data.js';
 import { sendVocabularyAudio } from './_lib/vocabulary-audio.js';
+import spellingBeeHandler from './_lib/spelling-bee.js';
 
 const entriesById = new Map(TOEFL_DICTIONARY.map(entry => [entry.id, entry]));
 const dictionaryEntries = TOEFL_DICTIONARY.map(({ audioPath, ...entry }) => entry);
@@ -65,6 +66,8 @@ const configuredHandler = process.env.SUPABASE_URL && process.env.SUPABASE_SERVI
   : null;
 
 export default async function handler(req, res) {
+  // The Spelling Bee rewrite shares this function to stay within Vercel's function limit.
+  if (req.query?.exercise === 'spelling-bee') return spellingBeeHandler(req, res);
   if (!configuredHandler) {
     res.setHeader('Cache-Control', 'private, no-store, max-age=0');
     res.setHeader('CDN-Cache-Control', 'no-store');
