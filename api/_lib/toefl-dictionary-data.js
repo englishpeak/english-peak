@@ -2,11 +2,18 @@
 // Vercel excludes api/** from static output and /_ paths from API entrypoints.
 // The API handler bundles this imported module server-side.
 // Append future sets here; IDs stay stable and the UI derives its count and order.
+// Levels refer to the meaning and part of speech taught in each entry. Use the
+// American Oxford 3000/5000 first, then the CEFR-J Wordlist 1.5 and Octanove
+// Vocabulary Profile C1/C2 1.0. Use an editorial estimate where coverage differs
+// or where the entry's meaning is missing from the references.
+// https://www.oxfordlearnersdictionaries.com/wordlists/oxford3000-5000
+// https://github.com/openlanguageprofiles/olp-en-cefrj
 /**
  * @typedef {Object} DictionaryEntry
  * @property {string} id
  * @property {string} word
  * @property {'noun'|'verb'|'adjective'|'adverb'} partOfSpeech
+ * @property {'A1'|'A2'|'B1'|'B2'|'C1'|'C2'} cefrLevel
  * @property {string} definition
  * @property {string} spanish Spanish equivalents matching the definition and part of speech.
  * @property {[string, string]} examples
@@ -19,6 +26,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-analyze",
     "word": "Analyze",
     "partOfSpeech": "verb",
+    "cefrLevel": "A2",
     "definition": "To examine something carefully in order to understand its parts, causes or meaning.",
     "spanish": "analizar",
     "examples": [
@@ -35,6 +43,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-assess",
     "word": "Assess",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To evaluate the quality, importance, effect or condition of something.",
     "spanish": "evaluar; valorar",
     "examples": [
@@ -51,6 +60,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-assume",
     "word": "Assume",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To accept something as true without having definite proof.",
     "spanish": "suponer",
     "examples": [
@@ -67,6 +77,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-benefit",
     "word": "Benefit",
     "partOfSpeech": "noun",
+    "cefrLevel": "A2",
     "definition": "A positive effect or advantage that something provides.",
     "spanish": "beneficio; ventaja",
     "examples": [
@@ -83,6 +94,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-coherent",
     "word": "Coherent",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Logical, consistent and easy to understand.",
     "spanish": "coherente",
     "examples": [
@@ -99,6 +111,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-compile",
     "word": "Compile",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To collect information from different sources and arrange it in an organized form.",
     "spanish": "recopilar",
     "examples": [
@@ -115,6 +128,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-comprehensive",
     "word": "Comprehensive",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Including all or nearly all the important details or aspects of something.",
     "spanish": "exhaustivo; integral",
     "examples": [
@@ -131,6 +145,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-consequently",
     "word": "Consequently",
     "partOfSpeech": "adverb",
+    "cefrLevel": "B2",
     "definition": "As a result of something that happened previously.",
     "spanish": "en consecuencia; por lo tanto",
     "examples": [
@@ -143,6 +158,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-considerable",
     "word": "Considerable",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Large or important in amount, size or degree.",
     "spanish": "considerable; importante",
     "examples": [
@@ -159,6 +175,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-contribute",
     "word": "Contribute",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To be one of the causes of something or help produce a particular result.",
     "spanish": "contribuir; aportar",
     "examples": [
@@ -175,6 +192,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-crucial",
     "word": "Crucial",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Extremely important or necessary for something to succeed or happen.",
     "spanish": "crucial; decisivo",
     "examples": [
@@ -191,6 +209,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-decline",
     "word": "Decline",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To decrease in amount, number, quality or strength.",
     "spanish": "disminuir; decaer",
     "examples": [
@@ -207,6 +226,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-demonstrate",
     "word": "Demonstrate",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To show clearly that something is true or how something works.",
     "spanish": "demostrar",
     "examples": [
@@ -223,6 +243,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-derive",
     "word": "Derive",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To obtain or develop something from a particular source.",
     "spanish": "obtener; derivar de",
     "examples": [
@@ -239,6 +260,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-diverse",
     "word": "Diverse",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Including people, ideas or things of many different types.",
     "spanish": "diverso; variado",
     "examples": [
@@ -255,6 +277,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-emphasize",
     "word": "Emphasize",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To give special importance or attention to something.",
     "spanish": "enfatizar; destacar",
     "examples": [
@@ -271,6 +294,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-empirical",
     "word": "Empirical",
     "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
     "definition": "Based on observation, experience or experiments rather than theory alone.",
     "spanish": "empírico",
     "examples": [
@@ -287,6 +311,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-enhance",
     "word": "Enhance",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To improve or increase the quality, value or effectiveness of something.",
     "spanish": "mejorar; potenciar",
     "examples": [
@@ -303,6 +328,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-establish",
     "word": "Establish",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To create or introduce something that is intended to last or function regularly.",
     "spanish": "establecer; crear",
     "examples": [
@@ -319,6 +345,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-evident",
     "word": "Evident",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Clear or easily recognized from the available information or evidence.",
     "spanish": "evidente; claro",
     "examples": [
@@ -335,6 +362,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-fluctuate",
     "word": "Fluctuate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C2",
     "definition": "To rise and fall or change irregularly over time.",
     "spanish": "fluctuar; oscilar",
     "examples": [
@@ -351,6 +379,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-furthermore",
     "word": "Furthermore",
     "partOfSpeech": "adverb",
+    "cefrLevel": "B2",
     "definition": "In addition to what has already been said; used to introduce another supporting point.",
     "spanish": "además; es más",
     "examples": [
@@ -363,6 +392,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-generate",
     "word": "Generate",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To produce, create or cause something to exist.",
     "spanish": "generar; producir",
     "examples": [
@@ -379,6 +409,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-hypothesis",
     "word": "Hypothesis",
     "partOfSpeech": "noun",
+    "cefrLevel": "B2",
     "definition": "A proposed explanation for something that can be tested through observation or experimentation.",
     "spanish": "hipótesis",
     "examples": [
@@ -395,6 +426,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-indicate",
     "word": "Indicate",
     "partOfSpeech": "verb",
+    "cefrLevel": "B1",
     "definition": "To show, suggest or provide evidence that something is true or exists.",
     "spanish": "indicar; señalar",
     "examples": [
@@ -411,6 +443,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-interpret",
     "word": "Interpret",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To explain or understand the meaning of information, events or results.",
     "spanish": "interpretar",
     "examples": [
@@ -427,6 +460,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-justify",
     "word": "Justify",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To provide convincing reasons or evidence showing that something is reasonable or acceptable.",
     "spanish": "justificar",
     "examples": [
@@ -443,6 +477,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-maintain",
     "word": "Maintain",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To keep something in a particular condition or at a particular level.",
     "spanish": "mantener",
     "examples": [
@@ -459,6 +494,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-significant",
     "word": "Significant",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Important or large enough to be noticed or have an effect.",
     "spanish": "significativo; importante",
     "examples": [
@@ -475,6 +511,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-1-undergo",
     "word": "Undergo",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To experience a process, change or event, especially one that has a noticeable effect.",
     "spanish": "experimentar; pasar por",
     "examples": [
@@ -491,6 +528,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-allocate",
     "word": "Allocate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To distribute or assign resources, money, time or responsibilities for a particular purpose.",
     "spanish": "asignar; distribuir",
     "examples": [
@@ -507,6 +545,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-ambiguous",
     "word": "Ambiguous",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Having more than one possible meaning or interpretation; not clear or definite.",
     "spanish": "ambiguo",
     "examples": [
@@ -523,6 +562,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-attribute",
     "word": "Attribute",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To explain something as being caused by a particular person, factor or situation.",
     "spanish": "atribuir",
     "examples": [
@@ -539,6 +579,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-bias",
     "word": "Bias",
     "partOfSpeech": "noun",
+    "cefrLevel": "B2",
     "definition": "An unfair preference or tendency that influences judgment, decisions or the interpretation of information.",
     "spanish": "sesgo; parcialidad",
     "examples": [
@@ -555,6 +596,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-capacity",
     "word": "Capacity",
     "partOfSpeech": "noun",
+    "cefrLevel": "B2",
     "definition": "The maximum amount something can contain, produce or handle, or the ability to do something.",
     "spanish": "capacidad",
     "examples": [
@@ -571,6 +613,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-constraint",
     "word": "Constraint",
     "partOfSpeech": "noun",
+    "cefrLevel": "C1",
     "definition": "Something that limits what can be done or restricts the choices available.",
     "spanish": "restricción; limitación",
     "examples": [
@@ -587,6 +630,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-contradict",
     "word": "Contradict",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To state or show the opposite of something, making it impossible for both claims to be true in the same sense.",
     "spanish": "contradecir",
     "examples": [
@@ -603,6 +647,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-correlate",
     "word": "Correlate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To have a relationship in which two or more things tend to change together.",
     "spanish": "correlacionar; relacionarse",
     "examples": [
@@ -619,6 +664,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-diminish",
     "word": "Diminish",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To become smaller, weaker or less important, or to make something decrease in these ways.",
     "spanish": "disminuir; reducir",
     "examples": [
@@ -635,6 +681,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-distinguish",
     "word": "Distinguish",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To recognise or explain the differences between people, things, ideas or situations.",
     "spanish": "distinguir; diferenciar",
     "examples": [
@@ -651,6 +698,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-emerge",
     "word": "Emerge",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To appear, develop or become known, especially after being hidden or previously unknown.",
     "spanish": "surgir; emerger",
     "examples": [
@@ -667,6 +715,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-facilitate",
     "word": "Facilitate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To make a process, activity or action easier or more likely to succeed.",
     "spanish": "facilitar",
     "examples": [
@@ -683,6 +732,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-inhibit",
     "word": "Inhibit",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To prevent, slow down or restrict a process, activity or development.",
     "spanish": "inhibir; frenar",
     "examples": [
@@ -699,6 +749,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-inevitable",
     "word": "Inevitable",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Certain to happen or impossible to avoid.",
     "spanish": "inevitable",
     "examples": [
@@ -715,6 +766,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-prevalent",
     "word": "Prevalent",
     "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
     "definition": "Common or frequently found within a particular group, area or period.",
     "spanish": "frecuente; común",
     "examples": [
@@ -731,6 +783,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-retain",
     "word": "Retain",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To keep, preserve or continue to possess something.",
     "spanish": "retener; conservar",
     "examples": [
@@ -747,6 +800,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-subsequent",
     "word": "Subsequent",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Happening or occurring after something else, especially as part of a sequence.",
     "spanish": "posterior; subsiguiente",
     "examples": [
@@ -763,6 +817,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-sustain",
     "word": "Sustain",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To maintain or support something so that it can continue over time.",
     "spanish": "sostener; mantener",
     "examples": [
@@ -779,6 +834,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-valid",
     "word": "Valid",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Based on sound reasoning, evidence or accepted principles; reasonable or logically acceptable.",
     "spanish": "válido; fundamentado",
     "examples": [
@@ -795,6 +851,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-2-widespread",
     "word": "Widespread",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Existing, occurring or affecting many people or places over a large area.",
     "spanish": "generalizado; extendido",
     "examples": [
@@ -811,6 +868,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-abundant",
     "word": "Abundant",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Existing or available in large quantities; more than enough.",
     "spanish": "abundante",
     "examples": [
@@ -827,6 +885,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-adapt",
     "word": "Adapt",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To change or adjust in order to function successfully in new or different conditions.",
     "spanish": "adaptar; adaptarse",
     "examples": [
@@ -843,6 +902,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-advocate",
     "word": "Advocate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To publicly support or recommend a particular idea, policy or course of action.",
     "spanish": "defender; propugnar",
     "examples": [
@@ -859,6 +919,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-aggregate",
     "word": "Aggregate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C2",
     "definition": "To collect and combine separate pieces of information or individual amounts into a single total or group.",
     "spanish": "agrupar; agregar",
     "examples": [
@@ -875,6 +936,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-arbitrary",
     "word": "Arbitrary",
     "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
     "definition": "Based on personal choice, chance or convenience rather than a clear reason, rule or consistent system.",
     "spanish": "arbitrario",
     "examples": [
@@ -891,6 +953,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-cease",
     "word": "Cease",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To stop happening or to bring an activity or process to an end.",
     "spanish": "cesar; dejar de",
     "examples": [
@@ -907,6 +970,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-constitute",
     "word": "Constitute",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To form or make up something, or to be considered a particular thing.",
     "spanish": "constituir; conformar",
     "examples": [
@@ -923,6 +987,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-detect",
     "word": "Detect",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To discover or notice something, especially something that is difficult to see or recognise.",
     "spanish": "detectar",
     "examples": [
@@ -939,6 +1004,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-deviate",
     "word": "Deviate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C2",
     "definition": "To move away from an expected direction, established standard or usual pattern.",
     "spanish": "desviarse",
     "examples": [
@@ -955,6 +1021,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-elaborate",
     "word": "Elaborate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To explain or describe something in greater detail.",
     "spanish": "explicar en detalle; ampliar",
     "examples": [
@@ -971,6 +1038,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-exclude",
     "word": "Exclude",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To deliberately leave someone or something out of a group, activity or consideration.",
     "spanish": "excluir",
     "examples": [
@@ -987,6 +1055,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-infer",
     "word": "Infer",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To reach a conclusion based on available evidence or information rather than direct statements.",
     "spanish": "inferir; deducir",
     "examples": [
@@ -1003,6 +1072,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-integrate",
     "word": "Integrate",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To combine separate elements into a unified system or make something part of a larger whole.",
     "spanish": "integrar",
     "examples": [
@@ -1019,6 +1089,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-modify",
     "word": "Modify",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To make partial changes to something, usually to improve it or make it more suitable for a particular purpose.",
     "spanish": "modificar",
     "examples": [
@@ -1035,6 +1106,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-persist",
     "word": "Persist",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To continue to exist or happen, often despite difficulties or attempts to stop it.",
     "spanish": "persistir; perdurar",
     "examples": [
@@ -1051,6 +1123,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-proportion",
     "word": "Proportion",
     "partOfSpeech": "noun",
+    "cefrLevel": "B2",
     "definition": "A part or share of a whole, especially when compared with the total amount.",
     "spanish": "proporción",
     "examples": [
@@ -1067,6 +1140,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-reinforce",
     "word": "Reinforce",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To make something stronger or more effective, or to provide additional support for an idea or belief.",
     "spanish": "reforzar",
     "examples": [
@@ -1083,6 +1157,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-relevant",
     "word": "Relevant",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Directly connected to or important for the subject, situation or problem being considered.",
     "spanish": "pertinente; relevante",
     "examples": [
@@ -1099,6 +1174,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-substitute",
     "word": "Substitute",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To use one thing instead of another, especially when the original is unavailable or unsuitable.",
     "spanish": "sustituir; reemplazar",
     "examples": [
@@ -1115,6 +1191,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-3-verify",
     "word": "Verify",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To confirm that something is true, accurate or correct by examining evidence or conducting checks.",
     "spanish": "verificar; comprobar",
     "examples": [
@@ -1131,6 +1208,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-accumulate",
     "word": "Accumulate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To gradually collect or increase in quantity over a period of time.",
     "spanish": "acumular; acumularse",
     "examples": [
@@ -1147,6 +1225,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-adequate",
     "word": "Adequate",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Sufficient or satisfactory for a particular purpose or situation.",
     "spanish": "adecuado; suficiente",
     "examples": [
@@ -1163,6 +1242,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-alter",
     "word": "Alter",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To change something or make it different, usually without completely replacing it.",
     "spanish": "alterar; modificar",
     "examples": [
@@ -1179,6 +1259,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-anticipate",
     "word": "Anticipate",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To expect or predict that something will happen and sometimes prepare for it in advance.",
     "spanish": "prever; anticipar",
     "examples": [
@@ -1195,6 +1276,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-approximate",
     "word": "Approximate",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Close to the actual amount, number or value, but not completely exact.",
     "spanish": "aproximado",
     "examples": [
@@ -1211,6 +1293,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-attain",
     "word": "Attain",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To achieve or reach a particular goal, level, condition or standard, often through effort.",
     "spanish": "alcanzar; lograr",
     "examples": [
@@ -1227,6 +1310,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-catalyst",
     "word": "Catalyst",
     "partOfSpeech": "noun",
+    "cefrLevel": "B2",
     "definition": "Something that causes or accelerates a change or process; in chemistry, a substance that speeds up a reaction without being consumed.",
     "spanish": "catalizador",
     "examples": [
@@ -1243,6 +1327,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-coincide",
     "word": "Coincide",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To happen at the same time as something else, or to correspond closely with it.",
     "spanish": "coincidir",
     "examples": [
@@ -1259,6 +1344,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-controversial",
     "word": "Controversial",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Causing strong disagreement or opposing opinions among people.",
     "spanish": "controvertido; polémico",
     "examples": [
@@ -1275,6 +1361,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-deduce",
     "word": "Deduce",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To reach a logical conclusion by considering facts, evidence or information.",
     "spanish": "deducir",
     "examples": [
@@ -1291,6 +1378,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-deteriorate",
     "word": "Deteriorate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To become progressively worse in quality, condition or effectiveness.",
     "spanish": "deteriorarse; empeorar",
     "examples": [
@@ -1307,6 +1395,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-discrete",
     "word": "Discrete",
     "partOfSpeech": "adjective",
+    "cefrLevel": "C2",
     "definition": "Separate and distinct from other things rather than forming a continuous whole.",
     "spanish": "separado; distinto",
     "examples": [
@@ -1323,6 +1412,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-disperse",
     "word": "Disperse",
     "partOfSpeech": "verb",
+    "cefrLevel": "C2",
     "definition": "To spread or distribute something over a wide area, or to move in different directions.",
     "spanish": "dispersar; dispersarse",
     "examples": [
@@ -1339,6 +1429,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-exceed",
     "word": "Exceed",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To be greater than a particular amount, limit, number or standard.",
     "spanish": "superar; exceder",
     "examples": [
@@ -1355,6 +1446,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-exploit",
     "word": "Exploit",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To use a resource, opportunity or situation for one's own benefit, sometimes in an unfair or harmful way.",
     "spanish": "explotar; aprovechar",
     "examples": [
@@ -1371,6 +1463,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-fundamental",
     "word": "Fundamental",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Forming the essential foundation of something; extremely important to its existence or development.",
     "spanish": "fundamental; esencial",
     "examples": [
@@ -1387,6 +1480,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-imply",
     "word": "Imply",
     "partOfSpeech": "verb",
+    "cefrLevel": "B2",
     "definition": "To suggest or indicate something without stating it directly.",
     "spanish": "dar a entender; sugerir",
     "examples": [
@@ -1403,6 +1497,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-innovative",
     "word": "Innovative",
     "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
     "definition": "Introducing new ideas, methods or technologies that are original and potentially useful.",
     "spanish": "innovador",
     "examples": [
@@ -1419,6 +1514,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-parameter",
     "word": "Parameter",
     "partOfSpeech": "noun",
+    "cefrLevel": "C1",
     "definition": "A measurable factor that helps define a system or process, or a limit within which an activity can take place.",
     "spanish": "parámetro",
     "examples": [
@@ -1435,6 +1531,7 @@ export const TOEFL_DICTIONARY = [
     "id": "set-4-simulate",
     "word": "Simulate",
     "partOfSpeech": "verb",
+    "cefrLevel": "C1",
     "definition": "To create an artificial representation of a real process, event or situation, often to study or predict its behavior.",
     "spanish": "simular",
     "examples": [

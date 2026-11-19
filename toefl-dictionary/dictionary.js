@@ -18,6 +18,11 @@ export function createWordTile(entry, index, onToggle) {
   button.id = 'word-' + entry.id;
   button.className = 'word-tile';
   button.textContent = entry.word;
+  if (entry.cefrLevel) {
+    const badge = textElement('span', 'cefr-badge', entry.cefrLevel);
+    badge.prepend(textElement('span', 'sr-only', ' CEFR level '));
+    button.append(' ', badge);
+  }
   button.style.setProperty('--tint', TINTS[index % TINTS.length]);
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-controls', 'word-detail');
