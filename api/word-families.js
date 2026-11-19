@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 import { hasFullAccessTier } from '../businesscases/access.js';
 
 // The canonical audited bank lives in this server function, never in a public
-// static JSON file or browser bundle. The original 300 audited records are
-// preserved; IDs 301–560 extend the bank with additional learner word families.
+// static JSON file or browser bundle. IDs 301 and up extend the original 300
+// audited families. Family 83 also includes additional employment forms.
 export const WORD_FAMILIES = [
   {
     "id": 1,
@@ -1659,13 +1659,17 @@ export const WORD_FAMILIES = [
       [
         "employment",
         "employee",
-        "employer"
+        "employer",
+        "unemployment",
+        "employability"
       ],
       [
-        "employed"
+        "employed",
+        "employable"
       ],
       [
-        "unemployed"
+        "unemployed",
+        "unemployable"
       ],
       null
     ]
@@ -10606,6 +10610,86 @@ export const WORD_FAMILIES = [
         "precisely",
         "imprecisely"
       ]
+    ]
+  },
+  {
+    "id": 561,
+    "forms": [
+      ["hire"],
+      ["hire", "hiring"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 562,
+    "forms": [
+      ["recruit"],
+      ["recruitment", "recruiter", "recruit"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 563,
+    "forms": [
+      ["interview"],
+      ["interview", "interviewer", "interviewee"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 564,
+    "forms": [
+      ["apprentice"],
+      ["apprentice", "apprenticeship"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 565,
+    "forms": [
+      ["intern"],
+      ["intern", "internship"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 566,
+    "forms": [
+      ["resign"],
+      ["resignation"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 567,
+    "forms": [
+      ["dismiss"],
+      ["dismissal"],
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 568,
+    "forms": [
+      ["retire"],
+      ["retirement", "retiree"],
+      ["retired"],
+      null,
+      null
     ]
   }
 ];

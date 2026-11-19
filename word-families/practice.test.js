@@ -14,6 +14,7 @@ class Element {
     this.classList = {
       add: (...names) => { this.className = [...new Set([...this.className.split(' '), ...names])].join(' '); },
       remove: (...names) => { this.className = this.className.split(' ').filter(name => !names.includes(name)).join(' '); },
+      toggle: (name, force) => { if (force) this.classList.add(name); else this.classList.remove(name); },
     };
   }
   appendChild(child) {
@@ -44,7 +45,7 @@ class Element {
 
 function fixture(families = WORD_FAMILIES, random = 0.25) {
   const root = new Element();
-  const ids = ['practice-rows', 'feedback', 'check', 'reveal', 'next', 'bank', 'bank-rows', 'round-number', 'coverage', 'easy-workspace', 'easy-feedback', 'word-cloud', 'easy-targets', 'easy-round', 'easy-coverage', 'easy-check', 'easy-reveal', 'easy-next', 'level-easy', 'level-hard'];
+  const ids = ['practice-rows', 'feedback', 'check', 'reveal', 'next', 'bank', 'bank-rows', 'bank-search', 'bank-clear', 'bank-status', 'bank-results', 'round-number', 'coverage', 'easy-workspace', 'easy-feedback', 'word-cloud', 'easy-targets', 'easy-round', 'easy-coverage', 'easy-check', 'easy-reveal', 'easy-next', 'level-easy', 'level-hard'];
   for (const id of ids) { const element = new Element(); element.id = id; root.appendChild(element); }
   for (const className of ['under-table', 'instructions', 'instruction-note']) { const element = new Element(); element.className = className; root.appendChild(element); }
   const hard = new Element(); hard.setAttribute('aria-labelledby', 'round-title'); root.appendChild(hard);
@@ -61,7 +62,7 @@ function fixture(families = WORD_FAMILIES, random = 0.25) {
   return { get: document.getElementById, root };
 }
 
-test('both modes traverse all 560 families before repeating and the bank renders all rows once', () => {
+test('both modes traverse the full bank before repeating and the bank renders all rows once', () => {
   const { get, root } = fixture();
   const hardSeen = new Set();
   const easySeen = new Set();
@@ -79,21 +80,65 @@ test('both modes traverse all 560 families before repeating and the bank renders
     assert.ok(get('practice-rows').querySelectorAll('input').every(input => input.value && input.readOnly));
     if (index < WORD_FAMILIES.length - 1) { get('next').fire('click'); get('easy-next').fire('click'); }
   }
-  assert.equal(hardSeen.size, 560);
-  assert.equal(easySeen.size, 560);
-  assert.equal(get('coverage').textContent, '560 / 560');
-  assert.equal(get('easy-coverage').textContent, '560 of 560 families seen');
+  const count = WORD_FAMILIES.length;
+  assert.equal(hardSeen.size, count);
+  assert.equal(easySeen.size, count);
+  assert.equal(get('coverage').textContent, `${count} / ${count}`);
+  assert.equal(get('easy-coverage').textContent, `${count} of ${count} families seen`);
   get('bank').open = true;
   get('bank').fire('toggle');
   get('bank').fire('toggle');
-  assert.equal(get('bank-rows').children.length, 560);
+  assert.equal(get('bank-rows').children.length, count);
   get('next').fire('click'); get('easy-next').fire('click');
-  assert.equal(get('coverage').textContent, '560 / 560');
-  assert.equal(get('easy-coverage').textContent, '560 of 560 families seen');
+  assert.equal(get('coverage').textContent, `${count} / ${count}`);
+  assert.equal(get('easy-coverage').textContent, `${count} of ${count} families seen`);
 });
 
-test('every new family accepts every stored alternative for each possible Hard clue', () => {
-  for (const family of WORD_FAMILIES.slice(300)) {
+test('Word Bank search finds partial and alternative forms, shows empty results, and clears without changing practice', () => {
+  const { get } = fixture();
+  const search = get('bank-search');
+  const bank = get('bank');
+  const practiceRow = get('practice-rows').children[0];
+  const visibleRows = () => get('bank-rows').children.filter(row => !row.hidden);
+  const type = value => { search.value = value; search.fire('input'); };
+  const firstResultForm = column => visibleRows()[0].children[column].children[1].textContent;
+
+  assert.equal(visibleRows().length, 0);
+  bank.open = true;
+  bank.fire('toggle');
+  assert.equal(visibleRows().length, WORD_FAMILIES.length);
+  type('  EMPLOYA  ');
+  assert.equal(visibleRows().length, 1);
+  assert.equal(firstResultForm(1), 'employ');
+  assert.match(firstResultForm(2), /employee.*unemployment.*employability/);
+  assert.equal(get('bank-status').textContent, '1 matching family');
+  bank.open = false;
+  bank.fire('toggle');
+  bank.open = true;
+  bank.fire('toggle');
+  assert.equal(visibleRows().length, 1);
+
+  type('CO‑OPERATION');
+  assert.equal(visibleRows().length, 1);
+  assert.match(firstResultForm(2), /co-operation/);
+  type('interviewee');
+  assert.equal(visibleRows().length, 1);
+  assert.equal(firstResultForm(1), 'interview');
+  type('zzzz');
+  assert.equal(visibleRows().length, 0);
+  assert.equal(get('bank-results').hidden, true);
+  assert.equal(get('bank-status').textContent, 'No matching word families.');
+
+  get('bank-clear').fire('click');
+  assert.equal(search.value, '');
+  assert.equal(get('bank-results').hidden, false);
+  assert.equal(visibleRows().length, WORD_FAMILIES.length);
+  assert.equal(get('bank-clear').hidden, true);
+  assert.equal(get('practice-rows').children[0], practiceRow);
+});
+
+test('new and expanded families accept every stored alternative for each possible Hard clue', () => {
+  for (const family of WORD_FAMILIES.filter(({ id }) => id === 83 || id > 300)) {
     const available = family.forms.map((form, index) => form ? index : -1).filter(index => index >= 0);
     for (let clueIndex = 0; clueIndex < available.length; clueIndex++) {
       const { get } = fixture([family], (clueIndex + 0.5) / available.length);
