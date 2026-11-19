@@ -135,7 +135,7 @@ export function initializeDictionary(entries, fetchPronunciation) {
     else if (!panel.hidden) animatePanel(false);
   }
 
-  function toggle(entry, button) {
+  function toggle(entry, button, { preload = true } = {}) {
     if (active?.entry.id === entry.id) { close(); return; }
     close(true);
     stopAnimation();
@@ -149,6 +149,7 @@ export function initializeDictionary(entries, fetchPronunciation) {
     positionPanel();
     panel.hidden = false;
     animatePanel(true);
+    if (preload) pronunciation.preload(entry.id);
   }
 
   function render() {
@@ -162,7 +163,7 @@ export function initializeDictionary(entries, fetchPronunciation) {
     count.textContent = `${visible.length} ${visible.length === 1 ? 'word' : 'words'}`;
     empty.hidden = visible.length > 0;
     const previousIndex = visible.findIndex(entry => entry.id === previousId);
-    if (previousIndex !== -1) toggle(visible[previousIndex], tiles[previousIndex]);
+    if (previousIndex !== -1) toggle(visible[previousIndex], tiles[previousIndex], { preload: false });
   }
 
   search.addEventListener('input', render);
