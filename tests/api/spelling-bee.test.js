@@ -106,11 +106,12 @@ test('route shell is public, exercise markup and every activity action require a
   const index = readFileSync(new URL('../../index.html', import.meta.url), 'utf8');
   const vercel = JSON.parse(readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
   assert.doesNotMatch(shell, /Listen and spell|id="answer"/);
-  assert.match(index, /id="new-practice-section"[^]*?href="\/spelling-bee"/);
+  assert.match(index, /id="new-practice-section"[^]*?class="ex-card spelling-bee-card"[^]*?🐝/);
+  assert.match(index, /id="frame-spelling-bee" src="about:blank" title="Spelling Bee"/);
   assert.ok(vercel.rewrites.some(route => route.source === '/api/spelling-bee' &&
     route.destination === '/api/toefl-dictionary?exercise=spelling-bee'));
 
-  for (const action of ['page', 'start', 'audio', 'check', 'reveal', 'next', 'skip']) {
+  for (const action of ['page', 'start', 'audio', 'check', 'reveal', 'next', 'skip', 'resume']) {
     for (const account of [null, 'anonymous', 'invalid']) {
       assert.equal((await call(action, {}, account)).status, 401);
     }
@@ -124,6 +125,8 @@ test('route shell is public, exercise markup and every activity action require a
     const { html } = await response.json();
     assert.match(html, /Listen and spell/);
     assert.match(html, /spellcheck="false"/);
+    assert.equal([...html.matchAll(/data-level="(?:easy|medium|hard)" aria-pressed="true"/g)].length, 3);
+    assert.match(html, /id="play" aria-label="Play pronunciation"[^]*?<span aria-hidden="true">▶<\/span>\s*<\/button>/);
     assert.doesNotMatch(html, /apple|indicate|pervasive|\.mp3/);
 
     for (const [difficulty, expected] of Object.entries({ easy, medium, hard })) {
@@ -148,7 +151,7 @@ test('question IDs hide the word, belong to one member and advance only after a 
   const { call, calls } = await fixture(t, { available: easy });
   const initial = await (await call('start', { difficulty: 'easy' })).json();
   const id = initial.questionId;
-  assert.deepEqual(Object.keys(initial), ['state', 'questionId']);
+  assert.deepEqual(Object.keys(initial), ['state', 'questionId', 'difficulty']);
   assert.doesNotMatch(Buffer.from(id, 'base64url').toString(), /apple|banana|\.mp3/);
   assert.equal((await call('audio', { questionId: id }, members[1])).status, 409);
   assert.equal((await call('audio', { questionId: (id[0] === 'A' ? 'B' : 'A') + id.slice(1) })).status, 409);
@@ -186,4 +189,54 @@ test('missing audio can be skipped and an unavailable difficulty does not borrow
   assert.deepEqual(await (await call('skip', { questionId })).json(), { state: 'complete' });
   assert.deepEqual(await (await call('start', { difficulty: 'hard' })).json(), { state: 'empty' });
   assert.equal((await call('start', { difficulty: '__proto__' })).status, 400);
+});
+
+test('combined rounds draw from enabled levels and preserve unseen words when filters change', async t => {
+  const { call, calls } = await fixture(t);
+  const all = ['easy', 'medium', 'hard'];
+  const invalid = await call('start', { difficulties: [] });
+  assert.equal(invalid.status, 400);
+  assert.deepEqual(calls.lists, []);
+  assert.equal((await call('start', { difficulties: ['easy', '__proto__'] })).status, 400);
+
+  async function advance(round, difficulties) {
+    const response = await call(round.state === 'filtered' ? 'resume' : 'skip', {
+      questionId: round.questionId, difficulties,
+    });
+    assert.equal(response.status, 200);
+    return response.json();
+  }
+
+  const { questionId } = await (await call('start', { difficulties: all })).json();
+  const combined = [];
+  let round = { state: 'question', questionId };
+  while (round.state === 'question') {
+    assert.equal((await call('audio', { questionId: round.questionId })).status, 200);
+    combined.push(calls.downloads.at(-1));
+    round = await advance(round, all);
+  }
+  assert.equal(round.state, 'complete');
+  assert.deepEqual(combined.sort(), recordings.map(word => `en-US/${word}.mp3`).sort());
+
+  round = await (await call('start', { difficulties: ['medium'] })).json();
+  assert.equal(round.difficulty, 'medium');
+  round = await advance(round, ['medium']);
+  assert.equal(round.difficulty, 'medium');
+  round = await advance(round, ['medium']);
+  assert.equal(round.state, 'filtered');
+  assert.equal((await call('audio', { questionId: round.questionId })).status, 400);
+  assert.equal((await advance(round, ['medium'])).state, 'filtered');
+  assert.equal(calls.lists.length, 2);
+
+  round = await advance(round, ['easy', 'hard']);
+  const remaining = [];
+  while (round.state === 'question') {
+    assert.ok(['easy', 'hard'].includes(round.difficulty));
+    assert.equal((await call('audio', { questionId: round.questionId })).status, 200);
+    remaining.push(calls.downloads.at(-1));
+    round = await advance(round, all);
+  }
+  assert.equal(round.state, 'complete');
+  assert.deepEqual(remaining.sort(), [...easy, ...hard].map(word => `en-US/${word}.mp3`).sort());
+  assert.equal(calls.lists.length, 2);
 });

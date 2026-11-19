@@ -8,6 +8,10 @@ import { SPELLING_BEE_MARKUP } from './spelling-bee-page.js';
 const ROUND_LIFETIME_MS = 24 * 60 * 60 * 1000;
 const LIST_LIMIT = 1000;
 const AUDIO_BUCKET = 'word-audio';
+const difficultyByLevel = new Map(Object.entries(LEVELS_BY_DIFFICULTY).flatMap(
+  ([difficulty, levels]) => levels.map(level => [level, difficulty])
+));
+const allDifficulties = Object.keys(LEVELS_BY_DIFFICULTY);
 const catalogVersion = createHash('sha256').update(JSON.stringify(SPELLING_BEE_WORDS)).digest('base64url');
 
 function setResponseHeaders(res) {
@@ -38,7 +42,11 @@ function createQuestions(secret) {
         decipher.setAAD(Buffer.from(userId));
         decipher.setAuthTag(bytes.subarray(12, 28));
         const question = JSON.parse(Buffer.concat([decipher.update(bytes.subarray(28)), decipher.final()]));
-        return question.version === catalogVersion && question.expiresAt > Date.now() ? question : null;
+        if (question.version !== catalogVersion || question.expiresAt <= Date.now()) return null;
+        if (question.remaining) return question;
+        // Earlier rounds used a cursor into a single-difficulty list.
+        const { order, ...state } = question;
+        return { ...state, remaining: order.slice(state.index), index: 0 };
       } catch {
         return null;
       }
@@ -46,10 +54,22 @@ function createQuestions(secret) {
   };
 }
 
-async function getAvailableWords(storage, levels) {
+function readDifficulties(body, fallback) {
+  let difficulties = body.difficulties;
+  if (difficulties === undefined) difficulties = body.difficulty === undefined ? fallback : [body.difficulty];
+  if (!Array.isArray(difficulties) || !difficulties.length || difficulties.length > allDifficulties.length ||
+      difficulties.some(difficulty => !allDifficulties.includes(difficulty))) return null;
+  return new Set(difficulties);
+}
+
+function entryDifficulty(entryIndex) {
+  return difficultyByLevel.get(SPELLING_BEE_WORDS[entryIndex].cefrLevel);
+}
+
+async function getAvailableWords(storage, difficulties) {
   const candidates = new Map();
   SPELLING_BEE_WORDS.forEach((entry, index) => {
-    if (!levels.includes(entry.cefrLevel)) return;
+    if (!difficulties.has(entryDifficulty(index))) return;
     const slash = entry.audioPath.lastIndexOf('/');
     const folder = entry.audioPath.slice(0, slash);
     const filename = entry.audioPath.slice(slash + 1);
@@ -108,6 +128,16 @@ async function sendAudio(storage, entry, res) {
 export function createSpellingBeeHandler({ supabase, secret }) {
   const questions = createQuestions(secret);
 
+  function selectQuestion(round, difficulties, userId) {
+    if (!round.remaining.length) return { state: 'complete' };
+    const index = round.remaining.findIndex(entry => difficulties.has(entryDifficulty(entry)));
+    if (index === -1) {
+      return { state: 'filtered', questionId: questions.seal({ ...round, index, stage: 'waiting' }, userId) };
+    }
+    const questionId = questions.seal({ ...round, index, stage: 'active' }, userId);
+    return { state: 'question', questionId, difficulty: entryDifficulty(round.remaining[index]) };
+  }
+
   return async function handler(req, res) {
     setResponseHeaders(res);
     if (req.method !== 'POST') {
@@ -132,32 +162,37 @@ export function createSpellingBeeHandler({ supabase, secret }) {
         return res.status(200).json({ html: SPELLING_BEE_MARKUP });
       }
       if (body?.action === 'start') {
-        if (typeof body.difficulty !== 'string' || !Object.hasOwn(LEVELS_BY_DIFFICULTY, body.difficulty)) {
-          return res.status(400).json({ error: 'Choose a difficulty.' });
-        }
-        const order = await getAvailableWords(supabase.storage.from(AUDIO_BUCKET), LEVELS_BY_DIFFICULTY[body.difficulty]);
-        if (!order.length) return res.status(200).json({ state: 'empty' });
-        const questionId = questions.seal({
-          version: catalogVersion, expiresAt: Date.now() + ROUND_LIFETIME_MS,
-          order, index: 0, stage: 'active',
-        }, user.id);
-        return res.status(200).json({ state: 'question', questionId });
+        const difficulties = readDifficulties(body);
+        if (!difficulties) return res.status(400).json({ error: 'Choose at least one difficulty level.' });
+        // Multi-level rounds retain disabled words so re-enabling a level can resume the same shuffle.
+        const pool = body.difficulties === undefined ? difficulties : new Set(allDifficulties);
+        const remaining = await getAvailableWords(supabase.storage.from(AUDIO_BUCKET), pool);
+        if (!remaining.length) return res.status(200).json({ state: 'empty' });
+        return res.status(200).json(selectQuestion({
+          version: catalogVersion, expiresAt: Date.now() + ROUND_LIFETIME_MS, remaining,
+        }, difficulties, user.id));
       }
-      if (!['audio', 'check', 'reveal', 'next', 'skip'].includes(body?.action)) {
+      if (!['audio', 'check', 'reveal', 'next', 'skip', 'resume'].includes(body?.action)) {
         return res.status(400).json({ error: 'Invalid exercise action.' });
       }
 
       const question = questions.open(body.questionId, user.id);
       if (!question) return res.status(409).json({ error: 'This round has expired. Start a new round to continue.' });
-      const entry = SPELLING_BEE_WORDS[question.order[question.index]];
       const finished = question.stage === 'correct' || question.stage === 'revealed';
-      if (body.action === 'audio') return await sendAudio(supabase.storage.from(AUDIO_BUCKET), entry, res);
-      if (body.action === 'skip' || (body.action === 'next' && finished)) {
-        const index = question.index + 1;
-        if (index === question.order.length) return res.status(200).json({ state: 'complete' });
-        const questionId = questions.seal({ ...question, index, stage: 'active' }, user.id);
-        return res.status(200).json({ state: 'question', questionId });
+      const waiting = question.stage === 'waiting';
+      const canAdvance = !waiting && (body.action === 'skip' || (body.action === 'next' && finished));
+      if (canAdvance || (waiting && body.action === 'resume')) {
+        const difficulties = readDifficulties(body, allDifficulties);
+        if (!difficulties) return res.status(400).json({ error: 'Choose at least one difficulty level.' });
+        const remaining = canAdvance
+          ? question.remaining.filter((_, index) => index !== question.index)
+          : question.remaining;
+        return res.status(200).json(selectQuestion({ ...question, remaining }, difficulties, user.id));
       }
+
+      if (waiting) return res.status(400).json({ error: 'Choose a difficulty level with words left in this round.' });
+      const entry = SPELLING_BEE_WORDS[question.remaining[question.index]];
+      if (body.action === 'audio') return await sendAudio(supabase.storage.from(AUDIO_BUCKET), entry, res);
       if (body.action === 'reveal' && question.stage === 'incorrect') {
         const questionId = questions.seal({ ...question, stage: 'revealed' }, user.id);
         return res.status(200).json({ state: 'revealed', word: entry.word, questionId });
