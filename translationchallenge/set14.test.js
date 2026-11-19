@@ -93,6 +93,23 @@ test("Set 14 adds alternatives to every prompt with more coverage for longer pro
   assert.ok(app.valid("I realised I'd mixed up the dates when I checked my calendar.", set14.sentences[23], "Hard"));
 });
 
+test("the next batch preserves prior answers and adds Medium completions to every Set 14 prompt", () => {
+  const priorCounts = [15, 22, 28, 16, 35, 27, 16, 28, 22, 16, 32, 21, 15, 18, 31, 17, 33, 27, 21, 9, 32, 19, 35, 24];
+  const minimumByLevel = { A1: 3, A2: 5, B1: 8, B2: 14, C1: 17 };
+  const priorSentences = set14.sentences.map((sentence, index) => ({
+    ...sentence,
+    acceptedAnswers: sentence.acceptedAnswers.slice(0, priorCounts[index])
+  }));
+  assert.equal(digest(priorSentences), "f450ad8b4f28b83048257cf7f060b665d2634cdb5aef9cb1d6232d51a146a39e");
+
+  for (const [index, sentence] of set14.sentences.entries()) {
+    const additions = sentence.acceptedAnswers.slice(priorCounts[index]);
+    assert.ok(additions.length >= minimumByLevel[sentence.level], `Too few new answers for item ${sentence.id}`);
+    const opening = `${app.normalizeAnswer(sentence.mediumPrompt)} `;
+    assert.ok(additions.some(answer => app.normalizeAnswer(answer).startsWith(opening)), `No new Medium completion for item ${sentence.id}`);
+  }
+});
+
 test("Medium accepts curated alternatives that fit its displayed opening", () => {
   app.state.difficulty = "Medium";
   for (const [index, sentence] of set14.sentences.entries()) {
