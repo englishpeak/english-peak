@@ -61,22 +61,22 @@ test('all existing full-access tiers and the is_admin override retain access', a
     assert.equal(res.statusCode, 200);
     assert.equal(res.body.userId, 'verified-user');
     assert.deepEqual(res.body.entries, TOEFL_DICTIONARY.map(({ audioPath, ...entry }) => entry));
-    assert.equal(res.body.entries.length, 90);
+    assert.equal(res.body.entries.length, 100);
   }
 });
 
-test('all 90 vocabulary entries resolve to distinct lowercase MP3 paths and can specify an override', () => {
+test('all 100 vocabulary entries resolve to distinct lowercase MP3 paths and can specify an override', () => {
   const paths = TOEFL_DICTIONARY.map(vocabularyAudioPath);
-  assert.equal(new Set(paths).size, 90);
+  assert.equal(new Set(paths).size, 100);
   for (const path of paths) assert.match(path, /^en-US\/[a-z]+\.mp3$/);
   assert.equal(vocabularyAudioPath({ word: 'Read', audioPath: 'en-US/read-past.mp3' }), 'en-US/read-past.mp3');
 });
 
 test('member audio requests serve the corresponding private MP3 without a redirect or filename', async () => {
-  for (const [audio, filename] of [['set-1-analyze', 'analyze'], ['set-3-abundant', 'abundant'], ['set-4-accumulate', 'accumulate']]) {
+  for (const { id: audio, word } of TOEFL_DICTIONARY) {
     const { handler, calls, res } = fixture();
     await handler(request('Bearer valid-token', { query: { audio, path: 'ignored.mp3' } }), res);
-    assert.deepEqual(calls.slice(-2), [['bucket', 'word-audio'], ['download', `en-US/${filename}.mp3`]]);
+    assert.deepEqual(calls.slice(-2), [['bucket', 'word-audio'], ['download', `en-US/${word.toLowerCase()}.mp3`]], word);
     assert.equal(res.statusCode, 200);
     assert.deepEqual(res.body, audioBytes);
     assert.equal(res.headers['Content-Type'], 'audio/mpeg');

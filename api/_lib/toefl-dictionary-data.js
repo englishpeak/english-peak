@@ -1544,5 +1544,175 @@ export const TOEFL_DICTIONARY = [
       "simulate a process",
       "computer-simulated environment"
     ]
+  },
+  {
+    "id": "set-5-alleviate",
+    "word": "Alleviate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1",
+    "definition": "To make a problem, difficulty or unpleasant situation less severe.",
+    "spanish": "aliviar",
+    "examples": [
+      "The city introduced new transportation routes to alleviate traffic congestion.",
+      "Government subsidies were proposed to alleviate the financial burden on low-income households."
+    ],
+    "collocations": [
+      "alleviate pressure",
+      "alleviate symptoms",
+      "alleviate concerns"
+    ]
+  },
+  {
+    "id": "set-5-analogous",
+    "word": "Analogous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
+    "definition": "Similar to something else in certain important ways, especially in function or structure.",
+    "spanish": "análogo",
+    "examples": [
+      "The professor described the flow of electricity as analogous to water moving through pipes.",
+      "Scientists observed an analogous process in a different species."
+    ],
+    "collocations": [
+      "analogous to",
+      "analogous situation",
+      "analogous process"
+    ]
+  },
+  {
+    "id": "set-5-ascertain",
+    "word": "Ascertain",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1",
+    "definition": "To discover or establish something with certainty by examining evidence or information.",
+    "spanish": "determinar; averiguar",
+    "examples": [
+      "Archaeologists used radiocarbon dating to ascertain the age of the wooden artifacts.",
+      "Further testing is necessary to ascertain whether the samples contain harmful compounds."
+    ],
+    "collocations": [
+      "ascertain the cause",
+      "ascertain whether",
+      "ascertain the extent of"
+    ]
+  },
+  {
+    "id": "set-5-discrepancy",
+    "word": "Discrepancy",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1",
+    "definition": "A difference between two things that should be the same or consistent.",
+    "spanish": "discrepancia",
+    "examples": [
+      "A discrepancy between the two surveys prompted the research team to review its methods.",
+      "The report identified a significant discrepancy in the estimates of annual rainfall."
+    ],
+    "collocations": [
+      "discrepancy between",
+      "significant discrepancy",
+      "discrepancy in"
+    ]
+  },
+  {
+    "id": "set-5-feasible",
+    "word": "Feasible",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
+    "definition": "Possible or practical to accomplish with the available resources, time or technology.",
+    "spanish": "viable; factible",
+    "examples": [
+      "Engineers evaluated whether large-scale desalination would be economically feasible.",
+      "The proposed experiment was not feasible with the laboratory's existing equipment."
+    ],
+    "collocations": [
+      "feasible solution",
+      "economically feasible",
+      "technically feasible"
+    ]
+  },
+  {
+    "id": "set-5-illustrate",
+    "word": "Illustrate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "B2",
+    "definition": "To explain or make something clear by providing examples, diagrams or other supporting information.",
+    "spanish": "ilustrar",
+    "examples": [
+      "The lecturer used a diagram to illustrate how sedimentary rocks form.",
+      "These findings illustrate the importance of controlling for external variables."
+    ],
+    "collocations": [
+      "illustrate a point",
+      "illustrate the concept",
+      "clearly illustrate"
+    ]
+  },
+  {
+    "id": "set-5-mitigate",
+    "word": "Mitigate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1",
+    "definition": "To reduce the severity, harmful effects or seriousness of something.",
+    "spanish": "mitigar; atenuar",
+    "examples": [
+      "Restoring wetlands can mitigate the effects of coastal flooding.",
+      "The university introduced new safeguards to mitigate the risks of data loss."
+    ],
+    "collocations": [
+      "mitigate the effects",
+      "mitigate risks",
+      "mitigate damage"
+    ]
+  },
+  {
+    "id": "set-5-pervasive",
+    "word": "Pervasive",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2",
+    "definition": "Existing or spreading throughout every part of a place, system or society.",
+    "spanish": "generalizado; omnipresente",
+    "examples": [
+      "The pervasive use of plastic packaging has raised serious environmental concerns.",
+      "Social hierarchies were pervasive throughout the empire's administrative system."
+    ],
+    "collocations": [
+      "pervasive influence",
+      "pervasive problem",
+      "pervasive presence"
+    ]
+  },
+  {
+    "id": "set-5-preliminary",
+    "word": "Preliminary",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
+    "definition": "Coming before a more detailed or final stage of a process, investigation or activity.",
+    "spanish": "preliminar",
+    "examples": [
+      "Preliminary findings suggest that the treatment may improve recovery times.",
+      "The researchers conducted a preliminary analysis before designing a larger study."
+    ],
+    "collocations": [
+      "preliminary findings",
+      "preliminary results",
+      "preliminary analysis"
+    ]
+  },
+  {
+    "id": "set-5-reliable",
+    "word": "Reliable",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "B2",
+    "definition": "Able to be trusted to provide accurate information or perform consistently well.",
+    "spanish": "fiable; confiable",
+    "examples": [
+      "Scientists need reliable measurements to compare results across different laboratories.",
+      "The historian sought reliable sources before drawing conclusions about the event."
+    ],
+    "collocations": [
+      "reliable data",
+      "reliable source",
+      "reliable evidence"
+    ]
   }
 ];
