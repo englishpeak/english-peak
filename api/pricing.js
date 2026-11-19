@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { buildPricingPayload, DEFAULT_PRICING_MODE } from './pricing-config.js';
+import { buildPricingPayload, DEFAULT_PRICING_MODE } from './_lib/pricing-config.js';
 
 const sb = createClient(
   process.env.SUPABASE_URL,

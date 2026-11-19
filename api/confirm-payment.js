@@ -4,7 +4,7 @@
 
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
-import { PRICING_MODES } from './pricing-config.js';
+import { PRICING_MODES } from './_lib/pricing-config.js';
 
 const ENTITLED_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing']);
 
