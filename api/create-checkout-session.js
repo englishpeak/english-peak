@@ -2,7 +2,7 @@
 // api/create-checkout-session.js
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
-import { PRICING_MODES, buildPricingPayload, DEFAULT_PRICING_MODE } from './pricing-config.js';
+import { PRICING_MODES, buildPricingPayload, DEFAULT_PRICING_MODE } from './_lib/pricing-config.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const sb = createClient(

@@ -15,6 +15,20 @@ En **Admin → Users**, haz clic en cualquier tarjeta de estadísticas para filt
 
 En **Admin → Pricing**, si ves “Pricing setup missing”, ejecuta `supabase_pricing_setup.sql` en Supabase SQL Editor y vuelve a presionar **Refresh**.
 
+## Placement assessment
+
+The `/placement` direct link uses the existing `SUPABASE_URL` and
+`SUPABASE_SERVICE_ROLE_KEY` server variables and the `site_settings` table from
+`supabase_pricing_setup.sql`. If the table is already configured for Admin →
+Pricing, no database migration or new environment variables are required.
+
+After deployment, sign in to **Admin → Placement**, choose the original
+`placement.txt`, and select **Save assessment**. The upload stores the test in a
+private database setting so the questions and answers stay out of the public
+repository. To grant access to signed-in members without ePeak+, choose an
+expiration time and select **Activate new code**. Copy the code at activation
+and share it with the `/placement` link. You can revoke it from the same tab.
+
 ## Academic Management Phase 1
 
 Before deploying `/teachers`, apply `supabase/migrations/202607280001_phase1_academic_management.sql` to the production Supabase project (with `supabase db push` when the project is linked, or by pasting the file into the Supabase SQL Editor). The migration creates the canonical `ep_*` tables, RLS policies, helper functions, triggers, and initial teacher profile rows, then asks PostgREST to reload its schema cache. Deploy the static application files after the migration. No new environment variables or authentication changes are required.

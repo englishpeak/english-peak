@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Placement Assessment | English Peak</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Outfit:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/styles/brand-tokens.css">
+  <style>
+    body { margin: 0; }
+    .placement-gate { box-sizing: border-box; width: min(100% - 32px, 440px); margin: 12vh auto; padding: 28px; box-shadow: var(--ep-shadow-card); }
+    .placement-gate h1 { font-size: 2.25rem; line-height: 1.05; margin: 0 0 16px; }
+    .placement-gate label { display: block; margin: 24px 0 8px; font-weight: 600; }
+    .placement-gate input { box-sizing: border-box; display: block; width: 100%; margin-bottom: 16px; padding: 12px; border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); font: inherit; }
+    .placement-gate a { display: inline-block; text-decoration: none; }
+    .placement-gate button:disabled { opacity: .65; cursor: wait; }
+    #assessment { display: block; width: 100%; height: 100vh; height: 100dvh; border: 0; }
+    [hidden] { display: none !important; }
+  </style>
+  <script src="/teachers/vendor/supabase.js" defer></script>
+  <script type="module" src="/placement/access.js"></script>
+</head>
+<body class="ep-brand-scope">
+  <main class="ep-card placement-gate" id="placement-gate">
+    <h1 class="ep-heading">Placement Assessment</h1>
+    <p id="access-message" role="status">Checking your access…</p>
+    <a id="placement-sign-in" class="ep-btn-primary" href="/?auth=login" target="_blank" rel="noopener" hidden>Sign in in a new tab</a>
+    <form id="placement-code-form" hidden>
+      <label for="placement-code">Temporary placement code</label>
+      <input id="placement-code" required maxlength="40" autocomplete="off" spellcheck="false">
+      <button class="ep-btn-primary" type="submit">Open assessment</button>
+    </form>
+    <button id="placement-retry" class="ep-btn-primary" type="button" hidden>Try again</button>
+    <noscript>Enable JavaScript to open the assessment.</noscript>
+  </main>
+  <iframe id="assessment" title="General English Proficiency Test" sandbox="allow-scripts" referrerpolicy="no-referrer" hidden></iframe>
+</body>
+</html>
