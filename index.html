@@ -1125,6 +1125,7 @@ let _currentProfile = null;
           _currentProfile = null;
           _currentUser = session.user;
           prepareWordFamiliesFrame();
+          updateToeflDictionaryCard();
         }
         _currentUser = session.user;
         await loadProfile();
@@ -1139,7 +1140,9 @@ let _currentProfile = null;
 
 async function loadProfile() {
   if (!_currentUser) return;
-  const { data } = await sb.from('profiles').select('*').eq('id', _currentUser.id).single();
+  const userId = _currentUser.id;
+  const { data } = await sb.from('profiles').select('*').eq('id', userId).single();
+  if (_currentUser?.id !== userId) return;
   _currentProfile = data;
   updateUIForUser();
   setTimeout(updateUIForUser, 300);
@@ -1946,9 +1949,14 @@ function updateToeflDictionaryCard() {
   if (access) { access.textContent = allowed ? '✓ ePeak+' : '🔒 ePeak+'; access.className = 'card-access ' + (allowed ? 'access-premium' : 'access-locked'); }
   if (button) { button.textContent = allowed ? 'Explore Vocabulary →' : _currentUser ? '⭐ Get ePeak+' : '🔐 Sign in to access'; button.className = 'card-btn ' + (allowed ? 'btn-open' : 'btn-locked'); }
   var frame = document.getElementById('frame-toefl-dictionary');
-  if (frame && frame.dataset.userId && (!allowed || frame.dataset.userId !== _currentUser.id)) {
-    frame.src = 'about:blank';
+  if (!frame) return;
+  if (!allowed) {
+    if (frame.dataset.userId) frame.src = 'about:blank';
     delete frame.dataset.userId;
+  } else if (frame.dataset.userId !== _currentUser.id) {
+    // Let the iframe complete its protected API check while the member is on the dashboard.
+    frame.dataset.userId = _currentUser.id;
+    frame.src = '/toefl-dictionary';
   }
 }
 
@@ -1961,8 +1969,7 @@ function openToeflDictionary() {
   document.getElementById('topbarSub').textContent = 'Build your academic vocabulary, one word at a time.';
   var frame = document.getElementById('frame-toefl-dictionary');
   if (frame.dataset.userId !== _currentUser.id) {
-    frame.dataset.userId = _currentUser.id;
-    frame.src = '/toefl-dictionary';
+    updateToeflDictionaryCard();
   } else if (frame.contentWindow) {
     frame.contentWindow.postMessage({ type: 'toeflDictionaryResume' }, window.location.origin);
   }

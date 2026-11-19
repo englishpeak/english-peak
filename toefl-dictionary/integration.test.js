@@ -37,24 +37,62 @@ test('NEW has one dictionary card following existing login, upgrade and member f
   const tiers = app.slice(app.indexOf('function getEffectiveTier('), app.indexOf('// Popup presentation only'));
   for (const profile of [null, { tier: 'free' }, ...['premium', 'teacher', 'student', 'courtesy', 'admin'].map(tier => ({ tier })), { tier: 'free', is_admin: true }]) {
     const events = [];
-    const frame = { src: 'about:blank', dataset: {} };
+    const navigations = [];
+    const frame = {
+      set src(value) { navigations.push(value); },
+      dataset: {},
+      contentWindow: { postMessage: (data, origin) => events.push([data.type, origin]) },
+    };
     const sandbox = {
       _currentUser: profile ? { id: 'member' } : null, _currentProfile: profile,
+      window: { location: { origin: 'https://epeak.app' } },
       document: { querySelectorAll: () => [], getElementById: id => id === 'frame-toefl-dictionary' ? frame : { classList: { add() {} } } },
       showAuthModal: tab => events.push(tab), showModal: () => events.push('upgrade'), closeMobileSidebar() {},
     };
-    vm.runInNewContext(tiers + source + '\nopenToeflDictionary();', sandbox);
+    vm.runInNewContext(tiers + source, sandbox);
+    sandbox.updateToeflDictionaryCard();
+    const allowed = profile && (profile.tier !== 'free' || profile.is_admin);
+    assert.deepEqual(navigations, allowed ? ['/toefl-dictionary'] : []);
+    sandbox.updateToeflDictionaryCard();
+    sandbox.openToeflDictionary();
     if (!profile) assert.deepEqual(events, ['login']);
     else if (profile.tier === 'free' && !profile.is_admin) assert.deepEqual(events, ['upgrade']);
     else {
-      assert.deepEqual(events, []);
-      assert.equal(frame.src, '/toefl-dictionary');
+      assert.deepEqual(events, [['toeflDictionaryResume', 'https://epeak.app']]);
+      assert.deepEqual(navigations, ['/toefl-dictionary']);
+      sandbox._currentUser = { id: 'other-member' };
+      sandbox._currentProfile = null;
+      sandbox.updateToeflDictionaryCard();
+      assert.deepEqual(navigations, ['/toefl-dictionary', 'about:blank']);
+      assert.equal(frame.dataset.userId, undefined);
+      sandbox._currentProfile = profile;
+      sandbox.openToeflDictionary();
+      assert.deepEqual(navigations, ['/toefl-dictionary', 'about:blank', '/toefl-dictionary']);
+      assert.equal(frame.dataset.userId, 'other-member');
       sandbox._currentUser = null;
       sandbox.updateToeflDictionaryCard();
-      assert.equal(frame.src, 'about:blank');
+      assert.equal(navigations.at(-1), 'about:blank');
       assert.equal(frame.dataset.userId, undefined);
     }
   }
+});
+
+test('a previous account’s late profile response cannot prepare the dictionary', async () => {
+  const source = app.slice(app.indexOf('async function loadProfile()'), app.indexOf('function updateUIForUser()'));
+  let finishProfile;
+  const profile = new Promise(resolve => { finishProfile = resolve; });
+  const query = { select: () => query, eq: () => query, single: () => profile };
+  const sandbox = {
+    _currentUser: { id: 'previous-member' }, _currentProfile: null,
+    sb: { from: () => query },
+    updateUIForUser: () => assert.fail('The previous profile reached the dashboard'),
+  };
+  vm.runInNewContext(source, sandbox);
+  const pending = sandbox.loadProfile();
+  sandbox._currentUser = { id: 'other-member' };
+  finishProfile({ data: { tier: 'premium' } });
+  await pending;
+  assert.equal(sandbox._currentProfile, null);
 });
 
 function accessFixture({ session = { access_token: 'session-token', user: { id: 'untrusted-local-user', user_metadata: { tier: 'premium' } } }, status = 200, fail = false, deferred = false } = {}) {
