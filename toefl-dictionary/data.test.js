@@ -4,8 +4,8 @@ import test from 'node:test';
 import { TOEFL_DICTIONARY } from '../api/_lib/toefl-dictionary-data.js';
 import { filterEntries } from './dictionary.js';
 
-// Keep the existing English content frozen while adding Spanish equivalents.
-const englishContent = entries => entries.map(({ spanish, ...entry }) => entry);
+// Keep the original English content frozen independently of translations and levels.
+const englishContent = entries => entries.map(({ spanish, cefrLevel, ...entry }) => entry);
 
 test('Set 1 contains exactly the 30 requested distinct words with complete entries', () => {
   const expected = 'Analyze Assess Assume Benefit Coherent Compile Comprehensive Consequently Considerable Contribute Crucial Decline Demonstrate Derive Diverse Emphasize Empirical Enhance Establish Evident Fluctuate Furthermore Generate Hypothesis Indicate Interpret Justify Maintain Significant Undergo'.split(' ');
@@ -30,6 +30,7 @@ test('the combined dictionary contains 90 unique, complete entries including all
   for (const entry of TOEFL_DICTIONARY) {
     assert.match(entry.id, /^[a-z0-9-]+$/);
     assert.ok(['noun', 'verb', 'adjective', 'adverb'].includes(entry.partOfSpeech));
+    assert.match(entry.cefrLevel, /^[ABC][12]$/, entry.word);
     assert.ok(entry.definition.trim());
     assert.equal(entry.examples.length, 2, entry.word);
     for (const example of entry.examples) assert.ok(typeof example === 'string' && example.trim(), entry.word);

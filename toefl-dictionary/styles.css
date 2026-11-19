@@ -16,6 +16,7 @@ button, input { font: inherit; }
 .word-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
 /* Word Families Easy's word-card geometry, colors, border and shadow. */
 .word-tile { min-width: 0; min-height: 54px; padding: 13px 20px; border: 1px solid #19234618; border-radius: 14px; background: var(--tint); color: #192346; font-size: 18px; font-weight: 650; text-align: center; box-shadow: 0 5px 0 #19234609; cursor: pointer; overflow-wrap: anywhere; transition: box-shadow 180ms, border-color 180ms; }
+.cefr-badge { display: inline-block; margin-inline-start: 4px; padding: 2px 7px; border: 1px solid var(--ep-border); border-radius: 999px; background: var(--ep-surface); color: var(--ep-purple); font-size: .72rem; font-weight: 700; line-height: 1.25; vertical-align: middle; white-space: nowrap; }
 .word-tile:hover { border-color: #0d3b6f55; box-shadow: 0 5px 12px #162a5418; }
 .word-tile[aria-expanded="true"] { outline: 2px solid var(--ep-navy); outline-offset: 3px; }
 button:focus-visible, input:focus-visible { outline: 3px solid var(--ep-purple); outline-offset: 4px; }
