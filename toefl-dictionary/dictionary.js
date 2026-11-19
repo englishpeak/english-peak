@@ -39,8 +39,8 @@ function renderDetails(entry) {
   metadata.className = 'word-metadata';
   metadata.append(textElement('span', 'part-of-speech', entry.partOfSpeech));
   if (entry.cefrLevel) {
-    const badge = textElement('span', 'cefr-badge', `CEFR ${entry.cefrLevel}`);
-    badge.title = 'Estimated CEFR level for this meaning';
+    const badge = textElement('span', 'cefr-badge', entry.cefrLevel);
+    badge.title = 'Estimated level for this meaning';
     metadata.append(badge);
   }
   content.append(metadata, textElement('p', 'definition', entry.definition));
