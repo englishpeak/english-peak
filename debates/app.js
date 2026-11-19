@@ -14,9 +14,10 @@ for (const set of DEBATE_SETS) {
 
 function render() {
   const debate = selectedSet.debates[position];
+  const imageFilename = debate.imageFilename ?? `${String(position + 1).padStart(2, '0')}.jpg`;
   $('debate-title').textContent = debate.title;
   $('debate-image').alt = debate.title;
-  $('debate-image').src = `${selectedSet.imageDirectory}/${String(position + 1).padStart(2, '0')}.jpg`;
+  $('debate-image').src = `${selectedSet.imageDirectory}/${imageFilename}`;
   $('debate-question').textContent = debate.question;
   $('progress').textContent = `${position + 1} / ${selectedSet.debates.length}`;
   $('back').disabled = position === 0;
