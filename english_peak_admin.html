@@ -294,6 +294,7 @@ tr:hover td { background: rgba(13,59,111,0.02); }
   <div class="admin-tabs">
     <button class="tab-btn active" onclick="switchTab('users', this)">👥 Users <span class="tab-badge" id="badge-users">—</span></button>
     <button class="tab-btn" onclick="switchTab('codes', this)">🎟 Access Codes <span class="tab-badge" id="badge-codes">—</span></button>
+    <button class="tab-btn" onclick="switchTab('placement', this)">Placement</button>
     <button class="tab-btn" onclick="switchTab('progress', this)">📊 Student Progress <span class="tab-badge" id="badge-progress">—</span></button>
     <button class="tab-btn" onclick="switchTab('pricing', this)">💸 Pricing <span class="tab-badge" id="badge-pricing">—</span></button>
     <button class="tab-btn" onclick="switchTab('downloads', this)">⬇ Downloads <span class="tab-badge" id="badge-downloads">—</span></button>
@@ -367,6 +368,47 @@ tr:hover td { background: rgba(13,59,111,0.02); }
           <div class="empty-icon">🎟</div>
           <p>No access codes yet. Create one to share with students.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-placement">
+      <div class="section-hdr">
+        <div><h2>Placement Assessment</h2><p><a href="/placement" target="_blank" rel="noopener">Open the placement page</a></p></div>
+        <button id="placement-refresh" type="button" class="btn btn-ghost btn-sm">↻ Refresh</button>
+      </div>
+
+      <div class="table-wrap modal-form" style="padding:20px; margin-bottom:16px">
+        <form id="placement-upload-form">
+          <div class="form-group">
+            <label for="placement-file">Assessment file</label>
+            <p id="placement-file-status" style="margin-bottom:8px"></p>
+            <input type="file" id="placement-file" accept=".txt,.html,.htm" required>
+          </div>
+          <button type="submit" class="btn btn-ghost">Save assessment</button>
+        </form>
+      </div>
+
+      <div class="table-wrap modal-form" style="padding:20px">
+        <div class="section-hdr">
+          <div><h2>Temporary access code</h2><p>Share the code with signed-in members who need access. Activating a new code replaces the previous one.</p></div>
+        </div>
+        <p id="placement-code-status" style="margin-bottom:16px"></p>
+        <form id="placement-activate-form">
+          <div class="form-group" style="max-width:24rem">
+            <label for="placement-expires">Expires (local time)</label>
+            <input type="datetime-local" id="placement-expires" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Activate new code</button>
+          <button id="placement-revoke" type="button" class="btn btn-ghost" disabled>Revoke code</button>
+        </form>
+        <div id="placement-generated-code" style="margin-top:16px" hidden>
+          <div class="form-group" style="max-width:24rem">
+            <label for="placement-share-code">Share this code. It’s displayed here once.</label>
+            <input id="placement-share-code" type="text" readonly>
+          </div>
+          <button id="placement-copy" type="button" class="btn btn-ghost btn-sm">Copy code</button>
+        </div>
+        <p id="placement-admin-message" role="status" style="margin-top:12px"></p>
       </div>
     </div>
 
@@ -786,6 +828,7 @@ function switchTab(name, btn) {
   if (name === 'progress' && _allProgress.length === 0) loadAdminProgress();
   if (name === 'downloads') loadDownloadsAdmin();
   if (name === 'pricing') loadPricingSettings();
+  if (name === 'placement') loadPlacementSettings();
 }
 
 // ═══════════════════════════════════
@@ -1555,5 +1598,6 @@ function showToast(msg, type = '') {
   setTimeout(() => t.classList.remove('show'), 3200);
 }
 </script>
+<script src="/placement/admin.js" defer></script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/placement", "destination": "/placement/index.html" },
+    { "source": "/placement/", "destination": "/placement/index.html" },
     { "source": "/toefl-dictionary", "destination": "/toefl-dictionary/index.html" },
     { "source": "/toefl-dictionary/", "destination": "/toefl-dictionary/index.html" },
     { "source": "/idioms", "destination": "/index.html" },
