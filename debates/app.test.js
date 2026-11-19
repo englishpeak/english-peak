@@ -31,7 +31,9 @@ for (const set of DEBATE_SETS) {
     $('debate-set').listeners.change();
     assert.equal(set.debates.length, 10);
     const checkSlide = index => {
-      const image = `${set.imageDirectory}/${String(index + 1).padStart(2, '0')}.jpg`;
+      const image = set.id === 'set-3'
+        ? `/images/set-3/${index + 21}.jpg`
+        : `${set.imageDirectory}/${String(index + 1).padStart(2, '0')}.jpg`;
       assert.equal($('debate-title').textContent, set.debates[index].title);
       assert.equal($('debate-question').textContent, set.debates[index].question);
       assert.equal($('debate-image').src, image);
@@ -60,19 +62,19 @@ for (const set of DEBATE_SETS) {
   });
 }
 
-test('both registered sets can be selected repeatedly and reset to their first slide', () => {
+test('all three registered sets can be selected repeatedly and reset to their first slide', () => {
   const $ = activity();
   assert.deepEqual($('debate-set').children.map(option => [option.value, option.textContent]), [
-    ['set-1', 'Set 1'], ['set-2', 'Set 2']
+    ['set-1', 'Set 1'], ['set-2', 'Set 2'], ['set-3', 'Set 3']
   ]);
-  for (const id of ['set-2', 'set-1', 'set-2', 'set-1']) {
+  for (const id of ['set-2', 'set-3', 'set-1', 'set-3', 'set-2', 'set-1']) {
     $('next').listeners.click();
     $('debate-set').value = id;
     $('debate-set').listeners.change();
     const set = DEBATE_SETS.find(set => set.id === id);
     assert.equal($('debate-title').textContent, set.debates[0].title);
     assert.equal($('debate-question').textContent, set.debates[0].question);
-    assert.equal($('debate-image').src, `${set.imageDirectory}/01.jpg`);
+    assert.equal($('debate-image').src, id === 'set-3' ? '/images/set-3/21.jpg' : `${set.imageDirectory}/01.jpg`);
     assert.equal($('progress').textContent, '1 / 10');
     assert.equal($('back').disabled, true);
     assert.equal($('next').disabled, false);
