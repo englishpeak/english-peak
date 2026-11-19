@@ -53,6 +53,23 @@ details{margin-top:24px;border-top:1px solid var(--line);padding-top:12px}summar
 #easy-workspace .easy-board>.toolbar{border:0;padding:0 24px 16px;align-items:center}
 #easy-workspace .easy-stage{padding-top:8px}
 @media(max-width:800px){#easy-workspace .easy-board>.easy-hint{padding:16px 16px 0}#easy-workspace .easy-board>.toolbar{padding:0 16px 16px}}
+#bank{margin:0 0 18px;padding:0;border:0;font-family:var(--ep-font-sans)}
+#bank summary{color:var(--ep-navy);font-size:14px}
+.bank-search{display:flex;align-items:center;gap:8px;max-width:480px}
+.bank-search input{flex:1;min-width:0;min-height:44px;padding:8px 12px;background:var(--ep-surface);color:var(--ep-ink);border:1px solid #aab5c0;border-radius:var(--ep-radius-md);font-size:16px}
+.bank-search input::-webkit-search-cancel-button{display:none}
+.bank-search input:focus-visible{outline:2px solid var(--ep-navy);outline-offset:2px}
+.bank-search .btn{flex:none;border-radius:var(--ep-radius-md);padding-inline:12px}
+.bank-status{margin:8px 0 0;color:var(--muted);font-size:14px}
+.bank-category{display:none}
+@media(max-width:700px){
+  .bank-wrap.is-filtered .bank-table,.bank-wrap.is-filtered tbody,.bank-wrap.is-filtered tbody tr{display:block;min-width:0}
+  .bank-wrap.is-filtered colgroup{display:none}
+  .bank-wrap.is-filtered thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .bank-wrap.is-filtered tbody th{display:block;background:var(--ep-card-soft);padding:6px 12px}
+  .bank-wrap.is-filtered td{display:grid;grid-template-columns:minmax(86px,30%) minmax(0,1fr);gap:8px;padding:8px 12px}
+  .bank-wrap.is-filtered .bank-category{display:block;color:var(--ep-navy);font-weight:600}
+}
 </style>
 <link rel="stylesheet" href="/word-families/access.css">
 </head>
@@ -69,6 +86,18 @@ details{margin-top:24px;border-top:1px solid var(--line);padding-top:12px}summar
 <template id="practice-template">
 <main class="word-families">
 <section class="intro" aria-labelledby="page-title"><h1 id="page-title">Word Families</h1><p class="instructions">Complete the missing forms using the word provided.</p><p class="instruction-note">Two adjective forms may be entered in either order.</p></section>
+<details id="bank">
+<summary><svg class="chevron" width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Word bank</summary>
+<div class="bank-search" role="search" aria-label="Word bank">
+<label for="bank-search" class="sr-only">Search the word bank</label>
+<input id="bank-search" type="search" placeholder="Search the word bank" autocomplete="off" spellcheck="false">
+<button class="btn" id="bank-clear" type="button" hidden>Clear</button>
+</div>
+<p id="bank-status" class="bank-status" role="status"></p>
+<div class="bank-wrap" id="bank-results" tabindex="0" role="region" aria-label="Word bank results">
+<table class="bank-table" role="table"><caption class="sr-only">Word families and their forms</caption><colgroup><col class="row-col"><col><col><col><col><col></colgroup><thead><tr><th scope="col">#</th><th scope="col">Verb</th><th scope="col">Noun</th><th scope="col">Adjective 1</th><th scope="col">Adjective 2</th><th scope="col">Adverb</th></tr></thead><tbody id="bank-rows" role="rowgroup"></tbody></table>
+</div>
+</details>
 <div class="level-picker" role="group" aria-label="Difficulty level"><button id="level-easy" type="button" aria-pressed="true">Easy · Sort the words</button><button id="level-hard" type="button" aria-pressed="false">Hard · Write the words</button></div>
 <section id="easy-workspace" class="workspace" aria-labelledby="easy-title" aria-describedby="easy-help">
 <div class="roundbar"><div class="roundheading"><span class="round-number" id="easy-round">Family 01</span><h2 id="easy-title">Sort the words</h2></div><span class="coverage" id="easy-coverage"></span></div>
@@ -81,14 +110,13 @@ details{margin-top:24px;border-top:1px solid var(--line);padding-top:12px}summar
 
 </section>
 <section class="workspace" aria-labelledby="round-title">
-<div class="roundbar"><div class="roundheading"><span class="round-number" id="round-number">Round 01</span><h2 id="round-title">Complete the missing forms</h2></div><div class="legend" aria-label="Cell types"><span class="legend-item"><span class="legend-box" aria-hidden="true"></span>Revealed word</span><span class="legend-item"><span class="legend-box block" aria-hidden="true"></span>No target form</span></div><span class="coverage" id="coverage">1 / 500</span></div>
+<div class="roundbar"><div class="roundheading"><span class="round-number" id="round-number">Round 01</span><h2 id="round-title">Complete the missing forms</h2></div><div class="legend" aria-label="Cell types"><span class="legend-item"><span class="legend-box" aria-hidden="true"></span>Revealed word</span><span class="legend-item"><span class="legend-box block" aria-hidden="true"></span>No target form</span></div><span class="coverage" id="coverage"></span></div>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Practice table. Scroll horizontally on small screens.">
 <table id="practice-table"><caption class="sr-only">One word family. One word is given. Enter related words for each available category.</caption><colgroup><col class="row-col"><col><col><col><col><col></colgroup><thead><tr><th scope="col">#</th><th scope="col">Verb<small>an action or state</small></th><th scope="col">Noun<small>a person, thing or idea</small></th><th scope="col">Adjective 1<small>a describing word</small></th><th scope="col">Adjective 2<small>another adjective</small></th><th scope="col">Adverb<small>how, when or to what extent</small></th></tr></thead><tbody id="practice-rows"></tbody></table>
 </div>
 <div class="toolbar"><div id="feedback" class="feedback" role="status" aria-live="polite"></div><div class="actions"><button class="btn primary" id="check" type="button">Check answers</button><button class="btn" id="reveal" type="button">Show answers</button><button class="btn next" id="next" type="button">Next family</button></div></div>
 </section>
 <div class="under-table"><p class="smallnote">Shaded cells are not tested.</p><span class="keyboard"><kbd>Tab</kbd> next cell &nbsp; <kbd>Enter</kbd> check answers</span></div>
-<details id="bank"><summary><svg class="chevron" width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Word bank</summary><div class="bank-wrap" tabindex="0" role="region" aria-label="Full word bank"><table class="bank-table"><caption class="sr-only">The complete answer bank of 560 word families</caption><colgroup><col class="row-col"><col><col><col><col><col></colgroup><thead><tr><th scope="col">#</th><th scope="col">Verb</th><th scope="col">Noun</th><th scope="col">Adjective 1</th><th scope="col">Adjective 2</th><th scope="col">Adverb</th></tr></thead><tbody id="bank-rows"></tbody></table></div></details>
 
 </main>
 </template>

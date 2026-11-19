@@ -93,15 +93,81 @@ function showAnswers() {
   revealed=true;document.getElementById('check').disabled=true;document.getElementById('reveal').disabled=true;
   feedback.textContent='Answers shown · '+correct+' / '+results.length+' correct before reveal.';
 }
+const bank = document.getElementById('bank');
+const bankSearch = document.getElementById('bank-search');
+const bankClear = document.getElementById('bank-clear');
+const bankStatus = document.getElementById('bank-status');
+const bankResults = document.getElementById('bank-results');
+let bankEntries = [];
+
 function renderBank() {
-  const body=document.getElementById('bank-rows');if(body.children.length)return;
-  const fragment=document.createDocumentFragment();
-  families.forEach(family=>{const tr=document.createElement('tr');const number=document.createElement('th');number.scope='row';number.textContent=family.id;tr.appendChild(number);family.forms.forEach(form=>{const td=document.createElement('td');td.textContent=form?form.join(' / '):'—';if(!form){td.className='empty';td.setAttribute('aria-label','Not tested in this family');}tr.appendChild(td);});fragment.appendChild(tr);});body.appendChild(fragment);
+  const fragment = document.createDocumentFragment();
+  bankEntries = families.map(({ id, forms }) => {
+    const row = document.createElement('tr');
+    row.setAttribute('role', 'row');
+    const number = document.createElement('th');
+    number.scope = 'row';
+    number.setAttribute('role', 'rowheader');
+    number.textContent = id;
+    row.appendChild(number);
+    forms.forEach((form, column) => {
+      const cell = document.createElement('td');
+      cell.setAttribute('role', 'cell');
+      const label = document.createElement('span');
+      label.className = 'bank-category';
+      label.setAttribute('aria-hidden', 'true');
+      label.textContent = categories[column];
+      const value = document.createElement('span');
+      value.textContent = form ? form.join(' / ') : '—';
+      cell.appendChild(label);
+      cell.appendChild(value);
+      if (!form) {
+        cell.className = 'empty';
+        cell.setAttribute('aria-label', 'Not tested in this family');
+      }
+      row.appendChild(cell);
+    });
+    fragment.appendChild(row);
+    return { row, words: forms.flatMap(form => form ? form.map(normalize) : []) };
+  });
+  document.getElementById('bank-rows').appendChild(fragment);
 }
+
+function filterBank() {
+  if (!bankEntries.length) renderBank();
+  const query = normalize(bankSearch.value);
+  let count = 0;
+  for (const { row, words } of bankEntries) {
+    row.hidden = Boolean(query) && !words.some(word => word.includes(query));
+    if (!row.hidden) count++;
+  }
+  const label = count === 1 ? 'family' : 'families';
+  bankStatus.textContent = count ? `${count} ${query ? 'matching ' : ''}${label}` : 'No matching word families.';
+  bankClear.hidden = !bankSearch.value;
+  bankResults.hidden = count === 0;
+  bankResults.classList.toggle('is-filtered', Boolean(query));
+  bankResults.scrollTop = 0;
+  bankResults.scrollLeft = 0;
+}
+
+function clearBankSearch() {
+  bankSearch.value = '';
+  bankSearch.focus();
+  filterBank();
+}
+
+bank.addEventListener('toggle', () => { if (bank.open && !bankEntries.length) filterBank(); });
+bankSearch.addEventListener('input', filterBank);
+bankSearch.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && bankSearch.value && !event.isComposing) {
+    event.preventDefault();
+    clearBankSearch();
+  }
+});
+bankClear.addEventListener('click', clearBankSearch);
 document.getElementById('check').addEventListener('click',checkAnswers);
 document.getElementById('reveal').addEventListener('click',showAnswers);
 document.getElementById('next').addEventListener('click',()=>{newRound();const input=rows.querySelector('input');if(input)input.focus({preventScroll:true});});
-document.getElementById('bank').addEventListener('toggle',event=>{if(event.currentTarget.open)renderBank();});
 // Fail early if an edited bank has malformed or overlapping target groups.
 function validateFamilies(bank) {
   if(!Array.isArray(bank)||!bank.length)throw new Error('The word bank must contain at least one family.');
