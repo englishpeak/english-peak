@@ -18,11 +18,6 @@ export function createWordTile(entry, index, onToggle) {
   button.id = 'word-' + entry.id;
   button.className = 'word-tile';
   button.textContent = entry.word;
-  if (entry.cefrLevel) {
-    const badge = textElement('span', 'cefr-badge', entry.cefrLevel);
-    badge.prepend(textElement('span', 'sr-only', ' CEFR level '));
-    button.append(' ', badge);
-  }
   button.style.setProperty('--tint', TINTS[index % TINTS.length]);
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-controls', 'word-detail');
@@ -40,8 +35,15 @@ function textElement(tag, className, text) {
 function renderDetails(entry) {
   const content = document.createElement('div');
   content.className = 'word-detail-content';
-  content.append(textElement('p', 'part-of-speech', entry.partOfSpeech),
-    textElement('p', 'definition', entry.definition));
+  const metadata = document.createElement('p');
+  metadata.className = 'word-metadata';
+  metadata.append(textElement('span', 'part-of-speech', entry.partOfSpeech));
+  if (entry.cefrLevel) {
+    const badge = textElement('span', 'cefr-badge', `CEFR ${entry.cefrLevel}`);
+    badge.title = 'Estimated CEFR level for this meaning';
+    metadata.append(badge);
+  }
+  content.append(metadata, textElement('p', 'definition', entry.definition));
   const translation = document.createElement('p');
   translation.className = 'spanish-translation';
   translation.lang = 'es';
