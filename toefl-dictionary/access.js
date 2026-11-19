@@ -61,6 +61,17 @@ function denyAccess(status) {
       : 'Sign in to access ePeak+ practice.';
 }
 
+async function fetchPronunciation(id, signal) {
+  const userId = activeSessionUserId;
+  const { data, error } = await client.auth.getSession();
+  const session = data?.session;
+  if (error || !session?.access_token || session.user?.id !== userId || activeSessionUserId !== userId) return null;
+  return fetch('/api/toefl-dictionary?' + new URLSearchParams({ audio: id }), {
+    headers: { Authorization: 'Bearer ' + session.access_token },
+    cache: 'no-store', signal,
+  });
+}
+
 function verifySession(session, { force = false } = {}) {
   const token = session?.access_token;
   // INITIAL_SESSION, getSession and repeated SIGNED_IN events can all describe
@@ -110,7 +121,7 @@ function verifySession(session, { force = false } = {}) {
       if (activeUserId !== payload.userId || !practice.children.length) {
         disposeDictionary?.();
         practice.replaceChildren(document.getElementById('practice-template').content.cloneNode(true));
-        disposeDictionary = initializeDictionary(payload.entries);
+        disposeDictionary = initializeDictionary(payload.entries, fetchPronunciation);
         activeUserId = payload.userId;
       }
       activeSessionUserId = session.user?.id || null;

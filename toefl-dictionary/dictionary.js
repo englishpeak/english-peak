@@ -1,3 +1,5 @@
+import { createPronunciationPlayer } from './pronunciation.js';
+
 // These tints match Word Families Easy. The vocabulary itself comes only from
 // the protected API; this browser module contains no dictionary dataset.
 const TINTS = ['#e8def9', '#d9eee5', '#ffe5d5', '#dceafa'];
@@ -32,10 +34,10 @@ function textElement(tag, className, text) {
   return element;
 }
 
-function renderDetails(entry) {
+function renderDetails(entry, playPronunciation) {
   const content = document.createElement('div');
   content.className = 'word-detail-content';
-  const metadata = document.createElement('p');
+  const metadata = document.createElement('div');
   metadata.className = 'word-metadata';
   metadata.append(textElement('span', 'part-of-speech', entry.partOfSpeech));
   if (entry.cefrLevel) {
@@ -43,7 +45,22 @@ function renderDetails(entry) {
     badge.title = 'Estimated level for this meaning';
     metadata.append(badge);
   }
-  content.append(metadata, textElement('p', 'definition', entry.definition));
+  const speaker = document.createElement('button');
+  speaker.type = 'button';
+  speaker.className = 'pronunciation-button';
+  speaker.setAttribute('aria-label', `Listen to pronunciation: ${entry.word}`);
+  speaker.innerHTML = `<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/>
+  </svg>`;
+  const status = textElement('p', 'pronunciation-status sr-only', '');
+  status.setAttribute('role', 'status');
+  speaker.addEventListener('click', () => playPronunciation(entry.id, (state, message) => {
+    speaker.dataset.state = state;
+    status.classList.toggle('sr-only', state !== 'error');
+    status.textContent = message;
+  }));
+  metadata.append(speaker);
+  content.append(metadata, status, textElement('p', 'definition', entry.definition));
   const translation = document.createElement('p');
   translation.className = 'spanish-translation';
   translation.lang = 'es';
@@ -64,7 +81,7 @@ function renderDetails(entry) {
   return content;
 }
 
-export function initializeDictionary(entries) {
+export function initializeDictionary(entries, fetchPronunciation) {
   const grid = document.getElementById('word-grid');
   const search = document.getElementById('vocabulary-search');
   const count = document.getElementById('word-count');
@@ -77,6 +94,7 @@ export function initializeDictionary(entries) {
   let active = null;
   let tiles = [];
   let animation = null;
+  const pronunciation = createPronunciationPlayer(fetchPronunciation);
 
   function stopAnimation() {
     if (animation) { animation.onfinish = null; animation.cancel(); animation = null; }
@@ -108,8 +126,10 @@ export function initializeDictionary(entries) {
   }
 
   function close(immediate = false) {
+    pronunciation.stop();
     active?.button.setAttribute('aria-expanded', 'false');
     active = null;
+    panel.inert = true;
     panel.setAttribute('aria-hidden', 'true');
     if (immediate) { stopAnimation(); panel.hidden = true; panel.replaceChildren(); }
     else if (!panel.hidden) animatePanel(false);
@@ -120,10 +140,11 @@ export function initializeDictionary(entries) {
     close(true);
     stopAnimation();
     active = { entry, button };
-    panel.replaceChildren(renderDetails(entry));
+    panel.replaceChildren(renderDetails(entry, pronunciation.play));
     panel.style.setProperty('--tint', button.style.getPropertyValue('--tint'));
     panel.setAttribute('aria-labelledby', button.id);
     panel.removeAttribute('aria-hidden');
+    panel.inert = false;
     button.setAttribute('aria-expanded', 'true');
     positionPanel();
     panel.hidden = false;
@@ -145,8 +166,18 @@ export function initializeDictionary(entries) {
   }
 
   search.addEventListener('input', render);
-  const observer = new ResizeObserver(positionPanel);
+  const observer = new ResizeObserver(() => {
+    if (grid.getClientRects().length) positionPanel();
+    else pronunciation.stop();
+  });
   observer.observe(grid);
+  window.addEventListener('pagehide', pronunciation.stop);
   render();
-  return () => { stopAnimation(); observer.disconnect(); search.removeEventListener('input', render); };
+  return () => {
+    pronunciation.dispose();
+    stopAnimation();
+    observer.disconnect();
+    search.removeEventListener('input', render);
+    window.removeEventListener('pagehide', pronunciation.stop);
+  };
 }

@@ -25,6 +25,13 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--ep-purple);
 .word-metadata { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 8px; }
 .part-of-speech { font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: #57647a; }
 .cefr-badge { padding: 2px 7px; border: 1px solid var(--ep-border); border-radius: 999px; background: var(--ep-card-soft); color: var(--ep-purple); font-size: .72rem; font-weight: 700; line-height: 1.25; white-space: nowrap; }
+.pronunciation-button { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; margin-left: auto; padding: 0; border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); background: var(--ep-surface); color: var(--ep-navy); cursor: pointer; }
+.pronunciation-button:hover { background: var(--ep-card-soft); }
+.pronunciation-button:active, .pronunciation-button[data-state="playing"] { background: var(--ep-navy); color: var(--ep-surface); }
+.pronunciation-button[data-state="loading"] svg { display: none; }
+.pronunciation-button[data-state="loading"]::after { content: ''; width: 16px; height: 16px; border: 2px solid var(--ep-border); border-top-color: currentColor; border-radius: 50%; animation: pronunciation-spin .8s linear infinite; }
+@keyframes pronunciation-spin { to { transform: rotate(360deg); } }
+.pronunciation-status { margin: 0 0 8px; color: var(--ep-error); font-size: .82rem; }
 .definition { margin: 0; font-size: 1rem; }
 .spanish-translation { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 14px 0 0; padding: 10px 14px; border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); background: var(--ep-card-soft); }
 .translation-label { color: var(--ep-purple); font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
@@ -51,3 +58,4 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--ep-purple);
 }
 @media (max-width: 340px) { .word-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+@media (prefers-reduced-motion: reduce) { .pronunciation-button[data-state="loading"]::after { animation: none; } }
