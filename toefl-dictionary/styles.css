@@ -22,10 +22,10 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--ep-purple);
 .word-detail { grid-column: 1 / -1; min-width: 0; border-left: 4px solid var(--tint); border-radius: 12px; background: var(--ep-surface); box-shadow: 0 3px 14px #162a540a; overflow-wrap: anywhere; }
 .word-detail.is-animating { overflow: hidden; }
 .word-detail-content { padding: 22px 26px; max-width: 850px; }
-.word-metadata { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 8px; }
+.word-metadata { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; white-space: nowrap; }
 .part-of-speech { font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: #57647a; }
 .cefr-badge { padding: 2px 7px; border: 1px solid var(--ep-border); border-radius: 999px; background: var(--ep-card-soft); color: var(--ep-purple); font-size: .72rem; font-weight: 700; line-height: 1.25; white-space: nowrap; }
-.pronunciation-button { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; margin-left: auto; padding: 0; border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); background: var(--ep-surface); color: var(--ep-navy); cursor: pointer; }
+.pronunciation-button { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); background: var(--ep-surface); color: var(--ep-navy); cursor: pointer; }
 .pronunciation-button:hover { background: var(--ep-card-soft); }
 .pronunciation-button:active, .pronunciation-button[data-state="playing"] { background: var(--ep-navy); color: var(--ep-surface); }
 .pronunciation-button[data-state="loading"] svg { display: none; }
