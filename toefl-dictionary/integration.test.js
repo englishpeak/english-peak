@@ -12,8 +12,9 @@ test('routes expose only the shell and browser assets contain no vocabulary', ()
   for (const source of ['/toefl-dictionary', '/toefl-dictionary/']) {
     assert.ok(routing.rewrites.some(route => route.source === source && route.destination === '/toefl-dictionary/index.html'));
   }
-  const browser = html + access + readFileSync(new URL('./dictionary.js', import.meta.url), 'utf8');
-  assert.doesNotMatch(browser, /_lib\/toefl-dictionary-data|soil samples|Researchers analyzed|SUPABASE_SERVICE_ROLE_KEY/);
+  const browser = html + access + readFileSync(new URL('./dictionary.js', import.meta.url), 'utf8')
+    + readFileSync(new URL('./pronunciation.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(browser, /_lib\/(?:toefl-dictionary-data|vocabulary-audio)|soil samples|Researchers analyzed|SUPABASE_SERVICE_ROLE_KEY|word-audio|createSignedUrl/);
   assert.match(html, /id="practice-content" hidden/);
   assert.match(html, /\/word-families\/access.css/);
   const api = readFileSync(new URL('../api/toefl-dictionary.js', import.meta.url), 'utf8');

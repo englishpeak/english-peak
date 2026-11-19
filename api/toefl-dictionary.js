@@ -1,6 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 import { hasFullAccessTier } from '../businesscases/access.js';
 import { TOEFL_DICTIONARY } from './_lib/toefl-dictionary-data.js';
+import { sendVocabularyAudio } from './_lib/vocabulary-audio.js';
+
+const entriesById = new Map(TOEFL_DICTIONARY.map(entry => [entry.id, entry]));
+const dictionaryEntries = TOEFL_DICTIONARY.map(({ audioPath, ...entry }) => entry);
 
 export function createToeflDictionaryHandler({ supabase }) {
   return async function handler(req, res) {
@@ -36,7 +40,16 @@ export function createToeflDictionaryHandler({ supabase }) {
       if (!hasFullAccessTier(tier)) {
         return res.status(403).json({ error: 'TOEFL Dictionary is included with ePeak+.' });
       }
-      return res.status(200).json({ userId: data.user.id, entries: TOEFL_DICTIONARY });
+      const audioId = req.query?.audio;
+      if (audioId === undefined) {
+        return res.status(200).json({ userId: data.user.id, entries: dictionaryEntries });
+      }
+      if (typeof audioId !== 'string' || !/^[a-z0-9-]+$/.test(audioId)) {
+        return res.status(400).json({ error: 'Invalid pronunciation request.' });
+      }
+      const entry = entriesById.get(audioId);
+      if (!entry) return res.status(404).json({ error: 'Pronunciation not found.' });
+      return await sendVocabularyAudio(supabase, entry, res);
     } catch {
       return res.status(503).json({ error: 'Access could not be checked. Please try again.' });
     }

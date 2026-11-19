@@ -18,6 +18,7 @@
  * @property {string} spanish Spanish equivalents matching the definition and part of speech.
  * @property {[string, string]} examples
  * @property {string[]} collocations
+ * @property {string} [audioPath] Optional private Storage path for this pronunciation.
  */
 
 /** @type {DictionaryEntry[]} */
