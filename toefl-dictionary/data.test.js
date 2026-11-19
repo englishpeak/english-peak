@@ -15,12 +15,12 @@ test('Set 1 contains exactly the 30 requested distinct words with complete entri
   assert.equal(createHash('sha256').update(JSON.stringify(englishContent(original))).digest('hex'), 'b96e64a282ca0da7c35721ddb5aa3b765ccda364221d0e0617dc0fc4e161d63c');
 });
 
-test('the combined dictionary contains 90 unique, complete entries including all Set 2 words', () => {
+test('the combined dictionary contains 100 unique, complete entries including all Set 2 words', () => {
   const expected = 'Allocate Ambiguous Attribute Bias Capacity Constraint Contradict Correlate Diminish Distinguish Emerge Facilitate Inhibit Inevitable Prevalent Retain Subsequent Sustain Valid Widespread'.split(' ');
   const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-2-'));
   assert.deepEqual(added.map(entry => entry.word), expected);
   assert.equal(createHash('sha256').update(JSON.stringify(englishContent(added))).digest('hex'), '5e37808f6d5d20198742a7dc35d59749c4944ec2c1c038bd5a8f803bcdafd71d');
-  assert.equal(TOEFL_DICTIONARY.length, 90);
+  assert.equal(TOEFL_DICTIONARY.length, 100);
   for (const entry of added) {
     assert.equal(entry.id, 'set-2-' + entry.word.toLowerCase());
     assert.equal(entry.collocations.length, 3, entry.word);
@@ -66,6 +66,21 @@ test('Set 4 contains the 20 requested words with exact content and stable IDs', 
   }
 });
 
+test('Set 5 contains the 10 requested words with stable IDs and the supplied CEFR levels', () => {
+  const expected = [
+    ['Alleviate', 'C1'], ['Analogous', 'C1'], ['Ascertain', 'C1'],
+    ['Discrepancy', 'C1'], ['Feasible', 'C1'], ['Illustrate', 'B2'],
+    ['Mitigate', 'C1'], ['Pervasive', 'C2'], ['Preliminary', 'C1'], ['Reliable', 'B2'],
+  ];
+  const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-5-'));
+  assert.deepEqual(added.map(({ word, cefrLevel }) => [word, cefrLevel]), expected);
+  for (const entry of added) {
+    assert.equal(entry.id, 'set-5-' + entry.word.toLowerCase());
+    assert.equal(entry.collocations.length, 3, entry.word);
+    assert.deepEqual(filterEntries(TOEFL_DICTIONARY, `  ${entry.word.toUpperCase()}  `), [entry]);
+  }
+});
+
 test('search ignores capitalization, sorts unsorted input, and does not mutate the bank', () => {
   const input = [...TOEFL_DICTIONARY].reverse();
   const before = [...input];
@@ -73,7 +88,7 @@ test('search ignores capitalization, sorts unsorted input, and does not mutate t
   assert.deepEqual(filterEntries(input, '  eMPiR  ').map(entry => entry.word), ['Empirical']);
   assert.deepEqual(filterEntries(input, '  aLLoC  ').map(entry => entry.word), ['Allocate']);
   assert.deepEqual(filterEntries(input, 'WIDESPREAD').map(entry => entry.word), ['Widespread']);
-  assert.deepEqual(filterEntries(input, 'con').map(entry => entry.word), ['Consequently', 'Considerable', 'Constitute', 'Constraint', 'Contradict', 'Contribute', 'Controversial', 'Retain']);
+  assert.deepEqual(filterEntries(input, 'con').map(entry => entry.word), ['Consequently', 'Considerable', 'Constitute', 'Constraint', 'Contradict', 'Contribute', 'Controversial', 'Reliable', 'Retain']);
   for (const [query, word] of [['  aBUn  ', 'Abundant'], ['CONSTITU', 'Constitute'], ['proportion', 'Proportion'], ['VERIFY', 'Verify']]) {
     assert.deepEqual(filterEntries(input, query).map(entry => entry.word), [word]);
   }
