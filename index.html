@@ -353,7 +353,7 @@ body.download-preview-lock{overflow:hidden}
 
     <div class="section-header" id="new-practice-section"><h2>New Practice</h2><p>Fresh member-only practice</p></div>
     <div class="cards-grid">
-      <a class="ex-card spelling-bee-card" href="/?exercise=spelling-bee" onclick="openSpellingBee(event)">
+      <a class="ex-card spelling-bee-card" href="/?exercise=spelling-bee" onpointerenter="prepareSpellingBeeFrame()" onfocus="prepareSpellingBeeFrame()" onclick="openSpellingBee(event)">
         <div class="card-header"><div class="card-icon blue" aria-hidden="true">🐝</div><div class="card-access access-free">Free Account · ePeak+</div></div>
         <div class="card-body"><div class="card-title">Spelling Bee</div><div class="card-desc">Listen to English words and practice spelling them at your level.</div><div class="card-meta"><span class="meta-item">A1–C2</span></div><span class="card-btn btn-open">Start Practice →</span></div>
       </a>
@@ -1056,10 +1056,12 @@ window.addEventListener('message', async function(e) {
   }
   if (e.data?.type === 'spellingBeeSignIn') {
     var frame = document.getElementById('frame-spelling-bee');
-    if (e.origin !== window.location.origin || e.source !== frame.contentWindow ||
-        !document.getElementById('exercise-spelling-bee').classList.contains('active')) return;
-    showNewPractice();
-    requestSpellingBeeSignIn();
+    if (e.origin !== window.location.origin || e.source !== frame.contentWindow) return;
+    if (document.getElementById('exercise-spelling-bee').classList.contains('active')) {
+      showNewPractice();
+      requestSpellingBeeSignIn();
+    }
+    resetSpellingBeeFrame();
     return;
   }
   if (e.data && e.data.type === 'listenWriteAccessRequest') {
@@ -1119,13 +1121,14 @@ window.addEventListener('message', async function(e) {
 let _currentUser = null;
 let _currentProfile = null;
 let spellingBeeSignInPending = false;
+const initialSession = sb.auth.getSession();
 
 // Init auth state on load
 // Robust session init — handles Safari, Chrome, OAuth redirects
 (async function() {
   // 1. First check for existing session in storage
   try {
-    var { data: sessionData } = await sb.auth.getSession();
+    var { data: sessionData } = await initialSession;
     if (sessionData && sessionData.session && sessionData.session.user) {
       _currentUser = sessionData.session.user;
       if (returnToSpellingBeeAfterGoogle()) openSpellingBee();
@@ -1144,6 +1147,8 @@ let spellingBeeSignInPending = false;
         if (_currentUser && _currentUser.id !== session.user.id) {
           _currentProfile = null;
           _currentUser = session.user;
+          if (document.getElementById('exercise-spelling-bee').classList.contains('active')) showNewPractice();
+          resetSpellingBeeFrame();
           prepareWordFamiliesFrame();
           updateToeflDictionaryCard();
         }
@@ -1240,6 +1245,7 @@ function updateUIForUser() {
 
 function updateUIForVisitor() {
   if (document.getElementById('exercise-spelling-bee').classList.contains('active')) showNewPractice();
+  resetSpellingBeeFrame();
   notifyListenWriteAccess();
   document.getElementById('sidebarName').textContent = 'Guest';
   document.getElementById('sidebarAvatar').textContent = '👤';
@@ -1950,12 +1956,26 @@ function requestSpellingBeeSignIn(tab) {
   spellingBeeSignInPending = true;
   showAuthModal(tab || 'login');
 }
-function openSpellingBee(event) {
+function prepareSpellingBeeFrame() {
+  if (!_currentUser || _currentUser.is_anonymous) return;
+  var frame = document.getElementById('frame-spelling-bee');
+  if (frame.dataset.userId === _currentUser.id) return;
+  frame.dataset.userId = _currentUser.id;
+  frame.src = '/spelling-bee';
+}
+function resetSpellingBeeFrame() {
+  var frame = document.getElementById('frame-spelling-bee');
+  if (!frame.dataset.userId) return;
+  delete frame.dataset.userId;
+  frame.src = 'about:blank';
+}
+async function openSpellingBee(event) {
   if (event) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
   }
-  if (!_currentUser) { requestSpellingBeeSignIn(); return; }
+  if (!_currentUser) await initialSession.catch(() => {});
+  if (!_currentUser || _currentUser.is_anonymous) { requestSpellingBeeSignIn(); return; }
 
   var screen = document.getElementById('exercise-spelling-bee');
   if (screen.classList.contains('active')) return;
@@ -1963,14 +1983,14 @@ function openSpellingBee(event) {
   screen.classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Spelling Bee';
   document.getElementById('topbarSub').textContent = '';
-  document.getElementById('frame-spelling-bee').src = '/spelling-bee';
+  prepareSpellingBeeFrame();
   closeMobileSidebar();
 }
 (function() {
   var screen = document.getElementById('exercise-spelling-bee');
   // Leaving the exercise stops audio and resets the round for the next visit.
   new MutationObserver(function() {
-    if (!screen.classList.contains('active')) document.getElementById('frame-spelling-bee').src = 'about:blank';
+    if (!screen.classList.contains('active')) resetSpellingBeeFrame();
   }).observe(screen, { attributes: true, attributeFilter: ['class'] });
 })();
 function openIrregularVerbs() {
@@ -3092,7 +3112,10 @@ checkHamburger();
   if (!exercise) return;
   // Idioms performs its own protected API checks; show the shell immediately.
   if (exercise === 'idioms') { openIdioms(); return; }
-  if (exercise === 'spelling-bee' && ['login', 'register'].includes(params.get('auth'))) return;
+  if (exercise === 'spelling-bee') {
+    if (!['login', 'register'].includes(params.get('auth'))) openSpellingBee();
+    return;
+  }
 
   function openExerciseWhenReady() {
     if (exercise === 'unscramble') openExercise('unscramble');
@@ -3108,7 +3131,6 @@ checkHamburger();
     else if (exercise === 'general') openGeneral();
     else if (exercise === 'word-families') openWordFamilies();
     else if (exercise === 'toefl-dictionary') openToeflDictionary();
-    else if (exercise === 'spelling-bee') openSpellingBee();
   }
 
   // Wait for Supabase session to resolve (max 2s) before opening

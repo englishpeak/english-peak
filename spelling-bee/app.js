@@ -70,7 +70,7 @@ async function readResponse(response) {
   throw error;
 }
 
-function mountPractice() {
+function mountPractice(initialRound) {
   const elements = Object.fromEntries(
     ['question', 'round-status', 'audio-status', 'play', 'skip', 'answer-form', 'answer',
       'check', 'feedback', 'reveal', 'next', 'restart'].map(id => [id, document.getElementById(id)])
@@ -116,7 +116,7 @@ function mountPractice() {
     }
   }
 
-  async function loadWord(action, previousId, focus = false) {
+  async function loadWord(action, previousId, focus = false, preparedRound) {
     pendingLoad = { action, previousId };
     if (!selected.size) return;
     controller?.abort();
@@ -135,8 +135,9 @@ function mountPractice() {
     showRoundStatus('Loading a word…');
 
     try {
-      const response = await request(action, { difficulties: [...selected], questionId: previousId }, signal);
-      const result = await readResponse(response);
+      const result = preparedRound ?? await readResponse(
+        await request(action, { difficulties: [...selected], questionId: previousId }, signal)
+      );
       if (signal.aborted || !result) return;
       round = result;
       pendingLoad = null;
@@ -174,6 +175,7 @@ function mountPractice() {
     }
 
     pendingAnswer = elements.answer.readOnly = elements.check.disabled = elements.reveal.disabled = true;
+    if (action === 'check') feedback('', 'Checking…');
     try {
       const response = await request(action, { questionId, answer: action === 'check' ? guess : undefined }, signal);
       const result = await readResponse(response);
@@ -251,7 +253,7 @@ function mountPractice() {
   });
   elements.reveal.addEventListener('click', () => answer('reveal'));
   window.addEventListener('pagehide', player.stop);
-  loadWord('start');
+  loadWord('start', undefined, false, initialRound);
 
   return () => {
     controller?.abort();
@@ -264,12 +266,12 @@ async function openPractice() {
   accessStatus.textContent = 'Opening Spelling Bee…';
   accessRetry.hidden = true;
   try {
-    const payload = await readResponse(await request('page'));
+    const payload = await readResponse(await request('page', { includeRound: true }));
     if (!payload || leavingPage) return;
 
     // The authenticated endpoint supplies a fixed template with no vocabulary.
     practice.innerHTML = payload.html;
-    dispose = mountPractice();
+    dispose = mountPractice(payload.round);
     accessStatus.hidden = true;
   } catch {
     accessStatus.textContent = 'Spelling Bee could not be opened. Please try again.';
