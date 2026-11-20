@@ -6,6 +6,8 @@ import { LEVELS_BY_DIFFICULTY, SPELLING_BEE_WORDS } from './spelling-bee-data.js
 import { SPELLING_BEE_MARKUP } from './spelling-bee-page.js';
 
 const ROUND_LIFETIME_MS = 24 * 60 * 60 * 1000;
+const ANSWER_AUTH_TTL_MS = 30_000;
+const MAX_VERIFIED_TOKENS = 256;
 const LIST_LIMIT = 1000;
 const AUDIO_BUCKET = 'word-audio';
 const difficultyByLevel = new Map(Object.entries(LEVELS_BY_DIFFICULTY).flatMap(
@@ -127,6 +129,33 @@ async function sendAudio(storage, entry, res) {
 
 export function createSpellingBeeHandler({ supabase, secret }) {
   const questions = createQuestions(secret);
+  const verifiedTokens = new Map();
+
+  async function verifyMember(token, action) {
+    const key = createHash('sha256').update(token).digest('base64url');
+    const cached = verifiedTokens.get(key);
+    if (action === 'check' && cached?.expiresAt > Date.now()) return cached.userId;
+
+    const { data, error } = await supabase.auth.getUser(token);
+    verifiedTokens.delete(key);
+    if (error?.status >= 500) throw error;
+    const user = data?.user;
+    if (error || !user?.id || user.is_anonymous) return null;
+
+    // Only reuse a remote verification for this exact token, within its JWT lifetime.
+    let expiry;
+    try {
+      expiry = JSON.parse(Buffer.from(token.split('.')[1], 'base64url')).exp;
+    } catch {
+      return user.id;
+    }
+    const now = Date.now();
+    if (Number.isFinite(expiry) && expiry * 1000 > now) {
+      verifiedTokens.set(key, { userId: user.id, expiresAt: Math.min(expiry * 1000, now + ANSWER_AUTH_TTL_MS) });
+      if (verifiedTokens.size > MAX_VERIFIED_TOKENS) verifiedTokens.delete(verifiedTokens.keys().next().value);
+    }
+    return user.id;
+  }
 
   function selectQuestion(round, difficulties, userId) {
     if (!round.remaining.length) return { state: 'complete' };
@@ -136,6 +165,14 @@ export function createSpellingBeeHandler({ supabase, secret }) {
     }
     const questionId = questions.seal({ ...round, index, stage: 'active' }, userId);
     return { state: 'question', questionId, difficulty: entryDifficulty(round.remaining[index]) };
+  }
+
+  async function startRound(difficulties, pool, userId) {
+    const remaining = await getAvailableWords(supabase.storage.from(AUDIO_BUCKET), pool);
+    if (!remaining.length) return { state: 'empty' };
+    return selectQuestion({
+      version: catalogVersion, expiresAt: Date.now() + ROUND_LIFETIME_MS, remaining,
+    }, difficulties, userId);
   }
 
   return async function handler(req, res) {
@@ -150,33 +187,32 @@ export function createSpellingBeeHandler({ supabase, secret }) {
     if (!token) return res.status(401).json({ error: 'Sign in to use Spelling Bee.' });
 
     try {
-      const { data, error } = await supabase.auth.getUser(token);
-      if (error?.status >= 500) throw error;
-      const user = data?.user;
-      if (error || !user?.id || user.is_anonymous) {
+      const body = req.body;
+      const userId = await verifyMember(token, body?.action);
+      if (!userId) {
         return res.status(401).json({ error: 'Sign in to use Spelling Bee.' });
       }
 
-      const body = req.body;
       if (body?.action === 'page') {
-        return res.status(200).json({ html: SPELLING_BEE_MARKUP });
+        const payload = { html: SPELLING_BEE_MARKUP };
+        if (body.includeRound === true) {
+          const difficulties = new Set(allDifficulties);
+          payload.round = await startRound(difficulties, difficulties, userId);
+        }
+        return res.status(200).json(payload);
       }
       if (body?.action === 'start') {
         const difficulties = readDifficulties(body);
         if (!difficulties) return res.status(400).json({ error: 'Choose at least one difficulty level.' });
         // Multi-level rounds retain disabled words so re-enabling a level can resume the same shuffle.
         const pool = body.difficulties === undefined ? difficulties : new Set(allDifficulties);
-        const remaining = await getAvailableWords(supabase.storage.from(AUDIO_BUCKET), pool);
-        if (!remaining.length) return res.status(200).json({ state: 'empty' });
-        return res.status(200).json(selectQuestion({
-          version: catalogVersion, expiresAt: Date.now() + ROUND_LIFETIME_MS, remaining,
-        }, difficulties, user.id));
+        return res.status(200).json(await startRound(difficulties, pool, userId));
       }
       if (!['audio', 'check', 'reveal', 'next', 'skip', 'resume'].includes(body?.action)) {
         return res.status(400).json({ error: 'Invalid exercise action.' });
       }
 
-      const question = questions.open(body.questionId, user.id);
+      const question = questions.open(body.questionId, userId);
       if (!question) return res.status(409).json({ error: 'This round has expired. Start a new round to continue.' });
       const finished = question.stage === 'correct' || question.stage === 'revealed';
       const waiting = question.stage === 'waiting';
@@ -187,21 +223,21 @@ export function createSpellingBeeHandler({ supabase, secret }) {
         const remaining = canAdvance
           ? question.remaining.filter((_, index) => index !== question.index)
           : question.remaining;
-        return res.status(200).json(selectQuestion({ ...question, remaining }, difficulties, user.id));
+        return res.status(200).json(selectQuestion({ ...question, remaining }, difficulties, userId));
       }
 
       if (waiting) return res.status(400).json({ error: 'Choose a difficulty level with words left in this round.' });
       const entry = SPELLING_BEE_WORDS[question.remaining[question.index]];
       if (body.action === 'audio') return await sendAudio(supabase.storage.from(AUDIO_BUCKET), entry, res);
       if (body.action === 'reveal' && question.stage === 'incorrect') {
-        const questionId = questions.seal({ ...question, stage: 'revealed' }, user.id);
+        const questionId = questions.seal({ ...question, stage: 'revealed' }, userId);
         return res.status(200).json({ state: 'revealed', word: entry.word, questionId });
       }
       if (body.action === 'check' && !finished) {
         const answer = typeof body.answer === 'string' && body.answer.length <= 100 ? body.answer.trim() : '';
         if (!answer) return res.status(400).json({ error: 'Enter a spelling to check.' });
         const state = answer.toLowerCase() === entry.word ? 'correct' : 'incorrect';
-        const questionId = questions.seal({ ...question, stage: state }, user.id);
+        const questionId = questions.seal({ ...question, stage: state }, userId);
         return res.status(200).json({ state, questionId });
       }
 

@@ -13,17 +13,17 @@ const hard = ['accumulate', 'pervasive'];
 const recordings = [...easy, ...medium, ...hard];
 const members = ['free-member', 'plus-member'];
 
-async function fixture(t, { available = recordings, missing = [] } = {}) {
+async function fixture(t, { available = recordings, missing = [], getUser } = {}) {
   const calls = { lists: [], downloads: [] };
   const handler = createSpellingBeeHandler({
     secret: 'test-secret',
     supabase: {
       auth: {
-        async getUser(token) {
+        getUser: getUser ?? (async token => {
           if (members.includes(token)) return { data: { user: { id: token } } };
           if (token === 'anonymous') return { data: { user: { id: token, is_anonymous: true } } };
           return { error: { status: 401 } };
-        },
+        }),
       },
       storage: {
         from(bucket) {
@@ -178,6 +178,51 @@ test('question IDs hide the word, belong to one member and advance only after a 
   assert.equal(revealed.word, easy.find(word => word !== first));
   assert.deepEqual(await (await call('next', { questionId: revealed.questionId })).json(), { state: 'complete' });
   assert.equal((await (await call('start', { difficulty: 'easy' })).json()).state, 'question');
+});
+
+test('opening prepares the first question in one request and answer checks reuse only recent verification', async t => {
+  t.mock.timers.enable({ apis: ['Date'], now: new Date('2026-11-19T12:00:00Z') });
+  const expiry = Date.now() / 1000 + 45;
+  const token = `header.${Buffer.from(JSON.stringify({ exp: expiry })).toString('base64url')}.signature`;
+  const authCalls = [];
+  const { call, calls } = await fixture(t, {
+    available: ['apple'],
+    async getUser(bearer) {
+      authCalls.push(bearer);
+      return bearer === token && Date.now() / 1000 < expiry
+        ? { data: { user: { id: members[0] } } }
+        : { error: { status: 401 } };
+    },
+  });
+
+  assert.equal((await call('page', { includeRound: true }, null)).status, 401);
+  const opened = await call('page', { includeRound: true }, token);
+  assert.equal(opened.status, 200);
+  const { html, round } = await opened.json();
+  assert.match(html, /Listen and spell/);
+  assert.equal(round.state, 'question');
+  assert.equal(round.difficulty, 'easy');
+  assert.deepEqual(calls.lists, ['en-US']);
+  assert.deepEqual(authCalls, [token]);
+
+  async function answer(answer, bearer = token, questionId = round.questionId) {
+    return call('check', { questionId, answer }, bearer);
+  }
+  t.mock.timers.tick(20_000);
+  const wrong = await (await answer('banana')).json();
+  assert.equal(wrong.state, 'incorrect');
+  assert.equal(wrong.word, undefined);
+  assert.equal((await (await answer(' APPLE ', token, wrong.questionId)).json()).state, 'correct');
+  assert.deepEqual(authCalls, [token]);
+  const otherToken = token + 'changed';
+  assert.equal((await answer('apple', otherToken)).status, 401);
+
+  t.mock.timers.tick(11_000);
+  assert.equal((await (await answer('apple')).json()).state, 'correct');
+  assert.deepEqual(authCalls, [token, otherToken, token]);
+  t.mock.timers.tick(15_000);
+  assert.equal((await answer('apple')).status, 401);
+  assert.deepEqual(authCalls, [token, otherToken, token, token]);
 });
 
 test('missing audio can be skipped and an unavailable difficulty does not borrow another pool', async t => {
