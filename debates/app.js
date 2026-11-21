@@ -2,6 +2,9 @@ import { DEBATE_SETS } from './sets/index.js';
 
 const $ = id => document.getElementById(id);
 const setSelect = $('debate-set');
+const image = $('debate-image');
+const nextImage = new Image();
+nextImage.fetchPriority = 'low';
 let selectedSet = DEBATE_SETS[0];
 let position = 0;
 
@@ -12,35 +15,57 @@ for (const set of DEBATE_SETS) {
   setSelect.append(option);
 }
 
+function imageUrl(index) {
+  const filename = selectedSet.debates[index].imageFilename ?? `${String(index + 1).padStart(2, '0')}.jpg`;
+  return `${selectedSet.imageDirectory}/${filename}`;
+}
+
 function render() {
   const debate = selectedSet.debates[position];
-  const imageFilename = debate.imageFilename ?? `${String(position + 1).padStart(2, '0')}.jpg`;
+  const src = imageUrl(position);
   $('debate-title').textContent = debate.title;
-  $('debate-image').alt = debate.title;
-  $('debate-image').src = `${selectedSet.imageDirectory}/${imageFilename}`;
+  image.alt = debate.title;
+  if (image.getAttribute('src') !== src) image.src = src;
   $('debate-question').textContent = debate.question;
   $('progress').textContent = `${position + 1} / ${selectedSet.debates.length}`;
   $('back').disabled = position === 0;
   $('next').disabled = position === selectedSet.debates.length - 1;
 }
 
+function startOver() {
+  position = 0;
+  render();
+}
+
+function moveSlide(step) {
+  const next = position + step;
+  if (next < 0 || next >= selectedSet.debates.length) return;
+  position = next;
+  render();
+}
+
+export function resetActivity() {
+  selectedSet = DEBATE_SETS[0];
+  setSelect.value = selectedSet.id;
+  startOver();
+}
+
+image.addEventListener('load', () => {
+  if (position + 1 < selectedSet.debates.length && !navigator.connection?.saveData) {
+    nextImage.src = imageUrl(position + 1);
+  }
+});
 setSelect.addEventListener('change', () => {
   selectedSet = DEBATE_SETS.find(set => set.id === setSelect.value);
-  position = 0;
-  render();
+  startOver();
 });
-$('back').addEventListener('click', () => {
-  if (position > 0) position -= 1;
-  render();
-});
-$('next').addEventListener('click', () => {
-  if (position < selectedSet.debates.length - 1) position += 1;
-  render();
-});
-$('start-over').addEventListener('click', () => {
-  position = 0;
-  render();
-});
+$('back').addEventListener('click', () => moveSlide(-1));
+$('next').addEventListener('click', () => moveSlide(1));
+$('start-over').addEventListener('click', startOver);
 
-if (window.self !== window.top) $('dashboard-link').hidden = true;
-render();
+$('practice-content').addEventListener('keydown', event => {
+  if (event.target === setSelect || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  event.preventDefault();
+  moveSlide(event.key === 'ArrowLeft' ? -1 : 1);
+});

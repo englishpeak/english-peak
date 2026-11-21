@@ -2,20 +2,19 @@
 body { margin: 0; }
 .activity { width: min(100%, 960px); margin: 0 auto; padding: 24px; }
 #dashboard-link { color: var(--ep-navy); font-size: .9rem; }
-.activity-header { display: flex; align-items: center; justify-content: flex-end; margin-bottom: 12px; }
-button, select { font-family: var(--ep-font-sans); font-size: .95rem; color: var(--ep-navy); background: var(--ep-surface); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); padding: 11px 18px; cursor: pointer; }
+.activity-header { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-bottom: 12px; color: var(--ep-navy); }
+button, select { min-height: 44px; font-family: var(--ep-font-sans); font-size: .95rem; color: var(--ep-navy); background: var(--ep-surface); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-md); padding: 10px 14px; cursor: pointer; }
 button:disabled { opacity: .5; cursor: default; }
 button:hover:not(:disabled), select:hover { box-shadow: 0 3px 12px rgba(13,59,111,.12); }
 :focus-visible { outline: 3px solid var(--ep-sky); outline-offset: 3px; }
 .slide { padding: 16px; }
-#debate-title { margin: 0 0 16px; font-size: clamp(1.5rem, 3vw, 1.9rem); }
-#debate-image { display: block; width: 100%; height: auto; border-radius: var(--ep-radius-sm); }
-#debate-question { margin: 24px 0 0; font-size: clamp(1rem, 2.2vw, 1.2rem); line-height: 1.65; }
-.controls { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
-#progress { min-width: 56px; text-align: center; color: var(--ep-navy); font-variant-numeric: tabular-nums; }
+#debate-title { margin: 0 0 8px; font-size: clamp(1.5rem, 3vw, 1.9rem); }
+#debate-image { display: block; width: 100%; height: auto; aspect-ratio: auto 3 / 2; border-radius: var(--ep-radius-sm); background: var(--ep-card-soft); }
+#debate-question { margin: 0; font-size: clamp(1rem, 2.2vw, 1.2rem); line-height: 1.5; }
+.controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+#progress { min-width: 48px; text-align: center; color: var(--ep-navy); font-variant-numeric: tabular-nums; }
+#start-over { margin-left: auto; }
 @media (max-width: 480px) {
-  .activity { padding: 16px; }
-  .slide { padding: 16px; }
-  .controls { gap: 12px; }
-  #start-over { flex-basis: 100%; }
+  .activity, .slide { padding: 12px; }
+  .controls button { padding-inline: 10px; }
 }
