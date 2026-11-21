@@ -76,7 +76,7 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'\]/);
 });
 
 test('Test 31 deep links remain supported as an optional entry path', () => {
@@ -107,12 +107,12 @@ function parentIBTAccess(tier) {
   return { allowed: [...parentSandbox.allowed], frameSrc: element('frame-ibt').src };
 }
 
-test('every full-access tier sends Tests 31–37 in the iframe allowed parameter', () => {
+test('every full-access tier sends Tests 31–38 in the iframe allowed parameter', () => {
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     const access = parentIBTAccess(tier);
-    assert.equal(access.allowed.length, 37, tier);
-    assert.deepEqual(access.allowed.slice(-7), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37'], tier);
-    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-7), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37'], tier);
+    assert.equal(access.allowed.length, 38, tier);
+    assert.deepEqual(access.allowed.slice(-8), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'], tier);
+    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-8), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'], tier);
   }
 });
 
@@ -143,6 +143,18 @@ test('Test 37 catalog control opens for full access and remains locked without a
   locked.control.click();
   assert.deepEqual(locked.started, []);
   assert.deepEqual(locked.upgrades, ['Test 37']);
+});
+
+test('Test 38 catalog control opens for full access and remains locked without access', () => {
+  const allowed = catalogControl({ allowedTests: ['Test 38'], populatedTests: ['Test 38'], key: 'Test 38' });
+  assert.equal(allowed.control.disabled, false);
+  allowed.control.click();
+  assert.deepEqual(allowed.started, ['Test 38']);
+  const locked = catalogControl({ allowedTests: [], populatedTests: ['Test 38'], key: 'Test 38' });
+  assert.match(locked.control.textContent, /^🔒 Test 38$/);
+  locked.control.click();
+  assert.deepEqual(locked.started, []);
+  assert.deepEqual(locked.upgrades, ['Test 38']);
 });
 
 function catalogControl({ allowedTests, populatedTests, key }) {
@@ -182,8 +194,7 @@ function catalogControl({ allowedTests, populatedTests, key }) {
     notifyUpgrade: () => upgrades.push(key),
   };
   const catalogSource = html.slice(html.indexOf('var testCollections ='), html.indexOf('function buildTestHref'));
-  const futureCollection = key === 'Test 31' ? '' : `testCollections.push({ id: 'future', title: 'FUTURE', description: '', tests: ['${key}'] });`;
-  vm.runInNewContext(`${catalogSource}\n${futureCollection}\n_buildIBTMenu();`, behaviorSandbox);
+  vm.runInNewContext(`${catalogSource}\n_buildIBTMenu();`, behaviorSandbox);
   const controls = menuGrid.children.flatMap((section) => section._testsGrid.children);
   const control = controls.find((entry) => entry.textContent.replace('🔒 ', '') === key || entry.innerHTML.startsWith(key));
   return { control, started, upgrades };
@@ -405,7 +416,7 @@ test('results use item-level Practice Accuracy instead of an unofficial TOEFL sc
 
 
 test('Test 32 is enabled in the updated catalog and preserves the complete section sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'\]/);
   assert.equal(test32.length, 27);
   assert.deepEqual([...new Set(test32.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: ['Test 32'], key: 'Test 32' });
@@ -465,7 +476,7 @@ test('Test 32 extended tasks retain established timing and sentence behavior', (
 });
 
 test('Test 33 is enabled with the complete updated practice sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37'\]/);
+  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'\]/);
   assert.equal(test33.length, 27);
   assert.deepEqual([...new Set(test33.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(test33, (task) => task.section)).map(([section, tasks]) => [section, tasks.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });

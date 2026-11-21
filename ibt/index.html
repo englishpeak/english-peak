@@ -174,7 +174,7 @@ var testCollections = [
     id: 'updated-toefl-practice',
     title: 'UPDATED TOEFL PRACTICE',
     description: 'Practice with the task types and format introduced in the updated TOEFL iBT.',
-    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37']
+    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38']
   }
 ];
 
@@ -5867,6 +5867,811 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
       }
     ];
 
+    testData["Test 38"] = [
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 1: How Soap Removes Grease",
+        "instruction": "Complete the words in the passage.",
+        "text": "Soap helps remove oily dirt that water alone often cannot wash away. Each soap mol[5] has one part that inter[4] with water and another that att[5] to grease. When soap is mixed into water, its molecules can gath[2] around tiny drop[4] of oil. Their water-attracting ends face outw[3], allowing the droplets to remain susp[5] in the liquid. Rin[4] then carries the trap[3] grease away from the surface. Warm water and gentle rubbing may improve cleaning, but the basic process depends on the unus[3] structure of soap molecules.",
+        "answers": [
+          "ecule",
+          "acts",
+          "aches",
+          "er",
+          "lets",
+          "ard",
+          "ended",
+          "sing",
+          "ped",
+          "ual"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 2: How Touchscreens Work",
+        "instruction": "Complete the words in the passage.",
+        "text": "Modern touchscreens allow people to control devices without using a physical keyboard. In one common design, a trans[6] cond[6] layer lies bene[3] the surface of the glass. When a finger appro[5] or touches the screen, it changes a tiny elec[6] property at that location. Sens[3] detect the change, and a proc[5] esti[5] where the contact occurred. The device then inter[5] the position as a command, such as opening an application or moving an image. Because the screen does not depend on pres[4] alone, it can respond to light touches and support several fingers at once.",
+        "answers": [
+          "parent",
+          "uctive",
+          "ath",
+          "aches",
+          "trical",
+          "ors",
+          "essor",
+          "mates",
+          "prets",
+          "sure"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 3: Arts District Open Evening",
+        "instruction": "Read a schedule for a neighborhood arts event.",
+        "text": "ARTS DISTRICT OPEN EVENING\n\nFRIDAY\n6:00–9:00 p.m.\n\nNORTH GALLERY\n6:15–6:45 p.m.\nPrintmaking Demonstration\nWalk-in visitors welcome\n\nEAST COURTYARD\n7:00–7:45 p.m.\nHand-Built Ceramics Workshop\nAdvance registration required\n\nWEST STUDIO\n7:45–8:30 p.m.\nOpen Sketching Session\nWalk-in visitors welcome\n\nVISITOR INFORMATION DESK\n6:00–9:00 p.m.\nMaps and free exhibition guides\n\nIMPORTANT:\n\n- All activities are free.\n- Registration for the ceramics workshop closes Thursday at 6:00 p.m.\n- Children under 12 must be accompanied by an adult.",
+        "questions": [
+          {
+            "q": "A visitor wants to participate in a creative activity after 7:00 p.m. without registering in advance. Which activity would be suitable?",
+            "options": [
+              "The Printmaking Demonstration",
+              "The Open Sketching Session",
+              "The Hand-Built Ceramics Workshop",
+              "The Visitor Information Desk"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Which activity requires advance registration?",
+            "options": [
+              "The Hand-Built Ceramics Workshop",
+              "The Open Sketching Session",
+              "The Printmaking Demonstration",
+              "Collecting an exhibition guide"
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 4: Transit Card Top-Up Confirmation",
+        "instruction": "Read a transit-card confirmation.",
+        "text": "CITY TRANSIT\n\nONLINE TOP-UP CONFIRMATION\n\nDate: August 18\nCard ending: 2841\n\nPrevious balance: $6.50\nAdded credit: $20.00\nNew balance: $26.50\n\nPAYMENT CONFIRMED\n\nACTIVATION INSTRUCTIONS\n\nTo load the purchased credit onto your card, tap your card at a station reader.\n\nThe new balance may take up to 15 minutes to appear after activation.\n\nIf the balance has not updated 30 minutes after you tap the card, contact customer support.\n\nRetain this confirmation for your records.",
+        "questions": [
+          {
+            "q": "What must the customer do to activate the additional credit?",
+            "options": [
+              "Purchase a replacement transit card",
+              "Wait until the next calendar day",
+              "Tap the card at a station reader",
+              "Contact customer support immediately"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "When should the customer contact customer support?",
+            "options": [
+              "Before making the online payment",
+              "Whenever the card balance changes",
+              "Immediately after tapping the card",
+              "If the new balance is still missing 30 minutes after tapping the card"
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 5: Group Chat",
+        "instruction": "Read a group-message conversation.",
+        "text": "MIA — 2:05 p.m.\nI'm dropping off three books for Saturday's book swap. Is the collection desk open all afternoon?\n\nLEO — 2:06 p.m.\nOnly until four today. And they won't accept books with torn or missing pages.\n\nRENEE — 2:08 p.m.\nI've got two study guides in good condition, but I have class until 4:30.\n\nMIA — 2:10 p.m.\nCan you leave them at your department office? I'll be near there at 3:15 and can take them to the collection desk.\n\nRENEE — 2:12 p.m.\nYes, I'll leave them with the receptionist before three.\n\nLEO — 2:14 p.m.\nGreat. I'll bring the label cards for sorting books at Saturday's swap.",
+        "questions": [
+          {
+            "q": "What kind of books will the organizers refuse?",
+            "options": [
+              "Books used in university courses",
+              "Books without the original price label",
+              "Books donated by students",
+              "Books with torn or missing pages"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why is it important for Mia to collect Renee's books before four o'clock?",
+            "options": [
+              "The collection desk closes at four.",
+              "Renee needs the study guides for her class.",
+              "The book swap begins at four.",
+              "The department office will close at three."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "How will Renee's study guides reach the collection desk?",
+            "options": [
+              "Leo will collect them during Saturday's event.",
+              "Renee will take them there after her class.",
+              "Mia will collect them from the department office and deliver them.",
+              "The receptionist will mail them to the organizers."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 6: Bioluminescence",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Bioluminescence is light produced by a chemical reaction inside a living organism. Although it is often associated with the deep ocean, it also occurs on land in certain insects and fungi. The reaction commonly involves a light-emitting compound and proteins that help it react with oxygen. Unlike many artificial light sources, this process releases relatively little energy as heat.</p><p>In the ocean, different species use light for different purposes. Some animals produce sudden flashes that may startle a predator. Others use glowing parts of their bodies to attract prey. Repeated patterns of light can also serve as signals between individuals of the same species. However, a light display that benefits one species may expose another to danger, so the value of glowing depends on its context.</p><p>Scientists distinguish bioluminescence from fluorescence. A fluorescent material absorbs light from an outside source and emits light at another wavelength, whereas a bioluminescent organism generates light through internal chemical reactions. Researchers study both the ecology and the chemistry of biological light. Such research has also contributed to laboratory techniques for observing processes inside living cells, because certain light-producing molecules can be used as markers.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why artificial lighting cannot function underwater",
+              "How all marine species produce identical light signals",
+              "How organisms produce and use biological light, and how it differs from fluorescence",
+              "Why light-producing organisms live only in deep water"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "According to paragraph 1, what is commonly involved in producing bioluminescence?",
+            "options": [
+              "The reflection of sunlight from the organism's surface",
+              "A chemical reaction involving a light-emitting compound and proteins",
+              "The absorption of energy from an artificial lamp",
+              "The rapid heating of specialized body structures"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why might an ocean animal produce a sudden flash of light?",
+            "options": [
+              "To increase the temperature of nearby water",
+              "To prevent oxygen from entering its body",
+              "To remove chemicals from its tissues",
+              "To startle a potential predator"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What distinguishes fluorescence from bioluminescence?",
+            "options": [
+              "Fluorescence occurs only in animals living on land.",
+              "Fluorescence requires an outside light source, while bioluminescence generates light through internal chemical reactions.",
+              "Fluorescence always produces more light than bioluminescence.",
+              "Fluorescence cannot occur in living organisms."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why does the author mention techniques for observing processes inside living cells?",
+            "options": [
+              "To illustrate a scientific application of research into biological light",
+              "To explain why organisms do not need chemical reactions",
+              "To show that fluorescence and bioluminescence are identical",
+              "To argue that ocean ecosystems are easy to reproduce in laboratories"
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 7: The Development of Lighthouses",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Before modern satellite navigation, sailors relied on coastal landmarks to identify dangerous rocks and entrances to harbors. Lighthouses became especially useful where the coastline was difficult to see at night or during poor weather. An early lighthouse might simply hold a fire at an elevated point. Yet an open flame could be hard to keep burning in wind, and its light spread in many directions.</p><p>Improvements in lighting and optics made coastal signals more effective. In the nineteenth century, specially shaped lenses helped concentrate light into a stronger beam rather than allowing much of it to scatter. Some lighthouse mechanisms rotated the beam, creating a distinctive pattern of flashes. Different patterns helped sailors distinguish one signal from another, an important advantage when several lights were visible from the same route.</p><p>Maintaining a lighthouse once required workers to clean equipment, supply fuel, and monitor the light at night. Electrification and automated controls reduced the need for constant on-site attention, though inspection remained necessary. Today, electronic navigation tools provide detailed position information, but many lighthouses continue to function as supplementary aids and recognizable coastal landmarks. Their history illustrates how advances in engineering made an established navigational idea more dependable.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why sailors stopped using coastal landmarks entirely",
+              "How lighthouses developed into more reliable navigational aids",
+              "Why early lighthouses operated without any form of lighting",
+              "How satellite systems were first developed for ships"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why did some lighthouses use distinctive patterns of flashes?",
+            "options": [
+              "To reduce the amount of fuel used each night",
+              "To prevent ships from approaching harbors",
+              "To indicate the exact depth of the surrounding water",
+              "To help sailors distinguish one lighthouse from another"
+            ],
+            "correct": 3
+          },
+          {
+            "q": "How did specially shaped lenses improve lighthouse signals?",
+            "options": [
+              "They helped concentrate light into stronger beams.",
+              "They eliminated the need for any light source.",
+              "They prevented all weather from affecting visibility.",
+              "They allowed ships to communicate directly with lighthouse workers."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "How did electrification and automation affect lighthouse operation?",
+            "options": [
+              "They made lighthouse inspections unnecessary.",
+              "They eliminated the need for navigation near coasts.",
+              "They reduced the need for continuous attention from workers on site.",
+              "They made lighthouses less visible to ships."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What role do many lighthouses continue to serve today?",
+            "options": [
+              "They replace all electronic navigation equipment.",
+              "They are the only way to identify harbor entrances.",
+              "They remain supplementary navigation aids and recognizable landmarks.",
+              "They provide the main source of fuel for modern ships."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 8: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-38/task-8.mp3",
+        "script": "I was going to print the handouts for tomorrow, but the printer ran out of paper halfway through.",
+        "question": "Choose the best response.",
+        "options": [
+          "Is there another printer you could use to finish the handouts?",
+          "Tomorrow's class begins at nine o'clock.",
+          "The handouts were printed last semester.",
+          "I usually buy notebooks at the campus store."
+        ],
+        "correct": 0
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 9: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-38/task-9.mp3",
+        "script": "Do you happen to know whether the scholarship interviews are being held online or in person?",
+        "question": "Choose the best response.",
+        "options": [
+          "Scholarships are available to several departments.",
+          "The interviews were scheduled last month.",
+          "I'm not sure, but the confirmation email should tell us the format.",
+          "The scholarship application includes an essay."
+        ],
+        "correct": 2
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 10: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-38/task-10.mp3",
+        "script": "I never would've found the archive without those directions you gave me.",
+        "question": "Choose the best response.",
+        "options": [
+          "The archive closes earlier on Fridays.",
+          "I found a different document yesterday.",
+          "The directions were posted near the entrance.",
+          "You're welcome! I'm glad they helped."
+        ],
+        "correct": 3
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 11: Listen and Choose a Response",
+        "instruction": "Choose the best response.",
+        "audioUrl": "../audio/ibt/test-38/task-11.mp3",
+        "script": "It looks like we've got just enough chairs, unless more people show up.",
+        "question": "Choose the best response.",
+        "options": [
+          "The chairs were delivered yesterday.",
+          "Maybe we should find a few extra chairs just in case.",
+          "The room has several windows.",
+          "I usually arrive early for events."
+        ],
+        "correct": 1
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 15: University Photography Facilities",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-38/task-15.mp3",
+        "script": "Narrator:\nListen to a conversation at a university photography center.\n\nWoman:\nHi. I need to print three color photographs for my design class. I booked the darkroom for this afternoon, but I couldn't find the color printer.\n\nMan:\nThe darkroom here is only for black-and-white film processing. Color printing is handled in the digital imaging lab across the hall.\n\nWoman:\nOh, I thought my darkroom reservation included both facilities.\n\nMan:\nThey're separate. You can use a computer in the imaging lab without a reservation, but large-format prints have to be ordered through our online system.\n\nWoman:\nMine are about poster size. If I upload the files now, could I collect the prints today?\n\nMan:\nUsually not. Large-format orders are ready the next business day. And you'll need to upload high-resolution PDF files.\n\nWoman:\nMy class presentation is Friday, so tomorrow would be fine.\n\nMan:\nGreat. Just make sure you select the correct dimensions when placing your order.\n\nWoman:\nOkay. I'll prepare the files this afternoon.",
+        "questions": [
+          {
+            "q": "Why can't the student use her darkroom reservation to produce the photographs she needs?",
+            "options": [
+              "Her reservation was canceled.",
+              "She must obtain permission from her instructor.",
+              "The darkroom is temporarily closed for repairs.",
+              "Color printing is handled in a different facility."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What should the student do next?",
+            "options": [
+              "Bring ordinary paper photographs to the darkroom.",
+              "Wait until the end of the semester to order prints.",
+              "Upload high-resolution PDF files through the online ordering system.",
+              "Reserve the black-and-white darkroom for Friday."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 16: Internship for Academic Credit",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-38/task-16.mp3",
+        "script": "Narrator:\nListen to a conversation between a student and an academic adviser.\n\nMan:\nHi. I'm starting a summer internship at a museum next Monday, and I wanted to find out whether I can receive academic credit for it.\n\nWoman:\nPossibly, but internships have to be approved before they begin. You'll need a faculty supervisor and a learning agreement describing your responsibilities.\n\nMan:\nI already have a supervisor at the museum. Is that enough?\n\nWoman:\nThat's your workplace supervisor. For academic credit, you'll also need a professor here at the university to oversee the academic part.\n\nMan:\nOh, I didn't realize those were two different roles. I was planning to arrange the paperwork after starting.\n\nWoman:\nPlease don't wait. Send me a description of the internship today, and I can suggest a professor to contact.\n\nMan:\nDo you think there's still time?\n\nWoman:\nPossibly, if the professor responds quickly. But the agreement must be approved before your first day.\n\nMan:\nUnderstood. I'll email you this afternoon.",
+        "questions": [
+          {
+            "q": "Why is the student's museum supervisor not sufficient for receiving academic credit?",
+            "options": [
+              "The museum is not recognized by the university.",
+              "The student needs a university faculty supervisor in addition to the workplace supervisor.",
+              "The museum supervisor is unavailable during summer.",
+              "Academic credit is only available for paid internships."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why does the adviser urge the student to act quickly?",
+            "options": [
+              "The museum is closing its internship program.",
+              "The faculty supervisor will be away for several months.",
+              "The university requires him to change his academic major.",
+              "His learning agreement must be approved before the internship begins."
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 18: University Laptop Loans",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-38/task-18.mp3",
+        "script": "Narrator:\nListen to an announcement at a university media center.\n\nWoman:\nBeginning next week, students who want to borrow a laptop from the media center must reserve one online at least an hour before pickup. Laptops can be borrowed for up to four hours, and chargers must be returned with them. Walk-in loans will no longer be available. If you've already made a reservation for next week, you don't need to make another one.",
+        "questions": [
+          {
+            "q": "What will students generally need to do before borrowing a laptop beginning next week?",
+            "options": [
+              "Make an online reservation at least an hour in advance",
+              "Return a charger before collecting a laptop",
+              "Get written approval from their instructor",
+              "Visit the center without a reservation"
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 19: Psychology Observation Assignment",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-38/task-19.mp3",
+        "script": "Narrator:\nListen to an announcement in a psychology class.\n\nMan:\nFor your observation assignment, write down what you actually see without trying to explain the causes of the behavior yet. You may work with a partner while collecting observations, but each of you must submit an individual summary. Please use the template I uploaded this morning, since the version from last semester is missing a section. We'll discuss possible explanations in class next week.",
+        "questions": [
+          {
+            "q": "What is required for the observation assignment?",
+            "options": [
+              "Students must explain the causes of behavior before collecting observations.",
+              "Each student must submit an individual summary, even if observations were collected with a partner.",
+              "Students must use last semester's template.",
+              "Every student must observe a different location."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 20: Why Lakes Mix in Autumn",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-38/task-20.mp3",
+        "script": "Narrator:\nListen to part of a talk about lake ecosystems.\n\nMan:\nIn summer, a deep lake may seem like a single body of water, but it often behaves more like two separate layers.\n\nSunlight warms the water near the surface. In many temperate lakes, this warmer water is less dense than the colder water below, so the two layers resist mixing.\n\nBecause of this separation, oxygen and nutrients may be distributed unevenly. Surface water receives oxygen from the atmosphere and from photosynthesis, while deeper water may receive less fresh oxygen during summer. Meanwhile, nutrients released from sediments may accumulate near the bottom.\n\nBut when autumn arrives, the situation changes. The air cools, and surface water gradually loses heat. As the temperature and density differences between the layers decrease, wind can mix the water more effectively.\n\nThis seasonal process is often called lake turnover.\n\nTurnover can transport oxygen toward deeper water and bring nutrients upward, where they may become available to algae and other organisms.\n\nHowever, not every lake experiences turnover in exactly the same way. Depth, climate, and even the amount of dissolved substances in the water can influence how frequently mixing occurs.\n\nSo studying a lake's temperature isn't just about knowing whether the water is warm enough for swimming. It can also help scientists understand the conditions that affect an entire aquatic ecosystem.",
+        "questions": [
+          {
+            "q": "Why do surface and deep water often resist mixing during summer?",
+            "options": [
+              "Surface water contains no dissolved gases.",
+              "The lake bottom produces warm water continuously.",
+              "The wind stops blowing over the lake.",
+              "Warmer surface water is less dense than the colder water below."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why may oxygen be distributed unevenly in a lake during summer?",
+            "options": [
+              "Deep water always receives more atmospheric oxygen.",
+              "Seasonal rainfall removes oxygen from every layer.",
+              "The separation of layers can limit the movement of fresh oxygen into deeper water.",
+              "Nutrients prevent the surface from receiving oxygen."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "What change helps make lake turnover possible in autumn?",
+            "options": [
+              "Surface water cools and density differences between layers become smaller.",
+              "All nutrients disappear from deeper water.",
+              "Sunlight heats the deepest water more quickly.",
+              "The lake stops responding to wind."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "How can lake turnover affect oxygen and nutrients?",
+            "options": [
+              "It prevents oxygen from reaching deeper areas.",
+              "It can move oxygen downward and nutrients upward.",
+              "It permanently removes all nutrients from the lake.",
+              "It prevents algae from obtaining nutrients."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 21: Why Old Paintings Change Color",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-38/task-21.mp3",
+        "script": "Narrator:\nListen to part of a talk about art conservation.\n\nWoman:\nWhen you see an old painting in a museum, you may assume you're looking at exactly the colors the artist originally intended. But paintings are made from materials that can change over time.\n\nA layer of paint usually contains pigment, which provides color, and a binding medium, which holds the pigment in place.\n\nSome pigments are sensitive to light, and exposure over many years can cause them to fade. Others react chemically with substances in the air. The binding medium itself may also change as it ages.\n\nThen there's varnish.\n\nArtists or conservators sometimes apply a clear coating to protect a painting or adjust its appearance. Certain older varnishes gradually become yellow, making the entire painting look warmer or darker than it originally did.\n\nConservators use careful examination and scientific analysis to understand these changes. They might study tiny samples or use imaging techniques that reveal details below the visible surface.\n\nBut conservation involves difficult decisions. Removing an old coating could reveal earlier colors, yet the cleaning process might damage delicate paint underneath.\n\nThat's why specialists test possible treatments and proceed cautiously.\n\nThe main point is that an artwork's present appearance reflects both the artist's original choices and the history of the materials themselves.",
+        "questions": [
+          {
+            "q": "According to the speaker, why can the colors of an old painting change?",
+            "options": [
+              "Artists generally select colors without considering their appearance.",
+              "Museum lighting always changes the structure of every pigment immediately.",
+              "Pigments and binding materials can undergo physical or chemical changes over time.",
+              "All old paintings are deliberately repainted after several years."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "How can older varnish affect a painting's appearance?",
+            "options": [
+              "It always restores the original colors.",
+              "It removes all pigments from the painted surface.",
+              "It prevents light from reaching the painting entirely.",
+              "It can become yellow and make the painting appear warmer or darker."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why do conservators use imaging techniques and scientific analysis?",
+            "options": [
+              "To investigate changes in materials and details that may not be visible at the surface",
+              "To guarantee that every painting can be restored to its exact original condition",
+              "To eliminate the need for examining the artwork",
+              "To identify the market price of each pigment"
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why can removing an old coating be risky?",
+            "options": [
+              "The coating may contain the artist's signature.",
+              "The cleaning process could damage delicate paint beneath it.",
+              "Paintings cannot be examined after varnish is removed.",
+              "Older varnishes never change color."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 1: Build a Sentence",
+        "context": "Speaker A: “Why didn't Mina submit the proposal?”",
+        "scaffold": "She wanted ______ ______ ______ ______.",
+        "chunks": [
+          "with her supervisor",
+          "confirming",
+          "first",
+          "to confirm",
+          "the budget"
+        ],
+        "words": [
+          "with her supervisor",
+          "confirming",
+          "first",
+          "to confirm",
+          "the budget"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "to confirm",
+          "the budget",
+          "with her supervisor",
+          "first"
+        ],
+        "distractor": "confirming",
+        "completedSentence": "She wanted to confirm the budget with her supervisor first."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 2: Build a Sentence",
+        "context": "Speaker A: “Have they repaired the elevator?”",
+        "scaffold": "They said ______ ______ ______ ______.",
+        "chunks": [
+          "again",
+          "works",
+          "by Monday",
+          "it should",
+          "be working"
+        ],
+        "words": [
+          "again",
+          "works",
+          "by Monday",
+          "it should",
+          "be working"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "it should",
+          "be working",
+          "again",
+          "by Monday"
+        ],
+        "distractor": "works",
+        "completedSentence": "They said it should be working again by Monday."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 3: Build a Sentence",
+        "context": "Speaker A: “Can we begin the workshop?”",
+        "scaffold": "We can't begin until ______ ______ ______ ______.",
+        "chunks": [
+          "the safety",
+          "was sign",
+          "form",
+          "everyone",
+          "has signed"
+        ],
+        "words": [
+          "the safety",
+          "was sign",
+          "form",
+          "everyone",
+          "has signed"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "everyone",
+          "has signed",
+          "the safety",
+          "form"
+        ],
+        "distractor": "was sign",
+        "completedSentence": "We can't begin until everyone has signed the safety form."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 4: Build a Sentence",
+        "context": "Speaker A: “Why is the report so detailed?”",
+        "scaffold": "The team included ______ ______ ______ ______.",
+        "chunks": [
+          "during the trial",
+          "recording",
+          "that were",
+          "all the observations",
+          "recorded"
+        ],
+        "words": [
+          "during the trial",
+          "recording",
+          "that were",
+          "all the observations",
+          "recorded"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "all the observations",
+          "that were",
+          "recorded",
+          "during the trial"
+        ],
+        "distractor": "recording",
+        "completedSentence": "The team included all the observations that were recorded during the trial."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 5: Build a Sentence",
+        "context": "Speaker A: “Why did you change your flight?”",
+        "scaffold": "I found ______ ______ ______ ______.",
+        "chunks": [
+          "arriving",
+          "earlier",
+          "a connection",
+          "arrive",
+          "that would"
+        ],
+        "words": [
+          "arriving",
+          "earlier",
+          "a connection",
+          "arrive",
+          "that would"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "a connection",
+          "that would",
+          "arrive",
+          "earlier"
+        ],
+        "distractor": "arriving",
+        "completedSentence": "I found a connection that would arrive earlier."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 6: Build a Sentence",
+        "context": "Speaker A: “Did you get an answer from admissions?”",
+        "scaffold": "No, but ______ ______ ______ ______.",
+        "chunks": [
+          "before",
+          "are reply",
+          "the weekend",
+          "I was told",
+          "they would reply"
+        ],
+        "words": [
+          "before",
+          "are reply",
+          "the weekend",
+          "I was told",
+          "they would reply"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "I was told",
+          "they would reply",
+          "before",
+          "the weekend"
+        ],
+        "distractor": "are reply",
+        "completedSentence": "No, but I was told they would reply before the weekend."
+      },
+      {
+        "section": "Writing",
+        "type": "writing-email",
+        "taskFamily": "Write an Email",
+        "title": "Write an Email",
+        "instruction": "Write as much as you can and in complete sentences.",
+        "time": 420,
+        "text": "<p>You are taking an online research-methods workshop offered by your university.</p><p>The instructor, Ms. Rivera, assigned a video-based data analysis module that students must complete before the next class.</p><p>However, when you try to open the videos, the website displays an \"Access Denied\" message.</p><p>Write an email to Ms. Rivera.</p><p>In your email:</p><ul><li>identify the module and describe the problem;</li><li>explain when you encountered the problem and what you have already tried;</li><li>ask for an alternative way to access the material or for an extension if necessary; and</li><li>mention when you would be available for assistance.</li></ul>"
+      },
+      {
+        "section": "Writing",
+        "type": "academic-discussion",
+        "taskFamily": "Write for an Academic Discussion",
+        "title": "Write for an Academic Discussion",
+        "time": 600,
+        "professor": "Professor Carter",
+        "professorPrompt": "<p>Universities organize their courses in different ways. Some subjects meet several times a week for shorter classes, while others meet less frequently for longer sessions.</p><p>Supporters of shorter, more frequent classes argue that students can absorb information gradually and review material between meetings.</p><p>Others believe that fewer, longer classes offer more time for extended discussions, practical activities, and group projects.</p><p>Which schedule do you think is generally more effective for university learning: several shorter classes throughout the week or fewer, longer class meetings? Why?</p>",
+        "studentAName": "Leah",
+        "studentA": "I prefer shorter classes several times a week. It's easier to stay focused when a class isn't too long, and students have more opportunities to ask questions as they learn new material. Meeting more often also encourages us to review what we studied between sessions instead of waiting an entire week before returning to a subject.",
+        "studentBName": "Omar",
+        "studentB": "I think longer classes can be more productive, especially for courses with practical activities. A short class sometimes ends just when the discussion becomes interesting. Longer sessions give students time to complete projects and explore complex ideas without constantly stopping. They also reduce the number of trips students need to make to campus.",
+        "studentInstruction": "Write a response to the professor's question. In your response: - express and support your own opinion; - contribute meaningfully to the discussion; and - use your own words. An effective response will contain at least 100 words."
+      },
+      {
+        "section": "Speaking",
+        "type": "listen-repeat-updated",
+        "taskFamily": "Listen and Repeat",
+        "title": "Listen and Repeat",
+        "scenario": "You are visiting the university ceramics studio. Listen and repeat what the studio representative says.",
+        "sentences": [
+          {
+            "script": "Welcome to the university ceramics studio.",
+            "text": "Welcome to the university ceramics studio.",
+            "audio": "../audio/ibt/test-38/sentence-1.mp3"
+          },
+          {
+            "script": "Please tie back long hair before using the pottery wheels.",
+            "text": "Please tie back long hair before using the pottery wheels.",
+            "audio": "../audio/ibt/test-38/sentence-2.mp3"
+          },
+          {
+            "script": "Each workstation has a water container, a sponge, and a set of basic shaping tools.",
+            "text": "Each workstation has a water container, a sponge, and a set of basic shaping tools.",
+            "audio": "../audio/ibt/test-38/sentence-3.mp3"
+          },
+          {
+            "script": "If your clay becomes too dry while you're working, add a little water rather than pressing harder.",
+            "text": "If your clay becomes too dry while you're working, add a little water rather than pressing harder.",
+            "audio": "../audio/ibt/test-38/sentence-4.mp3"
+          },
+          {
+            "script": "Before placing a finished piece on the drying shelf, write your name on the label and check that the base is stable.",
+            "text": "Before placing a finished piece on the drying shelf, write your name on the label and check that the base is stable.",
+            "audio": "../audio/ibt/test-38/sentence-5.mp3"
+          },
+          {
+            "script": "Because freshly shaped pottery can crack when heated too quickly, every piece must dry thoroughly before it is placed in the kiln.",
+            "text": "Because freshly shaped pottery can crack when heated too quickly, every piece must dry thoroughly before it is placed in the kiln.",
+            "audio": "../audio/ibt/test-38/sentence-6.mp3"
+          },
+          {
+            "script": "Students who would like to use the studio outside scheduled class hours must complete the safety orientation, obtain permission from the supervisor, and follow the posted instructions for cleaning equipment and storing unfinished work.",
+            "text": "Students who would like to use the studio outside scheduled class hours must complete the safety orientation, obtain permission from the supervisor, and follow the posted instructions for cleaning equipment and storing unfinished work.",
+            "audio": "../audio/ibt/test-38/sentence-7.mp3"
+          }
+        ]
+      },
+      {
+        "section": "Speaking",
+        "type": "take-interview",
+        "taskFamily": "Take an Interview",
+        "title": "Take an Interview",
+        "adaptationNote": "Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.",
+        "introduction": "You are participating in a research interview about shopping habits and the role of local businesses.",
+        "responseTime": 45,
+        "questions": [
+          "Describe a small local business, such as a shop, restaurant, or café, that you enjoy visiting. What makes you want to return?",
+          "When deciding whether to try a new business, what kinds of information or recommendations do you usually consider?",
+          "Some people prefer supporting local stores, while others prefer the convenience and prices of online shopping. Which option do you generally prefer, and why?",
+          "What could cities or communities do to help small local businesses remain successful while still offering consumers affordable choices?"
+        ]
+      }
+    ];
+
     let curSet = []; let idx = 0; let results = []; let timer; let _currentTestKey = '';
     let repeatSentenceIndex = 0; let interviewQuestionIndex = 0;
     let currentAudioObjectUrl = '';
@@ -5937,7 +6742,7 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
     }
 
     function requiresContinuousAudioSource(audioUrl = '') {
-        return /\/audio\/ibt\/test-33\/task-(?:15|16)\.mp3$/.test(audioUrl);
+        return /\/audio\/ibt\/test-(?:33|38)\/task-(?:15|16)\.mp3$/.test(audioUrl);
     }
 
     function normalizeConversationMp3(buffer) {

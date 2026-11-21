@@ -26,12 +26,11 @@ const sourcePassages = [
 ];
 const expectedSplits = [[["abs", "orbs", "absorbs"], ["prod", "ucing", "producing"], ["exis", "ting", "existing"], ["pass", "ages", "passages"], ["cham", "bers", "chambers"], ["drip", "ping", "dripping"], ["dep", "osit", "deposit"], ["grad", "ually", "gradually"], ["tempe", "rature", "temperature"], ["surro", "unding", "surrounding"]], [["mois", "ture", "moisture"], ["condi", "tions", "conditions"], ["microor", "ganisms", "microorganisms"], ["prin", "ciple", "principle"], ["veget", "ables", "vegetables"], ["fermen", "tation", "fermentation"], ["preser", "vation", "preservation"], ["dist", "inct", "distinct"], ["refrig", "eration", "refrigeration"], ["tradi", "tional", "traditional"]]];
 
-test('Test 37 enables exactly 27 tasks in the established section sequence and leaves Test 38 unavailable', () => {
+test('Test 37 enables exactly 27 tasks in the established section sequence', () => {
   assert.equal(tasks.length, 27);
   assert.deepEqual([...new Set(tasks.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(tasks, (task) => task.section)).map(([key, value]) => [key, value.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
-  assert.deepEqual([...vm.runInContext('testCollections[1].tests', sandbox)], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37']);
-  assert.equal(vm.runInContext("testData['Test 38']", sandbox), undefined);
+  assert.deepEqual([...vm.runInContext('testCollections[1].tests', sandbox)], ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38']);
 });
 
 test('all 20 locked splits reconstruct the exact source passages with intact first sentences', () => {
