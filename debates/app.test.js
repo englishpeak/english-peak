@@ -4,24 +4,28 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { DEBATE_SETS } from './sets/index.js';
 
-function activity(sets = DEBATE_SETS) {
+function activity(sets = DEBATE_SETS, connection) {
   const elements = new Map();
+  const preloaded = [];
   const document = {
     getElementById(id) {
       if (!elements.has(id)) elements.set(id, {
         listeners: {}, children: [],
         addEventListener(event, handler) { this.listeners[event] = handler; },
-        append(child) { this.children.push(child); }
+        append(child) { this.children.push(child); },
+        getAttribute(name) { return this[name]; }
       });
       return elements.get(id);
     },
     createElement() { return {}; }
   };
-  const window = {};
-  window.self = window.top = window;
-  const source = fs.readFileSync(new URL('./app.js', import.meta.url), 'utf8').replace(/^import .*;\n/, '');
-  vm.runInNewContext(source, { document, window, DEBATE_SETS: sets });
-  return id => document.getElementById(id);
+  const source = fs.readFileSync(new URL('./app.js', import.meta.url), 'utf8')
+    .replace(/^import .*;\n/, '').replace('export function resetActivity()', 'function resetActivity()');
+  vm.runInNewContext(`${source}\nresetActivity();`, {
+    document, DEBATE_SETS: sets, navigator: { connection },
+    Image: class { set src(value) { preloaded.push(value); } }
+  });
+  return Object.assign(id => document.getElementById(id), { preloaded });
 }
 
 for (const set of DEBATE_SETS) {
@@ -99,4 +103,34 @@ test('switching sets resets progress and uses that set’s images and slide coun
   $('debate-set').listeners.change();
   assert.equal($('progress').textContent, '1 / 10');
   assert.equal($('debate-image').src, '/images/debates/set-1/01.jpg');
+});
+
+test('only the next image is preloaded after the current image loads', () => {
+  const set = DEBATE_SETS.find(set => set.id === 'set-3');
+  const $ = activity([set]);
+  assert.deepEqual($.preloaded, []);
+  $('debate-image').listeners.load();
+  assert.deepEqual($.preloaded, ['/images/set-3/22.jpg']);
+  for (let index = 1; index < set.debates.length; index++) $('next').listeners.click();
+  $('debate-image').listeners.load();
+  assert.deepEqual($.preloaded, ['/images/set-3/22.jpg']);
+
+  const dataSaver = activity([set], { saveData: true });
+  dataSaver('debate-image').listeners.load();
+  assert.deepEqual(dataSaver.preloaded, []);
+});
+
+test('arrow keys move between slides while keeping native set selection', () => {
+  const $ = activity();
+  const keydown = $('practice-content').listeners.keydown;
+  let prevented = false;
+  const event = { key: 'ArrowRight', preventDefault() { prevented = true; } };
+  keydown({ ...event, target: $('debate-set') });
+  assert.equal(prevented, false);
+  assert.equal($('progress').textContent, '1 / 10');
+  keydown(event);
+  assert.equal(prevented, true);
+  assert.equal($('progress').textContent, '2 / 10');
+  keydown({ ...event, key: 'ArrowLeft' });
+  assert.equal($('progress').textContent, '1 / 10');
 });

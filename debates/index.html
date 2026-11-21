@@ -13,25 +13,34 @@
 <body class="ep-brand-scope">
   <main class="activity">
     <a id="dashboard-link" href="/">← Dashboard</a>
-    <div id="member-lock" class="ep-card slide" hidden><h1 class="ep-heading">Debates</h1><p>A free account or ePeak+ membership is required.</p><a href="/?auth=login&amp;exercise=debates" target="_top">Sign in</a></div>
+    <p id="auth-loading" role="status">Loading Debates…</p>
+    <div id="member-lock" class="ep-card slide" hidden>
+      <h1 class="ep-heading">Debates</h1>
+      <p>A free account or ePeak+ membership is required.</p>
+      <a href="/?auth=login&amp;exercise=debates" target="_top">Sign in</a>
+    </div>
+    <div id="access-error" class="ep-card slide" hidden>
+      <p role="status">Debates couldn’t load. Please try again.</p>
+      <button id="access-retry" type="button">Try again</button>
+    </div>
     <div id="practice-content" hidden>
-    <header class="activity-header">
-      <select id="debate-set" aria-label="Debate set"></select>
-    </header>
-    <article class="ep-card slide" aria-labelledby="debate-title">
-      <h1 class="ep-heading" id="debate-title"></h1>
-      <img id="debate-image" alt="">
-      <p id="debate-question"></p>
-    </article>
-    <nav class="controls" aria-label="Slideshow controls">
-      <button id="back" type="button">Back</button>
-      <span id="progress" role="status" aria-label="Slide progress" aria-atomic="true"></span>
-      <button id="next" class="ep-btn-primary" type="button">Next</button>
-      <button id="start-over" type="button">Start Over</button>
-    </nav>
+      <header class="activity-header">
+        <label for="debate-set">Debate set</label>
+        <select id="debate-set"></select>
+      </header>
+      <article class="ep-card slide" aria-labelledby="debate-title">
+        <h1 class="ep-heading" id="debate-title"></h1>
+        <p id="debate-question"></p>
+        <nav class="controls" aria-label="Slideshow controls">
+          <button id="back" type="button" aria-keyshortcuts="ArrowLeft">Back</button>
+          <span id="progress" role="status" aria-label="Slide progress" aria-atomic="true"></span>
+          <button id="next" class="ep-btn-primary" type="button" aria-keyshortcuts="ArrowRight">Next</button>
+          <button id="start-over" type="button">Start Over</button>
+        </nav>
+        <img id="debate-image" alt="" decoding="async">
+      </article>
     </div>
   </main>
-  <script src="/teachers/vendor/supabase.js"></script>
   <script type="module" src="/debates/access.js"></script>
 </body>
 </html>

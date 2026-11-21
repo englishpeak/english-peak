@@ -695,7 +695,7 @@ body.download-preview-lock{overflow:hidden}
 
   <div class="exercise-screen" id="exercise-debates">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Debates</div><div class="exercise-badge">Free Account</div></div>
-    <iframe class="exercise-frame" id="frame-debates" src="" title="Debates" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
+    <iframe class="exercise-frame" id="frame-debates" src="about:blank" title="Debates"></iframe>
   </div>
 
   <!-- ═══ PROFILE / SETTINGS ═══ -->
@@ -1147,6 +1147,7 @@ const initialSession = sb.auth.getSession();
         if (_currentUser && _currentUser.id !== session.user.id) {
           _currentProfile = null;
           _currentUser = session.user;
+          updateDebatesAccess();
           if (document.getElementById('exercise-spelling-bee').classList.contains('active')) showNewPractice();
           resetSpellingBeeFrame();
           prepareWordFamiliesFrame();
@@ -2240,11 +2241,16 @@ function openThisOrThat() {
 }
 function updateDebatesAccess() {
   var allowed = !!_currentUser;
+  var frame = document.getElementById('frame-debates');
+  if (frame.dataset.userId && frame.dataset.userId !== _currentUser?.id) {
+    delete frame.dataset.userId;
+    frame.src = 'about:blank';
+    if (document.getElementById('exercise-debates').classList.contains('active')) showDashboard();
+  }
   document.getElementById('access-debates').textContent = allowed ? '✓ Free Account' : '🔐 Sign in';
   document.getElementById('access-debates').className = 'card-access ' + (allowed ? 'access-free' : 'access-locked');
-  document.getElementById('btn-debates').textContent = allowed ? 'Start Practice →' : '🔐 Sign in to access';
+  document.getElementById('btn-debates').textContent = !allowed ? '🔐 Sign in to access' : frame.dataset.userId ? 'Resume Practice →' : 'Start Practice →';
   document.getElementById('btn-debates').className = 'card-btn ' + (allowed ? 'btn-open' : 'btn-locked');
-  if (!allowed) document.getElementById('frame-debates').src = '';
 }
 function openDebates() {
   if (!_currentUser) { showAuthModal('login'); return; }
@@ -2252,7 +2258,12 @@ function openDebates() {
   document.getElementById('exercise-debates').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Debates';
   document.getElementById('topbarSub').textContent = '';
-  document.getElementById('frame-debates').src = '/debates';
+  var frame = document.getElementById('frame-debates');
+  if (frame.dataset.userId !== _currentUser.id) {
+    frame.dataset.userId = _currentUser.id;
+    frame.src = '/debates';
+    updateDebatesAccess();
+  }
   closeMobileSidebar();
 }
 function hideLock(id){document.getElementById('lock-'+id).classList.remove('show');}
