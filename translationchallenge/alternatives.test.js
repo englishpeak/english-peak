@@ -15,8 +15,8 @@ function evaluateSets(source) {
 }
 
 test("legacy translation challenge sentences gain accepted alternatives", () => {
-  const originalSets = evaluateSets(html.slice(dataStart, expansionStart));
-  const expandedSets = evaluateSets(html.slice(dataStart, appStart));
+  const originalSets = evaluateSets(html.slice(dataStart, expansionStart)).filter(set => set.id <= 14);
+  const expandedSets = evaluateSets(html.slice(dataStart, appStart)).filter(set => set.id <= 14);
   const originalCounts = originalSets.flatMap(set => set.sentences.map(sentence => sentence.acceptedAnswers.length));
   const expandedSentences = expandedSets.flatMap(set => set.sentences);
 

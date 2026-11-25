@@ -38,7 +38,7 @@ test("Set 13 preserves every original prompt, primary answer, alternative, openi
   const { sets } = challenge();
   const set = originalSet13();
   const runtimeSet = sets.find(set => set.id === 13);
-  assert.equal(sets.length, 14);
+  assert.equal(sets.filter(set => set.id === 13).length, 1);
   assert.equal(set.title, "Set 13");
   assert.equal(set.description, "24 sentences · Mixed levels · Mixed grammar and vocabulary");
   assert.equal(set.sentences.length, 24);
