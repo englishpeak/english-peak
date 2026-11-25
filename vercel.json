@@ -1,5 +1,8 @@
 {
   "rewrites": [
+    { "source": "/writingpractice", "destination": "/writingpractice/index.html" },
+    { "source": "/writingpractice/", "destination": "/writingpractice/index.html" },
+    { "source": "/api/writingpractice", "destination": "/api/word-families?exercise=writingpractice" },
     { "source": "/spelling-bee", "destination": "/spelling-bee/index.html" },
     { "source": "/spelling-bee/", "destination": "/spelling-bee/index.html" },
     { "source": "/api/spelling-bee", "destination": "/api/toefl-dictionary?exercise=spelling-bee" },

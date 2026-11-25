@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+}
+
+.topbar {
+  padding: 16px clamp(20px, 5vw, 48px);
+  border-bottom: 1px solid var(--ep-border);
+  background: var(--ep-surface);
+}
+
+.topbar a {
+  color: var(--ep-navy);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+main {
+  width: min(100% - 32px, 860px);
+  margin: clamp(24px, 6vw, 64px) auto;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  line-height: 1.1;
+}
+
+.access-panel,
+.editor {
+  padding: clamp(16px, 4vw, 28px);
+  box-shadow: var(--ep-shadow-card);
+}
+
+.access-panel p {
+  margin: 0;
+}
+
+.access-panel .ep-btn-primary {
+  display: inline-block;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+.editor {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  color: var(--ep-navy);
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  min-height: clamp(15rem, 50vh, 32rem);
+  padding: 16px;
+  resize: vertical;
+  border: 1px solid rgba(13, 59, 111, .35);
+  border-radius: var(--ep-radius-lg);
+  color: var(--ep-ink);
+  background: var(--ep-surface);
+  font: 1rem/1.6 var(--ep-font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ep-purple);
+  outline-offset: 3px;
+}
+
+output {
+  justify-self: end;
+  color: var(--ep-navy);
+  background: var(--ep-card-soft);
+  padding: 6px 12px;
+  border-radius: var(--ep-radius-sm);
+  font-size: .9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

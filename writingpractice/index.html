@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Writing Practice | ePeak</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Outfit:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/styles/brand-tokens.css">
+  <link rel="stylesheet" href="/writingpractice/styles.css">
+  <script defer src="/teachers/vendor/supabase.js"></script>
+  <script type="module" src="/writingpractice/app.js"></script>
+</head>
+<body class="ep-brand-scope">
+  <header class="topbar">
+    <a href="/">← Dashboard</a>
+  </header>
+  <main>
+    <h1 class="ep-heading">Writing Practice</h1>
+    <div id="access-panel" class="ep-card access-panel">
+      <p id="access-status" role="status">Checking your ePeak+ access…</p>
+      <a id="sign-in" class="ep-btn-primary" href="/?auth=login" target="_blank" rel="noopener" hidden>Sign in on the dashboard</a>
+      <button id="retry-access" class="ep-btn-primary" type="button" hidden>Try again</button>
+    </div>
+    <section id="editor" class="ep-card editor" aria-label="Writing editor" hidden></section>
+    <noscript>Enable JavaScript to use Writing Practice.</noscript>
+  </main>
+</body>
+</html>
