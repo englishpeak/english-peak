@@ -101,6 +101,28 @@ test('all existing full-access tiers and the is_admin override retain access', a
   }
 });
 
+test('Writing Practice returns the editor only to users with ePeak+ access', async () => {
+  const route = { query: { exercise: 'writingpractice' } };
+  const visitor = fixture();
+  await visitor.handler({ method: 'GET', ...route }, visitor.res);
+  assert.equal(visitor.res.statusCode, 401);
+  assert.equal(visitor.res.body.editor, undefined);
+
+  const free = fixture({ profile: { tier: 'free' } });
+  await free.handler(request('Bearer valid-token', route), free.res);
+  assert.equal(free.res.statusCode, 403);
+  assert.equal(free.res.body.editor, undefined);
+
+  const member = fixture();
+  await member.handler(request('Bearer valid-token', route), member.res);
+  assert.equal(member.res.statusCode, 200);
+  assert.equal(member.res.body.userId, 'verified-user');
+  assert.match(member.res.body.editor, /<textarea id="writing-draft"/u);
+  assert.match(member.res.body.editor, /<output id="word-count" for="writing-draft">0 words<\/output>/u);
+  assert.equal(member.res.body.families, undefined);
+  assert.equal(member.res.headers['Vercel-CDN-Cache-Control'], 'no-store');
+});
+
 test('profile errors, auth outages and exceptions fail closed without backend details', async () => {
   for (const options of [{ profileError: new Error('Private database detail') }, { authError: { status: 503 } }, { throws: true }]) {
     const { handler, res } = fixture(options);

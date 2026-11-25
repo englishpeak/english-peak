@@ -10707,7 +10707,9 @@ export function createWordFamiliesHandler({ supabase }) {
     }
     const authorization = req.headers?.authorization;
     const token = typeof authorization === 'string' ? authorization.match(/^Bearer ([^\s]+)$/i)?.[1] : null;
-    if (!token) return res.status(401).json({ error: 'Please sign in to access Word Families.' });
+    const writingPractice = req.query?.exercise === 'writingpractice';
+    const exerciseName = writingPractice ? 'Writing Practice' : 'Word Families';
+    if (!token) return res.status(401).json({ error: `Please sign in to access ${exerciseName}.` });
 
     try {
       // Same bearer-token verification used by the existing payment/account APIs.
@@ -10724,7 +10726,16 @@ export function createWordFamiliesHandler({ supabase }) {
       if (profileError) return res.status(503).json({ error: 'Access could not be checked. Please try again.' });
       const tier = profile?.is_admin === true ? 'admin' : profile?.tier;
       if (!hasFullAccessTier(tier)) {
-        return res.status(403).json({ error: 'Word Families is included with ePeak+.' });
+        return res.status(403).json({ error: `${exerciseName} is included with ePeak+.` });
+      }
+      // Share the existing function to stay within Vercel's function limit.
+      if (writingPractice) {
+        return res.status(200).json({
+          userId: data.user.id,
+          editor: `<label for="writing-draft">Your draft</label>
+            <textarea id="writing-draft" lang="en" placeholder="Start writing…"></textarea>
+            <output id="word-count" for="writing-draft">0 words</output>`,
+        });
       }
       return res.status(200).json({ userId: data.user.id, families: WORD_FAMILIES });
     } catch {
