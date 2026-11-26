@@ -63,14 +63,14 @@ test("Hard accepts every primary and approved alternative with existing normaliz
 });
 
 test("Every Set 15 prompt gains alternatives, with more coverage for complex prompts", () => {
-  const minimumByLevel = { A1: 5, A2: 9, B1: 11, B2: 13, C1: 18 };
+  const minimumByLevel = { A1: 10, A2: 18, B1: 22, B2: 25, C1: 38 };
   for (const [index, sentence] of set15.sentences.entries()) {
     const additions = sentence.acceptedAnswers.slice(originalSet15.sentences[index].acceptedAnswers.length);
     assert.ok(additions.length >= minimumByLevel[sentence.level], `Item ${sentence.id} gained only ${additions.length} answers`);
 
     const opening = sentence.mediumPrompt.slice(0, -3);
     const mediumAdditions = additions.filter(answer => app.normalizeAnswer(answer).startsWith(`${app.normalizeAnswer(opening)} `));
-    assert.ok(mediumAdditions.length >= 2, `Item ${sentence.id} needs more Medium completions`);
+    assert.ok(mediumAdditions.length >= 4, `Item ${sentence.id} needs more Medium completions`);
   }
 });
 
