@@ -10,9 +10,19 @@ export const LEVELS_BY_DIFFICULTY = {
 // Add Bee-specific vocabulary by listing it under its explicit CEFR level.
 // These levels take precedence in the Bee if the dictionary teaches the same spelling.
 const BEE_WORDS_BY_LEVEL = {
-  A1: ['apple', 'banana', 'brother', 'family', 'garden', 'kitchen', 'morning', 'picture', 'teacher', 'window'],
-  A2: ['appointment', 'calendar', 'customer', 'furniture', 'invitation', 'journey', 'luggage', 'medicine', 'passenger', 'suitcase'],
-  B2: ['accommodation', 'acknowledge', 'conscious', 'consequence', 'guarantee', 'maintenance', 'perspective', 'pronunciation', 'sufficient', 'thoroughly'],
+  A1: [
+    'apple', 'banana', 'brother', 'family', 'garden', 'kitchen', 'morning', 'picture', 'teacher', 'window',
+    'breakfast', 'daughter', 'elephant', 'hospital', 'restaurant',
+  ],
+  A2: [
+    'appointment', 'calendar', 'customer', 'furniture', 'invitation', 'journey', 'luggage', 'medicine', 'passenger', 'suitcase',
+    'beautiful', 'bicycle', 'mountain', 'neighbor', 'vegetable',
+  ],
+  B1: ['achievement', 'available', 'environment', 'necessary', 'recommend'],
+  B2: [
+    'accommodation', 'acknowledge', 'conscious', 'consequence', 'guarantee', 'maintenance', 'perspective', 'pronunciation', 'sufficient', 'thoroughly',
+    'exaggerate', 'independent', 'responsibility', 'suspicious', 'colleague',
+  ],
 };
 
 const availableLevels = new Set(Object.values(LEVELS_BY_DIFFICULTY).flat());
