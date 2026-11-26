@@ -174,7 +174,7 @@ var testCollections = [
     id: 'updated-toefl-practice',
     title: 'UPDATED TOEFL PRACTICE',
     description: 'Practice with the task types and format introduced in the updated TOEFL iBT.',
-    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38']
+    tests: ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38', 'Test 39']
   }
 ];
 
@@ -6668,6 +6668,807 @@ Good idea. If it's available, let's use it. If not, we can move the recording to
           "When deciding whether to try a new business, what kinds of information or recommendations do you usually consider?",
           "Some people prefer supporting local stores, while others prefer the convenience and prices of online shopping. Which option do you generally prefer, and why?",
           "What could cities or communities do to help small local businesses remain successful while still offering consumers affordable choices?"
+        ]
+      }
+    ];
+
+    testData["Test 39"] = [
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 1: Tree Rings and Seasonal Growth",
+        "instruction": "Complete the words in the passage.",
+        "text": "Many trees produce a new layer of wood around their trunks each growing season. In regions with dist[4] seasons, growth is often rap[2] in spring and slower toward the end of summer. This diff[6] can create vis[4] bands, which appear as rings when a trunk is cut across. Scien[5] compare patt[4] of wide and narrow rings to invest[5] conditions that affected a tree during its life[4]. However, ring width does not reflect rainfall alone; temperature, compe[6], and disturbances such as insect outbreaks may also influence growth. Researchers often examine samples from multiple trees before drawing concl[6] about past environments.",
+        "answers": [
+          "inct",
+          "id",
+          "erence",
+          "ible",
+          "tists",
+          "erns",
+          "igate",
+          "time",
+          "tition",
+          "usions"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "complete-words",
+        "taskFamily": "Complete the Words",
+        "title": "Task 2: The Development of Public Libraries",
+        "instruction": "Complete the words in the passage.",
+        "text": "Public libraries expanded access to books long before digital resources became common. In many towns, early lend[3] programs relied on dona[5] and modest membership fees. As muni[5] governments began supporting libraries, more resi[5] could borrow materials without purchasing them. Libr[6] developed cata[4] to organize growing colle[6], while reading rooms offered quiet spaces for study. Over time, libraries added newspapers, lectures, and educ[7] programs that served diverse communities. Their role continues to evolve as they provide internet access and help visitors eval[4] information. Although their services have changed, the central goal of sharing knowledge remains remarkably cons[6].",
+        "answers": [
+          "ing",
+          "tions",
+          "cipal",
+          "dents",
+          "arians",
+          "logs",
+          "ctions",
+          "ational",
+          "uate",
+          "istent"
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 3: Campus Produce Box Pickup",
+        "instruction": "Read a produce-box pickup notice.",
+        "text": "CAMPUS PRODUCE BOX PROGRAM\n\nTUESDAY COLLECTION\n\nPickup hours:\n3:00–6:00 p.m.\n\nLocation:\nEast Atrium, Student Center\n\nCollection instructions:\n\n- Bring your confirmation code and a reusable shopping bag.\n- Reserved produce boxes will be held until 5:30 p.m.\n- Boxes not collected by 5:30 p.m. will be donated to the student food pantry.\n- A friend may collect your box if you share your confirmation code with them.\n- Changes to orders must be requested by Monday at noon.\n- Produce substitutions cannot be made at pickup.",
+        "questions": [
+          {
+            "q": "What happens to a reserved produce box that has not been collected by 5:30 p.m.?",
+            "options": [
+              "It is delivered to the student's residence.",
+              "It is held until Wednesday morning.",
+              "It is returned to the farmers who supplied it.",
+              "It is donated to the student food pantry."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What can a student do if unable to collect the box personally?",
+            "options": [
+              "Request that it be delivered after six.",
+              "Ask someone else to collect it using the confirmation code.",
+              "Collect it from the same desk on Wednesday.",
+              "Exchange it for a different box the next week."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 4: Household Electricity Usage Notice",
+        "instruction": "Read a household electricity usage notice.",
+        "text": "CITY ENERGY SERVICES\n\nELECTRICITY USAGE SUMMARY\n\nJanuary: 290 kWh\nFebruary: 260 kWh\nMarch: 310 kWh\n\nYour average monthly usage for this period:\nApproximately 287 kWh\n\nENERGY-SAVING SUPPORT\n\nCustomers can request a free home energy audit to identify opportunities to reduce electricity use.\n\nTo schedule an audit during April, submit your request by April 10.\n\nThe audit does not include free replacement appliances.",
+        "questions": [
+          {
+            "q": "In which month was electricity usage the highest?",
+            "options": [
+              "March",
+              "February",
+              "January",
+              "Usage was the same in all three months."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What must customers do to arrange a free home energy audit during April?",
+            "options": [
+              "Replace their appliances before applying.",
+              "Show that their electricity use is above 300 kWh.",
+              "Submit an audit request by April 10.",
+              "Pay for an inspection before scheduling."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "read-daily",
+        "taskFamily": "Read in Daily Life",
+        "title": "Task 5: Group Chat: Photography Walk",
+        "instruction": "Read a group-message conversation.",
+        "text": "LAYLA — 7:02 p.m.\nAre we still doing Saturday's photography walk along the river trail at nine?\n\nOWEN — 7:05 p.m.\nThe footbridge is closed for repairs, so we can't follow our usual route.\n\nBEA — 7:07 p.m.\nWe could visit the city museum's photography exhibition, but weekend entry requires advance booking.\n\nLAYLA — 7:10 p.m.\nLet's do the mural route around the old station instead. It's outdoors and doesn't require tickets.\n\nOWEN — 7:12 p.m.\nSounds good. Shall we meet at the central plaza at 9:30 instead?\n\nBEA — 7:14 p.m.\nPerfect. I'll bring a printed route map. Layla can share the final itinerary tonight.",
+        "questions": [
+          {
+            "q": "Why does the group change the original photography route?",
+            "options": [
+              "The river trail is too crowded on Saturdays.",
+              "The group does not have the right camera equipment.",
+              "A footbridge along the route is closed.",
+              "The photography exhibition has been canceled."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Why does the group decide against the city museum?",
+            "options": [
+              "The museum does not have a photography exhibition.",
+              "The museum closes before the group can arrive.",
+              "The museum is too far from the old station.",
+              "Visiting on the weekend would require advance booking."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What does Bea agree to bring?",
+            "options": [
+              "A printed route map",
+              "The group's cameras",
+              "Tickets for the museum",
+              "A list of restaurant reservations"
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 6: Fossilized Footprints",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Fossilized footprints can reveal information about prehistoric animals that bones alone may not show. A footprint forms when an animal steps on soft sediment, such as wet mud or fine sand. For the mark to survive, the sediment must harden or become buried before wind and water erase it. Additional layers gradually protect the impression, and geological processes may turn the surrounding material into rock.</p><p>A series of footprints, known as a trackway, can offer clues about how an animal moved. Researchers measure the distance between impressions and examine their orientation to estimate aspects of stride and direction. Different depths may suggest changing pressure, although moisture and sediment texture also affect the shape of a print. Consequently, scientists must avoid treating every variation as evidence of a change in behavior.</p><p>Trackways sometimes preserve evidence of multiple animals moving across the same surface. Footprints that run roughly parallel could suggest that animals traveled in a similar direction, but they do not necessarily prove coordinated group behavior: the tracks may have formed at different times. Scientists interpret footprints alongside skeletal fossils, sediment layers, and other geological evidence. The value of these traces lies in capturing brief moments of movement that traditional body fossils rarely preserve.</p>",
+        "questions": [
+          {
+            "q": "What is the passage mainly about?",
+            "options": [
+              "Why bones are always less reliable than footprints",
+              "How fossil footprints are preserved and what researchers can learn from them",
+              "Why ancient animals all traveled in organized groups",
+              "How geological processes prevent footprints from forming"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "What must happen for a footprint to have a chance of being preserved?",
+            "options": [
+              "The animal must return to the same location.",
+              "The footprint must be made on solid rock.",
+              "The impression must be exposed to strong winds.",
+              "The sediment must harden or become buried before the impression is erased."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "The word \"orientation\" in paragraph 2 is closest in meaning to",
+            "options": [
+              "age",
+              "depth",
+              "direction or position",
+              "weight"
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Why should scientists be cautious when interpreting differences in footprint depth?",
+            "options": [
+              "Sediment texture and moisture can influence the depth of an impression.",
+              "Footprint depth never changes between animals.",
+              "Deeper prints always prove that an animal was running.",
+              "Footprint depth is determined only by the animal's age."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "Why do roughly parallel trackways not necessarily prove that animals moved together?",
+            "options": [
+              "Trackways cannot preserve evidence of direction.",
+              "The footprints may have been made at different times.",
+              "Animals cannot travel in the same direction.",
+              "Parallel tracks are always produced by water movement."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Reading",
+        "type": "academic-reading",
+        "taskFamily": "Read an Academic Passage",
+        "title": "Task 7: Courtyards in Building Design",
+        "instruction": "Read the passage and answer the questions.",
+        "text": "<p>Courtyards have appeared in buildings across many regions for centuries. By creating an open space surrounded by rooms or walls, a courtyard can bring daylight into parts of a building that might otherwise be dark. Its environmental effects, however, depend on local climate, construction materials, and the dimensions of the open space.</p><p>In hot, sunny climates, surrounding walls may shade parts of the courtyard during the day. Plants and water features can sometimes help cool the immediate area through evaporation, although their effectiveness depends on available moisture and airflow. If air can circulate through adjacent openings, a courtyard may also support natural ventilation. Even the orientation of openings matters, because it influences how sunlight and seasonal winds enter nearby rooms. These advantages are not automatic: high walls can restrict breezes, and in cold climates an open courtyard may increase exposure to winter weather.</p><p>Beyond their environmental role, courtyards have often served as places for social activities, household work, or private gatherings. Architects studying historic buildings therefore consider both physical performance and cultural use. A successful contemporary courtyard design balances these functions rather than copying an old layout without regard to its setting.</p>",
+        "questions": [
+          {
+            "q": "What is the main idea of the passage?",
+            "options": [
+              "Courtyards are useful only in hot climates.",
+              "Traditional buildings always provide better ventilation.",
+              "Courtyards can serve environmental and social functions, but their effectiveness depends on design and location.",
+              "Courtyards should be constructed with identical dimensions in every region."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "According to the passage, how can a courtyard help reduce exposure to sunlight?",
+            "options": [
+              "Surrounding walls may provide shade during the day.",
+              "Open spaces prevent all sunlight from entering a building.",
+              "Plants eliminate the need for surrounding walls.",
+              "Courtyards absorb sunlight without releasing heat."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "The word \"restrict\" in paragraph 2 is closest in meaning to",
+            "options": [
+              "strengthen",
+              "limit",
+              "redirect",
+              "measure"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why might a courtyard fail to provide effective natural ventilation?",
+            "options": [
+              "Natural ventilation is impossible in courtyards.",
+              "Openings always prevent air from entering rooms.",
+              "All plants stop the circulation of air.",
+              "High surrounding walls may limit the movement of air."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why does the author mention household work and private gatherings?",
+            "options": [
+              "To argue that courtyards were not used for environmental purposes",
+              "To explain why courtyards were abandoned in modern cities",
+              "To illustrate the social and cultural functions that courtyards can serve",
+              "To show that courtyards must always be enclosed by roofs"
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 8: Listen and Choose a Response",
+        "audioUrl": "../audio/ibt/test-39/task-8.mp3",
+        "script": "I'm afraid the last copy of the field guide has already been checked out.",
+        "question": "Choose the best response.",
+        "options": [
+          "The field trip is scheduled for next weekend.",
+          "I bought a different guidebook last semester.",
+          "Could I put it on hold for when it's returned?",
+          "The library has a large collection of books. "
+        ],
+        "correct": 2
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 9: Listen and Choose a Response",
+        "audioUrl": "../audio/ibt/test-39/task-9.mp3",
+        "script": "Would you mind lowering the blinds? The sunlight is making it difficult to see the projector screen.",
+        "question": "Choose the best response.",
+        "options": [
+          "Of course. I'll lower them now.",
+          "The projector was replaced last month.",
+          "There are several windows in this room.",
+          "I usually sit closer to the screen. "
+        ],
+        "correct": 0
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 10: Listen and Choose a Response",
+        "audioUrl": "../audio/ibt/test-39/task-10.mp3",
+        "script": "The rehearsal's been moved to the smaller hall, which means we'll have to rearrange the seating.",
+        "question": "Choose the best response.",
+        "options": [
+          "The orchestra rehearsed for two hours yesterday.",
+          "The hall has a different entrance.",
+          "Rehearsals are usually held on Tuesdays.",
+          "I'll help you move the chairs before everyone arrives. "
+        ],
+        "correct": 3
+      },
+      {
+        "section": "Listening",
+        "type": "listen-response",
+        "taskFamily": "Listen and Choose a Response",
+        "title": "Task 11: Listen and Choose a Response",
+        "audioUrl": "../audio/ibt/test-39/task-11.mp3",
+        "script": "I can't believe we finished the translation project two days ahead of schedule.",
+        "question": "Choose the best response.",
+        "options": [
+          "The deadline was announced last week.",
+          "That's great! Now we have extra time to review it.",
+          "I translated a different document yesterday.",
+          "The project is due in two days. "
+        ],
+        "correct": 1
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 15: Travel Reimbursement",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-39/task-15.mp3",
+        "script": "Narrator:\nListen to a conversation at a university student services office.\n\nWoman:\nHi. I submitted the paperwork for my trip to the student research conference, but the online portal says my reimbursement request is incomplete.\n\nMan:\nLet me have a look. Okay, I can see your train ticket confirmation, but there's no receipt showing the payment.\n\nWoman:\nIsn't that the same thing? The confirmation has my name and travel information.\n\nMan:\nIt shows your itinerary, but not the amount you actually paid. For reimbursement, we need a receipt that includes the fare and payment details.\n\nWoman:\nI bought the ticket through the train company's app. I didn't get a paper receipt.\n\nMan:\nYou should be able to download one from your account. If not, you can request a copy from the company.\n\nWoman:\nAll right. Does the deadline still apply if I've already submitted the form?\n\nMan:\nYes. Please upload the missing receipt by Friday. We can't review the request until all the required documents are there.\n\nWoman:\nGot it. I'll check the app when I get home.",
+        "questions": [
+          {
+            "q": "Why is the woman's reimbursement request incomplete?",
+            "options": [
+              "She did not attend the research conference.",
+              "Her train ticket was purchased after the trip.",
+              "The online portal does not accept train tickets.",
+              "She has not provided a receipt showing the fare and payment details."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What must the woman do before her request can be reviewed?",
+            "options": [
+              "Return to the conference office in person.",
+              "Purchase another train ticket.",
+              "Upload the missing payment receipt by Friday.",
+              "Ask her professor to approve the itinerary."
+            ],
+            "correct": 2
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-conversation",
+        "taskFamily": "Listen to a Conversation",
+        "title": "Task 16: Interpreting a Short Story",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-39/task-16.mp3",
+        "script": "Narrator:\nListen to a conversation between a student and his literature professor.\n\nMan:\nProfessor Lewis, I wanted to ask about my essay. I'm arguing that the narrator in the short story is deliberately lying to the reader.\n\nWoman:\nThat's an interesting interpretation. What evidence are you using?\n\nMan:\nWell, he describes an argument with his brother one way at the beginning, but later he remembers several details differently.\n\nWoman:\nThat certainly raises questions about his reliability. But does it necessarily mean he's lying?\n\nMan:\nI suppose he could just be remembering things incorrectly.\n\nWoman:\nExactly. Or he may be avoiding certain details without fully realizing it. You need to distinguish what the text shows from what you're assuming about his intentions.\n\nMan:\nSo should I change my argument?\n\nWoman:\nI'd focus on how the narrator's account becomes less reliable as the story progresses. Then use the differences between his descriptions as evidence.\n\nMan:\nThat makes sense. I think I can build a stronger argument that way.",
+        "questions": [
+          {
+            "q": "Why does the professor question the student's original interpretation?",
+            "options": [
+              "The student has misunderstood the story's setting.",
+              "Inconsistent memories do not necessarily prove deliberate dishonesty.",
+              "The narrator never discusses his brother.",
+              "The story contains no evidence about the narrator."
+            ],
+            "correct": 1
+          },
+          {
+            "q": "How does the professor suggest revising the essay?",
+            "options": [
+              "Focus on the narrator's decreasing reliability and support the argument with textual differences.",
+              "Replace the essay with a summary of the plot.",
+              "Argue that all narrators are intentionally dishonest.",
+              "Remove the discussion of contradictory descriptions."
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 18: Mathematics Tutoring Center",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-39/task-18.mp3",
+        "script": "Narrator:\nListen to an announcement at a university.\n\nWoman:\nStarting next Monday, drop-in mathematics tutoring will take place in Room 218 on the second floor, rather than at the main library desk. Students can come without an appointment between three and six on weekdays. However, if you need help with a specific statistics software package, please book a one-on-one session online, since only certain tutors have training in that program. Tutoring remains free for all enrolled students.",
+        "questions": [
+          {
+            "q": "Which students need to make an appointment?",
+            "options": [
+              "Students who want general mathematics help between three and six",
+              "Students who have not visited the tutoring center before",
+              "Students enrolled in introductory mathematics courses",
+              "Students who need help with the specialized statistics software"
+            ],
+            "correct": 3
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-announcement-updated",
+        "taskFamily": "Listen to an Announcement",
+        "title": "Task 19: Design Class Presentation",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-39/task-19.mp3",
+        "script": "Narrator:\nListen to an announcement in a university design class.\n\nMan:\nFor tomorrow's presentation, our guest reviewer won't be grading your prototypes. Instead, she'll provide feedback on how clearly you explain your design decisions. Please bring your early sketches as well as your latest model, since she may ask how your ideas developed. If your prototype isn't fully functional yet, that's fine. Just be prepared to explain what you would test or improve next.",
+        "questions": [
+          {
+            "q": "Why are students asked to bring their early sketches?",
+            "options": [
+              "The sketches will determine their final grades.",
+              "They may need to explain how their designs developed.",
+              "The guest reviewer will select sketches to publish.",
+              "The latest models are not allowed at the presentation."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 20: Shape-Memory Alloys",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-39/task-20.mp3",
+        "script": "Narrator:\nListen to part of a talk about materials science.\n\nMan:\nMost of us expect a piece of metal to stay bent if we apply enough force to change its shape. But certain metal alloys can behave quite differently.\n\nThese materials are called shape-memory alloys.\n\nOne well-known example is an alloy made from nickel and titanium. Under the right conditions, an object made from this material can be bent or deformed and later return to a shape that was established during manufacturing.\n\nHow does that happen?\n\nThe explanation involves changes in the material's internal crystal structure. At lower temperatures, some shape-memory alloys can be deformed relatively easily. When they're heated, their atomic structure changes into a different arrangement, allowing the material to recover its previously established shape.\n\nOf course, this doesn't mean the metal can recover from unlimited damage. The amount of deformation matters, and repeated use can eventually affect the material's performance.\n\nShape-memory alloys have several practical applications. Some medical devices use their ability to change shape under controlled conditions. Engineers also use them in mechanisms that respond automatically to changes in temperature.\n\nSo when we say that a metal remembers its shape, we're describing a predictable physical transformation, not anything resembling human memory.",
+        "questions": [
+          {
+            "q": "What makes shape-memory alloys unusual?",
+            "options": [
+              "They can be bent without ever changing their internal structure.",
+              "They cannot be affected by changes in temperature.",
+              "Under suitable conditions, they can recover a previously established shape.",
+              "They always become permanently damaged when bent."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "According to the speaker, what happens when certain shape-memory alloys are heated?",
+            "options": [
+              "Their internal crystal arrangement changes, allowing them to recover a previous shape.",
+              "Their atoms disappear and are replaced by new ones.",
+              "They stop responding to external forces permanently.",
+              "Their temperature decreases as their shape changes."
+            ],
+            "correct": 0
+          },
+          {
+            "q": "What limitation does the speaker mention?",
+            "options": [
+              "Shape-memory alloys cannot be used in medical devices.",
+              "They can be manufactured only in one shape.",
+              "They cannot recover their shape when temperature changes.",
+              "Excessive deformation or repeated use may affect their performance."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "Why are shape-memory alloys useful in certain engineering devices?",
+            "options": [
+              "They can permanently eliminate friction.",
+              "Their shape-changing behavior can be used in mechanisms that respond to temperature.",
+              "They produce electricity without an energy source.",
+              "They are always lighter than every other metal."
+            ],
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "section": "Listening",
+        "type": "listen-academic-talk",
+        "taskFamily": "Listen to an Academic Talk",
+        "title": "Task 21: Map Projections",
+        "instruction": "Listen and answer the questions.",
+        "audioUrl": "../audio/ibt/test-39/task-21.mp3",
+        "script": "Narrator:\nListen to part of a talk about cartography.\n\nWoman:\nWhen we look at a map of the world, it's easy to assume that the sizes and shapes of the continents are represented accurately. But creating a flat map of the Earth involves an unavoidable problem.\n\nThe Earth's surface is curved.\n\nImagine trying to flatten the surface of an orange without stretching or tearing its peel. Something similar happens when cartographers attempt to represent a curved surface on a flat sheet.\n\nThe mathematical methods used to do this are called map projections.\n\nDifferent projections preserve different properties. For example, the Mercator projection preserves local angles, making it useful for certain navigation purposes. However, it greatly exaggerates the apparent sizes of regions near the poles.\n\nThat's why Greenland can look much larger relative to Africa on some world maps than it actually is.\n\nOther projections are designed to preserve area, allowing viewers to compare the relative sizes of countries and continents more accurately. But these projections must distort shapes in other ways.\n\nSo there's no single projection that represents every geographical property perfectly.\n\nA map intended for navigation may use a different projection from one designed to compare population density or land use.\n\nThe important question isn't simply whether a map is accurate, but which properties it preserves and which distortions are acceptable for its intended purpose.",
+        "questions": [
+          {
+            "q": "Why do flat world maps inevitably introduce some distortion?",
+            "options": [
+              "The Earth's continents change size every year.",
+              "Cartographers cannot measure distances accurately.",
+              "The oceans cover most of the Earth's surface.",
+              "A curved surface cannot be represented on a flat plane without distortion."
+            ],
+            "correct": 3
+          },
+          {
+            "q": "What property does the Mercator projection preserve?",
+            "options": [
+              "The true area of every country",
+              "Local angles",
+              "The exact size of regions near the poles",
+              "All distances between every pair of locations"
+            ],
+            "correct": 1
+          },
+          {
+            "q": "Why does Greenland appear disproportionately large on some world maps?",
+            "options": [
+              "Greenland is physically larger than Africa.",
+              "Modern maps use outdated measurements of Greenland.",
+              "Certain projections exaggerate the apparent area of regions at high latitudes.",
+              "Greenland's shape has changed significantly since maps were first created."
+            ],
+            "correct": 2
+          },
+          {
+            "q": "Why might cartographers choose different projections for different maps?",
+            "options": [
+              "Different projections preserve properties that are useful for different purposes.",
+              "Each projection is accurate only during a particular season.",
+              "Navigation maps cannot include political boundaries.",
+              "All projections preserve the same properties equally."
+            ],
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 1: Build a Sentence",
+        "context": "Speaker A: “Why did you leave the workshop early?”",
+        "scaffold": "I had to ______ ______ ______ ______.",
+        "chunks": [
+          "the last",
+          "caught",
+          "home",
+          "catch",
+          "bus"
+        ],
+        "words": [
+          "the last",
+          "caught",
+          "home",
+          "catch",
+          "bus"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "catch",
+          "the last",
+          "bus",
+          "home"
+        ],
+        "distractor": "caught",
+        "completedSentence": "I had to catch the last bus home."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 2: Build a Sentence",
+        "context": "Speaker A: “Did Marta receive the updated agenda?”",
+        "scaffold": "She said ______ ______ ______ ______.",
+        "chunks": [
+          "to her",
+          "sending",
+          "already been",
+          "sent",
+          "it had"
+        ],
+        "words": [
+          "to her",
+          "sending",
+          "already been",
+          "sent",
+          "it had"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "it had",
+          "already been",
+          "sent",
+          "to her"
+        ],
+        "distractor": "sending",
+        "completedSentence": "She said it had already been sent to her."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 3: Build a Sentence",
+        "context": "Speaker A: “Can we start using the studio?”",
+        "scaffold": "We can begin once ______ ______ ______ ______.",
+        "chunks": [
+          "all the",
+          "checking",
+          "the supervisor",
+          "equipment",
+          "has checked"
+        ],
+        "words": [
+          "all the",
+          "checking",
+          "the supervisor",
+          "equipment",
+          "has checked"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "the supervisor",
+          "has checked",
+          "all the",
+          "equipment"
+        ],
+        "distractor": "checking",
+        "completedSentence": "We can begin once the supervisor has checked all the equipment."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 4: Build a Sentence",
+        "context": "Speaker A: “Why did you choose that research topic?”",
+        "scaffold": "I wanted ______ ______ ______ ______.",
+        "chunks": [
+          "little about",
+          "explored",
+          "an issue",
+          "to explore",
+          "I knew"
+        ],
+        "words": [
+          "little about",
+          "explored",
+          "an issue",
+          "to explore",
+          "I knew"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "to explore",
+          "an issue",
+          "I knew",
+          "little about"
+        ],
+        "distractor": "explored",
+        "completedSentence": "I wanted to explore an issue I knew little about."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 5: Build a Sentence",
+        "context": "Speaker A: “Will the exhibition stay open?”",
+        "scaffold": "It will remain open ______ ______ ______ ______.",
+        "chunks": [
+          "volunteers",
+          "were available",
+          "as long as",
+          "are available",
+          "enough"
+        ],
+        "words": [
+          "volunteers",
+          "were available",
+          "as long as",
+          "are available",
+          "enough"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "as long as",
+          "enough",
+          "volunteers",
+          "are available"
+        ],
+        "distractor": "were available",
+        "completedSentence": "It will remain open as long as enough volunteers are available."
+      },
+      {
+        "section": "Writing",
+        "type": "build-sentence",
+        "taskFamily": "Build a Sentence",
+        "title": "Writing Task 6: Build a Sentence",
+        "context": "Speaker A: “Why are the final drawings delayed?”",
+        "scaffold": "The drawings are delayed because ______ ______ ______ ______.",
+        "chunks": [
+          "to be",
+          "confirming",
+          "several measurements",
+          "confirmed",
+          "still need"
+        ],
+        "words": [
+          "to be",
+          "confirming",
+          "several measurements",
+          "confirmed",
+          "still need"
+        ],
+        "preserveChunkOrder": true,
+        "correctOrder": [
+          "several measurements",
+          "still need",
+          "to be",
+          "confirmed"
+        ],
+        "distractor": "confirming",
+        "completedSentence": "The drawings are delayed because several measurements still need to be confirmed."
+      },
+      {
+        "section": "Writing",
+        "type": "writing-email",
+        "taskFamily": "Write an Email",
+        "title": "Write an Email",
+        "instruction": "Write as much as you can and in complete sentences.",
+        "time": 420,
+        "text": "<p>You registered for a career mentoring session organized by your university's career center.</p><p>The registration confirmation says the session will take place online, but a reminder email says participants should arrive at the career center in person.</p><p>You want to make sure you attend correctly.</p><p>Write an email to Ms. Delgado, the event coordinator.</p><p>In your email:</p><ul><li>identify the session you registered for;</li><li>explain the conflicting information you received;</li><li>ask whether the session is online or in person, and request the correct location or meeting link; and</li><li>ask whether participants need to submit a résumé or other materials in advance.</li></ul>"
+      },
+      {
+        "section": "Writing",
+        "type": "academic-discussion",
+        "taskFamily": "Write for an Academic Discussion",
+        "title": "Write for an Academic Discussion",
+        "time": 600,
+        "professor": "Professor Reid",
+        "professorPrompt": "<p>Some universities allow students to take certain elective courses on a pass/fail basis rather than receiving a traditional letter grade.</p><p>Supporters believe this can encourage students to explore unfamiliar subjects without worrying about lowering their grade point average.</p><p>Others argue that letter grades provide more motivation and give students clearer feedback about their progress.</p><p>Should universities offer more elective courses with a pass/fail grading option, or should most courses continue using traditional letter grades? Why?</p>",
+        "studentAName": "Olivia",
+        "studentA": "I think more electives should offer pass/fail grading. Students might be more willing to try challenging courses outside their major if they weren't worried about one unfamiliar subject affecting their overall grades. They could focus on learning new ideas and skills rather than trying to get every assignment exactly right.",
+        "studentBName": "Ethan",
+        "studentB": "I prefer traditional letter grades because they show different levels of achievement. A student who barely meets the requirements and one who demonstrates excellent understanding shouldn't necessarily receive the same result. Grades can also encourage students to take elective courses seriously and monitor their improvement.",
+        "studentInstruction": "Write a response to the professor's question.<br><br>In your response:<br><br>- express and support your own opinion;<br>- contribute meaningfully to the discussion; and<br>- use your own words.<br><br>An effective response will contain at least 100 words."
+      },
+      {
+        "section": "Speaking",
+        "type": "listen-repeat-updated",
+        "taskFamily": "Listen and Repeat",
+        "title": "Listen and Repeat",
+        "scenario": "You are attending the university robotics workshop. Listen and repeat what the workshop representative says.",
+        "sentences": [
+          {
+            "script": "Welcome to the university robotics workshop.",
+            "text": "Welcome to the university robotics workshop.",
+            "audio": "../audio/ibt/test-39/sentence-1.mp3"
+          },
+          {
+            "script": "Please leave your bags on the shelves near the entrance.",
+            "text": "Please leave your bags on the shelves near the entrance.",
+            "audio": "../audio/ibt/test-39/sentence-2.mp3"
+          },
+          {
+            "script": "Each workbench contains a toolkit, a small controller, and a set of sensors.",
+            "text": "Each workbench contains a toolkit, a small controller, and a set of sensors.",
+            "audio": "../audio/ibt/test-39/sentence-3.mp3"
+          },
+          {
+            "script": "Before connecting a robot to the power supply, make sure its wheels are clear of the edge of the table.",
+            "text": "Before connecting a robot to the power supply, make sure its wheels are clear of the edge of the table.",
+            "audio": "../audio/ibt/test-39/sentence-4.mp3"
+          },
+          {
+            "script": "If the robot doesn't respond to your commands, check the cable connections before restarting the control software.",
+            "text": "If the robot doesn't respond to your commands, check the cable connections before restarting the control software.",
+            "audio": "../audio/ibt/test-39/sentence-5.mp3"
+          },
+          {
+            "script": "Participants who finish assembling their machines early can test them on the marked course, provided an instructor is present.",
+            "text": "Participants who finish assembling their machines early can test them on the marked course, provided an instructor is present.",
+            "audio": "../audio/ibt/test-39/sentence-6.mp3"
+          },
+          {
+            "script": "When today's workshop is over, please disconnect all batteries, return the tools to their labeled drawers, and upload a copy of your program so the instructors can review your work.",
+            "text": "When today's workshop is over, please disconnect all batteries, return the tools to their labeled drawers, and upload a copy of your program so the instructors can review your work.",
+            "audio": "../audio/ibt/test-39/sentence-7.mp3"
+          }
+        ]
+      },
+      {
+        "section": "Speaking",
+        "type": "take-interview",
+        "taskFamily": "Take an Interview",
+        "title": "Take an Interview",
+        "responseTime": 45,
+        "adaptationNote": "Self-study practice: Read each interview question and answer aloud. In a teacher-led session, your teacher may ask the questions.",
+        "introduction": "You are participating in a research interview about how people find, evaluate, and use information.",
+        "questions": [
+          "Think about a time when you needed to learn about an unfamiliar subject for a class, project, or personal interest. How did you find the information you needed?",
+          "When you discover information online, how do you decide whether the source is trustworthy?",
+          "When trying to understand a difficult subject, do you prefer asking someone with experience or researching it independently? Why?",
+          "Some educators believe that every university student should take a course on evaluating online information and identifying misleading claims. Do you think such a course should be required? Why or why not?"
         ]
       }
     ];
