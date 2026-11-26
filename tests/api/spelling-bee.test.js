@@ -12,6 +12,12 @@ const medium = ['accommodation', 'indicate'];
 const hard = ['accumulate', 'pervasive'];
 const recordings = [...easy, ...medium, ...hard];
 const members = ['free-member', 'plus-member'];
+const newWordsByLevel = {
+  A1: ['breakfast', 'daughter', 'elephant', 'hospital', 'restaurant'],
+  A2: ['beautiful', 'bicycle', 'mountain', 'neighbor', 'vegetable'],
+  B1: ['achievement', 'available', 'environment', 'necessary', 'recommend'],
+  B2: ['exaggerate', 'independent', 'responsibility', 'suspicious', 'colleague'],
+};
 
 async function fixture(t, { available = recordings, missing = [], getUser } = {}) {
   const calls = { lists: [], downloads: [] };
@@ -87,21 +93,29 @@ test('Bee vocabulary preserves explicit levels, merges dictionary terms and uses
     A2: 'appointment calendar customer furniture invitation journey luggage medicine passenger suitcase',
     B2: 'accommodation acknowledge conscious consequence guarantee maintenance perspective pronunciation sufficient thoroughly',
   };
-  for (const [level, entries] of Object.entries(additions)) {
-    for (const word of entries.split(' ')) {
+  const explicitWords = new Set();
+  for (const [level, newWords] of Object.entries(newWordsByLevel)) {
+    const previousWords = additions[level]?.split(' ') ?? [];
+    for (const word of [...previousWords, ...newWords]) {
       assert.deepEqual(words.get(word), { word, cefrLevel: level, audioPath: `en-US/${word}.mp3` });
+      explicitWords.add(word);
     }
   }
   for (const entry of TOEFL_DICTIONARY) {
     const word = entry.word.toLowerCase();
-    if (!Object.values(additions).some(entries => entries.split(' ').includes(word))) {
+    if (!explicitWords.has(word)) {
       assert.equal(words.get(word).cefrLevel, entry.cefrLevel);
     }
   }
 });
 
 test('route shell is public, exercise markup and every activity action require a registered account', async t => {
-  const { call, calls } = await fixture(t);
+  const pools = {
+    easy: [...easy, ...newWordsByLevel.A1, ...newWordsByLevel.A2],
+    medium: [...medium, ...newWordsByLevel.B1, ...newWordsByLevel.B2],
+    hard,
+  };
+  const { call, calls } = await fixture(t, { available: Object.values(pools).flat() });
   const shell = readFileSync(new URL('../../spelling-bee/index.html', import.meta.url), 'utf8');
   const index = readFileSync(new URL('../../index.html', import.meta.url), 'utf8');
   const vercel = JSON.parse(readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
@@ -129,18 +143,28 @@ test('route shell is public, exercise markup and every activity action require a
     assert.match(html, /id="play" aria-label="Play pronunciation"[^]*?<span aria-hidden="true">▶<\/span>\s*<\/button>/);
     assert.doesNotMatch(html, /apple|indicate|pervasive|\.mp3/);
 
-    for (const [difficulty, expected] of Object.entries({ easy, medium, hard })) {
-      let { questionId } = await (await call('start', { difficulty }, account)).json();
+    for (const [difficulty, expected] of Object.entries(pools)) {
+      let round = await (await call('start', { difficulties: [difficulty] }, account)).json();
       const words = [];
-      while (questionId) {
+      while (round.state === 'question') {
+        const { questionId } = round;
+        assert.equal(round.difficulty, difficulty);
         const audio = await call('audio', { questionId }, account);
         assert.equal(audio.status, 200);
         assert.equal(audio.headers.get('Content-Type'), 'audio/mpeg');
         assert.equal(audio.headers.get('Content-Disposition'), null);
         assert.deepEqual(new Uint8Array(await audio.arrayBuffer()), new Uint8Array([255, 251, 1, 2]));
-        words.push(calls.downloads.at(-1).slice('en-US/'.length, -'.mp3'.length));
-        ({ questionId } = await (await call('skip', { questionId }, account)).json());
+        const word = calls.downloads.at(-1).slice('en-US/'.length, -'.mp3'.length);
+        words.push(word);
+
+        const wrong = await (await call('check', { questionId, answer: 'wrong' }, account)).json();
+        assert.equal(wrong.state, 'incorrect');
+        assert.equal(wrong.word, undefined);
+        const correct = await (await call('check', { questionId: wrong.questionId, answer: word }, account)).json();
+        assert.equal(correct.state, 'correct');
+        round = await (await call('next', { questionId: correct.questionId, difficulties: [difficulty] }, account)).json();
       }
+      assert.equal(round.state, 'filtered');
       assert.deepEqual(words.sort(), [...expected].sort());
     }
   }
