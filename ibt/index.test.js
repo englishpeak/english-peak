@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 
@@ -15,10 +15,11 @@ const sandbox = {
   window: { location: { search: '' } },
   document: { getElementById: () => null },
 };
-vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.test31 = testData["Test 31"]; globalThis.test32 = testData["Test 32"]; globalThis.test33 = testData["Test 33"]; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
-const test31 = sandbox.test31;
-const test32 = sandbox.test32;
-const test33 = sandbox.test33;
+vm.runInNewContext(`${scripts.join('\n')}\nglobalThis.practiceTests = testData; globalThis.testHref = buildTestHref("Test 31");`, sandbox);
+const {
+  'Test 31': test31, 'Test 32': test32, 'Test 33': test33, 'Test 39': test39,
+} = sandbox.practiceTests;
+const updatedTestKeys = Array.from({ length: 9 }, (_, index) => `Test ${index + 31}`);
 const test30Source = html.match(/"Test 30": \[([\s\S]*?)\n\s*\],/);
 
 assert.ok(test30Source, 'Test 30 should be present in ibt/index.html');
@@ -76,7 +77,7 @@ test('the catalog separates the existing and updated TOEFL collections', () => {
   assert.match(html, /title: 'UPDATED TOEFL PRACTICE'/);
   assert.match(html, /Practice with the task types and format introduced in the updated TOEFL iBT\./);
   assert.match(html, /tests: Array\.from\(\{length: 30\}/);
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'\]/);
+  assert.deepEqual([...sandbox.testCollections[1].tests], updatedTestKeys);
 });
 
 test('Test 31 deep links remain supported as an optional entry path', () => {
@@ -107,12 +108,12 @@ function parentIBTAccess(tier) {
   return { allowed: [...parentSandbox.allowed], frameSrc: element('frame-ibt').src };
 }
 
-test('every full-access tier sends Tests 31–38 in the iframe allowed parameter', () => {
+test('every full-access tier sends Tests 31–39 in the iframe allowed parameter', () => {
   for (const tier of ['admin', 'premium', 'teacher', 'student', 'courtesy']) {
     const access = parentIBTAccess(tier);
-    assert.equal(access.allowed.length, 38, tier);
-    assert.deepEqual(access.allowed.slice(-8), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'], tier);
-    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-8), ['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'], tier);
+    assert.equal(access.allowed.length, 39, tier);
+    assert.deepEqual(access.allowed.slice(-updatedTestKeys.length), updatedTestKeys, tier);
+    assert.deepEqual(new URLSearchParams(access.frameSrc.split('?')[1]).get('allowed').split(',').slice(-updatedTestKeys.length), updatedTestKeys, tier);
   }
 });
 
@@ -145,17 +146,19 @@ test('Test 37 catalog control opens for full access and remains locked without a
   assert.deepEqual(locked.upgrades, ['Test 37']);
 });
 
-test('Test 38 catalog control opens for full access and remains locked without access', () => {
-  const allowed = catalogControl({ allowedTests: ['Test 38'], populatedTests: ['Test 38'], key: 'Test 38' });
-  assert.equal(allowed.control.disabled, false);
-  allowed.control.click();
-  assert.deepEqual(allowed.started, ['Test 38']);
-  const locked = catalogControl({ allowedTests: [], populatedTests: ['Test 38'], key: 'Test 38' });
-  assert.match(locked.control.textContent, /^🔒 Test 38$/);
-  locked.control.click();
-  assert.deepEqual(locked.started, []);
-  assert.deepEqual(locked.upgrades, ['Test 38']);
-});
+for (const key of ['Test 38', 'Test 39']) {
+  test(`${key} catalog control opens for full access and remains locked without access`, () => {
+    const allowed = catalogControl({ allowedTests: [key], populatedTests: [key], key });
+    assert.equal(allowed.control.disabled, false);
+    allowed.control.click();
+    assert.deepEqual(allowed.started, [key]);
+    const locked = catalogControl({ allowedTests: [], populatedTests: [key], key });
+    assert.equal(locked.control.textContent, `🔒 ${key}`);
+    locked.control.click();
+    assert.deepEqual(locked.started, []);
+    assert.deepEqual(locked.upgrades, [key]);
+  });
+}
 
 function catalogControl({ allowedTests, populatedTests, key }) {
   class FakeElement {
@@ -416,7 +419,6 @@ test('results use item-level Practice Accuracy instead of an unofficial TOEFL sc
 
 
 test('Test 32 is enabled in the updated catalog and preserves the complete section sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'\]/);
   assert.equal(test32.length, 27);
   assert.deepEqual([...new Set(test32.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   const result = catalogControl({ allowedTests: ['Test 32'], populatedTests: ['Test 32'], key: 'Test 32' });
@@ -476,7 +478,6 @@ test('Test 32 extended tasks retain established timing and sentence behavior', (
 });
 
 test('Test 33 is enabled with the complete updated practice sequence', () => {
-  assert.match(html, /tests: \['Test 31', 'Test 32', 'Test 33', 'Test 34', 'Test 35', 'Test 36', 'Test 37', 'Test 38'\]/);
   assert.equal(test33.length, 27);
   assert.deepEqual([...new Set(test33.map((task) => task.section))], ['Reading', 'Listening', 'Writing', 'Speaking']);
   assert.deepEqual(Object.fromEntries(Object.entries(Object.groupBy(test33, (task) => task.section)).map(([section, tasks]) => [section, tasks.length])), { Reading: 7, Listening: 10, Writing: 8, Speaking: 2 });
@@ -547,4 +548,100 @@ test('Test 33 scoring and extended-task contracts match Tests 31 and 32', () => 
   assert.equal(test33.find((task) => task.type === 'take-interview').responseTime, 45);
   test33.filter((task) => task.type === 'build-sentence').forEach((task) => assert.equal(task.words.length, task.correctOrder.length + 1));
   assert.equal(test33.find((task) => task.type === 'listen-repeat-updated').sentences.length, 7);
+});
+
+test('Test 39 reconstructs both source passages using the 20 locked suffixes', () => {
+  const expected = [
+    {
+      text: 'Many trees produce a new layer of wood around their trunks each growing season. In regions with distinct seasons, growth is often rapid in spring and slower toward the end of summer. This difference can create visible bands, which appear as rings when a trunk is cut across. Scientists compare patterns of wide and narrow rings to investigate conditions that affected a tree during its lifetime. However, ring width does not reflect rainfall alone; temperature, competition, and disturbances such as insect outbreaks may also influence growth. Researchers often examine samples from multiple trees before drawing conclusions about past environments.',
+      prefixes: ['dist', 'rap', 'diff', 'vis', 'Scien', 'patt', 'invest', 'life', 'compe', 'concl'],
+      suffixes: ['inct', 'id', 'erence', 'ible', 'tists', 'erns', 'igate', 'time', 'tition', 'usions'],
+    },
+    {
+      text: 'Public libraries expanded access to books long before digital resources became common. In many towns, early lending programs relied on donations and modest membership fees. As municipal governments began supporting libraries, more residents could borrow materials without purchasing them. Librarians developed catalogs to organize growing collections, while reading rooms offered quiet spaces for study. Over time, libraries added newspapers, lectures, and educational programs that served diverse communities. Their role continues to evolve as they provide internet access and help visitors evaluate information. Although their services have changed, the central goal of sharing knowledge remains remarkably consistent.',
+      prefixes: ['lend', 'dona', 'muni', 'resi', 'Libr', 'cata', 'colle', 'educ', 'eval', 'cons'],
+      suffixes: ['ing', 'tions', 'cipal', 'dents', 'arians', 'logs', 'ctions', 'ational', 'uate', 'istent'],
+    },
+  ];
+  const passages = test39.filter((task) => task.type === 'complete-words');
+  assert.equal(passages.length, 2);
+  expected.forEach(({ text, prefixes, suffixes }, index) => {
+    const passage = passages[index];
+    assert.equal(passage.text.split('. ')[0], text.split('. ')[0]);
+    assert.deepEqual([...passage.answers], suffixes);
+    const matches = [...passage.text.matchAll(/(\w+)\[(\d+)\]/g)];
+    assert.deepEqual(matches.map(([, prefix]) => prefix), prefixes);
+    assert.deepEqual(matches.map(([, , size]) => Number(size)), suffixes.map((suffix) => suffix.length));
+    let answer = 0;
+    assert.equal(passage.text.replace(/\[\d+\]/g, () => passage.answers[answer++]), text);
+    const markup = sandbox.renderCompleteWordsText(passage.text);
+    assert.deepEqual([...markup.matchAll(/class="incomplete-word">(\w+)<input/g)].map(([, prefix]) => prefix), prefixes);
+  });
+});
+
+test('Test 39 has the supplied question order, answer distribution, and 61 objective items', () => {
+  const [reading, listening, writing, speaking] = ['Reading', 'Listening', 'Writing', 'Speaking']
+    .map((section) => [...test39].filter((task) => task.section === section));
+  assert.deepEqual([...test39], [...reading, ...listening, ...writing, ...speaking]);
+  assert.deepEqual([reading.length, listening.length, writing.length, speaking.length], [7, 10, 8, 2]);
+
+  const readingGroups = reading.slice(2).map((task) => [...task.questions]);
+  const listeningGroups = listening.map((task) => task.questions ? [...task.questions] : [task]);
+  const groupKeys = (groups) => groups.map((group) => group.map(({ correct }) => 'ABCD'[correct]).join(''));
+  assert.deepEqual(groupKeys(readingGroups), ['DB', 'AC', 'CDA', 'BDCAB', 'CABDC']);
+  assert.deepEqual(groupKeys(listeningGroups), ['C', 'A', 'D', 'B', 'DC', 'BA', 'D', 'B', 'CADB', 'DBCA']);
+
+  const readingMC = readingGroups.flat();
+  const listeningMC = listeningGroups.flat();
+  const countAnswers = (questions) => [0, 1, 2, 3].map((index) => questions.filter(({ correct }) => correct === index).length);
+  for (const { options, correct } of [...readingMC, ...listeningMC]) {
+    assert.equal(new Set(options).size, 4);
+    assert.ok(options[correct]);
+  }
+  assert.deepEqual(countAnswers(readingMC), [4, 4, 5, 4]);
+  assert.deepEqual(countAnswers(listeningMC), [4, 5, 4, 5]);
+  assert.deepEqual(countAnswers([...readingMC, ...listeningMC]), [8, 9, 9, 9]);
+
+  const sentenceTasks = writing.filter((task) => task.type === 'build-sentence');
+  assert.equal(sentenceTasks.length, 6);
+  const objectiveCount = reading[0].answers.length + reading[1].answers.length
+    + readingMC.length + listeningMC.length + sentenceTasks.length;
+  assert.equal(objectiveCount, 61);
+  for (const task of sentenceTasks) {
+    assert.equal(task.preserveChunkOrder, true);
+    assert.deepEqual([...task.words], [...task.chunks]);
+    assert.equal(new Set(task.words).size, 5);
+    assert.equal(task.correctOrder.length, 4);
+    assert.deepEqual([...task.words].filter((word) => !task.correctOrder.includes(word)), [task.distractor]);
+    let chunk = 0;
+    assert.equal(task.scaffold.replace(/______/g, () => task.correctOrder[chunk++]), task.completedSentence);
+  }
+  assert.equal(writing[6].type, 'writing-email');
+  assert.equal(writing[6].time, 420);
+  assert.equal(writing[7].type, 'academic-discussion');
+  assert.equal(writing[7].time, 600);
+  assert.equal(speaking[0].type, 'listen-repeat-updated');
+  assert.equal(speaking[1].type, 'take-interview');
+  assert.equal(speaking[1].responseTime, 45);
+  assert.equal(speaking[1].questions.length, 4);
+  assert.equal(speaking[1].audioUrl, undefined);
+});
+
+test('Test 39 uses all 17 existing MP3 files and the established transcript reveals', () => {
+  const audioFiles = [
+    ...[8, 9, 10, 11, 15, 16, 18, 19, 20, 21].map((number) => `task-${number}.mp3`),
+    ...Array.from({ length: 7 }, (_, index) => `sentence-${index + 1}.mp3`),
+  ];
+  const listening = [...test39].filter((task) => task.section === 'Listening');
+  const repeat = test39.find((task) => task.type === 'listen-repeat-updated');
+  const urls = [...listening.map((task) => task.audioUrl), ...[...repeat.sentences].map((sentence) => sentence.audio)];
+  assert.deepEqual(urls, audioFiles.map((file) => `../audio/ibt/test-39/${file}`));
+  assert.deepEqual(readdirSync(new URL('../audio/ibt/test-39/', import.meta.url)).filter((file) => file.endsWith('.mp3')).sort(), [...audioFiles].sort());
+  for (const task of listening) {
+    assert.ok(task.script);
+    const markup = sandbox.renderScriptControl(task.script);
+    assert.match(markup, />Show Script<\/button>/);
+    assert.match(markup, /practice-transcript" hidden/);
+  }
+  for (const sentence of repeat.sentences) assert.equal(sentence.text, sentence.script);
 });

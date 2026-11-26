@@ -39,8 +39,7 @@ const splits = [
 ];
 
 test('Test 38 follows Test 37 and retains the 27-task sequence and original Tests 1–37 data', () => {
-  assert.deepEqual([...evaluate('testCollections[1].tests.slice(-2)')], ['Test 37', 'Test 38']);
-  assert.equal(evaluate("testData['Test 39']"), undefined);
+  assert.deepEqual([...evaluate('testCollections[1].tests.slice(6, 8)')], ['Test 37', 'Test 38']);
   assert.deepEqual(tasks.map(({ section }) => section), [
     ...Array(7).fill('Reading'), ...Array(10).fill('Listening'),
     ...Array(8).fill('Writing'), ...Array(2).fill('Speaking'),
