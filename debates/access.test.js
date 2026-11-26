@@ -105,14 +105,17 @@ test('temporary verification failures offer a retry', async () => {
 
 test('dashboard loads Debates once per account and clears it at sign-out', () => {
   const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-  const fn = html.slice(html.indexOf('function updateDebatesAccess()'), html.indexOf('function hideLock('));
+  const fn = html.slice(html.indexOf('function isDebatesRoute()'), html.indexOf('function hideLock('));
   const navigations = [];
-  const frame = { dataset: {}, set src(value) { navigations.push(value); } };
+  let src = 'about:blank';
+  const frame = { dataset: {}, set src(value) { src = value; navigations.push(value); }, getAttribute() { return src; } };
   const screen = { classList: { add() {}, contains: () => false } };
   const elements = new Map([['frame-debates', frame], ['exercise-debates', screen]]);
+  const location = { pathname: '/' };
   let prompt;
   const context = vm.createContext({
     _currentUser: null, showAuthModal: value => { prompt = value; }, closeMobileSidebar() {},
+    window: { location }, history: { pushState(_, __, path) { location.pathname = path; } },
     document: {
       querySelectorAll() { return []; },
       getElementById(id) {
@@ -125,11 +128,38 @@ test('dashboard loads Debates once per account and clears it at sign-out', () =>
   assert.equal(prompt, 'login');
   assert.deepEqual(navigations, []);
   vm.runInContext("_currentUser = { id: 'member' }; openDebates(); openDebates();", context);
-  assert.deepEqual(navigations, ['/debates']);
+  assert.deepEqual(navigations, ['/debates/index.html']);
+  assert.equal(location.pathname, '/debates');
   assert.match(elements.get('btn-debates').textContent, /Resume Practice/);
   vm.runInContext('_currentUser = null; updateDebatesAccess(); updateDebatesAccess();', context);
   assert.equal(frame.dataset.userId, undefined);
-  assert.deepEqual(navigations, ['/debates', 'about:blank']);
+  assert.deepEqual(navigations, ['/debates/index.html', 'about:blank']);
   vm.runInContext("_currentUser = { id: 'other' }; openDebates();", context);
-  assert.deepEqual(navigations, ['/debates', 'about:blank', '/debates']);
+  assert.deepEqual(navigations, ['/debates/index.html', 'about:blank', '/debates/index.html']);
+});
+
+test('direct Debates routes serve the dashboard shell and mount the access gate inside it', () => {
+  const routes = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8')).rewrites;
+  for (const source of ['/debates', '/debates/']) {
+    assert.equal(routes.find(route => route.source === source)?.destination, '/index.html');
+  }
+  const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const fn = html.slice(html.indexOf('function isDebatesRoute()'), html.indexOf('function hideLock('));
+  const autoOpen = html.slice(html.indexOf('// Waits for auth session to resolve before opening'), html.indexOf('// Restore the exercise route'));
+  const frame = { dataset: {}, src: 'about:blank', getAttribute() { return this.src; } };
+  const elements = new Map([['frame-debates', frame]]);
+  const document = {
+    querySelectorAll() { return []; },
+    getElementById(id) {
+      if (!elements.has(id)) elements.set(id, { classList: { add(value) { this.current = value; } } });
+      return elements.get(id);
+    }
+  };
+  vm.runInNewContext(`${fn}\n${autoOpen}`, {
+    _currentUser: null, document, window: { location: { pathname: '/debates/' } }, closeMobileSidebar() {},
+  });
+  assert.equal(frame.src, '/debates/index.html');
+  assert.equal(elements.get('exercise-debates').classList.current, 'active');
+  assert.equal(elements.get('topbarTitle').textContent, 'Debates');
+  assert.equal(frame.dataset.userId, undefined);
 });

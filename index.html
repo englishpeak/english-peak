@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ePeak</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles/brand-tokens.css">
+<link rel="stylesheet" href="/styles/brand-tokens.css">
 <style>
 /* ── RESET & VARS ── */
 :root{--navy:#0D3B6F;--purple:#470074;--ink:#1A1A2E;--sky:#4A90D9;--bg:#F7F8FC;--border:rgba(13,59,111,0.12);--green:#1a7a4a;--gold:#C9A84C;--sidebar:240px;}
@@ -464,7 +464,7 @@ body.download-preview-lock{overflow:hidden}
       </div>
       <div class="ex-card" onclick="openDebates()">
         <div class="card-header"><div class="card-icon blue">💬</div><div class="card-access access-locked" id="access-debates">🔐 Sign in</div></div>
-        <div class="card-body"><div class="card-title">Debates</div><div class="card-desc">Explore real-world topics with images and thought-provoking questions. Share your opinions and explain your point of view.</div><div class="card-meta"><span class="meta-item">🗣 Speaking practice</span><span class="meta-item">🖼️ 10 debates</span></div><button class="card-btn btn-locked" id="btn-debates">🔐 Sign in to access</button></div>
+        <div class="card-body"><div class="card-title">Debates</div><div class="card-desc">Explore real-world topics with images and thought-provoking questions. Share your opinions and explain your point of view.</div><div class="card-meta"><span class="meta-item">🗣 Speaking practice</span><span class="meta-item">🖼️ 40 debates</span></div><button class="card-btn btn-locked" id="btn-debates">🔐 Sign in to access</button></div>
       </div>
     </div>
 
@@ -589,7 +589,7 @@ body.download-preview-lock{overflow:hidden}
   <!-- ═══ UNSCRAMBLE (iframe) ═══ -->
   <div class="exercise-screen" id="exercise-unscramble">
     <div class="exercise-topbar"><button class="back-btn" onclick="showDashboard()">← Dashboard</button><div class="exercise-title">Unscramble the Sentence</div><div class="exercise-badge">✓ Free</div></div>
-    <iframe class="exercise-frame" id="frame-unscramble" src="unscramble.html" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
+    <iframe class="exercise-frame" id="frame-unscramble" src="/unscramble.html" style="width:100%;flex:1;border:none;min-height:0;display:block;"></iframe>
   </div>
 
   <!-- ═══ ITP TESTS (iframe) ═══ -->
@@ -1759,7 +1759,7 @@ function updateListeningCard(c, isFullAccess) {
 
 // ═══ NAVIGATION ═══
 function showDashboard() {
-  if (window.location.pathname === '/thisorthat' || /^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
+  if (window.location.pathname === '/thisorthat' || /^\/idioms\/?$/.test(window.location.pathname) || isDebatesRoute()) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-dashboard').classList.add('active');
   document.getElementById('topbarTitle').textContent='';
@@ -1768,7 +1768,7 @@ function showDashboard() {
 }
 
 async function showDownloads() {
-  if (/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
+  if (/^\/idioms\/?$/.test(window.location.pathname) || isDebatesRoute()) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-downloads').classList.add('active');
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
@@ -2239,6 +2239,9 @@ function openThisOrThat() {
   if (window.location.pathname !== '/thisorthat') history.pushState({exercise:'thisorthat'}, '', '/thisorthat');
   closeMobileSidebar();
 }
+function isDebatesRoute() {
+  return /^\/debates\/?$/.test(window.location.pathname);
+}
 function updateDebatesAccess() {
   var allowed = !!_currentUser;
   var frame = document.getElementById('frame-debates');
@@ -2247,23 +2250,22 @@ function updateDebatesAccess() {
     frame.src = 'about:blank';
     if (document.getElementById('exercise-debates').classList.contains('active')) showDashboard();
   }
+  if (allowed && frame.getAttribute('src') === '/debates/index.html') frame.dataset.userId = _currentUser.id;
   document.getElementById('access-debates').textContent = allowed ? '✓ Free Account' : '🔐 Sign in';
   document.getElementById('access-debates').className = 'card-access ' + (allowed ? 'access-free' : 'access-locked');
   document.getElementById('btn-debates').textContent = !allowed ? '🔐 Sign in to access' : frame.dataset.userId ? 'Resume Practice →' : 'Start Practice →';
   document.getElementById('btn-debates').className = 'card-btn ' + (allowed ? 'btn-open' : 'btn-locked');
 }
 function openDebates() {
-  if (!_currentUser) { showAuthModal('login'); return; }
+  if (!_currentUser && !isDebatesRoute()) { showAuthModal('login'); return; }
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('exercise-debates').classList.add('active');
   document.getElementById('topbarTitle').textContent = 'Debates';
   document.getElementById('topbarSub').textContent = '';
   var frame = document.getElementById('frame-debates');
-  if (frame.dataset.userId !== _currentUser.id) {
-    frame.dataset.userId = _currentUser.id;
-    frame.src = '/debates';
-    updateDebatesAccess();
-  }
+  if (frame.getAttribute('src') === 'about:blank') frame.src = '/debates/index.html';
+  updateDebatesAccess();
+  if (!isDebatesRoute()) history.pushState({exercise:'debates'}, '', '/debates');
   closeMobileSidebar();
 }
 function hideLock(id){document.getElementById('lock-'+id).classList.remove('show');}
@@ -2277,7 +2279,7 @@ var _progressData = []; // full unfiltered list
 var _progressFilter = 'all';
 
 async function showProgress() {
-  if (/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
+  if (/^\/idioms\/?$/.test(window.location.pathname) || isDebatesRoute()) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-progress').classList.add('active');
   // update sidebar active state
@@ -2295,6 +2297,7 @@ async function showProgress() {
 async function showProfile() {
   if (/^\/idioms\/?$/.test(window.location.pathname)) history.pushState({}, '', '/');
   if (!_currentUser) { showAuthModal('login'); return; }
+  if (isDebatesRoute()) history.pushState({}, '', '/');
   document.querySelectorAll('.screen,.exercise-screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('screen-profile').classList.add('active');
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
@@ -3118,6 +3121,7 @@ checkHamburger();
 
 // Waits for auth session to resolve before opening, so tier-based locks are correct
 (function() {
+  if (isDebatesRoute()) { openDebates(); return; }
   var params = new URLSearchParams(window.location.search);
   var exercise = params.get('exercise') || (/^\/idioms\/?$/.test(window.location.pathname) ? 'idioms' : null);
   if (!exercise) return;
@@ -3157,10 +3161,11 @@ checkHamburger();
   }, 100);
 })();
 
-// Restore the Idioms route when using browser Back/Forward.
+// Restore the exercise route when using browser Back/Forward.
 window.addEventListener('popstate', function() {
   if (/^\/idioms\/?$/.test(window.location.pathname)) openIdioms();
-  else if (document.getElementById('exercise-idioms').classList.contains('active')) showDashboard();
+  else if (isDebatesRoute()) openDebates();
+  else if (document.getElementById('exercise-idioms').classList.contains('active') || document.getElementById('exercise-debates').classList.contains('active')) showDashboard();
 });
 
 // ═══ EXERCISE MODULES ═══
