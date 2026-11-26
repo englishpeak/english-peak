@@ -1714,5 +1714,175 @@ export const TOEFL_DICTIONARY = [
       "reliable source",
       "reliable evidence"
     ]
+  },
+  {
+    "id": "set-6-adverse",
+    "word": "Adverse",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1",
+    "definition": "Unfavorable or likely to cause harm.",
+    "spanish": "adverso; desfavorable",
+    "examples": [
+      "Adverse weather delayed the survey team's trip to the island.",
+      "Persistent noise can have adverse effects on students' concentration."
+    ],
+    "collocations": [
+      "adverse effects",
+      "adverse conditions",
+      "adverse weather"
+    ]
+  },
+  {
+    "id": "set-6-deplete",
+    "word": "Deplete",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2",
+    "definition": "To use up or greatly reduce a supply of something.",
+    "spanish": "mermar; agotar",
+    "examples": [
+      "Years of overfishing depleted fish stocks along the coast.",
+      "During the drought, heavy irrigation depleted the region's groundwater reserves."
+    ],
+    "collocations": [
+      "deplete reserves",
+      "deplete resources",
+      "deplete supplies"
+    ]
+  },
+  {
+    "id": "set-6-equilibrium",
+    "word": "Equilibrium",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2",
+    "definition": "A state of balance in which opposing forces or influences offset each other.",
+    "spanish": "equilibrio",
+    "examples": [
+      "A market reaches equilibrium when the quantity supplied equals the quantity demanded.",
+      "The scientists waited for the metal and the surrounding water to reach thermal equilibrium."
+    ],
+    "collocations": [
+      "reach equilibrium",
+      "maintain equilibrium",
+      "thermal equilibrium"
+    ]
+  },
+  {
+    "id": "set-6-expenditure",
+    "word": "Expenditure",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1",
+    "definition": "The amount of money spent on a particular activity or purpose.",
+    "spanish": "gasto",
+    "examples": [
+      "Public expenditure on education rose after the government expanded its scholarship program.",
+      "The study compared household expenditure on food across three income groups."
+    ],
+    "collocations": [
+      "public expenditure",
+      "capital expenditure",
+      "expenditure on education"
+    ]
+  },
+  {
+    "id": "set-6-impart",
+    "word": "Impart",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2",
+    "definition": "To pass knowledge, information or skills on to someone.",
+    "spanish": "transmitir; impartir",
+    "examples": [
+      "The field course imparts skills that students can use to monitor local wildlife.",
+      "The lectures imparted a basic understanding of how urban planning affects public health."
+    ],
+    "collocations": [
+      "impart knowledge",
+      "impart skills",
+      "impart information"
+    ]
+  },
+  {
+    "id": "set-6-intrinsic",
+    "word": "Intrinsic",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2",
+    "definition": "Forming part of the basic nature of a person or thing.",
+    "spanish": "intrínseco; inherente",
+    "examples": [
+      "The philosopher argued that every person has intrinsic value.",
+      "Students with intrinsic motivation pursued difficult questions even after the assignment ended."
+    ],
+    "collocations": [
+      "intrinsic value",
+      "intrinsic property",
+      "intrinsic motivation"
+    ]
+  },
+  {
+    "id": "set-6-notion",
+    "word": "Notion",
+    "partOfSpeech": "noun",
+    "cefrLevel": "B2",
+    "definition": "An idea or belief about something.",
+    "spanish": "noción; idea",
+    "examples": [
+      "The study challenged the notion that people remember every detail of a major event.",
+      "The historian traced how the notion of citizenship changed over time."
+    ],
+    "collocations": [
+      "challenge the notion",
+      "notion of",
+      "preconceived notion"
+    ]
+  },
+  {
+    "id": "set-6-outcome",
+    "word": "Outcome",
+    "partOfSpeech": "noun",
+    "cefrLevel": "B2",
+    "definition": "The result of an action, event or process.",
+    "spanish": "resultado",
+    "examples": [
+      "The outcome of the experiment depended on how long the samples were exposed to light.",
+      "The report compared employment outcomes for graduates from different degree programs."
+    ],
+    "collocations": [
+      "predict the outcome",
+      "desired outcome",
+      "learning outcomes"
+    ]
+  },
+  {
+    "id": "set-6-predominant",
+    "word": "Predominant",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2",
+    "definition": "More common or influential than others of the same kind.",
+    "spanish": "predominante; dominante",
+    "examples": [
+      "Wind is the predominant source of electricity in the region.",
+      "The survey found that cost was the predominant factor in students' choice of housing."
+    ],
+    "collocations": [
+      "predominant factor",
+      "predominant species",
+      "predominant form"
+    ]
+  },
+  {
+    "id": "set-6-ubiquitous",
+    "word": "Ubiquitous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2",
+    "definition": "Present or found almost everywhere in a particular setting.",
+    "spanish": "omnipresente; ubicuo",
+    "examples": [
+      "Smartphones have become ubiquitous on university campuses.",
+      "The study found that single-use packaging was ubiquitous in the city's supermarkets."
+    ],
+    "collocations": [
+      "ubiquitous presence",
+      "become ubiquitous",
+      "ubiquitous feature"
+    ]
   }
 ];

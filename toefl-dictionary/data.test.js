@@ -15,12 +15,12 @@ test('Set 1 contains exactly the 30 requested distinct words with complete entri
   assert.equal(createHash('sha256').update(JSON.stringify(englishContent(original))).digest('hex'), 'b96e64a282ca0da7c35721ddb5aa3b765ccda364221d0e0617dc0fc4e161d63c');
 });
 
-test('the combined dictionary contains 100 unique, complete entries including all Set 2 words', () => {
+test('the combined dictionary contains 110 unique, complete entries including all Set 2 words', () => {
   const expected = 'Allocate Ambiguous Attribute Bias Capacity Constraint Contradict Correlate Diminish Distinguish Emerge Facilitate Inhibit Inevitable Prevalent Retain Subsequent Sustain Valid Widespread'.split(' ');
   const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-2-'));
   assert.deepEqual(added.map(entry => entry.word), expected);
   assert.equal(createHash('sha256').update(JSON.stringify(englishContent(added))).digest('hex'), '5e37808f6d5d20198742a7dc35d59749c4944ec2c1c038bd5a8f803bcdafd71d');
-  assert.equal(TOEFL_DICTIONARY.length, 100);
+  assert.equal(TOEFL_DICTIONARY.length, 110);
   for (const entry of added) {
     assert.equal(entry.id, 'set-2-' + entry.word.toLowerCase());
     assert.equal(entry.collocations.length, 3, entry.word);
@@ -76,6 +76,21 @@ test('Set 5 contains the 10 requested words with stable IDs and the supplied CEF
   assert.deepEqual(added.map(({ word, cefrLevel }) => [word, cefrLevel]), expected);
   for (const entry of added) {
     assert.equal(entry.id, 'set-5-' + entry.word.toLowerCase());
+    assert.equal(entry.collocations.length, 3, entry.word);
+    assert.deepEqual(filterEntries(TOEFL_DICTIONARY, `  ${entry.word.toUpperCase()}  `), [entry]);
+  }
+});
+
+test('Set 6 contains the 10 requested words with stable IDs and dictionary CEFR levels', () => {
+  const expected = [
+    ['Adverse', 'C1'], ['Deplete', 'C2'], ['Equilibrium', 'C2'],
+    ['Expenditure', 'C1'], ['Impart', 'C2'], ['Intrinsic', 'C2'],
+    ['Notion', 'B2'], ['Outcome', 'B2'], ['Predominant', 'C2'], ['Ubiquitous', 'C2'],
+  ];
+  const added = TOEFL_DICTIONARY.filter(entry => entry.id.startsWith('set-6-'));
+  assert.deepEqual(added.map(({ word, cefrLevel }) => [word, cefrLevel]), expected);
+  for (const entry of added) {
+    assert.equal(entry.id, 'set-6-' + entry.word.toLowerCase());
     assert.equal(entry.collocations.length, 3, entry.word);
     assert.deepEqual(filterEntries(TOEFL_DICTIONARY, `  ${entry.word.toUpperCase()}  `), [entry]);
   }
