@@ -23,6 +23,7 @@ const BEE_WORDS_BY_LEVEL = {
     'accommodation', 'acknowledge', 'conscious', 'consequence', 'guarantee', 'maintenance', 'perspective', 'pronunciation', 'sufficient', 'thoroughly',
     'exaggerate', 'independent', 'responsibility', 'suspicious', 'colleague',
   ],
+  C1: ['notion', 'outcome'],
 };
 
 const availableLevels = new Set(Object.values(LEVELS_BY_DIFFICULTY).flat());

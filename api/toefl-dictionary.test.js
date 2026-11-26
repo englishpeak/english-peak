@@ -61,13 +61,13 @@ test('all existing full-access tiers and the is_admin override retain access', a
     assert.equal(res.statusCode, 200);
     assert.equal(res.body.userId, 'verified-user');
     assert.deepEqual(res.body.entries, TOEFL_DICTIONARY.map(({ audioPath, ...entry }) => entry));
-    assert.equal(res.body.entries.length, 100);
+    assert.equal(res.body.entries.length, 110);
   }
 });
 
-test('all 100 vocabulary entries resolve to distinct lowercase MP3 paths and can specify an override', () => {
+test('all 110 vocabulary entries resolve to distinct lowercase MP3 paths and can specify an override', () => {
   const paths = TOEFL_DICTIONARY.map(vocabularyAudioPath);
-  assert.equal(new Set(paths).size, 100);
+  assert.equal(new Set(paths).size, 110);
   for (const path of paths) assert.match(path, /^en-US\/[a-z]+\.mp3$/);
   assert.equal(vocabularyAudioPath({ word: 'Read', audioPath: 'en-US/read-past.mp3' }), 'en-US/read-past.mp3');
 });

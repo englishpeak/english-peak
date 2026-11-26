@@ -17,7 +17,11 @@ const newWordsByLevel = {
   A2: ['beautiful', 'bicycle', 'mountain', 'neighbor', 'vegetable'],
   B1: ['achievement', 'available', 'environment', 'necessary', 'recommend'],
   B2: ['exaggerate', 'independent', 'responsibility', 'suspicious', 'colleague'],
+  C1: ['notion', 'outcome'],
 };
+const newHardDictionaryWords = [
+  'adverse', 'deplete', 'equilibrium', 'expenditure', 'impart', 'intrinsic', 'predominant', 'ubiquitous',
+];
 
 async function fixture(t, { available = recordings, missing = [], getUser } = {}) {
   const calls = { lists: [], downloads: [] };
@@ -113,7 +117,7 @@ test('route shell is public, exercise markup and every activity action require a
   const pools = {
     easy: [...easy, ...newWordsByLevel.A1, ...newWordsByLevel.A2],
     medium: [...medium, ...newWordsByLevel.B1, ...newWordsByLevel.B2],
-    hard,
+    hard: [...hard, ...newWordsByLevel.C1, ...newHardDictionaryWords],
   };
   const { call, calls } = await fixture(t, { available: Object.values(pools).flat() });
   const shell = readFileSync(new URL('../../spelling-bee/index.html', import.meta.url), 'utf8');
