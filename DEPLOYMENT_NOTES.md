@@ -85,3 +85,10 @@ report or a historical weekly-only report. If the old weekly constraint still
 blocks a second date in the same week, it stops before replacing any hour lines
 and asks for the pay-day update to be completed. Repeated submissions are disabled
 while a save is in progress. No new database migration is required for this fix.
+
+## Adjusting teacher pay reports
+
+Apply `supabase/migrations/202611270001_adjust_pay_report_hours.sql` to the
+production Supabase project to enable hour adjustments in **Teachers → Pay
+Reports → Adjust totals**. The migration saves corrected hours and payment
+totals together and updates class deductions for approved and paid reports.
