@@ -15,7 +15,10 @@ const day = (id, date, status = 'Open') => ({ id, pay_date: date, period_start: 
 // Exercise the real page handlers without signing in or writing to Supabase.
 function appHarness() {
   const listeners = {}, elements = new Map(), writes = [], alerts = [];
-  const client = { from(table) {
+  const client = { rpc(procedure, payload) {
+    writes.push({ procedure, payload });
+    return Promise.resolve({ error: null });
+  }, from(table) {
     if(table===ACADEMIC_TABLES.reports){
       let operation='select',payload;
       const filters=[];
@@ -85,7 +88,7 @@ function appHarness() {
     loadData=async()=>{};
     render=()=>{};
     openModal=html=>{globalThis.modal=html};
-    globalThis.app={state,overview,reports,payments,reportForm,openPayDays};
+    globalThis.app={state,overview,reports,payments,reportForm,adjustmentForm,openPayDays};
   `, context);
   const app = context.app;
   Object.assign(app.state, { user: { id: 'teacher-1' }, payDays: [day('later', '2026-10-23'), day('earlier', '2026-10-16'), day('closed', '2026-10-09', 'Closed')] });
@@ -279,4 +282,82 @@ test('only administrators see reopen controls on Overview and Payments', () => {
     assert.match(html,/data-close-payday="earlier"/);
     assert.match(html,/data-close-payday="later"/);
   }
+});
+
+test('the headmaster can adjust a closed weekly report by student and keep payment overrides', async () => {
+  const app = appHarness();
+  const updatedAt = '2026-10-09T20:00:00Z';
+  Object.assign(app.state, {
+    isAdmin: true,
+    teachers: [{ id: 'teacher-1', full_name: 'Teacher One' }],
+    reports: [
+      { id: 'target', teacher_user_id: 'teacher-1', pay_day_id: 'closed', status: 'Approved', updated_at: updatedAt },
+      { id: 'other', teacher_user_id: 'teacher-2', pay_day_id: 'closed', status: 'Submitted' }
+    ],
+    classes: [{ id: 'private', name: 'Private class' }, { id: 'group', name: 'Group class' }],
+    classStudents: [
+      { class_id: 'private', student_id: 'ana', status: 'Active' },
+      { class_id: 'group', student_id: 'leo', status: 'Active' },
+      { class_id: 'group', student_id: 'rosa', status: 'Active' }
+    ],
+    students: [
+      { id: 'ana', full_name: 'Ana' }, { id: 'leo', full_name: 'Leo' }, { id: 'rosa', full_name: 'Rosa' }
+    ],
+    reportLines: [
+      { id: 'private-line', report_id: 'target', class_id: 'private', hours: 2 },
+      { id: 'group-line', report_id: 'target', class_id: 'group', hours: 3 },
+      { id: 'extra-line', report_id: 'target', is_extra: true, hours: 1, comment: 'Substitute lesson' },
+      { id: 'other-line', report_id: 'other', class_id: 'private', hours: 7 }
+    ],
+    paymentAdjustments: [{ report_id: 'target', teacher_total: 500 }]
+  });
+
+  assert.match(app.reports(), /data-adjust-payment="target">Adjust totals/);
+  app.adjustmentForm('target');
+  assert.match(app.context.modal, /Ana · hours/);
+  assert.match(app.context.modal, /Leo · hours/);
+  assert.match(app.context.modal, /Rosa · hours/);
+  assert.match(app.context.modal, /Substitute lesson/);
+  assert.match(app.context.modal, /name="teacher_total"[^>]+value="500.00"/);
+  assert.doesNotMatch(app.context.modal, /hours_other-line/);
+
+  await app.submit('adjustmentForm', {
+    'hours_private-line': '2.35',
+    'hours_group-line': '3',
+    'student_hours_group-line_leo': '0',
+    'student_hours_group-line_rosa': '',
+    'hours_extra-line': '1',
+    teacher_total: '500',
+    school_total: '',
+    admin_note: 'Corrected hours'
+  }, { id: 'target', updatedAt });
+
+  assert.deepEqual(app.alerts, []);
+  assert.deepEqual(JSON.parse(JSON.stringify(app.writes)), [{
+    procedure: 'ep_adjust_pay_report',
+    payload: {
+      p_report_id: 'target',
+      p_expected_updated_at: updatedAt,
+      p_lines: [
+        { id: 'private-line', previous_hours: 2, hours: 2.35, student_hours: {} },
+        { id: 'group-line', previous_hours: 3, hours: 3, student_hours: { leo: 0 } }
+      ],
+      p_teacher_total: 500,
+      p_school_total: null,
+      p_admin_note: 'Corrected hours'
+    }
+  }]);
+});
+
+test('teachers can reopen a submitted report with an adjusted fractional hour value', () => {
+  const app = appHarness();
+  app.state.reports = [{ id: 'report', teacher_user_id: 'teacher-1', pay_day_id: 'earlier', status: 'Submitted' }];
+  app.state.classes = [{ id: 'class-1', name: 'English', status: 'Active' }];
+  app.state.classTeachers = [{ teacher_user_id: 'teacher-1', class_id: 'class-1', status: 'Active' }];
+  app.state.reportLines = [{ report_id: 'report', class_id: 'class-1', hours: 2.35 }];
+
+  app.adjustmentForm('report');
+  assert.equal(app.context.modal, undefined);
+  app.reportForm('earlier');
+  assert.match(app.context.modal, /name="class_class-1"[^>]*step="0.01" value="2.35"/);
 });
