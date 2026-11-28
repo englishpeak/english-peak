@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESL Presentation Tool</title>
     <link rel="stylesheet" href="/styles/brand-tokens.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap">
     <style>
         @property --question-background {
             syntax: "<color>";
@@ -129,13 +128,14 @@
             position: fixed;
             right: max(16px, env(safe-area-inset-right));
             bottom: max(16px, env(safe-area-inset-bottom));
-            min-height: 44px;
-            padding: 0 14px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
             border: 1px solid var(--ep-border);
             border-radius: 999px;
             background: var(--ep-surface);
             color: var(--ep-navy);
-            font: 600 0.8rem var(--ep-font-sans);
+            font: 1.125rem/1 "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
             cursor: pointer;
         }
 
@@ -214,7 +214,7 @@ window.addEventListener('load', function() {
     <div id="question-display">...</div>
     <button id="main-next-btn" onclick="generateNew()">Next Question</button>
 </div>
-<button type="button" id="business-night-toggle" aria-pressed="false" hidden>Night mode</button>
+<button type="button" id="business-night-toggle" aria-label="Night mode" aria-pressed="false" hidden>🌙</button>
 
 <script>
     const pools = {
