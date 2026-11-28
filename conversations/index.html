@@ -6,7 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESL Presentation Tool</title>
+    <link rel="stylesheet" href="/styles/brand-tokens.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap">
     <style>
+        @property --question-background {
+            syntax: "<color>";
+            inherits: true;
+            initial-value: #F0F4EF;
+        }
+
+        html { transition: --question-background 1.2s ease-out; }
+
         html, body {
             min-height: 100vh;
             margin: 0;
@@ -14,11 +24,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: background-color 1.2s ease-out;
             font-family: "Georgia", serif;
             font-weight: 400;
             overflow: hidden;
-            background-color: #F0F4EF;
+            background-color: var(--night-background, var(--question-background, #F0F4EF));
         }
 
         .dropdown {
@@ -90,7 +99,7 @@
 
         #question-display {
             font-size: clamp(1.3rem, 3.6vw, 2.34rem);
-            color: #2c3e50;
+            color: var(--night-text, #2c3e50);
             margin-bottom: 40px; 
             line-height: 1.5;
             font-style: italic;
@@ -115,6 +124,44 @@
         }
 
         #main-next-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(71, 0, 116, 0.25); }
+
+        #business-night-toggle {
+            position: fixed;
+            right: max(16px, env(safe-area-inset-right));
+            bottom: max(16px, env(safe-area-inset-bottom));
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid var(--ep-border);
+            border-radius: 999px;
+            background: var(--ep-surface);
+            color: var(--ep-navy);
+            font: 600 0.8rem var(--ep-font-sans);
+            cursor: pointer;
+        }
+
+        #business-night-toggle:hover { background: var(--ep-card-soft); }
+        #business-night-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+        html.business-questions { transition: none; }
+
+        html.business-night-mode {
+            --night-background: var(--ep-ink);
+            --night-text: var(--ep-surface);
+            color-scheme: dark;
+        }
+
+        .business-night-mode .dropbtn,
+        .business-night-mode .dropdown-content,
+        .business-night-mode #business-night-toggle {
+            background: #2a2a44;
+            color: var(--night-text);
+            border-color: rgb(255 255 255 / 35%);
+        }
+
+        .business-night-mode .dropdown-content button { color: var(--night-text); }
+        .business-night-mode .dropbtn:hover,
+        .business-night-mode .dropdown-content button:hover,
+        .business-night-mode #business-night-toggle:hover { background: var(--ep-navy); }
 
         @media (max-width: 768px) {
             #presentation-space { aspect-ratio: auto; min-height: 60vh; }
@@ -167,6 +214,7 @@ window.addEventListener('load', function() {
     <div id="question-display">...</div>
     <button id="main-next-btn" onclick="generateNew()">Next Question</button>
 </div>
+<button type="button" id="business-night-toggle" aria-pressed="false" hidden>Night mode</button>
 
 <script>
     const pools = {
@@ -396,12 +444,29 @@ business: [
 
     let currentFilter = 'general';
     let lastIndex = -1;
+    let businessNightMode = false;
+    const nightModeToggle = document.getElementById('business-night-toggle');
     const colors = ["#F0F4EF", "#EAE4E9", "#FFF1E6", "#FDE2E4", "#FAD2E1", "#E2ECE9", "#BEE1E6", "#F0EFEB", "#DFE7FD", "#CDDAFD"];
+
+    function updateNightMode() {
+        const isBusiness = currentFilter === 'business' && _allowBusiness;
+        const nightModeActive = isBusiness && businessNightMode;
+        document.documentElement.classList.toggle('business-questions', isBusiness);
+        document.documentElement.classList.toggle('business-night-mode', nightModeActive);
+        nightModeToggle.hidden = !isBusiness;
+        nightModeToggle.setAttribute('aria-pressed', String(nightModeActive));
+    }
+
+    nightModeToggle.addEventListener('click', () => {
+        businessNightMode = !businessNightMode;
+        updateNightMode();
+    });
 
     function toggleDropdown() { document.getElementById("myDropdown").classList.toggle("show"); }
 
     function setFilter(filterName, label) {
         currentFilter = filterName;
+        updateNightMode();
         const buttonLabel = (label === 'General') ? 'General questions' : label + ' questions';
         document.getElementById("current-filter-label").innerText = buttonLabel;
         document.getElementById("myDropdown").classList.remove("show");
@@ -425,16 +490,10 @@ function generateNew() {
             display.style.opacity = 1;
         }, 300);
 
-        // NEW COLOR LOGIC
-        let nextColor;
-        if (currentFilter === 'business') {
-            nextColor = "#FFFFFF"; // Solid white for business
-        } else {
-            nextColor = colors[Math.floor(Math.random() * colors.length)]; // Random for others
-        }
-        
-        document.body.style.backgroundColor = nextColor;
-        document.documentElement.style.backgroundColor = nextColor;
+        const nextColor = currentFilter === 'business'
+            ? '#FFFFFF'
+            : colors[Math.floor(Math.random() * colors.length)];
+        document.documentElement.style.setProperty('--question-background', nextColor);
     }
 
     window.onclick = function(event) {
